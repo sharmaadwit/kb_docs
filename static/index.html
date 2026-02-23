@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KB Assistant | Analytics Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="glass-bg"></div>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="pulse"></span>
+                <h1>KB Analytics <span>Pro</span></h1>
+            </div>
+            <div class="time-range">Last 48 Hours</div>
+        </header>
+
+        <main>
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="label">Total Queries</div>
+                    <div class="value" id="total-queries">-</div>
+                    <div class="trend up">+12% vs prev.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Success Rate</div>
+                    <div class="value" id="success-rate">-%</div>
+                    <div class="trend">Stable</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Avg Latency</div>
+                    <div class="value" id="avg-latency">-ms</div>
+                    <div class="trend down">-50ms improvement</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Confidence Score</div>
+                    <div class="value" id="avg-score">-</div>
+                    <div class="trend">Target: 0.35+</div>
+                </div>
+            </section>
+
+            <section class="charts-row">
+                <div class="chart-container glass">
+                    <h3>Documentation Usage</h3>
+                    <canvas id="docsChart"></canvas>
+                </div>
+                <div class="chart-container glass">
+                    <h3>Top Active Users</h3>
+                    <canvas id="usersChart"></canvas>
+                </div>
+            </section>
+
+            <section class="table-section glass">
+                <h3>Recent Live Activity</h3>
+                <div class="table-wrapper">
+                    <table id="queries-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Query Fragment</th>
+                                <th>User</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data injected here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        async function fetchData() {
+            try {
+                const response = await fetch('/api/stats');
+                const data = await response.json();
+                
+                if (!data) return;
+
+                // Update Stats
+                document.getElementById('total-queries').textContent = data.summary.total_queries;
+                document.getElementById('success-rate').textContent = data.summary.success_rate;
+                document.getElementById('avg-latency').textContent = data.summary.avg_latency;
+                document.getElementById('avg-score').textContent = data.summary.avg_score;
+
+                // Render Charts
+                renderDocsChart(data.top_docs);
+                renderUsersChart(data.top_users);
+                renderTable(data.recent_queries);
+                
+            } catch (err) {
+                console.error("Failed to load dashboard data", err);
+            }
+        }
+
+        function renderDocsChart(docs) {
+            const ctx = document.getElementById('docsChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: docs.map(d => d.path.split('/').pop()),
+                    datasets: [{
+                        data: docs.map(d => d.count),
+                        backgroundColor: ['#6366f1', '#a855f7', '#ec4899', '#f43f5e', '#f59e0b'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: '#fff', font: { family: 'Outfit' } } }
+                    },
+                    cutout: '70%'
+                }
+            });
+        }
+
+        function renderUsersChart(users) {
+            const ctx = document.getElementById('usersChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: users.map(u => u.email.split('@')[0]),
+                    datasets: [{
+                        label: 'Queries',
+                        data: users.map(u => u.count),
+                        backgroundColor: '#6366f1',
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#fff' } },
+                        x: { grid: { display: false }, ticks: { color: '#fff' } }
+                    }
+                }
+            });
+        }
+
+        function renderTable(queries) {
+            const tbody = document.querySelector('#queries-table tbody');
+            tbody.innerHTML = '';
+            queries.reverse().forEach(q => {
+                const row = document.createElement('tr');
+                const date = new Date(q.ts * 1000).toLocaleTimeString();
+                row.innerHTML = `
+                    <td>${date}</td>
+                    <td class="query-cell">${q.query.substring(0, 60)}...</td>
+                    <td>${q.user.split('@')[0]}</td>
+                    <td><span class="status-chip">Success</span></td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        window.onload = fetchData;
+    </script>
+</body>
+</html>
