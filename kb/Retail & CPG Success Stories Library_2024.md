@@ -1,7 +1,11 @@
-# Presentation: Retail & CPG Success Stories Library_2024.pptx
+# Retail & CPG Success Stories Library 2024
+
+## Success Story Library
 
 Success Story Library
 
+
+‹#›
 
 This an internal library
 DO NOT SHARE THE FULL DOC EXTERNALLY
@@ -10,9 +14,15 @@ Share max 3 most relevant examples with your customers
 
 Some stories are not public and for 1:1 sharing only
 
+---
+
+## Index (Click on the name to visit slide)
+
 Index (Click on the name to visit slide)
 
 Retail and D2C
+
+‹#›
 
 Kama Sutra
 Pureit
@@ -54,9 +64,19 @@ Schneider (OCR Technology)
 Max Fashion (Marketing)
 Azadea (support)
 
+---
+
+## Retail and eCommerce
+
 Retail and eCommerce
 
 www.gupshup.io
+
+‹#›
+
+---
+
+## more conversions on WhatsApp
 
 1.7X
 more conversions on WhatsApp
@@ -75,7 +95,13 @@ $ 500,000 in sales attributable to WhatsApp during one month period of Diwali an
 
 Online retailer achieves 10X higher ROI with WhatsApp Business Platform compared to conventional channels 
 
+‹#›
+
 Read the full story
+
+---
+
+## 7X ROI
 
 Brazil’s leading fashion retailer sees 7X ROI with Gupshup Conversation Cloud; pioneers the use of Gen AI powered shopping assistant
 
@@ -96,11 +122,17 @@ compared to SMS
 Higher open rates
 compared to email
 
+‹#›
+
 www.gupshup.io
 
 Read the full story 
 
 *AI powered
+
+---
+
+## Abandoned cart nudges
 
 Abandoned cart nudges
 
@@ -109,6 +141,12 @@ Utility messages
 Click-to-chat ads
 
 Gen AI bot on WhatsApp
+
+‹#›
+
+---
+
+## Vanessa Velloso
 
 Vanessa Velloso
 CRM Coordinator - Reserva
@@ -124,13 +162,25 @@ Engagement lift
 81.8%
 Higher open rates
 
+‹#›
+
+---
+
+## 8.5% influenced order conversion rate
+
 8.5% influenced order conversion rate
 
 Powering website search, AI Chatbot & Size Finder App
 
 Luxury fashion brand drives conversions with AI assisted conversational support
 
+‹#›
+
 Read the full story 
+
+---
+
+## Fashion retailer surfaces demand in 2 new international markets through leverages customer insights
 
 ### Fashion retailer surfaces demand in 2 new international markets through leverages customer insights
 
@@ -138,7 +188,13 @@ Read the full story
 Ideas for new products & styles from conversations
 Discovered new international markets
 
+‹#›
+
 Read the full story
+
+---
+
+## One of the fastest growing e-commerce company is enjoying a 100% YoY growth in their loyal customer ...
 
 Leading fashion eCommerce company revolutionizes CX with self-serve chatbots and live agents; lowers support costs by 10% while improving CSAT
 
@@ -148,7 +204,13 @@ The online shopping company worked with Gupshup to develop a chatbot that delive
 With the capability to seamlessly transfer bot conversations to a live agent using Gupshup Agent Assist, the company also seamlessly handles high-risk or complex scenarios
 Following the adoption of the bot and the smooth transition to agent support, the brand saw an impressive CSAT rating of 90%
 
+‹#›
+
 Read the full story 
+
+---
+
+## The campaign helped the brand generate 8,000 leads and 4,500 qualified leads within just first 5 wee...
 
 Direct to consumer home furnishings brand leverages click-to-chat ads to build on first party database and drive store visits
 
@@ -161,7 +223,13 @@ The innovative approach reduced the cost for qualified leads by 75% compared to 
 
 Automated free retargeting in 72 hours
 
+‹#›
+
 Confidential information
+
+---
+
+## Bata wanted to recreate in-store like shopping assistance to customers on their digital storefronts
 
 Bata wanted to recreate in-store like shopping assistance to customers on their digital storefronts
 
@@ -186,7 +254,13 @@ Hrs of assistance provided via bot
 ₹ 4M
 Worth order value influenced
 
+‹#›
+
 Confidential information
+
+---
+
+## Noise wanted to create hype and create a pipeline of buyers prior to their new product launches
 
 Noise wanted to create hype and create a pipeline of buyers prior to their new product launches
 
@@ -211,7 +285,13 @@ Electronics brand creates excitement and builds first-party data prior to produc
 
 Note: Early results from ongoing campaign in May 2023
 
+‹#›
+
 Confidential information
+
+---
+
+## D2C grooming brand integrated Shopify store and WhatsApp Messaging to boost conversions by 1.8X
 
 D2C grooming brand integrated Shopify store and WhatsApp Messaging to boost conversions by 1.8X
 
@@ -230,7 +310,13 @@ Higher conversion rates
 3X
 Customer engagement
 
+‹#›
+
 Confidential information
+
+---
+
+## Increase in user engagement
 
 1.5X
 Increase in user engagement
@@ -251,7 +337,13 @@ Helps customers find their nearest store, explore the services catalog, and book
 
 Pre-purchase ----- Purchase ----- Post-purchase
 
+‹#›
+
 Confidential information
+
+---
+
+## Lakmé saw a 1.5X increase in user interaction and 2X orders placed using WhatsApp
 
 Lakmé wanted to go beyond the traditional promotional channels and instead use rich immersive approach to make their campaign stand apart
 They partnered with Gupshup to engage and inform customers with updates such as order confirmation, delivery tracking, and also send promotional messages for their products and offers 
@@ -266,12 +358,18 @@ Lakmé - the contemporary Indian beauty brand boosts engagement with WhatsApp
 1.5X
 User interaction
 
+---
+
+## UAE’s leading fashion ecommerce brand increases ROAS by 5-8X with Conversational Marketing
+
 ### UAE’s leading fashion ecommerce brand increases ROAS by 5-8X with Conversational Marketing
 
 6thStreet wanted to combat declining engagement of traditional channels like email and push notifications
 The brand partnered with Gupshup to build  a robust presence on WhatsApp - a channel used by 97% of their customer base
 With segmented, contextual and interactive campaigns, the brand was able to reap significant ROAS gains, cart recovery and customer loyalty
 Next, the brand plans to introduce AI-powered experiences and digital shopping assistants to aid product discovery, comparisons and post-purchase help
+
+‹#›
 
 www.gupshup.io
 
@@ -289,6 +387,10 @@ Boost in Customer Recency Score
 "Partnering with Gupshup on WhatsApp marketing allowed us to build meaningful connections with our customers, leveraging personalized campaigns and automated engagement to drive impressive ROAS and customer loyalty. Gupshup has been the ideal partner to bring our vision of conversational marketing to life."
 Nupur Relekar Head of CRM & Organic Marketing
 
+---
+
+## UAE’s leading fashion retailer provides post purchase assistance using bots over WhatsApp
+
 ### UAE’s leading fashion retailer provides post purchase assistance using bots over WhatsApp
 
 Customer Journey
@@ -303,9 +405,15 @@ Since Nov 2022
 Easy virtual support discovery
 Via campaigns, email and app redirection
 
+‹#›
+
 www.gupshup.io
 
 Confidential information
+
+---
+
+## Lenskart wanted to reach their vast customer base in a personalized and interactive manner
 
 Lenskart wanted to reach their vast customer base in a personalized and interactive manner 
 
@@ -331,7 +439,13 @@ Source: Gupshup
 2.9%
 Response Rate
 
+‹#›
+
 Confidential information
+
+---
+
+## Customers were then encouraged to download the Dmart mobile app and continue shopping to avail the o...
 
 Dmart, a one-stop supermarket chain with presence in 10 states across India was looking for a novel approach to acquire new customers and drive app downloads
 
@@ -354,7 +468,13 @@ Cost per lead
 
 Supermarket chain leverages CTWA to acquire new customers and drive app downloads, expanding to 3 cities in 2 months
 
+‹#›
+
 Confidential information
+
+---
+
+## Bigbasket, top online grocery e-tailer embraces RCS for a Sizzling Summer Sale; sees unprecedented r...
 
 Bigbasket, top online grocery e-tailer embraces RCS for a Sizzling Summer Sale; sees unprecedented read rates
 
@@ -381,7 +501,13 @@ Read Rate
 10%
 Response Rate
 
+‹#›
+
 Confidential information
+
+---
+
+## RupaRupa, a popular omnichannel home improvement brand in Southeast Asia was looking for new ways to...
 
 RupaRupa, a popular omnichannel home improvement brand in Southeast Asia was looking for new ways to drive commerce
 
@@ -404,7 +530,13 @@ Leading omnichannel home goods brand leverages CTWA to drive commerce in Indones
 19%
 Clicks converted to leads
 
+‹#›
+
 Confidential information
+
+---
+
+## Customer Journey
 
 Customer Journey
 Customers scan the QR codes placed on key products in-store to learn more 
@@ -422,7 +554,13 @@ acquired In 2 months as opposed to a 10 month lead cycle without the bot
 2,300+ 
 Organic leads generated week-on-week 
 
+‹#›
+
 Confidential information
+
+---
+
+## Vivo ran a brand building campaign encouraging customers to develop a healthy smartphone usage habit
 
 Vivo ran a brand building campaign encouraging customers to develop a healthy smartphone usage habit
 The brand launched #Switchoff campaign and rolled both digital ads and print ads to achieve branding and lead generation goals
@@ -443,7 +581,13 @@ Leads compared to print ad
 
 “For our 2023 Switch-off campaign, we leveraged WhatsApp in partnership with Gupshup to amplify the message and engage people through a conversational survey. The results have been quite encouraging, helping us not only connect one-on-one with customers but also gain valuable insights.” Head of Digital Marketing, Vivo India
 
+‹#›
+
 Confidential information
+
+---
+
+## Global optical brand influences store visits and sales with Chat Ads; generates rich first party data for re-engagement
 
 ### Global optical brand influences store visits and sales with Chat Ads; generates rich first party data for re-engagement
 
@@ -452,6 +596,8 @@ The brand partnered with Gupshup and launched conversational ads to drive prospe
 By sharing an offer coupon redeemable at a partner store, the brand encouraged leads to continue their journey and find the nearest store
 The bespoke journey enabled Zeiss to influence sales worth INR 9 Lacs (USD 11K) within the first two months
 Re-engaged converted and non-converted leads using the persistent chat thread
+
+‹#›
 
 www.gupshup.io
 
@@ -472,6 +618,10 @@ Lead - Digital Marketing
 
 
 Read More
+
+---
+
+## Launched Click to WhatsApp ad campaign, showcasing ads on Facebook that promoted app downloads
 
 Snapdeal, an Indian e-commerce company, sought a novel approach to boost app downloads as part of their marketing calendar
 
@@ -498,7 +648,13 @@ Cost per install with gamification
 
 eCommerce giant leverages click-to-chat ads to drive app downloads; lowers cost per app install by 1/10th with gamification 
 
+‹#›
+
 Confidential information
+
+---
+
+## Return on Advertising Spends
 
 4X
 Return on Advertising Spends
@@ -508,6 +664,8 @@ Lower Cost per Lead
 
 UAE’s leading electronics retailer lowers acquisition costs, grows store footfall and pushes forward on sustainability goals  with conversational ads
 
+‹#›
+
 43%
 Improvement in lead qualification rate
 
@@ -516,6 +674,10 @@ In partnership with Gupshup, the brand launched ads that encourage shoppers to s
 With automated campaigns, they also nudge users contextually, such as when they abandoned a cart
 Based on user interests and affinity, personalized campaigns invite customers to participate in in-store raffle draws - sharing all assets such as booklets and invoices on WhatsApp and instead of paper tickets
 Achieved 4X ROAS on digital ad spends, and reduced CPL by 34% compared to email and SMS 
+
+---
+
+## Rising star smart wearables brand garnered interest in their new products with RCS messaging
 
 Rising star smart wearables brand garnered interest in their new products with RCS messaging
 
@@ -541,7 +703,13 @@ Read Rate
 15.4%
 Response Rate
 
+‹#›
+
 Confidential information
+
+---
+
+## Dream Dubai, a leading online shopping platform is known for delivering engaging shopping experience...
 
 Dream Dubai, a leading online shopping platform is known for delivering engaging shopping experiences to its customers
 
@@ -564,7 +732,13 @@ New Leads in 3 months
 AED 4.9
 Best CPL
 
+‹#›
+
 Confidential information
+
+---
+
+## Fortune 500 energy products company improves add-to-cart rates, accelerates retailer onboarding with industry-first conversational commerce for B2B and B2C
 
 ### Fortune 500 energy products company improves add-to-cart rates, accelerates retailer onboarding with industry-first conversational commerce for B2B and B2C
 
@@ -576,10 +750,16 @@ Engage & Win: Enjoy gamification like Spin & Win for exclusive deals.
 "Jazz Up Your Home": Discover bestsellers and products to enhance spaces.
 Explore Resources: Access technical documentation, CAD drawings, catalogs, and user guides.
 
+‹#›
+
 www.gupshup.io
 
 “This new, simplified user experience, powered by Gupshup, allows us to register new retailers in under 30 seconds, greatly increasing our customer acquisition efforts. It has improved our average add-to-cart rates as well”
 Mayuri Chaoji, DGM-e-commerce - Schneider Electric
+
+---
+
+## Confidential information
 
 Confidential information
 
@@ -597,6 +777,10 @@ SmartO is the Pic to Cart feature on Koko 2.0, Schneider’s virtual assistant t
 Buyers can upload handwritten notes or bill of materials to chat, view special deals and offers 
 OCR seamlessly processes the image and allows buyer to modify the order details before confirming 
 Can access live agent support, engage with gamification elements such as Spin & Win and get recommendations for bestsellers and relevant products
+
+---
+
+## 30% YoY
 
 5X
 
@@ -619,6 +803,10 @@ Higher engagement for CRM marketing
 Higher revenue
 compared to SMS 
 
+---
+
+## Ekta Khandelwal
+
 Ekta Khandelwal
 Manager, CRM, Max Fashion
 
@@ -627,6 +815,10 @@ We were able to re-engage in-store visitors with personalized, behavior-based me
 
 
 Read the full story 
+
+---
+
+## Goal
 
 Goal
 
@@ -679,6 +871,10 @@ MENA’s leading retail and ecom group orchestrates seamless marketing campaigns
 
 Read more
 
+---
+
+## Goal
+
 MENA’s leading retail and E-commerce group unifies marketing and customer support for 25+ brands on WhatsApp with handoff to existing support ecosystem
 
 
@@ -730,9 +926,19 @@ Head of Customer Experience
 
 Read more
 
+---
+
+## CPG/ FMCG
+
 CPG/ FMCG
 
 www.gupshup.io
+
+‹#›
+
+---
+
+## Brand launched a digital loyalty and claims campaign across WhatsApp, FB, web
 
 Brand launched a digital loyalty and claims campaign across WhatsApp, FB, web
 
@@ -751,7 +957,13 @@ Minutes of avg interaction
 8X
 Return on advertising spend
 
+‹#›
+
 Read the full story 
+
+---
+
+## Paints and coatings brand creates an award-winning conversational customer support and shopping experience
 
 ### Paints and coatings brand creates an award-winning conversational customer support and shopping experience
 
@@ -762,7 +974,13 @@ Read the full story
 
 30,000+ unique Q&A’s 
 
+‹#›
+
 Read the full story
+
+---
+
+## Increase in followers
 
 87%
 Increase in followers
@@ -782,7 +1000,13 @@ With Klaviyo integration, brand collected user information, opt-ins and email ad
 
 STËLZ uses Instagram to reach, engage and acquire new customers
 
+‹#›
+
 Confidential information
+
+---
+
+## 1.7K
 
 1.7K
 Unique contacts and names captured in 10 days
@@ -806,7 +1030,13 @@ Engagement with filters, recipes, cookbooks
 
 From Ramadan campaign with agency partner Publicis
 
+‹#›
+
 Confidential information
+
+---
+
+## Early nutrition brand automates responses for 1000s of complex queries through website and mobile web chatbots for their Dutch customers
 
 ### Early nutrition brand automates responses for 1000s of complex queries through website and mobile web chatbots for their Dutch customers
 
@@ -827,9 +1057,15 @@ conversation time
 
 AI powered
 
+‹#›
+
 www.gupshup.io
 
 Read the full story 
+
+---
+
+## Brand’s vision is to spread awareness among audience - making them feel comfortable about a sensitiv...
 
 Brand’s vision is to spread awareness among audience - making them feel comfortable about a sensitive subject.
 
@@ -845,7 +1081,13 @@ Increase in followers post 1-week campaign
 420K
 messages exchanged within a week
 
+‹#›
+
 Confidential information
+
+---
+
+## Gupshup’s Conversational Solution on Instagram helped Vicco enable Contextual Product Discovery
 
 Gupshup’s Conversational Solution on Instagram helped Vicco enable Contextual Product Discovery 
 
@@ -866,7 +1108,13 @@ Users can interact with chatbot to explore Vicco’s products range and know mor
 Users can click on the Buy now button embedded in product cards to purchase products.
 
 
+‹#›
+
 Confidential information
+
+---
+
+## Experiencing high growth, they sought a scalable solution and partnered with Gupshup to adopt messag...
 
 Pureit initially offered its customers the option to inquire, schedule home demonstrations, and raise complaints via phone support. 
 Experiencing high growth, they sought a scalable solution and partnered with Gupshup to adopt messaging channels. 
@@ -885,6 +1133,10 @@ Lower support calls
 3X
 Product queries
 
+---
+
+## Orders placed
+
 3X
 Orders placed
 
@@ -897,6 +1149,10 @@ Love beauty and planet partnered with Gupshup to send promotional messages like 
 The need - a reliable messaging solution that also integrated with LimeChat
 Gupshup’s conversational commerce capabilities helped showcase their products across categories - skincare, bodycare, bestsellers, allowing customers to purchase over WhatsApp
 The brand saw 2X more user interaction and 3X orders placed
+
+---
+
+## Increase in
 
 1.5X
 Increase in 
@@ -912,6 +1168,10 @@ They observed a 1.5x increase in user interaction and a 30% rise in website traf
 
 Unilever’s leading fabric care brand boosts website traffic with outreach campaigns over WhatsApp
 
+---
+
+## Appointment bookings per day
+
 1000+
 Appointment bookings per day
 
@@ -921,6 +1181,10 @@ Horlicks worked with Gupshup to adopt WhatsApp to help customers book appointmen
 The brand saw a considerable increase in user interaction with over 1000 users booking consultation appointment on a daily basis
 
 Horlicks, the popular nutritional drink boosts engagement and improves appointment booking using bots over WhatsApp
+
+---
+
+## Customer journey
 
 Customer journey
 
@@ -935,6 +1199,10 @@ The AI agent also generates recipes outside of the brand’s recipe collection, 
 Try it out: Scan & type ‘Hi”
 
 Leading spices brand introduces multilingual AI Recipe Agent to build brand recall and help homecooks experiment with new dishes 
+
+---
+
+## Fastest growing Indian beauty brand transforms customer support with voice AI
 
 Fastest growing Indian beauty brand transforms customer support with voice AI
 
@@ -978,6 +1246,10 @@ Accurate responses in customer’s preferred language
 Snehashis Roy,
 Head - D2C
 
+---
+
+## ‹#›
+
 | Use case | Outcome metric | Results | Case Studies |
 | Acquisition | Response/ completion rates | >60% | Unyfin |
 |  | # of new leads | 1.5-3x | Unyfin, Eco World, DMart |
@@ -1003,5 +1275,9 @@ Head - D2C
 |  | Agent productivity improvement | 10% | Byjus |
 |  | Response time improvement | >30% | Myntra |
 
+‹#›
+
 www.gupshup.io
+
+---
 
