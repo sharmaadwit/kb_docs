@@ -79,6 +79,32 @@ def kb_answer(query: str, top_k: int=5, style: str="customer", max_context_chars
         "note": "This implementation returns grounded excerpts. If you want fully synthesized natural-language answers, we can add an LLM step while keeping the same citations."
     }
 
+def github_kb_analytics(event_type: str, query: str, detected_language: str, answer_found: bool, citations: List[str], notes: str = "", **kwargs) -> Dict[str, Any]:
+    """Logs KB search and answer events to a daily NDJSON file."""
+    import datetime
+    
+    log_dir = os.path.join(os.path.dirname(__file__), "kb", "analytics")
+    os.makedirs(log_dir, exist_ok=True)
+    
+    today = datetime.date.today().isoformat()
+    log_path = os.path.join(log_dir, f"{today}.ndjson")
+    
+    log_entry = {
+        "ts": datetime.datetime.now().isoformat(),
+        "event_type": event_type,
+        "query": query,
+        "detected_language": detected_language,
+        "answer_found": answer_found,
+        "citations": citations,
+        "notes": notes,
+        **kwargs
+    }
+    
+    with open(log_path, "a", encoding="utf-8") as f:
+        f.write(json.dumps(log_entry) + "\n")
+        
+    return {"ok": True, "message": "Event logged successfully"}
+
 if __name__ == "__main__":
     # Example usage
     import sys
