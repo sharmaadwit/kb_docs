@@ -1,3 +1,4 @@
+source_url: https://console-docs.gupshup.io/docs/automated-campaign
 # Automated Campaign manager
 
 ## Creating Automated Campaigns

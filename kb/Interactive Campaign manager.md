@@ -1,3 +1,4 @@
+source_url: https://console-docs.gupshup.io/docs/campaign-listing-page
 # Interactive Campaign manager
 
 ## Transitioning One-Way to Two-Way

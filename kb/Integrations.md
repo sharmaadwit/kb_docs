@@ -1,3 +1,4 @@
+source_url: https://console-docs.gupshup.io/docs/about-integrations
 # Integrations
 
 ## Native Platform Integrations

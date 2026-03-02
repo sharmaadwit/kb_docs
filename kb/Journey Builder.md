@@ -1,3 +1,4 @@
+source_url: https://console-docs.gupshup.io/docs/about-bot-studio
 # Journey Builder
 
 Hi, Good Morning, Good Afternoon, Good Evening, I\'m not sure what part

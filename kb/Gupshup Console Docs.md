@@ -1,3 +1,4 @@
+source_url: https://console-docs.gupshup.io/docs/getting-started
 # Welcome to Gupshup Console
 
 Your unified platform for conversational messaging across WhatsApp, SMS, Web, and Instagram. Manage campaigns, bots, and customer support all in one place.

@@ -1,3 +1,4 @@
+source_url: https://console-docs.gupshup.io/docs/web
 # Web
 
 ## Web Chat Integration

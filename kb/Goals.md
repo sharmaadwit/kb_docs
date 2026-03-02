@@ -1,3 +1,4 @@
+source_url: https://console-docs.gupshup.io/docs/goals
 # Goals
 
 ## Goal Implementation in Journeys

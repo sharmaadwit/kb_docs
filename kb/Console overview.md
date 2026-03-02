@@ -1,3 +1,4 @@
+source_url: https://console-docs.gupshup.io/docs/getting-started
 # Console overview
 
 Hi there. This is a quick overview of the Gupshup console and its

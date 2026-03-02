@@ -1,3 +1,4 @@
+source_url: https://console-docs.gupshup.io/docs/settings
 # AA settings
 
 ## User & Team Management

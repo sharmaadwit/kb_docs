@@ -1,3 +1,4 @@
+source_url: https://console-docs.gupshup.io/docs/about-campaign-manager
 # Template Manager
 
 Hi everyone, in today\'s episode we are going to talk about templates.

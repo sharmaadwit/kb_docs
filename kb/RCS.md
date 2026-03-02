@@ -1,3 +1,4 @@
+source_url: https://console-docs.gupshup.io/docs/about-whatsapp
 # RCS
 
 ## RCS Bot Branding & Verification

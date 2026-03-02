@@ -1,3 +1,4 @@
+source_url: https://console-docs.gupshup.io/docs/about-whatsapp
 # WA
 
 ## Managing WhatsApp Opt-ins

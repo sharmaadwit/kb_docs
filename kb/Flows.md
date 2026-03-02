@@ -1,3 +1,4 @@
+source_url: https://console-docs.gupshup.io/docs/whatsapp-flows-static-2-way
 # Flows
 
 ## WhatsApp Flows Overview

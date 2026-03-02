@@ -1,3 +1,4 @@
+source_url: https://console-docs.gupshup.io/docs/overview-of-extensions
 # Extensions SMS
 
 ## SMS Dashboard & Usage

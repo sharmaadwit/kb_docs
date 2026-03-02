@@ -1,3 +1,4 @@
+source_url: https://console-docs.gupshup.io/docs/about-customer360
 # Personalize
 
 ## Profile & Database Management

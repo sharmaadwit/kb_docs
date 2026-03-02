@@ -1,3 +1,4 @@
+source_url: https://console-docs.gupshup.io/docs/bot-analytics-dashboard
 # Analytics
 
 ## WhatsApp Metrics & Dashboard
