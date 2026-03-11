@@ -1,0 +1,32 @@
+source_url: https://console-docs.gupshup.io/docs/shopify-integration
+# Integrations
+
+## Shopify Integration
+
+# Shopify Integration
+
+Enhance Customer Engagement and Boost Sales with Gupshup's Shopify Integration
+
+Using Shopify integration, we allow the customer to send important events and their attributes to their Gupshup account, using which they can send personalized campaigns for specific segments, send automated messages and much more.
+
+How does the Shopify integration help in achieving your business goals?
+
+- Automate marketing and transactional communication across multiple messaging platforms like WhatsApp
+- Deliver personalized and interactive messages to nurture leads, boost sales, and enhance customer satisfaction
+- Streamline your customer communication with welcome messages, real-time order updates, and timely reminders for abandoned checkouts
+Steps involved to complete the integration
+
+- Click on the integration tab, where you will be able to view the Shopify widget and click on it.
+- You can glance at the overview of key use cases that can be solved through Shopify; now click on Connect.
+- Post which you would need to add your shop name and then click on connect
+- Now a pop-up redirects you to Shopify requesting you to install the Gupshup Shopify app.
+- You would also need to make a one-time payment of $0.5 and approve the Gupshup Shopify app.
+Congrats, your Shopify store is now integrated!
+
+Available events
+
+- Placed order
+- Fulfilled order
+- Cancelled order
+- Checkout abandonded
+Updated 10 months ago

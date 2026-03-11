@@ -1,0 +1,42 @@
+source_url: https://console-docs.gupshup.io/docs/stateful-buttons-for-static-button-based-nodes
+# BOT STUDIO
+
+## Stateful Buttons for List and Quick Replies
+
+# Stateful Buttons for List and Quick Replies
+
+### Overview:
+
+Journey Builder features a variety of button-based nodes designed to send Quick Reply or Multiple radio button-based list messages across WhatsApp and other channels. These nodes have been upgraded to maintain their state along with the configured action, even after traversal and progression in the conversation when users select alternative buttons or inputs.
+
+### Key Features:
+
+State Retention: The enhanced button nodes now preserve their state, ensuring continuity in the conversation flow. Users can seamlessly navigate the conversation history on WhatsApp and select different buttons or list items while still proceeding along the configured path within Journey Builder.
+
+Improved User Experience: With stateful buttons, users can interact with various options within the conversation without losing context or disrupting the journey's intended progression. This feature enhances user engagement and facilitates smoother interactions across channels.
+
+Note: Ensure proper configuration of stateful buttons to leverage this enhanced functionality
+
+### What's New!
+
+- Additional Configuration available on List, Reply Button and Quick Reply Nodes to make a Button stateful
+- Stateful Buttons retains its context till its clickable from the channel side
+- Stateful buttons allow users to change the current context and start a fresh journey while in uninterrupted model. For Global Model the previous journey context will be retained
+- Designers can enable multiple stateful button for a single node
+- Support of Additional Payload to pass user context/info to the stateful journey(requires variable from the stateful journey to be mapped to the parent journey)
+### How to use Stateful Buttons ?
+
+Let's take a use case where the user will be greeted with a welcome message and some Menu options to choose from whenever a message is sent to the bot. One of the options provided is to Talk to an Agent which the user should be able to initiate at any point during the bot conversation.
+
+Journey creation steps:
+
+- The bot designer is responsible for creating the journey in which the "Talk to Agent" button will be integrated.
+- It is essential to link a stateful button to a journey. Therefore, the journey must be created prior to configuring the stateful button node.
+- For Quick Reply and List nodes, ensure that the nodes are set to multi-connector mode to enable support for stateful features.
+- In the Menu journey, designers can utilize Quick Reply, List or Reply buttons and designate one or more buttons as Stateful. This button should then be linked to the Agent Journey, as illustrated below.
+- Designers can include user context or information in the Additional Payload and subsequently retrieve this data through a variable in the stateful journey
+- Make sure that the variable is created on the Stateful journey in order to map it in the parent journey
+- Once configured as described in the preceding steps, the bot can be deployed. Subsequently, the button will retain its stateful context, allowing seamless user interaction even if alternative selections are made during the journey initiation process.
+In the image above, the user first selected the "Check order status" option and then chose the "Talk to Agent" option from the same Quick Reply. As the button was stateful, it initiated the journey associated with it.
+
+Updated 10 months ago

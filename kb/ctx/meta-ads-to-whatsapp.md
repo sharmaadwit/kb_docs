@@ -1,0 +1,40 @@
+source_url: https://console-docs.gupshup.io/docs/overview
+# CTX
+
+## Meta Ads to WhatsApp
+
+# Meta Ads to WhatsApp
+
+(Each essential step has been explained in detail in their respective subsections)
+
+# Essential steps to follow for successful CTWA setup
+
+## Connect Meta Ads Manager to Gupshup Console
+
+Access needed:
+
+- Admin access to Facebook Business Manager (FBM)
+- Access to any page owned by FBM
+- Access to the ad account to run CTWA ads, owned by the FBM
+## Add CTX Goals to User Journey
+
+Best practices:
+
+- Goal 1: Lead Best practice: Add this goal node as soon as the journey commences ie after the “Start Node”. CTX Lead goal is used to retrieve the phone number of the user.
+- Goal 2: Deep Conversation Best practice: At the midpoint of the journey. For eg: If journey includes 4 user inputs, Deep Conversation to be added after the 2nd user prompt
+- Goal 3: Qualified Lead Best practice: Add the goal node after the journey ends ie after the last user prompt. This helps in calculating the correct journey completion rate
+## Convert User Journey to Ad Journey
+
+## Connect CTWA Ads to Ad Journey under Click-to-chat ads module
+
+Best Practices:
+
+- Before clicking on “Manage Ads”, make sure the correct ad ID is being converted to a click-to-chat ad. Please compare the ad IDs before managing ads.
+- As a best practice, run the FB preview link generated from Meta Ads Manager to check if the journey is working correctly and if the bot is portraying normal behaviour.
+## Set-up retargeting
+
+Best Practices:
+
+- Please make sure that the WhatsApp template being used for retargeting does not contain any variables
+- Please ensure that the option “Retarget after default free window” is left unchecked, otherwise it may incur a cost if retargeting messages are sent to users outside the 72-hour window
+Updated 6 months ago

@@ -1,0 +1,30 @@
+source_url: https://console-docs.gupshup.io/docs/implementing-goals
+# Goals
+
+## Implementing Goals
+
+# Implementing Goals
+
+### You need to create Goals before you can implement them in your journeys.
+
+Please refer to your journey and create Milestones and Trackers accordingly. You CANNOT implement Goal nodes without creating them.
+
+You can implement Goals within your journeys by adding Goal Nodes.
+
+## Adding Goal Nodes in Journeys
+
+- You can add a Goal Node at the point in your Journey where the user has achieved a Milestone.
+### Milestones are sequential in nature. Their sequence is set as per creation, NOT implementation in journeys.
+
+For example, if a Goal has been created with three Milestones in the sequence M1 followed by M2 followed by M3, their sequence remains the same even if M2 and M3 is implemented in a Goal node before M1.
+
+### If a Milestone is skipped and a Milestone after it in the sequence of creation is achieved, the Tracker Values for that milestone are automatically filled with the respective Default Values against the user’s customer ID.
+
+For example, if a user achieves the third Milestone without achieving the first and second Milestones, the respective Default Values are set as Tracker Values entered by that user in the first and second Milestones.
+
+- Then select the name of Goal and the name of the Milestone being achieved from the respective dropdowns.
+- The Trackers associated with the selected Milestone will be populated in the Goal node.
+- Finally, assign a Tracker Value for each Tracker. You can enter a fixed value or a variable.
+Updated 10 months ago
+
+- Goal Analytics

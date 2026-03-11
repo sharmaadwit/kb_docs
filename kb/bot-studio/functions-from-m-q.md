@@ -1,0 +1,228 @@
+source_url: https://console-docs.gupshup.io/docs/functions-from-m-q
+# BOT STUDIO
+
+## Functions from M - Q
+
+# Functions from M - Q
+
+### max
+
+Return the highest value from a list or array. The list or array is inclusive at both ends.
+
+```
+max(<number1>, <number2>, ...)  
+max([<number1>, <number2>, ...])
+```
+
+Examples
+
+These examples get the highest value from the set of numbers and the array:
+
+```
+max(1, 2, 3)  
+max(createArray(1, 2, 3))
+```
+
+And return the result 3.
+
+### merge
+
+Merges multiple JSON objects or an array of objects together.
+
+```
+merge(<json1>, <json2>, ...)
+```
+
+Examples
+
+Say you have the following JSON objects:
+
+```
+json1 = @"{  
+            'FirstName': 'John',  
+            'LastName': 'Smith',  
+            'Enabled': false,  
+            'Roles': [ 'User' ]  
+          }"  
+json2 =@"{  
+            'Enabled': true,  
+            'Roles': [ 'User', 'Admin' ]  
+          }"
+```
+
+This example merges the JSON objects:
+
+```
+string(merge(json(json1), json(json2)))
+```
+
+And returns the resulting object {"FirstName":"John","LastName":"Smith","Enabled":true,"Roles":["User","Admin"]}.
+
+Say you want to combine objects and a list of objects together. The following example combines JSON object and an array of objects:
+
+```
+merge({k1:'v1'}, [{k2:'v2'}, {k3: 'v3'}], {k4:'v4'})
+```
+
+And returns the object { "k1": "v1", "k2": "v2", "k3": "v3", "k4": "v4" }.
+
+### min
+
+Return the lowest value from a set of numbers or an array.
+
+```
+min(<number1>, <number2>, ...)  
+min([<number1>, <number2>, ...])
+```
+
+Examples
+
+These examples get the lowest value in the set of numbers and the array:
+
+```
+min(1, 2, 3)  
+min(createArray(1, 2, 3))
+```
+
+And return the result 1.
+
+### mod
+
+Return the remainder from dividing two numbers. To get the integer result, see div().
+
+```
+mod(<dividend>, <divisor>)
+```
+
+Example
+
+This example divides the first number by the second number:
+
+```
+mod(3, 2)
+```
+
+And returns the result 1.
+
+### month
+
+Return the month of the specified timestamp.
+
+```
+month('<timestamp>')
+```
+
+Example
+
+```
+month('2018-03-15T13:01:00.000Z')
+```
+
+And it returns the result 3.
+
+### mul
+
+Return the product from multiplying two numbers.
+
+```
+mul(<multiplicand1>, <multiplicand2>)
+```
+
+Examples
+
+These examples multiple the first number by the second number:
+
+```
+mul(1, 2)  
+mul(1.5, 2)
+```
+
+And return the following results respectively:
+
+- 2
+- 3
+### newGuid
+
+Return a new Guid string.
+
+```
+newGuid()
+```
+
+Example
+
+```
+newGuid()
+```
+
+And it returns a result which follows the format xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx.
+
+### not
+
+Check whether an expression is false. Return true if the expression is false, or return false if true.
+
+```
+not(<expression>)
+```
+
+Example 1
+
+These examples check whether the specified expressions are false:
+
+```
+not(false)  
+not(true)
+```
+
+And return the following results respectively:
+
+- The expression is false, so the function returns true.
+- The expression is true, so the function returns false.
+Example 2
+
+These examples check whether the specified expressions are false:
+
+```
+not(equals(1, 2))  
+not(equals(1, 1))
+```
+
+And return the following results respectively:
+
+- The expression is false, so the function returns true.
+- The expression is true, so the function returns false.
+### or
+
+Check whether at least one expression is true. Return true if at least one expression is true, or return false if all are false.
+
+```
+or(<expression1>, <expression2>, ...)
+```
+
+Example 1
+
+These examples check whether at least one expression is true:
+
+```
+or(true, false)  
+or(false, false)
+```
+
+And return the following results respectively:
+
+- At least one expression is true, so the function returns true.
+- Both expressions are false, so the function returns false.
+Example 2
+
+These examples check whether at least one expression is true:
+
+```
+or(equals(1, 1), equals(1, 2))  
+or(equals(1, 2), equals(1, 3))
+```
+
+And return the following results respectively:
+
+- At least one expression is true, so the function returns true.
+- Both expressions are false, so the function returns false.
+Updated 10 months ago

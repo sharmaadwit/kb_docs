@@ -1,0 +1,26 @@
+source_url: https://console-docs.gupshup.io/docs/call-return-node
+# BOT STUDIO
+
+## Call & Return Node
+
+# Call & Return Node
+
+This is one of the action nodes to call another journey from the ongoing journey and return back to the same journey when the called journey is executed completely.
+
+This helps in breaking a larger chatbot journey is smaller journeys and calling them on a journey as and when required.
+
+### When to use
+
+Call & Return node is helpful in calling a subpart of a chatbot journey in a journey. For instance: A lead generation bot along with post-sales support is to be made, in this situation, a sub journey for Lead generation can be made along with post-sales support use cases like order tracking, return or refund separately in the chatbot.
+
+The lead generation sub-journey can be called in the main journey using the call & return node.
+
+### How to use
+
+The call & return node is present on the left panel in the action & prompt menu.
+
+NOTE: Only deployed Journey can be seen in the dropdown of Call & Return Node.
+
+### Call & Return Node
+
+Updated 10 months ago

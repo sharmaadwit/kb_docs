@@ -1,0 +1,49 @@
+source_url: https://console-docs.gupshup.io/docs/prompts
+# BOT STUDIO
+
+## Prompt Nodes
+
+# Prompt Nodes
+
+### Prompt Nodes
+
+We need to capture user details and ask them basic questions like their Name, Email, Phone number, Date of Birthn and Numbers. Prompts are used to add such types of questions in the chatbot conversation.
+
+If a prompt is used, the chatbot waits for user input, validates it, and moves forward in the conversation flow.
+
+### Types of Prompt Nodes
+
+- Free Text
+- Phone Node
+- Email Node
+- Date Node
+- Number Node
+- Location Request Node
+### When to use
+
+- Prompts can be used to generate qualified leads.
+- A regular expression (Reg-ex) can be used along with a prompt to validate user input. For Instance: Chatbot asks the customer for their phone number to generate a lead, and they enter an invalid phone number containing characters as well. The prompt will validate the input and fallback if the input is not according to the reg-ex set. Reg-ex can be changed as per the requirements.
+- The behaviour of the bot can be customised if the validation of user input fails. If the validation of user input fails, the validation section helps to set the behaviour of the bot.
+### Limitations
+
+- A question is mandatory to be asked in the prompt.
+- Character limit of 640 characters.
+### Prompt’s Elements
+
+- Question Text Box (640 Character Limit)
+- Persistent Message (for Sticky Journeys)
+- Answer Validation (Field to enter a regex + Number of retries + Failure Message)
+- Validation Section - This can be use to customise bot behaviour on validation failure of user input. Number of Retries - On Validation Failure of User Input, this dropdown specifies the number of times the Bot repeats the prompt to the user. If the number of retries is set to 0, the bot immediately proceed to the fallback connector. If the numbers of retries is set to a value between 1 and 5, the bot repeats the prompts that many times and then proceeds to fallback connector on repeated unsuccessful validation. For instance, if the prompt is a mandatory input which is required from the user, number of retries can be set to infinite. the default value is set to 3. Enable Failure Message - By default on validation failure the Question prompt is repeated. If there is a need to customise the prompt sent to user when user input has failed, this checkbox needs to be checked. Failure message - Field to enter customised failure message. (640 Character Limit)
+- Number of Retries - On Validation Failure of User Input, this dropdown specifies the number of times the Bot repeats the prompt to the user. If the number of retries is set to 0, the bot immediately proceed to the fallback connector. If the numbers of retries is set to a value between 1 and 5, the bot repeats the prompts that many times and then proceeds to fallback connector on repeated unsuccessful validation. For instance, if the prompt is a mandatory input which is required from the user, number of retries can be set to infinite. the default value is set to 3.
+- Enable Failure Message - By default on validation failure the Question prompt is repeated. If there is a need to customise the prompt sent to user when user input has failed, this checkbox needs to be checked.
+- Failure message - Field to enter customised failure message. (640 Character Limit)
+- Enable Timeout - The bot will wait for the user input till the set timeout value and will proceed to the fallback path once timed out
+- Store user response in a defined variable.
+- Skip this node
+### How to use
+
+To add a prompt, you can select it from the menu on the canvas or in the prompts menu on the left-hand side panel.
+
+Updated 10 months ago
+
+- Skip Node

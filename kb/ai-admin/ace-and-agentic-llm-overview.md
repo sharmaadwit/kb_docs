@@ -1,0 +1,44 @@
+source_url: https://console-docs.gupshup.io/docs/ace-agentic-llm-overview-copy
+# AI Admin
+
+## ACE & Agentic LLM Overview
+
+# ACE & Agentic LLM Overview
+
+## Introduction to ACE LLM
+
+ACE LLM by Gupshup is a family of generative models to automate marketing, commerce & support related conversations powered by Open & Closed source foundational models. It has been fine-tuned on industry & function-specific data to deliver a delightful customer experience. Enterprises get a head-start in delivering ACE LLM-powered conversational experiences.
+
+The ACE LLM has been built keeping the focus on compliance, accuracy & cost efficiency. AI guardrails implemented in the ACE family ensure ethical use, safety in responses, preventing harmful outputs or biased information from delivering the accurate results.
+
+Recently, We have upgraded our LLM models in to continuously improve the performance and accuracy of our AI systems.
+
+Use Case Handling
+
+ACE Family
+
+Imp. Use Case Served
+
+ACE Lite
+
+- Qwen-3-4b: Intent & Entity Classification, FAQ Answering
+ACE Pro
+
+- Gemma-2-2b: Intent & Entity Classification
+- GPT-4o-mini: FAQ Answering
+ACE Advanced
+
+- Qwen-3-4b: Intent & Entity Classification
+- GPT-4o-mini: FAQ Answering
+ACE Premium
+
+- GPT-4o-mini: Intent & Entity Classification, FAQ Answering
+## Introduction to Agentic LLM
+
+Gemini & GPT models are the core engines that drive the intelligence, response generation, and decision-making capabilities of your AI agents within the Gupshup AI Admin Module.
+
+These models are used during both intent classification & skill execution and are configurable at both agent and skill level.
+
+Updated 7 months ago
+
+- Workspace
