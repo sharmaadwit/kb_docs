@@ -1,0 +1,1 @@
+{"ts": "2026-03-12T09:09:29.260848+00:00", "event": "github_kb_search", "payload": {"action": "github_kb_search", "query": "Campaign Manager", "top_k": 3, "results_count": 3, "unanswered": false, "t_total_ms": 339, "repo": "sharmaadwit/kb_docs", "branch": "main", "chunks_path": "kb/kb_chunks.jsonl", "user_email": "adwit.sharma@gupshup.io", "user_id": 34}}
