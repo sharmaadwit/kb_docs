@@ -1,10 +1,24 @@
 source_url: https://console-docs.gupshup.io/docs/backward-compatibility-for-existing-ai-journeys
-# AI Admin
 
-## Backward Compatibility for existing AI Journeys
-
+<!-- procedural:v2 -->
 # Backward Compatibility for existing AI Journeys
 
+**Module**: Ai Admin
+
+## Overview
+- Data Workspaces and associated content would move to individual newly created Workspace
+- The name of the Workspace would be the respective Data Workspace name
+- The system would create an intent “FAQ” in these workspaces
+- A new content Tag would be created with the name “General_Content” in respective Workspaces which has the migrated content
+### Intent and Entity Migration
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 # Generic Workspace Migration:
 
 ## Data Workspaces Migration
@@ -31,3 +45,10 @@ Please note:- Workspaces were successfully migrated on 04 April 2024; please con
 Updated 10 months ago
 
 - Workspace Validation
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

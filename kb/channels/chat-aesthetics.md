@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/web-chat-aesthetics
-# CHANNELS
 
-## Chat Aesthetics
-
+<!-- procedural:v2 -->
 # Chat Aesthetics
 
+**Module**: Channels
+
+## Overview
+You can customize the look & feel of your Web chat widget via the Chat Aesthetics Settings.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Go to Google Fonts.
+
+## Step-by-step configuration
 You can customize the look & feel of your Web chat widget via the Chat Aesthetics Settings.
 
 ## Identity
@@ -109,3 +119,10 @@ If you are hosting the font, please ensure that the URL is publicly accessible. 
 Updated 9 months ago
 
 - Greeting Message
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/navigating-through-the-views
-# AGENT ASSIST
 
-## Efficient Chat Navigation for Different User Roles Through Views
-
+<!-- procedural:v2 -->
 # Efficient Chat Navigation for Different User Roles Through Views
 
+**Module**: Agent Assist
+
+## Overview
+Learn how to navigate chat views efficiently across different user roles - admins, supervisors, and agents. Discover role-specific views and customization options for optimal chat management.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Learn how to navigate chat views efficiently across different user roles - admins, supervisors, and agents. Discover role-specific views and customization options for optimal chat management.
 
 # Efficient Chat Navigation for Different User Roles Through Views
@@ -45,4 +55,10 @@ Create personal and shared views to match your specific operational needs and te
 
 By utilizing these customized chat views, users in different roles can effectively manage and navigate through their chat workload with improved efficiency and clarity.
 
-Updated 4 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 4 months ago

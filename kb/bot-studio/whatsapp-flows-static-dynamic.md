@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/whatsapp-flows-static-2-way
-# BOT STUDIO
 
-## WhatsApp Flows - Static/Dynamic
-
+<!-- procedural:v2 -->
 # WhatsApp Flows - Static/Dynamic
 
+**Module**: Bot Studio
+
+## Overview
+The WhatsApp Flows feature enhances the platform's capabilities by enabling two-way messaging triggered from the JB WhatsApp Flow node. With this feature, you can seamlessly initiate WhatsApp Flows at any point during a conversation, ensuring dynamic interaction and real-time engagement.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ## Introduction:
 
 The WhatsApp Flows feature enhances the platform's capabilities by enabling two-way messaging triggered from the JB WhatsApp Flow node. With this feature, you can seamlessly initiate WhatsApp Flows at any point during a conversation, ensuring dynamic interaction and real-time engagement.
@@ -125,4 +135,12 @@ Terminal Message:
 
 Designers can choose to just send an acknowledgement message to the end user and post submission of the form using the optional Terminal Message. This allows bot designers to complete the Flow within the Flow Journey if the data is already sent to client CRM or other Databases using the API and Code node.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Make sure to Publish the flow or use Draft Mode on the WhatsApp Flow Node while testing
+
+**Last updated (from source)**: Updated 10 months ago

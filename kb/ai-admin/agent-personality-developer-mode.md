@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/agent-personality
-# AI Admin
 
-## Agent Personality (Developer Mode)
-
+<!-- procedural:v2 -->
 # Agent Personality (Developer Mode)
 
+**Module**: Ai Admin
+
+## Overview
+Introduction: The Agent Personality is the foundation of how your AI agent communicates with users. It defines the tone, behavior, response style, and introductory message used during conversations—ensuring every response feels consistent, aligned with your brand, and tailored to your audience.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### Note: AI Agent is available in developer mode through our Gupshup’s internal Bot Solutions Team. To access the latest AI Agent modules in Bot Studio please contact Gupshup support or your respective Sales representative.
 
 Introduction: The Agent Personality is the foundation of how your AI agent communicates with users. It defines the tone, behavior, response style, and introductory message used during conversations—ensuring every response feels consistent, aligned with your brand, and tailored to your audience.
@@ -60,3 +70,10 @@ This personality delivers confidence to self-serve customers through a supportiv
 Updated 10 months ago
 
 - Skills (Developer Mode)
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

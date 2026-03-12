@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/date-prompt-validation-enhancement
-# BOT STUDIO
 
-## Date Prompt Validation Enhancement
-
+<!-- procedural:v2 -->
 # Date Prompt Validation Enhancement
 
+**Module**: Bot Studio
+
+## Overview
+Date node
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 # Introduction:
 
 Date node
@@ -32,4 +42,12 @@ Here are a few use cases that demonstrate the benefits of the validations added:
 
 There will be no backend operation done on the user-entered time, regardless of the user's timezone. Validation will be performed based on the date entered by the user and the timezone selected on the node. If the user provides a date in a different timezone than the one selected on the node, the bot will validate the date as entered.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Scenario: A business allows employees to submit expense reports for past travel dates, including the current day.
+
+**Last updated (from source)**: Updated 10 months ago

@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/manage-api
-# BOT STUDIO
 
-## Manage API
-
+<!-- procedural:v2 -->
 # Manage API
 
+**Module**: Bot Studio
+
+## Overview
+It is a section where you can set all the APIs to integrate with external systems.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### Manage APIs
 
 It is a section where you can set all the APIs to integrate with external systems.
@@ -37,4 +47,10 @@ Import APIs can be used if a collection of APIs is to be imported from Postman. 
 
 To use APIs in middle of journeys, use the API Node.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

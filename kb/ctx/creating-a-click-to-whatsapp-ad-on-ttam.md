@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-click-to-whatsapp-ad-on-ttam
-# CTX
 
-## Creating a Click-to-WhatsApp Ad on TTAM
-
+<!-- procedural:v2 -->
 # Creating a Click-to-WhatsApp Ad on TTAM
 
+**Module**: Ctx
+
+## Overview
+Log on to TikTok Ads Manager, go to campaign and click on "Create"
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 # Creating a CTWA campaign on TTAM
 
 Log on to TikTok Ads Manager, go to campaign and click on "Create"
@@ -42,4 +52,12 @@ Step 4: Destination: This field will be automatically filled. To edit, please re
 
 Here's a detailed guide on creating TikTok Messaging Ads: https://ads.tiktok.com/help/article/how-to-set-up-tiktok-instant-messaging-ads?lang=en
 
-Updated 7 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- Step 4: Destination: This field will be automatically filled. To edit, please return to Ad Group level. Click "Publish" to start your Instant Messaging Ads.
+
+**Last updated (from source)**: Updated 7 months ago

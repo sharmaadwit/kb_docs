@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/test-bot-widget-on-jb-canvas
-# BOT STUDIO
 
-## Test Bot Widget on JB Canvas
-
+<!-- procedural:v2 -->
 # Test Bot Widget on JB Canvas
 
+**Module**: Bot Studio
+
+## Overview
+Test bot widget is an existing feature on the Journey List page which lets Bot designers to test the bot or go through the Message logs to debug any issue on the bot. Now Bot designer will be able to Test, debug, fix, and deploy all at a single place.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### Introduction
 
 Test bot widget is an existing feature on the Journey List page which lets Bot designers to test the bot or go through the Message logs to debug any issue on the bot. Now Bot designer will be able to Test, debug, fix, and deploy all at a single place.
@@ -28,4 +38,11 @@ Following actions result in new Test Bot conversations and message logs will not
 
 - Closing and reopening the Journey Listing or Journey Canvas web page
 - Refreshing or reloading the Journey Listing or Journey Canvas web page
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/skills
-# AI Admin
 
-## Skills (Developer Mode)
-
+<!-- procedural:v2 -->
 # Skills (Developer Mode)
 
+**Module**: Ai Admin
+
+## Overview
+Introduction:
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### Note: AI Agent is available in developer mode through our Gupshup’s internal Bot Solutions Team. To access the latest AI Agent modules in Bot Studio please contact Gupshup support or your respective Sales representative.
 
 Introduction:
@@ -92,3 +102,10 @@ Monitor these metrics to gauge skill effectiveness through Business Metrics on B
 Updated 8 months ago
 
 - Skill Prompt Enhancer (Developer Mode)
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

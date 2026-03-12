@@ -1,12 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/prompts
-# BOT STUDIO
 
-## Prompt Nodes
-
+<!-- procedural:v2 -->
 # Prompt Nodes
 
-### Prompt Nodes
+**Module**: Bot Studio
 
+## Overview
+We need to capture user details and ask them basic questions like their Name, Email, Phone number, Date of Birthn and Numbers. Prompts are used to add such types of questions in the chatbot conversation.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 We need to capture user details and ask them basic questions like their Name, Email, Phone number, Date of Birthn and Numbers. Prompts are used to add such types of questions in the chatbot conversation.
 
 If a prompt is used, the chatbot waits for user input, validates it, and moves forward in the conversation flow.
@@ -47,3 +55,10 @@ To add a prompt, you can select it from the menu on the canvas or in the prompts
 Updated 10 months ago
 
 - Skip Node
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

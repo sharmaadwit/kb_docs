@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/goal-node-beta
-# BOT STUDIO
 
-## Goal Node
-
+<!-- procedural:v2 -->
 # Goal Node
 
+**Module**: Bot Studio
+
+## Overview
+To track the milestones attained by users who are interacting with a Bot, bot designer can add the Goal Node in journeys. For instance, if a business wants to track how many customers have purchased a certain product, a goal node can be introduced in the journey.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### When to use
 
 To track the milestones attained by users who are interacting with a Bot, bot designer can add the Goal Node in journeys. For instance, if a business wants to track how many customers have purchased a certain product, a goal node can be introduced in the journey.
@@ -21,4 +31,10 @@ In the Goal Node, select the goal name, milestone name and tracker name and ente
 
 You can use the analytics toggle to see node traversal and drop outs for this goal.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

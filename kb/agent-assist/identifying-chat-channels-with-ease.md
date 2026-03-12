@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/identifying-chat-channels-with-ease
-# AGENT ASSIST
 
-## Identifying Chat Channels with Ease
-
+<!-- procedural:v2 -->
 # Identifying Chat Channels with Ease
 
+**Module**: Agent Assist
+
+## Overview
+Section 1: Chat Profile
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Section 1: Chat Profile
 
 Channel Identification Simplified
@@ -22,4 +32,10 @@ In the chat profile, you'll find a convenient feature that allows you to identif
 - Channel Logo: WebApp
 This visual representation of the channel's logo provides immediate clarity on the source of the chat, enabling efficient and effective communication management.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

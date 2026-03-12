@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/tools-beta
-# AI Admin
 
-## Tools (Developer Mode)
-
+<!-- procedural:v2 -->
 # Tools (Developer Mode)
 
+**Module**: Ai Admin
+
+## Overview
+Introduction: Tools enable your AI Agent to perform dynamic actions, fetch real-time data, or integrate with external systems. They act as functional extensions of the agent’s capabilities—helping it go beyond static responses and enabling task execution, data retrieval, or logic-driven behavior.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### Note: AI Agent is available in developer mode through our Gupshup’s internal Bot Solutions Team. To access the latest AI Agent modules in Bot Studio please contact Gupshup support or your respective Sales representative.
 
 Introduction: Tools enable your AI Agent to perform dynamic actions, fetch real-time data, or integrate with external systems. They act as functional extensions of the agent’s capabilities—helping it go beyond static responses and enabling task execution, data retrieval, or logic-driven behavior.
@@ -31,3 +41,12 @@ Note: When tool code is generated Safety checks are run on the generated tool co
 Updated 10 months ago
 
 - Settings
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Tool Testing:Users can run a test tool code with sample input values to validate output. Save the tool which provides valid output.
+

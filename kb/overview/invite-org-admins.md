@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/invite-members
-# overview
 
-## Invite Org Admins
-
+<!-- procedural:v2 -->
 # Invite Org Admins
 
+**Module**: Overview
+
+## Overview
+If you're an Org Owner or an Org Admin, you may need to invite more Org Admins to help manage your organisation and projects on the Console. The process of inviting an Org Admin is simple and can be done in a few easy steps. In this post, we'll guide you through the process of inviting an Org Admin to the Console.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 If you're an Org Owner or an Org Admin, you may need to invite more Org Admins to help manage your organisation and projects on the Console. The process of inviting an Org Admin is simple and can be done in a few easy steps. In this post, we'll guide you through the process of inviting an Org Admin to the Console.
 
 What is an Org Admin?
@@ -39,4 +49,13 @@ Inviting an Org Admin to the Console is a simple process that can be completed i
 
 For any Queries, please drop an email to console-support@gupshup.io
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- Step 5: Submit
+- After selecting the projects, click "Submit" to send the invitation.
+
+**Last updated (from source)**: Updated 10 months ago

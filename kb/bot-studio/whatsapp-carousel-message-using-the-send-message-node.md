@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/whatsapp-carousel-message-using-the-send-message-node
-# BOT STUDIO
 
-## WhatsApp Carousel Message Using the Send Message Node
-
+<!-- procedural:v2 -->
 # WhatsApp Carousel Message Using the Send Message Node
 
+**Module**: Bot Studio
+
+## Overview
+This guide explains how to send a WhatsApp Media Carousel Message using the Send Message Node in Journey Builder by selecting WhatsApp Raw and pasting the exact supported payload.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 # WhatsApp Carousel Message via Send Message Node (WhatsApp Raw)
 
 ### Journey Builder – JB Pro Guide
@@ -94,4 +104,12 @@ WhatsApp's Media Carousel Message allows businesses to send up to 10 media cards
 
 Note: You can upto 10 cards by adding more objects inside the cards array.
 
-Updated 4 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Save & Deploy your journey.
+
+**Last updated (from source)**: Updated 4 months ago

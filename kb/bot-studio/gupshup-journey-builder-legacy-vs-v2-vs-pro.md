@@ -1,12 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/gupshup-journey-builder-legacy-vs-v2-vs-pro
-# BOT STUDIO
 
-## Gupshup Journey Builder: Legacy vs V2 vs Pro
-
+<!-- procedural:v2 -->
 # Gupshup Journey Builder: Legacy vs V2 vs Pro
 
-# Gupshup Journey Builder: Legacy vs V2 vs Pro
+**Module**: Bot Studio
 
+## Overview
+Gupshup’s Journey Builder (JB) platform has evolved through multiple versions to address different user segments and technical requirements. The three key versions are:
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ## 1. Overview
 
 Gupshup’s Journey Builder (JB) platform has evolved through multiple versions to address different user segments and technical requirements. The three key versions are:
@@ -124,4 +132,10 @@ Access: Available only to internal Gupshup development teams via Solutions Platf
 
 ## 5. Choosing the Right Journey Builder Version
 
-Updated 4 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 4 months ago

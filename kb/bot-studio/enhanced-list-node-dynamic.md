@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/enhanced-list-nodedynamic
-# BOT STUDIO
 
-## Enhanced List Node(Dynamic)
-
+<!-- procedural:v2 -->
 # Enhanced List Node(Dynamic)
 
+**Module**: Bot Studio
+
+## Overview
+Send Dynamic Sections and Rows above and beyond the Channel Limit using Bot Studios Enhanced List Node functionality.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Send Dynamic Sections and Rows above and beyond the Channel Limit using Bot Studios Enhanced List Node functionality.
 
 WhatsApp has a default limitation of only up to 10 items that can be shared in a List Message. But with just click of a checkbox you can send up to 100 items without any need to split them into different lists or option. This feature makes your end user conversational experience 10x better by providing a limitless experience of browsing products or searching through different available options on a list.
@@ -22,4 +32,11 @@ This lets you cover simple to complex use cases such as:
 - Provide selection of different Cities(in rows) where service centers are available in different States(in section)
 - List of available Time slots(in rows) for different Dates(in section)
 - List of user searched Products(in rows) for different Categories(in section)
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/dynamic-image-url-node
-# BOT STUDIO
 
-## Dynamic Image URL Node
-
+<!-- procedural:v2 -->
 # Dynamic Image URL Node
 
+**Module**: Bot Studio
+
+## Overview
+The Dynamic Image URL Node can be used to create dynamic images during run-time. The dynamic card image can be stored in a variable and sent to the user using an Image Node. For instance, the business wants to send QR Code to customers with dynamic information of the customer, the dynamic image card can be created and sent to the user. This can be used to send movie tickets or banking statements to users.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### When to Use
 
 The Dynamic Image URL Node can be used to create dynamic images during run-time. The dynamic card image can be stored in a variable and sent to the user using an Image Node. For instance, the business wants to send QR Code to customers with dynamic information of the customer, the dynamic image card can be created and sent to the user. This can be used to send movie tickets or banking statements to users.
@@ -24,4 +34,13 @@ All headers within a template are mandatory.
 
 - Three pre-defined templates are available in the dynamic card image URL node
 - A message node can send the image URL to the channel.
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Save the image in a string variable and bot designer can use a reply node or image node to send the dynamic card image URL to the channel.
+
+**Last updated (from source)**: Updated 10 months ago

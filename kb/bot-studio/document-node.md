@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/document-node
-# BOT STUDIO
 
-## Document Node
-
+<!-- procedural:v2 -->
 # Document Node
 
+**Module**: Bot Studio
+
+## Overview
+As the name suggests, you can add a document to this node and add it to the chatbot conversation. The document can be uploaded in the conversation using a public URL of the document or from the local device. It supports all formats of files.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 As the name suggests, you can add a document to this node and add it to the chatbot conversation. The document can be uploaded in the conversation using a public URL of the document or from the local device. It supports all formats of files.
 
 ### When to use
@@ -28,4 +38,10 @@ Uploading a Document from the device
 
 Uploading Document through publicly accessible Document URL
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

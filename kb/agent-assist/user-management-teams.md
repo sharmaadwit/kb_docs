@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/teams
-# AGENT ASSIST
 
-## User Management: Teams
-
+<!-- procedural:v2 -->
 # User Management: Teams
 
+**Module**: Agent Assist
+
+## Overview
+Section 1: Adding Users to Teams
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Navigate to the settings tab on your dashboard.
+
+## Step-by-step configuration
 Section 1: Adding Users to Teams
 
 Creating and Configuring Teams
@@ -43,4 +53,14 @@ Efficient Default Team Configuration
 
 The default team automatically adds all users when they are added. The assignment policy for the default team is round robin assignment to all agents, and it is mapped to default business hours. This ensures that all incoming chats are assigned to agents in a round-robin manner without the need for further configuration.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+Key notes found in source:
+
+- Step 5: Choosing Business Hours
+- - Define the business hours for the team, specifying when the team operates and when chats will be assigned to it.
+- The default team automatically adds all users when they are added. The assignment policy for the default team is round robin assignment to all agents, and it is mapped to default business hours. This ensures that all incoming chats are assigned to agents in a round-robin manner without the need for further configuration.
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

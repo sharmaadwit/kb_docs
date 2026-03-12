@@ -1,10 +1,21 @@
 source_url: https://console-docs.gupshup.io/docs/expression-library-in-journey-builder-canvas
-# BOT STUDIO
 
-## Expression Library in Journey builder Canvas
-
+<!-- procedural:v2 -->
 # Expression Library in Journey builder Canvas
 
+**Module**: Bot Studio
+
+## Overview
+The Expression Library enhancement in the Modify Variable node is designed to empower bot designers with advanced data manipulation capabilities. By offering a robust set of pre-built functions, this feature eliminates the need for custom code nodes, enabling efficient and seamless variable operations directly within the Journey Builder Canvas. This enhancement introduces a dedicated interface for creating and testing expressions, providing an intuitive experience for designers to achieve complex data transformations with ease.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Navigate to the Modify Variable node and open the Modifier dropdown.
+Navigate to the Modify Variable node and open the Modifier dropdown.
+
+## Step-by-step configuration
 # Introduction
 
 The Expression Library enhancement in the Modify Variable node is designed to empower bot designers with advanced data manipulation capabilities. By offering a robust set of pre-built functions, this feature eliminates the need for custom code nodes, enabling efficient and seamless variable operations directly within the Journey Builder Canvas. This enhancement introduces a dedicated interface for creating and testing expressions, providing an intuitive experience for designers to achieve complex data transformations with ease.
@@ -120,3 +131,18 @@ This enhancement transforms the Modify Variable node into a powerful tool, offer
 Updated 10 months ago
 
 - List of Functions
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Save Validation: Expressions must pass validation before saving. Invalid expressions or mismatched data types disable the Save button, ensuring error-free runtime execution.
+- - Invalid expressions or mismatched data types disable the Save button, ensuring error-free runtime execution.
+- - Error-Free Execution: Built-in validation and error feedback prevent runtime errors. Designers can confidently deploy expressions with guaranteed stability.
+- - Designers can confidently deploy expressions with guaranteed stability.
+- - Follow the intuitive interface to create, test, and save expressions.
+- - What happens if I enter an invalid expression? Errors will be displayed in the Output Box during testing. The Save button will remain disabled until the expression is corrected.
+- - Errors will be displayed in the Output Box during testing. The Save button will remain disabled until the expression is corrected.
+

@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/callback-url-event-on-starting-node
-# BOT STUDIO
 
-## Callback URL Event on Starting Node
-
+<!-- procedural:v2 -->
 # Callback URL Event on Starting Node
 
+**Module**: Bot Studio
+
+## Overview
+The Callback Event is an event type on the Starting Node in JB Canvas. This enhances Journey Builder's capability to listen to external events, in addition to various user events. The Callback URL can serve as a trigger point for initiating a journey and executing actions or sending outbound messages to users, facilitating multiple use cases such as payment confirmations and order updates etc..
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### Introduction:
 
 The Callback Event is an event type on the Starting Node in JB Canvas. This enhances Journey Builder's capability to listen to external events, in addition to various user events. The Callback URL can serve as a trigger point for initiating a journey and executing actions or sending outbound messages to users, facilitating multiple use cases such as payment confirmations and order updates etc..
@@ -99,4 +109,12 @@ Once the event is triggered, it will initiate the journey attached to the event,
 
 Important: Custom Integration is not intended to support bulk campaigns or continuous, high-volume message exchanges with third-party systems. Attempting to use CI for such use cases can lead to silent throttling, performance degradation, and lack of supportability. For campaign-driven or persistent agent-handover scenarios, please leverage Campaign Module or the upcoming Handover Protocol in Journey Builder Pro.
 
-Updated 7 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- Once you have configured your starting node, the journey will look something like this (You may additionally add a few more nodes to call an API or save the info on CDP):
+
+**Last updated (from source)**: Updated 7 months ago

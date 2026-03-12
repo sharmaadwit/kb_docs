@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/workspace-audit
-# AI Admin
 
-## Workspace Audit
-
+<!-- procedural:v2 -->
 # Workspace Audit
 
+**Module**: Ai Admin
+
+## Overview
+The Workspace Audit feature provides a complete record of all changes made in a workspace. It allows users to audit actions such as content training/untraining, intents & entities creation, updating workspace settings, etc. Audit records will help users in transparent change tracking, issue debugging & regulatory compliance.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 The Workspace Audit feature provides a complete record of all changes made in a workspace. It allows users to audit actions such as content training/untraining, intents & entities creation, updating workspace settings, etc. Audit records will help users in transparent change tracking, issue debugging & regulatory compliance.
 
 Key Highlights:
@@ -22,3 +32,10 @@ Note: When Training Status is selected as NA then all the records where Settings
 Updated 10 months ago
 
 - LLM Consumption
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/web-sync-browser-login-with-chat-widget
-# CHANNELS
 
-## Sync Browser Login with your Chat Widget
-
+<!-- procedural:v2 -->
 # Sync Browser Login with your Chat Widget
 
+**Module**: Channels
+
+## Overview
+This provision allows you to sync the information of users who have logged in on your website with the Web chat widget.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 This provision allows you to sync the information of users who have logged in on your website with the Web chat widget.
 
 - You can provide your unique customer IDs to authenticate anonymous users on the chat widget.
@@ -48,3 +58,10 @@ window.gipMessengerPlugin.removeUserId()
 Updated 10 months ago
 
 - Chat Widget Functions
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

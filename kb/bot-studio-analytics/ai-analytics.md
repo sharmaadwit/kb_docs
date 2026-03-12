@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/ai-analytics
-# Bot Studio Analytics
 
-## AI Analytics
-
+<!-- procedural:v2 -->
 # AI Analytics
 
+**Module**: Bot Studio Analytics
+
+## Overview
+AI Analytics is a feature to monitor and evaluate the utterances on your bot. This feature assists users in identifying and classifying utterances, offering valuable insights into both recognized and unrecognized intents.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 AI Analytics is a feature to monitor and evaluate the utterances on your bot. This feature assists users in identifying and classifying utterances, offering valuable insights into both recognized and unrecognized intents.
 
 ## Total Utterances
@@ -30,4 +40,10 @@ Product Search & Query Utterances will be available for you only if you have cre
 
 Please export required data within a year and store it on your end for later reference.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

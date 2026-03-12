@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/assign-services-to-a-member
-# overview
 
-## Assign/unassign Modules to a Member
-
+<!-- procedural:v2 -->
 # Assign/unassign Modules to a Member
 
+**Module**: Overview
+
+## Overview
+Let us walk through the steps required to assign modules to members within a project.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Let us walk through the steps required to assign modules to members within a project.
 
 Step 1: Login as Project Admin on the Console To assign modules to members, you need to log in as a Project Admin on the Console. Use the link provided to access the Console and enter your login credentials.
@@ -26,4 +36,10 @@ Unassign a Module to a Member
 - Click on "Update Modules" button to update the modules to a member.
 If you have any queries or concerns regarding the assigned services, you can always contact console-support@gupshup.io for assistance.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

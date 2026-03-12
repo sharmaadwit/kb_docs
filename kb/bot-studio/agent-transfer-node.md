@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/agent-transfer-node
-# BOT STUDIO
 
-## Agent Transfer Node
-
+<!-- procedural:v2 -->
 # Agent Transfer Node
 
+**Module**: Bot Studio
+
+## Overview
+This node is to enable or allow customers to connect with a human agent in the below cases:
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 This node is to enable or allow customers to connect with a human agent in the below cases:
 
 - Bot failure.
@@ -31,4 +41,10 @@ Tags in Agent Dashboard Settings
 
 Using Tags in Agent Transfer Node
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

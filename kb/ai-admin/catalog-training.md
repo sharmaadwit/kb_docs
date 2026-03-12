@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/catalog-training-1
-# AI Admin
 
-## Catalog Training
-
+<!-- procedural:v2 -->
 # Catalog Training
 
+**Module**: Ai Admin
+
+## Overview
+User can upload & train their product catalog to answer customer queries regarding product availability, specifications, pricing, and more.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Go to "Files" section in Content Tab.
+
+## Step-by-step configuration
 User can upload & train their product catalog to answer customer queries regarding product availability, specifications, pricing, and more.
 
 Steps to train Catalog in commerce workspace:
@@ -21,3 +31,12 @@ Guidelines to upload the Catalog:
 Updated 10 months ago
 
 - Document Training
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Click on "Save & Train".
+

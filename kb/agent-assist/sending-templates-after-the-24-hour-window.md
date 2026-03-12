@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/sending-templates-after-the-24-hour-window
-# AGENT ASSIST
 
-## Sending Templates After the 24-Hour Window
-
+<!-- procedural:v2 -->
 # Sending Templates After the 24-Hour Window
 
+**Module**: Agent Assist
+
+## Overview
+Section 1: Introduction
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Section 1: Introduction
 
 Compliance with WhatsApp Policies
@@ -29,4 +39,10 @@ The selected templates are required to be approved through the WhatsApp tab with
 
 By following these procedures, businesses can send marketing templates after the 24-hour communication window, provided they comply with WhatsApp's policies and receive the necessary approvals.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

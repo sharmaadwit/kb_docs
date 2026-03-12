@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/create-a-new-journey
-# BOT STUDIO
 
-## Getting Started with Bot Studio
-
+<!-- procedural:v2 -->
 # Getting Started with Bot Studio
 
+**Module**: Bot Studio
+
+## Overview
+Journeys Landing Page
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ## The Landing Page (Journeys)
 
 Journeys Landing Page
@@ -125,4 +135,17 @@ Journey Type - From the drop down, you can select the journey type and start usi
 
 Preview or Use Template here
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Saved & Deployed Journeys View journeys that are saved, deployed, or in progress—ordered by most recent save time.
+- Saved & Deployed Journeys View journeys that are saved, deployed, or in progress—ordered by most recent save time.
+- - Create Journey: Launch the builder to start crafting a new journey
+- - Save: Use this button to save progress frequently.
+- - Save & Deploy: Makes the journey live for production use.
+- ### Note: Test Bot becomes available only after you Save & Deploy your journey.
+
+**Last updated (from source)**: Updated 10 months ago

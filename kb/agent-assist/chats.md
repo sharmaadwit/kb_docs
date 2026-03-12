@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/chats
-# AGENT ASSIST
 
-## Chats
-
+<!-- procedural:v2 -->
 # Chats
 
+**Module**: Agent Assist
+
+## Overview
+Streamline your customer support with our state-of-the-art chat inbox. Manage conversations efficiently with three organized sections designed to improve agent workflows and response times.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Streamline your customer support with our state-of-the-art chat inbox. Manage conversations efficiently with three organized sections designed to improve agent workflows and response times.
 
 Chat inbox is the backbone of any efficient customer support system. It's where your agents will spend most of their time, responding to customer queries, complaints, and feedback. Our Agent Assist platform offers a state-of-the-art chat inbox that has been designed to streamline your agents' workflows and improve their response times.
@@ -40,4 +50,10 @@ Agents can view comprehensive customer information, including chat fields and cu
 
 Our chat inbox offers a streamlined and efficient way for your agents to handle customer queries, complaints, and feedback. With a range of powerful features and an easy-to-use interface, our platform is the perfect solution for businesses looking to improve their customer support workflows.
 
-Updated 4 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 4 months ago

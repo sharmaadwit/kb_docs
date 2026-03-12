@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/api-node
-# BOT STUDIO
 
-## API Node
-
+<!-- procedural:v2 -->
 # API Node
 
+**Module**: Bot Studio
+
+## Overview
+Request an API response in the conversation flow using the API Node. API node has a dropdown to select the API that you want to use. API action node allows you to hit an API at that point of the flow, and store the API response in a variable for further use.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Go to the left-hand menu under Action Nodes.
+
+## Step-by-step configuration
 Request an API response in the conversation flow using the API Node. API node has a dropdown to select the API that you want to use. API action node allows you to hit an API at that point of the flow, and store the API response in a variable for further use.
 
 ### API Node
@@ -77,3 +87,10 @@ API endpoints added to the API node undergo mandatory validations to ensure secu
 Updated 10 months ago
 
 - JSON Handler
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

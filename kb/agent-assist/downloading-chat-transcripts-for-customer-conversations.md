@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/downloading-chat-transcripts-for-customer-conversations
-# AGENT ASSIST
 
-## Downloading Chat Transcripts for Customer Conversations
-
+<!-- procedural:v2 -->
 # Downloading Chat Transcripts for Customer Conversations
 
+**Module**: Agent Assist
+
+## Overview
+Section 1: Introduction
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Section 1: Introduction
 
 Effortless Access to Chat Data
@@ -32,4 +42,10 @@ The chat conversation data will be compiled into a PDF format for easy access an
 
 This feature ensures that you have quick and convenient access to the chat data you need, making it easy to review, archive, or share customer interactions as required.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

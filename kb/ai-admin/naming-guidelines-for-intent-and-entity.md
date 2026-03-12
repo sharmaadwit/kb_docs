@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/entity-creation
-# AI Admin
 
-## Naming Guidelines for Intent & Entity
-
+<!-- procedural:v2 -->
 # Naming Guidelines for Intent & Entity
 
+**Module**: Ai Admin
+
+## Overview
+Intents and Named Entity Recognition (NER) are key tasks when leveraging a Language Model for zero-shot predictions. Effective names are crucial to ensure the language model understands the inputs better and performs tasks optimally.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Intents and Named Entity Recognition (NER) are key tasks when leveraging a Language Model for zero-shot predictions. Effective names are crucial to ensure the language model understands the inputs better and performs tasks optimally.
 
 Here are some guidelines that can help you come up with better names for Intents and NERs:
@@ -53,3 +63,10 @@ Remember, the names of intents or NERs are for the model's understanding and com
 Updated 10 months ago
 
 - AI Enhanced Description Writing
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

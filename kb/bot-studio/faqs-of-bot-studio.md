@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/faqs-of-bot-studio
-# BOT STUDIO
 
-## FAQs of Bot Studio
-
+<!-- procedural:v2 -->
 # FAQs of Bot Studio
 
+**Module**: Bot Studio
+
+## Overview
+Question: How to access Bot Studio?
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Question: How to access Bot Studio?
 
 Response: Drop an Email to the Console / Bot Builder team.
@@ -52,4 +62,12 @@ Manage Variables screen can be accessed from the following places:
 - On the edit screen (left panel) of nodes where the user response can be stored in a variable.
 NOTE: A variable created can't be edited or deleted except the default value. A new variable is to be created if there is any change required in a variable.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- Question: How to save and deploy a chatbot journey?
+
+**Last updated (from source)**: Updated 10 months ago

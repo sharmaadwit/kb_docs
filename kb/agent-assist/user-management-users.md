@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/user-management-teams-and-business-hours-configuration
-# AGENT ASSIST
 
-## User Management: Users
-
+<!-- procedural:v2 -->
 # User Management: Users
 
+**Module**: Agent Assist
+
+## Overview
+Section 1: Adding Users to Agent Assist
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Navigate to the settings tab located on the bottom left side of your Agent Assist dashboard.
+
+## Step-by-step configuration
 Section 1: Adding Users to Agent Assist
 
 Adding New Users
@@ -30,4 +40,11 @@ Step 5: Sending the Invitation
 Step 6: User Acceptance
 
 - The added user will receive the email invitation and can follow the steps provided to accept the invitation and join your Agent Assist team.
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

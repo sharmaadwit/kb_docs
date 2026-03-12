@@ -1,10 +1,26 @@
 source_url: https://console-docs.gupshup.io/docs/journey-canvas-controls
-# BOT STUDIO
 
-## Journey Canvas Controls
-
+<!-- procedural:v2 -->
 # Journey Canvas Controls
 
+**Module**: Bot Studio
+
+## Overview
 This section provides tools and features to effectively design, manage, and optimize your journeys on the canvas. Explore options like Block Templates, API Management, Variable Configuration, and other essential controls that streamline the journey-building process.
 
-Updated 10 months ago
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
+This section provides tools and features to effectively design, manage, and optimize your journeys on the canvas. Explore options like Block Templates, API Management, Variable Configuration, and other essential controls that streamline the journey-building process.
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

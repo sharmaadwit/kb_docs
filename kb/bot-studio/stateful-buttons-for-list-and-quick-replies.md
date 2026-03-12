@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/stateful-buttons-for-static-button-based-nodes
-# BOT STUDIO
 
-## Stateful Buttons for List and Quick Replies
-
+<!-- procedural:v2 -->
 # Stateful Buttons for List and Quick Replies
 
+**Module**: Bot Studio
+
+## Overview
+Journey Builder features a variety of button-based nodes designed to send Quick Reply or Multiple radio button-based list messages across WhatsApp and other channels. These nodes have been upgraded to maintain their state along with the configured action, even after traversal and progression in the conversation when users select alternative buttons or inputs.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### Overview:
 
 Journey Builder features a variety of button-based nodes designed to send Quick Reply or Multiple radio button-based list messages across WhatsApp and other channels. These nodes have been upgraded to maintain their state along with the configured action, even after traversal and progression in the conversation when users select alternative buttons or inputs.
@@ -39,4 +49,10 @@ Journey creation steps:
 - Once configured as described in the preceding steps, the bot can be deployed. Subsequently, the button will retain its stateful context, allowing seamless user interaction even if alternative selections are made during the journey initiation process.
 In the image above, the user first selected the "Check order status" option and then chose the "Talk to Agent" option from the same Quick Reply. As the button was stateful, it initiated the journey associated with it.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

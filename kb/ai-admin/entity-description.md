@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/entity-description-1
-# AI Admin
 
-## Entity Description
-
+<!-- procedural:v2 -->
 # Entity Description
 
+**Module**: Ai Admin
+
+## Overview
+An entity is a piece of specific information extracted from user input.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 An entity is a piece of specific information extracted from user input.
 
 When writing descriptions for entities:
@@ -35,3 +45,10 @@ Always remember to maintain consistency in formatting and level of detail across
 Updated 10 months ago
 
 - Naming Guidelines for Intent & Entity
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

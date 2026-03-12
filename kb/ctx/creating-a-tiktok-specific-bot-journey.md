@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-tiktok-specific-bot-journey-copy
-# CTX
 
-## Creating a TikTok-specific Bot Journey
-
+<!-- procedural:v2 -->
 # Creating a TikTok-specific Bot Journey
 
+**Module**: Ctx
+
+## Overview
+Please click on the link below to download the sample json journey template for TikTok: https://drive.google.com/drive/folders/1s_p6T89yDJWNf-hN1yUx9krqgHBcVPJ9?usp=sharing
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Go to "Ad Management" in the left menu under "Click to chat ads", copy it from the right corner and paste it in the code.
+
+## Step-by-step configuration
 # Link to download journey template
 
 Please click on the link below to download the sample json journey template for TikTok: https://drive.google.com/drive/folders/1s_p6T89yDJWNf-hN1yUx9krqgHBcVPJ9?usp=sharing
@@ -47,4 +57,13 @@ Step 5: Choose "Actions" -> "Call and Return" and select the user journey create
 
 Step 6: Click on "Save and Deploy"
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- Step 7: Complete the journey basis the chatbot flow and click on "Save and Deploy"
+- Step 6: Click on "Save and Deploy"
+
+**Last updated (from source)**: Updated 10 months ago

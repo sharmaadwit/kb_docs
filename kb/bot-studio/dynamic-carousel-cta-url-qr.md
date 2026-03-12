@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/dynamic-carouselcta-url-qr
-# BOT STUDIO
 
-## Dynamic Carousel (CTA URL + QR)
-
+<!-- procedural:v2 -->
 # Dynamic Carousel (CTA URL + QR)
 
+**Module**: Bot Studio
+
+## Overview
+Dynamic Carousel allows businesses to send Horizontal list of card containing media, title, subtitle and Button (QR/CTA URL)
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 # Introduction:
 
 Dynamic Carousel allows businesses to send Horizontal list of card containing media, title, subtitle and Button (QR/CTA URL)
@@ -133,4 +143,10 @@ Scenario: Sharing blog posts. Dynamic Carousel: Display content cards with "Read
 
 Scenario: Engaging with newsletter subscribers. Dynamic Carousel: Send curated content to subscribers using quick replies for more targeted engagement. Benefit: Boosts reader interaction and loyalty.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

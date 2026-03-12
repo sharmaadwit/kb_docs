@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/default-journeys
-# BOT STUDIO
 
-## Default Journeys
-
+<!-- procedural:v2 -->
 # Default Journeys
 
+**Module**: Bot Studio
+
+## Overview
+Each bot has three journeys by default in the User Journeys section -
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Each bot has three journeys by default in the User Journeys section -
 
 - Configuration Journey - Click to find more about this journey
@@ -30,4 +40,11 @@ Note: If the bot responds with "Welcome" for user inputs and another user journe
 
 - The names of default journeys can not be changed or duplicated.
 - Configuration Journey is view only. Please contact console-support@gupshup.io for changes in configuration journey.
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

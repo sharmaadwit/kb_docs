@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/message-nodes
-# BOT STUDIO
 
-## Message Nodes
-
+<!-- procedural:v2 -->
 # Message Nodes
 
+**Module**: Bot Studio
+
+## Overview
+A node is a building block in the Bot Studio canvas representing a specific action, prompt, or message. Message nodes specifically are used for sending content to users, such as text, images, documents, or interactive UI elements..
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ## What is a Node?
 
 A node is a building block in the Bot Studio canvas representing a specific action, prompt, or message. Message nodes specifically are used for sending content to users, such as text, images, documents, or interactive UI elements..
@@ -27,4 +37,11 @@ These nodes enable the bot to communicate through a variety of media formats acr
 - Message Template
 - Sticker Node
 - Send Location Node
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

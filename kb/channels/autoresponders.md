@@ -1,10 +1,22 @@
 source_url: https://console-docs.gupshup.io/docs/instagram-autoresponders
-# CHANNELS
 
-## Autoresponders
-
+<!-- procedural:v2 -->
 # Autoresponders
 
+**Module**: Channels
+
+## Overview
+Autoresponders on Instagram are single message replies that a business can send to a user if they:
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Go to Journeys under Bot Studio and click the Create Journey button.
+- Go to Manage Variables by clicking the {x} icon of the left on the canvas and select "Global" from the dropdown.
+- Go to the Welcome Journey and delete the text node connected to the Starting Node.
+
+## Step-by-step configuration
 Autoresponders on Instagram are single message replies that a business can send to a user if they:
 
 - Comment on the business's post or reel
@@ -89,3 +101,15 @@ Updated 8 months ago
 
 - Ice Breakers
 - Persistent Menu
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- ### By default, autoresponders are enabled once you go live with Instagram. You have to follow the steps below if you wish to disable them.
+- - Click Save Variable Mappings.
+- - Save & Deploy this journey.
+- - Save & Deploy the Welcome Journey.
+

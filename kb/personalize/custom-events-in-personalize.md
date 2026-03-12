@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/custom-events-in-customer360
-# Personalize
 
-## Custom events in Personalize
-
+<!-- procedural:v2 -->
 # Custom events in Personalize
 
+**Module**: Personalize
+
+## Overview
+Introduction:
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Introduction:
 
 Once events are defined for a custom integration, they automatically appear on the events page, with events under the particular source/integration (eg: Razorpay).
@@ -24,4 +34,10 @@ When we click on an event we get to the mapping screen where properties defined 
 
 Custom events in segmentation: All custom events with mapping completed status appear in the event drop-down. In the below example all the users who have performed "Signup" on "Website" with "city" = "Mumabi" at least once between the specific dates will be part of the segment. Now we can send a welcome nudge to these users to engage further with them.
 
-Updated 4 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 4 months ago

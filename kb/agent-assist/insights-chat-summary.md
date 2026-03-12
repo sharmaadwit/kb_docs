@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/insights-chat-summary
-# AGENT ASSIST
 
-## Insights: Chat Summary
-
+<!-- procedural:v2 -->
 # Insights: Chat Summary
 
+**Module**: Agent Assist
+
+## Overview
+Tab 1: Overall Summary
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Tab 1: Overall Summary
 
 Section 1: Overall Metrics
@@ -88,4 +98,24 @@ Status Definitions New: Fresh unassigned chats Open: Assigned but unresolved Pen
 
 Best Practices for Report Usage Use Overall Summary for quick performance snapshots Analyze trends to identify peak hours and resource needs Compare business hours vs calendar hours metrics for service coverage assessment Monitor status distribution for workflow optimization Use priority distribution for resource allocation decisions
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+Key notes found in source:
+
+- Section 2: Business Hours Metrics
+- - Total Chats: Number of chats initiated during business hours
+- - Average Wait Duration (Business Hours): Mean waiting time during business hours
+- - Min Wait Duration (Business Hours): Shortest waiting time during business hours
+- - Max Wait Duration (Business Hours): Longest waiting time during business hours
+- Section 3: Non-Business Hours Metrics
+- Same metrics as Section 2, but measured in calendar hours for chats created outside business hours
+- Business Hours Metrics
+- - Wait Duration Trend: Y-axis: Average wait duration in business hours X-axis: Created hour
+- Business Hours Metrics
+- Business Hours Metrics
+- Important Notes Business Hours vs Calendar Hours Business Hours: Only counts time during operating hours Calendar Hours: Counts all hours continuously (24/7)
+- Best Practices for Report Usage Use Overall Summary for quick performance snapshots Analyze trends to identify peak hours and resource needs Compare business hours vs calendar hours metrics for service coverage assessment Monitor status distribution for workflow optimization Use priority distribution for resource allocation decisions
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

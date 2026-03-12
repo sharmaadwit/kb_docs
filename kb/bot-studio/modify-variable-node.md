@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/modify-variable-node
-# BOT STUDIO
 
-## Modify Variable Node
-
+<!-- procedural:v2 -->
 # Modify Variable Node
 
+**Module**: Bot Studio
+
+## Overview
+The Modify variable is a new node available in the Journey Builder Action node list for performing various operations on the values stored in any variable. This will enable bot designers to perform simple to complex operations on different data types (string, number, and JSON) without needing to use the code node
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### Introduction
 
 The Modify variable is a new node available in the Journey Builder Action node list for performing various operations on the values stored in any variable. This will enable bot designers to perform simple to complex operations on different data types (string, number, and JSON) without needing to use the code node
@@ -89,4 +99,10 @@ Round-Off to nearest: The “Round-Off to nearest” modifier rounds the numeric
 - Remove from beginning: Removes the specified characters from the beginning of the selected string. (For e.g - Remove “91 ” from “919090909090” → “9090909090”)
 Remove from beginning: Removes the specified characters from the beginning of the selected string. (For e.g - Remove “91 ” from “919090909090” → “9090909090”)
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

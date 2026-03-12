@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/about-bot-studio
-# BOT STUDIO
 
-## About Bot Studio
-
+<!-- procedural:v2 -->
 # About Bot Studio
 
+**Module**: Bot Studio
+
+## Overview
+Bot Studio is Gupshup’s visual, no-code/low-code platform that empowers users to design, build, and deploy intelligent conversational journeys across messaging channels like WhatsApp, Web, and Instagram.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ## What is Bot Studio
 
 Bot Studio is Gupshup’s visual, no-code/low-code platform that empowers users to design, build, and deploy intelligent conversational journeys across messaging channels like WhatsApp, Web, and Instagram.
@@ -79,4 +89,10 @@ Best suited for:
 - Developer Mode toggle → Removed
 These changes ensure a simplified, robust experience for JB V2 users, while giving JB Pro developers controlled access to powerful tooling via the Solutions Platform.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/whatsapp-business-api
-# CHANNELS
 
-## WhatsApp Business API
-
+<!-- procedural:v2 -->
 # WhatsApp Business API
 
+**Module**: Channels
+
+## Overview
+Gupshup's WhatsApp Business API provides you APIs to send free form messages or session messages and template messages (utility/marketing/authentication) to users on WhatsApp. Both of these types of messages are together referred as 'Outbound Messages'
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Gupshup's WhatsApp Business API provides you APIs to send free form messages or session messages and template messages (utility/marketing/authentication) to users on WhatsApp. Both of these types of messages are together referred as 'Outbound Messages'
 
 Here we will look at the different types of outbound messages you can send using Gupshup's API
@@ -299,4 +309,12 @@ The size of the media file is not supported.
 
 ### For any other error code, click here.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- Following are sample API requests for each message type. These examples are for your reference only. You can create templates from settings in the app dashboard and submit them to WhatsApp for review.
+
+**Last updated (from source)**: Updated 10 months ago

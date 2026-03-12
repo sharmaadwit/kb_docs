@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/bot-analytics-journey-tracking
-# Bot Studio Analytics
 
-## Journey Tracking
-
+<!-- procedural:v2 -->
 # Journey Tracking
 
+**Module**: Bot Studio Analytics
+
+## Overview
+This table provides a view of conversations, active users and messages across all journeys in the bot.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ## Journey Summary
 
 This table provides a view of conversations, active users and messages across all journeys in the bot.
@@ -28,3 +38,10 @@ Please export required data within a year and store it on your end for later ref
 Updated 10 months ago
 
 - Exit Nodes
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

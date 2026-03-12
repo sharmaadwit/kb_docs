@@ -1,10 +1,26 @@
 source_url: https://console-docs.gupshup.io/docs/how-to-access-campaigns
-# CAMPAIGN Manager
 
-## How To Access Campaign Manager?
-
+<!-- procedural:v2 -->
 # How To Access Campaign Manager?
 
+**Module**: Campaign Manager
+
+## Overview
 Campaign Manager feature can be accessed from left navigation by clicking on "Campaigns" -
 
-Updated 10 months ago
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
+Campaign Manager feature can be accessed from left navigation by clicking on "Campaigns" -
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/trigger-event-node
-# BOT STUDIO
 
-## Trigger Event Node
-
+<!-- procedural:v2 -->
 # Trigger Event Node
 
+**Module**: Bot Studio
+
+## Overview
+The Trigger Event Node is a newly introduced action node in the Journey Builder Canvas that empowers businesses to send custom internal events during live journey execution. These events are sent to the Event Manager(New Module on Console), Gupshup's centralized event tracking system, and can be seamlessly integrated with Personalize (Customer360) to update profile attributes for users.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Go to Console Sidebar → Event Manager
+
+## Step-by-step configuration
 ### 📌 What is it?
 
 The Trigger Event Node is a newly introduced action node in the Journey Builder Canvas that empowers businesses to send custom internal events during live journey execution. These events are sent to the Event Manager(New Module on Console), Gupshup's centralized event tracking system, and can be seamlessly integrated with Personalize (Customer360) to update profile attributes for users.
@@ -47,4 +57,14 @@ The Trigger Event Node is a newly introduced action node in the Journey Builder 
 - User Opts-In for a Notification Scenario: User agrees to receive promotional updates. Event: opt_in_notification Outcome: Event gets stored in Customer360 and used for future segmentation.
 #### User Opts-In for a Notification
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Optionally, toggle the Save in Personalize to update CDP Profile attributes using Event data
+- - Click "Save"
+- - Click "Save & Deploy"
+
+**Last updated (from source)**: Updated 10 months ago

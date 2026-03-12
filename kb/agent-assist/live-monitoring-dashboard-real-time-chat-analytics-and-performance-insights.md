@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/live-monitoring-dashboard-20
-# AGENT ASSIST
 
-## Live Monitoring Dashboard: Real-Time Chat Analytics & Performance Insights
-
+<!-- procedural:v2 -->
 # Live Monitoring Dashboard: Real-Time Chat Analytics & Performance Insights
 
+**Module**: Agent Assist
+
+## Overview
+Comprehensive guide to the live monitoring dashboard featuring real-time chat metrics, agent performance tracking, wait times analysis, and customer feedback insights for optimal customer support management.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Comprehensive guide to the live monitoring dashboard featuring real-time chat metrics, agent performance tracking, wait times analysis, and customer feedback insights for optimal customer support management.
 
 # Live Monitoring Dashboard Overview
@@ -157,4 +167,10 @@ Consider setting up monitoring for:
 - Assignment queue buildups during peak periods
 The live monitoring dashboard updates in real-time, ensuring you always have the most current view of your customer support operations.
 
-Updated 4 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 4 months ago

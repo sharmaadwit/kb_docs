@@ -1,10 +1,24 @@
 source_url: https://console-docs.gupshup.io/docs/web-pre-chat-form
-# CHANNELS
 
-## Pre-Chat Form
-
+<!-- procedural:v2 -->
 # Pre-Chat Form
 
+**Module**: Channels
+
+## Overview
+- The Pre-Chat Form appears as the first thing users see on the chat widget after clicking the widget icon.
+- Users must submit the Pre-Chat Form before they can start messaging on the chat widget.
+- The form will help you get consent from new users on your terms and conditions or privacy policy before starting a chat.
+- If the Retain Customer Chat History setting is enabled, the Pre-Chat Form will be shown to new anonymous users only once. Logged in users will be shown the form every time regardless of the setting.
+## Setting the Pre-Chat Form
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Go to the Pre-Chat Form tab in Settings of the Web channel.
+
+## Step-by-step configuration
 - The Pre-Chat Form appears as the first thing users see on the chat widget after clicking the widget icon.
 - Users must submit the Pre-Chat Form before they can start messaging on the chat widget.
 - The form will help you get consent from new users on your terms and conditions or privacy policy before starting a chat.
@@ -45,4 +59,13 @@ source_url: https://console-docs.gupshup.io/docs/web-pre-chat-form
 - Users cannot start messaging on the chat widget without clicking the Global Button.
 - If the checkbox is not ticked, the Global Button remains in a disabled state.
 - The maximum number of characters in the Global Button text is 100.
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Users must submit the Pre-Chat Form before they can start messaging on the chat widget.
+
+**Last updated (from source)**: Updated 10 months ago

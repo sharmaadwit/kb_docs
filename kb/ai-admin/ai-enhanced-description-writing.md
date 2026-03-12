@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/ai-enhanced-description-writing-1
-# AI Admin
 
-## AI Enhanced Description Writing
-
+<!-- procedural:v2 -->
 # AI Enhanced Description Writing
 
+**Module**: Ai Admin
+
+## Overview
+Introduction: AI will be assisting users in writing effective Intent & Entity descriptions to improve runtime language understanding capabilities. AI enhanced description will be addressing following key issues observed in user written description are
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Introduction: AI will be assisting users in writing effective Intent & Entity descriptions to improve runtime language understanding capabilities. AI enhanced description will be addressing following key issues observed in user written description are
 
 - Lack of context
@@ -19,3 +29,10 @@ Key Highlights:
 Updated 10 months ago
 
 - Content Training
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

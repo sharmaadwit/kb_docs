@@ -1,12 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/manage-variables
-# BOT STUDIO
 
-## Manage Variables
-
+<!-- procedural:v2 -->
 # Manage Variables
 
-### Manage Variables
+**Module**: Bot Studio
 
+## Overview
+Variables in Journey Builder store and manage data dynamically within conversational journeys, enabling personalization, data manipulation, and efficient bot interactions.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Overview
 
 Variables in Journey Builder store and manage data dynamically within conversational journeys, enabling personalization, data manipulation, and efficient bot interactions.
@@ -47,4 +55,11 @@ Variables are categorized into five types:
 - Select the appropriate variable type.
 - Create or select existing variables.
 - Map variables directly into nodes for data handling or personalization.
-Updated 8 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 8 months ago

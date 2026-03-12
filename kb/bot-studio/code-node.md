@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/code-node
-# BOT STUDIO
 
-## Code Node
-
+<!-- procedural:v2 -->
 # Code Node
 
+**Module**: Bot Studio
+
+## Overview
+****** THIS NODE IS DEPRECATED AND WILL NOT BE AVAILABLE IN BOT STUDIO *******
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ****** THIS NODE IS DEPRECATED AND WILL NOT BE AVAILABLE IN BOT STUDIO *******
 
 ## THIS NODE IS DEPRECATED AND WILL NOT BE AVAILABLE IN BOT STUDIO
@@ -32,4 +42,12 @@ Example: Perform the operation of adding 2 variables and save the response in a 
 - Show the result in any text node as a response from the chatbot. The final result would be shown using the sum variable.
 ### Code Node
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- Example: Perform the operation of adding 2 variables and save the response in a result.
+
+**Last updated (from source)**: Updated 10 months ago

@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/ad-journey
-# BOT STUDIO
 
-## Ad Journey
-
+<!-- procedural:v2 -->
 # Ad Journey
 
+**Module**: Bot Studio
+
+## Overview
+Ad Journeys help businesses support interaction with customers when they interact with click-to-chat ads on Facebook or Instagram. To know more about click-to-chat Ads on Gupshup Console, contact us at console-support@gupshup.io.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Ad Journeys help businesses support interaction with customers when they interact with click-to-chat ads on Facebook or Instagram. To know more about click-to-chat Ads on Gupshup Console, contact us at console-support@gupshup.io.
 
 If the console account supports click-to-chat ads, a new type of journeys called "Ad Journeys" will be available in Bot Studio.
@@ -13,4 +23,10 @@ In this module, businesses can design ad journeys that can be triggered when a c
 
 To learn more about mapping Ad Journeys with Ad Journeys in the "Click-to-Chat Ads", contact us at console-support@gupshup.io. Once ads are mapped with Ad journeys in Bot Studio, the mapping will be updated in the Ad Campaign Node in the view-only Configuration Journey.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

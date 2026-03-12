@@ -1,10 +1,21 @@
 source_url: https://console-docs.gupshup.io/docs/how-to-create-whatsapp-static-flows
-# BOT STUDIO
 
-## How to Create WhatsApp Static Flows
-
+<!-- procedural:v2 -->
 # How to Create WhatsApp Static Flows
 
+**Module**: Bot Studio
+
+## Overview
+Creating a WhatsApp Static Flow involves several steps: designing the Flow JSON, setting up the journey, handling the response JSON, and triggering the flow from a user journey. Follow the steps below for a seamless setup:
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+Navigate to the Flow Builder via the Create Template Action on Meta BM
+Navigate to the Flows section in Meta BM.
+
+## Step-by-step configuration
 Creating a WhatsApp Static Flow involves several steps: designing the Flow JSON, setting up the journey, handling the response JSON, and triggering the flow from a user journey. Follow the steps below for a seamless setup:
 
 ## Step 1: Create the Flow JSON
@@ -147,4 +158,12 @@ Feedback(optional): {{var_system.message_metadata.screen_3_TextArea_0}}
 
 By following these steps, you can design, implement, and deploy WhatsApp Static Flows seamlessly for your business requirements.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- By following these steps, you can design, implement, and deploy WhatsApp Static Flows seamlessly for your business requirements.
+
+**Last updated (from source)**: Updated 10 months ago

@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/campaign-and-ctx-ad-preview
-# AGENT ASSIST
 
-## Campaign and CTX Ad Preview
-
+<!-- procedural:v2 -->
 # Campaign and CTX Ad Preview
 
+**Module**: Agent Assist
+
+## Overview
+Learn how to enable Campaign Context and Ad Preview features to provide agents with valuable customer interaction context and Click to Chat ad insights.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Learn how to enable Campaign Context and Ad Preview features to provide agents with valuable customer interaction context and Click to Chat ad insights.
 
 # Campaign and CTX Ad Preview
@@ -68,4 +78,10 @@ Note: Both features require proper configuration and customer journey completion
 
 These features work together to provide agents with comprehensive context, enabling them to deliver more personalized and effective customer support.
 
-Updated 4 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 4 months ago

@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/functions-from-e-h
-# BOT STUDIO
 
-## Functions from E - H
-
+<!-- procedural:v2 -->
 # Functions from E - H
 
+**Module**: Bot Studio
+
+## Overview
+Check whether an instance is empty. Return true if the input is empty. Empty means:
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### empty
 
 Check whether an instance is empty. Return true if the input is empty. Empty means:
@@ -670,4 +680,11 @@ And return the following results respectively:
 
 - true
 - false
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

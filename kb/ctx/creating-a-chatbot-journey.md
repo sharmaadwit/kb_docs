@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-chatbot-journey
-# CTX
 
-## Creating a chatbot journey
-
+<!-- procedural:v2 -->
 # Creating a chatbot journey
 
+**Module**: Ctx
+
+## Overview
+Best Practices:
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Best Practices:
 
 - Create your base journey within Bot Studio -> User Journey
@@ -25,4 +35,13 @@ Converting a User Journey to Ad Journey:
 - Under the "Actions" tab, select "Call and Return" as the option:
 - Click on the "Call and Return" node and this will get added in the journey. Click on the node and select the desired user journey that needs to be connected to CTWA ads.
 - Once the journey is selected, close the node settings and click on "Save and Deploy". Your ad journey is now ready.
-Updated 6 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Once the journey is selected, close the node settings and click on "Save and Deploy". Your ad journey is now ready.
+
+**Last updated (from source)**: Updated 6 months ago

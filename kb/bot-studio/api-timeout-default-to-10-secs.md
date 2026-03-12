@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/api-timeout-default-to-10-secs
-# BOT STUDIO
 
-## API Timeout Default to 10 Secs
-
+<!-- procedural:v2 -->
 # API Timeout Default to 10 Secs
 
+**Module**: Bot Studio
+
+## Overview
+Timeout Default Value
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Timeout Default Value
 
 # Introduction
@@ -39,4 +49,11 @@ This enhancement standardizes the API Timeout settings in Journey Builder, setti
 - Performance Optimization Scenario: An e-commerce platform wants to minimize delays in order processing by setting clear limits on API response times. Benefit: The 1-60 second range prevents excessively long waits or timeouts, enhancing platform performance and reliability.
 - Scenario: An e-commerce platform wants to minimize delays in order processing by setting clear limits on API response times.
 - Benefit: The 1-60 second range prevents excessively long waits or timeouts, enhancing platform performance and reliability.
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

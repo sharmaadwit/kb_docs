@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/quick-reply
-# BOT STUDIO
 
-## Quick Reply
-
+<!-- procedural:v2 -->
 # Quick Reply
 
+**Module**: Bot Studio
+
+## Overview
+It is a special type of message using which a chatbot can provide multiple options for a customer to select. It is a message type with a text message and clickable buttons. The clickable buttons are treated as a response from the user to process the journey further.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 It is a special type of message using which a chatbot can provide multiple options for a customer to select. It is a message type with a text message and clickable buttons. The clickable buttons are treated as a response from the user to process the journey further.
 
 Quick Reply has the following constituents:
@@ -58,4 +68,10 @@ These use cases illustrate how the Skip Node feature can make interactions more 
 
 More on Skip Node functionality here: Existing Console Doc Link
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

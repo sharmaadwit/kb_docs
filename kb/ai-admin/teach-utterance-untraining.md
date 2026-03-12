@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/teach-utterance-untraining
-# AI Admin
 
-## Teach Utterance Untraining
-
+<!-- procedural:v2 -->
 # Teach Utterance Untraining
 
+**Module**: Ai Admin
+
+## Overview
+Teach Utterance Untraining allows users to delete specific utterances which were added manually or by bulk upload to train different intents. In a single Save & Train operation you can untrain utterances trained for multiple intents.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Go to the Teach section & navigate to the utterances you want to remove from the training data.
+
+## Step-by-step configuration
 Teach Utterance Untraining allows users to delete specific utterances which were added manually or by bulk upload to train different intents. In a single Save & Train operation you can untrain utterances trained for multiple intents.
 
 Steps to Untrain Teach Intent Utterances:
@@ -15,3 +25,12 @@ Steps to Untrain Teach Intent Utterances:
 Updated 10 months ago
 
 - Settings
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Click on Save & Train button to complete the untraining.
+

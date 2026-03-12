@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/moengage-integration
-# Integrations
 
-## Moengage Integration
-
+<!-- procedural:v2 -->
 # Moengage Integration
 
+**Module**: Integrations
+
+## Overview
+Enable CX experiences for your customers in Moengage.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Go to the integrations tab, where you can find the Moengage integration widget
+
+## Step-by-step configuration
 Enable CX experiences for your customers in Moengage.
 
 In Moengage Integration, we enable customers to easily launch WhatsApp campaigns directly from their Moengage account with just a few clicks to complete integration.
@@ -22,4 +32,13 @@ Steps involved in completing Moengage integration:
 - You will need to copy and paste the credentials on your Moengage dashboard, and you can also copy the callback URL from here:
 - Post logging in you can configure the fallback URL
 - Analytics can be viewed in the campaign dashboard by clicking on "all campaigns" and then selecting the campaign for which you would like to view the analytics.
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- In Moengage Integration, we enable customers to easily launch WhatsApp campaigns directly from their Moengage account with just a few clicks to complete integration.
+
+**Last updated (from source)**: Updated 10 months ago

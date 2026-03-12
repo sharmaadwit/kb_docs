@@ -1,10 +1,22 @@
 source_url: https://console-docs.gupshup.io/docs/web
-# CHANNELS
 
-## Web
-
+<!-- procedural:v2 -->
 # Web
 
+**Module**: Channels
+
+## Overview
+- You can now integrate a chat widget on your website with our new Web channel.
+- The channel is integrated with our Bot Studio and Agent Assist modules to provide a seamless experience.
+### Embed URL
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ## About
 
 - You can now integrate a chat widget on your website with our new Web channel.
@@ -35,4 +47,10 @@ source_url: https://console-docs.gupshup.io/docs/web
 - Document
 ## Supported browsers
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

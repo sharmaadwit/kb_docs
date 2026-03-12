@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/proactive-persistent-message-sticky-journey-upgrade
-# BOT STUDIO
 
-## Proactive Persistent Message (Sticky Journey Upgrade)
-
+<!-- procedural:v2 -->
 # Proactive Persistent Message (Sticky Journey Upgrade)
 
+**Module**: Bot Studio
+
+## Overview
+For sticky journeys, the wait-for-event based nodes now features an improved and customizable experience. This ensures end users can return to an unfinished journey if the context changes before completion. Previously available only for Prompt Nodes, this feature now extends to Reply, Quick Reply, and List Nodes as well.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ## Introduction
 
 For sticky journeys, the wait-for-event based nodes now features an improved and customizable experience. This ensures end users can return to an unfinished journey if the context changes before completion. Previously available only for Prompt Nodes, this feature now extends to Reply, Quick Reply, and List Nodes as well.
@@ -45,4 +55,10 @@ Scenario: A user initiates a service booking but leaves before confirming the ap
 
 Scenario: A user starts a feedback form or survey but doesn't finish it. Proactive Persistent Message: The bot sends a message reminding the user to complete the feedback or survey with context about the remaining questions. Benefit: Enhances the quality and quantity of feedback collected, providing valuable insights for the business.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

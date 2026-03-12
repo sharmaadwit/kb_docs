@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/clevertap-integration
-# Integrations
 
-## CleverTap Integration
-
+<!-- procedural:v2 -->
 # CleverTap Integration
 
+**Module**: Integrations
+
+## Overview
+Enable CX experiences for your customers in Clevertap.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Go to the integrations tab, where you can find the CleverTap integration widget
+
+## Step-by-step configuration
 Enable CX experiences for your customers in Clevertap.
 
 In CleverTap Integration, we enable customers to easily launch WhatsApp campaigns directly from their CleverTap account with just a few clicks to complete integration.
@@ -31,4 +41,13 @@ Steps involved in template creation and sending messages from CleverTap dashboar
 - Note: The content (Template name, category, header, body, footer) all needs to be exactly same as that of the approved template on Gupshup dashboard in order to be able to send campaigns. Else you would be getting an error.
 - Now you are ready to send campaigns directly from CleverTap dashboard
 - Analytics will be available on Gupshup (click on "All campaigns" and select the campaign) as well as CleverTap dashboard
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- In CleverTap Integration, we enable customers to easily launch WhatsApp campaigns directly from their CleverTap account with just a few clicks to complete integration.
+
+**Last updated (from source)**: Updated 10 months ago

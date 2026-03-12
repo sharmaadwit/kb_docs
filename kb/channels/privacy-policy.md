@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/privacy-policy
-# CHANNELS
 
-## Privacy Policy
-
+<!-- procedural:v2 -->
 # Privacy Policy
 
+**Module**: Channels
+
+## Overview
+We care about protecting the personal information of our customers and visitors who use our website www.gupshup.io, our products or services (collectively, our "Users").
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### Updated as on 17th April 2024
 
 We care about protecting the personal information of our customers and visitors who use our website www.gupshup.io, our products or services (collectively, our "Users").
@@ -209,4 +219,10 @@ If you have any questions or complaints about this Privacy Policy, the practices
 
 Our data protection officer can be contacted at dpo@gupshup.io
 
-Updated 8 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 8 months ago

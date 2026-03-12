@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/manage-project
-# overview
 
-## Add Members
-
+<!-- procedural:v2 -->
 # Add Members
 
+**Module**: Overview
+
+## Overview
+Here is a step-by-step guide on how to add members to a project on Console.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Here is a step-by-step guide on how to add members to a project on Console.
 
 Step 1: Log in as a Project Admin on Console&#xA;To add members to a project, you must first log in as a Project Admin on Console. You can do this by using the link provided in the instructions.
@@ -23,4 +33,10 @@ Step 7: Member Verification An email will be sent to the member with a link to a
 
 If you have any questions or concerns regarding adding members to a project on Console, you can always contact console-support@gupshup.io for assistance.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

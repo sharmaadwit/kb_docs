@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/json-response-attribute-mapping-in-api-node
-# BOT STUDIO
 
-## JSON Handler
-
+<!-- procedural:v2 -->
 # JSON Handler
 
+**Module**: Bot Studio
+
+## Overview
+The JSON Handler Node is a powerful new addition to the Journey Builder Canvas in the Bot Studio platform. It allows bot designers to effortlessly extract information from simple to complex JSON objects without requiring coding expertise. This feature simplifies handling JSON responses from APIs or channel messages, making the platform more accessible, especially for non-technical users.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Navigate to Action Nodes in Journey Builder and select JSON Handler.\
+
+## Step-by-step configuration
 ## Introduction
 
 The JSON Handler Node is a powerful new addition to the Journey Builder Canvas in the Bot Studio platform. It allows bot designers to effortlessly extract information from simple to complex JSON objects without requiring coding expertise. This feature simplifies handling JSON responses from APIs or channel messages, making the platform more accessible, especially for non-technical users.
@@ -86,4 +96,17 @@ Save and Deploy
 - Mapping Errors Validation errors are triggered if mappings are incorrectly set. Runtime validation ensures data type compatibility; failures prevent incorrect data storage.
 - Validation errors are triggered if mappings are incorrectly set.
 - Runtime validation ensures data type compatibility; failures prevent incorrect data storage.
-Updated 9 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Sample JSON and mappings are saved with the journey upon Save or Deploy actions.
+- - Save and Deploy Click Save to store your mappings and JSON structure. Deploy the journey to apply the JSON Handler Node in live scenarios.
+- Save and Deploy
+- - Click Save to store your mappings and JSON structure.
+- - Deploy the journey to apply the JSON Handler Node in live scenarios.
+
+**Last updated (from source)**: Updated 9 months ago

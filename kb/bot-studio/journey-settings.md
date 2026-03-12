@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/journey-settings
-# BOT STUDIO
 
-## Journey Settings
-
+<!-- procedural:v2 -->
 # Journey Settings
 
+**Module**: Bot Studio
+
+## Overview
+Every User Journey has a dedicated settings which determines how the journey will be used by the bot. Journey Settings can be found inside the Design Canvas along with the Manage Variable and API Management options.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Every User Journey has a dedicated settings which determines how the journey will be used by the bot. Journey Settings can be found inside the Design Canvas along with the Manage Variable and API Management options.
 
 An upgraded Journey Settings is being introduced with new options to select the Primary Intent, Journey Workspace and Excluded Intent.
@@ -56,4 +66,11 @@ Backend/Bot Level Changes associated with Sticky Journeys:
 - All Prompt nodes are converted to persistent node. This means that the persistent nodes expects a related input and if the user switches the intent before answering the prompt node question then the node will wait for the user to comeback after completing the new intent related journey.
 - Bot Designers can uncheck the checkbox on Prompt Node which should not be persistent. In such cases the user will land to the previous Persistent prompt node available on the parent journey
 - Incase there are not Persistent Prompt Node available on the flow then the user will be sent to the very beginning of the Sticky Journey i.e. the node right after the Starting node.
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

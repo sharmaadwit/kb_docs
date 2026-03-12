@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/address-node
-# BOT STUDIO
 
-## Address Node
-
+<!-- procedural:v2 -->
 # Address Node
 
+**Module**: Bot Studio
+
+## Overview
+Address Node
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Address Node
 
 # Introduction
@@ -111,4 +121,14 @@ The Address Node enables businesses to send an address form to users via WhatsAp
 - For other regions, alternate workflows or fallback logic must be configured.
 This Address Node simplifies user address collection via WhatsApp while tailoring the experience to specific regions, enhancing operational efficiency and user satisfaction.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Deploy and Collect: Deploy the journey. Users will receive the address form on WhatsApp, input their details, and submit.
+- - Deploy the journey.
+- - Users will receive the address form on WhatsApp, input their details, and submit.
+
+**Last updated (from source)**: Updated 10 months ago

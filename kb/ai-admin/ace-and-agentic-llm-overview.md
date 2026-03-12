@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/ace-agentic-llm-overview-copy
-# AI Admin
 
-## ACE & Agentic LLM Overview
-
+<!-- procedural:v2 -->
 # ACE & Agentic LLM Overview
 
+**Module**: Ai Admin
+
+## Overview
+ACE LLM by Gupshup is a family of generative models to automate marketing, commerce & support related conversations powered by Open & Closed source foundational models. It has been fine-tuned on industry & function-specific data to deliver a delightful customer experience. Enterprises get a head-start in delivering ACE LLM-powered conversational experiences.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ## Introduction to ACE LLM
 
 ACE LLM by Gupshup is a family of generative models to automate marketing, commerce & support related conversations powered by Open & Closed source foundational models. It has been fine-tuned on industry & function-specific data to deliver a delightful customer experience. Enterprises get a head-start in delivering ACE LLM-powered conversational experiences.
@@ -42,3 +52,10 @@ These models are used during both intent classification & skill execution and ar
 Updated 7 months ago
 
 - Workspace
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

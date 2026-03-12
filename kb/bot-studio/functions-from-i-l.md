@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/functions-from-i-l
-# BOT STUDIO
 
-## Functions from I - L
-
+<!-- procedural:v2 -->
 # Functions from I - L
 
+**Module**: Bot Studio
+
+## Overview
+Check whether an expression is true or false. Based on the result, return a specified value.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### if
 
 Check whether an expression is true or false. Based on the result, return a specified value.
@@ -630,4 +640,11 @@ And return the following results respectively:
 
 - true
 - false
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

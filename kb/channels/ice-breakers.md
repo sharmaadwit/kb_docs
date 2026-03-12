@@ -1,10 +1,23 @@
 source_url: https://console-docs.gupshup.io/docs/instagram-ice-breakers
-# CHANNELS
 
-## Ice Breakers
-
+<!-- procedural:v2 -->
 # Ice Breakers
 
+**Module**: Channels
+
+## Overview
+- Ice Breakers provide a way for users to start a conversation with a business with a list of frequently asked questions.
+- Only first time users are able to view and interact with Ice Breakers.
+- A maximum of 4 questions can be set as Ice Breakers.
+How Ice Breakers appear on Instagram
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Go to the Instagram Settings tab.
+
+## Step-by-step configuration
 - Ice Breakers provide a way for users to start a conversation with a business with a list of frequently asked questions.
 - Only first time users are able to view and interact with Ice Breakers.
 - A maximum of 4 questions can be set as Ice Breakers.
@@ -36,3 +49,14 @@ Updated 10 months ago
 
 - Autoresponders
 - Persistent Menu
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Click Save. Ice Breakers will now start appearing for first time users in your linked Instagram account's DM.
+- - Enter Ice Breakers for that region. Click Save. The corresponding Ice Breakers will start appearing for first time users located in that region.
+- - If you wish to delete any Ice Breaker, click the delete icon next to it and click Save.
+

@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/creating-goals
-# Goals
 
-## Creating Goals
-
+<!-- procedural:v2 -->
 # Creating Goals
 
+**Module**: Goals
+
+## Overview
+Please refer to your journey and create Milestones and Trackers accordingly. You CANNOT implement Goal nodes without creating them.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Go to the Goals section under Bot Studio in the navigation sidebar on the left.
+
+## Step-by-step configuration
 ### You need to create Goals before you can implement them in your journeys.
 
 Please refer to your journey and create Milestones and Trackers accordingly. You CANNOT implement Goal nodes without creating them.
@@ -55,3 +65,12 @@ Goals dashboard (Returning users)
 Updated 10 months ago
 
 - Implementing Goals
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Once you are done, click the Create button to save the goal.
+

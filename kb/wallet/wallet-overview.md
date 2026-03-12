@@ -1,12 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/wallet-overview
-# Wallet
 
-## Wallet Overview
-
+<!-- procedural:v2 -->
 # Wallet Overview
 
-## Wallet
+**Module**: Wallet
 
+## Overview
+You can use your Gupshup wallet to pay for whatsapp and Instagram usage on Converse.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 You can use your Gupshup wallet to pay for whatsapp and Instagram usage on Converse.
 
 Wallet is supported in INR and USD currencies. For INR wallets the KYC needs to be completed, before recharging the wallet, the KYC can be done using GSTIN number or PAN number for the business.
@@ -37,4 +45,10 @@ Here's a quick video to guide on how to view your wallet usage and wallet statem
 
 View wallet usage
 
-Updated 7 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 7 months ago

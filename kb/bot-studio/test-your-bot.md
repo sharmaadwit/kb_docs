@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/test-your-bot
-# BOT STUDIO
 
-## Test your Bot
-
+<!-- procedural:v2 -->
 # Test your Bot
 
+**Module**: Bot Studio
+
+## Overview
+Now you can Test your Bot on-the-go without the need to connect to Proxy or Webapp on different tabs.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Now you can Test your Bot on-the-go without the need to connect to Proxy or Webapp on different tabs.
 
 Overview
@@ -25,4 +35,10 @@ Basic Info : This section contains the information in a structured manner showin
 - Payload : Payload Section will contain the backend JSON Payload that got generated post a user message is sent. The payload can also be copied to view separately.
 Payload : Payload Section will contain the backend JSON Payload that got generated post a user message is sent. The payload can also be copied to view separately.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

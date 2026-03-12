@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/extension
-# EXTENSION
 
-## Overview of Extensions
-
+<!-- procedural:v2 -->
 # Overview of Extensions
 
+**Module**: Extension
+
+## Overview
+Console offers extensions to seamlessly integrate additional services such as Enterprise SMS, Enterprise WhatsApp, and RCS. To enable these extensions, please contact console-support@gupshup.io. Once enabled, follow the below-mentioned steps:
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Navigate to the Extensions tab to add the desired extension.
+
+## Step-by-step configuration
 # Extensions
 
 Console offers extensions to seamlessly integrate additional services such as Enterprise SMS, Enterprise WhatsApp, and RCS. To enable these extensions, please contact console-support@gupshup.io. Once enabled, follow the below-mentioned steps:
@@ -33,4 +43,11 @@ Enhance your messaging experience and scale your reach with RCS integration thro
 - Click Add button within the RCS tile.
 - Enter your RCS account credentials.
 - Click Add extension to integrate RCS with the Console seamlessly.
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

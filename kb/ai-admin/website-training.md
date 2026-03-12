@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/website-training
-# AI Admin
 
-## Website Training
-
+<!-- procedural:v2 -->
 # Website Training
 
+**Module**: Ai Admin
+
+## Overview
+Steps to train Website URL:
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Go to "Website Links" section in Content Tab
+
+## Step-by-step configuration
 Steps to train Website URL:
 
 - Go to "Website Links" section in Content Tab
@@ -70,3 +80,12 @@ Key Behaviors & Availability of Retraining Icon:
 Updated 9 months ago
 
 - Website Re-training Scheduler (Developer Mode)
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Click on "Save & Train".
+

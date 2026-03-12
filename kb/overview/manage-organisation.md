@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/manage-organisation
-# overview
 
-## Manage Organisation
-
+<!-- procedural:v2 -->
 # Manage Organisation
 
+**Module**: Overview
+
+## Overview
+You may be wondering about the account setup process and what capabilities you'll have as an organisation. Here is an overview of what you can expect when you onboard with Gupshup, including the roles of the Org Owner and Org Admins. When you sign up for the Gupshup console, you'll be provided with an Organisation account that can have one or more projects and services under it. The first user onboarded by the Gupshup team will be designated as the Org Owner, and this person will be provided with login credentials to access the account. The Org Owner will have the ability to add more Org Admins from their company to help manage the account. Both the Org Owner and Org Admins will have the same capabilities, including:
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 You may be wondering about the account setup process and what capabilities you'll have as an organisation. Here is an overview of what you can expect when you onboard with Gupshup, including the roles of the Org Owner and Org Admins. When you sign up for the Gupshup console, you'll be provided with an Organisation account that can have one or more projects and services under it. The first user onboarded by the Gupshup team will be designated as the Org Owner, and this person will be provided with login credentials to access the account. The Org Owner will have the ability to add more Org Admins from their company to help manage the account. Both the Org Owner and Org Admins will have the same capabilities, including:
 
 - Inviting and removing members
@@ -14,4 +24,10 @@ These capabilities are designed to give you full control over your projects and 
 
 For any Queries, please drop an email to console-support@gupshup.io
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

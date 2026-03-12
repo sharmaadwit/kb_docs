@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/overview
-# CTX
 
-## Meta Ads to WhatsApp
-
+<!-- procedural:v2 -->
 # Meta Ads to WhatsApp
 
+**Module**: Ctx
+
+## Overview
+(Each essential step has been explained in detail in their respective subsections)
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 (Each essential step has been explained in detail in their respective subsections)
 
 # Essential steps to follow for successful CTWA setup
@@ -37,4 +47,11 @@ Best Practices:
 
 - Please make sure that the WhatsApp template being used for retargeting does not contain any variables
 - Please ensure that the option “Retarget after default free window” is left unchecked, otherwise it may incur a cost if retargeting messages are sent to users outside the 72-hour window
-Updated 6 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 6 months ago

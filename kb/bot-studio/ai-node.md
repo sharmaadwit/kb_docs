@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/ai-node
-# BOT STUDIO
 
-## AI Node
-
+<!-- procedural:v2 -->
 # AI Node
 
+**Module**: Bot Studio
+
+## Overview
+The AI Node is used to link journeys with trained workspaces created in the AI Admin in Bot Studio. For instance, if businesses want to answer customer FAQs, bot designer can train the data workspace with relevant FAQ related data sources and use the AI Node to link the journey with the same data workspace. When a user interacts with the bot at run-time, user can ask the query and the AI enabled journey provides the best relevant answer to the user.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### When to use
 
 The AI Node is used to link journeys with trained workspaces created in the AI Admin in Bot Studio. For instance, if businesses want to answer customer FAQs, bot designer can train the data workspace with relevant FAQ related data sources and use the AI Node to link the journey with the same data workspace. When a user interacts with the bot at run-time, user can ask the query and the AI enabled journey provides the best relevant answer to the user.
@@ -31,4 +41,11 @@ Drag and drop the AI Node from the Node Panel to the canvas.
 - This node is available only when AI is enabled in the recipe.
 - Data workspace that are created and trained successfully in the AI Admin Module are visible in the dropdown to select data workspace.
 - Response can be stored in JSON Variable only.
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

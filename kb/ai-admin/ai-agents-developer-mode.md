@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/introducing-ai-agents
-# AI Admin
 
-## AI Agents (Developer Mode)
-
+<!-- procedural:v2 -->
 # AI Agents (Developer Mode)
 
+**Module**: Ai Admin
+
+## Overview
+Gupshup's AI Agents represent the next evolution in enterprise communication—sophisticated digital assistants engineered to deliver seamless, contextual, and multi-turn conversations across WhatsApp and Web Channels
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### Note: AI Agent is available in developer mode through our Gupshup’s internal Bot Solutions Team. To access the latest AI Agent modules in Bot Studio please contact Gupshup support or your respective Sales representative.
 
 # Elevating Customer Experience: The Gupshup Agentic Framework Advantage
@@ -37,3 +47,14 @@ Launch Your AI Agent in 5 Streamlined Steps
 Updated 10 months ago
 
 - Agent Personality (Developer Mode)
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Skills: Deploy task-specific capabilities through specialized prompts, enabling your agent to perform exactly as your business requires and meet the engagement expectation
+- Launch Your AI Agent in 5 Streamlined Steps
+- - Optimize & Deploy: Fine-tune settings, validate performance, and launch
+

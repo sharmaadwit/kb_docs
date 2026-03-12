@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/functions-from-v-z
-# BOT STUDIO
 
-## Functions from V - Z
-
+<!-- procedural:v2 -->
 # Functions from V - Z
 
+**Module**: Bot Studio
+
+## Overview
+Filter on each element and return the new collection of filtered elements which match a specific condition.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### where
 
 Filter on each element and return the new collection of filtered elements which match a specific condition.
@@ -130,4 +140,10 @@ year('2018-03-15T00:00:00.000Z')
 
 And it returns the result 2018.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

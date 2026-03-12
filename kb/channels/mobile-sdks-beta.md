@@ -1,10 +1,22 @@
 source_url: https://console-docs.gupshup.io/docs/mobile-sdk
-# CHANNELS
 
-## Mobile SDKs (Beta)
-
+<!-- procedural:v2 -->
 # Mobile SDKs (Beta)
 
+**Module**: Channels
+
+## Overview
+- You can now integrate a chat widget in your mobile apps for Android and iOS using the Mobile SDKs for the Web channel.
+- All Web channel capabilities, including features and message types, are available in the chat widget integrated through the SDKs.
+## SDK Details
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 - You can now integrate a chat widget in your mobile apps for Android and iOS using the Mobile SDKs for the Web channel.
 - All Web channel capabilities, including features and message types, are available in the chat widget integrated through the SDKs.
 ## SDK Details
@@ -16,4 +28,11 @@ source_url: https://console-docs.gupshup.io/docs/mobile-sdk
 
 - Android 9 and above
 - iOS 13 and above
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

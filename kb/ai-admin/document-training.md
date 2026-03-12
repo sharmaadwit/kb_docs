@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/document-training
-# AI Admin
 
-## Document Training
-
+<!-- procedural:v2 -->
 # Document Training
 
+**Module**: Ai Admin
+
+## Overview
+Steps to train documents:
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Go to "Files" section in Content Tab.
+
+## Step-by-step configuration
 Steps to train documents:
 
 - Go to "Files" section in Content Tab.
@@ -39,4 +49,13 @@ Key Limitations:
 - Model may not perform optimally when handling images with text of non-Latin alphabets, such as Japanese or Korea
 - The model may misinterpret rotated or upside-down text and images
 - Not suggested for medical use cases like interpreting CT scan images
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Click on "Save & Train".
+
+**Last updated (from source)**: Updated 10 months ago

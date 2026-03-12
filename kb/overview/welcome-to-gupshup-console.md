@@ -1,10 +1,21 @@
 source_url: https://console-docs.gupshup.io/docs/getting-started
-# overview
 
-## Welcome to Gupshup Console
-
+<!-- procedural:v2 -->
 # Welcome to Gupshup Console
 
+**Module**: Overview
+
+## Overview
+Your unified platform for conversational messaging across WhatsApp, SMS, Web, and Instagram. Manage campaigns, bots, and customer support all in one place.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Navigate to the project selector (top-left)
+- Go to the Channels section
+
+## Step-by-step configuration
 Your unified platform for conversational messaging across WhatsApp, SMS, Web, and Instagram. Manage campaigns, bots, and customer support all in one place.
 
 ## What is Gupshup Console? 🚀
@@ -148,4 +159,10 @@ Response Times:
 - Critical issues: 2-4 hours
 Ready to transform your customer conversations? Let's get started! 🎉
 
-Updated 4 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 4 months ago

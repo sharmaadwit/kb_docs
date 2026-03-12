@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/delete-members
-# overview
 
-## Delete Members of an Organisation
-
+<!-- procedural:v2 -->
 # Delete Members of an Organisation
 
+**Module**: Overview
+
+## Overview
+Managing a team or organisation can be a challenging task, especially when it comes to handling member accounts. At times, it may become necessary to delete a member from your organisation due to various reasons, such as employee termination, resignation, or simply cleaning up your records. In this article, we will guide you on how to delete a member from your organisation.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Managing a team or organisation can be a challenging task, especially when it comes to handling member accounts. At times, it may become necessary to delete a member from your organisation due to various reasons, such as employee termination, resignation, or simply cleaning up your records. In this article, we will guide you on how to delete a member from your organisation.
 
 Step 1: Access the Manage Organisation Section
@@ -29,4 +39,10 @@ Congratulations! You have successfully deleted a member from your organisation. 
 
 For any Queries, please drop an email to console-support@gupshup.io
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

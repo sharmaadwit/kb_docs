@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/settings
-# AGENT ASSIST
 
-## Settings
-
+<!-- procedural:v2 -->
 # Settings
 
+**Module**: Agent Assist
+
+## Overview
+Comprehensive settings hub for configuring and optimizing your Agent Assist platform, including user management, automation, AI capabilities, and account controls.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Comprehensive settings hub for configuring and optimizing your Agent Assist platform, including user management, automation, AI capabilities, and account controls.
 
 # Settings Overview
@@ -128,4 +138,10 @@ Ensures:
 - Optimize Productivity Tools for maximum efficiency
 Together, these settings provide a comprehensive framework for managing and scaling Agent Assist to meet evolving business needs with speed, security, and efficiency.
 
-Updated 3 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 3 months ago

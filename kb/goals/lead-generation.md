@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/lead-generation-goal
-# Goals
 
-## Lead Generation
-
+<!-- procedural:v2 -->
 # Lead Generation
 
+**Module**: Goals
+
+## Overview
+Let's take an example of a lead generation journey.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Let's take an example of a lead generation journey.
 
 The user details being captured in the journey are name, phone number and email address in that exact order, without any chance of skipping.
@@ -39,4 +49,10 @@ The "Name" tracker will automatically appear under Key Trackers along with a "Va
 - Now, repeat steps 2 to 5 for the phone number and the email address as well.
 Now, repeat steps 2 to 5 for the phone number and the email address as well.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

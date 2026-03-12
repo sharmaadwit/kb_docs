@@ -1,10 +1,22 @@
 source_url: https://console-docs.gupshup.io/docs/before-you-begin
-# CHANNELS
 
-## Before you begin
-
+<!-- procedural:v2 -->
 # Before you begin
 
+**Module**: Channels
+
+## Overview
+Before linking your Instagram account with Gupshup, confirm that you have:
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Go to your Instagram profile and tap the hamburger icon (three short horizontal lines stacked on top of each other). The icon is present in the top right-hand corner for the mobile version of Instagram. The icon is present at the bottom of the navigation sidebar on the left for the web version.
+Go to your Instagram profile and tap the hamburger icon (three short horizontal lines stacked on top of each other).
+- Go to your profile and tap the hamburger icon in the top right.
+
+## Step-by-step configuration
 ## Prerequisites
 
 Before linking your Instagram account with Gupshup, confirm that you have:
@@ -97,3 +109,12 @@ If you haven't already done this while connecting your Facebook Page:
 Updated 10 months ago
 
 - Go Live with Instagram
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Go Live with Instagram
+

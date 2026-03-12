@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/web-security
-# CHANNELS
 
-## Security
-
+<!-- procedural:v2 -->
 # Security
 
+**Module**: Channels
+
+## Overview
+You can secure your Web chat widget by whitelisting domains in the Preferences tab.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 You can secure your Web chat widget by whitelisting domains in the Preferences tab.
 
 ### By default, security is disabled i.e. messaging will be functional in the chat widget on all domains.
@@ -20,3 +30,10 @@ All subdomains (for example, console.gupshup.io) will be whitelisted along with 
 Updated 10 months ago
 
 - Retain Customer Chat History
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

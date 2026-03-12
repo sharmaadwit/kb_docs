@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/bot-analytics-conversational-path
-# Bot Studio Analytics
 
-## Conversational Path
-
+<!-- procedural:v2 -->
 # Conversational Path
 
+**Module**: Bot Studio Analytics
+
+## Overview
+The conversation path helps you visualize how your users are moving within different Journeys when conversing with the bot. You can identify major points where users are selecting options or dropping off, and make changes in bot design to improve overall engagement and conversion.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ## What is the Conversational Path?
 
 The conversation path helps you visualize how your users are moving within different Journeys when conversing with the bot. You can identify major points where users are selecting options or dropping off, and make changes in bot design to improve overall engagement and conversion.
@@ -76,3 +86,10 @@ Please export required data within a year and store it on your end for later ref
 Updated 10 months ago
 
 - Journey Tracking
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

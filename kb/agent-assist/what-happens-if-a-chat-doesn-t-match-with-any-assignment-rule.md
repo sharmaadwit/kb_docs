@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/what-happens-if-a-chat-doesnt-match-with-any-assignment-rule
-# AGENT ASSIST
 
-## What happens if a chat doesn't match with any assignment rule?
-
+<!-- procedural:v2 -->
 # What happens if a chat doesn't match with any assignment rule?
 
+**Module**: Agent Assist
+
+## Overview
+Usually all the brands are created with a default assignment rule that insures that the chats are assigned to the default team. But in a scenario where default assignment rule is deleted, there comes a possibility when the chats don't match with any rules. Such chats are termed as "No Rule Matched" chats.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Usually all the brands are created with a default assignment rule that insures that the chats are assigned to the default team. But in a scenario where default assignment rule is deleted, there comes a possibility when the chats don't match with any rules. Such chats are termed as "No Rule Matched" chats.
 
 No Rule Matched chats can be easily identified on agent assist:
@@ -16,4 +26,10 @@ By using the above features, the user will be able to know what kind of chats ar
 
 Note: All the chats that don't match with any assignment rules get closed automatically after 24 hours of inactivity
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

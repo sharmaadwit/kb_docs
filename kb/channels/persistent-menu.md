@@ -1,10 +1,24 @@
 source_url: https://console-docs.gupshup.io/docs/web-persistent-menu
-# CHANNELS
 
-## Persistent Menu
-
+<!-- procedural:v2 -->
 # Persistent Menu
 
+**Module**: Channels
+
+## Overview
+- The Persistent Menu allows a business to create and send a menu of its main features.
+- The menu can be viewed by clicking the hamburger icon present in the chat widget and it can be accessed at any point in the conversation.
+- You can have two types of buttons in the Persistent Menu:
+## Setting the Persistent Menu
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Go to the Settings in the Web channel.
+- Go to the Persistent Menu tab.
+
+## Step-by-step configuration
 - The Persistent Menu allows a business to create and send a menu of its main features.
 - The menu can be viewed by clicking the hamburger icon present in the chat widget and it can be accessed at any point in the conversation.
 - You can have two types of buttons in the Persistent Menu:
@@ -23,3 +37,13 @@ source_url: https://console-docs.gupshup.io/docs/web-persistent-menu
 Updated 10 months ago
 
 - Security
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Click Save. The Persistent Menu will start appearing for all users in the linked Instagram account's DM.
+- - If you wish to delete any menu button, click the delete icon next to it and click Save.
+

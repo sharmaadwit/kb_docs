@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/sending-an-automated-campaign
-# CAMPAIGN Manager
 
-## Sending an Automated Campaign
-
+<!-- procedural:v2 -->
 # Sending an Automated Campaign
 
+**Module**: Campaign Manager
+
+## Overview
+Before we send an Automated Campaign have a source to receive events is pre-requisite:
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Before we send an Automated Campaign have a source to receive events is pre-requisite:
 
 - In order to receive WhatsApp events, all you need is to have an active WABA in your project and after you send a Broadcast Campaign, you can send Automated Campaign using sent, delivered, read events.
@@ -62,3 +72,12 @@ Once you publish a Campaign we get to the listing screen we can check the Campai
 Updated 10 months ago
 
 - Automated Campaign analytics
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- Once you publish a Campaign we get to the listing screen we can check the Campaign status an analytics in the listing screen. Each Automated Campaign can have 6 statuses.
+

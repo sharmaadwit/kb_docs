@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/content-untraining
-# AI Admin
 
-## Content Untraining
-
+<!-- procedural:v2 -->
 # Content Untraining
 
+**Module**: Ai Admin
+
+## Overview
+Content Untraining enhancement allows users to manage their trained content more effectively by enabling the removal of previously trained content.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Content Untraining enhancement allows users to manage their trained content more effectively by enabling the removal of previously trained content.
 
 Here’s what you can do:
@@ -42,3 +52,13 @@ Additional Info: Once untraining is done then AI will no longer refer the untrai
 Updated 10 months ago
 
 - Teach
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Click on the Save & Train button present in the Content section to complete the Untraining.
+- - Click on Save & Train button present in Content section to complete the Untraining.
+

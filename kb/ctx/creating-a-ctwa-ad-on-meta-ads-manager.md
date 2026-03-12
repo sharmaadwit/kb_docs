@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-ctwa-ad-on-meta-ads-manager
-# CTX
 
-## Creating a CTWA Ad on Meta Ads Manager
-
+<!-- procedural:v2 -->
 # Creating a CTWA Ad on Meta Ads Manager
 
+**Module**: Ctx
+
+## Overview
+Meta's guide to creating CTWA ads: https://www.facebook.com/business/help/447934475640650?id=371525583593535
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Meta's guide to creating CTWA ads: https://www.facebook.com/business/help/447934475640650?id=371525583593535
 
 Best Practices for creating CTWA Campaigns:
@@ -31,4 +41,11 @@ Step-by-step Process:
 - Ad level: Choose the ad creative and enter the headline, description and CTWA to be displayed Select the Message template (icebreaker message) that the users will send the brand to trigger the journey once they reach the WhatsApp environment. You can either customize the template or choose one from the existing templates.
 - Choose the ad creative and enter the headline, description and CTWA to be displayed
 - Select the Message template (icebreaker message) that the users will send the brand to trigger the journey once they reach the WhatsApp environment. You can either customize the template or choose one from the existing templates.
-Updated 6 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 6 months ago

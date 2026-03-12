@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/web-chat-widget-functions
-# CHANNELS
 
-## Chat Widget Functions
-
+<!-- procedural:v2 -->
 # Chat Widget Functions
 
+**Module**: Channels
+
+## Overview
+Functions are custom events that allow greater control over the visibility and interaction of the Web chat widget integrated on your website.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Functions are custom events that allow greater control over the visibility and interaction of the Web chat widget integrated on your website.
 
 ### Before using Functions, you need to insert the Embed Script at the "footer" tag or the end of "/body" tag of your website.
@@ -97,3 +107,10 @@ Web View rendered by the above code:
 Updated 10 months ago
 
 - Enable Authenticated Users
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

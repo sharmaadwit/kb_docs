@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/regex-validation-in-prompt-nodes
-# BOT STUDIO
 
-## RegEx Validation in Prompt Nodes
-
+<!-- procedural:v2 -->
 # RegEx Validation in Prompt Nodes
 
+**Module**: Bot Studio
+
+## Overview
+As part of our platform hardening and bot reliability initiatives, Gupshup Console validates all regular expressions in Prompt Nodes using the Re2 regex engine, developed by Google. This ensures that patterns used for validating user input are safe, efficient, and non-blocking at runtime.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ## Overview
 
 As part of our platform hardening and bot reliability initiatives, Gupshup Console validates all regular expressions in Prompt Nodes using the Re2 regex engine, developed by Google. This ensures that patterns used for validating user input are safe, efficient, and non-blocking at runtime.
@@ -69,4 +79,11 @@ If an invalid regex is detected :
 - ^[A-Za-z0-9_]+$ (for usernames)
 - Avoid unsupported features like lookbehind and backreferences
 - Test your regex in a Re2-compatible environment before using it in Console
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

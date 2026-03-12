@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/generate-qa
-# AI Admin
 
-## Evaluate
-
+<!-- procedural:v2 -->
 # Evaluate
 
+**Module**: Ai Admin
+
+## Overview
+Introduction: User can now generate Q&A from the trained content via topic prompt or file upload in the new Evaluate tab of AI Admin.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Introduction: User can now generate Q&A from the trained content via topic prompt or file upload in the new Evaluate tab of AI Admin.
 
 Key Benefits:
@@ -49,3 +59,10 @@ Key Highlights:
 Updated 10 months ago
 
 - AI Agents (Beta)
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

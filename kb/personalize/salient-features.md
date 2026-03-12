@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/salient-features
-# Personalize
 
-## Salient Features
-
+<!-- procedural:v2 -->
 # Salient Features
 
+**Module**: Personalize
+
+## Overview
+Unified Profile of your users
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Unified Profile of your users
 
 - Personalize builds a unified profile of your users based on events and properties.
@@ -40,4 +50,11 @@ Integration with E-commerce
 - Automate marketing and transactional communication across multiple messaging platforms like WhatsApp
 - Deliver personalized and interactive messages to nurture leads, boost sales, and enhance customer satisfaction
 - Streamline your customer communication with welcome messages, real-time order updates, and timely reminders for abandoned checkouts
-Updated 4 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 4 months ago

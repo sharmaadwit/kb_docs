@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/bot-analytics-dashboard
-# Bot Studio Analytics
 
-## Dashboard
-
+<!-- procedural:v2 -->
 # Dashboard
 
+**Module**: Bot Studio Analytics
+
+## Overview
+Live Metrics show the real-time live data of users and messages. It updates every 5 seconds.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ## Live Metrics
 
 Live Metrics show the real-time live data of users and messages. It updates every 5 seconds.
@@ -87,3 +97,10 @@ Please export required data within a year and store it on your end for later ref
 Updated 10 months ago
 
 - Conversational Path
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

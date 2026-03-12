@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/phone-node
-# BOT STUDIO
 
-## Phone Node
-
+<!-- procedural:v2 -->
 # Phone Node
 
+**Module**: Bot Studio
+
+## Overview
+Phone Node
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Phone Node
 
 The Phone node is a Prompt node which should be used to take user's phone number as input and store the response in a variable after validating it alongside the regex condition that is applied in the validation box (default). This node waits for the user's response to continue with the journey. More details are discussed below:
@@ -34,4 +44,10 @@ Validation Section - Use to customize bot behavior on validation failure of user
 - Enable Timeout -Also you can enable timeout message to select the time in which you want the message to expire.
 Store in Variable - Store the input given by the user in the variable here.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/about-project
-# overview
 
-## About Projects
-
+<!-- procedural:v2 -->
 # About Projects
 
+**Module**: Overview
+
+## Overview
+In addition to managing multiple WhatsApp and SMS accounts, Console also allows businesses to create projects to manage multiple departments or verticals within an organisation. These projects are defined on the Console by the Org Admin and can include a combination of WABA, Journey Builder, and Agent Assist.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 In addition to managing multiple WhatsApp and SMS accounts, Console also allows businesses to create projects to manage multiple departments or verticals within an organisation. These projects are defined on the Console by the Org Admin and can include a combination of WABA, Journey Builder, and Agent Assist.
 
 Projects have multiple modules, such as WhatsApp, Journey Builder, Web channel, Agent Assist, and Analytics. The Project Admin can assign one or more modules to members of the project on a need basis. This allows businesses to allocate resources and services more efficiently and ensures that each member has access to the resources they need to do their job effectively.
@@ -17,4 +27,10 @@ In conclusion, Console's project feature is an excellent tool for businesses tha
 
 The team will be happy to guide you through the process and answer any questions you may have. For any further inquiries or support, you can email console-support@gupshup.io
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

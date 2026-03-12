@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/simplify-your-search-with-global-search
-# AGENT ASSIST
 
-## Simplify Your Search with Global Search
-
+<!-- procedural:v2 -->
 # Simplify Your Search with Global Search
 
+**Module**: Agent Assist
+
+## Overview
+Section 1: Introduction
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Section 1: Introduction
 
 Efficient Chat Search in Agent Assist
@@ -42,4 +52,10 @@ The selected data will be exported in a CSV file for your reference and analysis
 
 With Global Search, Agent Assist provides a user-friendly way to search, filter, and export chat data, ensuring that you can quickly find and utilize the information you need.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

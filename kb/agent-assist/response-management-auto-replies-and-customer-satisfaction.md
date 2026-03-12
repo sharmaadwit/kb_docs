@@ -1,10 +1,35 @@
 source_url: https://console-docs.gupshup.io/docs/response-management-auto-replies-customer-satisfaction
-# AGENT ASSIST
 
-## Response Management: Auto Replies & Customer Satisfaction
-
+<!-- procedural:v2 -->
 # Response Management: Auto Replies & Customer Satisfaction
 
+**Module**: Agent Assist
+
+## Overview
+Definition: Auto Replies encompass a range of features that allow brands to set up automated responses to end customers based on specific conditions. Additionally, Customer Satisfaction tools enable the collection of feedback from customers to assess their level of satisfaction and gather insights for improvement.
+
+## When to use
+- Auto Replies streamline communication by sending automated messages at different points in the chat process. Customer Satisfaction tools gather feedback to enhance services and customer experiences.
+- Standard Responses improve user experience and ensure consistent communication during critical chat events.
+- The Welcome Message is used to greet customers and set the tone for the chat.
+- These responses are used to provide closure to the chat interaction, offer support, or express gratitude to the customer.
+- This response confirms the resolution of the customer's query or issue.
+- This message provides closure when the system autonomously concludes the chat.
+- These messages reassure customers and provide guidance when agents are not available.
+- This message provides alternatives or sets expectations for customers.
+- It informs customers of the situation and guides them accordingly.
+- This option ensures continuous service by transferring chats to a bot when agents are unavailable.
+- Customer Reminder encourages customer engagement and resolves chats efficiently.
+- Reminder messages prompt customer engagement before chat resolution.
+- Resolve ensures that inactive chats are closed, streamlining chat management.
+- Agent Reminder ensures agent engagement and timely chat resolution.
+- Reassignment ensures that chats are addressed promptly.
+- Reminder & Resolve enhances agent responsiveness and chat management.
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Introduction
 
 Definition: Auto Replies encompass a range of features that allow brands to set up automated responses to end customers based on specific conditions. Additionally, Customer Satisfaction tools enable the collection of feedback from customers to assess their level of satisfaction and gather insights for improvement.
@@ -101,4 +126,17 @@ Definition: This option sends reminders to agents and customers, adds a tag, and
 
 Uses: Reminder & Resolve enhances agent responsiveness and chat management.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+Key notes found in source:
+
+- Definition: Responses When Agents Are Offline are automated messages sent when agents are unavailable or offline. These messages vary based on business hours.
+- 3.1: Agents Offline/Busy During Business Hours
+- Definition: This message is sent when agents are unavailable to take chats during business hours.
+- 3.2: Agents Not Available Outside Business Hours
+- Definition: This message is sent for chats received outside of business hours.
+- Definition: The "Handover to Bot" option is used when agents are offline during either business hours or non-business hours. It facilitates chat transfer to a bot.
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/free-text-node
-# BOT STUDIO
 
-## Free Text Node
-
+<!-- procedural:v2 -->
 # Free Text Node
 
+**Module**: Bot Studio
+
+## Overview
+Free Text Node
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ## Introduction
 
 Free Text Node
@@ -39,4 +49,10 @@ Validation Section - Use to customize bot behavior on validation failure of user
 - Enable Timeout -Also you can enable timeout message to select the time in which you want the message to expire.
 Store in Variable - Store the input given by the user in the variable here.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

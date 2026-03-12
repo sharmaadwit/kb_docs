@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/exploring-insights-exporting-raw-data
-# AGENT ASSIST
 
-## Exploring Insights & Exporting Raw Data
-
+<!-- procedural:v2 -->
 # Exploring Insights & Exporting Raw Data
 
+**Module**: Agent Assist
+
+## Overview
+Discover comprehensive analytics and data export capabilities with detailed insights into chat performance, agent productivity, team metrics, and customer feedback.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Discover comprehensive analytics and data export capabilities with detailed insights into chat performance, agent productivity, team metrics, and customer feedback.
 
 ## Deeper Data Analysis
@@ -33,4 +43,10 @@ Insights into customer ratings and feedback regarding agent assistance. Understa
 
 Utilize these insightful reports to enhance your brand's operations and make informed decisions based on data-driven analysis. Each report provides specific metrics and analytics tailored to different aspects of your customer service operations.
 
-Updated 4 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 4 months ago

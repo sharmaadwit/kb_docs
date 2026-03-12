@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/streamlining-your-workflow-with-bulk-actions
-# AGENT ASSIST
 
-## Streamlining Your Workflow with Bulk Actions
-
+<!-- procedural:v2 -->
 # Streamlining Your Workflow with Bulk Actions
 
+**Module**: Agent Assist
+
+## Overview
+Learn how to efficiently manage multiple chats using bulk actions including assignment, tagging, priority changes, resolution, private notes, and bulk replies to streamline your workflow.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Learn how to efficiently manage multiple chats using bulk actions including assignment, tagging, priority changes, resolution, private notes, and bulk replies to streamline your workflow.
 
 ## Introduction
@@ -35,4 +45,12 @@ Send bulk replies and add private notes to multiple chats at once.
 
 These Bulk Actions enhance user productivity and efficiency in managing chats, ensuring a seamless workflow for customer support teams.
 
-Updated 4 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- Perform multiple actions simultaneously to save time and reduce repetitive tasks.
+
+**Last updated (from source)**: Updated 4 months ago

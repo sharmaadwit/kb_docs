@@ -1,10 +1,21 @@
 source_url: https://console-docs.gupshup.io/docs/webhooks
-# Integrations
 
-## Webhooks
-
+<!-- procedural:v2 -->
 # Webhooks
 
+**Module**: Integrations
+
+## Overview
+New Webhooks section in integrations providing ability to send specific events to these webhooks.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Log into your Gupshup Console.
+- Navigate to your App > Integration > Webhooks.
+
+## Step-by-step configuration
 New Webhooks section in integrations providing ability to send specific events to these webhooks.
 
 The Webhooks feature allows you to subscribe to real-time events triggered by the Gupshup platform and receive updates on your callback URL. This enables you to automate your workflows, monitor system-level changes, and track message delivery statuses as they happen.
@@ -128,4 +139,12 @@ Each event includes metadata about the conversation and pricing category (market
 
 🔑 Key Parameters Explained
 
-Updated 7 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Add your Callback URL and save.
+
+**Last updated (from source)**: Updated 7 months ago

@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/goals
-# Goals
 
-## Goals
+<!-- procedural:v2 -->
+# Concepts
 
-# Goals
+**Module**: Goals
 
+## Overview
+The Goals feature enable businesses to define and track specific points in a bot journey where the Goal of the journey is being achieved.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 The Goals feature enable businesses to define and track specific points in a bot journey where the Goal of the journey is being achieved.
 
 ## Concepts
@@ -37,3 +47,10 @@ For example, if a user achieves the third Milestone without achieving the first 
 Updated 10 months ago
 
 - Creating Goals
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

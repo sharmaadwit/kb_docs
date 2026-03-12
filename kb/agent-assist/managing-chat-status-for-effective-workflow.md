@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/managing-chat-status-for-effective-workflow
-# AGENT ASSIST
 
-## Managing Chat Status for Effective Workflow
-
+<!-- procedural:v2 -->
 # Managing Chat Status for Effective Workflow
 
+**Module**: Agent Assist
+
+## Overview
+Learn about the eight chat status types in Agent Assist and how to use them effectively for streamlined workflow management and performance tracking.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Learn about the eight chat status types in Agent Assist and how to use them effectively for streamlined workflow management and performance tracking.
 
 # Managing Chat Status for Effective Workflow
@@ -71,4 +81,10 @@ System-Controlled Transitions:
 
 These eight distinct chat statuses enhance workflow management by ensuring each chat is appropriately tracked and acted upon throughout its entire lifecycle. Each status - New, No Rules Matched, Waiting for Assignment, Open, Awaiting Response, Pending, Resolved, and Closed - serves a specific purpose in the system. Proper status utilization contributes to more efficient and effective chat handling, improved customer experience, and better team performance insights.
 
-Updated 4 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 4 months ago

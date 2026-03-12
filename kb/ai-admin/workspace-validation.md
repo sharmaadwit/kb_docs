@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/workspace-validation
-# AI Admin
 
-## Workspace Validation
-
+<!-- procedural:v2 -->
 # Workspace Validation
 
+**Module**: Ai Admin
+
+## Overview
+Introduction: Workspace validation feature will validate user actions in a workspace against a set of pre defined conditions to show Warnings & Recommendations. Complying with these pre defined conditions improves overall bot performance for AI powered journeys. Validation features assist users in settings up the workspace according to best practices.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Introduction: Workspace validation feature will validate user actions in a workspace against a set of pre defined conditions to show Warnings & Recommendations. Complying with these pre defined conditions improves overall bot performance for AI powered journeys. Validation features assist users in settings up the workspace according to best practices.
 
 Key Highlights:
@@ -49,3 +59,12 @@ Title: Manual Utterance not added for intent Description: Manual utterances impr
 Updated 10 months ago
 
 - Intent & Entity
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Validation conditions are checked after every save & train operation
+

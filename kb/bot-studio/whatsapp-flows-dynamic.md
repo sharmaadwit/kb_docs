@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/whatsapp-flows-enhancement-dynamic-flow-support
-# BOT STUDIO
 
-## WhatsApp Flows - Dynamic
-
+<!-- procedural:v2 -->
 # WhatsApp Flows - Dynamic
 
+**Module**: Bot Studio
+
+## Overview
+The Journey Builder WhatsApp Flow Node now supports triggering dynamic flows, even for flows that begin with the first screen in dynamic mode. This enhancement ensures end-to-end support for triggering both static and dynamic WhatsApp flows from Journey Builder, allowing seamless integration and execution for all Bot Studio users.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 # Introduction:
 
 The Journey Builder WhatsApp Flow Node now supports triggering dynamic flows, even for flows that begin with the first screen in dynamic mode. This enhancement ensures end-to-end support for triggering both static and dynamic WhatsApp flows from Journey Builder, allowing seamless integration and execution for all Bot Studio users.
@@ -53,4 +63,10 @@ Integrate with WhatsApp Flow Journey: The data received at the webhook can now b
 
 For setting up the Data Channel for Dynamic Flows, refer to the Meta Documentation or reach out to Gupshup Support or Customer Success Team for hosting and pricing details.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

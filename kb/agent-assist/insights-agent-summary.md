@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/insights-agent-summary
-# AGENT ASSIST
 
-## Insights: Agent Summary
-
+<!-- procedural:v2 -->
 # Insights: Agent Summary
 
+**Module**: Agent Assist
+
+## Overview
+Overview The Agent Summary Report provides comprehensive productivity metrics for agent performance in handling customer interactions. This report helps measure efficiency, response times, and service level adherence.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Overview The Agent Summary Report provides comprehensive productivity metrics for agent performance in handling customer interactions. This report helps measure efficiency, response times, and service level adherence.
 
 Available Filters
@@ -66,4 +76,11 @@ Common Use Cases
 - Workload Analysis: Evaluate chat distribution and reassignment patterns
 - Training Needs Assessment: Identify areas for improvement based on handling times
 - Resource Planning: Use volume metrics to optimize agent scheduling
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

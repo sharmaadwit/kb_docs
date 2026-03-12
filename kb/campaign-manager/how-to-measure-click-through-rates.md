@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/how-to-measure-click-through-rates
-# CAMPAIGN Manager
 
-## How to measure Click through Rates?
-
+<!-- procedural:v2 -->
 # How to measure Click through Rates?
 
+**Module**: Campaign Manager
+
+## Overview
+You can now track click through rates for a campaign. Now track which links were clicked, how many times and by whom.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 You can now track click through rates for a campaign. Now track which links were clicked, how many times and by whom.
 
 - To enable link tracking, click the checkbox on the audience page while creating the campaign.
@@ -18,4 +28,11 @@ You can now track click through rates for a campaign. Now track which links were
 - Unique Clicks - Indicates the number of users that have clicked on a link included in the campaign. This means that if a user clicks 3 times on a link and 1 time on another link in the message, then Unique clicks will be 1.
 - Click Through Rate - Indicates the % of times users have Clicked a link of a WhatsApp campaign after viewing it. It is calculated as [(Total Clicks / Total Read) * 100][(Total Clicks / Total Read) * 100]
 - Link tracking Report - It gives timewise summary of clicks which will have original URL, GupShup URL, time at which the link was clicked, IP address, device and OS of the end user.
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

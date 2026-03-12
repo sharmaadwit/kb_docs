@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/sending-marketing-templates-from-agent-assist
-# AGENT ASSIST
 
-## Sending Marketing Templates from Agent Assist
-
+<!-- procedural:v2 -->
 # Sending Marketing Templates from Agent Assist
 
+**Module**: Agent Assist
+
+## Overview
+Learn how to configure and enable agents to send WhatsApp-approved marketing templates to customers through Agent Assist, including setup, configuration, and usage instructions.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+Go to Settings > Workflow & Automation > Agent Campaigns > Create Campaign
+
+## Step-by-step configuration
 Learn how to configure and enable agents to send WhatsApp-approved marketing templates to customers through Agent Assist, including setup, configuration, and usage instructions.
 
 As brands increasingly prioritize WhatsApp for their sales operations, one of the most requested features is enabling agents to send WhatsApp-approved templates to customers, facilitating seamless communication. This functionality allows agents to initiate conversations with customers by selecting a pre-approved template, entering the customer's phone number, and then sending the template with a simple click.
@@ -79,4 +89,11 @@ After setting up marketing templates in Agent Assist:
 - Adjust journey flows in Bot Studio as needed
 - Train your agents on the new functionality
 - Review and optimize stickiness and routing settings based on performance
-Updated 4 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 4 months ago

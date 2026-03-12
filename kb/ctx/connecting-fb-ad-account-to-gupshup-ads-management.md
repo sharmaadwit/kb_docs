@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/conne
-# CTX
 
-## Connecting FB Ad Account to Gupshup Ads Management
-
+<!-- procedural:v2 -->
 # Connecting FB Ad Account to Gupshup Ads Management
 
+**Module**: Ctx
+
+## Overview
+Onboarding pre-requisites:
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Go to Click to Chat Ads -> Ads Management
+
+## Step-by-step configuration
 Onboarding pre-requisites:
 
 - Admin access to Facebook Business Manager
@@ -22,4 +32,11 @@ Steps:
 - Click on "Confirm" and keep clicking on "Next" till the Gupshup console screen appears again
 - Once on the console screen, select all the ad accounts using the check-box
 - Click on "Continue" and the onboarding is complete.
-Updated 7 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 7 months ago

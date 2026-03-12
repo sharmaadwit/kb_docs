@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/bot-constants-in-jb
-# BOT STUDIO
 
-## Bot Constants in JB
-
+<!-- procedural:v2 -->
 # Bot Constants in JB
 
+**Module**: Bot Studio
+
+## Overview
+The Bot Constants is a variable type that streamlines the management of key values—such as interest rates, discount percentages, and event dates—that are consistent across all users at a given time but may change periodically. This feature allows bot designers to define and update these constants centrally, ensuring that all conversations happening with the bot are using the most up-to-date information. By making these constants accessible across the journeys, Bot Constants enhance operational efficiency, reduce the risk of errors, and ensure that all users are aligned with the latest data. This leads to more accurate and reliable bot interactions, enhancing overall project performance.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ## Introduction:
 
 The Bot Constants is a variable type that streamlines the management of key values—such as interest rates, discount percentages, and event dates—that are consistent across all users at a given time but may change periodically. This feature allows bot designers to define and update these constants centrally, ensuring that all conversations happening with the bot are using the most up-to-date information. By making these constants accessible across the journeys, Bot Constants enhance operational efficiency, reduce the risk of errors, and ensure that all users are aligned with the latest data. This leads to more accurate and reliable bot interactions, enhancing overall project performance.
@@ -45,4 +55,12 @@ Scenario: A retail brand's chatbot promotes different seasonal campaigns, each w
 
 Scenario: A company uses a chatbot to remind users about upcoming webinars or events, with dates that occasionally change. Benefit: By setting event dates as Bot Constants, the bot automatically uses the updated event date in all reminder messages. This avoids the need to manually update each journey, ensuring users receive accurate and timely reminders.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Click on ‘Save’
+
+**Last updated (from source)**: Updated 10 months ago

@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/inactivity-nudge-for-location-request-node
-# BOT STUDIO
 
-## Inactivity Nudge for Location Request Node
-
+<!-- procedural:v2 -->
 # Inactivity Nudge for Location Request Node
 
+**Module**: Bot Studio
+
+## Overview
+Click on Node Settings
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Click on Node Settings
 
 Get the Inactivity Nudge option
@@ -36,4 +46,11 @@ The Inactivity Nudge for Location Request Node is an enhancement that enables pr
 - Serviceable Location Confirmation for Local Businesses Scenario: A local business requests location verification to confirm if a customer is within a serviceable area. Benefit: The inactivity nudge helps ensure users respond promptly, enabling quick confirmation and improved service efficiency.
 - Scenario: A local business requests location verification to confirm if a customer is within a serviceable area.
 - Benefit: The inactivity nudge helps ensure users respond promptly, enabling quick confirmation and improved service efficiency.
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

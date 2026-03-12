@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/call-return-node
-# BOT STUDIO
 
-## Call & Return Node
-
+<!-- procedural:v2 -->
 # Call & Return Node
 
+**Module**: Bot Studio
+
+## Overview
+This is one of the action nodes to call another journey from the ongoing journey and return back to the same journey when the called journey is executed completely.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 This is one of the action nodes to call another journey from the ongoing journey and return back to the same journey when the called journey is executed completely.
 
 This helps in breaking a larger chatbot journey is smaller journeys and calling them on a journey as and when required.
@@ -23,4 +33,10 @@ NOTE: Only deployed Journey can be seen in the dropdown of Call & Return Node.
 
 ### Call & Return Node
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

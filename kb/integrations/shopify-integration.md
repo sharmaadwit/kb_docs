@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/shopify-integration
-# Integrations
 
-## Shopify Integration
-
+<!-- procedural:v2 -->
 # Shopify Integration
 
+**Module**: Integrations
+
+## Overview
+Enhance Customer Engagement and Boost Sales with Gupshup's Shopify Integration
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Enhance Customer Engagement and Boost Sales with Gupshup's Shopify Integration
 
 Using Shopify integration, we allow the customer to send important events and their attributes to their Gupshup account, using which they can send personalized campaigns for specific segments, send automated messages and much more.
@@ -29,4 +39,11 @@ Available events
 - Fulfilled order
 - Cancelled order
 - Checkout abandonded
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

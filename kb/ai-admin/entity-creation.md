@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/intent-description
-# AI Admin
 
-## Entity Creation
-
+<!-- procedural:v2 -->
 # Entity Creation
 
+**Module**: Ai Admin
+
+## Overview
+An "entity" refers to a specific piece of information within a user's input or utterance. Essentially, it's like a key detail or variable that the AI needs to understand to provide a relevant response or take appropriate action. For example, if someone says, "Book a flight to Paris on Saturday," the entities in this utterance would likely be "Paris" (the destination) and "Saturday" (the date).
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Go to the Description section and change the description as per the redefined piece of information that needs to be extracted.
+
+## Step-by-step configuration
 An "entity" refers to a specific piece of information within a user's input or utterance. Essentially, it's like a key detail or variable that the AI needs to understand to provide a relevant response or take appropriate action. For example, if someone says, "Book a flight to Paris on Saturday," the entities in this utterance would likely be "Paris" (the destination) and "Saturday" (the date).
 
 By identifying and understanding entities, AI systems can better grasp the meaning behind user requests and respond accurately.
@@ -30,4 +40,13 @@ Entity Editing:The Entities created can be edited by changing the Description, T
 - Click on Associate Intents dropdown to associate the entity with the pre-created Intents.
 - Change the values in the Additional Parameters as per the revised use case.
 - Click on the Save button to save the Entity edited.
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Click on the Save button to save the Entity edited.
+
+**Last updated (from source)**: Updated 10 months ago

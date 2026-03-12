@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/list-node
-# BOT STUDIO
 
-## List Node
-
+<!-- procedural:v2 -->
 # List Node
 
+**Module**: Bot Studio
+
+## Overview
+This node helps to create a list of a maximum of 10 Items that can be put into sections/categories.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 This node helps to create a list of a maximum of 10 Items that can be put into sections/categories.
 
 There is a main message along with sections, rows, and descriptions to create a list message.
@@ -114,4 +124,10 @@ These use cases illustrate how the Skip Node feature can make interactions more 
 
 More on Skip Node functionality here: Existing Console Doc Link
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

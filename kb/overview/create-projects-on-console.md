@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/create-projects-on-console
-# overview
 
-## Create Projects on Console
-
+<!-- procedural:v2 -->
 # Create Projects on Console
 
+**Module**: Overview
+
+## Overview
+As businesses grow and expand their messaging operations, managing multiple departments or verticals can become a daunting task. Gupshup's Console offers a powerful set of features to simplify messaging operations, including the ability to create projects. Creating a project on Console is a simple process that can help businesses streamline their messaging operations and manage multiple departments or verticals efficiently.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 As businesses grow and expand their messaging operations, managing multiple departments or verticals can become a daunting task. Gupshup's Console offers a powerful set of features to simplify messaging operations, including the ability to create projects. Creating a project on Console is a simple process that can help businesses streamline their messaging operations and manage multiple departments or verticals efficiently.
 
 Here are the steps to create a new project on the Console:
@@ -22,4 +32,10 @@ In addition, Console's project feature offers a centralised platform to manage m
 
 Console's project feature is just one of the many powerful tools available to businesses using Gupshup's messaging solutions. If you have any queries or face any issues while creating a project on Console, you can email console-support@gupshup.io. The Gupshup team will be happy to answer your questions and provide you with any assistance you need.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

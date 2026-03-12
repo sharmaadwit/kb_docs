@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/wait-for-event
-# BOT STUDIO
 
-## Wait for Event
-
+<!-- procedural:v2 -->
 # Wait for Event
 
+**Module**: Bot Studio
+
+## Overview
+The Wait for Event Node is used to pause the bot’s execution and wait for a specific user input or a time-based trigger before proceeding. It helps maintain conversational context by holding the flow temporarily until the event occurs or the timeout duration expires.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ## Overview
 
 The Wait for Event Node is used to pause the bot’s execution and wait for a specific user input or a time-based trigger before proceeding. It helps maintain conversational context by holding the flow temporarily until the event occurs or the timeout duration expires.
@@ -77,4 +87,10 @@ Bot: “Your payment is being processed.” → Wait for Event Node (Time-Based 
 
 Bot: “Please share your preferred appointment time.” → Prompt Node (with Inactivity Nudge enabled) → If no reply within 15 minutes → Send “Are you still there?” reminder automatically
 
-Updated 4 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 4 months ago

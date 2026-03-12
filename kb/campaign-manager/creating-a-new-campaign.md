@@ -1,10 +1,23 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-new-campaign
-# CAMPAIGN Manager
 
-## Creating A New Campaign
-
+<!-- procedural:v2 -->
 # Creating A New Campaign
 
+**Module**: Campaign Manager
+
+## Overview
+- Before creating a new campaign, you need to create a template and get it approved by WhatsApp. You can use WhatsApp approved templates to send the campaign. To create a template, go to Channels → WhatsApp → Templates → Create a template.
+- After you create a template and it gets approved by WhatsApp, go to campaigns tab in the left navigation. From the campaign listing page, you can click on “+ New campaign” CTA and go through a step by step flow to create a new campaign.
+- If the content or users are the same as any of the previously created campaigns you can clone a campaign rather than starting from scratch.
+A new campaign can be created in just 4 steps -
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 - Before creating a new campaign, you need to create a template and get it approved by WhatsApp. You can use WhatsApp approved templates to send the campaign. To create a template, go to Channels → WhatsApp → Templates → Create a template.
 - After you create a template and it gets approved by WhatsApp, go to campaigns tab in the left navigation. From the campaign listing page, you can click on “+ New campaign” CTA and go through a step by step flow to create a new campaign.
 - If the content or users are the same as any of the previously created campaigns you can clone a campaign rather than starting from scratch.
@@ -54,4 +67,10 @@ Preview page
 - Sending/scheduling a campaign - You can select the start date and time to send the campaign or you can choose to send the campaign right away by clicking “Send Now”
 Scheduling a campaign
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

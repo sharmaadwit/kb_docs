@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/how-do-the-elements-of-bot-studio-work-together
-# BOT STUDIO
 
-## How do the Elements of Bot Studio Work Together?
-
+<!-- procedural:v2 -->
 # How do the Elements of Bot Studio Work Together?
 
+**Module**: Bot Studio
+
+## Overview
+The Bot Studio has the following elements:
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 The Bot Studio has the following elements:
 
 - Nodes - Building blocks of each journey Message Nodes Prompt Nodes Action Nodes
@@ -26,4 +36,14 @@ The Bot Studio has the following elements:
 - Campaign Journeys for Marketing - Convert one-way campaign journeys to interactive journeys when customer responds to the marketing campaign
 - Ad Journeys for Ads Campaigns - Trigger interactive ad journeys when customer responds to an ad on Facebook or Instagram
 - Additional Language support
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Journey Templates - Pre-built ready to deploy templates
+- - Manage Variable - Save data in variables and use them during Bot runtime
+
+**Last updated (from source)**: Updated 10 months ago

@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/carousels
-# BOT STUDIO
 
-## Carousels
-
+<!-- procedural:v2 -->
 # Carousels
 
+**Module**: Bot Studio
+
+## Overview
+Carousels or cards are multi-product messages which consist of an image of the product, a short description, and clickable buttons. Carousels are widely used for showcasing multiple products in a message. Each card can have a description of a product. A maximum of 10 products can be shown using carousels.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Carousels or cards are multi-product messages which consist of an image of the product, a short description, and clickable buttons. Carousels are widely used for showcasing multiple products in a message. Each card can have a description of a product. A maximum of 10 products can be shown using carousels.
 
 A card has the following constituents:
@@ -37,3 +47,10 @@ Updated 4 months ago
 How to use Carousel with dynamic cards...
 
 - Dynamic Carousel Node
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

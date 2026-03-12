@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/chat-management-chat-rules
-# AGENT ASSIST
 
-## Chat Management: Chat Rules
-
+<!-- procedural:v2 -->
 # Chat Management: Chat Rules
 
+**Module**: Agent Assist
+
+## Overview
+Section 1: Chat Rules
+
+## When to use
+- Chat Rules streamline chat prioritization and tagging, improving chat organization and ensuring that chats receive the right level of attention and action.
+
+## Setup path
+- Navigate to "Settings" > "Chat Rules" in Agent Assist.
+
+## Step-by-step configuration
 Section 1: Chat Rules
 
 Definition: Chat Rules are rules that prioritize and tag chats based on specific conditions, helping brands manage and categorize chats more effectively.
@@ -30,4 +40,14 @@ Step 4: Specify Actions for the Rule
 Step 5: Save the Rule
 
 - Click "Save" to save the rule.
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- Step 5: Save the Rule
+- - Click "Save" to save the rule.
+
+**Last updated (from source)**: Updated 10 months ago

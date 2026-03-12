@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/video-node
-# BOT STUDIO
 
-## Video Node
-
+<!-- procedural:v2 -->
 # Video Node
 
+**Module**: Bot Studio
+
+## Overview
+As the name suggests, you can add a video to this node and add it to the chatbot conversation. The video can be uploaded in the conversation using a public URL of the video or from the local device.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 As the name suggests, you can add a video to this node and add it to the chatbot conversation. The video can be uploaded in the conversation using a public URL of the video or from the local device.
 
 ### When to use
@@ -26,4 +36,10 @@ Uploading a Video from the device
 
 Uploading Video through publicly accessible Video URL
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

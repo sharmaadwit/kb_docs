@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/developer-settings
-# AI Admin
 
-## Settings
-
+<!-- procedural:v2 -->
 # Settings
 
+**Module**: Ai Admin
+
+## Overview
+The Intents and Entities can be exported and imported seamlessly from the Settings tab. It allows managing Intents and Entities, offering greater flexibility and convenience to users.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 # Export and Import of Intents/Entities in AI Admin
 
 The Intents and Entities can be exported and imported seamlessly from the Settings tab. It allows managing Intents and Entities, offering greater flexibility and convenience to users.
@@ -40,3 +50,10 @@ Precision Threshold: The precision threshold refers to the standard for acceptin
 Updated 10 months ago
 
 - Evaluate
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

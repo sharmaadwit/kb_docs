@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/ai-agent-guardrails
-# AI Admin
 
-## AI Agent Guardrails (Developer Mode)
-
+<!-- procedural:v2 -->
 # AI Agent Guardrails (Developer Mode)
 
+**Module**: Ai Admin
+
+## Overview
+Introduction: This powerful feature allows you to define and enforce safety and content guidelines for your AI agents, ensuring they operate within your desired behavior and deliver safe and responsible outputs. Guardrails helps in strengthening Trust& Safetylayer of AI agents.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Introduction: This powerful feature allows you to define and enforce safety and content guidelines for your AI agents, ensuring they operate within your desired behavior and deliver safe and responsible outputs. Guardrails helps in strengthening Trust& Safetylayer of AI agents.
 
 ### 1. Understanding AI Agent Guardrails
@@ -57,3 +67,12 @@ Reference Data Guidelines:
 Updated 8 months ago
 
 - Monitoring
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Click "Save" once you have added all your examples.
+

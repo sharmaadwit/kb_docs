@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/assignment-20-covering-consultative-sales-usecases
-# AGENT ASSIST
 
-## Assignment Enhancements in Console 7.0
-
+<!-- procedural:v2 -->
 # Assignment Enhancements in Console 7.0
 
+**Module**: Agent Assist
+
+## Overview
+Assignment enhancements targets to assign all the chats coming for assignment to the agents automatically & optimising the agent's threshold so that the agents work only on the chats where customers are active. Below are the detailed understanding of different features launched to solve the above to objective.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Introduction
 
 Assignment enhancements targets to assign all the chats coming for assignment to the agents automatically & optimising the agent's threshold so that the agents work only on the chats where customers are active. Below are the detailed understanding of different features launched to solve the above to objective.
@@ -65,3 +75,15 @@ Updated 10 months ago
 
 - What happens if a chat doesn't match with any assignment rule?
 - Chat Management: Assignment Rules
+
+## Business hours vs after-hours behavior
+Key notes found in source:
+
+- In the previous assignment, whenever agents were not available to take the chat because they were busy or didn't have any bandwidth then the system used to wait for 30 minutes before sending the chats to unassigned queue. The brands then had to manually assign the chats to the agents. Now in this release, we have added No rules matched, Waiting for assignment and non business hours queue where instead of getting unassigned, the chats will be moved to these queues for specified time and will enhance the system's capability to automatically assign the chats
+- Non Business Hours Assignment
+- - Assign to agent: Brands can opt for automating agent assignments for the following day, whereby conversations will be designated to agents when they come back online during the next day's business hours. In this process, brands need to define a specific threshold number for these conversations. By setting this threshold, the system ensures that agents do not exceed the designated number of assigned chats. This threshold specifically applies to conversations that originated outside of regular business hours. Consequently, the total number of chats an agent can handle comprises the sum of the load balancer threshold and the threshold for non-business hours chats. Additionally, since the automation is limited to the next day's business hours, brands have the flexibility to either assign the remaining chats to a chatbot or close those conversations.
+- Non Business hours assignment is team level configuration where the brand can customise the configuration on the basis of its teams office hours. To access, go to Teams > Edit a team > Non Business Hour Assignment
+
+## Save/publish behavior
+_Not specified._
+

@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/api-node-http-status-code-branching
-# BOT STUDIO
 
-## API Node: HTTP Status Code Branching
-
+<!-- procedural:v2 -->
 # API Node: HTTP Status Code Branching
 
+**Module**: Bot Studio
+
+## Overview
+Lets you route bot logic differently based on API's HTTP response codes (e.g., 200 OK vs 500 Error).
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ## 📌 What is it?
 
 Lets you route bot logic differently based on API's HTTP response codes (e.g., 200 OK vs 500 Error).
@@ -27,4 +37,11 @@ Lets you route bot logic differently based on API's HTTP response codes (e.g., 2
 - Retry payment (503/504)
 - Handle auth failure (401)
 - Customize error response (400/500)
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

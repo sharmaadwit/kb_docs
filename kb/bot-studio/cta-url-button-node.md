@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/cta-url-support-on-reply-button
-# BOT STUDIO
 
-## CTA URL Button Node
-
+<!-- procedural:v2 -->
 # CTA URL Button Node
 
+**Module**: Bot Studio
+
+## Overview
+The CTA URL Button Node is a new addition to the Message Category in Journey Builder, designed to enhance WhatsApp messaging capabilities. This feature allows businesses and bot designers to share clickable links directly through a Call-To-Action (CTA) button, eliminating the need for sending lengthy URLs as text messages. It simplifies user interactions, offering a seamless way to direct users to external websites, promotions, or resources.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Navigate to Message Nodes in Journey Builder and select the CTA URL Button Node.
+
+## Step-by-step configuration
 # Introduction
 
 The CTA URL Button Node is a new addition to the Message Category in Journey Builder, designed to enhance WhatsApp messaging capabilities. This feature allows businesses and bot designers to share clickable links directly through a Call-To-Action (CTA) button, eliminating the need for sending lengthy URLs as text messages. It simplifies user interactions, offering a seamless way to direct users to external websites, promotions, or resources.
@@ -78,4 +88,15 @@ Save and Deploy
 - Direct URLs are validated during design time to ensure they are correct.
 - Variable-Mapped URL Issues Designers must ensure runtime values are valid, as no design-time validation is provided for variable-mapped URLs.
 - Designers must ensure runtime values are valid, as no design-time validation is provided for variable-mapped URLs.
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Save and Deploy Once configured, save the node and deploy the journey to start using the CTA URL Button in your WhatsApp messages.
+- Save and Deploy
+- - Once configured, save the node and deploy the journey to start using the CTA URL Button in your WhatsApp messages.
+
+**Last updated (from source)**: Updated 10 months ago

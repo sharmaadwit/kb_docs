@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/ctx-goal-nodes-adding-to-the-journey
-# CTX
 
-## CTX Goal Nodes and Conversions API: Adding to the journey
-
+<!-- procedural:v2 -->
 # CTX Goal Nodes and Conversions API: Adding to the journey
 
+**Module**: Ctx
+
+## Overview
+CTX Goals are added to track the number of leads that have come in the bot journey and is a milestone-based approach to get drop-offs in the journey
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ## Objectives of CTX Goals:
 
 CTX Goals are added to track the number of leads that have come in the bot journey and is a milestone-based approach to get drop-offs in the journey
@@ -71,4 +81,10 @@ Once the External API key is replaced, the curl will look like this:
 - Once done, close the API window with the X mark and choose the API from the dropdown in the API node that was just created. CAPI has now been successfully configured.
 Once done, close the API window with the X mark and choose the API from the dropdown in the API node that was just created. CAPI has now been successfully configured.
 
-Updated 6 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 6 months ago

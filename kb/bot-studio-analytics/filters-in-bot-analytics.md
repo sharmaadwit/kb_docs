@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/bot-analytics-filters
-# Bot Studio Analytics
 
-## Filters in Bot Analytics
-
+<!-- procedural:v2 -->
 # Filters in Bot Analytics
 
+**Module**: Bot Studio Analytics
+
+## Overview
+If you change your filter selections but don't click Apply , the metrics will be displayed as per the previously implemented filter selections.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### Clicking the Apply button implements your filter selections.
 
 If you change your filter selections but don't click Apply , the metrics will be displayed as per the previously implemented filter selections.
@@ -45,4 +55,10 @@ If you change your filter selections but don't click Apply , the metrics will be
 - By default, the data displayed includes all available workspaces.
 If you don't select any option in a particular filter, clicking Apply will select all options from that filter.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

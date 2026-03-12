@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/extracting-and-manipulating-data-using-expression-library-functions-instead-of-code-node
-# BOT STUDIO
 
-## Extracting and Manipulating Data Using Expression Library Functions Instead of Code Node
-
+<!-- procedural:v2 -->
 # Extracting and Manipulating Data Using Expression Library Functions Instead of Code Node
 
+**Module**: Bot Studio
+
+## Overview
+In legacy Journey Builder implementations, many common tasks such as string concatenation, conditional checks, or simple data transformations required a Code Node where bot designers or developers had to write custom JavaScript. This approach posed challenges such as increased complexity, need for coding skills, and higher chances of runtime errors.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 In legacy Journey Builder implementations, many common tasks such as string concatenation, conditional checks, or simple data transformations required a Code Node where bot designers or developers had to write custom JavaScript. This approach posed challenges such as increased complexity, need for coding skills, and higher chances of runtime errors.
 
 With the introduction of the Expression Library in Journey Builder V2, many of these routine operations can now be accomplished using built-in functions in a no-code, visual environment via the Modify Variable Node. This change empowers non-technical users to efficiently manipulate data, simplifies bot development, and improves maintainability.
@@ -56,4 +66,10 @@ concat(var_local.firstName, " ", var_local.lastName)
 
 Checkout all the other function available in the Expression Library to know more on the operation and logics available : Link
 
-Updated 9 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 9 months ago

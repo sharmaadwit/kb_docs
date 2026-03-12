@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-workspace-1
-# AI Admin
 
-## Creating a Workspace
-
+<!-- procedural:v2 -->
 # Creating a Workspace
 
+**Module**: Ai Admin
+
+## Overview
+To integrate an AI agent into a journey, creating a Workspace is the first essential step. The workspace serves as the configuration hub where all agent components are defined and managed. Once the setup is complete, the workspace can be linked to a journey, enabling a seamless, fully equipped, and context-aware agent interaction.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Go to the AI Admin section under Bot Studio in the navigation sidebar on the left.
+
+## Step-by-step configuration
 To integrate an AI agent into a journey, creating a Workspace is the first essential step. The workspace serves as the configuration hub where all agent components are defined and managed. Once the setup is complete, the workspace can be linked to a journey, enabling a seamless, fully equipped, and context-aware agent interaction.
 
 - Go to the AI Admin section under Bot Studio in the navigation sidebar on the left.
@@ -20,4 +30,11 @@ The Product Tour helps learn how to create workspaces, intents, and entities, up
 - In Progress: Whenever a Workspace training is in progress on any of the tabs; Intent, Entity, Content, the status of the Workspace will be “In Progress” status.
 - Ready: Whenever a Workspace training is successful from any of the tabs; Intent, Entity, Content, the status of the Workspace will be in “Ready” status.
 - Failed: Whenever a Workspace training failed from any of the tabs; Intent, Entity, or Content the status of the Workspace will be “Failed” status.
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

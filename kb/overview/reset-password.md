@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/reset-password
-# overview
 
-## Reset Password
-
+<!-- procedural:v2 -->
 # Reset Password
 
+**Module**: Overview
+
+## Overview
+Have you ever forgotten your password or needed to reset it for any reason? It happens to the best of us! Fortunately, resetting a password is usually a straightforward process. Follow the steps below to reset your password on Console.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 # How to Reset Your Password: A Step-by-Step Guide
 
 Have you ever forgotten your password or needed to reset it for any reason? It happens to the best of us! Fortunately, resetting a password is usually a straightforward process. Follow the steps below to reset your password on Console.
@@ -29,4 +39,12 @@ Avoid using the same password for multiple accounts. Each account should have it
 
 If you have any issues or questions during the password reset process, don't hesitate to reach out to our support team at console-support@gupshup.io
 
-Updated 4 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- Once you've entered your registered email ID, submit your request for a new password. This will trigger the platform to send you an email with a password reset link.
+
+**Last updated (from source)**: Updated 4 months ago

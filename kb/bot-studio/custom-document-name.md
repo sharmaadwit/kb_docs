@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/custom-document-name
-# BOT STUDIO
 
-## Custom Document Name
-
+<!-- procedural:v2 -->
 # Custom Document Name
 
+**Module**: Bot Studio
+
+## Overview
+Document node allows businesses to send a ‘custom file name’ for the documents sent to users. The file name is an optional field with a limit of 20 characters. The original file name will be replaced by the custom name if provided
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ## Introduction
 
 Document node allows businesses to send a ‘custom file name’ for the documents sent to users. The file name is an optional field with a limit of 20 characters. The original file name will be replaced by the custom name if provided
@@ -25,4 +35,10 @@ Scenario: A business sends invoices to customers after a purchase. Custom Docume
 
 Scenario: A legal firm sends contracts or agreements to clients. Proactive Persistent Message: Utilize the variables in the custom document name field to label documents with client-specific names, like "{{var_local.ClientName}}". Custom Document Name: Simplifies document management for clients and increases the perceived value of the service through tailored communication.
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

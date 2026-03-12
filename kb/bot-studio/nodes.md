@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/nodes-1
-# BOT STUDIO
 
-## Nodes
-
+<!-- procedural:v2 -->
 # Nodes
 
+**Module**: Bot Studio
+
+## Overview
+Bot Studio has the capability of allowing users to design customised customer journeys and automate the conversation by using nodes.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Bot Studio has the capability of allowing users to design customised customer journeys and automate the conversation by using nodes.
 
 There are the following types of Nodes on Bot Studio:
@@ -43,4 +53,13 @@ Inline Analytics - Beta: Check out the inline analytics for each node and connec
 - Exits - View the number of times customers dropped off when they reached the node
 - Connector analytics - Traversals - View the number of times a connector was traversed at runtime
 - Traversals - View the number of times a connector was traversed at runtime
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- On Save and Deploy of each journey, the changes will reflect in Keyword Trigger Node of default Configuration Journey.
+
+**Last updated (from source)**: Updated 10 months ago

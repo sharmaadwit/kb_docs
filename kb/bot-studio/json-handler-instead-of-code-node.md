@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/json-handler-instead-of-code-node
-# BOT STUDIO
 
-## JSON Handler instead of Code Node
-
+<!-- procedural:v2 -->
 # JSON Handler instead of Code Node
 
+**Module**: Bot Studio
+
+## Overview
+In older versions of Journey Builder (JB Pro), you'd use a Code Node and write custom JavaScript like this:
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ## Parsing Using Legacy Code Node (JavaScript) - Deprecated use case
 
 In older versions of Journey Builder (JB Pro), you'd use a Code Node and write custom JavaScript like this:
@@ -77,4 +87,10 @@ With the new JSON Handler Node introduced in JB V2 (Upgraded Journey Builder), y
 - Example mappings you would configure:
 The JSON Handler node automatically parses the JSON payload from the previous API call and assigns the values to the specified variables. No coding is required, and the UI guides you to enter correct JSON paths.
 
-Updated 9 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 9 months ago

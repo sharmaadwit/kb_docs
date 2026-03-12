@@ -1,10 +1,24 @@
 source_url: https://console-docs.gupshup.io/docs/react-native-sdk
-# CHANNELS
 
-## React Native
-
+<!-- procedural:v2 -->
 # React Native
 
+**Module**: Channels
+
+## Overview
+- React Native CLI
+- Node.js (v18 or above)
+- Android Studio and Xcode installed
+- A working React Native project
+## Installing the SDK
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### Prerequisites
 
 - React Native CLI
@@ -519,4 +533,11 @@ npx react-native run-ios
 
 - Use console.log for debugging.
 - Use the React Native Debugger or Flipper for more advanced debugging features.
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

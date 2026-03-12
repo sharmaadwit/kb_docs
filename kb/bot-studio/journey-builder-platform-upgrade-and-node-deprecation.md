@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/journey-builder-platform-upgrade-node-deprecation
-# BOT STUDIO
 
-## Journey Builder Platform Upgrade & Node Deprecation
-
+<!-- procedural:v2 -->
 # Journey Builder Platform Upgrade & Node Deprecation
 
+**Module**: Bot Studio
+
+## Overview
+As part of our efforts to enhance the Journey Builder platform, Gupshup is transitioning all projects to a more modern and scalable infrastructure. This document outlines upcoming node updates, deprecations, user-facing changes, and next steps for all customers and partners.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 As part of our efforts to enhance the Journey Builder platform, Gupshup is transitioning all projects to a more modern and scalable infrastructure. This document outlines upcoming node updates, deprecations, user-facing changes, and next steps for all customers and partners.
 
 ## 📅 Effective From: Post Console 19.0 Release
@@ -67,4 +77,10 @@ We encourage you to begin reviewing and refactoring your journeys now to avoid l
 
 Thank you for your continued support.
 
-Updated 7 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 7 months ago

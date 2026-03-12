@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/inbound-messages-and-events
-# CHANNELS
 
-## Inbound Messages and Events
-
+<!-- procedural:v2 -->
 # Inbound Messages and Events
 
+**Module**: Channels
+
+## Overview
+As a console user, if you configure a secondary URL on your WhatsApp self-serve application, you will receive inbound events including message status events and inbound messages. Here are some details:
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 As a console user, if you configure a secondary URL on your WhatsApp self-serve application, you will receive inbound events including message status events and inbound messages. Here are some details:
 
 Inbound Messages
@@ -247,4 +257,10 @@ For type: user-event
 }
 ```
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

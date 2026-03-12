@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/about-agent-assist
-# AGENT ASSIST
 
-## About Agent Assist
-
+<!-- procedural:v2 -->
 # About Agent Assist
 
+**Module**: Agent Assist
+
+## Overview
+Agent Assist is an omnichannel conversation platform that unifies messaging channels, streamlines customer support operations, and enhances agent productivity with powerful workflows and analytics.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Agent Assist is an omnichannel conversation platform that unifies messaging channels, streamlines customer support operations, and enhances agent productivity with powerful workflows and analytics.
 
 ## What is Agent Assist?
@@ -58,4 +68,10 @@ Agent Assist goes beyond traditional chat platforms by offering:
 - Scalable Architecture: Grows with your business needs
 Ready to transform your customer support operations? Explore each feature area above to learn how Agent Assist can enhance your team's productivity and customer satisfaction.
 
-Updated 4 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 4 months ago

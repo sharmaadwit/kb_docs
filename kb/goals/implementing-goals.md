@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/implementing-goals
-# Goals
 
-## Implementing Goals
-
+<!-- procedural:v2 -->
 # Implementing Goals
 
+**Module**: Goals
+
+## Overview
+Please refer to your journey and create Milestones and Trackers accordingly. You CANNOT implement Goal nodes without creating them.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### You need to create Goals before you can implement them in your journeys.
 
 Please refer to your journey and create Milestones and Trackers accordingly. You CANNOT implement Goal nodes without creating them.
@@ -28,3 +38,10 @@ For example, if a user achieves the third Milestone without achieving the first 
 Updated 10 months ago
 
 - Goal Analytics
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

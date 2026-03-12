@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/custom-integrations
-# Integrations
 
-## Custom Integrations
-
+<!-- procedural:v2 -->
 # Custom Integrations
 
+**Module**: Integrations
+
+## Overview
+Introduction:
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Introduction:
 
 Custom Integration allows users to send events from any external system to Console. The integration allows the user to define a custom event(s) associated with that integration and the event payload can be passed to Webhook URL provided by us along with an authorization token in the header and the required mandatory property for the events.
@@ -33,4 +43,11 @@ Note:
 
 - At Least 1 event must be defined for an integration to be working, we nudge the user by prompt and disabling the connected button incase the integration doesn’t have any events
 - We can support multiple instances for custom integrations
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

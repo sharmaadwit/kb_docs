@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/intent-description-1
-# AI Admin
 
-## Intent Description
-
+<!-- procedural:v2 -->
 # Intent Description
 
+**Module**: Ai Admin
+
+## Overview
+When writing effective intent descriptions user needs to follow below guidelines:
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 When writing effective intent descriptions user needs to follow below guidelines:
 
 - Be clear and concise: Describe the intent in a single, straightforward sentence.
@@ -65,3 +75,10 @@ Additional Tips
 Updated 10 months ago
 
 - Entity Creation
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

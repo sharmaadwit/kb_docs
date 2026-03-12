@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/date-node
-# BOT STUDIO
 
-## Date Node
-
+<!-- procedural:v2 -->
 # Date Node
 
+**Module**: Bot Studio
+
+## Overview
+Date Node
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ## Introduction
 
 Date Node
@@ -51,3 +61,10 @@ Store in Variable - Store the input date by the user in the variable here.
 Updated 10 months ago
 
 Next up, read some more detailed use case for the date node and how to apply them (Date Prompt Validation Enhancement)
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

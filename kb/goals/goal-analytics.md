@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/goal-analytics
-# Goals
 
-## Goal Analytics
-
+<!-- procedural:v2 -->
 # Goal Analytics
 
+**Module**: Goals
+
+## Overview
+After creating a Goal and implementing within a journey, you can track it through Goal Analytics.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 After creating a Goal and implementing within a journey, you can track it through Goal Analytics.
 
 You can access Goal Analytics for a Goal by clicking the Analytics (pie chart) icon on the Goals Dashboard.
@@ -57,4 +67,11 @@ For example, if a user achieves the third Milestone without achieving the first 
 - Customer data from each Milestone is present in the Excel in a separate sub-sheet titled with the sequence number of the Milestone and the Milestone Name. For example, if the Milestone named "Qualified Lead" is 2nd in the sequence of Milestones within the Goal, the sub-sheet will be titled "2. Qualified Lead".
 - For example, if the Milestone named "Qualified Lead" is 2nd in the sequence of Milestones within the Goal, the sub-sheet will be titled "2. Qualified Lead".
 - The aggregate data from the Trends table is also present in a separate sub-sheet titled "Trends".
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

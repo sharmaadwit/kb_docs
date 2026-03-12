@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/block-templates
-# BOT STUDIO
 
-## Block Templates
-
+<!-- procedural:v2 -->
 # Block Templates
 
+**Module**: Bot Studio
+
+## Overview
+Block Templates are reusable building blocks created from nodes within a journey. These blocks can be saved, previewed, and dragged into other journeys within the same project—making bot creation significantly faster, more consistent, and modular.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Navigate to the Blocks tab on the left panel of the canvas
+
+## Step-by-step configuration
 ## What Are Block Templates?
 
 Block Templates are reusable building blocks created from nodes within a journey. These blocks can be saved, previewed, and dragged into other journeys within the same project—making bot creation significantly faster, more consistent, and modular.
@@ -56,4 +66,14 @@ You’ll now find a “Blocks” section on the left panel of the Journey Canvas
 - Use Block Templates to modularize large use cases (e.g., Lead capture, FAQs, Confirmations)
 - Group reusable logic into dedicated templates like “Check Eligibility”, “Send Invoice”, etc.
 - Maintain a naming convention like Lead_Capture_v1, FAQ_Product, etc., for easier management
-Updated 10 months ago
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- ✅ Save Blocks from any journey to reuse them later
+- - Right-click and choose “Save as Block Template”
+
+**Last updated (from source)**: Updated 10 months ago

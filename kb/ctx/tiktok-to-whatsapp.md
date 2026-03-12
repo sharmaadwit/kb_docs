@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/tiktok-to-whatsapp
-# CTX
 
-## TikTok to WhatsApp
-
+<!-- procedural:v2 -->
 # TikTok to WhatsApp
 
+**Module**: Ctx
+
+## Overview
+Please fill out the form and our sales team will reach out to you shortly!
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Please fill out the form and our sales team will reach out to you shortly!
 
 Pre-Requisites
@@ -31,4 +41,10 @@ With the combination of TikTok's engaging ad platform and Gupshup’s automation
 
 Please fill out the form and our sales team will reach out to you
 
-Updated about 1 month ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated about 1 month ago

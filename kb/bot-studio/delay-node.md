@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/delay-node
-# BOT STUDIO
 
-## Delay Node
-
+<!-- procedural:v2 -->
 # Delay Node
 
+**Module**: Bot Studio
+
+## Overview
+Node to put a delay in between two messages during the conversation. Using this node, a maximum of 10 seconds delay can be introduced between 2 chatbot messages.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### Delay
 
 Node to put a delay in between two messages during the conversation. Using this node, a maximum of 10 seconds delay can be introduced between 2 chatbot messages.
@@ -19,4 +29,10 @@ Delay Node can be dragged and dropped on the canvas from the left-hand actions &
 
 ### Delay Node
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

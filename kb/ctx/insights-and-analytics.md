@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/insights-and-analytics
-# CTX
 
-## Insights and Analytics
-
+<!-- procedural:v2 -->
 # Insights and Analytics
 
+**Module**: Ctx
+
+## Overview
+How to track performance of CTWA Campaigns and Ads
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 How to track performance of CTWA Campaigns and Ads
 
 We have a dedicated analytics section for Click-to-chat ads on the Gupshup console. To access this, on the left hand menu, click on "Click-to-chat ads -> Analytics"
@@ -29,4 +39,10 @@ This report showcases the number of Lead and Purchase signals that are sent to M
 
 This report shows the monetary revenue and non-monetary conversions that have been received from CTWA ads. Attribution API needs to be configured for data to be populated in this tab.
 
-Updated 6 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 6 months ago

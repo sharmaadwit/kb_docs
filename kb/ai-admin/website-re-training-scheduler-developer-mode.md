@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/website-re-training-scheduler
-# AI Admin
 
-## Website Re-training Scheduler (Developer Mode)
-
+<!-- procedural:v2 -->
 # Website Re-training Scheduler (Developer Mode)
 
+**Module**: Ai Admin
+
+## Overview
+Introduction: The Website Re-Training Scheduler is a powerful feature designed to automate the process of re-training your website URLs, significantly reducing manual content training efforts. This is particularly beneficial for businesses that frequently update their online content, ensuring your AI models are always up-to-date with the latest information.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 Introduction: The Website Re-Training Scheduler is a powerful feature designed to automate the process of re-training your website URLs, significantly reducing manual content training efforts. This is particularly beneficial for businesses that frequently update their online content, ensuring your AI models are always up-to-date with the latest information.
 
 Scheduler automatically untrain old content and retrain the latest content of URLs, ensuring relevance and accuracy of AI responses over time.
@@ -62,3 +72,10 @@ Handling URL Untraining
 Updated 9 months ago
 
 - Catalog Training
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+

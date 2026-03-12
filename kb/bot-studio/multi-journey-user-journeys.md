@@ -1,10 +1,20 @@
 source_url: https://console-docs.gupshup.io/docs/multi-journey-user-journeys
-# BOT STUDIO
 
-## Multi-Journey - User Journeys
-
+<!-- procedural:v2 -->
 # Multi-Journey - User Journeys
 
+**Module**: Bot Studio
+
+## Overview
+Multi Journey is the concept of having a complex use case broken down into smaller journeys in a chatbot which can be called in any other journey.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+
+## Step-by-step configuration
 ### Multi Journey
 
 Multi Journey is the concept of having a complex use case broken down into smaller journeys in a chatbot which can be called in any other journey.
@@ -25,4 +35,10 @@ Multi Journey can be used from the My Journeys of the Bot Studio.
 
 ### Multi Journey Screen
 
-Updated 10 months ago
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+_Not specified._
+
+**Last updated (from source)**: Updated 10 months ago

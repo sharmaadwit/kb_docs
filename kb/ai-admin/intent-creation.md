@@ -1,10 +1,21 @@
 source_url: https://console-docs.gupshup.io/docs/intent-creation
-# AI Admin
 
-## Intent Creation
-
+<!-- procedural:v2 -->
 # Intent Creation
 
+**Module**: Ai Admin
+
+## Overview
+Intent refers to the goal or purpose behind a user's input or query. It represents what the user wants to achieve or convey through their text or speech. For example, when a user types or says, "I ordered a bag last week. When will you deliver it" the intent is to track_order_status.
+
+## When to use
+_Add the primary scenarios and personas._
+
+## Setup path
+- Go to Intent section & Select the required intent to start the untraining
+- Navigate to the utterance you want to untrain & click on the Delete icon. If the Delete icon is accidentally clicked for an utterance then you can revert the action by clicking on the undo icon.
+
+## Step-by-step configuration
 ## Introduction
 
 Intent refers to the goal or purpose behind a user's input or query. It represents what the user wants to achieve or convey through their text or speech. For example, when a user types or says, "I ordered a bag last week. When will you deliver it" the intent is to track_order_status.
@@ -38,3 +49,13 @@ Note: At present you can only untrain the manually added user utterances. Untrai
 Updated 10 months ago
 
 - Intent Description
+
+## Business hours vs after-hours behavior
+_Not applicable / not specified._
+
+## Save/publish behavior
+Key notes found in source:
+
+- - Click on Save & Train
+- - Click on Save & Train button to complete the untraining.
+
