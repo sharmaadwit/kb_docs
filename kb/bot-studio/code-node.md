@@ -1,5 +1,39 @@
 source_url: https://console-docs.gupshup.io/docs/code-node
 
+<!-- kb-golden:v1 -->
+# Code Node
+
+**Module**: Bot Studio
+
+## Definition
+****** THIS NODE IS DEPRECATED AND WILL NOT BE AVAILABLE IN BOT STUDIO *******
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Code Node
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Code Node**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- When to use
+- Limitations
+- How to use
+- Code Node
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Code Node
 

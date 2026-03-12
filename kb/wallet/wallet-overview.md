@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/wallet-overview
 
+<!-- kb-golden:v1 -->
+# Wallet Overview
+
+**Module**: Wallet
+
+## Definition
+You can use your Gupshup wallet to pay for whatsapp and Instagram usage on Converse.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Wallet → Wallet Overview
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Wallet → Wallet Overview**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Wallet Overview
 

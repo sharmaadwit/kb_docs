@@ -1,5 +1,38 @@
 source_url: https://console-docs.gupshup.io/docs/sticker-node
 
+<!-- kb-golden:v1 -->
+# Sticker Node
+
+**Module**: Bot Studio
+
+## Definition
+The Sticker Message Node in Journey Builder enables businesses to send engaging sticker messages to users via supported channels, currently only WhatsApp. Stickers add a fun and interactive visual element to conversations, enhancing user engagement and making communication more lively.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Sticker Node
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Sticker Node**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Festival Greetings
+- Customer Service Interactions with Personalized Stickers
+- Promotional Offers with Visual Flair
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Sticker Node
 

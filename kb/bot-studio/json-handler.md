@@ -1,5 +1,35 @@
 source_url: https://console-docs.gupshup.io/docs/json-response-attribute-mapping-in-api-node
 
+<!-- kb-golden:v1 -->
+# JSON Handler
+
+**Module**: Bot Studio
+
+## Definition
+The JSON Handler Node is a powerful new addition to the Journey Builder Canvas in the Bot Studio platform. It allows bot designers to effortlessly extract information from simple to complex JSON objects without requiring coding expertise. This feature simplifies handling JSON responses from APIs or channel messages, making the platform more accessible, especially for non-technical users.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → JSON Handler
+
+### Setup path
+- Navigate to Action Nodes in Journey Builder and select JSON Handler.\
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to Action Nodes in Journey Builder and select JSON Handler.\
+3. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # JSON Handler
 

@@ -1,5 +1,38 @@
 source_url: https://console-docs.gupshup.io/docs/dynamic-image-url-node
 
+<!-- kb-golden:v1 -->
+# Dynamic Image URL Node
+
+**Module**: Bot Studio
+
+## Definition
+The Dynamic Image URL Node can be used to create dynamic images during run-time. The dynamic card image can be stored in a variable and sent to the user using an Image Node. For instance, the business wants to send QR Code to customers with dynamic information of the customer, the dynamic image card can be created and sent to the user. This can be used to send movie tickets or banking statements to users.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Dynamic Image URL Node
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Dynamic Image URL Node**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- When to Use
+- How to Use
+- Limitations:
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Dynamic Image URL Node
 

@@ -1,5 +1,37 @@
 source_url: https://console-docs.gupshup.io/docs/intent-creation
 
+<!-- kb-golden:v1 -->
+# Intent Creation
+
+**Module**: Ai Admin
+
+## Definition
+Intent refers to the goal or purpose behind a user's input or query. It represents what the user wants to achieve or convey through their text or speech. For example, when a user types or says, "I ordered a bag last week. When will you deliver it" the intent is to track_order_status.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → Intent Creation
+
+### Setup path
+- Go to Intent section & Select the required intent to start the untraining
+- Navigate to the utterance you want to untrain & click on the Delete icon. If the Delete icon is accidentally clicked for an utterance then you can revert the action by clicking on the undo icon.
+
+### Steps
+1. Open Gupshup Console.
+2. Go to Intent section & Select the required intent to start the untraining
+3. Navigate to the utterance you want to untrain & click on the Delete icon. If the Delete icon is accidentally clicked for an utterance then you can revert the action by clicking on the undo icon.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Intent Creation
 
@@ -58,4 +90,3 @@ Key notes found in source:
 
 - - Click on Save & Train
 - - Click on Save & Train button to complete the untraining.
-

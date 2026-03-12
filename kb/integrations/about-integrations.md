@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/about-integrations
 
+<!-- kb-golden:v1 -->
+# About integrations
+
+**Module**: Integrations
+
+## Definition
+Gupshup supports the following partners, you can checkout the step-by-step process for each integration by clicking on the respective guide link on: https://console-docs.gupshup.io/docs
+
+## Procedure
+### Where to configure it
+Gupshup Console → Integrations → About integrations
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Integrations → About integrations**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # About integrations
 

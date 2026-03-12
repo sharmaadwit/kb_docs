@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/assigning-projects
 
+<!-- kb-golden:v1 -->
+# Assign/Unassign Projects
+
+**Module**: Overview
+
+## Definition
+Assigning Projects
+
+## Procedure
+### Where to configure it
+Gupshup Console → Overview → Assign/Unassign Projects
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Overview → Assign/Unassign Projects**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Assign/Unassign Projects
 

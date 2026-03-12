@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/how-to-measure-click-through-rates
 
+<!-- kb-golden:v1 -->
+# How to measure Click through Rates?
+
+**Module**: Campaign Manager
+
+## Definition
+You can now track click through rates for a campaign. Now track which links were clicked, how many times and by whom.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Campaign Manager → How to measure Click through Rates?
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Campaign Manager → How to measure Click through Rates?**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # How to measure Click through Rates?
 

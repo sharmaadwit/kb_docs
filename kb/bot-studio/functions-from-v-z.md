@@ -1,5 +1,39 @@
 source_url: https://console-docs.gupshup.io/docs/functions-from-v-z
 
+<!-- kb-golden:v1 -->
+# Functions from V - Z
+
+**Module**: Bot Studio
+
+## Definition
+Filter on each element and return the new collection of filtered elements which match a specific condition.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Functions from V - Z
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Functions from V - Z**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- where
+- xml
+- xPath
+- year
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Functions from V - Z
 

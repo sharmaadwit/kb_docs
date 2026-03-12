@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/ctx-goal-nodes-adding-to-the-journey
 
+<!-- kb-golden:v1 -->
+# CTX Goal Nodes and Conversions API: Adding to the journey
+
+**Module**: Ctx
+
+## Definition
+CTX Goals are added to track the number of leads that have come in the bot journey and is a milestone-based approach to get drop-offs in the journey
+
+## Procedure
+### Where to configure it
+Gupshup Console → CTX → CTX Goal Nodes and Conversions API: Adding to the journey
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → CTX → CTX Goal Nodes and Conversions API: Adding to the journey**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # CTX Goal Nodes and Conversions API: Adding to the journey
 

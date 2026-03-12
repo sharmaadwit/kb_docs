@@ -1,5 +1,38 @@
 source_url: https://console-docs.gupshup.io/docs/dynamic-carousel-node
 
+<!-- kb-golden:v1 -->
+# Dynamic Carousel Node
+
+**Module**: Bot Studio
+
+## Definition
+Send Personalized cards in the carousel for each user based on the user preference or business suggestion.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Dynamic Carousel Node
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Dynamic Carousel Node**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Introduction
+- What's New!
+- How to use a Dynamic Carousel?
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Dynamic Carousel Node
 

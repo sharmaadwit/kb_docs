@@ -1,5 +1,41 @@
 source_url: https://console-docs.gupshup.io/docs/modify-variable-node
 
+<!-- kb-golden:v1 -->
+# Modify Variable Node
+
+**Module**: Bot Studio
+
+## Definition
+The Modify variable is a new node available in the Journey Builder Action node list for performing various operations on the values stored in any variable. This will enable bot designers to perform simple to complex operations on different data types (string, number, and JSON) without needing to use the code node
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Modify Variable Node
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Modify Variable Node**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Introduction
+- Note:
+- Supported Operations:
+- STRING:
+- JSON
+- Number
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Modify Variable Node
 

@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/whatsapp-carousel-message-using-the-send-message-node
 
+<!-- kb-golden:v1 -->
+# WhatsApp Carousel Message Using the Send Message Node
+
+**Module**: Bot Studio
+
+## Definition
+This guide explains how to send a WhatsApp Media Carousel Message using the Send Message Node in Journey Builder by selecting WhatsApp Raw and pasting the exact supported payload.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → WhatsApp Carousel Message Using the Send Message Node
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → WhatsApp Carousel Message Using the Send Message Node**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Journey Builder – JB Pro Guide
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # WhatsApp Carousel Message Using the Send Message Node
 

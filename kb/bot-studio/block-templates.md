@@ -1,5 +1,35 @@
 source_url: https://console-docs.gupshup.io/docs/block-templates
 
+<!-- kb-golden:v1 -->
+# Block Templates
+
+**Module**: Bot Studio
+
+## Definition
+Block Templates are reusable building blocks created from nodes within a journey. These blocks can be saved, previewed, and dragged into other journeys within the same project—making bot creation significantly faster, more consistent, and modular.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Block Templates
+
+### Setup path
+- Navigate to the Blocks tab on the left panel of the canvas
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to the Blocks tab on the left panel of the canvas
+3. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Block Templates
 

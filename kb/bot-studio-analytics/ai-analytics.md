@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/ai-analytics
 
+<!-- kb-golden:v1 -->
+# AI Analytics
+
+**Module**: Bot Studio Analytics
+
+## Definition
+AI Analytics is a feature to monitor and evaluate the utterances on your bot. This feature assists users in identifying and classifying utterances, offering valuable insights into both recognized and unrecognized intents.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio Analytics → AI Analytics
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio Analytics → AI Analytics**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- The data in Bot Studio Analytics is retained for a period of one year.
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # AI Analytics
 

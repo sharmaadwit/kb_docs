@@ -1,5 +1,43 @@
 source_url: https://console-docs.gupshup.io/docs/create-a-new-journey
 
+<!-- kb-golden:v1 -->
+# Getting Started with Bot Studio
+
+**Module**: Bot Studio
+
+## Definition
+Journeys Landing Page
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Getting Started with Bot Studio
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Getting Started with Bot Studio**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Key Sections on the Landing Page
+- Side Options
+- 🔧 Side Panel Tools
+- 🗺️ Mini-Map & Tools
+- Starting Node
+- Test Bot & Saving options
+- Note: Test Bot becomes available only after you Save & Deploy your journey.
+- Analytics Toggle
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Getting Started with Bot Studio
 

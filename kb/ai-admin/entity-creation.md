@@ -1,5 +1,35 @@
 source_url: https://console-docs.gupshup.io/docs/intent-description
 
+<!-- kb-golden:v1 -->
+# Entity Creation
+
+**Module**: Ai Admin
+
+## Definition
+An "entity" refers to a specific piece of information within a user's input or utterance. Essentially, it's like a key detail or variable that the AI needs to understand to provide a relevant response or take appropriate action. For example, if someone says, "Book a flight to Paris on Saturday," the entities in this utterance would likely be "Paris" (the destination) and "Saturday" (the date).
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → Entity Creation
+
+### Setup path
+- Go to the Description section and change the description as per the redefined piece of information that needs to be extracted.
+
+### Steps
+1. Open Gupshup Console.
+2. Go to the Description section and change the description as per the redefined piece of information that needs to be extracted.
+3. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Entity Creation
 

@@ -1,5 +1,39 @@
 source_url: https://console-docs.gupshup.io/docs/android-native-sdk
 
+<!-- kb-golden:v1 -->
+# Android Native
+
+**Module**: Channels
+
+## Definition
+- Android OS version 9.0 or above
+- Android Studio version 2022.3.1 or above
+
+## Procedure
+### Where to configure it
+Gupshup Console → Channels → Android Native
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Channels → Android Native**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Prerequisites
+- Getting the App ID
+- The App ID, User Name and User ID must be set before you initialize the SDK.
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Android Native
 

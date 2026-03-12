@@ -1,52 +1,40 @@
 source_url: https://console-docs.gupshup.io/docs/exploring-insights-exporting-raw-data
 
-<!-- procedural:v2 -->
+
+<!-- agent-assist-golden:v2 -->
 # Exploring Insights & Exporting Raw Data
 
 **Module**: Agent Assist
 
-## Overview
+## What this feature does
 Discover comprehensive analytics and data export capabilities with detailed insights into chat performance, agent productivity, team metrics, and customer feedback.
 
-## When to use
-_Add the primary scenarios and personas._
+## Where to configure it
+Agent Assist → Insights
 
 ## Setup path
-_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+- _Add the click-path in Console (breadcrumbs)._ 
 
-## Step-by-step configuration
-Discover comprehensive analytics and data export capabilities with detailed insights into chat performance, agent productivity, team metrics, and customer feedback.
-
-## Deeper Data Analysis
-
-The Insights section delves deeper into the data, providing more detailed and in-depth analysis. Here, you can uncover trends, patterns, and key findings that may be crucial for your decision-making process.
-
-Comprehensive Chat Analysis
-
-Detailed analysis of all actively managed chats based on their creation date. Get valuable insights into chat performance, trends, and outcomes.
-
-Effortless Agent Time Tracking
-
-Track your agents' login and logout times, plus active and inactive durations. Monitor agent availability and productivity efficiently.
-
-Agent Performance Evaluation
-
-Comprehensive overview of agent performance including key metrics like Average Resolution Time, Average Response Time, and more.
-
-Team Performance Assessment
-
-Evaluate team performance for chats based on creation date, with metrics like Average Resolution Time, Average Response Time, and other essential data points.
-
-Customer Ratings and Feedback
-
-Insights into customer ratings and feedback regarding agent assistance. Understand customer satisfaction and identify areas for improvement.
-
-Utilize these insightful reports to enhance your brand's operations and make informed decisions based on data-driven analysis. Each report provides specific metrics and analytics tailored to different aspects of your customer service operations.
-
-## Business hours vs after-hours behavior
-_Not applicable / not specified._
+## Steps
+1. Open Agent Assist.
+2. Go to **Insights**.
+3. Configure the required fields.
 
 ## Save/publish behavior
-_Not specified._
+- _No save/publish step is required for this page unless explicitly stated in the UI._
 
-**Last updated (from source)**: Updated 4 months ago
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
+### Overview
+Discover comprehensive analytics and data export capabilities with detailed insights into chat performance, agent productivity, team metrics, and customer feedback.
+
+### When to use
+_Add the primary scenarios and personas._
+
+### Details
+Discover comprehensive analytics and data export capabilities with detailed insights into chat performance, agent productivity, team metrics, and customer feedback.

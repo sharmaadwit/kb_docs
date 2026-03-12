@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/test-your-bot
 
+<!-- kb-golden:v1 -->
+# Test your Bot
+
+**Module**: Bot Studio
+
+## Definition
+Now you can Test your Bot on-the-go without the need to connect to Proxy or Webapp on different tabs.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Test your Bot
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Test your Bot**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Test your Bot
 

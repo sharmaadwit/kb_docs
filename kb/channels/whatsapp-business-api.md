@@ -1,5 +1,43 @@
 source_url: https://console-docs.gupshup.io/docs/whatsapp-business-api
 
+<!-- kb-golden:v1 -->
+# WhatsApp Business API
+
+**Module**: Channels
+
+## Definition
+Gupshup's WhatsApp Business API provides you APIs to send free form messages or session messages and template messages (utility/marketing/authentication) to users on WhatsApp. Both of these types of messages are together referred as 'Outbound Messages'
+
+## Procedure
+### Where to configure it
+Gupshup Console → Channels → WhatsApp Business API
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Channels → WhatsApp Business API**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- API Endpoint
+- Headers
+- Request body
+- API Response
+- Template object description
+- Message object description
+- Sample requests
+- For any other error code, click here.
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # WhatsApp Business API
 

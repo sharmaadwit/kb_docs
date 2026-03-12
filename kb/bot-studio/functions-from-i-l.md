@@ -1,5 +1,45 @@
 source_url: https://console-docs.gupshup.io/docs/functions-from-i-l
 
+<!-- kb-golden:v1 -->
+# Functions from I - L
+
+**Module**: Bot Studio
+
+## Definition
+Check whether an expression is true or false. Based on the result, return a specified value.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Functions from I - L
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Functions from I - L**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- if
+- indexOf
+- indicesAndValues
+- int
+- intersection
+- isArray
+- isBoolean
+- isDate
+- isDateRange
+- isDateTime
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Functions from I - L
 

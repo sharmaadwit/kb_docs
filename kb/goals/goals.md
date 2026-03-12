@@ -1,5 +1,38 @@
 source_url: https://console-docs.gupshup.io/docs/goals
 
+<!-- kb-golden:v1 -->
+# Concepts
+
+**Module**: Goals
+
+## Definition
+The Goals feature enable businesses to define and track specific points in a bot journey where the Goal of the journey is being achieved.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Goals → Concepts
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Goals → Concepts**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Goal
+- Milestone
+- Tracker
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Concepts
 
@@ -53,4 +86,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

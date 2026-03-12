@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/developer-settings
 
+<!-- kb-golden:v1 -->
+# Settings
+
+**Module**: Ai Admin
+
+## Definition
+The Intents and Entities can be exported and imported seamlessly from the Settings tab. It allows managing Intents and Entities, offering greater flexibility and convenience to users.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → Settings
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Ai Admin → Settings**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Note:
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Settings
 
@@ -56,4 +87,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

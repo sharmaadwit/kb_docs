@@ -1,5 +1,45 @@
 source_url: https://console-docs.gupshup.io/docs/functions-from-e-h
 
+<!-- kb-golden:v1 -->
+# Functions from E - H
+
+**Module**: Bot Studio
+
+## Definition
+Check whether an instance is empty. Return true if the input is empty. Empty means:
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Functions from E - H
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Functions from E - H**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- empty
+- endsWith
+- EOL
+- equals
+- exists
+- exp
+- first
+- flatten
+- float
+- floor
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Functions from E - H
 

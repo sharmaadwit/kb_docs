@@ -1,5 +1,44 @@
 source_url: https://console-docs.gupshup.io/docs/web-chat-aesthetics
 
+<!-- kb-golden:v1 -->
+# Chat Aesthetics
+
+**Module**: Channels
+
+## Definition
+You can customize the look & feel of your Web chat widget via the Chat Aesthetics Settings.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Channels → Chat Aesthetics
+
+### Setup path
+- Go to Google Fonts.
+
+### Steps
+1. Open Gupshup Console.
+2. Go to Google Fonts.
+3. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Bot Name
+- Bot Avatar Image
+- Bot Logo Image
+- Font Style
+- Getting the Font URL
+- Font Size
+- Font Colours
+- Widget Size
+- Widget Position
+- Icon Image
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Chat Aesthetics
 
@@ -125,4 +164,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

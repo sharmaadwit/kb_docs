@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/agent-personality
 
+<!-- kb-golden:v1 -->
+# Agent Personality (Developer Mode)
+
+**Module**: Ai Admin
+
+## Definition
+Introduction: The Agent Personality is the foundation of how your AI agent communicates with users. It defines the tone, behavior, response style, and introductory message used during conversations—ensuring every response feels consistent, aligned with your brand, and tailored to your audience.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → Agent Personality (Developer Mode)
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Ai Admin → Agent Personality (Developer Mode)**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Agent Personality (Developer Mode)
 
@@ -76,4 +107,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

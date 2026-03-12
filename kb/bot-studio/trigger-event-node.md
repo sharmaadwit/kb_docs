@@ -1,5 +1,44 @@
 source_url: https://console-docs.gupshup.io/docs/trigger-event-node
 
+<!-- kb-golden:v1 -->
+# Trigger Event Node
+
+**Module**: Bot Studio
+
+## Definition
+The Trigger Event Node is a newly introduced action node in the Journey Builder Canvas that empowers businesses to send custom internal events during live journey execution. These events are sent to the Event Manager(New Module on Console), Gupshup's centralized event tracking system, and can be seamlessly integrated with Personalize (Customer360) to update profile attributes for users.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Trigger Event Node
+
+### Setup path
+- Go to Console Sidebar → Event Manager
+
+### Steps
+1. Open Gupshup Console.
+2. Go to Console Sidebar → Event Manager
+3. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- 📌 What is it?
+- 🧭 How to Use
+- Step 1: Create a Custom Event in Event Manager
+- Step 2: Configure Trigger Event Node in Journey Builder
+- Step 3: Runtime Behavior
+- ✅Use Cases
+- Cart Abandonment Tracking
+- Product Viewed Event
+- Form Submission Completion
+- User Opts-In for a Notification
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Trigger Event Node
 

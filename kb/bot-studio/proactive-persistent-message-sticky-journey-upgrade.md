@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/proactive-persistent-message-sticky-journey-upgrade
 
+<!-- kb-golden:v1 -->
+# Proactive Persistent Message (Sticky Journey Upgrade)
+
+**Module**: Bot Studio
+
+## Definition
+For sticky journeys, the wait-for-event based nodes now features an improved and customizable experience. This ensures end users can return to an unfinished journey if the context changes before completion. Previously available only for Prompt Nodes, this feature now extends to Reply, Quick Reply, and List Nodes as well.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Proactive Persistent Message (Sticky Journey Upgrade)
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Proactive Persistent Message (Sticky Journey Upgrade)**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Proactive Persistent Message (Sticky Journey Upgrade)
 

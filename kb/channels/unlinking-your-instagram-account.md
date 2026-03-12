@@ -1,5 +1,45 @@
 source_url: https://console-docs.gupshup.io/docs/unlinking-your-instagram-account
 
+<!-- kb-golden:v1 -->
+# Unlinking your Instagram account
+
+**Module**: Channels
+
+## Definition
+- Go to Instagram and log in to the account that you linked with Gupshup.
+- Go to your Instagram Profile and click the Settings (gear) icon.
+- Click Apps and websites. You can also click Settings and privacy and then go to Website permissions under Your app and media.
+- You can also click Settings and privacy and then go to Website permissions under Your app and media.
+- Click Remove against Gupshup app under the Active tab.
+- Click Remove in the confirmation popup.
+- Your Instagram account will be unlinked from Gupshup.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Channels → Unlinking your Instagram account
+
+### Setup path
+- Go to Instagram and log in to the account that you linked with Gupshup.
+- Go to your Instagram Profile and click the Settings (gear) icon.
+- Go to Facebook and log in to the account which you used to link the Instagram account previously.
+
+### Steps
+1. Open Gupshup Console.
+2. Go to Instagram and log in to the account that you linked with Gupshup.
+3. Go to your Instagram Profile and click the Settings (gear) icon.
+4. Go to Facebook and log in to the account which you used to link the Instagram account previously.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Unlinking your Instagram account
 
@@ -57,4 +97,3 @@ Key notes found in source:
 
 - The checkbox being ticked informs us about the unlinking. You won't be able to utilize the project to go live again if the checkbox isn't ticked.
 - - Go Live with Instagram
-

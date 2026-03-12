@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/web-retain-customer-chat-history
 
+<!-- kb-golden:v1 -->
+# Retain Customer Chat History
+
+**Module**: Channels
+
+## Definition
+This feature allows you to show the messages from a user's previous conversations in the Web chat widget for repeat visits from the same browser and device. A toggle is provided in the Preferences tab in Settings to enable this feature.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Channels → Retain Customer Chat History
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Channels → Retain Customer Chat History**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Retain Customer Chat History
 
@@ -38,4 +69,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

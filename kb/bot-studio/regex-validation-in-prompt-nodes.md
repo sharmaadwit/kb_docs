@@ -1,5 +1,38 @@
 source_url: https://console-docs.gupshup.io/docs/regex-validation-in-prompt-nodes
 
+<!-- kb-golden:v1 -->
+# RegEx Validation in Prompt Nodes
+
+**Module**: Bot Studio
+
+## Definition
+As part of our platform hardening and bot reliability initiatives, Gupshup Console validates all regular expressions in Prompt Nodes using the Re2 regex engine, developed by Google. This ensures that patterns used for validating user input are safe, efficient, and non-blocking at runtime.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → RegEx Validation in Prompt Nodes
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → RegEx Validation in Prompt Nodes**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- 1. Compliance with Re2 Syntax
+- 2. Runtime Safety (Catastrophic Backtracking Prevention)
+- 3. Invalid or Malformed Patterns
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # RegEx Validation in Prompt Nodes
 

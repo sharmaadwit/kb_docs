@@ -1,5 +1,38 @@
 source_url: https://console-docs.gupshup.io/docs/test-bot-widget-on-jb-canvas
 
+<!-- kb-golden:v1 -->
+# Test Bot Widget on JB Canvas
+
+**Module**: Bot Studio
+
+## Definition
+Test bot widget is an existing feature on the Journey List page which lets Bot designers to test the bot or go through the Message logs to debug any issue on the bot. Now Bot designer will be able to Test, debug, fix, and deploy all at a single place.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Test Bot Widget on JB Canvas
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Test Bot Widget on JB Canvas**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Introduction
+- What's New?
+- Note:
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Test Bot Widget on JB Canvas
 

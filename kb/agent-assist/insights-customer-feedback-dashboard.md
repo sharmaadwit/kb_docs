@@ -1,20 +1,42 @@
 source_url: https://console-docs.gupshup.io/docs/insights-customer-feedback-dashboard
 
-<!-- procedural:v2 -->
+
+<!-- agent-assist-golden:v2 -->
 # Insights: Customer Feedback Dashboard
 
 **Module**: Agent Assist
 
-## Overview
+## What this feature does
 Overview The Customer Feedback Dashboard provides insights into customer satisfaction through various rating mechanisms: thumbs ratings, star ratings, and emoji reactions.
 
-## When to use
-_Add the primary scenarios and personas._
+## Where to configure it
+Agent Assist → Insights
 
 ## Setup path
-_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+- _Add the click-path in Console (breadcrumbs)._ 
 
-## Step-by-step configuration
+## Steps
+1. Open Agent Assist.
+2. Go to **Insights**.
+3. Configure the required fields.
+
+## Save/publish behavior
+- _No save/publish step is required for this page unless explicitly stated in the UI._
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
+### Overview
+Overview The Customer Feedback Dashboard provides insights into customer satisfaction through various rating mechanisms: thumbs ratings, star ratings, and emoji reactions.
+
+### When to use
+_Add the primary scenarios and personas._
+
+### Details
 Overview The Customer Feedback Dashboard provides insights into customer satisfaction through various rating mechanisms: thumbs ratings, star ratings, and emoji reactions.
 
 Feedback Received Definition: Total count of customers who completed the feedback form Calculation: Simple count of submitted feedback forms Use Cases:
@@ -51,11 +73,3 @@ Analysis Considerations:
 - Agent handling the chat
 - Chat duration
 - Resolution time
-
-## Business hours vs after-hours behavior
-_Not applicable / not specified._
-
-## Save/publish behavior
-_Not specified._
-
-**Last updated (from source)**: Updated 10 months ago

@@ -1,5 +1,37 @@
 source_url: https://console-docs.gupshup.io/docs/save-save-deploy
 
+<!-- kb-golden:v1 -->
+# Save, Save & Deploy
+
+**Module**: Bot Studio
+
+## Definition
+Assuming a journey is to be made which is complex to design and has a lot of nodes involved. You are done with designing a small part of the flow for instance say 10% of the complete. It is advised to save the progress done so far. For this purpose, you get a ‘Save’ button on the Bot Studio itself.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Save, Save & Deploy
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Save, Save & Deploy**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Save Button
+- Save & Deploy
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Save, Save & Deploy
 

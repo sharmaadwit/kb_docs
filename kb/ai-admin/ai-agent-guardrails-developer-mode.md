@@ -1,5 +1,38 @@
 source_url: https://console-docs.gupshup.io/docs/ai-agent-guardrails
 
+<!-- kb-golden:v1 -->
+# AI Agent Guardrails (Developer Mode)
+
+**Module**: Ai Admin
+
+## Definition
+Introduction: This powerful feature allows you to define and enforce safety and content guidelines for your AI agents, ensuring they operate within your desired behavior and deliver safe and responsible outputs. Guardrails helps in strengthening Trust& Safetylayer of AI agents.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → AI Agent Guardrails (Developer Mode)
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Ai Admin → AI Agent Guardrails (Developer Mode)**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- 1. Understanding AI Agent Guardrails
+- 2. Accessing Guardrail Settings
+- Key Highlights:
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # AI Agent Guardrails (Developer Mode)
 
@@ -75,4 +108,3 @@ _Not applicable / not specified._
 Key notes found in source:
 
 - - Click "Save" once you have added all your examples.
-

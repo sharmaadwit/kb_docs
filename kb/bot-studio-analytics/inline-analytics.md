@@ -1,5 +1,38 @@
 source_url: https://console-docs.gupshup.io/docs/inline-analytics
 
+<!-- kb-golden:v1 -->
+# Inline Analytics
+
+**Module**: Bot Studio Analytics
+
+## Definition
+- Inline Analytics refers to node-specific analytics that can be referred to while designing your journey on the Bot Studio Canvas.
+- You can view the Inline Analytics for a journey by navigating to the Canvas of that journey and switching on the Analytics toggle present near the Journey Name.
+### Inline Analytics displays the counts only for the last 30 days.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio Analytics → Inline Analytics
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio Analytics → Inline Analytics**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Inline Analytics displays the counts only for the last 30 days.
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Inline Analytics
 

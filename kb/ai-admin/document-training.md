@@ -1,5 +1,35 @@
 source_url: https://console-docs.gupshup.io/docs/document-training
 
+<!-- kb-golden:v1 -->
+# Document Training
+
+**Module**: Ai Admin
+
+## Definition
+Steps to train documents:
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → Document Training
+
+### Setup path
+- Go to "Files" section in Content Tab.
+
+### Steps
+1. Open Gupshup Console.
+2. Go to "Files" section in Content Tab.
+3. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Advanced Pdf Parser
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Document Training
 

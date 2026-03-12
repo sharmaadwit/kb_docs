@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-ctwa-ad-on-meta-ads-manager
 
+<!-- kb-golden:v1 -->
+# Creating a CTWA Ad on Meta Ads Manager
+
+**Module**: Ctx
+
+## Definition
+Meta's guide to creating CTWA ads: https://www.facebook.com/business/help/447934475640650?id=371525583593535
+
+## Procedure
+### Where to configure it
+Gupshup Console → CTX → Creating a CTWA Ad on Meta Ads Manager
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → CTX → Creating a CTWA Ad on Meta Ads Manager**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Creating a CTWA Ad on Meta Ads Manager
 

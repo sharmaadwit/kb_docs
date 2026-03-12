@@ -1,5 +1,38 @@
 source_url: https://console-docs.gupshup.io/docs/ai-node
 
+<!-- kb-golden:v1 -->
+# AI Node
+
+**Module**: Bot Studio
+
+## Definition
+The AI Node is used to link journeys with trained workspaces created in the AI Admin in Bot Studio. For instance, if businesses want to answer customer FAQs, bot designer can train the data workspace with relevant FAQ related data sources and use the AI Node to link the journey with the same data workspace. When a user interacts with the bot at run-time, user can ask the query and the AI enabled journey provides the best relevant answer to the user.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → AI Node
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → AI Node**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- When to use
+- How to use
+- Limitations
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # AI Node
 

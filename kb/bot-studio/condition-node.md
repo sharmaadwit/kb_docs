@@ -1,5 +1,38 @@
 source_url: https://console-docs.gupshup.io/docs/condition-node
 
+<!-- kb-golden:v1 -->
+# Condition Node
+
+**Module**: Bot Studio
+
+## Definition
+These are automatically created when quick responses or buttons are used. By default, the condition will be on the current user message but you can create logic or conditions based on any other variable (any type).
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Condition Node
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Condition Node**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- When to use
+- Limitations
+- Condition Node
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Condition Node
 

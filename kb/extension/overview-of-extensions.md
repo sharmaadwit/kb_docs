@@ -1,5 +1,35 @@
 source_url: https://console-docs.gupshup.io/docs/extension
 
+<!-- kb-golden:v1 -->
+# Overview of Extensions
+
+**Module**: Extension
+
+## Definition
+Console offers extensions to seamlessly integrate additional services such as Enterprise SMS, Enterprise WhatsApp, and RCS. To enable these extensions, please contact console-support@gupshup.io. Once enabled, follow the below-mentioned steps:
+
+## Procedure
+### Where to configure it
+Gupshup Console → Extensions → Overview of Extensions
+
+### Setup path
+- Navigate to the Extensions tab to add the desired extension.
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to the Extensions tab to add the desired extension.
+3. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Overview of Extensions
 

@@ -1,5 +1,45 @@
 source_url: https://console-docs.gupshup.io/docs/privacy-policy
 
+<!-- kb-golden:v1 -->
+# Privacy Policy
+
+**Module**: Channels
+
+## Definition
+We care about protecting the personal information of our customers and visitors who use our website www.gupshup.io, our products or services (collectively, our "Users").
+
+## Procedure
+### Where to configure it
+Gupshup Console → Channels → Privacy Policy
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Channels → Privacy Policy**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Updated as on 17th April 2024
+- INFORMATION COVERED BY THIS PRIVACY POLICY
+- Personal identification information
+- Non-personal identification information
+- Web browser cookies
+- Gupshup's Business Products:
+- GupShup may collect and use Users information for the following purposes:
+- Authorized Users
+- SHARING WITHIN THE GUPSHUP CORPORATE FAMILY:
+- SHARING WITH INSURERS AND PROFESSIONAL ADVISERS
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Privacy Policy
 

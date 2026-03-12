@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-tiktok-specific-bot-journey
 
+<!-- kb-golden:v1 -->
+# Creating and Analysing a Click-to-WhatsApp Campaign
+
+**Module**: Ctx
+
+## Definition
+Step 1: Click on "Click to Chat Ads" -> Ad Management, and click on "Ad Campaigns"
+
+## Procedure
+### Where to configure it
+Gupshup Console → CTX → Creating and Analysing a Click-to-WhatsApp Campaign
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → CTX → Creating and Analysing a Click-to-WhatsApp Campaign**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Creating and Analysing a Click-to-WhatsApp Campaign
 

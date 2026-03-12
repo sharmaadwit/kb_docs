@@ -1,5 +1,39 @@
 source_url: https://console-docs.gupshup.io/docs/stateful-buttons-for-static-button-based-nodes
 
+<!-- kb-golden:v1 -->
+# Stateful Buttons for List and Quick Replies
+
+**Module**: Bot Studio
+
+## Definition
+Journey Builder features a variety of button-based nodes designed to send Quick Reply or Multiple radio button-based list messages across WhatsApp and other channels. These nodes have been upgraded to maintain their state along with the configured action, even after traversal and progression in the conversation when users select alternative buttons or inputs.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Stateful Buttons for List and Quick Replies
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Stateful Buttons for List and Quick Replies**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Overview:
+- Key Features:
+- What's New!
+- How to use Stateful Buttons ?
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Stateful Buttons for List and Quick Replies
 

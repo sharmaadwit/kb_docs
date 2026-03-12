@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/number-node
 
+<!-- kb-golden:v1 -->
+# Number Node
+
+**Module**: Bot Studio
+
+## Definition
+The number prompt is to capture a range of values of the whole number, decimal number, or both types of numbers. The user input can be saved in a variable on the node itself.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Number Node
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Number Node**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Number Node
 

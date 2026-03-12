@@ -1,5 +1,40 @@
 source_url: https://console-docs.gupshup.io/docs/wait-for-event
 
+<!-- kb-golden:v1 -->
+# Wait for Event
+
+**Module**: Bot Studio
+
+## Definition
+The Wait for Event Node is used to pause the bot’s execution and wait for a specific user input or a time-based trigger before proceeding. It helps maintain conversational context by holding the flow temporarily until the event occurs or the timeout duration expires.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Wait for Event
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Wait for Event**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- 1. User Message Event
+- 2. Time-Based Event
+- Scenario 1: User Response Wait
+- Scenario 2: Time-Based Reminder
+- Scenario 3: Inactivity Nudge (Recommended Alternative)
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Wait for Event
 

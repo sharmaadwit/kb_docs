@@ -1,5 +1,41 @@
 source_url: https://console-docs.gupshup.io/docs/backward-compatibility-for-existing-ai-journeys
 
+<!-- kb-golden:v1 -->
+# Backward Compatibility for existing AI Journeys
+
+**Module**: Ai Admin
+
+## Definition
+- Data Workspaces and associated content would move to individual newly created Workspace
+- The name of the Workspace would be the respective Data Workspace name
+- The system would create an intent “FAQ” in these workspaces
+- A new content Tag would be created with the name “General_Content” in respective Workspaces which has the migrated content
+### Intent and Entity Migration
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → Backward Compatibility for existing AI Journeys
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Ai Admin → Backward Compatibility for existing AI Journeys**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Intent and Entity Migration
+- Data Workspaces Migration
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Backward Compatibility for existing AI Journeys
 
@@ -51,4 +87,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

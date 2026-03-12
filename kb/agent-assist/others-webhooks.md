@@ -1,21 +1,42 @@
 source_url: https://console-docs.gupshup.io/docs/webhook
 
-<!-- procedural:v2 -->
+
+<!-- agent-assist-golden:v2 -->
 # Others: Webhooks
 
 **Module**: Agent Assist
 
-## Overview
+## What this feature does
 By leveraging the Webhooks feature, a brand can receive notifications for specific actions occurring on Agent Assist. Consider a scenario where a brand intends to send Push Notifications to its app users when they fail to respond. To achieve this, the brand can set up a webhook API within the configuration. By incorporating a reminder event in the webhook settings, the brand will receive reminder notifications through the API. These reminders can then be utilized internally to trigger Push Notifications, prompting customer engagement.
 
-## When to use
-_Add the primary scenarios and personas._
+## Where to configure it
+Agent Assist → Settings → Others
 
 ## Setup path
 - Navigate to Settings > Webhooks > Create Webhook.
-Navigate to Settings > Webhooks > Create Webhook.
 
-## Step-by-step configuration
+## Steps
+1. Open Agent Assist.
+2. Navigate to Settings > Webhooks > Create Webhook.
+3. Click **Save** to apply changes.
+
+## Save/publish behavior
+- Click **Save** (or **Save & Deploy** if available) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
+### Overview
+By leveraging the Webhooks feature, a brand can receive notifications for specific actions occurring on Agent Assist. Consider a scenario where a brand intends to send Push Notifications to its app users when they fail to respond. To achieve this, the brand can set up a webhook API within the configuration. By incorporating a reminder event in the webhook settings, the brand will receive reminder notifications through the API. These reminders can then be utilized internally to trigger Push Notifications, prompting customer engagement.
+
+### When to use
+_Add the primary scenarios and personas._
+
+### Details
 By leveraging the Webhooks feature, a brand can receive notifications for specific actions occurring on Agent Assist. Consider a scenario where a brand intends to send Push Notifications to its app users when they fail to respond. To achieve this, the brand can set up a webhook API within the configuration. By incorporating a reminder event in the webhook settings, the brand will receive reminder notifications through the API. These reminders can then be utilized internally to trigger Push Notifications, prompting customer engagement.
 
 Configuration
@@ -47,11 +68,3 @@ Reminder Event: Reminder event is triggered every time a customer reminder is se
 
 - Assignment Event: This event refers to the event which is triggered every time assignment happens in the system
 Assignment Event: This event refers to the event which is triggered every time assignment happens in the system
-
-## Business hours vs after-hours behavior
-_Not applicable / not specified._
-
-## Save/publish behavior
-_Not specified._
-
-**Last updated (from source)**: Updated 10 months ago

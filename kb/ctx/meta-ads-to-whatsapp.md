@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/overview
 
+<!-- kb-golden:v1 -->
+# Meta Ads to WhatsApp
+
+**Module**: Ctx
+
+## Definition
+(Each essential step has been explained in detail in their respective subsections)
+
+## Procedure
+### Where to configure it
+Gupshup Console → CTX → Meta Ads to WhatsApp
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → CTX → Meta Ads to WhatsApp**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Meta Ads to WhatsApp
 

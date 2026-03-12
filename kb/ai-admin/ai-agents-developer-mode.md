@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/introducing-ai-agents
 
+<!-- kb-golden:v1 -->
+# AI Agents (Developer Mode)
+
+**Module**: Ai Admin
+
+## Definition
+Gupshup's AI Agents represent the next evolution in enterprise communication—sophisticated digital assistants engineered to deliver seamless, contextual, and multi-turn conversations across WhatsApp and Web Channels
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → AI Agents (Developer Mode)
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Ai Admin → AI Agents (Developer Mode)**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # AI Agents (Developer Mode)
 
@@ -57,4 +88,3 @@ Key notes found in source:
 - - Skills: Deploy task-specific capabilities through specialized prompts, enabling your agent to perform exactly as your business requires and meet the engagement expectation
 - Launch Your AI Agent in 5 Streamlined Steps
 - - Optimize & Deploy: Fine-tune settings, validate performance, and launch
-

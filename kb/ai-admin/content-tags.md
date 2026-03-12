@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/content-tags-1
 
+<!-- kb-golden:v1 -->
+# Content Tags
+
+**Module**: Ai Admin
+
+## Definition
+Content Tags: A content tag is a label assigned to the uploaded content (such as a docs, web URL, catalog or raw text) to categorize and organize it based on its subject matter, context, or theme. Tags are used to classify content in a way that helps both users and LLM identify and retrieve relevant information more easily to answer end customer queries. Single or multiple content tags can be created in the content section.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → Content Tags
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Ai Admin → Content Tags**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Content Tags
 
@@ -28,4 +59,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

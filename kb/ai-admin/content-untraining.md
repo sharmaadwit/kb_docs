@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/content-untraining
 
+<!-- kb-golden:v1 -->
+# Content Untraining
+
+**Module**: Ai Admin
+
+## Definition
+Content Untraining enhancement allows users to manage their trained content more effectively by enabling the removal of previously trained content.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → Content Untraining
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Ai Admin → Content Untraining**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Content Untraining
 
@@ -61,4 +92,3 @@ Key notes found in source:
 
 - - Click on the Save & Train button present in the Content section to complete the Untraining.
 - - Click on Save & Train button present in Content section to complete the Untraining.
-

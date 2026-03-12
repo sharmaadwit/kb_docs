@@ -1,5 +1,45 @@
 source_url: https://console-docs.gupshup.io/docs/react-native-sdk
 
+<!-- kb-golden:v1 -->
+# React Native
+
+**Module**: Channels
+
+## Definition
+- React Native CLI
+- Node.js (v18 or above)
+- Android Studio and Xcode installed
+- A working React Native project
+
+## Procedure
+### Where to configure it
+Gupshup Console → Channels → React Native
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Channels → React Native**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Prerequisites
+- Android Setup
+- Platform-specific Configuration
+- iOS Native Setup
+- Android Testing
+- iOS Testing
+- Debugging
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # React Native
 

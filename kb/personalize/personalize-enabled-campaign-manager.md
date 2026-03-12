@@ -1,5 +1,38 @@
 source_url: https://console-docs.gupshup.io/docs/power-of-customer360-in-campaign-manager
 
+<!-- kb-golden:v1 -->
+# Personalize enabled Campaign Manager
+
+**Module**: Personalize
+
+## Definition
+- Maximize your marketing potential with our Personalize. Leverage rich data points & run targeted, personalized campaigns
+- For running campaigns now you can select users based on lists and segments defined in Personalize platform, these segments are also dynamically updated based on set condition (Hence an ability to send real-time hyper personalized and targeted campaigns)
+Choosing a segment as audience for a campaign
+
+## Procedure
+### Where to configure it
+Gupshup Console → Personalize → Personalize enabled Campaign Manager
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Personalize → Personalize enabled Campaign Manager**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Personalize enabled Campaign Manager
 

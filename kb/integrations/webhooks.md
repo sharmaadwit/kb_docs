@@ -1,5 +1,37 @@
 source_url: https://console-docs.gupshup.io/docs/webhooks
 
+<!-- kb-golden:v1 -->
+# Webhooks
+
+**Module**: Integrations
+
+## Definition
+New Webhooks section in integrations providing ability to send specific events to these webhooks.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Integrations → Webhooks
+
+### Setup path
+- Log into your Gupshup Console.
+- Navigate to your App > Integration > Webhooks.
+
+### Steps
+1. Open Gupshup Console.
+2. Log into your Gupshup Console.
+3. Navigate to your App > Integration > Webhooks.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Webhooks
 

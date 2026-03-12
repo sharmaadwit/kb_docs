@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/remove-members-from-a-project
 
+<!-- kb-golden:v1 -->
+# Remove Members from a Project
+
+**Module**: Overview
+
+## Definition
+Managing members of a project can be a challenging task, especially when it comes to handling member accounts. At times, it may become necessary to delete a member from your project due to various reasons, such as employee termination, resignation, or simply cleaning up your records. In this article, we will guide you on how to delete a member from your organisation.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Overview → Remove Members from a Project
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Overview → Remove Members from a Project**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Remove Members from a Project
 

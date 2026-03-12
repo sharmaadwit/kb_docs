@@ -1,5 +1,43 @@
 source_url: https://console-docs.gupshup.io/docs/bot-analytics-conversational-path
 
+<!-- kb-golden:v1 -->
+# Conversational Path
+
+**Module**: Bot Studio Analytics
+
+## Definition
+The conversation path helps you visualize how your users are moving within different Journeys when conversing with the bot. You can identify major points where users are selecting options or dropping off, and make changes in bot design to improve overall engagement and conversion.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio Analytics → Conversational Path
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio Analytics → Conversational Path**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- It is strongly recommended to enter Node Names on the Journey canvas.
+- Controls on the Conversational Path
+- Start Node
+- Nodes with the Journey Name
+- Exit Nodes
+- Cyclic Nodes
+- Inactivity Nudges
+- The data in Bot Studio Analytics is retained for a period of one year.
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Conversational Path
 
@@ -92,4 +130,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

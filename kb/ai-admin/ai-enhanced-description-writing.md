@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/ai-enhanced-description-writing-1
 
+<!-- kb-golden:v1 -->
+# AI Enhanced Description Writing
+
+**Module**: Ai Admin
+
+## Definition
+Introduction: AI will be assisting users in writing effective Intent & Entity descriptions to improve runtime language understanding capabilities. AI enhanced description will be addressing following key issues observed in user written description are
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → AI Enhanced Description Writing
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Ai Admin → AI Enhanced Description Writing**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # AI Enhanced Description Writing
 
@@ -35,4 +66,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

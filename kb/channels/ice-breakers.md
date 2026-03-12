@@ -1,5 +1,38 @@
 source_url: https://console-docs.gupshup.io/docs/instagram-ice-breakers
 
+<!-- kb-golden:v1 -->
+# Ice Breakers
+
+**Module**: Channels
+
+## Definition
+- Ice Breakers provide a way for users to start a conversation with a business with a list of frequently asked questions.
+- Only first time users are able to view and interact with Ice Breakers.
+- A maximum of 4 questions can be set as Ice Breakers.
+How Ice Breakers appear on Instagram
+
+## Procedure
+### Where to configure it
+Gupshup Console → Channels → Ice Breakers
+
+### Setup path
+- Go to the Instagram Settings tab.
+
+### Steps
+1. Open Gupshup Console.
+2. Go to the Instagram Settings tab.
+3. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Ice Breakers
 
@@ -59,4 +92,3 @@ Key notes found in source:
 - - Click Save. Ice Breakers will now start appearing for first time users in your linked Instagram account's DM.
 - - Enter Ice Breakers for that region. Click Save. The corresponding Ice Breakers will start appearing for first time users located in that region.
 - - If you wish to delete any Ice Breaker, click the delete icon next to it and click Save.
-

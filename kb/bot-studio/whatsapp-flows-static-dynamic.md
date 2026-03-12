@@ -1,5 +1,45 @@
 source_url: https://console-docs.gupshup.io/docs/whatsapp-flows-static-2-way
 
+<!-- kb-golden:v1 -->
+# WhatsApp Flows - Static/Dynamic
+
+**Module**: Bot Studio
+
+## Definition
+The WhatsApp Flows feature enhances the platform's capabilities by enabling two-way messaging triggered from the JB WhatsApp Flow node. With this feature, you can seamlessly initiate WhatsApp Flows at any point during a conversation, ensuring dynamic interaction and real-time engagement.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → WhatsApp Flows - Static/Dynamic
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → WhatsApp Flows - Static/Dynamic**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- 1. Customer Support and Service:
+- 2. Sales and Marketing
+- 3. Appointment Scheduling
+- Pre-Checks:
+- What's supported ?
+- What's not supported?
+- 1. WhatsApp Flow Message Node:
+- 2. WhatsApp Flows Journey:
+- 3. Flow Starting Node
+- 4. Flow Terminal Node
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # WhatsApp Flows - Static/Dynamic
 

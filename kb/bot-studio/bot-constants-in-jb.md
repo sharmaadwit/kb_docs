@@ -1,5 +1,38 @@
 source_url: https://console-docs.gupshup.io/docs/bot-constants-in-jb
 
+<!-- kb-golden:v1 -->
+# Bot Constants in JB
+
+**Module**: Bot Studio
+
+## Definition
+The Bot Constants is a variable type that streamlines the management of key values—such as interest rates, discount percentages, and event dates—that are consistent across all users at a given time but may change periodically. This feature allows bot designers to define and update these constants centrally, ensuring that all conversations happening with the bot are using the most up-to-date information. By making these constants accessible across the journeys, Bot Constants enhance operational efficiency, reduce the risk of errors, and ensure that all users are aligned with the latest data. This leads to more accurate and reliable bot interactions, enhancing overall project performance.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Bot Constants in JB
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Bot Constants in JB**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Dynamic Pricing Updates:
+- Seasonal Campaign Adjustments:
+- Event Reminder Customization:
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Bot Constants in JB
 

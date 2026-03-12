@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/clear-context-nodedev-mode-only
 
+<!-- kb-golden:v1 -->
+# Clear Context Node (Gupshup Dev Access Only)
+
+**Module**: Bot Studio
+
+## Definition
+Clear Context Node is a special node accessible to Gupshup Developers only where the business logic requires to clear the previous journey stack after completion of a journey or at some other point. Clear Context node will delete the Journey stack which is created at backend to keep track of the journeys which user has traversed and switched the context midway.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Clear Context Node (Gupshup Dev Access Only)
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Clear Context Node (Gupshup Dev Access Only)**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Clear Context Node (Gupshup Dev Access Only)
 

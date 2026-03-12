@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/default-journeys
 
+<!-- kb-golden:v1 -->
+# Default Journeys
+
+**Module**: Bot Studio
+
+## Definition
+Each bot has three journeys by default in the User Journeys section -
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Default Journeys
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Default Journeys**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Limitations:
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Default Journeys
 

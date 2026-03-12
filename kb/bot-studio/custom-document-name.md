@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/custom-document-name
 
+<!-- kb-golden:v1 -->
+# Custom Document Name
+
+**Module**: Bot Studio
+
+## Definition
+Document node allows businesses to send a ‘custom file name’ for the documents sent to users. The file name is an optional field with a limit of 20 characters. The original file name will be replaced by the custom name if provided
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Custom Document Name
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Custom Document Name**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Custom Document Name
 

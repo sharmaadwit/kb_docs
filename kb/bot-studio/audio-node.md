@@ -1,5 +1,39 @@
 source_url: https://console-docs.gupshup.io/docs/audio-node
 
+<!-- kb-golden:v1 -->
+# Audio Node
+
+**Module**: Bot Studio
+
+## Definition
+The JB canvas has been introduced with one more node with frequently used use- cases. Audio node, which can be used by businesses to send audio messages to supported channels within the file format & size limitations imposed by the channels. The supported channels of Audio node are: Web, Instagram, WhatsApp, GIP
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Audio Node
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Audio Node**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Personalized Birthday Wishes
+- Reminder Messages
+- Audio Instructions
+- Order Status Updates
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Audio Node
 

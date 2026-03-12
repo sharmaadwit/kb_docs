@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/web-security
 
+<!-- kb-golden:v1 -->
+# Security
+
+**Module**: Channels
+
+## Definition
+You can secure your Web chat widget by whitelisting domains in the Preferences tab.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Channels → Security
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Channels → Security**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Security
 
@@ -36,4 +67,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

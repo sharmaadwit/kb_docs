@@ -1,64 +1,43 @@
 source_url: https://console-docs.gupshup.io/docs/navigating-through-the-views
 
-<!-- procedural:v2 -->
+
+<!-- agent-assist-golden:v2 -->
 # Efficient Chat Navigation for Different User Roles Through Views
 
 **Module**: Agent Assist
 
-## Overview
+## What this feature does
 Learn how to navigate chat views efficiently across different user roles - admins, supervisors, and agents. Discover role-specific views and customization options for optimal chat management.
 
-## When to use
-_Add the primary scenarios and personas._
+## Where to configure it
+Agent Assist
 
 ## Setup path
-_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+- _Add the click-path in Console (breadcrumbs)._ 
 
-## Step-by-step configuration
+## Steps
+1. Open Agent Assist.
+2. Configure the required fields.
+
+## Save/publish behavior
+- _No save/publish step is required for this page unless explicitly stated in the UI._
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
+### Overview
+Learn how to navigate chat views efficiently across different user roles - admins, supervisors, and agents. Discover role-specific views and customization options for optimal chat management.
+
+### When to use
+_Add the primary scenarios and personas._
+
+### Details
 Learn how to navigate chat views efficiently across different user roles - admins, supervisors, and agents. Discover role-specific views and customization options for optimal chat management.
 
 # Efficient Chat Navigation for Different User Roles Through Views
 
 Navigate through your chat workload efficiently with role-specific views designed to streamline operations for administrators, supervisors, and agents.
-
-## Comprehensive Chat Views for Administrators
-
-Admins have access to several default views to categorize chats based on their characteristics, plus the flexibility to create custom shared and personal views.
-
-View all ongoing chats that are not handled by bots, resolved, or closed. These are chats currently being managed by agents or awaiting agent attention.
-
-Access all chats assigned to agents for management.
-
-See all chats not managed by bots and not assigned to agents, indicating the need for agent attention.
-
-Monitor chats currently being handled by bots.
-
-Review chats that have been successfully resolved and closed by the bot.
-
-Examine chats that have been closed by agents.
-
-Admins have the flexibility to create custom shared views and personal views to further segment chats based on their specific operational needs through the settings > views menu.
-
-## Key Benefits
-
-### 🎯 Role-Based Organization
-
-Each user role has access to views specifically designed for their responsibilities and workflow requirements.
-
-### ⚡ Efficient Navigation
-
-Quickly filter and access the most relevant chats without unnecessary clutter or information overload.
-
-### 🔧 Customizable Views
-
-Create personal and shared views to match your specific operational needs and team structure.
-
-By utilizing these customized chat views, users in different roles can effectively manage and navigate through their chat workload with improved efficiency and clarity.
-
-## Business hours vs after-hours behavior
-_Not applicable / not specified._
-
-## Save/publish behavior
-_Not specified._
-
-**Last updated (from source)**: Updated 4 months ago

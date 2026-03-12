@@ -1,21 +1,51 @@
 source_url: https://console-docs.gupshup.io/docs/response-management-customer-satisfaction
 
-<!-- procedural:v2 -->
+
+<!-- agent-assist-golden:v2 -->
 # Response Management: Customer Satisfaction
 
 **Module**: Agent Assist
 
-## Overview
+## What this feature does
 Definition: Customer Satisfaction tools include feedback forms used to gather customer feedback, assess satisfaction levels, identify areas for improvement, and collect product or service suggestions.
 
-## When to use
+Common uses:
+
+- Customer Satisfaction tools improve services, gather insights, and maintain high customer satisfaction levels.
+
+- Conditional Questions enhance feedback collection by seeking detailed responses based on initial feedback.
+
+## Where to configure it
+Agent Assist → Settings → Response Management
+
+## Setup path
+- _Add the click-path in Console (breadcrumbs)._ 
+
+## Steps
+1. Open Agent Assist.
+2. Go to **Settings**.
+3. Click **Response Management**.
+4. Configure the required fields.
+5. Click **Save** to apply changes.
+
+## Save/publish behavior
+- Click **Save** (or **Save & Deploy** if available) to apply changes.
+
+## Available options
+- Conditional Questions in Feedback Form
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
+### Overview
+Definition: Customer Satisfaction tools include feedback forms used to gather customer feedback, assess satisfaction levels, identify areas for improvement, and collect product or service suggestions.
+
+### When to use
 - Customer Satisfaction tools improve services, gather insights, and maintain high customer satisfaction levels.
 - Conditional Questions enhance feedback collection by seeking detailed responses based on initial feedback.
 
-## Setup path
-_In Console: add the navigation path (e.g., `Module → Settings → …`)._
-
-## Step-by-step configuration
+### Details
 Definition: Customer Satisfaction tools include feedback forms used to gather customer feedback, assess satisfaction levels, identify areas for improvement, and collect product or service suggestions.
 
 Uses: Customer Satisfaction tools improve services, gather insights, and maintain high customer satisfaction levels.
@@ -39,13 +69,3 @@ Step 4: Save the configuration.
 Section 9: Conclusion
 
 Auto Replies and Customer Satisfaction tools are indispensable for maintaining effective communication with customers, automating critical responses, and collecting valuable feedback to enhance services.Proper configuration of these features is essential for seamless customer interactions and service improvements.
-
-## Business hours vs after-hours behavior
-_Not applicable / not specified._
-
-## Save/publish behavior
-Key notes found in source:
-
-- Step 4: Save the configuration.
-
-**Last updated (from source)**: Updated 10 months ago

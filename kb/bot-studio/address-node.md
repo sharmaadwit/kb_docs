@@ -1,5 +1,38 @@
 source_url: https://console-docs.gupshup.io/docs/address-node
 
+<!-- kb-golden:v1 -->
+# Address Node
+
+**Module**: Bot Studio
+
+## Definition
+Address Node
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Address Node
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Address Node**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Sample Payload for Pre-Filled Values:
+- Sample Payload for Saved Address:
+- Sample Payload for Validation:
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Address Node
 

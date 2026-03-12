@@ -1,5 +1,42 @@
 source_url: https://console-docs.gupshup.io/docs/api-node
 
+<!-- kb-golden:v1 -->
+# API Node
+
+**Module**: Bot Studio
+
+## Definition
+Request an API response in the conversation flow using the API Node. API node has a dropdown to select the API that you want to use. API action node allows you to hit an API at that point of the flow, and store the API response in a variable for further use.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → API Node
+
+### Setup path
+- Go to the left-hand menu under Action Nodes.
+
+### Steps
+1. Open Gupshup Console.
+2. Go to the left-hand menu under Action Nodes.
+3. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- API Node
+- 🔧 Where to Find It
+- 🛠️ How to Configure It
+- 🔍 Example Use Case
+- 🧠 Advanced Options
+- ✅ Best Practices
+- ✅ Allowed Conditions:
+- ❌ Restricted / Not Allowed Conditions:
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # API Node
 
@@ -93,4 +130,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

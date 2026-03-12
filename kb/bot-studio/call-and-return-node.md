@@ -1,5 +1,38 @@
 source_url: https://console-docs.gupshup.io/docs/call-return-node
 
+<!-- kb-golden:v1 -->
+# Call & Return Node
+
+**Module**: Bot Studio
+
+## Definition
+This is one of the action nodes to call another journey from the ongoing journey and return back to the same journey when the called journey is executed completely.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Call & Return Node
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Call & Return Node**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- When to use
+- How to use
+- Call & Return Node
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Call & Return Node
 

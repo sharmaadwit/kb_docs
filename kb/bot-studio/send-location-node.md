@@ -1,5 +1,37 @@
 source_url: https://console-docs.gupshup.io/docs/send-location-node
 
+<!-- kb-golden:v1 -->
+# Send Location Node
+
+**Module**: Bot Studio
+
+## Definition
+The Location Node (Message Node) feature allows businesses to share location details with end users via WhatsApp, making it easier to inform them about the business's serviceable locations. This feature is ideal for businesses that need to communicate precise location information to their end users.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Send Location Node
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Send Location Node**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Service Area Notifications
+- Store Location Sharing
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Send Location Node
 

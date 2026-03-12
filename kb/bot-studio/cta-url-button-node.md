@@ -1,5 +1,35 @@
 source_url: https://console-docs.gupshup.io/docs/cta-url-support-on-reply-button
 
+<!-- kb-golden:v1 -->
+# CTA URL Button Node
+
+**Module**: Bot Studio
+
+## Definition
+The CTA URL Button Node is a new addition to the Message Category in Journey Builder, designed to enhance WhatsApp messaging capabilities. This feature allows businesses and bot designers to share clickable links directly through a Call-To-Action (CTA) button, eliminating the need for sending lengthy URLs as text messages. It simplifies user interactions, offering a seamless way to direct users to external websites, promotions, or resources.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → CTA URL Button Node
+
+### Setup path
+- Navigate to Message Nodes in Journey Builder and select the CTA URL Button Node.
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to Message Nodes in Journey Builder and select the CTA URL Button Node.
+3. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # CTA URL Button Node
 

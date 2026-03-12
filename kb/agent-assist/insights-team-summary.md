@@ -1,20 +1,42 @@
 source_url: https://console-docs.gupshup.io/docs/insights-team-summary
 
-<!-- procedural:v2 -->
+
+<!-- agent-assist-golden:v2 -->
 # Insights: Team Summary
 
 **Module**: Agent Assist
 
-## Overview
+## What this feature does
 Overview The Team Summary Report provides team-level productivity metrics across four specialized tabs: Summary, FRT Summary, Resolution Summary, and Response Summary. Each tab offers insights into different aspects of team performance.
 
-## When to use
-_Add the primary scenarios and personas._
+## Where to configure it
+Agent Assist → Insights
 
 ## Setup path
-_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+- _Add the click-path in Console (breadcrumbs)._ 
 
-## Step-by-step configuration
+## Steps
+1. Open Agent Assist.
+2. Go to **Insights**.
+3. Configure the required fields.
+
+## Save/publish behavior
+- _No save/publish step is required for this page unless explicitly stated in the UI._
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- Important Notes
+
+## Reference (from source)
+### Overview
+Overview The Team Summary Report provides team-level productivity metrics across four specialized tabs: Summary, FRT Summary, Resolution Summary, and Response Summary. Each tab offers insights into different aspects of team performance.
+
+### When to use
+_Add the primary scenarios and personas._
+
+### Details
 Overview The Team Summary Report provides team-level productivity metrics across four specialized tabs: Summary, FRT Summary, Resolution Summary, and Response Summary. Each tab offers insights into different aspects of team performance.
 
 Tab 1: Summary This tab provides high-level metrics about chat volume and team productivity. Columns
@@ -80,32 +102,3 @@ Important Notes
 - Resource allocation decisions
 - Identifying training needs
 - Setting team goals and benchmarks
-
-## Business hours vs after-hours behavior
-Key notes found in source:
-
-- Tab 2: FRT (First Response Time) Summary This tab analyzes the team's initial response speed to customer inquiries, divided into business hours and calendar hours perspectives.
-- Business Hours Table Measures FRT metrics considering only defined business operating hours:
-- - Min FRT: Fastest first response time achieved by the team (including non-business hours)
-- - Average FRT: Mean time taken by the team to send first responses (including non-business hours)
-- - Max FRT: Longest first response time recorded for the team (including non-business hours)
-- Tab 3: Resolution Summary This tab tracks how quickly teams resolve customer issues, with separate views for business hours and calendar hours. Business Hours Table Measures resolution metrics during business hours:
-- - Min Resolution Time: Fastest resolution time (including non-business hours)
-- - Average Resolution Time: Mean resolution time (including non-business hours)
-- - Max Resolution Time: Longest resolution time (including non-business hours)
-- Tab 4: Response Summary This tab analyzes ongoing conversation response times, separated into business hours and calendar hours views.
-- Business Hours Table Measures response metrics during business hours:
-- - Min Response Time: Fastest response time (including non-business hours)
-- - Average Response Time: Mean response time (including non-business hours)
-- - Max Response Time: Longest response time (including non-business hours)
-- - Business Hours vs Calendar Hours Business Hours: Only counts time during defined operating hours Calendar Hours: Counts all hours continuously (24/7)
-- - Business Hours: Only counts time during defined operating hours
-- - Time Calculations All time metrics are typically displayed in HH:MM:SS format Business hours calculations exclude non-operating hours Calendar hours calculations include all time periods
-- - Business hours calculations exclude non-operating hours
-- - Metric Definitions First Response Time (FRT): Time from chat assignment to first agent response Resolution Time: Time from chat start to successful completion Response Time: Time between customer message and agent response Best Practices for Report Usage Compare business hours and calendar hours metrics to understand impact of operating hours Use Summary tab for quick team performance overview Use detailed timing tabs (FRT, Resolution, Response) for in-depth analysis Consider seasonal and time-zone impacts when analyzing metrics Use these metrics for: Team performance evaluation Resource allocation decisions Identifying training needs Setting team goals and benchmarks
-- - Compare business hours and calendar hours metrics to understand impact of operating hours
-
-## Save/publish behavior
-_Not specified._
-
-**Last updated (from source)**: Updated 10 months ago

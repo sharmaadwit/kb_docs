@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/workspace-validation
 
+<!-- kb-golden:v1 -->
+# Workspace Validation
+
+**Module**: Ai Admin
+
+## Definition
+Introduction: Workspace validation feature will validate user actions in a workspace against a set of pre defined conditions to show Warnings & Recommendations. Complying with these pre defined conditions improves overall bot performance for AI powered journeys. Validation features assist users in settings up the workspace according to best practices.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → Workspace Validation
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Ai Admin → Workspace Validation**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Workspace Validation
 
@@ -67,4 +98,3 @@ _Not applicable / not specified._
 Key notes found in source:
 
 - - Validation conditions are checked after every save & train operation
-

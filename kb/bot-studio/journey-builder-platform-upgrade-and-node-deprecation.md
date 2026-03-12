@@ -1,5 +1,38 @@
 source_url: https://console-docs.gupshup.io/docs/journey-builder-platform-upgrade-node-deprecation
 
+<!-- kb-golden:v1 -->
+# Journey Builder Platform Upgrade & Node Deprecation
+
+**Module**: Bot Studio
+
+## Definition
+As part of our efforts to enhance the Journey Builder platform, Gupshup is transitioning all projects to a more modern and scalable infrastructure. This document outlines upcoming node updates, deprecations, user-facing changes, and next steps for all customers and partners.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Journey Builder Platform Upgrade & Node Deprecation
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Journey Builder Platform Upgrade & Node Deprecation**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- 🧩 Use Alternate Nodes in JB V2
+- Key Notes:
+- 📘 Need Help?
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Journey Builder Platform Upgrade & Node Deprecation
 

@@ -1,5 +1,35 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-tiktok-specific-bot-journey-copy
 
+<!-- kb-golden:v1 -->
+# Creating a TikTok-specific Bot Journey
+
+**Module**: Ctx
+
+## Definition
+Please click on the link below to download the sample json journey template for TikTok: https://drive.google.com/drive/folders/1s_p6T89yDJWNf-hN1yUx9krqgHBcVPJ9?usp=sharing
+
+## Procedure
+### Where to configure it
+Gupshup Console → CTX → Creating a TikTok-specific Bot Journey
+
+### Setup path
+- Go to "Ad Management" in the left menu under "Click to chat ads", copy it from the right corner and paste it in the code.
+
+### Steps
+1. Open Gupshup Console.
+2. Go to "Ad Management" in the left menu under "Click to chat ads", copy it from the right corner and paste it in the code.
+3. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Creating a TikTok-specific Bot Journey
 

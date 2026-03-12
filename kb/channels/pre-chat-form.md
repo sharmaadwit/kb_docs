@@ -1,5 +1,42 @@
 source_url: https://console-docs.gupshup.io/docs/web-pre-chat-form
 
+<!-- kb-golden:v1 -->
+# Pre-Chat Form
+
+**Module**: Channels
+
+## Definition
+- The Pre-Chat Form appears as the first thing users see on the chat widget after clicking the widget icon.
+- Users must submit the Pre-Chat Form before they can start messaging on the chat widget.
+- The form will help you get consent from new users on your terms and conditions or privacy policy before starting a chat.
+- If the Retain Customer Chat History setting is enabled, the Pre-Chat Form will be shown to new anonymous users only once. Logged in users will be shown the form every time regardless of the setting.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Channels → Pre-Chat Form
+
+### Setup path
+- Go to the Pre-Chat Form tab in Settings of the Web channel.
+
+### Steps
+1. Open Gupshup Console.
+2. Go to the Pre-Chat Form tab in Settings of the Web channel.
+3. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Header Image
+- Header
+- Sub-Header
+- Checkbox Text
+- Global Button Text
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Pre-Chat Form
 

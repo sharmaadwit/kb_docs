@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/settings-beta
 
+<!-- kb-golden:v1 -->
+# Settings (Developer Mode)
+
+**Module**: Ai Admin
+
+## Definition
+Introduction: The Settings Module allows users to fine-tune AI agent behavior by configuring advanced parameters (Max token, Temp. & Top_p) related to the underlying LLM (Large Language Model). These settings determine how your agent responds, how creative or controlled it is, and what agent should respond in timeout condition.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → Settings (Developer Mode)
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Ai Admin → Settings (Developer Mode)**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Settings (Developer Mode)
 
@@ -32,4 +63,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

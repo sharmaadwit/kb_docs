@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/action-nodes
 
+<!-- kb-golden:v1 -->
+# Action Nodes
+
+**Module**: Bot Studio
+
+## Definition
+Various actions are required to be taken in designing an effective chatbot journey. Integrations in the journey, adding delay to the messages, waiting for an event, coding some use cases, and applying conditions to create branching in the flow are some actions covered in the Bot Studio.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Action Nodes
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Action Nodes**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Action Nodes
 

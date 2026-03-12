@@ -1,5 +1,35 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-workspace-1
 
+<!-- kb-golden:v1 -->
+# Creating a Workspace
+
+**Module**: Ai Admin
+
+## Definition
+To integrate an AI agent into a journey, creating a Workspace is the first essential step. The workspace serves as the configuration hub where all agent components are defined and managed. Once the setup is complete, the workspace can be linked to a journey, enabling a seamless, fully equipped, and context-aware agent interaction.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → Creating a Workspace
+
+### Setup path
+- Go to the AI Admin section under Bot Studio in the navigation sidebar on the left.
+
+### Steps
+1. Open Gupshup Console.
+2. Go to the AI Admin section under Bot Studio in the navigation sidebar on the left.
+3. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Creating a Workspace
 

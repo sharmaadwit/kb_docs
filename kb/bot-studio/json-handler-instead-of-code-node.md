@@ -1,5 +1,37 @@
 source_url: https://console-docs.gupshup.io/docs/json-handler-instead-of-code-node
 
+<!-- kb-golden:v1 -->
+# JSON Handler instead of Code Node
+
+**Module**: Bot Studio
+
+## Definition
+In older versions of Journey Builder (JB Pro), you'd use a Code Node and write custom JavaScript like this:
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → JSON Handler instead of Code Node
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → JSON Handler instead of Code Node**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Sample API JSON Payload (Example)
+- How it works:
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # JSON Handler instead of Code Node
 

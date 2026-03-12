@@ -1,25 +1,56 @@
 source_url: https://console-docs.gupshup.io/docs/chat-management-assignment-rules-chat-rules-slas-re-open-time
 
-<!-- procedural:v2 -->
+
+<!-- agent-assist-golden:v2 -->
 # Chat Management: Assignment Rules
 
 **Module**: Agent Assist
 
-## Overview
+## What this feature does
 Section 1: Introduction
 
-## When to use
+Common uses:
+
+- Chat management and assignment rules are crucial in ensuring that customer queries and requests are handled promptly, assigned to the right agents or teams, and adhere to service level agreements (SLAs).
+
+- The default assignment rule is useful for brands with no specific assignment preferences, as it ensures prompt chat assignment and minimizes manual configuration.
+
+- Tags play a significant role in chat assignment by allowing brands to direct chats to teams based on tags, making it easier to manage and assign chats efficiently.
+
+## Where to configure it
+Agent Assist → Settings → Chat Management
+
+## Setup path
+- Navigate to the "Settings" tab on the bottom left side of your Agent Assist dashboard.
+- Go to "Assignment Rules" in the "Settings" section.
+
+## Steps
+1. Open Agent Assist.
+2. Navigate to the "Settings" tab on the bottom left side of your Agent Assist dashboard.
+3. Go to "Assignment Rules" in the "Settings" section.
+4. Click **Save** to apply changes.
+
+## Save/publish behavior
+- Click **Save** (or **Save & Deploy** if available) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
+### Overview
+Section 1: Introduction
+
+### When to use
 - Chat management and assignment rules are crucial in ensuring that customer queries and requests are handled promptly, assigned to the right agents or teams, and adhere to service level agreements (SLAs).
 - The default assignment rule is useful for brands with no specific assignment preferences, as it ensures prompt chat assignment and minimizes manual configuration.
 - Tags play a significant role in chat assignment by allowing brands to direct chats to teams based on tags, making it easier to manage and assign chats efficiently.
 - Sticky Assignment enhances customer-agent relationships by ensuring that customers interact with the same agent when reopening chats, thereby improving the overall customer experience.
 - External Assignment Rules are beneficial for brands looking to align their CRM data with chat assignment, ensuring that customers are directed to the most appropriate agents based on CRM information.
 
-## Setup path
-- Navigate to the "Settings" tab on the bottom left side of your Agent Assist dashboard.
-- Go to "Assignment Rules" in the "Settings" section.
-
-## Step-by-step configuration
+### Details
 Section 1: Introduction
 
 Definition: Chat Management in Agent Assist refer to the tools and strategies used to streamline the process of handling customer chats, assigning them to the appropriate agents or teams, and maintaining service quality and efficiency.
@@ -119,12 +150,3 @@ Note: To enable this feature, contact console-support@gupshup.io. The API doc ca
 Updated 10 months ago
 
 - Assignment Enhancements in Console 7.0
-
-## Business hours vs after-hours behavior
-_Not applicable / not specified._
-
-## Save/publish behavior
-Key notes found in source:
-
-- - Click "Save" to save the rule.
-

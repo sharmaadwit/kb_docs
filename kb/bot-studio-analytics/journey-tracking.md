@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/bot-analytics-journey-tracking
 
+<!-- kb-golden:v1 -->
+# Journey Tracking
+
+**Module**: Bot Studio Analytics
+
+## Definition
+This table provides a view of conversations, active users and messages across all journeys in the bot.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio Analytics → Journey Tracking
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio Analytics → Journey Tracking**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- The data in Bot Studio Analytics is retained for a period of one year.
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Journey Tracking
 
@@ -44,4 +75,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

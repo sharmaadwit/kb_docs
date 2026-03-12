@@ -1,5 +1,39 @@
 source_url: https://console-docs.gupshup.io/docs/multi-journey-user-journeys
 
+<!-- kb-golden:v1 -->
+# Multi-Journey - User Journeys
+
+**Module**: Bot Studio
+
+## Definition
+Multi Journey is the concept of having a complex use case broken down into smaller journeys in a chatbot which can be called in any other journey.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Multi-Journey - User Journeys
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Multi-Journey - User Journeys**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Multi Journey
+- When to use
+- How to use
+- Multi Journey Screen
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Multi-Journey - User Journeys
 

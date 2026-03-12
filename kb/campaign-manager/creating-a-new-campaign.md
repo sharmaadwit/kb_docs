@@ -1,5 +1,39 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-new-campaign
 
+<!-- kb-golden:v1 -->
+# Creating A New Campaign
+
+**Module**: Campaign Manager
+
+## Definition
+- Before creating a new campaign, you need to create a template and get it approved by WhatsApp. You can use WhatsApp approved templates to send the campaign. To create a template, go to Channels → WhatsApp → Templates → Create a template.
+- After you create a template and it gets approved by WhatsApp, go to campaigns tab in the left navigation. From the campaign listing page, you can click on “+ New campaign” CTA and go through a step by step flow to create a new campaign.
+- If the content or users are the same as any of the previously created campaigns you can clone a campaign rather than starting from scratch.
+A new campaign can be created in just 4 steps -
+
+## Procedure
+### Where to configure it
+Gupshup Console → Campaign Manager → Creating A New Campaign
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Campaign Manager → Creating A New Campaign**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Creating A New Campaign
 

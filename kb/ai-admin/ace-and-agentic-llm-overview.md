@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/ace-agentic-llm-overview-copy
 
+<!-- kb-golden:v1 -->
+# ACE & Agentic LLM Overview
+
+**Module**: Ai Admin
+
+## Definition
+ACE LLM by Gupshup is a family of generative models to automate marketing, commerce & support related conversations powered by Open & Closed source foundational models. It has been fine-tuned on industry & function-specific data to deliver a delightful customer experience. Enterprises get a head-start in delivering ACE LLM-powered conversational experiences.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → ACE & Agentic LLM Overview
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Ai Admin → ACE & Agentic LLM Overview**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # ACE & Agentic LLM Overview
 
@@ -58,4 +89,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

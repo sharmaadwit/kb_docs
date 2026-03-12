@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/workspace-audit
 
+<!-- kb-golden:v1 -->
+# Workspace Audit
+
+**Module**: Ai Admin
+
+## Definition
+The Workspace Audit feature provides a complete record of all changes made in a workspace. It allows users to audit actions such as content training/untraining, intents & entities creation, updating workspace settings, etc. Audit records will help users in transparent change tracking, issue debugging & regulatory compliance.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → Workspace Audit
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Ai Admin → Workspace Audit**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Workspace Audit
 
@@ -38,4 +69,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

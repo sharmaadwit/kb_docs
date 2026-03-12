@@ -1,5 +1,40 @@
 source_url: https://console-docs.gupshup.io/docs/prompts
 
+<!-- kb-golden:v1 -->
+# Prompt Nodes
+
+**Module**: Bot Studio
+
+## Definition
+We need to capture user details and ask them basic questions like their Name, Email, Phone number, Date of Birthn and Numbers. Prompts are used to add such types of questions in the chatbot conversation.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Prompt Nodes
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Prompt Nodes**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Types of Prompt Nodes
+- When to use
+- Limitations
+- Prompt’s Elements
+- How to use
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Prompt Nodes
 
@@ -61,4 +96,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

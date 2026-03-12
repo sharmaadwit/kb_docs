@@ -1,5 +1,40 @@
 source_url: https://console-docs.gupshup.io/docs/manage-api
 
+<!-- kb-golden:v1 -->
+# Manage API
+
+**Module**: Bot Studio
+
+## Definition
+It is a section where you can set all the APIs to integrate with external systems.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Manage API
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Manage API**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Manage APIs
+- When to use
+- Limitations
+- How to Use
+- Manage APIs Screen
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Manage API
 

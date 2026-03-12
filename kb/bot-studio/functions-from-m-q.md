@@ -1,5 +1,44 @@
 source_url: https://console-docs.gupshup.io/docs/functions-from-m-q
 
+<!-- kb-golden:v1 -->
+# Functions from M - Q
+
+**Module**: Bot Studio
+
+## Definition
+Return the highest value from a list or array. The list or array is inclusive at both ends.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Functions from M - Q
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Functions from M - Q**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- max
+- merge
+- min
+- mod
+- month
+- mul
+- newGuid
+- not
+- or
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Functions from M - Q
 

@@ -1,5 +1,35 @@
 source_url: https://console-docs.gupshup.io/docs/creating-goals
 
+<!-- kb-golden:v1 -->
+# Creating Goals
+
+**Module**: Goals
+
+## Definition
+Please refer to your journey and create Milestones and Trackers accordingly. You CANNOT implement Goal nodes without creating them.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Goals → Creating Goals
+
+### Setup path
+- Go to the Goals section under Bot Studio in the navigation sidebar on the left.
+
+### Steps
+1. Open Gupshup Console.
+2. Go to the Goals section under Bot Studio in the navigation sidebar on the left.
+3. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- You need to create Goals before you can implement them in your journeys.
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Creating Goals
 
@@ -73,4 +103,3 @@ _Not applicable / not specified._
 Key notes found in source:
 
 - - Once you are done, click the Create button to save the goal.
-

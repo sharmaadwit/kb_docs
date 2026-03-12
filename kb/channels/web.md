@@ -1,5 +1,41 @@
 source_url: https://console-docs.gupshup.io/docs/web
 
+<!-- kb-golden:v1 -->
+# Web
+
+**Module**: Channels
+
+## Definition
+- You can now integrate a chat widget on your website with our new Web channel.
+- The channel is integrated with our Bot Studio and Agent Assist modules to provide a seamless experience.
+### Embed URL
+
+## Procedure
+### Where to configure it
+Gupshup Console → Channels → Web
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Channels → Web**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Embed URL
+- Preview
+- Settings
+- Testing your Web chat widget
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Web
 

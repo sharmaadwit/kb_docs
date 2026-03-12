@@ -1,5 +1,39 @@
 source_url: https://console-docs.gupshup.io/docs/carousels
 
+<!-- kb-golden:v1 -->
+# Carousels
+
+**Module**: Bot Studio
+
+## Definition
+Carousels or cards are multi-product messages which consist of an image of the product, a short description, and clickable buttons. Carousels are widely used for showcasing multiple products in a message. Each card can have a description of a product. A maximum of 10 products can be shown using carousels.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Carousels
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Carousels**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- When to use
+- Validations
+- How to use
+- Carousel Node
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Carousels
 
@@ -53,4 +87,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

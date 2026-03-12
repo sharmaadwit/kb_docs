@@ -1,5 +1,40 @@
 source_url: https://console-docs.gupshup.io/docs/setting-up-retargeting-post-go-live
 
+<!-- kb-golden:v1 -->
+# Setting up Retargeting post go-live
+
+**Module**: Ctx
+
+## Definition
+- To maximize returns from ad spends we recommend to use the 72-hour free window to send out QBM messages to customers
+- Seamless experience (Just select the segment in the audience section and send the campaign, no file download or upload is required)
+- Ability to send interactive campaigns for higher conversion
+- Realtime and campaign-wise analytics
+# Best Practices:
+
+## Procedure
+### Where to configure it
+Gupshup Console → CTX → Setting up Retargeting post go-live
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → CTX → Setting up Retargeting post go-live**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Setting up Retargeting post go-live
 

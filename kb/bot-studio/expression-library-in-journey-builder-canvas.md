@@ -1,5 +1,35 @@
 source_url: https://console-docs.gupshup.io/docs/expression-library-in-journey-builder-canvas
 
+<!-- kb-golden:v1 -->
+# Expression Library in Journey builder Canvas
+
+**Module**: Bot Studio
+
+## Definition
+The Expression Library enhancement in the Modify Variable node is designed to empower bot designers with advanced data manipulation capabilities. By offering a robust set of pre-built functions, this feature eliminates the need for custom code nodes, enabling efficient and seamless variable operations directly within the Journey Builder Canvas. This enhancement introduces a dedicated interface for creating and testing expressions, providing an intuitive experience for designers to achieve complex data transformations with ease.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Expression Library in Journey builder Canvas
+
+### Setup path
+- Navigate to the Modify Variable node and open the Modifier dropdown.
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to the Modify Variable node and open the Modifier dropdown.
+3. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Expression Library in Journey builder Canvas
 
@@ -145,4 +175,3 @@ Key notes found in source:
 - - Follow the intuitive interface to create, test, and save expressions.
 - - What happens if I enter an invalid expression? Errors will be displayed in the Output Box during testing. The Save button will remain disabled until the expression is corrected.
 - - Errors will be displayed in the Output Box during testing. The Save button will remain disabled until the expression is corrected.
-

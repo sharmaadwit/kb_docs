@@ -1,5 +1,44 @@
 source_url: https://console-docs.gupshup.io/docs/list-node
 
+<!-- kb-golden:v1 -->
+# List Node
+
+**Module**: Bot Studio
+
+## Definition
+This node helps to create a list of a maximum of 10 Items that can be put into sections/categories.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → List Node
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → List Node**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Adding the Message title, Button title and Footer
+- Define the List Node section and row titles statically
+- Define the List Node section and row titles dynamically
+- Introduction
+- How to use Synonyms in Button Titles?
+- Use Cases
+- Customer Profile Completion:
+- Support Ticket Management:
+- E-commerce Checkout:
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # List Node
 

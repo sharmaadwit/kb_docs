@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/web-greeting-message
 
+<!-- kb-golden:v1 -->
+# Greeting Message
+
+**Module**: Channels
+
+## Definition
+The Greeting Message is the first message that appears to users when they open your Web chat widget for the very first time.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Channels → Greeting Message
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Channels → Greeting Message**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Greeting Message
 
@@ -33,4 +64,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

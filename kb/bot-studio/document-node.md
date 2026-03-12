@@ -1,5 +1,39 @@
 source_url: https://console-docs.gupshup.io/docs/document-node
 
+<!-- kb-golden:v1 -->
+# Document Node
+
+**Module**: Bot Studio
+
+## Definition
+As the name suggests, you can add a document to this node and add it to the chatbot conversation. The document can be uploaded in the conversation using a public URL of the document or from the local device. It supports all formats of files.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Document Node
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Document Node**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- When to use
+- Limitations
+- How to use Document Node
+- Document Node
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Document Node
 

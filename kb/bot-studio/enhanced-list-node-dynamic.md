@@ -1,5 +1,37 @@
 source_url: https://console-docs.gupshup.io/docs/enhanced-list-nodedynamic
 
+<!-- kb-golden:v1 -->
+# Enhanced List Node(Dynamic)
+
+**Module**: Bot Studio
+
+## Definition
+Send Dynamic Sections and Rows above and beyond the Channel Limit using Bot Studios Enhanced List Node functionality.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Enhanced List Node(Dynamic)
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Enhanced List Node(Dynamic)**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Representation on Bot Studio Canvas
+- Representation on WhatsApp:
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Enhanced List Node(Dynamic)
 

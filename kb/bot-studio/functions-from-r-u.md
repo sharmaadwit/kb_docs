@@ -1,5 +1,45 @@
 source_url: https://console-docs.gupshup.io/docs/functions-from-r-u
 
+<!-- kb-golden:v1 -->
+# Functions from R - U
+
+**Module**: Bot Studio
+
+## Definition
+Return a random integer from a specified range, which is inclusive only at the starting end.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Functions from R - U
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Functions from R - U**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- rand
+- range
+- removeProperty
+- replace
+- replaceIgnoreCase
+- resolve
+- reverse
+- round
+- select
+- sentenceCase
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Functions from R - U
 

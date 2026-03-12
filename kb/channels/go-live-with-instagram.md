@@ -1,5 +1,39 @@
 source_url: https://console-docs.gupshup.io/docs/go-live-with-instagram
 
+<!-- kb-golden:v1 -->
+# Go Live with Instagram
+
+**Module**: Channels
+
+## Definition
+- Log in to Gupshup Conversational Cloud and go to Instagram under Channels.
+Log in to Gupshup Conversational Cloud and go to Instagram under Channels.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Channels → Go Live with Instagram
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Channels → Go Live with Instagram**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Log in to Instagram
+- Allow permissions
+- By default, autoresponders are enabled once you go live with Instagram.
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Go Live with Instagram
 
@@ -64,4 +98,3 @@ Key notes found in source:
 - - After logging in, you might be prompted to save your login info. You can select an option as per your preferences. If you are not sure about what to select, click Not Now.
 - ### Once you go live, all journeys in the Bot Studio will be active on your Instagram DM.
 - ### By default, autoresponders are enabled once you go live with Instagram.
-

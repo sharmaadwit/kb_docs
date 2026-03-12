@@ -1,5 +1,35 @@
 source_url: https://console-docs.gupshup.io/docs/additional-training-data
 
+<!-- kb-golden:v1 -->
+# Text Training
+
+**Module**: Ai Admin
+
+## Definition
+Steps to train raw text data:
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → Text Training
+
+### Setup path
+- Go to "Text Input" section in Content Tab
+
+### Steps
+1. Open Gupshup Console.
+2. Go to "Text Input" section in Content Tab
+3. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Text Training
 
@@ -34,4 +64,3 @@ _Not applicable / not specified._
 Key notes found in source:
 
 - - Click on "Save & Train".
-

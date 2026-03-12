@@ -1,20 +1,41 @@
 source_url: https://console-docs.gupshup.io/docs/what-happens-if-a-chat-doesnt-match-with-any-assignment-rule
 
-<!-- procedural:v2 -->
+
+<!-- agent-assist-golden:v2 -->
 # What happens if a chat doesn't match with any assignment rule?
 
 **Module**: Agent Assist
 
-## Overview
+## What this feature does
 Usually all the brands are created with a default assignment rule that insures that the chats are assigned to the default team. But in a scenario where default assignment rule is deleted, there comes a possibility when the chats don't match with any rules. Such chats are termed as "No Rule Matched" chats.
 
-## When to use
-_Add the primary scenarios and personas._
+## Where to configure it
+Agent Assist
 
 ## Setup path
-_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+- _Add the click-path in Console (breadcrumbs)._ 
 
-## Step-by-step configuration
+## Steps
+1. Open Agent Assist.
+2. Configure the required fields.
+
+## Save/publish behavior
+- _No save/publish step is required for this page unless explicitly stated in the UI._
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
+### Overview
+Usually all the brands are created with a default assignment rule that insures that the chats are assigned to the default team. But in a scenario where default assignment rule is deleted, there comes a possibility when the chats don't match with any rules. Such chats are termed as "No Rule Matched" chats.
+
+### When to use
+_Add the primary scenarios and personas._
+
+### Details
 Usually all the brands are created with a default assignment rule that insures that the chats are assigned to the default team. But in a scenario where default assignment rule is deleted, there comes a possibility when the chats don't match with any rules. Such chats are termed as "No Rule Matched" chats.
 
 No Rule Matched chats can be easily identified on agent assist:
@@ -25,11 +46,3 @@ No Rule Matched chats can be easily identified on agent assist:
 By using the above features, the user will be able to know what kind of chats are not matching with assignment rules. This will help the user to rectify the assignment rules. Once assignment rules are rectified, the system will again try to reassign those chats based on the updated assignment rules automatically.
 
 Note: All the chats that don't match with any assignment rules get closed automatically after 24 hours of inactivity
-
-## Business hours vs after-hours behavior
-_Not applicable / not specified._
-
-## Save/publish behavior
-_Not specified._
-
-**Last updated (from source)**: Updated 10 months ago

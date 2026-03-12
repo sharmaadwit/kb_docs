@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/generate-qa
 
+<!-- kb-golden:v1 -->
+# Evaluate
+
+**Module**: Ai Admin
+
+## Definition
+Introduction: User can now generate Q&A from the trained content via topic prompt or file upload in the new Evaluate tab of AI Admin.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → Evaluate
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Ai Admin → Evaluate**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Evaluate
 
@@ -65,4 +96,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

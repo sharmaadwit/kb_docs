@@ -1,5 +1,44 @@
 source_url: https://console-docs.gupshup.io/docs/ios-native-sdk
 
+<!-- kb-golden:v1 -->
+# iOS Native
+
+**Module**: Channels
+
+## Definition
+- iOS version 13 or above
+- Xcode 14 or above
+
+## Procedure
+### Where to configure it
+Gupshup Console → Channels → iOS Native
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Channels → iOS Native**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Prerequisites
+- Download the framework
+- Add the framework
+- Link the framework
+- Grant Permissions
+- Import GipKit into ViewModel class
+- Get reference to GipKit in ViewModel class
+- Getting the App ID
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # iOS Native
 

@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/dynamic-carouselcta-url-qr
 
+<!-- kb-golden:v1 -->
+# Dynamic Carousel (CTA URL + QR)
+
+**Module**: Bot Studio
+
+## Definition
+Dynamic Carousel allows businesses to send Horizontal list of card containing media, title, subtitle and Button (QR/CTA URL)
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Dynamic Carousel (CTA URL + QR)
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Dynamic Carousel (CTA URL + QR)**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Dynamic Carousel (CTA URL + QR)
 

@@ -1,20 +1,42 @@
 source_url: https://console-docs.gupshup.io/docs/teams
 
-<!-- procedural:v2 -->
+
+<!-- agent-assist-golden:v2 -->
 # User Management: Teams
 
 **Module**: Agent Assist
 
-## Overview
+## What this feature does
 Section 1: Adding Users to Teams
 
-## When to use
-_Add the primary scenarios and personas._
+## Where to configure it
+Agent Assist → Settings → User Management
 
 ## Setup path
 - Navigate to the settings tab on your dashboard.
 
-## Step-by-step configuration
+## Steps
+1. Open Agent Assist.
+2. Navigate to the settings tab on your dashboard.
+3. Click **Save** to apply changes.
+
+## Save/publish behavior
+- Click **Save** (or **Save & Deploy** if available) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
+### Overview
+Section 1: Adding Users to Teams
+
+### When to use
+_Add the primary scenarios and personas._
+
+### Details
 Section 1: Adding Users to Teams
 
 Creating and Configuring Teams
@@ -52,15 +74,3 @@ Section 3: Default Team Settings
 Efficient Default Team Configuration
 
 The default team automatically adds all users when they are added. The assignment policy for the default team is round robin assignment to all agents, and it is mapped to default business hours. This ensures that all incoming chats are assigned to agents in a round-robin manner without the need for further configuration.
-
-## Business hours vs after-hours behavior
-Key notes found in source:
-
-- Step 5: Choosing Business Hours
-- - Define the business hours for the team, specifying when the team operates and when chats will be assigned to it.
-- The default team automatically adds all users when they are added. The assignment policy for the default team is round robin assignment to all agents, and it is mapped to default business hours. This ensures that all incoming chats are assigned to agents in a round-robin manner without the need for further configuration.
-
-## Save/publish behavior
-_Not specified._
-
-**Last updated (from source)**: Updated 10 months ago

@@ -1,5 +1,38 @@
 source_url: https://console-docs.gupshup.io/docs/location-request-node
 
+<!-- kb-golden:v1 -->
+# Location Request Node
+
+**Module**: Bot Studio
+
+## Definition
+The Location Request Node(CTA Based) in Journey Builder allows businesses to send a location call-to-action (CTA) to users via WhatsApp. This feature enables users to share their current location or a specific location with ease, creating a more interactive and location-aware experience within a conversation.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Location Request Node
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Location Request Node**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Store Locator Assistance
+- Emergency Services
+- Delivery Address Confirmation
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Location Request Node
 

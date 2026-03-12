@@ -1,5 +1,40 @@
 source_url: https://console-docs.gupshup.io/docs/about-bot-studio
 
+<!-- kb-golden:v1 -->
+# About Bot Studio
+
+**Module**: Bot Studio
+
+## Definition
+Bot Studio is Gupshup’s visual, no-code/low-code platform that empowers users to design, build, and deploy intelligent conversational journeys across messaging channels like WhatsApp, Web, and Instagram.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → About Bot Studio
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → About Bot Studio**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- 1. Journey Builder (V2)
+- 2. Journey Builder Pro
+- JB Pro is not available for self-serve users.
+- ❌ Deprecated / Replaced Nodes:
+- ⚙️ Other Changes:
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # About Bot Studio
 

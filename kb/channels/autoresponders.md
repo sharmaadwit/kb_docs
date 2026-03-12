@@ -1,5 +1,43 @@
 source_url: https://console-docs.gupshup.io/docs/instagram-autoresponders
 
+<!-- kb-golden:v1 -->
+# Autoresponders
+
+**Module**: Channels
+
+## Definition
+Autoresponders on Instagram are single message replies that a business can send to a user if they:
+
+## Procedure
+### Where to configure it
+Gupshup Console → Channels → Autoresponders
+
+### Setup path
+- Go to Journeys under Bot Studio and click the Create Journey button.
+- Go to Manage Variables by clicking the {x} icon of the left on the canvas and select "Global" from the dropdown.
+- Go to the Welcome Journey and delete the text node connected to the Starting Node.
+
+### Steps
+1. Open Gupshup Console.
+2. Go to Journeys under Bot Studio and click the Create Journey button.
+3. Go to Manage Variables by clicking the {x} icon of the left on the canvas and select "Global" from the dropdown.
+4. Go to the Welcome Journey and delete the text node connected to the Starting Node.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Creating a handling journey for Autoresponders
+- Only one message can be sent as an Autoresponder.
+- How to disable Autoresponders?
+- Configuring the Welcome Journey and Fallback journeys
+- You must configure both journeys - Welcome Journey and Fallback.
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Autoresponders
 
@@ -112,4 +150,3 @@ Key notes found in source:
 - - Click Save Variable Mappings.
 - - Save & Deploy this journey.
 - - Save & Deploy the Welcome Journey.
-

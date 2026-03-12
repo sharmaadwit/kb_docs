@@ -1,5 +1,40 @@
 source_url: https://console-docs.gupshup.io/docs/callback-url-event-on-starting-node
 
+<!-- kb-golden:v1 -->
+# Callback URL Event on Starting Node
+
+**Module**: Bot Studio
+
+## Definition
+The Callback Event is an event type on the Starting Node in JB Canvas. This enhances Journey Builder's capability to listen to external events, in addition to various user events. The Callback URL can serve as a trigger point for initiating a journey and executing actions or sending outbound messages to users, facilitating multiple use cases such as payment confirmations and order updates etc..
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Callback URL Event on Starting Node
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Callback URL Event on Starting Node**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Introduction:
+- What's New?
+- Steps to Configure:
+- Use CI For:
+- Do Not Use CI For:
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Callback URL Event on Starting Node
 

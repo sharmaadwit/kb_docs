@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/llm-consumption
 
+<!-- kb-golden:v1 -->
+# LLM Consumption
+
+**Module**: Ai Admin
+
+## Definition
+This feature allows users to track API calls and token consumption during customer interactions with an LLM-powered chatbot. It provides valuable insights to:
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → LLM Consumption
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Ai Admin → LLM Consumption**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # LLM Consumption
 

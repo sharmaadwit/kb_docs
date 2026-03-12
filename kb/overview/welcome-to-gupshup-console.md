@@ -1,5 +1,41 @@
 source_url: https://console-docs.gupshup.io/docs/getting-started
 
+<!-- kb-golden:v1 -->
+# Welcome to Gupshup Console
+
+**Module**: Overview
+
+## Definition
+Your unified platform for conversational messaging across WhatsApp, SMS, Web, and Instagram. Manage campaigns, bots, and customer support all in one place.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Overview → Welcome to Gupshup Console
+
+### Setup path
+- Navigate to the project selector (top-left)
+- Go to the Channels section
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to the project selector (top-left)
+3. Go to the Channels section
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Projects & Organizations
+- User Management & Permissions
+- Step 1: Set Up Your First Project
+- Step 2: Choose Your Use Case
+- Step 3: Connect Your Channels
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Welcome to Gupshup Console
 

@@ -1,23 +1,52 @@
 source_url: https://console-docs.gupshup.io/docs/ai-management-alpha
 
-<!-- procedural:v2 -->
+
+<!-- agent-assist-golden:v2 -->
 # AI Management (Alpha)
 
 **Module**: Agent Assist
 
-## Overview
+## What this feature does
 Definition: Text Generation in AI Management encompasses a set of features that assist agents in enhancing productivity and providing quicker and improved customer support. These features include Summary, Rephrase, and Expand.
 
-## When to use
+Common uses:
+
+- These AI features play a vital role in streamlining agent activities, summarizing conversations, improving text quality, and expanding sentences to provide comprehensive responses.
+
+- Summary simplifies conversation review, making it easier to understand and evaluate the interaction flow between customers, bots, and agents.
+
+- Rephrase improves the clarity and quality of text, ensuring that messages are conveyed accurately and effectively.
+
+## Where to configure it
+Agent Assist
+
+## Setup path
+- _Add the click-path in Console (breadcrumbs)._ 
+
+## Steps
+1. Open Agent Assist.
+2. Configure the required fields.
+
+## Save/publish behavior
+- _No save/publish step is required for this page unless explicitly stated in the UI._
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
+### Overview
+Definition: Text Generation in AI Management encompasses a set of features that assist agents in enhancing productivity and providing quicker and improved customer support. These features include Summary, Rephrase, and Expand.
+
+### When to use
 - These AI features play a vital role in streamlining agent activities, summarizing conversations, improving text quality, and expanding sentences to provide comprehensive responses.
 - Summary simplifies conversation review, making it easier to understand and evaluate the interaction flow between customers, bots, and agents.
 - Rephrase improves the clarity and quality of text, ensuring that messages are conveyed accurately and effectively.
 - Expand is helpful when a more comprehensive answer or explanation is required, ensuring that customers receive detailed and informative responses.
 
-## Setup path
-_In Console: add the navigation path (e.g., `Module → Settings → …`)._
-
-## Step-by-step configuration
+### Details
 Introduction
 
 Definition: Text Generation in AI Management encompasses a set of features that assist agents in enhancing productivity and providing quicker and improved customer support. These features include Summary, Rephrase, and Expand.
@@ -55,11 +84,3 @@ Step 2: Select the agents for whom you want to enable these features.
 Step 3: Choose the specific feature(s) to enable and set the daily usage limits for each of them.
 
 Text Generation AI features are powerful tools for enhancing agent efficiency and providing superior customer support. By enabling and configuring these features, users can experience improved productivity and faster, more effective customer interactions.
-
-## Business hours vs after-hours behavior
-_Not applicable / not specified._
-
-## Save/publish behavior
-_Not specified._
-
-**Last updated (from source)**: Updated 10 months ago

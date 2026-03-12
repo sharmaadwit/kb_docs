@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/entity-creation
 
+<!-- kb-golden:v1 -->
+# Naming Guidelines for Intent & Entity
+
+**Module**: Ai Admin
+
+## Definition
+Intents and Named Entity Recognition (NER) are key tasks when leveraging a Language Model for zero-shot predictions. Effective names are crucial to ensure the language model understands the inputs better and performs tasks optimally.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → Naming Guidelines for Intent & Entity
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Ai Admin → Naming Guidelines for Intent & Entity**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Naming Guidelines for Intent & Entity
 
@@ -69,4 +100,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

@@ -1,5 +1,43 @@
 source_url: https://console-docs.gupshup.io/docs/before-you-begin
 
+<!-- kb-golden:v1 -->
+# Before you begin
+
+**Module**: Channels
+
+## Definition
+Before linking your Instagram account with Gupshup, confirm that you have:
+
+## Procedure
+### Where to configure it
+Gupshup Console → Channels → Before you begin
+
+### Setup path
+- Go to your Instagram profile and tap the hamburger icon (three short horizontal lines stacked on top of each other). The icon is present in the top right-hand corner for the mobile version of Instagram. The icon is present at the bottom of the navigation sidebar on the left for the web version.
+- Go to your Instagram profile and tap the hamburger icon (three short horizontal lines stacked on top of each other).
+- Go to your profile and tap the hamburger icon in the top right.
+
+### Steps
+1. Open Gupshup Console.
+2. Go to your Instagram profile and tap the hamburger icon (three short horizontal lines stacked on top of each other). The icon is present in the top right-hand corner for the mobile version of Instagram. The icon is present at the bottom of the navigation sidebar on the left for the web version.
+3. Go to your Instagram profile and tap the hamburger icon (three short horizontal lines stacked on top of each other).
+4. Go to your profile and tap the hamburger icon in the top right.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Converting your profile to a professional account
+- Connecting your Facebook Page and your Instagram business (Professional) account
+- Enabling "Allow access to Instagram messages in Inbox"
+- Unable to turn on the toggle from Facebook?
+- Registering as a Facebook Developer
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Before you begin
 
@@ -117,4 +155,3 @@ _Not applicable / not specified._
 Key notes found in source:
 
 - - Go Live with Instagram
-

@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/invite-members
 
+<!-- kb-golden:v1 -->
+# Invite Org Admins
+
+**Module**: Overview
+
+## Definition
+If you're an Org Owner or an Org Admin, you may need to invite more Org Admins to help manage your organisation and projects on the Console. The process of inviting an Org Admin is simple and can be done in a few easy steps. In this post, we'll guide you through the process of inviting an Org Admin to the Console.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Overview → Invite Org Admins
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Overview → Invite Org Admins**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Invite Org Admins
 

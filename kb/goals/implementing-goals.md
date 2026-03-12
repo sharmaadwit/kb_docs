@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/implementing-goals
 
+<!-- kb-golden:v1 -->
+# Implementing Goals
+
+**Module**: Goals
+
+## Definition
+Please refer to your journey and create Milestones and Trackers accordingly. You CANNOT implement Goal nodes without creating them.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Goals → Implementing Goals
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Goals → Implementing Goals**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- You need to create Goals before you can implement them in your journeys.
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Implementing Goals
 
@@ -44,4 +75,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

@@ -1,20 +1,42 @@
 source_url: https://console-docs.gupshup.io/docs/insights-agent-summary
 
-<!-- procedural:v2 -->
+
+<!-- agent-assist-golden:v2 -->
 # Insights: Agent Summary
 
 **Module**: Agent Assist
 
-## Overview
+## What this feature does
 Overview The Agent Summary Report provides comprehensive productivity metrics for agent performance in handling customer interactions. This report helps measure efficiency, response times, and service level adherence.
 
-## When to use
-_Add the primary scenarios and personas._
+## Where to configure it
+Agent Assist → Insights
 
 ## Setup path
-_In Console: add the navigation path (e.g., `Module → Settings → …`)._
+- _Add the click-path in Console (breadcrumbs)._ 
 
-## Step-by-step configuration
+## Steps
+1. Open Agent Assist.
+2. Go to **Insights**.
+3. Configure the required fields.
+
+## Save/publish behavior
+- _No save/publish step is required for this page unless explicitly stated in the UI._
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
+### Overview
+Overview The Agent Summary Report provides comprehensive productivity metrics for agent performance in handling customer interactions. This report helps measure efficiency, response times, and service level adherence.
+
+### When to use
+_Add the primary scenarios and personas._
+
+### Details
 Overview The Agent Summary Report provides comprehensive productivity metrics for agent performance in handling customer interactions. This report helps measure efficiency, response times, and service level adherence.
 
 Available Filters
@@ -76,11 +98,3 @@ Common Use Cases
 - Workload Analysis: Evaluate chat distribution and reassignment patterns
 - Training Needs Assessment: Identify areas for improvement based on handling times
 - Resource Planning: Use volume metrics to optimize agent scheduling
-
-## Business hours vs after-hours behavior
-_Not applicable / not specified._
-
-## Save/publish behavior
-_Not specified._
-
-**Last updated (from source)**: Updated 10 months ago

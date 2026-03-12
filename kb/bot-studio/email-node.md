@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/email-node
 
+<!-- kb-golden:v1 -->
+# Email Node
+
+**Module**: Bot Studio
+
+## Definition
+This prompt is used to get the user's email ID and store it in a variable after validating the input shared by the user.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Email Node
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Email Node**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Email Node
 

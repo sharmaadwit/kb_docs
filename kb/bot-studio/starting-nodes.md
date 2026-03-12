@@ -1,5 +1,39 @@
 source_url: https://console-docs.gupshup.io/docs/starting-nodes
 
+<!-- kb-golden:v1 -->
+# Starting Nodes
+
+**Module**: Bot Studio
+
+## Definition
+The Starting Node in Journey Builder is the foundational point where a journey begins. It serves as the trigger or condition that activates the flow, such as user actions, scheduled events, or system updates. Every journey requires a starting node to define its initiation, ensuring a structured and seamless progression. It provides flexibility to tailor the journey's entry criteria, setting the context for subsequent interactions.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Starting Nodes
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Starting Nodes**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- What is a Starting Node?
+- How to configure
+- Event Types:
+- Additional Condition:
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Starting Nodes
 

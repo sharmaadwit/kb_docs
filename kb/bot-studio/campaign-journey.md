@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/campaign-journey
 
+<!-- kb-golden:v1 -->
+# Campaign Journey
+
+**Module**: Bot Studio
+
+## Definition
+Use Campaign Journeys to interact with customers who respond to your Whatsapp Marketing Campaigns.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Campaign Journey
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Campaign Journey**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Campaign Journey
 

@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/sending-an-automated-campaign
 
+<!-- kb-golden:v1 -->
+# Sending an Automated Campaign
+
+**Module**: Campaign Manager
+
+## Definition
+Before we send an Automated Campaign have a source to receive events is pre-requisite:
+
+## Procedure
+### Where to configure it
+Gupshup Console → Campaign Manager → Sending an Automated Campaign
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Campaign Manager → Sending an Automated Campaign**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Sending an Automated Campaign
 
@@ -80,4 +111,3 @@ _Not applicable / not specified._
 Key notes found in source:
 
 - Once you publish a Campaign we get to the listing screen we can check the Campaign status an analytics in the listing screen. Each Automated Campaign can have 6 statuses.
-

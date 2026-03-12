@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/about-whatsapp
 
+<!-- kb-golden:v1 -->
+# About WhatsApp
+
+**Module**: Channels
+
+## Definition
+Welcome to the WhatsApp Self-Serve Platform, a bundled solution of advanced tools and APIs to help you enable WhatsApp for your business. The self-serve, easy-to-implement solution is free to set up with no billing commitment or monthly subscription fees.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Channels → About WhatsApp
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Channels → About WhatsApp**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # About WhatsApp
 

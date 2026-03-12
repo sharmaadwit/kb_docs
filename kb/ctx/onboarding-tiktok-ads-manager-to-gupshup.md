@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/pre-requisites
 
+<!-- kb-golden:v1 -->
+# Onboarding TikTok Ads Manager to Gupshup
+
+**Module**: Ctx
+
+## Definition
+Overview on the step-by-step process to onboard TTAM to Gupshup
+
+## Procedure
+### Where to configure it
+Gupshup Console → CTX → Onboarding TikTok Ads Manager to Gupshup
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → CTX → Onboarding TikTok Ads Manager to Gupshup**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Onboarding TikTok Ads Manager to Gupshup
 

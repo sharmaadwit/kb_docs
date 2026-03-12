@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/free-text-node
 
+<!-- kb-golden:v1 -->
+# Free Text Node
+
+**Module**: Bot Studio
+
+## Definition
+Free Text Node
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Free Text Node
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Free Text Node**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Free Text Node
 

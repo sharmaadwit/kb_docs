@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/prompt-enhancer
 
+<!-- kb-golden:v1 -->
+# Skill Prompt Enhancer (Developer Mode)
+
+**Module**: Ai Admin
+
+## Definition
+Introduction: Skill Prompt Enhancer, a powerful new feature designed to help you craft highly effective and optimized skill instructions for your AI agents. Enhancer directly addresses common challenges in prompt engineering, ensuring your agents perform at their best.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → Skill Prompt Enhancer (Developer Mode)
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Ai Admin → Skill Prompt Enhancer (Developer Mode)**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Skill Prompt Enhancer (Developer Mode)
 
@@ -68,4 +99,3 @@ Key notes found in source:
 - - Saving Enhanced Prompts: The "Save" button on the enhanced prompt modal will only be enabled once you have reviewed all sections by clicking through them using the "Next" button.
 - - Clicking "Save" will apply the accepted enhanced prompts to your skill instructions.
 - - Modal State Retention: The enhancer modal will not retain its state if you click the save button or the 'X' icon, or if you navigate away from the page while enhancement is in progress.
-

@@ -1,20 +1,41 @@
 source_url: https://console-docs.gupshup.io/docs/insights-agent-timesheet
 
-<!-- procedural:v2 -->
+
+<!-- agent-assist-golden:v2 -->
 # Insights: Agent Timesheet
 
 **Module**: Agent Assist
 
-## Overview
+## What this feature does
 Overview The Agent Timesheet Report provides comprehensive insights into agent activity and time management across four distinct tabs. This guide explains each tab's purpose and its constituent columns.
 
-## When to use
-_Add the primary scenarios and personas._
+## Where to configure it
+Agent Assist → Insights
 
 ## Setup path
 - Login: Moment when agent signs into the system
 
-## Step-by-step configuration
+## Steps
+1. Open Agent Assist.
+2. Login: Moment when agent signs into the system
+
+## Save/publish behavior
+- _No save/publish step is required for this page unless explicitly stated in the UI._
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
+### Overview
+Overview The Agent Timesheet Report provides comprehensive insights into agent activity and time management across four distinct tabs. This guide explains each tab's purpose and its constituent columns.
+
+### When to use
+_Add the primary scenarios and personas._
+
+### Details
 Overview The Agent Timesheet Report provides comprehensive insights into agent activity and time management across four distinct tabs. This guide explains each tab's purpose and its constituent columns.
 
 Tab 1: Login & Logout Duration This tab tracks the daily login and logout times for each agent. Columns
@@ -64,11 +85,3 @@ Usage Tips
 - Use Tab 3 to analyze detailed agent status patterns and behavior
 - Use Tab 4 for high-level productivity analysis and time allocation insights
 Note All timestamps are recorded in your system's configured timezone. Duration calculations account for the entire time period between status changes.
-
-## Business hours vs after-hours behavior
-_Not applicable / not specified._
-
-## Save/publish behavior
-_Not specified._
-
-**Last updated (from source)**: Updated 10 months ago

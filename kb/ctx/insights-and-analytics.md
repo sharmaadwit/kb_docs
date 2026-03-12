@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/insights-and-analytics
 
+<!-- kb-golden:v1 -->
+# Insights and Analytics
+
+**Module**: Ctx
+
+## Definition
+How to track performance of CTWA Campaigns and Ads
+
+## Procedure
+### Where to configure it
+Gupshup Console → CTX → Insights and Analytics
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → CTX → Insights and Analytics**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Insights and Analytics
 

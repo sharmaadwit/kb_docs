@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/about-customer360
 
+<!-- kb-golden:v1 -->
+# About Personalize
+
+**Module**: Personalize
+
+## Definition
+In today's highly competitive market, delivering personalized and targeted marketing campaigns is essential for businesses to drive customer engagement, boost sales, and foster long-term loyalty. The Personalize feature empowers marketers to harness the full potential of customer data and create impactful campaigns. This guide will provide you with a comprehensive overview of Personalize and how to leverage its capabilities to run successful marketing campaigns.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Personalize → About Personalize
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Personalize → About Personalize**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # About Personalize
 

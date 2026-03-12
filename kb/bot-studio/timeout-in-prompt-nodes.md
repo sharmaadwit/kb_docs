@@ -1,5 +1,38 @@
 source_url: https://console-docs.gupshup.io/docs/timeout-in-prompt-nodes
 
+<!-- kb-golden:v1 -->
+# Timeout in Prompt Nodes
+
+**Module**: Bot Studio
+
+## Definition
+The Prompt node is extensively utilized in Journey Builder for fetching responses or gathering user data, which is subsequently stored for future use within the bot. Typically, this information is utilized during the user conversation within the bot. However, in certain scenarios, timely access to this information is crucial for achieving specific use cases.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Timeout in Prompt Nodes
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Timeout in Prompt Nodes**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Overview:
+- What's New!
+- How to configure timeout in prompt node
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Timeout in Prompt Nodes
 

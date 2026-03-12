@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/web-sync-browser-login-with-chat-widget
 
+<!-- kb-golden:v1 -->
+# Sync Browser Login with your Chat Widget
+
+**Module**: Channels
+
+## Definition
+This provision allows you to sync the information of users who have logged in on your website with the Web chat widget.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Channels → Sync Browser Login with your Chat Widget
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Channels → Sync Browser Login with your Chat Widget**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Sync Browser Login with your Chat Widget
 
@@ -64,4 +95,3 @@ _Not applicable / not specified._
 
 ## Save/publish behavior
 _Not specified._
-

@@ -1,5 +1,35 @@
 source_url: https://console-docs.gupshup.io/docs/teach-utterance-untraining
 
+<!-- kb-golden:v1 -->
+# Teach Utterance Untraining
+
+**Module**: Ai Admin
+
+## Definition
+Teach Utterance Untraining allows users to delete specific utterances which were added manually or by bulk upload to train different intents. In a single Save & Train operation you can untrain utterances trained for multiple intents.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → Teach Utterance Untraining
+
+### Setup path
+- Go to the Teach section & navigate to the utterances you want to remove from the training data.
+
+### Steps
+1. Open Gupshup Console.
+2. Go to the Teach section & navigate to the utterances you want to remove from the training data.
+3. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Teach Utterance Untraining
 
@@ -33,4 +63,3 @@ _Not applicable / not specified._
 Key notes found in source:
 
 - - Click on Save & Train button to complete the untraining.
-

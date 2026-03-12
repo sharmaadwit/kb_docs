@@ -1,5 +1,40 @@
 source_url: https://console-docs.gupshup.io/docs/api-node-http-status-code-branching
 
+<!-- kb-golden:v1 -->
+# API Node: HTTP Status Code Branching
+
+**Module**: Bot Studio
+
+## Definition
+Lets you route bot logic differently based on API's HTTP response codes (e.g., 200 OK vs 500 Error).
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → API Node: HTTP Status Code Branching
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → API Node: HTTP Status Code Branching**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- 🧭 How to Use
+- Step 1: Add & Configure API Node
+- Step 2: Enable Status Code Branching
+- Step 3: Connect Branches
+- 🧩 Use Cases
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # API Node: HTTP Status Code Branching
 

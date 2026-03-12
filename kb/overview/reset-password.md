@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/reset-password
 
+<!-- kb-golden:v1 -->
+# Reset Password
+
+**Module**: Overview
+
+## Definition
+Have you ever forgotten your password or needed to reset it for any reason? It happens to the best of us! Fortunately, resetting a password is usually a straightforward process. Follow the steps below to reset your password on Console.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Overview → Reset Password
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Overview → Reset Password**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Reset Password
 

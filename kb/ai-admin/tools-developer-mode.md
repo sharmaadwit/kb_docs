@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/tools-beta
 
+<!-- kb-golden:v1 -->
+# Tools (Developer Mode)
+
+**Module**: Ai Admin
+
+## Definition
+Introduction: Tools enable your AI Agent to perform dynamic actions, fetch real-time data, or integrate with external systems. They act as functional extensions of the agent’s capabilities—helping it go beyond static responses and enabling task execution, data retrieval, or logic-driven behavior.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Ai Admin → Tools (Developer Mode)
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Ai Admin → Tools (Developer Mode)**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Tools (Developer Mode)
 
@@ -49,4 +80,3 @@ _Not applicable / not specified._
 Key notes found in source:
 
 - - Tool Testing:Users can run a test tool code with sample input values to validate output. Save the tool which provides valid output.
-

@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/shopify-integration
 
+<!-- kb-golden:v1 -->
+# Shopify Integration
+
+**Module**: Integrations
+
+## Definition
+Enhance Customer Engagement and Boost Sales with Gupshup's Shopify Integration
+
+## Procedure
+### Where to configure it
+Gupshup Console → Integrations → Shopify Integration
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Integrations → Shopify Integration**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Shopify Integration
 

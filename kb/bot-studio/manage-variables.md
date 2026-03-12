@@ -1,5 +1,42 @@
 source_url: https://console-docs.gupshup.io/docs/manage-variables
 
+<!-- kb-golden:v1 -->
+# Manage Variables
+
+**Module**: Bot Studio
+
+## Definition
+Variables in Journey Builder store and manage data dynamically within conversational journeys, enabling personalization, data manipulation, and efficient bot interactions.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Manage Variables
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Manage Variables**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- Variable Types
+- 1. Local Variables
+- 2. Global Variables
+- 3. System Variables
+- 4. Constant Variables
+- 5. CDP Variables
+- How to Use
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Manage Variables
 

@@ -1,5 +1,36 @@
 source_url: https://console-docs.gupshup.io/docs/controls-on-bot-studio-canvas
 
+<!-- kb-golden:v1 -->
+# Controls on Bot Studio Canvas
+
+**Module**: Bot Studio
+
+## Definition
+The following controls on the canvas make it easy to navigate through long journeys.
+
+## Procedure
+### Where to configure it
+Gupshup Console → Bot Studio → Controls on Bot Studio Canvas
+
+### Setup path
+- _Add the click-by-click navigation path for this page._
+
+### Steps
+1. Open Gupshup Console.
+2. Navigate to **Gupshup Console → Bot Studio → Controls on Bot Studio Canvas**.
+3. Configure the required fields.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Save/publish behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+## Available options
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
+## Reference (from source)
 <!-- procedural:v2 -->
 # Controls on Bot Studio Canvas
 
