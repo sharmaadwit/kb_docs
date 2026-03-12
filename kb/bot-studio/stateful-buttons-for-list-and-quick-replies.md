@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/stateful-buttons-for-static-button-based-nodes
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Stateful Buttons for List and Quick Replies
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/stateful-buttons-for-static-but
 Journey Builder features a variety of button-based nodes designed to send Quick Reply or Multiple radio button-based list messages across WhatsApp and other channels. These nodes have been upgraded to maintain their state along with the configured action, even after traversal and progression in the conversation when users select alternative buttons or inputs.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → Stateful Buttons for List and Quick Replies
+
 ### Where to configure it
 Gupshup Console → Bot Studio → Stateful Buttons for List and Quick Replies
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,14 +30,30 @@ Gupshup Console → Bot Studio → Stateful Buttons for List and Quick Replies
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
-- Overview:
 - Key Features:
 - What's New!
 - How to use Stateful Buttons ?
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

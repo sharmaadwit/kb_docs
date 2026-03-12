@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/clevertap-integration
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # CleverTap Integration
 
 **Module**: Integrations
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/clevertap-integration
 Enable CX experiences for your customers in Clevertap.
 
 ## Procedure
+### Exact path
+Gupshup Console → Integrations → CleverTap Integration
+
 ### Where to configure it
 Gupshup Console → Integrations → CleverTap Integration
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to the integrations tab, where you can find the CleverTap integration widget
@@ -23,11 +29,26 @@ Gupshup Console → Integrations → CleverTap Integration
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- Integrations configure connectivity/events; they don’t change bot conversation logic (Bot Studio) by themselves.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

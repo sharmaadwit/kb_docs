@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/privacy-policy
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Privacy Policy
 
 **Module**: Channels
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/privacy-policy
 We care about protecting the personal information of our customers and visitors who use our website www.gupshup.io, our products or services (collectively, our "Users").
 
 ## Procedure
+### Exact path
+Gupshup Console → Channels → Privacy Policy
+
 ### Where to configure it
 Gupshup Console → Channels → Privacy Policy
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -23,6 +29,9 @@ Gupshup Console → Channels → Privacy Policy
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
 
 ## Available options
 - Updated as on 17th April 2024
@@ -38,6 +47,18 @@ Gupshup Console → Channels → Privacy Policy
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

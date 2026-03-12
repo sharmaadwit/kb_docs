@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/inactivity-nudge-for-location-request-node
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Inactivity Nudge for Location Request Node
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/inactivity-nudge-for-location-r
 Click on Node Settings
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → Inactivity Nudge for Location Request Node
+
 ### Where to configure it
 Gupshup Console → Bot Studio → Inactivity Nudge for Location Request Node
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,11 +30,32 @@ Gupshup Console → Bot Studio → Inactivity Nudge for Location Request Node
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- Testing and Verification: During testing, verify that the nudge behaves as configured, prompting users after the inactivity period, similar to other prompt nodes.
+- During testing, verify that the nudge behaves as configured, prompting users after the inactivity period, similar to other prompt nodes.
+- Scenario: A food delivery service needs to confirm a user’s location for accurate order delivery.
+- Scenario: A local business requests location verification to confirm if a customer is within a serviceable area.
+
 ## Available options
-- _List the key variants/toggles visible in the UI._
+- Set the desired inactivity timeout duration.
+- Choose or create a custom nudge message that will be sent to users when they don’t respond within the specified time.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

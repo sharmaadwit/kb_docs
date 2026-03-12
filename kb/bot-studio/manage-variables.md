@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/manage-variables
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Manage Variables
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/manage-variables
 Variables in Journey Builder store and manage data dynamically within conversational journeys, enabling personalization, data manipulation, and efficient bot interactions.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → Manage Variables
+
 ### Where to configure it
 Gupshup Console → Bot Studio → Manage Variables
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,6 +30,9 @@ Gupshup Console → Bot Studio → Manage Variables
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - Variable Types
 - 1. Local Variables
@@ -32,9 +41,24 @@ Gupshup Console → Bot Studio → Manage Variables
 - 4. Constant Variables
 - 5. CDP Variables
 - How to Use
+- Select the appropriate variable type.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

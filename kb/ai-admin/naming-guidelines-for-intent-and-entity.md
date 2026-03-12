@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/entity-creation
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Naming Guidelines for Intent & Entity
 
 **Module**: Ai Admin
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/entity-creation
 Intents and Named Entity Recognition (NER) are key tasks when leveraging a Language Model for zero-shot predictions. Effective names are crucial to ensure the language model understands the inputs better and performs tasks optimally.
 
 ## Procedure
+### Exact path
+Gupshup Console → Ai Admin → Naming Guidelines for Intent & Entity
+
 ### Where to configure it
 Gupshup Console → Ai Admin → Naming Guidelines for Intent & Entity
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,11 +30,26 @@ Gupshup Console → Ai Admin → Naming Guidelines for Intent & Entity
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- Excluded from NER: Any abstract concept or entity which does not have a definite identifier or cannot be categorized under any known category may not be captured correctly in an NER task.
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)
 <!-- procedural:v2 -->

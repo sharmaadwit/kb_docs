@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/whatsapp-business-api
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # WhatsApp Business API
 
 **Module**: Channels
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/whatsapp-business-api
 Gupshup's WhatsApp Business API provides you APIs to send free form messages or session messages and template messages (utility/marketing/authentication) to users on WhatsApp. Both of these types of messages are together referred as 'Outbound Messages'
 
 ## Procedure
+### Exact path
+Gupshup Console → Channels → WhatsApp Business API
+
 ### Where to configure it
 Gupshup Console → Channels → WhatsApp Business API
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,6 +30,9 @@ Gupshup Console → Channels → WhatsApp Business API
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - API Endpoint
 - Headers
@@ -36,6 +45,24 @@ Gupshup Console → Channels → WhatsApp Business API
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- Let's have a look at the error codes for the above outbound message APIs:
+- Message sending failed because of insufficient balance.
+- 1004 - Message sending failed as user is inactive for session message and template messaging is disabled.
+- 1005 - Message sending failed as user is inactive for session message and template did not match
+- 1006 - Message sending failed as user is inactive for session message and not opted in for template message
+- 1007 - Message sending failed as user is inactive for session message, not opted in for template message and template did not match
+- ### For any other error code, click here.
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

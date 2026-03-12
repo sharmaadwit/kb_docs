@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/timeout-in-prompt-nodes
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Timeout in Prompt Nodes
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/timeout-in-prompt-nodes
 The Prompt node is extensively utilized in Journey Builder for fetching responses or gathering user data, which is subsequently stored for future use within the bot. Typically, this information is utilized during the user conversation within the bot. However, in certain scenarios, timely access to this information is crucial for achieving specific use cases.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → Timeout in Prompt Nodes
+
 ### Where to configure it
 Gupshup Console → Bot Studio → Timeout in Prompt Nodes
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,13 +30,31 @@ Gupshup Console → Bot Studio → Timeout in Prompt Nodes
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
-- Overview:
 - What's New!
 - How to configure timeout in prompt node
+- Select the prompt node that requires configuration.
+- Enable the Timeout option located at the bottom of the prompt node settings.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- Ensure that the fallback connector is properly configured with the desired action for any error or timeout scenarios.
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

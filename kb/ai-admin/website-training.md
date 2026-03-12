@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/website-training
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Website Training
 
 **Module**: Ai Admin
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/website-training
 Steps to train Website URL:
 
 ## Procedure
+### Exact path
+Gupshup Console → Ai Admin → Website Training
+
 ### Where to configure it
 Gupshup Console → Ai Admin → Website Training
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to "Website Links" section in Content Tab
@@ -23,11 +29,27 @@ Gupshup Console → Ai Admin → Website Training
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - Advanced Website Scraper
+- Set website scraping depth.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- Non-HTML Content: Some URLs may return non-HTML content (PDFs, images, etc.) which cannot be easily scraped unless explicitly handled.
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)
 <!-- procedural:v2 -->

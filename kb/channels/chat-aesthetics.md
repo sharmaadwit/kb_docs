@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/web-chat-aesthetics
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Chat Aesthetics
 
 **Module**: Channels
@@ -9,8 +9,16 @@ source_url: https://console-docs.gupshup.io/docs/web-chat-aesthetics
 You can customize the look & feel of your Web chat widget via the Chat Aesthetics Settings.
 
 ## Procedure
+### Exact path
+Gupshup Console → Channels → Chat Aesthetics
+
 ### Where to configure it
 Gupshup Console → Channels → Chat Aesthetics
+
+### Prerequisites
+- You can customize the colors of the following elements of your chat widget as per your brand requirements: Header Chat Background Bot Message Bubble User Message Bubble
+- You can modify the size (height and width) of your chat widget as per your requirements.
+- You can modify the size of your chat widget icon as per your requirements.
 
 ### Setup path
 - Go to Google Fonts.
@@ -22,6 +30,9 @@ Gupshup Console → Channels → Chat Aesthetics
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
 
 ## Available options
 - Bot Name
@@ -37,6 +48,18 @@ Gupshup Console → Channels → Chat Aesthetics
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

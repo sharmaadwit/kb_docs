@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/creating-goals
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Creating Goals
 
 **Module**: Goals
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/creating-goals
 Please refer to your journey and create Milestones and Trackers accordingly. You CANNOT implement Goal nodes without creating them.
 
 ## Procedure
+### Exact path
+Gupshup Console → Goals → Creating Goals
+
 ### Where to configure it
 Gupshup Console → Goals → Creating Goals
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to the Goals section under Bot Studio in the navigation sidebar on the left.
@@ -23,11 +29,28 @@ Gupshup Console → Goals → Creating Goals
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - You need to create Goals before you can implement them in your journeys.
+- Enter a name for the Goal in Goal Name.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- Please refer to your journey and create Milestones and Trackers accordingly. You CANNOT implement Goal nodes without creating them.
+- You CANNOT delete existing Milestones.
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)
 <!-- procedural:v2 -->

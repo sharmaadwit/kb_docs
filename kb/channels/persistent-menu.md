@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/web-persistent-menu
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Persistent Menu
 
 **Module**: Channels
@@ -11,8 +11,14 @@ source_url: https://console-docs.gupshup.io/docs/web-persistent-menu
 - You can have two types of buttons in the Persistent Menu:
 
 ## Procedure
+### Exact path
+Gupshup Console → Channels → Persistent Menu
+
 ### Where to configure it
 Gupshup Console → Channels → Persistent Menu
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to the Settings in the Web channel.
@@ -27,11 +33,26 @@ Gupshup Console → Channels → Persistent Menu
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

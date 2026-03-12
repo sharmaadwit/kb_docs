@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/before-you-begin
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Before you begin
 
 **Module**: Channels
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/before-you-begin
 Before linking your Instagram account with Gupshup, confirm that you have:
 
 ## Procedure
+### Exact path
+Gupshup Console → Channels → Before you begin
+
 ### Where to configure it
 Gupshup Console → Channels → Before you begin
+
+### Prerequisites
+- # Before you begin
 
 ### Setup path
 - Go to your Instagram profile and tap the hamburger icon (three short horizontal lines stacked on top of each other). The icon is present in the top right-hand corner for the mobile version of Instagram. The icon is present at the bottom of the navigation sidebar on the left for the web version.
@@ -27,15 +33,39 @@ Gupshup Console → Channels → Before you begin
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- Before linking your Instagram account with Gupshup, confirm that you have:
+- Tap OK to confirm.
+- Verify your account using a confirmation code sent to the phone number and email address.
+
 ## Available options
 - Converting your profile to a professional account
 - Connecting your Facebook Page and your Instagram business (Professional) account
 - Enabling "Allow access to Instagram messages in Inbox"
 - Unable to turn on the toggle from Facebook?
 - Registering as a Facebook Developer
+- Tap Switch to professional account.
+- For some accounts, the Switch to professional account option will be listed directly under Settings.
+- Select a category for your account and tap Done.
+- Add contact details and tap Next. Or tap Don't use my contact info to skip this step.
+- Click See all profiles, then select the Page that you want to switch into.
+- Turn on the toggle next to Allow access to Instagram messages in Inbox.
+- #### Unable to turn on the toggle from Facebook?
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

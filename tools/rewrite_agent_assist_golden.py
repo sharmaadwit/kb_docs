@@ -11,7 +11,7 @@ hand-authored) into a predictable, operator-first template while preserving
 source content in a trailing "Reference" section.
 
 Idempotency
-- Rewritten files include `<!-- agent-assist-golden:v2 -->`.
+- Rewritten files include `<!-- agent-assist-golden:v7 -->`.
 """
 
 from __future__ import annotations
@@ -24,8 +24,15 @@ from typing import List, Tuple
 ROOT = Path(__file__).resolve().parents[1]
 AA_DIR = ROOT / "kb" / "agent-assist"
 
-OLD_MARKER = "<!-- agent-assist-golden:v1 -->"
-MARKER = "<!-- agent-assist-golden:v2 -->"
+OLD_MARKERS = {
+    "<!-- agent-assist-golden:v1 -->",
+    "<!-- agent-assist-golden:v2 -->",
+    "<!-- agent-assist-golden:v3 -->",
+    "<!-- agent-assist-golden:v4 -->",
+    "<!-- agent-assist-golden:v5 -->",
+    "<!-- agent-assist-golden:v6 -->",
+}
+MARKER = "<!-- agent-assist-golden:v7 -->"
 
 META_LINE_RE = re.compile(r"^[a-zA-Z0-9_]+:\s+\S+.*$")
 H_RE = re.compile(r"^(#{1,6})\s+(.*)\s*$")
@@ -189,6 +196,107 @@ def extract_definition(overview: str | None, when_to_use: str | None) -> str:
     out = "\n\n".join(parts).strip()
     return out if out else "Short description in 2–3 lines."
 
+def extract_reference_body(raw_body: str) -> str:
+    """
+    If the file already contains a "Reference (from source)" block, use it as the
+    source of truth for extraction so we don't lose original content.
+    """
+    m = re.search(r"^##\s+Reference\s+\(from source\)\s*$", raw_body, flags=re.MULTILINE)
+    if not m:
+        return raw_body
+    return raw_body[m.end() :].strip()
+
+def first_useful_paragraph(text: str) -> str | None:
+    paras = [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
+    for p in paras:
+        if p.startswith("#"):
+            continue
+        if p.startswith("_"):
+            continue
+        if re.match(r"^(section\s+\d+[:.)-]|introduction)$", p, flags=re.IGNORECASE):
+            continue
+        if len(p) < 30 and p.lower() in {"overview", "definition", "uses"}:
+            continue
+        return p
+    return paras[0] if paras else None
+
+def best_operational_summary(*candidates: str | None) -> str | None:
+    """
+    Prefer a paragraph that is not a section label and has enough substance.
+    """
+    for c in candidates:
+        if not c:
+            continue
+        p = first_useful_paragraph(c) or ""
+        if re.match(r"^section\s+\d+\s*[:.)-]", p.strip(), flags=re.IGNORECASE):
+            continue
+        if len(p.strip()) < 40:
+            continue
+        return p.strip()
+    # fallback: any first useful paragraph
+    for c in candidates:
+        if not c:
+            continue
+        p = first_useful_paragraph(c)
+        if p:
+            return p.strip()
+    return None
+
+def first_long_paragraph(text: str) -> str | None:
+    paras = [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
+    for p in paras:
+        if re.match(r"^section\s+\d+\s*[:.)-]", p, flags=re.IGNORECASE):
+            continue
+        if p.startswith("#") or p.startswith("_"):
+            continue
+        if len(p) >= 60:
+            return p
+    return None
+
+def extract_from_reference(ref: str) -> tuple[str | None, str | None, str | None]:
+    """
+    Pull overview/details/setup-path from the reference block.
+    Supports both:
+    - older procedural sections (## Overview / ## Setup path / ## Step-by-step configuration)
+    - our v2 reference sections (### Overview / ### Details / ### Setup path (as described))
+    """
+    # Prefer v2-style ### Details
+    m_details = re.search(r"^###\s+Details\s*$", ref, flags=re.MULTILINE)
+    if m_details:
+        tail = ref[m_details.end() :].strip()
+        # stop at next ### if present
+        m_next = re.search(r"^###\s+\S.*$", tail, flags=re.MULTILINE)
+        details = tail[: m_next.start()].strip() if m_next else tail.strip()
+    else:
+        details = None
+
+    # Overview
+    m_ov = re.search(r"^###\s+Overview\s*$", ref, flags=re.MULTILINE)
+    if m_ov:
+        tail = ref[m_ov.end() :].strip()
+        m_next = re.search(r"^###\s+\S.*$", tail, flags=re.MULTILINE)
+        overview = tail[: m_next.start()].strip() if m_next else tail.strip()
+    else:
+        overview = None
+
+    # Setup path
+    m_sp = re.search(r"^###\s+Setup path(?:\s+\\(as described\\))?\s*$", ref, flags=re.MULTILINE)
+    if m_sp:
+        tail = ref[m_sp.end() :].strip()
+        m_next = re.search(r"^###\s+\S.*$", tail, flags=re.MULTILINE)
+        setup = tail[: m_next.start()].strip() if m_next else tail.strip()
+    else:
+        # fallback to procedural "## Setup path"
+        m_sp2 = re.search(r"^##\s+Setup path\s*$", ref, flags=re.MULTILINE)
+        if m_sp2:
+            tail = ref[m_sp2.end() :].strip()
+            m_next = re.search(r"^##\s+\S.*$", tail, flags=re.MULTILINE)
+            setup = tail[: m_next.start()].strip() if m_next else tail.strip()
+        else:
+            setup = None
+
+    return overview, details, setup
+
 
 def extract_options(step_by_step: str | None) -> List[str]:
     """
@@ -249,7 +357,8 @@ def rewrite_one(path: Path) -> bool:
     raw = path.read_text(encoding="utf-8", errors="ignore")
     if MARKER in raw:
         return False
-    raw = raw.replace(OLD_MARKER, "")
+    for om in OLD_MARKERS:
+        raw = raw.replace(om, "")
 
     if path.name == "response-management-auto-replies-and-customer-satisfaction.md":
         # gold standard is hand-authored
@@ -258,14 +367,17 @@ def rewrite_one(path: Path) -> bool:
     lines = raw.splitlines(keepends=True)
     meta, body_lines = split_meta(lines)
     body = "".join(body_lines)
+    ref_body = extract_reference_body(body)
+    ref_overview, ref_details, ref_setup = extract_from_reference(ref_body)
 
     # Expect procedural:v2 format from earlier rewrite
     title = get_first_h1(body) or path.stem.replace("-", " ").title()
     module = get_module(body) or "Agent Assist"
-    overview = section(body, "Overview")
+    # Prefer procedural sections if present; otherwise fall back to reference-derived parts
+    overview = section(body, "Overview") or ref_overview
     when_to_use = section(body, "When to use")
-    setup_path_section = section(body, "Setup path")
-    step_by_step = section(body, "Step-by-step configuration")
+    setup_path_section = section(body, "Setup path") or ref_setup
+    step_by_step = section(body, "Step-by-step configuration") or ref_details or ref_overview
     last_updated = None
     m = UPDATED_RE.search(body)
     if m:
@@ -279,6 +391,19 @@ def rewrite_one(path: Path) -> bool:
         needs_save = True
     steps = synthesize_steps(where, setup_path, needs_save=needs_save)
     definition = extract_definition(overview, when_to_use)
+    # If definition is still low-signal, try the first useful paragraph from details
+    low_signal = definition.strip().lower() in {"short description in 2–3 lines.", "short description in 2-3 lines."}
+    low_signal = low_signal or bool(re.match(r"^section\s+\d+\s*[:.)-]", definition.strip(), flags=re.IGNORECASE))
+    low_signal = low_signal or definition.strip().lower() in {"introduction", "overview"}
+    if low_signal:
+        alt = best_operational_summary(step_by_step, ref_details, ref_overview)
+        if alt:
+            definition = alt
+    # Hard fallback: never keep a "Section X:" label as the summary
+    if re.match(r"^section\s+\d+\s*[:.)-]", definition.strip(), flags=re.IGNORECASE):
+        alt2 = first_long_paragraph(step_by_step or "") or first_long_paragraph(ref_details or "")
+        if alt2:
+            definition = alt2.strip()
     options = extract_options(step_by_step)
     notes = extract_notes(body)
 
@@ -301,6 +426,12 @@ def rewrite_one(path: Path) -> bool:
     out.append("## Where to configure it\n")
     out.append(where + "\n\n")
 
+    out.append("## Exact path\n")
+    out.append(where + "\n\n")
+
+    out.append("## Prerequisites\n")
+    out.append("- _List required roles/access, teams, and any upstream configuration._\n\n")
+
     out.append("## Setup path\n")
     if setup_path:
         for s in setup_path:
@@ -320,6 +451,9 @@ def rewrite_one(path: Path) -> bool:
     else:
         out.append("- _No save/publish step is required for this page unless explicitly stated in the UI._\n\n")
 
+    out.append("## Validation\n")
+    out.append("- _Run a quick test (new chat / assignment / workflow) and confirm expected behavior._\n\n")
+
     out.append("## Available options\n")
     if options:
         for o in options:
@@ -338,19 +472,23 @@ def rewrite_one(path: Path) -> bool:
         out.append(f"- **Last updated (from source)**: {last_updated}\n")
     out.append("\n")
 
+    out.append("## Troubleshooting\n")
+    if notes:
+        out.append("- If something doesn’t work as expected, re-check the **Exact path** and confirm you saved changes.\n")
+    out.append("- _Add common failure modes and how to fix them._\n\n")
+
+    out.append("## Field mapping / schemas\n")
+    out.append("- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._\n\n")
+
+    out.append("## Cross-module workflows\n")
+    out.append("- _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._\n\n")
+
+    out.append("## Module disambiguation\n")
+    out.append("- _Add 1–2 bullets distinguishing this feature from adjacent settings to reduce retrieval drift._\n\n")
+
     out.append("## Reference (from source)\n")
-    if overview:
-        out.append("### Overview\n")
-        out.append(overview.strip() + "\n\n")
-    if when_to_use:
-        out.append("### When to use\n")
-        out.append(when_to_use.strip() + "\n\n")
-    if step_by_step:
-        out.append("### Details\n")
-        out.append(step_by_step.strip() + "\n")
-    elif setup_path_section:
-        out.append("### Setup path (as described)\n")
-        out.append(setup_path_section.strip() + "\n")
+    # Preserve reference body rather than re-deriving partial blocks
+    out.append(ref_body.strip() + "\n")
 
     path.write_text("".join(out), encoding="utf-8")
     return True

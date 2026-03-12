@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/starting-nodes
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Starting Nodes
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/starting-nodes
 The Starting Node in Journey Builder is the foundational point where a journey begins. It serves as the trigger or condition that activates the flow, such as user actions, scheduled events, or system updates. Every journey requires a starting node to define its initiation, ensuring a structured and seamless progression. It provides flexibility to tailor the journey's entry criteria, setting the context for subsequent interactions.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → Starting Nodes
+
 ### Where to configure it
 Gupshup Console → Bot Studio → Starting Nodes
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,14 +30,32 @@ Gupshup Console → Bot Studio → Starting Nodes
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - What is a Starting Node?
 - How to configure
 - Event Types:
 - Additional Condition:
+- Select from the the available list of Event based on which you would like to trigger the journey
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- Only 1 out of 5 Event can be selected User Event or AI Trigger
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

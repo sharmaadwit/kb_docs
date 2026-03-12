@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/quick-reply
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Quick Reply
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/quick-reply
 It is a special type of message using which a chatbot can provide multiple options for a customer to select. It is a message type with a text message and clickable buttons. The clickable buttons are treated as a response from the user to process the journey further.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → Quick Reply
+
 ### Where to configure it
 Gupshup Console → Bot Studio → Quick Reply
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,15 +30,30 @@ Gupshup Console → Bot Studio → Quick Reply
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
-- Introduction
-- Use Cases
 - Customer Profile Completion:
 - Support Ticket Management:
 - E-commerce Checkout:
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/api-timeout-default-to-10-secs
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # API Timeout Default to 10 Secs
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/api-timeout-default-to-10-secs
 Timeout Default Value
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → API Timeout Default to 10 Secs
+
 ### Where to configure it
 Gupshup Console → Bot Studio → API Timeout Default to 10 Secs
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,11 +30,29 @@ Gupshup Console → Bot Studio → API Timeout Default to 10 Secs
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- When closing the API settings modal, the system will validate all API timeout values.
+
 ## Available options
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- Error Validation: Any timeout set below 1 second or above 60 seconds will trigger an error notification, ensuring all timeout values remain within the valid range.
+- Invalid timeouts (e.g., 0 or outside the 1-60 second range) will prompt an error, requiring correction before proceeding.
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

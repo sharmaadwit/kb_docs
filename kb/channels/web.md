@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/web
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Web
 
 **Module**: Channels
@@ -11,8 +11,14 @@ source_url: https://console-docs.gupshup.io/docs/web
 ### Embed URL
 
 ## Procedure
+### Exact path
+Gupshup Console → Channels → Web
+
 ### Where to configure it
 Gupshup Console → Channels → Web
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -26,6 +32,9 @@ Gupshup Console → Channels → Web
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- On clicking the Test button, you are redirected to your dedicated testing page.
+
 ## Available options
 - Embed URL
 - Preview
@@ -34,6 +43,18 @@ Gupshup Console → Channels → Web
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

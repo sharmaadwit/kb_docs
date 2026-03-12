@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/ace-agentic-llm-overview-copy
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # ACE & Agentic LLM Overview
 
 **Module**: Ai Admin
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/ace-agentic-llm-overview-copy
 ACE LLM by Gupshup is a family of generative models to automate marketing, commerce & support related conversations powered by Open & Closed source foundational models. It has been fine-tuned on industry & function-specific data to deliver a delightful customer experience. Enterprises get a head-start in delivering ACE LLM-powered conversational experiences.
 
 ## Procedure
+### Exact path
+Gupshup Console → Ai Admin → ACE & Agentic LLM Overview
+
 ### Where to configure it
 Gupshup Console → Ai Admin → ACE & Agentic LLM Overview
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,11 +30,26 @@ Gupshup Console → Ai Admin → ACE & Agentic LLM Overview
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)
 <!-- procedural:v2 -->

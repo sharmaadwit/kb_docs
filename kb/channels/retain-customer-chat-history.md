@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/web-retain-customer-chat-history
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Retain Customer Chat History
 
 **Module**: Channels
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/web-retain-customer-chat-histor
 This feature allows you to show the messages from a user's previous conversations in the Web chat widget for repeat visits from the same browser and device. A toggle is provided in the Preferences tab in Settings to enable this feature.
 
 ## Procedure
+### Exact path
+Gupshup Console → Channels → Retain Customer Chat History
+
 ### Where to configure it
 Gupshup Console → Channels → Retain Customer Chat History
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,11 +30,27 @@ Gupshup Console → Channels → Retain Customer Chat History
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
-- _List the key variants/toggles visible in the UI._
+- By default, the toggle is disabled and the customer chat history is NOT retained.
+- Enable Authenticated Users
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

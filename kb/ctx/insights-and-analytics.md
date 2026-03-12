@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/insights-and-analytics
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Insights and Analytics
 
 **Module**: Ctx
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/insights-and-analytics
 How to track performance of CTWA Campaigns and Ads
 
 ## Procedure
+### Exact path
+Gupshup Console → CTX → Insights and Analytics
+
 ### Where to configure it
 Gupshup Console → CTX → Insights and Analytics
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,11 +30,26 @@ Gupshup Console → CTX → Insights and Analytics
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- This report showcases the number of Lead and Purchase signals that are sent to Meta. It shows both successful and failed signals.
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- CTX campaign → Bot Studio journey → Goal measurement
+
+## Module disambiguation
+- CTX covers ad-to-WhatsApp campaign flows; bot conversation logic still lives in **Bot Studio**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

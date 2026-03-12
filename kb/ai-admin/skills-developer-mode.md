@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/skills
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Skills (Developer Mode)
 
 **Module**: Ai Admin
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/skills
 Introduction:
 
 ## Procedure
+### Exact path
+Gupshup Console → Ai Admin → Skills (Developer Mode)
+
 ### Where to configure it
 Gupshup Console → Ai Admin → Skills (Developer Mode)
+
+### Prerequisites
+- Skill Objective: You are a real estate assistant for a client, who helps by collecting property requirements from the user and sharing suitable property options based on their criteria
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,11 +30,33 @@ Gupshup Console → Ai Admin → Skills (Developer Mode)
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- Include error handling for API failures a) Test with mock data before connecting to production systems b) Set appropriate timeouts to prevent conversation stalling
+- Testing and Evaluation Guidelines for Bot Designers When evaluating this Real Estate Assistant skill, focus on these critical test scenarios in Test Bot
+- User Input Variations: Test with different phrasing for property requests (e.g., "I need a home" vs. "Show me apartments")
+- Verify appropriate responses when:
+- Tool Integration: Confirm @get_context_data properly retrieves and presents: Neighborhood amenities Property features Accurate pricing information
+- Guardrail Enforcement: Validate that responses:
+
 ## Available options
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- a) Document proper parameter formatting in comments b) Include error handling for API failures c) Test with mock data before connecting to production systems d) Set appropriate timeouts to prevent conversation stalling
+- Include error handling for API failures a) Test with mock data before connecting to production systems b) Set appropriate timeouts to prevent conversation stalling
+- Error Handling:
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)
 <!-- procedural:v2 -->

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/api-node
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # API Node
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/api-node
 Request an API response in the conversation flow using the API Node. API node has a dropdown to select the API that you want to use. API action node allows you to hit an API at that point of the flow, and store the API response in a variable for further use.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → API Node
+
 ### Where to configure it
 Gupshup Console → Bot Studio → API Node
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to the left-hand menu under Action Nodes.
@@ -23,6 +29,9 @@ Gupshup Console → Bot Studio → API Node
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- Test your journey using the Test Bot before going live.
+
 ## Available options
 - API Node
 - 🔧 Where to Find It
@@ -32,9 +41,24 @@ Gupshup Console → Bot Studio → API Node
 - ✅ Best Practices
 - ✅ Allowed Conditions:
 - ❌ Restricted / Not Allowed Conditions:
+- Add an API Node
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

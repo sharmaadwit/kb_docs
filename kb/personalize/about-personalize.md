@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/about-customer360
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # About Personalize
 
 **Module**: Personalize
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/about-customer360
 In today's highly competitive market, delivering personalized and targeted marketing campaigns is essential for businesses to drive customer engagement, boost sales, and foster long-term loyalty. The Personalize feature empowers marketers to harness the full potential of customer data and create impactful campaigns. This guide will provide you with a comprehensive overview of Personalize and how to leverage its capabilities to run successful marketing campaigns.
 
 ## Procedure
+### Exact path
+Gupshup Console → Personalize → About Personalize
+
 ### Where to configure it
 Gupshup Console → Personalize → About Personalize
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,11 +30,26 @@ Gupshup Console → Personalize → About Personalize
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)
 <!-- procedural:v2 -->

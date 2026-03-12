@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/regex-validation-in-prompt-nodes
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # RegEx Validation in Prompt Nodes
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/regex-validation-in-prompt-node
 As part of our platform hardening and bot reliability initiatives, Gupshup Console validates all regular expressions in Prompt Nodes using the Re2 regex engine, developed by Google. This ensures that patterns used for validating user input are safe, efficient, and non-blocking at runtime.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → RegEx Validation in Prompt Nodes
+
 ### Where to configure it
 Gupshup Console → Bot Studio → RegEx Validation in Prompt Nodes
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,6 +30,9 @@ Gupshup Console → Bot Studio → RegEx Validation in Prompt Nodes
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- Test your regex in a Re2-compatible environment before using it in Console
+
 ## Available options
 - 1. Compliance with Re2 Syntax
 - 2. Runtime Safety (Catastrophic Backtracking Prevention)
@@ -31,6 +40,23 @@ Gupshup Console → Bot Studio → RegEx Validation in Prompt Nodes
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- Regex entered during node configuration is validated on click of Tick icon on the regex field. If the expression does not conform to Re2 standards, an error is shown and the journey cannot be saved until it is corrected.
+- You will see an error: Invalid regex expression. learn more.
+- An error toast appears below the regex field: Invalid regex expression. learn more
+- The journey cannot be saved until the regex is correctly saved
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

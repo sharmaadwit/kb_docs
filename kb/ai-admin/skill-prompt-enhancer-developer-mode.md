@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/prompt-enhancer
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Skill Prompt Enhancer (Developer Mode)
 
 **Module**: Ai Admin
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/prompt-enhancer
 Introduction: Skill Prompt Enhancer, a powerful new feature designed to help you craft highly effective and optimized skill instructions for your AI agents. Enhancer directly addresses common challenges in prompt engineering, ensuring your agents perform at their best.
 
 ## Procedure
+### Exact path
+Gupshup Console → Ai Admin → Skill Prompt Enhancer (Developer Mode)
+
 ### Where to configure it
 Gupshup Console → Ai Admin → Skill Prompt Enhancer (Developer Mode)
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,11 +30,27 @@ Gupshup Console → Ai Admin → Skill Prompt Enhancer (Developer Mode)
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- Inefficient Iterations: Providing guided feedback to streamline the prompt refinement process, reducing manual trial and error.
+- Retry After Failure: If an enhancement fails, you are allowed a maximum of 1 retry.
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)
 <!-- procedural:v2 -->

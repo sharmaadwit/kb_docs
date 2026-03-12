@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/web-pre-chat-form
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Pre-Chat Form
 
 **Module**: Channels
@@ -12,8 +12,14 @@ source_url: https://console-docs.gupshup.io/docs/web-pre-chat-form
 - If the Retain Customer Chat History setting is enabled, the Pre-Chat Form will be shown to new anonymous users only once. Logged in users will be shown the form every time regardless of the setting.
 
 ## Procedure
+### Exact path
+Gupshup Console → Channels → Pre-Chat Form
+
 ### Where to configure it
 Gupshup Console → Channels → Pre-Chat Form
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to the Pre-Chat Form tab in Settings of the Web channel.
@@ -26,15 +32,31 @@ Gupshup Console → Channels → Pre-Chat Form
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - Header Image
 - Header
 - Sub-Header
 - Checkbox Text
 - Global Button Text
+- Turn on the Enable Pre-Chat Form toggle. You can now add the content to the form.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- Users cannot start messaging on the chat widget without clicking the Global Button.
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

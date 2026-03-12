@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/pre-requisites
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Onboarding TikTok Ads Manager to Gupshup
 
 **Module**: Ctx
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/pre-requisites
 Overview on the step-by-step process to onboard TTAM to Gupshup
 
 ## Procedure
+### Exact path
+Gupshup Console → CTX → Onboarding TikTok Ads Manager to Gupshup
+
 ### Where to configure it
 Gupshup Console → CTX → Onboarding TikTok Ads Manager to Gupshup
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,11 +30,27 @@ Gupshup Console → CTX → Onboarding TikTok Ads Manager to Gupshup
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- Step 4: In the pop-up that opens, select all the assets that request permission and click on "Confirm"
+- Step 5: Once the user clicks the confirm button the user gets redirected to the console screen where the user selects the ad accounts
+
 ## Available options
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- CTX campaign → Bot Studio journey → Goal measurement
+
+## Module disambiguation
+- CTX covers ad-to-WhatsApp campaign flows; bot conversation logic still lives in **Bot Studio**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

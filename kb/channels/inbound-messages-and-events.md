@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/inbound-messages-and-events
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Inbound Messages and Events
 
 **Module**: Channels
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/inbound-messages-and-events
 As a console user, if you configure a secondary URL on your WhatsApp self-serve application, you will receive inbound events including message status events and inbound messages. Here are some details:
 
 ## Procedure
+### Exact path
+Gupshup Console → Channels → Inbound Messages and Events
+
 ### Where to configure it
 Gupshup Console → Channels → Inbound Messages and Events
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,11 +30,26 @@ Gupshup Console → Channels → Inbound Messages and Events
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- You set a callback URL for your app, or you have used the proxy command to invoke your app on Gupshup Proxy bot phone number (+917834811114) to test the app in sandbox mode.
+
 ## Available options
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

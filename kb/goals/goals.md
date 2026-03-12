@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/goals
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Concepts
 
 **Module**: Goals
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/goals
 The Goals feature enable businesses to define and track specific points in a bot journey where the Goal of the journey is being achieved.
 
 ## Procedure
+### Exact path
+Gupshup Console → Goals → Concepts
+
 ### Where to configure it
 Gupshup Console → Goals → Concepts
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,6 +30,9 @@ Gupshup Console → Goals → Concepts
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - Goal
 - Milestone
@@ -31,6 +40,18 @@ Gupshup Console → Goals → Concepts
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)
 <!-- procedural:v2 -->

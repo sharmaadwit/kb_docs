@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/callback-url-event-on-starting-node
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Callback URL Event on Starting Node
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/callback-url-event-on-starting-
 The Callback Event is an event type on the Starting Node in JB Canvas. This enhances Journey Builder's capability to listen to external events, in addition to various user events. The Callback URL can serve as a trigger point for initiating a journey and executing actions or sending outbound messages to users, facilitating multiple use cases such as payment confirmations and order updates etc..
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → Callback URL Event on Starting Node
+
 ### Where to configure it
 Gupshup Console → Bot Studio → Callback URL Event on Starting Node
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,15 +30,34 @@ Gupshup Console → Bot Studio → Callback URL Event on Starting Node
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- – External system events such as subscription renewals, shipment updates, or verification completions.
+
 ## Available options
-- Introduction:
 - What's New?
 - Steps to Configure:
 - Use CI For:
 - Do Not Use CI For:
+- Select Custom event from the top Event selection dropdown
+- Select the Integration from which you would like to receive the events
+- Select the specific event based on which the journey should be triggered
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- The available Sender Details will be pre-populated by the system and cannot be updated(as of now)
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

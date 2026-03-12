@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/journey-settings
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Journey Settings
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/journey-settings
 Every User Journey has a dedicated settings which determines how the journey will be used by the bot. Journey Settings can be found inside the Design Canvas along with the Manage Variable and API Management options.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → Journey Settings
+
 ### Where to configure it
 Gupshup Console → Bot Studio → Journey Settings
+
+### Prerequisites
+- This behavior can also be modified as per requirement using the Sticky Journeys concept which is discussed later part of this doc.
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,11 +30,29 @@ Gupshup Console → Bot Studio → Journey Settings
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - For example:
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- Only 1 intent can be chosen as the primary intent for each journey. The workspace associated with the chosen primary intent becomes the Journey Workspace.
+- Only 1 Intent can be chosen as “Excluded Intent” of the Journey
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

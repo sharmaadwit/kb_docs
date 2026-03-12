@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/how-to-create-whatsapp-static-flows
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # How to Create WhatsApp Static Flows
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/how-to-create-whatsapp-static-f
 Creating a WhatsApp Static Flow involves several steps: designing the Flow JSON, setting up the journey, handling the response JSON, and triggering the flow from a user journey. Follow the steps below for a seamless setup:
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → How to Create WhatsApp Static Flows
+
 ### Where to configure it
 Gupshup Console → Bot Studio → How to Create WhatsApp Static Flows
+
+### Prerequisites
+- By following these steps, you can design, implement, and deploy WhatsApp Static Flows seamlessly for your business requirements.
 
 ### Setup path
 - Navigate to the Flow Builder via the Create Template Action on Meta BM
@@ -25,11 +31,29 @@ Gupshup Console → Bot Studio → How to Create WhatsApp Static Flows
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- Draft Toggle: Use this toggle to test Flow IDs in draft state on Meta BM (not yet published).
+- Sample Text Node Payload to use the response data to verify the inputs with the user post submission:
+
 ## Available options
-- _List the key variants/toggles visible in the UI._
+- Draft Toggle: Use this toggle to test Flow IDs in draft state on Meta BM (not yet published).
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

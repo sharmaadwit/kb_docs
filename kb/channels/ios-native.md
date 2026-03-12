@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/ios-native-sdk
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # iOS Native
 
 **Module**: Channels
@@ -10,8 +10,14 @@ source_url: https://console-docs.gupshup.io/docs/ios-native-sdk
 - Xcode 14 or above
 
 ## Procedure
+### Exact path
+Gupshup Console → Channels → iOS Native
+
 ### Where to configure it
 Gupshup Console → Channels → iOS Native
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -25,6 +31,9 @@ Gupshup Console → Channels → iOS Native
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - Prerequisites
 - Download the framework
@@ -34,9 +43,25 @@ Gupshup Console → Channels → iOS Native
 - Import GipKit into ViewModel class
 - Get reference to GipKit in ViewModel class
 - Getting the App ID
+- Add the framework to the target of the application if not already done.
+- Add the following keys to Info tab on the project target.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- If the initialization fails, the method returns false.
+- ## Listening for error messages
+- App can register a delegate and listen for error messages that the SDK can generate.
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

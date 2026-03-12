@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/website-re-training-scheduler
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Website Re-training Scheduler (Developer Mode)
 
 **Module**: Ai Admin
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/website-re-training-scheduler
 Introduction: The Website Re-Training Scheduler is a powerful feature designed to automate the process of re-training your website URLs, significantly reducing manual content training efforts. This is particularly beneficial for businesses that frequently update their online content, ensuring your AI models are always up-to-date with the latest information.
 
 ## Procedure
+### Exact path
+Gupshup Console → Ai Admin → Website Re-training Scheduler (Developer Mode)
+
 ### Where to configure it
 Gupshup Console → Ai Admin → Website Re-training Scheduler (Developer Mode)
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,11 +30,27 @@ Gupshup Console → Ai Admin → Website Re-training Scheduler (Developer Mode)
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- End Date: (View Only) This date is automatically calculated based on the Start Date, Interval, and Frequency. You cannot manually select or change this field.
+- (View Only) This date is automatically calculated based on the Start Date, Interval, and Frequency. You cannot manually select or change this field.
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)
 <!-- procedural:v2 -->

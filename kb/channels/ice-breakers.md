@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/instagram-ice-breakers
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Ice Breakers
 
 **Module**: Channels
@@ -12,8 +12,14 @@ source_url: https://console-docs.gupshup.io/docs/instagram-ice-breakers
 How Ice Breakers appear on Instagram
 
 ## Procedure
+### Exact path
+Gupshup Console → Channels → Ice Breakers
+
 ### Where to configure it
 Gupshup Console → Channels → Ice Breakers
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to the Instagram Settings tab.
@@ -26,11 +32,27 @@ Gupshup Console → Channels → Ice Breakers
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
-- _List the key variants/toggles visible in the UI._
+- Enter the first question you wish to add as an Ice Breaker.
+- Enter payload for the first option.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

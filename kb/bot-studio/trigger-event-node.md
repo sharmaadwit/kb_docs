@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/trigger-event-node
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Trigger Event Node
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/trigger-event-node
 The Trigger Event Node is a newly introduced action node in the Journey Builder Canvas that empowers businesses to send custom internal events during live journey execution. These events are sent to the Event Manager(New Module on Console), Gupshup's centralized event tracking system, and can be seamlessly integrated with Personalize (Customer360) to update profile attributes for users.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → Trigger Event Node
+
 ### Where to configure it
 Gupshup Console → Bot Studio → Trigger Event Node
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to Console Sidebar → Event Manager
@@ -23,20 +29,36 @@ Gupshup Console → Bot Studio → Trigger Event Node
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - 📌 What is it?
 - 🧭 How to Use
-- Step 1: Create a Custom Event in Event Manager
-- Step 2: Configure Trigger Event Node in Journey Builder
-- Step 3: Runtime Behavior
-- ✅Use Cases
 - Cart Abandonment Tracking
 - Product Viewed Event
 - Form Submission Completion
 - User Opts-In for a Notification
+- Optionally, toggle the Save in Personalize to update CDP Profile attributes using Event data
+- Choose the Event Category (Custom only)
+- Select your Event Name from the dropdown
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

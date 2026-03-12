@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/connecting-ad-to-bot-in-gupshup-console
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Connecting ad to bot in Gupshup Console
 
 **Module**: Ctx
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/connecting-ad-to-bot-in-gupshup
 Best Practices:
 
 ## Procedure
+### Exact path
+Gupshup Console → CTX → Connecting ad to bot in Gupshup Console
+
 ### Where to configure it
 Gupshup Console → CTX → Connecting ad to bot in Gupshup Console
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,11 +30,26 @@ Gupshup Console → CTX → Connecting ad to bot in Gupshup Console
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- On the ads page, click on "Connect Bot" and in the pop-up that opens for verification, click on "Confirm"
+
 ## Available options
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- CTX campaign → Bot Studio journey → Goal measurement
+
+## Module disambiguation
+- CTX covers ad-to-WhatsApp campaign flows; bot conversation logic still lives in **Bot Studio**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

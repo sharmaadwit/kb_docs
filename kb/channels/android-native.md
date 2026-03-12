@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/android-native-sdk
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Android Native
 
 **Module**: Channels
@@ -10,8 +10,14 @@ source_url: https://console-docs.gupshup.io/docs/android-native-sdk
 - Android Studio version 2022.3.1 or above
 
 ## Procedure
+### Exact path
+Gupshup Console → Channels → Android Native
+
 ### Where to configure it
 Gupshup Console → Channels → Android Native
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -25,13 +31,30 @@ Gupshup Console → Channels → Android Native
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - Prerequisites
 - Getting the App ID
 - The App ID, User Name and User ID must be set before you initialize the SDK.
+- Add a custom repository to the dependency resolution block.
+- Add the following permissions in your project manifest file.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

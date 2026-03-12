@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/webhooks
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Webhooks
 
 **Module**: Integrations
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/webhooks
 New Webhooks section in integrations providing ability to send specific events to these webhooks.
 
 ## Procedure
+### Exact path
+Gupshup Console → Integrations → Webhooks
+
 ### Where to configure it
 Gupshup Console → Integrations → Webhooks
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Log into your Gupshup Console.
@@ -25,11 +31,37 @@ Gupshup Console → Integrations → Webhooks
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
-- _List the key variants/toggles visible in the UI._
+- Choose the module and respective events: WhatsApp Profile (Account) Template Campaign Manager and API Delivery events
+- Add your Callback URL and save.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Important Note: You can configure only 1 URL for Delivery Events. Additional webhooks created will update the URL and events will be sent to the latest URL saved. _
+
+## Field mapping / schemas
+Keys/fields called out in the source:
+
+- review-event : Triggered when the submitted WABA is approved or rejected. Possible values: APPROVED, REJECTED
+- status-event : Triggered when the status of the WABA changes. Possible values:
+- pndn-event : Triggered when the status of a submitted Phone Number or Display Name is updated. Possible values:
+- tier-event : Notifies changes in the messaging tier of a phone number. Event values: ONBOARDING, UPGRADE, DOWNGRADE, UNFLAGGED, FLAGGED Tier levels: TIER_250, TIER_1K, TIER_10K, TIER_100K, TIER_UNLIMITED
+- capability-event : Provides updates on WABA's messaging capabilities. Includes:
+- waba_id : Unique identifier of the WhatsApp Business Account (WABA).
+- owner_business_id : Meta Business Manager ID that owns the WABA and associated assets.
+- ad_account_id : Meta Ad Account ID linked for running Click-to-WhatsApp ads or templates in MM Lite.
+
+## Cross-module workflows
+- Delivery Webhooks → Campaign Manager analytics
+- Webhook events → downstream CRM/warehouse ingestion
+
+## Module disambiguation
+- Integrations configure connectivity/events; they don’t change bot conversation logic (Bot Studio) by themselves.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

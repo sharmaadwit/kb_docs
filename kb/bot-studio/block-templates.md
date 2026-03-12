@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/block-templates
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Block Templates
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/block-templates
 Block Templates are reusable building blocks created from nodes within a journey. These blocks can be saved, previewed, and dragged into other journeys within the same project—making bot creation significantly faster, more consistent, and modular.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → Block Templates
+
 ### Where to configure it
 Gupshup Console → Bot Studio → Block Templates
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Navigate to the Blocks tab on the left panel of the canvas
@@ -23,11 +29,28 @@ Gupshup Console → Bot Studio → Block Templates
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
-- _List the key variants/toggles visible in the UI._
+- Select one or more connected nodes on the canvas
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- Starting Node cannot be part of a Block Template
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

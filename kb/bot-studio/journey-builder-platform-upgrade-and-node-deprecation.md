@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/journey-builder-platform-upgrade-node-deprecation
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Journey Builder Platform Upgrade & Node Deprecation
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/journey-builder-platform-upgrad
 As part of our efforts to enhance the Journey Builder platform, Gupshup is transitioning all projects to a more modern and scalable infrastructure. This document outlines upcoming node updates, deprecations, user-facing changes, and next steps for all customers and partners.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → Journey Builder Platform Upgrade & Node Deprecation
+
 ### Where to configure it
 Gupshup Console → Bot Studio → Journey Builder Platform Upgrade & Node Deprecation
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,6 +30,9 @@ Gupshup Console → Bot Studio → Journey Builder Platform Upgrade & Node Depre
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - 🧩 Use Alternate Nodes in JB V2
 - Key Notes:
@@ -31,6 +40,20 @@ Gupshup Console → Bot Studio → Journey Builder Platform Upgrade & Node Depre
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- Once migrated, projects cannot be reverted to JB V2
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/expression-library-in-journey-builder-canvas
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Expression Library in Journey builder Canvas
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/expression-library-in-journey-b
 The Expression Library enhancement in the Modify Variable node is designed to empower bot designers with advanced data manipulation capabilities. By offering a robust set of pre-built functions, this feature eliminates the need for custom code nodes, enabling efficient and seamless variable operations directly within the Journey Builder Canvas. This enhancement introduces a dedicated interface for creating and testing expressions, providing an intuitive experience for designers to achieve complex data transformations with ease.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → Expression Library in Journey builder Canvas
+
 ### Where to configure it
 Gupshup Console → Bot Studio → Expression Library in Journey builder Canvas
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Navigate to the Modify Variable node and open the Modifier dropdown.
@@ -23,11 +29,45 @@ Gupshup Console → Bot Studio → Expression Library in Journey builder Canvas
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- Test Expression Functionality: Designers can test expressions with sample values to verify results. Outputs or errors are displayed instantly, allowing iterative testing and corrections.
+- Designers can test expressions with sample values to verify results.
+- Ease of Use: A clean and intuitive interface designed for bot designers of all experience levels. Comprehensive documentation and test functionality to ensure a smooth user experience.
+- Comprehensive documentation and test functionality to ensure a smooth user experience.
+- Testing the Expression: Add sample values for testing the expression. Click the play icon to execute the test. Review the output or error feedback in the Output Box.
+- Click the play icon to execute the test.
+- Follow the intuitive interface to create, test, and save expressions.
+- Is real-time typo detection available? Not yet. However, the Test Expression functionality provides feedback for correcting errors.
+
 ## Available options
-- _List the key variants/toggles visible in the UI._
+- Select the Expression option at the bottom of the list.
+- Add sample values for testing the expression.
+- Select the Expression option from the Modifier dropdown.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- Save Validation: Expressions must pass validation before saving. Invalid expressions or mismatched data types disable the Save button, ensuring error-free runtime execution.
+- Invalid expressions or mismatched data types disable the Save button, ensuring error-free runtime execution.
+- Error Feedback: Comprehensive error messages for invalid syntax or data mismatches. Suggestions for corrections to guide bot designers.
+- Comprehensive error messages for invalid syntax or data mismatches.
+- Error-Free Execution: Built-in validation and error feedback prevent runtime errors. Designers can confidently deploy expressions with guaranteed stability.
+- Built-in validation and error feedback prevent runtime errors.
+- Testing the Expression: Add sample values for testing the expression. Click the play icon to execute the test. Review the output or error feedback in the Output Box.
+- Review the output or error feedback in the Output Box.
+- # Error Handling
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

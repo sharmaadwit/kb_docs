@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/json-response-attribute-mapping-in-api-node
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # JSON Handler
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/json-response-attribute-mapping
 The JSON Handler Node is a powerful new addition to the Journey Builder Canvas in the Bot Studio platform. It allows bot designers to effortlessly extract information from simple to complex JSON objects without requiring coding expertise. This feature simplifies handling JSON responses from APIs or channel messages, making the platform more accessible, especially for non-technical users.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → JSON Handler
+
 ### Where to configure it
 Gupshup Console → Bot Studio → JSON Handler
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Navigate to Action Nodes in Journey Builder and select JSON Handler.\
@@ -23,11 +29,36 @@ Gupshup Console → Bot Studio → JSON Handler
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
-- _List the key variants/toggles visible in the UI._
+- Select from Local, Global, and System variables containing JSON responses.
+- Add the JSON Handler Node Navigate to Action Nodes in Journey Builder and select JSON Handler.\
+- Select JSON Variable Choose the variable containing the JSON response from the dropdown (Local, Global, or System).\
+- Choose the variable containing the JSON response from the dropdown (Local, Global, or System).\
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- Transform & Validation Transform Button reformats JSON for easier viewing. Real-time error handling for invalid JSON inputs.
+- Real-time error handling for invalid JSON inputs.
+- Error-Free Data Mapping Built-in validation ensures that only correct mappings are applied, reducing runtime errors.
+- ## Error Handling
+- Invalid JSON Inputs Real-time error messages appear in the editor if JSON is invalid.
+- Real-time error messages appear in the editor if JSON is invalid.
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

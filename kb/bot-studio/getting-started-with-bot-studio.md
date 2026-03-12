@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/create-a-new-journey
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Getting Started with Bot Studio
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/create-a-new-journey
 Journeys Landing Page
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → Getting Started with Bot Studio
+
 ### Where to configure it
 Gupshup Console → Bot Studio → Getting Started with Bot Studio
+
+### Prerequisites
+- Preview - Users have the option to preview a template to ensure it fits their requirements before using it.
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,6 +30,14 @@ Gupshup Console → Bot Studio → Getting Started with Bot Studio
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- Database (Dev Mode), Test Bot & Create Journey
+- Test Bot: Preview your journey (Web channel only; some WhatsApp-exclusive features may not work)
+- ### Test Bot & Saving options
+- Test Bot: Lets you test the journey on the Web widget. Use it to validate message flows and payloads.
+- ### Note: Test Bot becomes available only after you Save & Deploy your journey.
+- NOTE: You can use the Test Bot only after Saving and Deploying the journey
+
 ## Available options
 - Key Sections on the Landing Page
 - Side Options
@@ -33,9 +47,26 @@ Gupshup Console → Bot Studio → Getting Started with Bot Studio
 - Test Bot & Saving options
 - Note: Test Bot becomes available only after you Save & Deploy your journey.
 - Analytics Toggle
+- Canvas Tools: Zoom in/out Fit View Toggle Interactivity Organize blocks Align nodes horizontally/vertically
+- Toggle Interactivity
+- ### Analytics Toggle
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/whatsapp-flows-static-2-way
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # WhatsApp Flows - Static/Dynamic
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/whatsapp-flows-static-2-way
 The WhatsApp Flows feature enhances the platform's capabilities by enabling two-way messaging triggered from the JB WhatsApp Flow node. With this feature, you can seamlessly initiate WhatsApp Flows at any point during a conversation, ensuring dynamic interaction and real-time engagement.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → WhatsApp Flows - Static/Dynamic
+
 ### Where to configure it
 Gupshup Console → Bot Studio → WhatsApp Flows - Static/Dynamic
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,6 +30,10 @@ Gupshup Console → Bot Studio → WhatsApp Flows - Static/Dynamic
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- Ensure the Console Project is using V3 version of WhatsApp Service - Contact Support to confirm incase required.
+- Draft Toggle: Use this toggle to test Flow IDs in draft state on Meta BM (not yet published).
+
 ## Available options
 - 1. Customer Support and Service:
 - 2. Sales and Marketing
@@ -35,9 +45,24 @@ Gupshup Console → Bot Studio → WhatsApp Flows - Static/Dynamic
 - 2. WhatsApp Flows Journey:
 - 3. Flow Starting Node
 - 4. Flow Terminal Node
+- Draft Toggle: Use this toggle to test Flow IDs in draft state on Meta BM (not yet published).
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

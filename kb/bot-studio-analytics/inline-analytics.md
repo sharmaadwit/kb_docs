@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/inline-analytics
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Inline Analytics
 
 **Module**: Bot Studio Analytics
@@ -11,8 +11,14 @@ source_url: https://console-docs.gupshup.io/docs/inline-analytics
 ### Inline Analytics displays the counts only for the last 30 days.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio Analytics → Inline Analytics
+
 ### Where to configure it
 Gupshup Console → Bot Studio Analytics → Inline Analytics
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -26,11 +32,27 @@ Gupshup Console → Bot Studio Analytics → Inline Analytics
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - Inline Analytics displays the counts only for the last 30 days.
+- You can click the refresh icon besides the Analytics toggle to reload the latest counts.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)
 <!-- procedural:v2 -->

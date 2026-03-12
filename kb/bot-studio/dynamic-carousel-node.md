@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/dynamic-carousel-node
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Dynamic Carousel Node
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/dynamic-carousel-node
 Send Personalized cards in the carousel for each user based on the user preference or business suggestion.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → Dynamic Carousel Node
+
 ### Where to configure it
 Gupshup Console → Bot Studio → Dynamic Carousel Node
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,13 +30,29 @@ Gupshup Console → Bot Studio → Dynamic Carousel Node
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- "title": "Book Test Drive",
+
 ## Available options
-- Introduction
 - What's New!
 - How to use a Dynamic Carousel?
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

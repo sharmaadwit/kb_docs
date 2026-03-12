@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/bot-analytics-exit-nodes
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Exit Nodes
 
 **Module**: Bot Studio Analytics
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/bot-analytics-exit-nodes
 Exit nodes show the most common steps where your customers are dropping off during their bot journey. Analysis of this metric can be used to reduce the hindrances and ensure a smooth journey for the customer.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio Analytics → Exit Nodes
+
 ### Where to configure it
 Gupshup Console → Bot Studio Analytics → Exit Nodes
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,12 +30,27 @@ Gupshup Console → Bot Studio Analytics → Exit Nodes
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - It is strongly recommended to enter Node Names on the Journey canvas.
 - The data in Bot Studio Analytics is retained for a period of one year.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)
 <!-- procedural:v2 -->

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/save-save-deploy
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Save, Save & Deploy
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/save-save-deploy
 Assuming a journey is to be made which is complex to design and has a lot of nodes involved. You are done with designing a small part of the flow for instance say 10% of the complete. It is advised to save the progress done so far. For this purpose, you get a ‘Save’ button on the Bot Studio itself.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → Save, Save & Deploy
+
 ### Where to configure it
 Gupshup Console → Bot Studio → Save, Save & Deploy
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,12 +30,29 @@ Gupshup Console → Bot Studio → Save, Save & Deploy
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - Save Button
 - Save & Deploy
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

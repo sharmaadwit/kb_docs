@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/gupshup-journey-builder-legacy-vs-v2-vs-pro
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Gupshup Journey Builder: Legacy vs V2 vs Pro
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/gupshup-journey-builder-legacy-
 Gupshup’s Journey Builder (JB) platform has evolved through multiple versions to address different user segments and technical requirements. The three key versions are:
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → Gupshup Journey Builder: Legacy vs V2 vs Pro
+
 ### Where to configure it
 Gupshup Console → Bot Studio → Gupshup Journey Builder: Legacy vs V2 vs Pro
+
+### Prerequisites
+- Gupshup’s Journey Builder (JB) platform has evolved through multiple versions to address different user segments and technical requirements. The three key versions are:
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,6 +30,9 @@ Gupshup Console → Bot Studio → Gupshup Journey Builder: Legacy vs V2 vs Pro
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- Test Bot and Inline Message Logs: Enable debugging directly within the canvas.
+
 ## Available options
 - 3.1 JB Legacy
 - 3.2 JB V2
@@ -31,6 +40,20 @@ Gupshup Console → Bot Studio → Gupshup Journey Builder: Legacy vs V2 vs Pro
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

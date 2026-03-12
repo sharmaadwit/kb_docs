@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/campaign-listing-page
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Campaign Listing Page
 
 **Module**: Campaign Manager
@@ -14,8 +14,14 @@ source_url: https://console-docs.gupshup.io/docs/campaign-listing-page
 - Clicking on the name of the campaign with status ‘Sent’ will land you on the analytics page of that campaign.
 
 ## Procedure
+### Exact path
+Gupshup Console → Campaign Manager → Campaign Listing Page
+
 ### Where to configure it
 Gupshup Console → Campaign Manager → Campaign Listing Page
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -29,11 +35,26 @@ Gupshup Console → Campaign Manager → Campaign Listing Page
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- Campaign creation/config is in **Campaign Manager**; delivery status can also be observed via **Webhooks** (Integrations).
 
 ## Reference (from source)
 <!-- procedural:v2 -->

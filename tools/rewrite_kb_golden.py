@@ -12,7 +12,7 @@ Scope
 - Preserves original content under "Reference (from source)".
 
 Idempotency
-- Rewritten files include `<!-- kb-golden:v1 -->`
+- Rewritten files include `<!-- kb-golden:v4 -->`
 """
 
 from __future__ import annotations
@@ -25,11 +25,18 @@ from typing import List, Tuple
 ROOT = Path(__file__).resolve().parents[1]
 KB_DIR = ROOT / "kb"
 
-MARKER = "<!-- kb-golden:v1 -->"
+OLD_MARKERS = {
+    "<!-- kb-golden:v1 -->",
+    "<!-- kb-golden:v2 -->",
+    "<!-- kb-golden:v3 -->",
+}
+MARKER = "<!-- kb-golden:v4 -->"
 
 META_LINE_RE = re.compile(r"^[a-zA-Z0-9_]+:\s+\S+.*$")
 H1_RE = re.compile(r"^#\s+(.+?)\s*$")
 H2_RE = re.compile(r"^##\s+(.+?)\s*$")
+
+SECTION_SPLIT_RE = re.compile(r"^##\s+(.+?)\s*$", re.MULTILINE)
 
 
 def split_meta(text: str) -> Tuple[str, str]:
@@ -50,6 +57,16 @@ def split_meta(text: str) -> Tuple[str, str]:
             continue
         break
     return "".join(meta).rstrip() + ("\n\n" if meta else ""), "".join(lines[i:]).lstrip()
+
+def extract_reference_from_golden(body: str) -> str:
+    """
+    If the file was already golden-wrapped, extract only the original source portion
+    to prevent recursive nesting.
+    """
+    m = re.search(r"^##\s+Reference\s+\(from source\)\s*$", body, flags=re.MULTILINE)
+    if not m:
+        return body.strip()
+    return body[m.end() :].strip()
 
 
 def extract_title(body: str, fallback: str) -> str:
@@ -154,6 +171,177 @@ def extract_setup_path(body: str) -> List[str]:
         steps.append(s)
     return steps[:12]
 
+def extract_prerequisites(text: str) -> List[str]:
+    prereq: List[str] = []
+    for ln in text.splitlines():
+        s = ln.strip()
+        if not s:
+            continue
+        if re.search(r"\b(before you begin|prerequisite|requirements?)\b", s, re.IGNORECASE):
+            if len(s) <= 200:
+                prereq.append(s.lstrip("- ").strip())
+    # de-dup
+    seen = set()
+    out = []
+    for p in prereq:
+        k = p.lower()
+        if k in seen:
+            continue
+        seen.add(k)
+        out.append(p)
+    return out[:8]
+
+def extract_validation(text: str) -> List[str]:
+    items: List[str] = []
+    for ln in text.splitlines():
+        s = ln.strip()
+        if not s:
+            continue
+        if re.search(r"\b(test|validate|verification|verify|confirm)\b", s, re.IGNORECASE):
+            if len(s) <= 200:
+                items.append(s.lstrip("- ").strip())
+    # de-dup
+    seen = set()
+    out = []
+    for it in items:
+        k = it.lower()
+        if k in seen:
+            continue
+        seen.add(k)
+        out.append(it)
+    return out[:8]
+
+def extract_troubleshooting(text: str) -> List[str]:
+    items: List[str] = []
+    for ln in text.splitlines():
+        s = ln.strip()
+        if not s:
+            continue
+        if re.search(r"\b(error|failed|fails|not working|cannot|only\s+\d+|important note|warning)\b", s, re.IGNORECASE):
+            if len(s) <= 220 and not s.startswith("{"):
+                cleaned = s.lstrip("- ").strip()
+                if len(cleaned.split()) <= 1:
+                    continue
+                items.append(cleaned)
+    # de-dup
+    seen = set()
+    out = []
+    for it in items:
+        k = it.lower()
+        if k in seen:
+            continue
+        seen.add(k)
+        out.append(it)
+    return out[:10]
+
+def extract_field_mapping(text: str) -> List[str]:
+    """
+    Pull key: description style lines, and flag sample payload areas.
+    """
+    items: List[str] = []
+    state = "scan"
+    for ln in text.splitlines():
+        s = ln.strip()
+        if not s:
+            continue
+
+        if state == "scan":
+            if re.search(r"\b(key\s*:?\s*description)\b", s, re.IGNORECASE) or s.lower().startswith("## key"):
+                state = "keys"
+                continue
+            if re.search(r"\bsample payload\b", s, re.IGNORECASE):
+                # keep scanning; many docs place keys after payloads
+                continue
+
+        if state == "keys":
+            # stop at next H2 that isn't "Key"
+            if s.startswith("## ") and "key" not in s.lower():
+                break
+            m = re.match(r"^([a-zA-Z0-9_\\-]+)\s*:\s+(.+)$", s)
+            if m and len(s) <= 220:
+                items.append(s)
+    # de-dup
+    seen = set()
+    out = []
+    for it in items:
+        k = it.lower()
+        if k in seen:
+            continue
+        seen.add(k)
+        out.append(it)
+    return out[:12]
+
+def extract_options(text: str) -> List[str]:
+    """
+    Heuristic: capture UI-like options/toggles rather than section headings.
+    """
+    items: List[str] = []
+    for ln in text.splitlines():
+        s = ln.strip()
+        if not s:
+            continue
+        # Prefer action-like bullets
+        if s.startswith("- "):
+            b = s[2:].strip()
+            if re.match(r"^(toggle|enable|disable|select|choose|set|add|enter)\b", b, re.IGNORECASE):
+                if len(b) <= 120:
+                    items.append(b)
+        if re.search(r"\b(toggle|switch)\b", s, re.IGNORECASE) and len(s) <= 120:
+            items.append(s.lstrip("- ").strip())
+    # de-dup
+    seen = set()
+    out = []
+    for it in items:
+        k = it.lower()
+        if k in seen:
+            continue
+        seen.add(k)
+        out.append(it)
+    return out[:10]
+
+def disambiguation_for_module(rel_path: Path) -> List[str]:
+    top = rel_path.parts[0].lower() if rel_path.parts else ""
+    if top == "bot-studio":
+        return [
+            "**Save** stores changes; **Save & Deploy** publishes to live channels.",
+            "Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.",
+        ]
+    if top == "campaign-manager":
+        return [
+            "Campaign creation/config is in **Campaign Manager**; delivery status can also be observed via **Webhooks** (Integrations).",
+        ]
+    if top == "integrations":
+        return [
+            "Integrations configure connectivity/events; they don’t change bot conversation logic (Bot Studio) by themselves.",
+        ]
+    if top == "channels":
+        return [
+            "Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.",
+        ]
+    if top == "ctx":
+        return [
+            "CTX covers ad-to-WhatsApp campaign flows; bot conversation logic still lives in **Bot Studio**.",
+        ]
+    return []
+
+def related_workflows(rel_path: Path) -> List[str]:
+    top = rel_path.parts[0].lower() if rel_path.parts else ""
+    if top == "integrations" and "webhooks" in rel_path.name.lower():
+        return [
+            "Delivery Webhooks → Campaign Manager analytics",
+            "Webhook events → downstream CRM/warehouse ingestion",
+        ]
+    if top == "bot-studio":
+        return [
+            "Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)",
+            "Bot Studio journey → Observability via Webhooks",
+        ]
+    if top == "ctx":
+        return [
+            "CTX campaign → Bot Studio journey → Goal measurement",
+        ]
+    return []
+
 
 def synthesize_steps(where: str, setup_path: List[str], body: str) -> List[str]:
     # If we have explicit bullet steps, reuse them
@@ -179,14 +367,17 @@ def synthesize_steps(where: str, setup_path: List[str], body: str) -> List[str]:
 
 def rewrite_one(path: Path) -> bool:
     rel = path.relative_to(KB_DIR)
-    if rel.parts and rel.parts[0] == "agent-assist":
+    if rel.parts and rel.parts[0] in {"agent-assist", "workflows"}:
         return False
 
     raw = path.read_text(encoding="utf-8", errors="ignore")
     if MARKER in raw:
         return False
+    for om in OLD_MARKERS:
+        raw = raw.replace(om, "")
 
     meta, body = split_meta(raw)
+    body = extract_reference_from_golden(body)
     # If previously rewritten by procedural script, keep it as reference; we’ll build golden blocks on top
     title = extract_title(body, fallback=path.stem.replace("-", " ").title())
     module = extract_module(body, rel)
@@ -195,8 +386,14 @@ def rewrite_one(path: Path) -> bool:
     definition = first_useful_paragraph(overview or "") or "Short description in 2–3 lines."
 
     where = guess_where_to_configure(rel, title, module)
+    exact_path = where  # single canonical breadcrumb used by the KB
     setup_path = extract_setup_path(body)
     steps = synthesize_steps(where, setup_path, body)
+    prereq = extract_prerequisites(body)
+    validation = extract_validation(body)
+    troubleshooting = extract_troubleshooting(body)
+    field_map = extract_field_mapping(body)
+    opt2 = extract_options(body)
 
     # Options: reuse any "Business hours vs after-hours" section or pull obvious headings
     opts: List[str] = []
@@ -231,8 +428,18 @@ def rewrite_one(path: Path) -> bool:
     out.append(definition.strip() + "\n\n")
 
     out.append("## Procedure\n")
+    out.append("### Exact path\n")
+    out.append(exact_path + "\n\n")
     out.append("### Where to configure it\n")
     out.append(where + "\n\n")
+
+    out.append("### Prerequisites\n")
+    if prereq:
+        for p in prereq:
+            out.append(f"- {p}\n")
+        out.append("\n")
+    else:
+        out.append("- _List required access, assets, and upstream setup needed before configuration._\n\n")
 
     out.append("### Setup path\n")
     if setup_path:
@@ -253,9 +460,50 @@ def rewrite_one(path: Path) -> bool:
     else:
         out.append("- _If this page has a Save/Publish action, document it here._\n\n")
 
+    out.append("### Validation\n")
+    if validation:
+        for v in validation:
+            out.append(f"- {v}\n")
+        out.append("\n")
+    else:
+        out.append("- _Run a quick smoke test and confirm expected behavior._\n\n")
+
     out.append("## Available options\n")
-    if options:
-        for o in options:
+    combined_options = options or []
+    for o in opt2:
+        combined_options.append(o)
+    # de-dup combined
+    seen_opt = set()
+    deduped = []
+    for o in combined_options:
+        k = o.lower().strip()
+        if k in seen_opt:
+            continue
+        seen_opt.add(k)
+        deduped.append(o)
+    # filter generic headings that aren't UI options
+    GENERIC = {
+        "when to use",
+        "limitations",
+        "overview",
+        "introduction",
+        "use cases",
+        "summary",
+        "notes",
+        "steps",
+        "step-by-step configuration",
+        "setup path",
+    }
+    filtered = []
+    for o in deduped:
+        k2 = re.sub(r"[^a-z0-9]+", " ", o.lower()).strip()
+        if k2 in GENERIC or k2.startswith("step "):
+            continue
+        filtered.append(o)
+    filtered = filtered[:12]
+
+    if filtered:
+        for o in filtered:
             out.append(f"- {o}\n")
         out.append("\n")
     else:
@@ -263,6 +511,41 @@ def rewrite_one(path: Path) -> bool:
 
     out.append("## Notes\n")
     out.append("- _Add prerequisites, constraints, and rollout behavior._\n\n")
+
+    out.append("## Troubleshooting\n")
+    if troubleshooting:
+        for t in troubleshooting:
+            out.append(f"- {t}\n")
+        out.append("\n")
+    else:
+        out.append("- _Add common failure modes and how to fix them._\n\n")
+
+    out.append("## Field mapping / schemas\n")
+    if field_map:
+        out.append("Keys/fields called out in the source:\n\n")
+        for fm in field_map:
+            out.append(f"- {fm}\n")
+        out.append("\n")
+    else:
+        out.append("- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._\n\n")
+
+    out.append("## Cross-module workflows\n")
+    flows = related_workflows(rel)
+    if flows:
+        for f in flows:
+            out.append(f"- {f}\n")
+        out.append("\n")
+    else:
+        out.append("- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._\n\n")
+
+    out.append("## Module disambiguation\n")
+    dis = disambiguation_for_module(rel)
+    if dis:
+        for d in dis:
+            out.append(f"- {d}\n")
+        out.append("\n")
+    else:
+        out.append("- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._\n\n")
 
     out.append("## Reference (from source)\n")
     out.append(body.strip() + "\n")

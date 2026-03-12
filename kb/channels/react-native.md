@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/react-native-sdk
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # React Native
 
 **Module**: Channels
@@ -12,8 +12,14 @@ source_url: https://console-docs.gupshup.io/docs/react-native-sdk
 - A working React Native project
 
 ## Procedure
+### Exact path
+Gupshup Console → Channels → React Native
+
 ### Where to configure it
 Gupshup Console → Channels → React Native
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -27,6 +33,10 @@ Gupshup Console → Channels → React Native
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- const [userId, setUserId] = useState('Test-User-Id-1234');
+- <Text style={styles.title}>GipSDK Demo Test</Text>
+
 ## Available options
 - Prerequisites
 - Android Setup
@@ -38,6 +48,23 @@ Gupshup Console → Channels → React Native
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- message(exception.message ?: "Error occurred..")
+- // Packages that cannot be autolinked yet can be added manually here, for example:
+- GipIOSService.initialize((error: any, success: boolean) => {
+- if (error) {
+- console.error('Initialization failed:', error);
+- GipIOSService.onError((error: any, message: string) => {
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

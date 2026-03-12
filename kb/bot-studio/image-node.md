@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/image-node
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Image Node
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/image-node
 The Image Node allows bot designers to send visual media (images) as part of a chatbot conversation within Journey Builder on Gupshup's Console. You can add an image either by uploading it directly from your local system or by providing a public URL. This makes it easy to share product images, visual confirmations, maps, and other content in a conversational flow.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → Image Node
+
 ### Where to configure it
 Gupshup Console → Bot Studio → Image Node
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,14 +30,30 @@ Gupshup Console → Bot Studio → Image Node
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
-- Step 1: Add the Image Node
-- Step 2: Choose Image Source
 - 🧩 Example Scenario
 - ⚙️ Configuration Steps
+- Choose a file from your local device
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

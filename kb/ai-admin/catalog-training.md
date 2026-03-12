@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/catalog-training-1
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Catalog Training
 
 **Module**: Ai Admin
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/catalog-training-1
 User can upload & train their product catalog to answer customer queries regarding product availability, specifications, pricing, and more.
 
 ## Procedure
+### Exact path
+Gupshup Console → Ai Admin → Catalog Training
+
 ### Where to configure it
 Gupshup Console → Ai Admin → Catalog Training
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to "Files" section in Content Tab.
@@ -23,11 +29,27 @@ Gupshup Console → Ai Admin → Catalog Training
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- The names of the csv files are strict and should not be changed. for e.g. products.csv cannot be renamed.
+- The columns and column headers inside the csv are strict and should not be changed. for e.g. the id column should be in the first column and the column header should be id and cannot be changed, deleted or reordered.
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)
 <!-- procedural:v2 -->

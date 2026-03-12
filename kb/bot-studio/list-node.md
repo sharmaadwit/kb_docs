@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/list-node
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # List Node
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/list-node
 This node helps to create a list of a maximum of 10 Items that can be put into sections/categories.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → List Node
+
 ### Where to configure it
 Gupshup Console → Bot Studio → List Node
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,19 +30,34 @@ Gupshup Console → Bot Studio → List Node
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - Adding the Message title, Button title and Footer
 - Define the List Node section and row titles statically
 - Define the List Node section and row titles dynamically
-- Introduction
 - How to use Synonyms in Button Titles?
-- Use Cases
 - Customer Profile Completion:
 - Support Ticket Management:
 - E-commerce Checkout:
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

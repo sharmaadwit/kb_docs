@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/campaign-analytics
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Campaign Analytics
 
 **Module**: Campaign Manager
@@ -24,8 +24,14 @@ source_url: https://console-docs.gupshup.io/docs/campaign-analytics
 - Link tracking Report - It gives timewise summary of clicks which will have original URL, GupShup URL, time at which the link was clicked, IP address, device and OS of the end user.
 
 ## Procedure
+### Exact path
+Gupshup Console → Campaign Manager → Campaign Analytics
+
 ### Where to configure it
 Gupshup Console → Campaign Manager → Campaign Analytics
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -39,11 +45,26 @@ Gupshup Console → Campaign Manager → Campaign Analytics
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- Response file - It gives timewise summary of all the delivery events for all phone numbers. If you want to retarget users for which campaign got failed, this file will help you out.
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- Campaign creation/config is in **Campaign Manager**; delivery status can also be observed via **Webhooks** (Integrations).
 
 ## Reference (from source)
 <!-- procedural:v2 -->

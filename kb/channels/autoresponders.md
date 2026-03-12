@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/instagram-autoresponders
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Autoresponders
 
 **Module**: Channels
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/instagram-autoresponders
 Autoresponders on Instagram are single message replies that a business can send to a user if they:
 
 ## Procedure
+### Exact path
+Gupshup Console → Channels → Autoresponders
+
 ### Where to configure it
 Gupshup Console → Channels → Autoresponders
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to Journeys under Bot Studio and click the Create Journey button.
@@ -27,15 +33,37 @@ Gupshup Console → Channels → Autoresponders
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - Creating a handling journey for Autoresponders
 - Only one message can be sent as an Autoresponder.
 - How to disable Autoresponders?
 - Configuring the Welcome Journey and Fallback journeys
 - You must configure both journeys - Welcome Journey and Fallback.
+- Choose the Start from Scratch option.
+- Select the event in the Starting Node as "No Event".
+- Add a new Action node called JSON Handler after the Starting Node.
+- Select the system variable named "payloadJson " from the Select variable dropdown.
+- Select the global variable "type" that you just created from the dropdown in the popup that appears.
+- Add six conditions with the variable as "type", the operator as "Equal to" and the value as each of the options below:
+- Add an Action node called Call & Return and attach it to the Starting Node.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- You can request an input from the user in the Autoresponder message and continue the journey ahead from there, but you cannot send multiple replies for the same comment/reply/mention.
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

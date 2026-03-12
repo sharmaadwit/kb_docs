@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/testing-and-ctwa-go-live
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Testing and CTWA go-live
 
 **Module**: Ctx
@@ -13,8 +13,14 @@ source_url: https://console-docs.gupshup.io/docs/testing-and-ctwa-go-live
 - To check if leads are getting populated correctly, click on the "View Leads" option in the screenshot above and confirm if the phone numbers that interacted with the chatbot are visible on the screen.
 
 ## Procedure
+### Exact path
+Gupshup Console → CTX → Testing and CTWA go-live
+
 ### Where to configure it
 Gupshup Console → CTX → Testing and CTWA go-live
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -28,11 +34,26 @@ Gupshup Console → CTX → Testing and CTWA go-live
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- Use this preview link in the mobile browser to test the ad and chatbot behaviour. Once checked, the campaign can be taken live.
+
 ## Available options
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- CTX campaign → Bot Studio journey → Goal measurement
+
+## Module disambiguation
+- CTX covers ad-to-WhatsApp campaign flows; bot conversation logic still lives in **Bot Studio**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

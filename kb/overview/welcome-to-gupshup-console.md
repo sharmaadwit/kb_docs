@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/getting-started
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Welcome to Gupshup Console
 
 **Module**: Overview
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/getting-started
 Your unified platform for conversational messaging across WhatsApp, SMS, Web, and Instagram. Manage campaigns, bots, and customer support all in one place.
 
 ## Procedure
+### Exact path
+Gupshup Console → Overview → Welcome to Gupshup Console
+
 ### Where to configure it
 Gupshup Console → Overview → Welcome to Gupshup Console
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Navigate to the project selector (top-left)
@@ -25,15 +31,31 @@ Gupshup Console → Overview → Welcome to Gupshup Console
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- Complete the verification process
+- Test your connection
+
 ## Available options
 - Projects & Organizations
 - User Management & Permissions
-- Step 1: Set Up Your First Project
-- Step 2: Choose Your Use Case
-- Step 3: Connect Your Channels
+- Add and manage users
+- Set up your preferred messaging channels
+- Set up analytics to track campaign performance
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- Screenshots or error messages (if applicable)
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)
 <!-- procedural:v2 -->

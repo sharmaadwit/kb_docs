@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/cta-url-support-on-reply-button
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # CTA URL Button Node
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/cta-url-support-on-reply-button
 The CTA URL Button Node is a new addition to the Message Category in Journey Builder, designed to enhance WhatsApp messaging capabilities. This feature allows businesses and bot designers to share clickable links directly through a Call-To-Action (CTA) button, eliminating the need for sending lengthy URLs as text messages. It simplifies user interactions, offering a seamless way to direct users to external websites, promotions, or resources.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → CTA URL Button Node
+
 ### Where to configure it
 Gupshup Console → Bot Studio → CTA URL Button Node
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Navigate to Message Nodes in Journey Builder and select the CTA URL Button Node.
@@ -23,11 +29,29 @@ Gupshup Console → Bot Studio → CTA URL Button Node
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
-- _List the key variants/toggles visible in the UI._
+- Add the CTA URL Button Node Navigate to Message Nodes in Journey Builder and select the CTA URL Button Node.
+- Enter a direct URL for validation during design time, or use variables to pass dynamic URLs.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- # Error Handling
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/address-node
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Address Node
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/address-node
 Address Node
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → Address Node
+
 ### Where to configure it
 Gupshup Console → Bot Studio → Address Node
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,13 +30,31 @@ Gupshup Console → Bot Studio → Address Node
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - Sample Payload for Pre-Filled Values:
 - Sample Payload for Saved Address:
 - Sample Payload for Validation:
+- Add the Address Node to the journey in the Journey Builder.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- Error Handling: For unsupported regions, the bot designer must configure fallback logic or alternative messages.
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

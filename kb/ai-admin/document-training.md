@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/document-training
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Document Training
 
 **Module**: Ai Admin
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/document-training
 Steps to train documents:
 
 ## Procedure
+### Exact path
+Gupshup Console → Ai Admin → Document Training
+
 ### Where to configure it
 Gupshup Console → Ai Admin → Document Training
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to "Files" section in Content Tab.
@@ -23,11 +29,26 @@ Gupshup Console → Ai Admin → Document Training
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - Advanced Pdf Parser
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)
 <!-- procedural:v2 -->

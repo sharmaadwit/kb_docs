@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/lead-generation-goal
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Lead Generation
 
 **Module**: Goals
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/lead-generation-goal
 Let's take an example of a lead generation journey.
 
 ## Procedure
+### Exact path
+Gupshup Console → Goals → Lead Generation
+
 ### Where to configure it
 Gupshup Console → Goals → Lead Generation
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,11 +30,26 @@ Gupshup Console → Goals → Lead Generation
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
-- _List the key variants/toggles visible in the UI._
+- Select the "Lead Generation" Goal and "Capturing the name" Milestone from the respective dropdowns.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)
 <!-- procedural:v2 -->

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-ctwa-ad-on-meta-ads-manager
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Creating a CTWA Ad on Meta Ads Manager
 
 **Module**: Ctx
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/creating-a-ctwa-ad-on-meta-ads-
 Meta's guide to creating CTWA ads: https://www.facebook.com/business/help/447934475640650?id=371525583593535
 
 ## Procedure
+### Exact path
+Gupshup Console → CTX → Creating a CTWA Ad on Meta Ads Manager
+
 ### Where to configure it
 Gupshup Console → CTX → Creating a CTWA Ad on Meta Ads Manager
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,11 +30,30 @@ Gupshup Console → CTX → Creating a CTWA Ad on Meta Ads Manager
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
-- _List the key variants/toggles visible in the UI._
+- Enter the desired names for your ad campaign, Ad set, and ads
+- Select the performance goal as: Maximize number of conversations
+- Add the audience filtration, if any basis your target audience. You may also use traditional campaign audience
+- Select the placement for the ads and where you want your ads to appear in the feed
+- Choose the ad creative and enter the headline, description and CTWA to be displayed
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- CTX campaign → Bot Studio journey → Goal measurement
+
+## Module disambiguation
+- CTX covers ad-to-WhatsApp campaign flows; bot conversation logic still lives in **Bot Studio**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

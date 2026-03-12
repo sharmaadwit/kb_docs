@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/location-request-node
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Location Request Node
 
 **Module**: Bot Studio
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/location-request-node
 The Location Request Node(CTA Based) in Journey Builder allows businesses to send a location call-to-action (CTA) to users via WhatsApp. This feature enables users to share their current location or a specific location with ease, creating a more interactive and location-aware experience within a conversation.
 
 ## Procedure
+### Exact path
+Gupshup Console → Bot Studio → Location Request Node
+
 ### Where to configure it
 Gupshup Console → Bot Studio → Location Request Node
+
+### Prerequisites
+- Response Validation: The response must be of type location. If the response does not meet this requirement, validation will trigger, and the user may be prompted to provide a valid location.
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,13 +30,31 @@ Gupshup Console → Bot Studio → Location Request Node
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- Scenario: A food delivery service needs to confirm the customer’s delivery address during order processing.
+
 ## Available options
 - Store Locator Assistance
 - Emergency Services
 - Delivery Address Confirmation
+- Choose only a JSON variable to store the response by selecting the ‘store response in’ field
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Observability via Webhooks
+
+## Module disambiguation
+- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/create-projects-on-console
 
-<!-- kb-golden:v1 -->
+<!-- kb-golden:v4 -->
 # Create Projects on Console
 
 **Module**: Overview
@@ -9,8 +9,14 @@ source_url: https://console-docs.gupshup.io/docs/create-projects-on-console
 As businesses grow and expand their messaging operations, managing multiple departments or verticals can become a daunting task. Gupshup's Console offers a powerful set of features to simplify messaging operations, including the ability to create projects. Creating a project on Console is a simple process that can help businesses streamline their messaging operations and manage multiple departments or verticals efficiently.
 
 ## Procedure
+### Exact path
+Gupshup Console → Overview → Create Projects on Console
+
 ### Where to configure it
 Gupshup Console → Overview → Create Projects on Console
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - _Add the click-by-click navigation path for this page._
@@ -24,11 +30,26 @@ Gupshup Console → Overview → Create Projects on Console
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
 
+### Validation
+- _Run a quick smoke test and confirm expected behavior._
+
 ## Available options
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+
+## Module disambiguation
+- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)
 <!-- procedural:v2 -->

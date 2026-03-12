@@ -1,7 +1,8 @@
 source_url: https://console-docs.gupshup.io/docs/insights-team-summary
 
 
-<!-- agent-assist-golden:v2 -->
+
+<!-- agent-assist-golden:v7 -->
 # Insights: Team Summary
 
 **Module**: Agent Assist
@@ -12,22 +13,43 @@ Overview The Team Summary Report provides team-level productivity metrics across
 ## Where to configure it
 Agent Assist → Insights
 
+## Exact path
+Agent Assist → Insights
+
+## Prerequisites
+- _List required roles/access, teams, and any upstream configuration._
+
 ## Setup path
-- _Add the click-path in Console (breadcrumbs)._ 
+- _Add the click-path in Console (breadcrumbs)._
 
 ## Steps
 1. Open Agent Assist.
-2. Go to **Insights**.
-3. Configure the required fields.
+2. _Add the click-path in Console (breadcrumbs)._
 
 ## Save/publish behavior
 - _No save/publish step is required for this page unless explicitly stated in the UI._
+
+## Validation
+- _Run a quick test (new chat / assignment / workflow) and confirm expected behavior._
 
 ## Available options
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - Important Notes
+
+## Troubleshooting
+- If something doesn’t work as expected, re-check the **Exact path** and confirm you saved changes.
+- _Add common failure modes and how to fix them._
+
+## Field mapping / schemas
+- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+
+## Cross-module workflows
+- _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._
+
+## Module disambiguation
+- _Add 1–2 bullets distinguishing this feature from adjacent settings to reduce retrieval drift._
 
 ## Reference (from source)
 ### Overview
