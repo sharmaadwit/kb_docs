@@ -3,7 +3,9 @@ source_url: https://console-docs.gupshup.io/docs/chat-management-re-open-time
 
 
 
-<!-- agent-assist-golden:v8 -->
+
+
+<!-- agent-assist-golden:v10 -->
 # Chat Management: Auto Closed time
 
 **Module**: Agent Assist
@@ -11,14 +13,8 @@ source_url: https://console-docs.gupshup.io/docs/chat-management-re-open-time
 ## What this feature does
 Definition: Auto Closed Time is the duration configured for when chats are automatically closed from resolution based on channel preferences.
 
-## Where to configure it
+## Exact UI path
 Agent Assist → Settings → Chat Management
-
-## Exact path
-Agent Assist → Settings → Chat Management
-
-## Prerequisites
-- _List required roles/access, teams, and any upstream configuration._
 
 ## Setup path
 - _Add the click-path in Console (breadcrumbs)._
@@ -28,28 +24,34 @@ Agent Assist → Settings → Chat Management
 2. _Add the click-path in Console (breadcrumbs)._
 3. Click **Save** to apply changes.
 
-## Save/publish behavior
-- Click **Save** (or **Save & Deploy** if available) to apply changes.
-
-## Validation
+## Validation / where to check
 - _Run a quick test (new chat / assignment / workflow) and confirm expected behavior._
 
-## Available options
+## Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+## Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy** if available) to apply changes.
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Prerequisites
+- _List required roles/access, teams, and any upstream configuration._
+
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Cross-module workflow docs
 - _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._
 
-## Module disambiguation
+## Module disambiguation docs
 - _Add 1–2 bullets distinguishing this feature from adjacent settings to reduce retrieval drift._
 
 ## Reference (from source)

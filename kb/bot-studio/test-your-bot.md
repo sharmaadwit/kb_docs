@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/test-your-bot
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Test your Bot
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/test-your-bot
 Now you can Test your Bot on-the-go without the need to connect to Proxy or Webapp on different tabs.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → Test your Bot
-
-### Where to configure it
-Gupshup Console → Bot Studio → Test your Bot
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **Test your Bot**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -29,30 +19,43 @@ Gupshup Console → Bot Studio → Test your Bot
 4. Test Bot feature is also equipped with a message log button across each user message on the Bot widget which will help to identify any errors or bugs in the bot design. This will incrementally reduce the efforts to debug a bot or fix issues without requiring a need to reach out to support. The message log is available for every user message only where it renders the payload generated after the user message is sent.
 5. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - # Test your Bot
 - Now you can Test your Bot on-the-go without the need to connect to Proxy or Webapp on different tabs.
 
-## Available options
+### Fields to configure
+- Message content
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Bot Studio**.
+- Go to **Test your Bot**.
+
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

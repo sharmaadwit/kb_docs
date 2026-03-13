@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/phone-node
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Phone Node
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/phone-node
 Phone Node
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → Phone Node
-
-### Where to configure it
-Gupshup Console → Bot Studio → Phone Node
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **Phone Node**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -29,29 +19,43 @@ Gupshup Console → Bot Studio → Phone Node
 4. Enable Timeout -Also you can enable timeout message to select the time in which you want the message to expire.
 5. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - Answer - Validate and set restrictions on the input provided by using the field to enter a regex
 
-## Available options
+### Fields to configure
+- Timeout duration
+- Message content
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Bot Studio**.
+- Go to **Phone Node**.
+
+## Options / variants
 - Enable Timeout -Also you can enable timeout message to select the time in which you want the message to expire.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

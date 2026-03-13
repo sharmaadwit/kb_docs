@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/intent-description
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Entity Creation
 
 **Module**: Ai Admin
@@ -9,17 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/intent-description
 An "entity" refers to a specific piece of information within a user's input or utterance. Essentially, it's like a key detail or variable that the AI needs to understand to provide a relevant response or take appropriate action. For example, if someone says, "Book a flight to Paris on Saturday," the entities in this utterance would likely be "Paris" (the destination) and "Saturday" (the date).
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Ai Admin → Entity Creation
-
-### Where to configure it
-Gupshup Console → Ai Admin → Entity Creation
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to the Description section and change the description as per the redefined piece of information that needs to be extracted.
 
 ### Steps
 1. Open Gupshup Console.
@@ -32,28 +23,41 @@ Gupshup Console → Ai Admin → Entity Creation
 8. Click on Associate Intents dropdown to associate the entity with the pre-created Intents.
 9. Click on the Save button to save the Entity edited.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
+### Fields to configure
+- Name of Entity, choose the type of Entity between Global or
+- any further details for the Entity being created
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- Regex is a regular expression that can also be specified in certain use cases to perform text-based tasks like validating user inputs. For Example: Accepting only 10 digit phone numbers from user input.
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to the Description section and change the description as per the redefined piece of information that needs to be extracted.
+
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- Regex is a regular expression that can also be specified in certain use cases to perform text-based tasks like validating user inputs. For Example: Accepting only 10 digit phone numbers from user input.
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)

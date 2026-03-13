@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/expression-library-in-journey-builder-canvas
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Expression Library in Journey builder Canvas
 
 **Module**: Bot Studio
@@ -9,17 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/expression-library-in-journey-b
 The Expression Library enhancement in the Modify Variable node is designed to empower bot designers with advanced data manipulation capabilities. By offering a robust set of pre-built functions, this feature eliminates the need for custom code nodes, enabling efficient and seamless variable operations directly within the Journey Builder Canvas. This enhancement introduces a dedicated interface for creating and testing expressions, providing an intuitive experience for designers to achieve complex data transformations with ease.
 
 ## Procedure
-### Exact path
-Gupshup Console → Bot Studio → Expression Library in Journey builder Canvas
-
-### Where to configure it
-Gupshup Console → Bot Studio → Expression Library in Journey builder Canvas
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Navigate to the Modify Variable node and open the Modifier dropdown.
+### Exact UI path
+Gupshup Console → Bot Studio → Journey Builder
 
 ### Steps
 1. Open Gupshup Console.
@@ -33,10 +24,7 @@ Gupshup Console → Bot Studio → Expression Library in Journey builder Canvas
 9. Ensure the "Store in Variable" selection matches the output data type.
 10. Select the Expression option from the Modifier dropdown.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - Test Expression Functionality: Designers can test expressions with sample values to verify results. Outputs or errors are displayed instantly, allowing iterative testing and corrections.
 - Designers can test expressions with sample values to verify results.
 - Ease of Use: A clean and intuitive interface designed for bot designers of all experience levels. Comprehensive documentation and test functionality to ensure a smooth user experience.
@@ -46,15 +34,14 @@ Gupshup Console → Bot Studio → Expression Library in Journey builder Canvas
 - Follow the intuitive interface to create, test, and save expressions.
 - Is real-time typo detection available? Not yet. However, the Test Expression functionality provides feedback for correcting errors.
 
-## Available options
-- Select the Expression option at the bottom of the list.
-- Add sample values for testing the expression.
-- Select the Expression option from the Modifier dropdown.
+### Fields to configure
+- Validation rules
+- sample values for testing the expression
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
-## Troubleshooting
+### Troubleshooting
 - Save Validation: Expressions must pass validation before saving. Invalid expressions or mismatched data types disable the Save button, ensuring error-free runtime execution.
 - Invalid expressions or mismatched data types disable the Save button, ensuring error-free runtime execution.
 - Error Feedback: Comprehensive error messages for invalid syntax or data mismatches. Suggestions for corrections to guide bot designers.
@@ -65,14 +52,31 @@ Gupshup Console → Bot Studio → Expression Library in Journey builder Canvas
 - Review the output or error feedback in the Output Box.
 - # Error Handling
 
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Navigate to the Modify Variable node and open the Modifier dropdown.
+
+## Options / variants
+- Select the Expression option at the bottom of the list.
+- Add sample values for testing the expression.
+- Select the Expression option from the Modifier dropdown.
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

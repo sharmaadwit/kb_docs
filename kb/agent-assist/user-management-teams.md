@@ -3,7 +3,9 @@ source_url: https://console-docs.gupshup.io/docs/teams
 
 
 
-<!-- agent-assist-golden:v8 -->
+
+
+<!-- agent-assist-golden:v10 -->
 # User Management: Teams
 
 **Module**: Agent Assist
@@ -12,14 +14,8 @@ source_url: https://console-docs.gupshup.io/docs/teams
 - Navigate to the settings tab on your dashboard.
 Step 2: Creating a New Team
 
-## Where to configure it
+## Exact UI path
 Agent Assist → Settings → User Management
-
-## Exact path
-Agent Assist → Settings → User Management
-
-## Prerequisites
-- _List required roles/access, teams, and any upstream configuration._
 
 ## Setup path
 - Navigate to the settings tab on your dashboard.
@@ -28,34 +24,40 @@ Agent Assist → Settings → User Management
 1. Open Agent Assist.
 2. Navigate to the settings tab on your dashboard.
 3. Click **Save** to apply changes.
-4. Navigate to the settings tab on your dashboard.
-5. Click "Add New Team" and provide the team name.
-6. Select a supervisor for the team from the dropdown list.
-7. Add executive users/agents to the team by selecting them from the dropdown.
-8. Choose between "None," "Load Balancer," and "Round Robin" for assignment type.
+4. Click "Add New Team" and provide the team name.
+5. Select a supervisor for the team from the dropdown list.
+6. Add executive users/agents to the team by selecting them from the dropdown.
+7. Choose between "None," "Load Balancer," and "Round Robin" for assignment type.
 
-## Save/publish behavior
-- Click **Save** (or **Save & Deploy** if available) to apply changes.
-
-## Validation
+## Validation / where to check
 - _Run a quick test (new chat / assignment / workflow) and confirm expected behavior._
 
-## Available options
+## Fields to configure
+- Add New Team
+- Assignment action (Team/Agent)
+
+## Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy** if available) to apply changes.
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Prerequisites
+- _List required roles/access, teams, and any upstream configuration._
+
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Cross-module workflow docs
 - _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._
 
-## Module disambiguation
+## Module disambiguation docs
 - _Add 1–2 bullets distinguishing this feature from adjacent settings to reduce retrieval drift._
 
 ## Reference (from source)

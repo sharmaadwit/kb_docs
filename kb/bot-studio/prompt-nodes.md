@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/prompts
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Prompt Nodes
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/prompts
 We need to capture user details and ask them basic questions like their Name, Email, Phone number, Date of Birthn and Numbers. Prompts are used to add such types of questions in the chatbot conversation.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → Prompt Nodes
-
-### Where to configure it
-Gupshup Console → Bot Studio → Prompt Nodes
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **Prompt Nodes**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -30,32 +20,46 @@ Gupshup Console → Bot Studio → Prompt Nodes
 5. Enable Timeout - The bot will wait for the user input till the set timeout value and will proceed to the fallback path once timed out.
 6. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
-- Types of Prompt Nodes
-- Prompt’s Elements
-- How to use
+### Fields to configure
+- Message content
+- Validation rules
+- Timeout duration
+- Fallback connector path
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- The behaviour of the bot can be customised if the validation of user input fails. If the validation of user input fails, the validation section helps to set the behaviour of the bot.
+- Enable Failure Message - By default on validation failure the Question prompt is repeated. If there is a need to customise the prompt sent to user when user input has failed, this checkbox needs to be checked.
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Bot Studio**.
+- Go to **Prompt Nodes**.
+
+## Options / variants
+- _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- The behaviour of the bot can be customised if the validation of user input fails. If the validation of user input fails, the validation section helps to set the behaviour of the bot.
-- Enable Failure Message - By default on validation failure the Question prompt is repeated. If there is a need to customise the prompt sent to user when user input has failed, this checkbox needs to be checked.
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-KB docs rewrite: Golden Rule for non-Agent Assist pages.
+KB docs rewrite: task-oriented operating guides for non-Agent Assist pages.
 
-Golden rule
-- A. Definition block (good for understanding)
-- B. Procedure block (required for answer quality)
+Golden rule (task-oriented)
+- Definition: good for understanding
+- Procedure: required for answer quality (explicit path, steps, fields, validation, troubleshooting)
 
 Scope
 - Rewrites kb/**/*.md excluding kb/agent-assist/*
@@ -12,7 +12,7 @@ Scope
 - Preserves original content under "Reference (from source)".
 
 Idempotency
-- Rewritten files include `<!-- kb-golden:v7 -->`
+- Rewritten files include `<!-- kb-golden:v9 -->`
 """
 
 from __future__ import annotations
@@ -32,8 +32,10 @@ OLD_MARKERS = {
     "<!-- kb-golden:v4 -->",
     "<!-- kb-golden:v5 -->",
     "<!-- kb-golden:v6 -->",
+    "<!-- kb-golden:v7 -->",
+    "<!-- kb-golden:v8 -->",
 }
-MARKER = "<!-- kb-golden:v7 -->"
+MARKER = "<!-- kb-golden:v9 -->"
 
 META_LINE_RE = re.compile(r"^[a-zA-Z0-9_]+:\s+\S+.*$")
 H1_RE = re.compile(r"^#\s+(.+?)\s*$")
@@ -127,6 +129,13 @@ def guess_where_to_configure(rel_path: Path, title: str, module: str | None) -> 
     top = rel_path.parts[0] if rel_path.parts else ""
     top_norm = top.lower()
     if top_norm == "bot-studio":
+        t = title.lower()
+        if "prompt" in t and "timeout" in t:
+            return "Gupshup Console → Bot Studio → Journey Builder → Prompt Node → Timeout"
+        if "manage variables" in t or "variables" == t.strip():
+            return "Gupshup Console → Bot Studio → Manage Variables"
+        if "journey" in t and "builder" in t:
+            return "Gupshup Console → Bot Studio → Journey Builder"
         return f"Gupshup Console → Bot Studio → {title}"
     if top_norm == "campaign-manager":
         return f"Gupshup Console → Campaign Manager → {title}"
@@ -209,6 +218,106 @@ def extract_action_bullets(text: str) -> List[str]:
             seen.add(k)
             actions.append(b.rstrip(".") + ".")
     return actions[:18]
+
+def extract_fields_to_configure(text: str) -> List[str]:
+    """
+    Heuristic: derive "fields to configure" from action bullets.
+    Examples:
+    - "Add your Callback URL and save." -> "Callback URL"
+    - "Provide the desired timeout duration..." -> "Timeout duration"
+    """
+    fields: List[str] = []
+    seen = set()
+    actions = extract_action_bullets(text)
+
+    def add_field(name: str) -> None:
+        k = name.lower().strip()
+        if not k or k in seen:
+            return
+        seen.add(k)
+        fields.append(name.strip())
+
+    for a in actions:
+        s = a.strip().rstrip(".")
+        # Add your X
+        m = re.search(r"\badd\s+(?:your\s+)?(.+?)(?:\s+and\s+save|\s+and\s+click|\s+then|\s*$)", s, flags=re.IGNORECASE)
+        if m:
+            cand = m.group(1).strip(" :")
+            if 2 <= len(cand) <= 60:
+                if cand.lower().startswith("desired "):
+                    cand = cand[8:].strip()
+                if "as needed" in cand.lower() or "located at" in cand.lower():
+                    continue
+                add_field(cand)
+
+        # Provide/Enter/Set the X
+        m = re.search(r"\b(?:provide|enter|set)\s+(?:the\s+)?(.+?)(?:\s+in|\s+on|\s+to|\s*$)", s, flags=re.IGNORECASE)
+        if m:
+            cand = m.group(1).strip(" :")
+            if 2 <= len(cand) <= 60:
+                if cand.lower().startswith("desired "):
+                    cand = cand[8:].strip()
+                if "as needed" in cand.lower() or "located at" in cand.lower():
+                    continue
+                add_field(cand)
+
+        # Common fields
+        if re.search(r"\bcallback url\b", s, re.IGNORECASE):
+            add_field("Callback URL")
+        if re.search(r"\btimeout\b", s, re.IGNORECASE):
+            add_field("Timeout duration")
+        if re.search(r"\btime zone\b|\btimezone\b", s, re.IGNORECASE):
+            add_field("Time zone")
+        if re.search(r"\bholiday\b", s, re.IGNORECASE):
+            add_field("Holidays")
+        if re.search(r"\bmessage\b", s, re.IGNORECASE):
+            add_field("Message content")
+        if re.search(r"\bvalidation\b", s, re.IGNORECASE):
+            add_field("Validation rules")
+        if re.search(r"\bfallback\b", s, re.IGNORECASE):
+            add_field("Fallback connector path")
+
+    # Normalize + de-dup with a canonical vocabulary
+    canon: List[str] = []
+    canon_seen = set()
+    for f in fields:
+        s = f.strip().rstrip(".")
+        sl = s.lower()
+        if "callback" in sl and "url" in sl:
+            s = "Callback URL"
+        elif "timeout" in sl or "duration" in sl:
+            s = "Timeout duration"
+        elif "validation" in sl:
+            s = "Validation rules"
+        elif "message" in sl:
+            s = "Message content"
+        elif "fallback" in sl or "connector" in sl:
+            s = "Fallback connector path"
+        k = s.lower()
+        if k in canon_seen:
+            continue
+        canon_seen.add(k)
+        canon.append(s)
+        if len(canon) >= 10:
+            break
+    return canon
+
+def extract_payload_examples(text: str) -> List[str]:
+    """
+    Extract a few compact payload examples (inline/backticked JSON).
+    """
+    examples: List[str] = []
+    for ln in text.splitlines():
+        s = ln.strip()
+        if not s:
+            continue
+        if s.startswith("`{") and s.endswith("}`") and len(s) <= 450:
+            examples.append(s.strip("`"))
+        elif s.startswith("{") and s.endswith("}") and len(s) <= 450:
+            examples.append(s)
+        if len(examples) >= 3:
+            break
+    return examples
 
 def extract_markdown_tables(text: str) -> List[str]:
     """
@@ -477,29 +586,15 @@ def rewrite_one(path: Path) -> bool:
     troubleshooting = extract_troubleshooting(body)
     field_map = extract_field_mapping(body)
     tables = extract_markdown_tables(body)
+    fields = extract_fields_to_configure(body)
+    payload_examples = extract_payload_examples(body)
     opt2 = extract_options(body)
 
-    # Options: reuse any "Business hours vs after-hours" section or pull obvious headings
-    opts: List[str] = []
+    # Options: prefer explicit UI option bullets; keep BH/after-hours disambiguation cue if present
+    options: List[str] = []
     bha = section(body, "Business hours vs after-hours behavior")
     if bha and "_Not applicable" not in bha:
-        opts.append("Business hours vs after-hours behavior")
-    for ln in body.splitlines():
-        m = re.match(r"^(?:###|####)\s+(.+?)\s*$", ln.strip())
-        if m:
-            t = m.group(1).strip()
-            if t and len(t) <= 80:
-                opts.append(t)
-    # de-dup
-    seen = set()
-    options = []
-    for o in opts:
-        k = o.lower()
-        if k in seen:
-            continue
-        seen.add(k)
-        options.append(o)
-    options = options[:10]
+        options.append("Business hours vs after-hours behavior")
 
     out: List[str] = []
     out.append(meta)
@@ -512,10 +607,43 @@ def rewrite_one(path: Path) -> bool:
     out.append(definition.strip() + "\n\n")
 
     out.append("## Procedure\n")
-    out.append("### Exact path\n")
+    out.append("### Exact UI path\n")
     out.append(exact_path + "\n\n")
-    out.append("### Where to configure it\n")
-    out.append(where + "\n\n")
+
+    out.append("### Steps\n")
+    for i, s in enumerate(steps, start=1):
+        out.append(f"{i}. {s}\n")
+    out.append("\n")
+
+    out.append("### Validation / where to check\n")
+    if validation:
+        for v in validation:
+            out.append(f"- {v}\n")
+        out.append("\n")
+    else:
+        out.append("- _Run a quick smoke test and confirm expected behavior._\n\n")
+
+    out.append("### Fields to configure\n")
+    if fields:
+        for f in fields:
+            out.append(f"- {f}\n")
+        out.append("\n")
+    else:
+        out.append("- _List the fields/inputs you must set in the UI (and expected format)._\n\n")
+
+    out.append("### Save / publish / deploy behavior\n")
+    if re.search(r"\b(save|deploy|publish)\b", body, flags=re.IGNORECASE):
+        out.append("- Click **Save** (or **Save & Deploy**) to apply changes.\n\n")
+    else:
+        out.append("- _If this page has a Save/Publish action, document it here._\n\n")
+
+    out.append("### Troubleshooting\n")
+    if troubleshooting:
+        for t in troubleshooting:
+            out.append(f"- {t}\n")
+        out.append("\n")
+    else:
+        out.append("- _Add common failure modes and how to fix them._\n\n")
 
     out.append("### Prerequisites\n")
     if prereq:
@@ -530,26 +658,7 @@ def rewrite_one(path: Path) -> bool:
         out.append(f"- {s}\n")
     out.append("\n")
 
-    out.append("### Steps\n")
-    for i, s in enumerate(steps, start=1):
-        out.append(f"{i}. {s}\n")
-    out.append("\n")
-
-    out.append("### Save/publish behavior\n")
-    if re.search(r"\b(save|deploy|publish)\b", body, flags=re.IGNORECASE):
-        out.append("- Click **Save** (or **Save & Deploy**) to apply changes.\n\n")
-    else:
-        out.append("- _If this page has a Save/Publish action, document it here._\n\n")
-
-    out.append("### Validation\n")
-    if validation:
-        for v in validation:
-            out.append(f"- {v}\n")
-        out.append("\n")
-    else:
-        out.append("- _Run a quick smoke test and confirm expected behavior._\n\n")
-
-    out.append("## Available options\n")
+    out.append("## Options / variants\n")
     combined_options = options or []
     for o in opt2:
         combined_options.append(o)
@@ -593,14 +702,6 @@ def rewrite_one(path: Path) -> bool:
     out.append("## Notes\n")
     out.append("- _Add prerequisites, constraints, and rollout behavior._\n\n")
 
-    out.append("## Troubleshooting\n")
-    if troubleshooting:
-        for t in troubleshooting:
-            out.append(f"- {t}\n")
-        out.append("\n")
-    else:
-        out.append("- _Add common failure modes and how to fix them._\n\n")
-
     out.append("## Field mapping / schemas\n")
     if tables:
         out.append("Tables from the source:\n\n")
@@ -614,7 +715,15 @@ def rewrite_one(path: Path) -> bool:
     elif not tables:
         out.append("- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._\n\n")
 
-    out.append("## Cross-module workflows\n")
+    out.append("## Field/payload examples\n")
+    if payload_examples:
+        for ex in payload_examples:
+            out.append(f"- `{ex}`\n")
+        out.append("\n")
+    else:
+        out.append("- _Add a minimal example payload or field/value example._\n\n")
+
+    out.append("## Cross-module workflow docs\n")
     flows = related_workflows(rel)
     if flows:
         for f in flows:
@@ -623,7 +732,7 @@ def rewrite_one(path: Path) -> bool:
     else:
         out.append("- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._\n\n")
 
-    out.append("## Module disambiguation\n")
+    out.append("## Module disambiguation docs\n")
     dis = disambiguation_for_module(rel)
     if dis:
         for d in dis:

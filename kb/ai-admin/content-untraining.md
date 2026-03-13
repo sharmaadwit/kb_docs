@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/content-untraining
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Content Untraining
 
 **Module**: Ai Admin
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/content-untraining
 Content Untraining enhancement allows users to manage their trained content more effectively by enabling the removal of previously trained content.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Ai Admin → Content Untraining
-
-### Where to configure it
-Gupshup Console → Ai Admin → Content Untraining
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Ai Admin**.
-- Go to **Content Untraining**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -33,29 +23,42 @@ Gupshup Console → Ai Admin → Content Untraining
 8. Click on the Delete icon present on each file you want to untrain. If the Delete icon is accidentally clicked for a file then you can revert the action by clicking on undo icon.
 9. Click on Save & Train button present in Content section to complete the Untraining.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- After link selection if the user closes the modal by clicking on X icon then user will be notified for pending action warning.
+- During the link review if user closes the modal by clicking on X icon then user will be notified for pending action warning.
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Ai Admin**.
+- Go to **Content Untraining**.
+
+## Options / variants
 - Select all the URLs you want to untrain & click on the Review Link Button.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- After link selection if the user closes the modal by clicking on X icon then user will be notified for pending action warning.
-- During the link review if user closes the modal by clicking on X icon then user will be notified for pending action warning.
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)

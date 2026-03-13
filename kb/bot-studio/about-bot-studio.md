@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/about-bot-studio
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # About Bot Studio
 
 **Module**: Bot Studio
@@ -9,11 +9,26 @@ source_url: https://console-docs.gupshup.io/docs/about-bot-studio
 Bot Studio is Gupshup’s visual, no-code/low-code platform that empowers users to design, build, and deploy intelligent conversational journeys across messaging channels like WhatsApp, Web, and Instagram.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → About Bot Studio
 
-### Where to configure it
-Gupshup Console → Bot Studio → About Bot Studio
+### Steps
+1. Open Gupshup Console.
+2. Go to **Bot Studio**.
+3. Go to **About Bot Studio**.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Validation / where to check
+- _Run a quick smoke test and confirm expected behavior._
+
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
 
 ### Prerequisites
 - _List required access, assets, and upstream setup needed before configuration._
@@ -22,40 +37,23 @@ Gupshup Console → Bot Studio → About Bot Studio
 - Go to **Bot Studio**.
 - Go to **About Bot Studio**.
 
-### Steps
-1. Open Gupshup Console.
-2. Go to **Bot Studio**.
-3. Go to **About Bot Studio**.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
-- _Run a quick smoke test and confirm expected behavior._
-
-## Available options
-- 1. Journey Builder (V2)
-- 2. Journey Builder Pro
-- JB Pro is not available for self-serve users.
-- ❌ Deprecated / Replaced Nodes:
-- ⚙️ Other Changes:
+## Options / variants
 - Developer Mode toggle → Removed
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

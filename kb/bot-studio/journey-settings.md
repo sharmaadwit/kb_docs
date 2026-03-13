@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/journey-settings
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Journey Settings
 
 **Module**: Bot Studio
@@ -9,11 +9,27 @@ source_url: https://console-docs.gupshup.io/docs/journey-settings
 Every User Journey has a dedicated settings which determines how the journey will be used by the bot. Journey Settings can be found inside the Design Canvas along with the Manage Variable and API Management options.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → Journey Settings
 
-### Where to configure it
-Gupshup Console → Bot Studio → Journey Settings
+### Steps
+1. Open Gupshup Console.
+2. Go to **Bot Studio**.
+3. Go to **Journey Settings**.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Validation / where to check
+- _Run a quick smoke test and confirm expected behavior._
+
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- Only 1 intent can be chosen as the primary intent for each journey. The workspace associated with the chosen primary intent becomes the Journey Workspace.
+- Only 1 Intent can be chosen as “Excluded Intent” of the Journey
 
 ### Prerequisites
 - This behavior can also be modified as per requirement using the Sticky Journeys concept which is discussed later part of this doc.
@@ -22,36 +38,23 @@ Gupshup Console → Bot Studio → Journey Settings
 - Go to **Bot Studio**.
 - Go to **Journey Settings**.
 
-### Steps
-1. Open Gupshup Console.
-2. Go to **Bot Studio**.
-3. Go to **Journey Settings**.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
-- _Run a quick smoke test and confirm expected behavior._
-
-## Available options
-- For example:
+## Options / variants
+- _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- Only 1 intent can be chosen as the primary intent for each journey. The workspace associated with the chosen primary intent becomes the Journey Workspace.
-- Only 1 Intent can be chosen as “Excluded Intent” of the Journey
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

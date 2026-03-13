@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/bot-constants-in-jb
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Bot Constants in JB
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/bot-constants-in-jb
 The Bot Constants is a variable type that streamlines the management of key values—such as interest rates, discount percentages, and event dates—that are consistent across all users at a given time but may change periodically. This feature allows bot designers to define and update these constants centrally, ensuring that all conversations happening with the bot are using the most up-to-date information. By making these constants accessible across the journeys, Bot Constants enhance operational efficiency, reduce the risk of errors, and ensure that all users are aligned with the latest data. This leads to more accurate and reliable bot interactions, enhancing overall project performance.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → Bot Constants in JB
-
-### Where to configure it
-Gupshup Console → Bot Studio → Bot Constants in JB
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **Bot Constants in JB**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -31,32 +21,42 @@ Gupshup Console → Bot Studio → Bot Constants in JB
 6. Click on the ‘Add Row’ button to make a new variable.
 7. Click on ‘Save’.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
-- Dynamic Pricing Updates:
-- Seasonal Campaign Adjustments:
-- Event Reminder Customization:
+### Fields to configure
+- Row’ button to make a new variable
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Bot Studio**.
+- Go to **Bot Constants in JB**.
+
+## Options / variants
 - Choose the ‘Manage Variable’
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

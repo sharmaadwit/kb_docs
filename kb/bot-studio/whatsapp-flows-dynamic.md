@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/whatsapp-flows-enhancement-dynamic-flow-support
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # WhatsApp Flows - Dynamic
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/whatsapp-flows-enhancement-dyna
 The Journey Builder WhatsApp Flow Node now supports triggering dynamic flows, even for flows that begin with the first screen in dynamic mode. This enhancement ensures end-to-end support for triggering both static and dynamic WhatsApp flows from Journey Builder, allowing seamless integration and execution for all Bot Studio users.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → WhatsApp Flows - Dynamic
-
-### Where to configure it
-Gupshup Console → Bot Studio → WhatsApp Flows - Dynamic
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **WhatsApp Flows - Dynamic**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -29,29 +19,42 @@ Gupshup Console → Bot Studio → WhatsApp Flows - Dynamic
 4. Select the type of First Screen that will be sent.
 5. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Bot Studio**.
+- Go to **WhatsApp Flows - Dynamic**.
+
+## Options / variants
 - Select the type of First Screen that will be sent
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

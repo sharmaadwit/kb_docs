@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/generate-qa
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Evaluate
 
 **Module**: Ai Admin
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/generate-qa
 Introduction: User can now generate Q&A from the trained content via topic prompt or file upload in the new Evaluate tab of AI Admin.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Ai Admin → Evaluate
-
-### Where to configure it
-Gupshup Console → Ai Admin → Evaluate
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Ai Admin**.
-- Go to **Evaluate**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -34,13 +24,27 @@ Gupshup Console → Ai Admin → Evaluate
 9. Click on Generate button.
 10. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
+### Fields to configure
+- file name for export
+- Topic Prompt & Question count for generation
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- Only 1 generation/regeneration request allowed at a given time in the workspace.
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Ai Admin**.
+- Go to **Evaluate**.
+
+## Options / variants
 - Enter file name for export
 - Select All or Individual Content tags.
 - Enter Topic Prompt & Question count for generation.
@@ -49,16 +53,16 @@ Gupshup Console → Ai Admin → Evaluate
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- Only 1 generation/regeneration request allowed at a given time in the workspace.
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)

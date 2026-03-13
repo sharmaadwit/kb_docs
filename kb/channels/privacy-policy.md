@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/privacy-policy
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Privacy Policy
 
 **Module**: Channels
@@ -9,11 +9,26 @@ source_url: https://console-docs.gupshup.io/docs/privacy-policy
 We care about protecting the personal information of our customers and visitors who use our website www.gupshup.io, our products or services (collectively, our "Users").
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Channels → Privacy Policy
 
-### Where to configure it
-Gupshup Console → Channels → Privacy Policy
+### Steps
+1. Open Gupshup Console.
+2. Go to **Channels**.
+3. Go to **Privacy Policy**.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Validation / where to check
+- _Run a quick smoke test and confirm expected behavior._
+
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
 
 ### Prerequisites
 - _List required access, assets, and upstream setup needed before configuration._
@@ -22,43 +37,22 @@ Gupshup Console → Channels → Privacy Policy
 - Go to **Channels**.
 - Go to **Privacy Policy**.
 
-### Steps
-1. Open Gupshup Console.
-2. Go to **Channels**.
-3. Go to **Privacy Policy**.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
-- _Run a quick smoke test and confirm expected behavior._
-
-## Available options
-- Updated as on 17th April 2024
-- INFORMATION COVERED BY THIS PRIVACY POLICY
-- Personal identification information
-- Non-personal identification information
-- Web browser cookies
-- Gupshup's Business Products:
-- GupShup may collect and use Users information for the following purposes:
-- Authorized Users
-- SHARING WITHIN THE GUPSHUP CORPORATE FAMILY:
-- SHARING WITH INSURERS AND PROFESSIONAL ADVISERS
+## Options / variants
+- _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/creating-goals
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Creating Goals
 
 **Module**: Goals
@@ -9,17 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/creating-goals
 Please refer to your journey and create Milestones and Trackers accordingly. You CANNOT implement Goal nodes without creating them.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Goals → Creating Goals
-
-### Where to configure it
-Gupshup Console → Goals → Creating Goals
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to the Goals section under Bot Studio in the navigation sidebar on the left.
 
 ### Steps
 1. Open Gupshup Console.
@@ -28,30 +19,41 @@ Gupshup Console → Goals → Creating Goals
 4. Enter a name for the Goal in Goal Name.
 5. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
-- You need to create Goals before you can implement them in your journeys.
+### Fields to configure
+- a name for the Goal
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- Please refer to your journey and create Milestones and Trackers accordingly. You CANNOT implement Goal nodes without creating them.
+- You CANNOT delete existing Milestones.
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to the Goals section under Bot Studio in the navigation sidebar on the left.
+
+## Options / variants
 - Enter a name for the Goal in Goal Name.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- Please refer to your journey and create Milestones and Trackers accordingly. You CANNOT implement Goal nodes without creating them.
-- You CANNOT delete existing Milestones.
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)

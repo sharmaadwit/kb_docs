@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/website-training
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Website Training
 
 **Module**: Ai Admin
@@ -9,17 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/website-training
 Steps to train Website URL:
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Ai Admin → Website Training
-
-### Where to configure it
-Gupshup Console → Ai Admin → Website Training
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to "Website Links" section in Content Tab
 
 ### Steps
 1. Open Gupshup Console.
@@ -27,29 +18,40 @@ Gupshup Console → Ai Admin → Website Training
 3. Set website scraping depth.
 4. Click on "Save & Train".
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
-- Advanced Website Scraper
+### Fields to configure
+- website scraping depth
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- Non-HTML Content: Some URLs may return non-HTML content (PDFs, images, etc.) which cannot be easily scraped unless explicitly handled.
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to "Website Links" section in Content Tab
+
+## Options / variants
 - Set website scraping depth.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- Non-HTML Content: Some URLs may return non-HTML content (PDFs, images, etc.) which cannot be easily scraped unless explicitly handled.
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)

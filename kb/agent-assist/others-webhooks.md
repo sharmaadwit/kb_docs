@@ -3,7 +3,9 @@ source_url: https://console-docs.gupshup.io/docs/webhook
 
 
 
-<!-- agent-assist-golden:v8 -->
+
+
+<!-- agent-assist-golden:v10 -->
 # Others: Webhooks
 
 **Module**: Agent Assist
@@ -11,14 +13,8 @@ source_url: https://console-docs.gupshup.io/docs/webhook
 ## What this feature does
 By leveraging the Webhooks feature, a brand can receive notifications for specific actions occurring on Agent Assist. Consider a scenario where a brand intends to send Push Notifications to its app users when they fail to respond. To achieve this, the brand can set up a webhook API within the configuration. By incorporating a reminder event in the webhook settings, the brand will receive reminder notifications through the API. These reminders can then be utilized internally to trigger Push Notifications, prompting customer engagement.
 
-## Where to configure it
+## Exact UI path
 Agent Assist → Settings → Others
-
-## Exact path
-Agent Assist → Settings → Others
-
-## Prerequisites
-- _List required roles/access, teams, and any upstream configuration._
 
 ## Setup path
 - Navigate to Settings > Webhooks > Create Webhook.
@@ -27,32 +23,37 @@ Agent Assist → Settings → Others
 1. Open Agent Assist.
 2. Navigate to Settings > Webhooks > Create Webhook.
 3. Click **Save** to apply changes.
-4. Navigate to Settings > Webhooks > Create Webhook.
-5. Provide a Name and description for the webhook.
-6. Choose the authentication method - either Basic Authentication or API key based on your API equirements.
+4. Provide a Name and description for the webhook.
+5. Choose the authentication method - either Basic Authentication or API key based on your API equirements.
 
-## Save/publish behavior
-- Click **Save** (or **Save & Deploy** if available) to apply changes.
-
-## Validation
+## Validation / where to check
 - _Run a quick test (new chat / assignment / workflow) and confirm expected behavior._
 
-## Available options
+## Fields to configure
+- a Name and description for the webhook
+
+## Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy** if available) to apply changes.
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Prerequisites
+- _List required roles/access, teams, and any upstream configuration._
+
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Cross-module workflow docs
 - _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._
 
-## Module disambiguation
+## Module disambiguation docs
 - _Add 1–2 bullets distinguishing this feature from adjacent settings to reduce retrieval drift._
 
 ## Reference (from source)

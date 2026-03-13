@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/manage-variables
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Manage Variables
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/manage-variables
 Variables in Journey Builder store and manage data dynamically within conversational journeys, enabling personalization, data manipulation, and efficient bot interactions.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → Manage Variables
-
-### Where to configure it
-Gupshup Console → Bot Studio → Manage Variables
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **Manage Variables**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -29,27 +19,30 @@ Gupshup Console → Bot Studio → Manage Variables
 4. Select the appropriate variable type.
 5. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
-- Variable Types
-- 1. Local Variables
-- 2. Global Variables
-- 3. System Variables
-- 4. Constant Variables
-- 5. CDP Variables
-- How to Use
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Bot Studio**.
+- Go to **Manage Variables**.
+
+## Options / variants
 - Select the appropriate variable type.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
-
-## Troubleshooting
-- _Add common failure modes and how to fix them._
 
 ## Field mapping / schemas
 Tables from the source:
@@ -72,11 +65,14 @@ Tables from the source:
 | message_metadata | Additional message metadata | JSON |
 | conversation_language | Language used in the conversation | String |
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

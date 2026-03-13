@@ -3,7 +3,9 @@ source_url: https://console-docs.gupshup.io/docs/sending-templates-after-the-24-
 
 
 
-<!-- agent-assist-golden:v8 -->
+
+
+<!-- agent-assist-golden:v10 -->
 # Sending Templates After the 24-Hour Window
 
 **Module**: Agent Assist
@@ -11,14 +13,8 @@ source_url: https://console-docs.gupshup.io/docs/sending-templates-after-the-24-
 ## What this feature does
 To adhere to WhatsApp's policy, businesses are restricted from sending messages to customers who haven't responded within the last 24 hours. However, if a brand wishes to send a marketing template in such cases, they can do so by following these steps:
 
-## Where to configure it
+## Exact UI path
 Agent Assist
-
-## Exact path
-Agent Assist
-
-## Prerequisites
-- _List required roles/access, teams, and any upstream configuration._
 
 ## Setup path
 - _Add the click-path in Console (breadcrumbs)._
@@ -29,28 +25,34 @@ Agent Assist
 3. Click on the "Send a Template" button within the Agent Assist console.
 4. Select the marketing template you wish to send to end customers.
 
-## Save/publish behavior
-- _No save/publish step is required for this page unless explicitly stated in the UI._
-
-## Validation
+## Validation / where to check
 - _Run a quick test (new chat / assignment / workflow) and confirm expected behavior._
 
-## Available options
+## Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+## Save / publish / deploy behavior
+- _No save/publish step is required for this page unless explicitly stated in the UI._
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Prerequisites
+- _List required roles/access, teams, and any upstream configuration._
+
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Cross-module workflow docs
 - _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._
 
-## Module disambiguation
+## Module disambiguation docs
 - _Add 1–2 bullets distinguishing this feature from adjacent settings to reduce retrieval drift._
 
 ## Reference (from source)

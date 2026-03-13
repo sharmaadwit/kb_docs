@@ -3,7 +3,9 @@ source_url: https://console-docs.gupshup.io/docs/chat-management-assignment-rule
 
 
 
-<!-- agent-assist-golden:v8 -->
+
+
+<!-- agent-assist-golden:v10 -->
 # Chat Management: Assignment Rules
 
 **Module**: Agent Assist
@@ -11,14 +13,8 @@ source_url: https://console-docs.gupshup.io/docs/chat-management-assignment-rule
 ## What this feature does
 Definition: Chat Management in Agent Assist refer to the tools and strategies used to streamline the process of handling customer chats, assigning them to the appropriate agents or teams, and maintaining service quality and efficiency.
 
-## Where to configure it
+## Exact UI path
 Agent Assist → Settings → Chat Management
-
-## Exact path
-Agent Assist → Settings → Chat Management
-
-## Prerequisites
-- _List required roles/access, teams, and any upstream configuration._
 
 ## Setup path
 - Navigate to the "Settings" tab on the bottom left side of your Agent Assist dashboard.
@@ -28,36 +24,46 @@ Agent Assist → Settings → Chat Management
 1. Open Agent Assist.
 2. Navigate to the "Settings" tab on the bottom left side of your Agent Assist dashboard.
 3. Go to "Assignment Rules" in the "Settings" section.
-4. Navigate to the "Settings" tab on the bottom left side of your Agent Assist dashboard.
-5. Select "Assignment Rules.".
-6. Click on the "Add New Rule" button to create a new rule.
-7. Add conditions to the rule, such as "Channel is equal to WhatsApp," to specify which chats the rule should apply to.
-8. Choose between "Sticky Assignment" or specify a "Team/Agent Name" to assign chats to.
-9. Click "Save" to save the rule.
-10. Click **Save** to apply changes.
+4. Select "Assignment Rules.".
+5. Click on the "Add New Rule" button to create a new rule.
+6. Add conditions to the rule, such as "Channel is equal to WhatsApp," to specify which chats the rule should apply to.
+7. Choose between "Sticky Assignment" or specify a "Team/Agent Name" to assign chats to.
+8. Click "Save" to save the rule.
+9. Click **Save** to apply changes.
 
-## Save/publish behavior
-- Click **Save** (or **Save & Deploy** if available) to apply changes.
-
-## Validation
+## Validation / where to check
 - _Run a quick test (new chat / assignment / workflow) and confirm expected behavior._
 
-## Available options
+## Fields to configure
+- Channel is equal to WhatsApp,
+- Sticky Assignment
+- Team/Agent Name
+- Assignment action (Team/Agent)
+- Rule conditions (e.g., Channel, Tags)
+- API format you've created
+
+## Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy** if available) to apply changes.
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Prerequisites
+- _List required roles/access, teams, and any upstream configuration._
+
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Cross-module workflow docs
 - _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._
 
-## Module disambiguation
+## Module disambiguation docs
 - _Add 1–2 bullets distinguishing this feature from adjacent settings to reduce retrieval drift._
 
 ## Reference (from source)

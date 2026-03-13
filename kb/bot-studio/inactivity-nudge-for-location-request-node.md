@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/inactivity-nudge-for-location-request-node
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Inactivity Nudge for Location Request Node
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/inactivity-nudge-for-location-r
 Click on Node Settings
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → Inactivity Nudge for Location Request Node
-
-### Where to configure it
-Gupshup Console → Bot Studio → Inactivity Nudge for Location Request Node
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **Inactivity Nudge for Location Request Node**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -32,33 +22,48 @@ Gupshup Console → Bot Studio → Inactivity Nudge for Location Request Node
 7. Choose or create a custom nudge message that will be sent to users when they don’t respond within the specified time.
 8. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - Testing and Verification: During testing, verify that the nudge behaves as configured, prompting users after the inactivity period, similar to other prompt nodes.
 - During testing, verify that the nudge behaves as configured, prompting users after the inactivity period, similar to other prompt nodes.
 - Scenario: A food delivery service needs to confirm a user’s location for accurate order delivery.
 - Scenario: A local business requests location verification to confirm if a customer is within a serviceable area.
 
-## Available options
+### Fields to configure
+- desired
+- Timeout duration
+- Message content
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Bot Studio**.
+- Go to **Inactivity Nudge for Location Request Node**.
+
+## Options / variants
 - Set the desired inactivity timeout duration.
 - Choose or create a custom nudge message that will be sent to users when they don’t respond within the specified time.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

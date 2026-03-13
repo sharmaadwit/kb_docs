@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/address-node
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Address Node
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/address-node
 Address Node
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → Address Node
-
-### Where to configure it
-Gupshup Console → Bot Studio → Address Node
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **Address Node**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -31,32 +21,42 @@ Gupshup Console → Bot Studio → Address Node
 6. Deploy and Collect: Deploy the journey. Users will receive the address form on WhatsApp, input their details, and submit.
 7. Deploy the journey.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
-- Sample Payload for Pre-Filled Values:
-- Sample Payload for Saved Address:
-- Sample Payload for Validation:
+### Fields to configure
+- the Address Node to the journey in the Journey Builder
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- Error Handling: For unsupported regions, the bot designer must configure fallback logic or alternative messages.
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Bot Studio**.
+- Go to **Address Node**.
+
+## Options / variants
 - Add the Address Node to the journey in the Journey Builder.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- Error Handling: For unsupported regions, the bot designer must configure fallback logic or alternative messages.
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

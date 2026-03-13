@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/sticker-node
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Sticker Node
 
 **Module**: Bot Studio
@@ -9,11 +9,27 @@ source_url: https://console-docs.gupshup.io/docs/sticker-node
 The Sticker Message Node in Journey Builder enables businesses to send engaging sticker messages to users via supported channels, currently only WhatsApp. Stickers add a fun and interactive visual element to conversations, enhancing user engagement and making communication more lively.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → Sticker Node
 
-### Where to configure it
-Gupshup Console → Bot Studio → Sticker Node
+### Steps
+1. Open Gupshup Console.
+2. Go to **Bot Studio**.
+3. Go to **Sticker Node**.
+4. Add the Sticker Node: In Journey Builder, insert the Sticker Node into your flow. Choose whether to upload a file or link a URL for the sticker content.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Validation / where to check
+- _Run a quick smoke test and confirm expected behavior._
+
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
 
 ### Prerequisites
 - Format Requirements: Stickers need to be in .webp format ONLY. This ensures compatibility with WhatsApp's sticker feature.
@@ -23,38 +39,23 @@ Gupshup Console → Bot Studio → Sticker Node
 - Go to **Bot Studio**.
 - Go to **Sticker Node**.
 
-### Steps
-1. Open Gupshup Console.
-2. Go to **Bot Studio**.
-3. Go to **Sticker Node**.
-4. Add the Sticker Node: In Journey Builder, insert the Sticker Node into your flow. Choose whether to upload a file or link a URL for the sticker content.
-5. Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
-- _Run a quick smoke test and confirm expected behavior._
-
-## Available options
-- Festival Greetings
-- Customer Service Interactions with Personalized Stickers
-- Promotional Offers with Visual Flair
+## Options / variants
+- _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

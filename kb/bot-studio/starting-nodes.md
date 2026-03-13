@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/starting-nodes
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Starting Nodes
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/starting-nodes
 The Starting Node in Journey Builder is the foundational point where a journey begins. It serves as the trigger or condition that activates the flow, such as user actions, scheduled events, or system updates. Every journey requires a starting node to define its initiation, ensuring a structured and seamless progression. It provides flexibility to tailor the journey's entry criteria, setting the context for subsequent interactions.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → Starting Nodes
-
-### Where to configure it
-Gupshup Console → Bot Studio → Starting Nodes
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **Starting Nodes**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -30,33 +20,42 @@ Gupshup Console → Bot Studio → Starting Nodes
 5. Select from the the available list of Event based on which you would like to trigger the journey.
 6. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
-- What is a Starting Node?
-- How to configure
-- Event Types:
-- Additional Condition:
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- Only 1 out of 5 Event can be selected User Event or AI Trigger
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Bot Studio**.
+- Go to **Starting Nodes**.
+
+## Options / variants
 - Select from the the available list of Event based on which you would like to trigger the journey
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- Only 1 out of 5 Event can be selected User Event or AI Trigger
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

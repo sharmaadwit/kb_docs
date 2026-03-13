@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/location-request-node
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Location Request Node
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/location-request-node
 The Location Request Node(CTA Based) in Journey Builder allows businesses to send a location call-to-action (CTA) to users via WhatsApp. This feature enables users to share their current location or a specific location with ease, creating a more interactive and location-aware experience within a conversation.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → Location Request Node
-
-### Where to configure it
-Gupshup Console → Bot Studio → Location Request Node
-
-### Prerequisites
-- Response Validation: The response must be of type location. If the response does not meet this requirement, validation will trigger, and the user may be prompted to provide a valid location.
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **Location Request Node**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -33,32 +23,44 @@ Gupshup Console → Bot Studio → Location Request Node
 8. Enable failure message handling to retry the prompt with a custom failure message if the user’s response is invalid after all retries are over.
 9. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - Scenario: A food delivery service needs to confirm the customer’s delivery address during order processing.
 
-## Available options
-- Store Locator Assistance
-- Emergency Services
-- Delivery Address Confirmation
+### Fields to configure
+- the Location Node
+- Timeout duration
+- Message content
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- Response Validation: The response must be of type location. If the response does not meet this requirement, validation will trigger, and the user may be prompted to provide a valid location.
+
+### Setup path
+- Go to **Bot Studio**.
+- Go to **Location Request Node**.
+
+## Options / variants
 - Choose only a JSON variable to store the response by selecting the ‘store response in’ field
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- `{"latitude":"24.6845804","longitude":"92.5756971"}`
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

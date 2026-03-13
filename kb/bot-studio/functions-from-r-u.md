@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/functions-from-r-u
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Functions from R - U
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/functions-from-r-u
 Return a random integer from a specified range, which is inclusive only at the starting end.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → Functions from R - U
-
-### Where to configure it
-Gupshup Console → Bot Studio → Functions from R - U
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **Functions from R - U**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -33,38 +23,44 @@ Gupshup Console → Bot Studio → Functions from R - U
 8. Set the value of an object's property and return the updated object. To add a new property, use this function or the addProperty() function.
 9. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
-- rand
-- range
-- removeProperty
-- replace
-- replaceIgnoreCase
-- resolve
-- reverse
-- round
-- select
-- sentenceCase
+### Fields to configure
+- value of an object's property and return the updated object
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Bot Studio**.
+- Go to **Functions from R - U**.
+
+## Options / variants
+- _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- `{'x': 3}`
+- `{'x': 3}`
+- `{'x': 3}`
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

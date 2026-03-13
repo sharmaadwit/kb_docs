@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/ai-analytics
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # AI Analytics
 
 **Module**: Bot Studio Analytics
@@ -9,11 +9,26 @@ source_url: https://console-docs.gupshup.io/docs/ai-analytics
 AI Analytics is a feature to monitor and evaluate the utterances on your bot. This feature assists users in identifying and classifying utterances, offering valuable insights into both recognized and unrecognized intents.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio Analytics → AI Analytics
 
-### Where to configure it
-Gupshup Console → Bot Studio Analytics → AI Analytics
+### Steps
+1. Open Gupshup Console.
+2. Go to **Bot Studio Analytics**.
+3. Go to **AI Analytics**.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Validation / where to check
+- _Run a quick smoke test and confirm expected behavior._
+
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
 
 ### Prerequisites
 - _List required access, assets, and upstream setup needed before configuration._
@@ -22,34 +37,22 @@ Gupshup Console → Bot Studio Analytics → AI Analytics
 - Go to **Bot Studio Analytics**.
 - Go to **AI Analytics**.
 
-### Steps
-1. Open Gupshup Console.
-2. Go to **Bot Studio Analytics**.
-3. Go to **AI Analytics**.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
-- _Run a quick smoke test and confirm expected behavior._
-
-## Available options
-- The data in Bot Studio Analytics is retained for a period of one year.
+## Options / variants
+- _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)

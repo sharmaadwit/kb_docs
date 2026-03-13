@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/instagram-ice-breakers
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Ice Breakers
 
 **Module**: Channels
@@ -12,17 +12,8 @@ source_url: https://console-docs.gupshup.io/docs/instagram-ice-breakers
 How Ice Breakers appear on Instagram
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Channels → Ice Breakers
-
-### Where to configure it
-Gupshup Console → Channels → Ice Breakers
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to the Instagram Settings tab.
 
 ### Steps
 1. Open Gupshup Console.
@@ -34,29 +25,44 @@ Gupshup Console → Channels → Ice Breakers
 7. Click Save. Ice Breakers will now start appearing for first time users in your linked Instagram account's DM.
 8. Enter Ice Breakers for that region. Click Save. The corresponding Ice Breakers will start appearing for first time users located in that region.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
+### Fields to configure
+- as an Ice Breaker
+- first question you wish
+- payload for the first option
+- another Ice Breaker. Click the delete icon
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to the Instagram Settings tab.
+
+## Options / variants
 - Enter the first question you wish to add as an Ice Breaker.
 - Enter payload for the first option.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)

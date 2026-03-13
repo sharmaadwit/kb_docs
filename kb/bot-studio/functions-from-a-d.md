@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/functions-from-a-d
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Functions from A - D
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/functions-from-a-d
 Return the absolute value of the specified number.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → Functions from A - D
-
-### Where to configure it
-Gupshup Console → Bot Studio → Functions from A - D
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **Functions from A - D**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -37,38 +27,43 @@ Gupshup Console → Bot Studio → Functions from A - D
 12. Add a number of seconds to a timestamp.
 13. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
-- abs
-- add
-- addDays
-- addHours
-- addMinutes
-- addOrdinal
-- addProperty
-- addSeconds
-- addToTime
-- all
+### Fields to configure
+- a number of days to a timestamp in an optional locale format
+- a number of seconds to a timestamp
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- Add a property and its value, or name-value pair, to a JSON object, and return the updated object. If the object already exists at runtime the function throws an error.
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Bot Studio**.
+- Go to **Functions from A - D**.
+
+## Options / variants
+- _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- Add a property and its value, or name-value pair, to a JSON object, and return the updated object. If the object already exists at runtime the function throws an error.
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

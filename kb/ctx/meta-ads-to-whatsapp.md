@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/overview
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Meta Ads to WhatsApp
 
 **Module**: Ctx
@@ -9,11 +9,26 @@ source_url: https://console-docs.gupshup.io/docs/overview
 (Each essential step has been explained in detail in their respective subsections)
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → CTX → Meta Ads to WhatsApp
 
-### Where to configure it
-Gupshup Console → CTX → Meta Ads to WhatsApp
+### Steps
+1. Open Gupshup Console.
+2. Go to **CTX**.
+3. Go to **Meta Ads to WhatsApp**.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Validation / where to check
+- _Run a quick smoke test and confirm expected behavior._
+
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
 
 ### Prerequisites
 - _List required access, assets, and upstream setup needed before configuration._
@@ -22,34 +37,22 @@ Gupshup Console → CTX → Meta Ads to WhatsApp
 - Go to **CTX**.
 - Go to **Meta Ads to WhatsApp**.
 
-### Steps
-1. Open Gupshup Console.
-2. Go to **CTX**.
-3. Go to **Meta Ads to WhatsApp**.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
-- _Run a quick smoke test and confirm expected behavior._
-
-## Available options
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - CTX campaign → Bot Studio journey → Goal measurement
 
-## Module disambiguation
+## Module disambiguation docs
 - CTX covers ad-to-WhatsApp campaign flows; bot conversation logic still lives in **Bot Studio**.
 
 ## Reference (from source)

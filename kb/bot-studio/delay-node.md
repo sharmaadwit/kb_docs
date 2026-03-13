@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/delay-node
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Delay Node
 
 **Module**: Bot Studio
@@ -9,11 +9,26 @@ source_url: https://console-docs.gupshup.io/docs/delay-node
 Node to put a delay in between two messages during the conversation. Using this node, a maximum of 10 seconds delay can be introduced between 2 chatbot messages.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → Delay Node
 
-### Where to configure it
-Gupshup Console → Bot Studio → Delay Node
+### Steps
+1. Open Gupshup Console.
+2. Go to **Bot Studio**.
+3. Go to **Delay Node**.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Validation / where to check
+- _Run a quick smoke test and confirm expected behavior._
+
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
 
 ### Prerequisites
 - Delay can be used as per the requirement wherever there is a need to introduce a certain time gap between 2 chatbot messages and enhance the user experience.
@@ -22,37 +37,23 @@ Gupshup Console → Bot Studio → Delay Node
 - Go to **Bot Studio**.
 - Go to **Delay Node**.
 
-### Steps
-1. Open Gupshup Console.
-2. Go to **Bot Studio**.
-3. Go to **Delay Node**.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
-- _Run a quick smoke test and confirm expected behavior._
-
-## Available options
-- Delay
-- How to use
-- Delay Node
+## Options / variants
+- _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

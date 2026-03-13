@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/journey-builder-platform-upgrade-node-deprecation
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Journey Builder Platform Upgrade & Node Deprecation
 
 **Module**: Bot Studio
@@ -9,50 +9,51 @@ source_url: https://console-docs.gupshup.io/docs/journey-builder-platform-upgrad
 As part of our efforts to enhance the Journey Builder platform, Gupshup is transitioning all projects to a more modern and scalable infrastructure. This document outlines upcoming node updates, deprecations, user-facing changes, and next steps for all customers and partners.
 
 ## Procedure
-### Exact path
-Gupshup Console → Bot Studio → Journey Builder Platform Upgrade & Node Deprecation
+### Exact UI path
+Gupshup Console → Bot Studio → Journey Builder
 
-### Where to configure it
-Gupshup Console → Bot Studio → Journey Builder Platform Upgrade & Node Deprecation
+### Steps
+1. Open Gupshup Console.
+2. Go to **Bot Studio**.
+3. Go to **Journey Builder**.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Validation / where to check
+- _Run a quick smoke test and confirm expected behavior._
+
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- Once migrated, projects cannot be reverted to JB V2
 
 ### Prerequisites
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to **Bot Studio**.
-- Go to **Journey Builder Platform Upgrade & Node Deprecation**.
+- Go to **Journey Builder**.
 
-### Steps
-1. Open Gupshup Console.
-2. Go to **Bot Studio**.
-3. Go to **Journey Builder Platform Upgrade & Node Deprecation**.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
-- _Run a quick smoke test and confirm expected behavior._
-
-## Available options
-- 🧩 Use Alternate Nodes in JB V2
-- Key Notes:
-- 📘 Need Help?
+## Options / variants
+- _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- Once migrated, projects cannot be reverted to JB V2
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

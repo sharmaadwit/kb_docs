@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/dynamic-carouselcta-url-qr
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Dynamic Carousel (CTA URL + QR)
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/dynamic-carouselcta-url-qr
 Dynamic Carousel allows businesses to send Horizontal list of card containing media, title, subtitle and Button (QR/CTA URL)
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → Dynamic Carousel (CTA URL + QR)
-
-### Where to configure it
-Gupshup Console → Bot Studio → Dynamic Carousel (CTA URL + QR)
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **Dynamic Carousel (CTA URL + QR)**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -29,30 +19,43 @@ Gupshup Console → Bot Studio → Dynamic Carousel (CTA URL + QR)
 4. Toggle on the 'Dynamic' switch of the Carousel node.
 5. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - "title": "Book Test Drive",
 
-## Available options
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Bot Studio**.
+- Go to **Dynamic Carousel (CTA URL + QR)**.
+
+## Options / variants
 - Toggle on the 'Dynamic' switch of the Carousel node.
 - After turning on the 'Dynamic' mode, the toggle switch for button will appear. Now turn on the 'Dynamic' switch here.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/intent-creation
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Intent Creation
 
 **Module**: Ai Admin
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/intent-creation
 Intent refers to the goal or purpose behind a user's input or query. It represents what the user wants to achieve or convey through their text or speech. For example, when a user types or says, "I ordered a bag last week. When will you deliver it" the intent is to track_order_status.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Ai Admin → Intent Creation
-
-### Where to configure it
-Gupshup Console → Ai Admin → Intent Creation
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to Intent section & Select the required intent to start the untraining
-- Navigate to the utterance you want to untrain & click on the Delete icon. If the Delete icon is accidentally clicked for an utterance then you can revert the action by clicking on the undo icon.
 
 ### Steps
 1. Open Gupshup Console.
@@ -33,29 +23,43 @@ Gupshup Console → Ai Admin → Intent Creation
 8. Click on Save & Train.
 9. Click on Save & Train button to complete the untraining.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
+### Fields to configure
+- Intent Name & Description
+- few manual utterances to include more variations. (Optional)
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to Intent section & Select the required intent to start the untraining
+- Navigate to the utterance you want to untrain & click on the Delete icon. If the Delete icon is accidentally clicked for an utterance then you can revert the action by clicking on the undo icon.
+
+## Options / variants
 - Enter the Intent Name & Description.
 - Add few manual utterances to include more variations. (Optional)
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/json-handler-instead-of-code-node
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # JSON Handler instead of Code Node
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/json-handler-instead-of-code-no
 In older versions of Journey Builder (JB Pro), you'd use a Code Node and write custom JavaScript like this:
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → JSON Handler instead of Code Node
-
-### Where to configure it
-Gupshup Console → Bot Studio → JSON Handler instead of Code Node
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **JSON Handler instead of Code Node**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -30,31 +20,42 @@ Gupshup Console → Bot Studio → JSON Handler instead of Code Node
 5. Configure mappings visually by specifying JSON paths and the variable names to map values to.
 6. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
-- Sample API JSON Payload (Example)
-- How it works:
+### Fields to configure
+- JSON Handler Node after your API Node
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Bot Studio**.
+- Go to **JSON Handler instead of Code Node**.
+
+## Options / variants
 - Add JSON Handler Node after your API Node.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

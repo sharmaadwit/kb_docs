@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/skills
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Skills (Developer Mode)
 
 **Module**: Ai Admin
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/skills
 Introduction:
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Ai Admin → Skills (Developer Mode)
-
-### Where to configure it
-Gupshup Console → Ai Admin → Skills (Developer Mode)
-
-### Prerequisites
-- Skill Objective: You are a real estate assistant for a client, who helps by collecting property requirements from the user and sharing suitable property options based on their criteria
-
-### Setup path
-- Go to **Ai Admin**.
-- Go to **Skills (Developer Mode)**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -29,10 +19,7 @@ Gupshup Console → Ai Admin → Skills (Developer Mode)
 4. Verify appropriate responses when:.
 5. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - Include error handling for API failures a) Test with mock data before connecting to production systems b) Set appropriate timeouts to prevent conversation stalling
 - Testing and Evaluation Guidelines for Bot Designers When evaluating this Real Estate Assistant skill, focus on these critical test scenarios in Test Bot
 - User Input Variations: Test with different phrasing for property requests (e.g., "I need a home" vs. "Show me apartments")
@@ -40,24 +27,40 @@ Gupshup Console → Ai Admin → Skills (Developer Mode)
 - Tool Integration: Confirm @get_context_data properly retrieves and presents: Neighborhood amenities Property features Accurate pricing information
 - Guardrail Enforcement: Validate that responses:
 
-## Available options
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- a) Document proper parameter formatting in comments b) Include error handling for API failures c) Test with mock data before connecting to production systems d) Set appropriate timeouts to prevent conversation stalling
+- Include error handling for API failures a) Test with mock data before connecting to production systems b) Set appropriate timeouts to prevent conversation stalling
+- Error Handling:
+
+### Prerequisites
+- Skill Objective: You are a real estate assistant for a client, who helps by collecting property requirements from the user and sharing suitable property options based on their criteria
+
+### Setup path
+- Go to **Ai Admin**.
+- Go to **Skills (Developer Mode)**.
+
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- a) Document proper parameter formatting in comments b) Include error handling for API failures c) Test with mock data before connecting to production systems d) Set appropriate timeouts to prevent conversation stalling
-- Include error handling for API failures a) Test with mock data before connecting to production systems b) Set appropriate timeouts to prevent conversation stalling
-- Error Handling:
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)

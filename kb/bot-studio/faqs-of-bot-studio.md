@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/faqs-of-bot-studio
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # FAQs of Bot Studio
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/faqs-of-bot-studio
 Question: How to access Bot Studio?
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → FAQs of Bot Studio
-
-### Where to configure it
-Gupshup Console → Bot Studio → FAQs of Bot Studio
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **FAQs of Bot Studio**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -29,29 +19,42 @@ Gupshup Console → Bot Studio → FAQs of Bot Studio
 4. Provide the following information in the Email:.
 5. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
+### Fields to configure
+- following
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Bot Studio**.
+- Go to **FAQs of Bot Studio**.
+
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

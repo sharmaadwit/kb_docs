@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/json-response-attribute-mapping-in-api-node
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # JSON Handler
 
 **Module**: Bot Studio
@@ -9,17 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/json-response-attribute-mapping
 The JSON Handler Node is a powerful new addition to the Journey Builder Canvas in the Bot Studio platform. It allows bot designers to effortlessly extract information from simple to complex JSON objects without requiring coding expertise. This feature simplifies handling JSON responses from APIs or channel messages, making the platform more accessible, especially for non-technical users.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → JSON Handler
-
-### Where to configure it
-Gupshup Console → Bot Studio → JSON Handler
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Navigate to Action Nodes in Journey Builder and select JSON Handler.\
 
 ### Steps
 1. Open Gupshup Console.
@@ -35,13 +26,31 @@ Gupshup Console → Bot Studio → JSON Handler
 11. Save and Deploy.
 12. Click Save to store your mappings and JSON structure.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
+### Fields to configure
+- the JSON Handler Node
+- sample JSON for parsing
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- Transform & Validation Transform Button reformats JSON for easier viewing. Real-time error handling for invalid JSON inputs.
+- Real-time error handling for invalid JSON inputs.
+- Error-Free Data Mapping Built-in validation ensures that only correct mappings are applied, reducing runtime errors.
+- ## Error Handling
+- Invalid JSON Inputs Real-time error messages appear in the editor if JSON is invalid.
+- Real-time error messages appear in the editor if JSON is invalid.
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Navigate to Action Nodes in Journey Builder and select JSON Handler.\
+
+## Options / variants
 - Select from Local, Global, and System variables containing JSON responses.
 - Add the JSON Handler Node Navigate to Action Nodes in Journey Builder and select JSON Handler.\
 - Select JSON Variable Choose the variable containing the JSON response from the dropdown (Local, Global, or System).\
@@ -50,22 +59,17 @@ Gupshup Console → Bot Studio → JSON Handler
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- Transform & Validation Transform Button reformats JSON for easier viewing. Real-time error handling for invalid JSON inputs.
-- Real-time error handling for invalid JSON inputs.
-- Error-Free Data Mapping Built-in validation ensures that only correct mappings are applied, reducing runtime errors.
-- ## Error Handling
-- Invalid JSON Inputs Real-time error messages appear in the editor if JSON is invalid.
-- Real-time error messages appear in the editor if JSON is invalid.
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

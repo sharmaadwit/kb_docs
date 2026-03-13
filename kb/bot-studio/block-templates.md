@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/block-templates
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Block Templates
 
 **Module**: Bot Studio
@@ -9,17 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/block-templates
 Block Templates are reusable building blocks created from nodes within a journey. These blocks can be saved, previewed, and dragged into other journeys within the same project—making bot creation significantly faster, more consistent, and modular.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → Block Templates
-
-### Where to configure it
-Gupshup Console → Bot Studio → Block Templates
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Navigate to the Blocks tab on the left panel of the canvas
 
 ### Steps
 1. Open Gupshup Console.
@@ -28,29 +19,41 @@ Gupshup Console → Bot Studio → Block Templates
 4. Click on the preview icon to see the structure and nodes.
 5. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- Starting Node cannot be part of a Block Template
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Navigate to the Blocks tab on the left panel of the canvas
+
+## Options / variants
 - Select one or more connected nodes on the canvas
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- Starting Node cannot be part of a Block Template
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

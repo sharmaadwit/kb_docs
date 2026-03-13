@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/whatsapp-flows-static-2-way
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # WhatsApp Flows - Static/Dynamic
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/whatsapp-flows-static-2-way
 The WhatsApp Flows feature enhances the platform's capabilities by enabling two-way messaging triggered from the JB WhatsApp Flow node. With this feature, you can seamlessly initiate WhatsApp Flows at any point during a conversation, ensuring dynamic interaction and real-time engagement.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → WhatsApp Flows - Static/Dynamic
-
-### Where to configure it
-Gupshup Console → Bot Studio → WhatsApp Flows - Static/Dynamic
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **WhatsApp Flows - Static/Dynamic**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -30,40 +20,43 @@ Gupshup Console → Bot Studio → WhatsApp Flows - Static/Dynamic
 5. Ensure the Console Project is using V3 version of WhatsApp Service - Contact Support to confirm incase required.
 6. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - Ensure the Console Project is using V3 version of WhatsApp Service - Contact Support to confirm incase required.
 - Draft Toggle: Use this toggle to test Flow IDs in draft state on Meta BM (not yet published).
 
-## Available options
-- 1. Customer Support and Service:
-- 2. Sales and Marketing
-- 3. Appointment Scheduling
-- Pre-Checks:
-- What's supported ?
-- What's not supported?
-- 1. WhatsApp Flow Message Node:
-- 2. WhatsApp Flows Journey:
-- 3. Flow Starting Node
-- 4. Flow Terminal Node
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Bot Studio**.
+- Go to **WhatsApp Flows - Static/Dynamic**.
+
+## Options / variants
 - Draft Toggle: Use this toggle to test Flow IDs in draft state on Meta BM (not yet published).
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

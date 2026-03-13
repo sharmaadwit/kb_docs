@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/test-bot-widget-on-jb-canvas
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Test Bot Widget on JB Canvas
 
 **Module**: Bot Studio
@@ -9,11 +9,28 @@ source_url: https://console-docs.gupshup.io/docs/test-bot-widget-on-jb-canvas
 Test bot widget is an existing feature on the Journey List page which lets Bot designers to test the bot or go through the Message logs to debug any issue on the bot. Now Bot designer will be able to Test, debug, fix, and deploy all at a single place.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → Test Bot Widget on JB Canvas
 
-### Where to configure it
-Gupshup Console → Bot Studio → Test Bot Widget on JB Canvas
+### Steps
+1. Open Gupshup Console.
+2. Go to **Bot Studio**.
+3. Go to **Test Bot Widget on JB Canvas**.
+4. Test bot widget is an existing feature on the Journey List page which lets Bot designers to test the bot or go through the Message logs to debug any issue on the bot. Now Bot designer will be able to Test, debug, fix, and deploy all at a single place.
+
+### Validation / where to check
+- # Test Bot Widget on JB Canvas
+- Dedicated Widget “ Test Bot” for the Deployed Bot where in, the user can view the message logs to test, debug and fix the Journey flow
+- Following actions result in new Test Bot conversations and message logs will not be available for all messages sent before the action:
+
+### Fields to configure
+- Message content
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
 
 ### Prerequisites
 - _List required access, assets, and upstream setup needed before configuration._
@@ -22,38 +39,23 @@ Gupshup Console → Bot Studio → Test Bot Widget on JB Canvas
 - Go to **Bot Studio**.
 - Go to **Test Bot Widget on JB Canvas**.
 
-### Steps
-1. Open Gupshup Console.
-2. Go to **Bot Studio**.
-3. Go to **Test Bot Widget on JB Canvas**.
-4. Test bot widget is an existing feature on the Journey List page which lets Bot designers to test the bot or go through the Message logs to debug any issue on the bot. Now Bot designer will be able to Test, debug, fix, and deploy all at a single place.
-
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
-- # Test Bot Widget on JB Canvas
-- Dedicated Widget “ Test Bot” for the Deployed Bot where in, the user can view the message logs to test, debug and fix the Journey flow
-- Following actions result in new Test Bot conversations and message logs will not be available for all messages sent before the action:
-
-## Available options
-- What's New?
-- Note:
+## Options / variants
+- _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

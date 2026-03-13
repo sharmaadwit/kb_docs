@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/catalog-training-1
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Catalog Training
 
 **Module**: Ai Admin
@@ -9,17 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/catalog-training-1
 User can upload & train their product catalog to answer customer queries regarding product availability, specifications, pricing, and more.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Ai Admin → Catalog Training
-
-### Where to configure it
-Gupshup Console → Ai Admin → Catalog Training
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to "Files" section in Content Tab.
 
 ### Steps
 1. Open Gupshup Console.
@@ -27,29 +18,41 @@ Gupshup Console → Ai Admin → Catalog Training
 3. Click on choose File to upload single/multiple files.
 4. Click on "Save & Train".
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- The names of the csv files are strict and should not be changed. for e.g. products.csv cannot be renamed.
+- The columns and column headers inside the csv are strict and should not be changed. for e.g. the id column should be in the first column and the column header should be id and cannot be changed, deleted or reordered.
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to "Files" section in Content Tab.
+
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- The names of the csv files are strict and should not be changed. for e.g. products.csv cannot be renamed.
-- The columns and column headers inside the csv are strict and should not be changed. for e.g. the id column should be in the first column and the column header should be id and cannot be changed, deleted or reordered.
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)

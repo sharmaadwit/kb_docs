@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/web-pre-chat-form
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Pre-Chat Form
 
 **Module**: Channels
@@ -12,11 +12,25 @@ source_url: https://console-docs.gupshup.io/docs/web-pre-chat-form
 - If the Retain Customer Chat History setting is enabled, the Pre-Chat Form will be shown to new anonymous users only once. Logged in users will be shown the form every time regardless of the setting.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Channels → Pre-Chat Form
 
-### Where to configure it
-Gupshup Console → Channels → Pre-Chat Form
+### Steps
+1. Open Gupshup Console.
+2. Go to the Pre-Chat Form tab in Settings of the Web channel.
+3. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Validation / where to check
+- _Run a quick smoke test and confirm expected behavior._
+
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- Users cannot start messaging on the chat widget without clicking the Global Button.
 
 ### Prerequisites
 - _List required access, assets, and upstream setup needed before configuration._
@@ -24,38 +38,22 @@ Gupshup Console → Channels → Pre-Chat Form
 ### Setup path
 - Go to the Pre-Chat Form tab in Settings of the Web channel.
 
-### Steps
-1. Open Gupshup Console.
-2. Go to the Pre-Chat Form tab in Settings of the Web channel.
-3. Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
-- _Run a quick smoke test and confirm expected behavior._
-
-## Available options
-- Header Image
-- Header
-- Sub-Header
-- Checkbox Text
-- Global Button Text
+## Options / variants
 - Turn on the Enable Pre-Chat Form toggle. You can now add the content to the form.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- Users cannot start messaging on the chat widget without clicking the Global Button.
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)

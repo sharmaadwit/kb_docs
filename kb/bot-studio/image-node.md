@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/image-node
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Image Node
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/image-node
 The Image Node allows bot designers to send visual media (images) as part of a chatbot conversation within Journey Builder on Gupshup's Console. You can add an image either by uploading it directly from your local system or by providing a public URL. This makes it easy to share product images, visual confirmations, maps, and other content in a conversational flow.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → Image Node
-
-### Where to configure it
-Gupshup Console → Bot Studio → Image Node
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **Image Node**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -32,31 +22,42 @@ Gupshup Console → Bot Studio → Image Node
 7. Choose a file from your local device.
 8. Save the API response field (for example, product_image_url) into a variable:.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
-- 🧩 Example Scenario
-- ⚙️ Configuration Steps
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Bot Studio**.
+- Go to **Image Node**.
+
+## Options / variants
 - Choose a file from your local device
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- `{{var_local.product_image_url}}`
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

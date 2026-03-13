@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/trigger-event-node
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Trigger Event Node
 
 **Module**: Bot Studio
@@ -9,17 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/trigger-event-node
 The Trigger Event Node is a newly introduced action node in the Journey Builder Canvas that empowers businesses to send custom internal events during live journey execution. These events are sent to the Event Manager(New Module on Console), Gupshup's centralized event tracking system, and can be seamlessly integrated with Personalize (Customer360) to update profile attributes for users.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → Trigger Event Node
-
-### Where to configure it
-Gupshup Console → Bot Studio → Trigger Event Node
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to Console Sidebar → Event Manager
 
 ### Steps
 1. Open Gupshup Console.
@@ -30,19 +21,25 @@ Gupshup Console → Bot Studio → Trigger Event Node
 6. Select your Event Name from the dropdown.
 7. Click "Save & Deploy".
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
-- 📌 What is it?
-- 🧭 How to Use
-- Cart Abandonment Tracking
-- Product Viewed Event
-- Form Submission Completion
-- User Opts-In for a Notification
+### Fields to configure
+- Event"
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to Console Sidebar → Event Manager
+
+## Options / variants
 - Optionally, toggle the Save in Personalize to update CDP Profile attributes using Event data
 - Choose the Event Category (Custom only)
 - Select your Event Name from the dropdown
@@ -50,17 +47,17 @@ Gupshup Console → Bot Studio → Trigger Event Node
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

@@ -11,7 +11,7 @@ hand-authored) into a predictable, operator-first template while preserving
 source content in a trailing "Reference" section.
 
 Idempotency
-- Rewritten files include `<!-- agent-assist-golden:v8 -->`.
+- Rewritten files include `<!-- agent-assist-golden:v10 -->`.
 """
 
 from __future__ import annotations
@@ -32,8 +32,10 @@ OLD_MARKERS = {
     "<!-- agent-assist-golden:v5 -->",
     "<!-- agent-assist-golden:v6 -->",
     "<!-- agent-assist-golden:v7 -->",
+    "<!-- agent-assist-golden:v8 -->",
+    "<!-- agent-assist-golden:v9 -->",
 }
-MARKER = "<!-- agent-assist-golden:v8 -->"
+MARKER = "<!-- agent-assist-golden:v10 -->"
 
 def extract_action_bullets(text: str) -> List[str]:
     actions: List[str] = []
@@ -55,6 +57,65 @@ def extract_action_bullets(text: str) -> List[str]:
             seen.add(k)
             actions.append(b.rstrip(".") + ".")
     return actions[:12]
+
+def extract_fields_to_configure(text: str) -> List[str]:
+    """
+    Heuristic: infer fields/inputs from operator actions.
+    """
+    fields: List[str] = []
+    seen = set()
+
+    def add(name: str) -> None:
+        k = name.lower().strip()
+        if not k or k in seen:
+            return
+        seen.add(k)
+        fields.append(name.strip())
+
+    # Prefer explicit UI labels in quotes
+    for m in re.finditer(r"\"([^\"]{2,80})\"", text):
+        q = m.group(1).strip()
+        if re.search(r"\b(channel|tag|team|agent|name|sticky|business hours|auto replies)\b", q, re.IGNORECASE):
+            add(q)
+
+    for a in extract_action_bullets(text):
+        s = a.strip().rstrip(".")
+        m = re.search(r"\b(?:enter|provide|set|specify|add)\s+(?:your\s+|the\s+)?(.+?)(?:\s+and\s+save|\s+then|\s*$)", s, flags=re.IGNORECASE)
+        if not m:
+            continue
+        cand = m.group(1).strip(" :")
+        if not cand or len(cand) > 70:
+            continue
+        if re.search(r"\b(button|page|tab|dashboard|settings)\b", cand, re.IGNORECASE):
+            continue
+        # Canonicalize common configs
+        cl = cand.lower()
+        if "name of the rule" in cl or cl == "name":
+            add("Rule name")
+            continue
+        if "condition" in cl:
+            add("Rule conditions (e.g., Channel, Tags)")
+            continue
+        if "team" in cl or "agent" in cl:
+            add("Assignment action (Team/Agent)")
+            continue
+        if "sticky assignment" in cl:
+            add("Sticky Assignment (on/off)")
+            continue
+        add(cand)
+
+    return fields[:10]
+
+def dedupe_steps(steps: List[str]) -> List[str]:
+    out: List[str] = []
+    seen = set()
+    for s in steps:
+        k = re.sub(r"\\s+", " ", s.strip().lower())
+        if not k or k in seen:
+            continue
+        seen.add(k)
+        out.append(s.strip())
+    return out
 
 META_LINE_RE = re.compile(r"^[a-zA-Z0-9_]+:\s+\S+.*$")
 H_RE = re.compile(r"^(#{1,6})\s+(.*)\s*$")
@@ -417,7 +478,8 @@ def rewrite_one(path: Path) -> bool:
     if extra:
         # Insert after navigation steps (keep small)
         steps = steps[:3] + extra[:6] + steps[3:]
-        steps = steps[:14]
+        steps = steps[:16]
+    steps = dedupe_steps(steps)[:14]
     definition = extract_definition(overview, when_to_use)
     # If definition is still low-signal, try the first useful paragraph from details
     low_signal = definition.strip().lower() in {"short description in 2–3 lines.", "short description in 2-3 lines."}
@@ -434,6 +496,7 @@ def rewrite_one(path: Path) -> bool:
             definition = alt2.strip()
     options = extract_options(step_by_step)
     notes = extract_notes(body)
+    fields = extract_fields_to_configure(step_by_step or ref_body)
 
     out: List[str] = []
     if meta:
@@ -451,14 +514,8 @@ def rewrite_one(path: Path) -> bool:
     out.append("## What this feature does\n")
     out.append(definition.strip() + "\n\n")
 
-    out.append("## Where to configure it\n")
+    out.append("## Exact UI path\n")
     out.append(where + "\n\n")
-
-    out.append("## Exact path\n")
-    out.append(where + "\n\n")
-
-    out.append("## Prerequisites\n")
-    out.append("- _List required roles/access, teams, and any upstream configuration._\n\n")
 
     out.append("## Setup path\n")
     if setup_path:
@@ -466,7 +523,6 @@ def rewrite_one(path: Path) -> bool:
             out.append(f"- {s}\n")
         out.append("\n")
     else:
-        # fallback: derive from where string
         out.append(f"- {where}\n\n")
 
     out.append("## Steps\n")
@@ -474,16 +530,32 @@ def rewrite_one(path: Path) -> bool:
         out.append(f"{i}. {s}\n")
     out.append("\n")
 
-    out.append("## Save/publish behavior\n")
+    out.append("## Validation / where to check\n")
+    out.append("- _Run a quick test (new chat / assignment / workflow) and confirm expected behavior._\n\n")
+
+    out.append("## Fields to configure\n")
+    if fields:
+        for f in fields:
+            out.append(f"- {f}\n")
+        out.append("\n")
+    else:
+        out.append("- _List the fields/inputs you must set in the UI (and expected format)._\n\n")
+
+    out.append("## Save / publish / deploy behavior\n")
     if needs_save:
         out.append("- Click **Save** (or **Save & Deploy** if available) to apply changes.\n\n")
     else:
         out.append("- _No save/publish step is required for this page unless explicitly stated in the UI._\n\n")
 
-    out.append("## Validation\n")
-    out.append("- _Run a quick test (new chat / assignment / workflow) and confirm expected behavior._\n\n")
+    out.append("## Troubleshooting\n")
+    if notes:
+        out.append("- If something doesn’t work as expected, re-check the **Exact UI path** and confirm you saved changes.\n")
+    out.append("- _Add common failure modes and how to fix them._\n\n")
 
-    out.append("## Available options\n")
+    out.append("## Prerequisites\n")
+    out.append("- _List required roles/access, teams, and any upstream configuration._\n\n")
+
+    out.append("## Options / variants\n")
     if options:
         for o in options:
             out.append(f"- {o}\n")
@@ -501,18 +573,13 @@ def rewrite_one(path: Path) -> bool:
         out.append(f"- **Last updated (from source)**: {last_updated}\n")
     out.append("\n")
 
-    out.append("## Troubleshooting\n")
-    if notes:
-        out.append("- If something doesn’t work as expected, re-check the **Exact path** and confirm you saved changes.\n")
-    out.append("- _Add common failure modes and how to fix them._\n\n")
-
     out.append("## Field mapping / schemas\n")
     out.append("- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._\n\n")
 
-    out.append("## Cross-module workflows\n")
+    out.append("## Cross-module workflow docs\n")
     out.append("- _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._\n\n")
 
-    out.append("## Module disambiguation\n")
+    out.append("## Module disambiguation docs\n")
     out.append("- _Add 1–2 bullets distinguishing this feature from adjacent settings to reduce retrieval drift._\n\n")
 
     out.append("## Reference (from source)\n")

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/web-chat-aesthetics
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Chat Aesthetics
 
 **Module**: Channels
@@ -9,11 +9,27 @@ source_url: https://console-docs.gupshup.io/docs/web-chat-aesthetics
 You can customize the look & feel of your Web chat widget via the Chat Aesthetics Settings.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Channels → Chat Aesthetics
 
-### Where to configure it
-Gupshup Console → Channels → Chat Aesthetics
+### Steps
+1. Open Gupshup Console.
+2. Go to Google Fonts.
+3. Click Get Font in the top right corner. You will be redirected to a new page title "1 font family selected".
+4. Click <> Get embed code.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Validation / where to check
+- _Run a quick smoke test and confirm expected behavior._
+
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
 
 ### Prerequisites
 - You can customize the colors of the following elements of your chat widget as per your brand requirements: Header Chat Background Bot Message Bubble User Message Bubble
@@ -23,44 +39,22 @@ Gupshup Console → Channels → Chat Aesthetics
 ### Setup path
 - Go to Google Fonts.
 
-### Steps
-1. Open Gupshup Console.
-2. Go to Google Fonts.
-3. Click Get Font in the top right corner. You will be redirected to a new page title "1 font family selected".
-4. Click <> Get embed code.
-5. Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
-- _Run a quick smoke test and confirm expected behavior._
-
-## Available options
-- Bot Name
-- Bot Avatar Image
-- Bot Logo Image
-- Font Style
-- Getting the Font URL
-- Font Size
-- Font Colours
-- Widget Size
-- Widget Position
-- Icon Image
+## Options / variants
+- _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)

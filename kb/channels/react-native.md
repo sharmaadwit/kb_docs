@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/react-native-sdk
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # React Native
 
 **Module**: Channels
@@ -12,18 +12,8 @@ source_url: https://console-docs.gupshup.io/docs/react-native-sdk
 - A working React Native project
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Channels → React Native
-
-### Where to configure it
-Gupshup Console → Channels → React Native
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Channels**.
-- Go to **React Native**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -32,26 +22,17 @@ Gupshup Console → Channels → React Native
 4. add(GipChatModule()).
 5. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - const [userId, setUserId] = useState('Test-User-Id-1234');
 - <Text style={styles.title}>GipSDK Demo Test</Text>
 
-## Available options
-- Prerequisites
-- Android Setup
-- Platform-specific Configuration
-- iOS Native Setup
-- Android Testing
-- iOS Testing
-- Debugging
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
-## Troubleshooting
+### Troubleshooting
 - message(exception.message ?: "Error occurred..")
 - // Packages that cannot be autolinked yet can be added manually here, for example:
 - GipIOSService.initialize((error: any, success: boolean) => {
@@ -59,13 +40,29 @@ Gupshup Console → Channels → React Native
 - console.error('Initialization failed:', error);
 - GipIOSService.onError((error: any, message: string) => {
 
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Channels**.
+- Go to **React Native**.
+
+## Options / variants
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- `{initialized ? 'Re-Initialize' : 'Initialize'}`
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)

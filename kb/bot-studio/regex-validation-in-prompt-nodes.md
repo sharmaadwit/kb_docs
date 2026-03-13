@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/regex-validation-in-prompt-nodes
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # RegEx Validation in Prompt Nodes
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/regex-validation-in-prompt-node
 As part of our platform hardening and bot reliability initiatives, Gupshup Console validates all regular expressions in Prompt Nodes using the Re2 regex engine, developed by Google. This ensures that patterns used for validating user input are safe, efficient, and non-blocking at runtime.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → RegEx Validation in Prompt Nodes
-
-### Where to configure it
-Gupshup Console → Bot Studio → RegEx Validation in Prompt Nodes
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **RegEx Validation in Prompt Nodes**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -29,34 +19,45 @@ Gupshup Console → Bot Studio → RegEx Validation in Prompt Nodes
 4. Test your regex in a Re2-compatible environment before using it in Console.
 5. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - Test your regex in a Re2-compatible environment before using it in Console
 
-## Available options
-- 1. Compliance with Re2 Syntax
-- 2. Runtime Safety (Catastrophic Backtracking Prevention)
-- 3. Invalid or Malformed Patterns
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
-## Troubleshooting
+### Troubleshooting
 - Regex entered during node configuration is validated on click of Tick icon on the regex field. If the expression does not conform to Re2 standards, an error is shown and the journey cannot be saved until it is corrected.
 - You will see an error: Invalid regex expression. learn more.
 - An error toast appears below the regex field: Invalid regex expression. learn more
 - The journey cannot be saved until the regex is correctly saved
 
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Bot Studio**.
+- Go to **RegEx Validation in Prompt Nodes**.
+
+## Options / variants
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

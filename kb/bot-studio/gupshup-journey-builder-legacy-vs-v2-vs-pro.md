@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/gupshup-journey-builder-legacy-vs-v2-vs-pro
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Gupshup Journey Builder: Legacy vs V2 vs Pro
 
 **Module**: Bot Studio
@@ -9,51 +9,52 @@ source_url: https://console-docs.gupshup.io/docs/gupshup-journey-builder-legacy-
 Gupshup’s Journey Builder (JB) platform has evolved through multiple versions to address different user segments and technical requirements. The three key versions are:
 
 ## Procedure
-### Exact path
-Gupshup Console → Bot Studio → Gupshup Journey Builder: Legacy vs V2 vs Pro
+### Exact UI path
+Gupshup Console → Bot Studio → Journey Builder
 
-### Where to configure it
-Gupshup Console → Bot Studio → Gupshup Journey Builder: Legacy vs V2 vs Pro
+### Steps
+1. Open Gupshup Console.
+2. Go to **Bot Studio**.
+3. Go to **Journey Builder**.
+4. Test Bot and Inline Message Logs: Enable debugging directly within the canvas.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Validation / where to check
+- Test Bot and Inline Message Logs: Enable debugging directly within the canvas.
+
+### Fields to configure
+- Message content
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
 
 ### Prerequisites
 - Gupshup’s Journey Builder (JB) platform has evolved through multiple versions to address different user segments and technical requirements. The three key versions are:
 
 ### Setup path
 - Go to **Bot Studio**.
-- Go to **Gupshup Journey Builder: Legacy vs V2 vs Pro**.
+- Go to **Journey Builder**.
 
-### Steps
-1. Open Gupshup Console.
-2. Go to **Bot Studio**.
-3. Go to **Gupshup Journey Builder: Legacy vs V2 vs Pro**.
-4. Test Bot and Inline Message Logs: Enable debugging directly within the canvas.
-5. Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
-- Test Bot and Inline Message Logs: Enable debugging directly within the canvas.
-
-## Available options
-- 3.1 JB Legacy
-- 3.2 JB V2
-- 3.3 JB Pro
+## Options / variants
+- _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

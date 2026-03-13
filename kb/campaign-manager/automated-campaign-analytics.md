@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/automated-campaign-analytics
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Automated Campaign analytics
 
 **Module**: Campaign Manager
@@ -9,11 +9,26 @@ source_url: https://console-docs.gupshup.io/docs/automated-campaign-analytics
 For each completed Automated Campaign we show analytics in 2 levels:
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Campaign Manager → Automated Campaign analytics
 
-### Where to configure it
-Gupshup Console → Campaign Manager → Automated Campaign analytics
+### Steps
+1. Open Gupshup Console.
+2. Go to **Campaign Manager**.
+3. Go to **Automated Campaign analytics**.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Validation / where to check
+- _Run a quick smoke test and confirm expected behavior._
+
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
 
 ### Prerequisites
 - _List required access, assets, and upstream setup needed before configuration._
@@ -22,34 +37,22 @@ Gupshup Console → Campaign Manager → Automated Campaign analytics
 - Go to **Campaign Manager**.
 - Go to **Automated Campaign analytics**.
 
-### Steps
-1. Open Gupshup Console.
-2. Go to **Campaign Manager**.
-3. Go to **Automated Campaign analytics**.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
-- _Run a quick smoke test and confirm expected behavior._
-
-## Available options
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - Campaign creation/config is in **Campaign Manager**; delivery status can also be observed via **Webhooks** (Integrations).
 
 ## Reference (from source)

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/connecting-ad-to-bot-in-gupshup-console
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Connecting ad to bot in Gupshup Console
 
 **Module**: Ctx
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/connecting-ad-to-bot-in-gupshup
 Best Practices:
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → CTX → Connecting ad to bot in Gupshup Console
-
-### Where to configure it
-Gupshup Console → CTX → Connecting ad to bot in Gupshup Console
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **CTX**.
-- Go to **Connecting ad to bot in Gupshup Console**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -34,28 +24,41 @@ Gupshup Console → CTX → Connecting ad to bot in Gupshup Console
 9. Select the Ad journey from the list of journeys that appear and click on "Connect Bot". Disclaimer: Only Ad Journeys are visible in this list, so as a best practice please ensure your user journey has been converted to an ad journey, following the steps shown in section 2.
 10. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - On the ads page, click on "Connect Bot" and in the pop-up that opens for verification, click on "Confirm"
 
-## Available options
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **CTX**.
+- Go to **Connecting ad to bot in Gupshup Console**.
+
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - CTX campaign → Bot Studio journey → Goal measurement
 
-## Module disambiguation
+## Module disambiguation docs
 - CTX covers ad-to-WhatsApp campaign flows; bot conversation logic still lives in **Bot Studio**.
 
 ## Reference (from source)

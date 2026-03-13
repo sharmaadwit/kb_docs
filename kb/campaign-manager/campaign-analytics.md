@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/campaign-analytics
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Campaign Analytics
 
 **Module**: Campaign Manager
@@ -24,18 +24,8 @@ source_url: https://console-docs.gupshup.io/docs/campaign-analytics
 - Link tracking Report - It gives timewise summary of clicks which will have original URL, GupShup URL, time at which the link was clicked, IP address, device and OS of the end user.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Campaign Manager → Campaign Analytics
-
-### Where to configure it
-Gupshup Console → Campaign Manager → Campaign Analytics
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Campaign Manager**.
-- Go to **Campaign Analytics**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -45,28 +35,41 @@ Gupshup Console → Campaign Manager → Campaign Analytics
 5. Click Through Rate - Indicates the % of times users have Clicked a link of a WhatsApp campaign after viewing it. It is calculated as [(Total Clicks / Total Read) * 100][(Total Clicks / Total Read) * 100].
 6. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
+### Fields to configure
+- Message content
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- Response file - It gives timewise summary of all the delivery events for all phone numbers. If you want to retarget users for which campaign got failed, this file will help you out.
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Campaign Manager**.
+- Go to **Campaign Analytics**.
+
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- Response file - It gives timewise summary of all the delivery events for all phone numbers. If you want to retarget users for which campaign got failed, this file will help you out.
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - Campaign creation/config is in **Campaign Manager**; delivery status can also be observed via **Webhooks** (Integrations).
 
 ## Reference (from source)

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/unlinking-your-instagram-account
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Unlinking your Instagram account
 
 **Module**: Channels
@@ -15,19 +15,8 @@ source_url: https://console-docs.gupshup.io/docs/unlinking-your-instagram-accoun
 - Your Instagram account will be unlinked from Gupshup.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Channels → Unlinking your Instagram account
-
-### Where to configure it
-Gupshup Console → Channels → Unlinking your Instagram account
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to Instagram and log in to the account that you linked with Gupshup.
-- Go to your Instagram Profile and click the Settings (gear) icon.
-- Go to Facebook and log in to the account which you used to link the Instagram account previously.
 
 ### Steps
 1. Open Gupshup Console.
@@ -44,28 +33,42 @@ Gupshup Console → Channels → Unlinking your Instagram account
 12. Go Live with Instagram.
 13. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to Instagram and log in to the account that you linked with Gupshup.
+- Go to your Instagram Profile and click the Settings (gear) icon.
+- Go to Facebook and log in to the account which you used to link the Instagram account previously.
+
+## Options / variants
 - Select Settings and go to Business integrations under the Your activity section in the navigation sidebar on the left.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/whatsapp-business-api
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # WhatsApp Business API
 
 **Module**: Channels
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/whatsapp-business-api
 Gupshup's WhatsApp Business API provides you APIs to send free form messages or session messages and template messages (utility/marketing/authentication) to users on WhatsApp. Both of these types of messages are together referred as 'Outbound Messages'
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Channels → WhatsApp Business API
-
-### Where to configure it
-Gupshup Console → Channels → WhatsApp Business API
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Channels**.
-- Go to **WhatsApp Business API**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -28,26 +18,16 @@ Gupshup Console → Channels → WhatsApp Business API
 3. Go to **WhatsApp Business API**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
-- API Endpoint
-- Headers
-- Request body
-- API Response
-- Template object description
-- Message object description
-- Sample requests
-- For any other error code, click here.
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
-## Troubleshooting
+### Troubleshooting
 - Let's have a look at the error codes for the above outbound message APIs:
 - Message sending failed because of insufficient balance.
 - 1004 - Message sending failed as user is inactive for session message and template messaging is disabled.
@@ -56,13 +36,29 @@ Gupshup Console → Channels → WhatsApp Business API
 - 1007 - Message sending failed as user is inactive for session message, not opted in for template message and template did not match
 - ### For any other error code, click here.
 
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Channels**.
+- Go to **WhatsApp Business API**.
+
+## Options / variants
+- _List the key variants/toggles visible in the UI._
+
+## Notes
+- _Add prerequisites, constraints, and rollout behavior._
+
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- `{"id": "c6aecef6-bcb0-4fb1-8100-28c094e3bc6b","params": ["Agent","Local Address","Tracking code"]}`
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)

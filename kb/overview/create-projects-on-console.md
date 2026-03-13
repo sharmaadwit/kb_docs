@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/create-projects-on-console
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Create Projects on Console
 
 **Module**: Overview
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/create-projects-on-console
 As businesses grow and expand their messaging operations, managing multiple departments or verticals can become a daunting task. Gupshup's Console offers a powerful set of features to simplify messaging operations, including the ability to create projects. Creating a project on Console is a simple process that can help businesses streamline their messaging operations and manage multiple departments or verticals efficiently.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Overview → Create Projects on Console
-
-### Where to configure it
-Gupshup Console → Overview → Create Projects on Console
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Overview**.
-- Go to **Create Projects on Console**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -30,28 +20,41 @@ Gupshup Console → Overview → Create Projects on Console
 5. Provide a name for the project and click on the Create project button.
 6. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
+### Fields to configure
+- a name for the project and click
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Overview**.
+- Go to **Create Projects on Console**.
+
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)

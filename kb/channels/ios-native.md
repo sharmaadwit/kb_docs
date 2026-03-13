@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/ios-native-sdk
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # iOS Native
 
 **Module**: Channels
@@ -10,18 +10,8 @@ source_url: https://console-docs.gupshup.io/docs/ios-native-sdk
 - Xcode 14 or above
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Channels → iOS Native
-
-### Where to configure it
-Gupshup Console → Channels → iOS Native
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Channels**.
-- Go to **iOS Native**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -31,39 +21,45 @@ Gupshup Console → Channels → iOS Native
 5. Add the following keys to Info tab on the project target.
 6. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
-- Prerequisites
-- Download the framework
-- Add the framework
-- Link the framework
-- Grant Permissions
-- Import GipKit into ViewModel class
-- Get reference to GipKit in ViewModel class
-- Getting the App ID
+### Fields to configure
+- following command
+- the following keys to Info tab on the project target
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- If the initialization fails, the method returns false.
+- ## Listening for error messages
+- App can register a delegate and listen for error messages that the SDK can generate.
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Channels**.
+- Go to **iOS Native**.
+
+## Options / variants
 - Add the framework to the target of the application if not already done.
 - Add the following keys to Info tab on the project target.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- If the initialization fails, the method returns false.
-- ## Listening for error messages
-- App can register a delegate and listen for error messages that the SDK can generate.
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)

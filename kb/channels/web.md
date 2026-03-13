@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/web
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Web
 
 **Module**: Channels
@@ -11,11 +11,26 @@ source_url: https://console-docs.gupshup.io/docs/web
 ### Embed URL
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Channels → Web
 
-### Where to configure it
-Gupshup Console → Channels → Web
+### Steps
+1. Open Gupshup Console.
+2. Go to **Channels**.
+3. Go to **Web**.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Validation / where to check
+- On clicking the Test button, you are redirected to your dedicated testing page.
+
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
 
 ### Prerequisites
 - _List required access, assets, and upstream setup needed before configuration._
@@ -24,37 +39,22 @@ Gupshup Console → Channels → Web
 - Go to **Channels**.
 - Go to **Web**.
 
-### Steps
-1. Open Gupshup Console.
-2. Go to **Channels**.
-3. Go to **Web**.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
-- On clicking the Test button, you are redirected to your dedicated testing page.
-
-## Available options
-- Embed URL
-- Preview
-- Settings
-- Testing your Web chat widget
+## Options / variants
+- _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)

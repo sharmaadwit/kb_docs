@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/how-to-create-whatsapp-static-flows
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # How to Create WhatsApp Static Flows
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/how-to-create-whatsapp-static-f
 Creating a WhatsApp Static Flow involves several steps: designing the Flow JSON, setting up the journey, handling the response JSON, and triggering the flow from a user journey. Follow the steps below for a seamless setup:
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → How to Create WhatsApp Static Flows
-
-### Where to configure it
-Gupshup Console → Bot Studio → How to Create WhatsApp Static Flows
-
-### Prerequisites
-- By following these steps, you can design, implement, and deploy WhatsApp Static Flows seamlessly for your business requirements.
-
-### Setup path
-- Navigate to the Flow Builder via the Create Template Action on Meta BM
-- Navigate to the Flows section in Meta BM.
 
 ### Steps
 1. Open Gupshup Console.
@@ -30,30 +20,43 @@ Gupshup Console → Bot Studio → How to Create WhatsApp Static Flows
 5. Select the Flow Journey:.
 6. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - Draft Toggle: Use this toggle to test Flow IDs in draft state on Meta BM (not yet published).
 - Sample Text Node Payload to use the response data to verify the inputs with the user post submission:
 
-## Available options
+### Fields to configure
+- the WhatsApp Flow Node
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- By following these steps, you can design, implement, and deploy WhatsApp Static Flows seamlessly for your business requirements.
+
+### Setup path
+- Navigate to the Flow Builder via the Create Template Action on Meta BM
+- Navigate to the Flows section in Meta BM.
+
+## Options / variants
 - Draft Toggle: Use this toggle to test Flow IDs in draft state on Meta BM (not yet published).
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

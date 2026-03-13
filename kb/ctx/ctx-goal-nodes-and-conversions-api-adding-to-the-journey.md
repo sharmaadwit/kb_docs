@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/ctx-goal-nodes-adding-to-the-journey
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # CTX Goal Nodes and Conversions API: Adding to the journey
 
 **Module**: Ctx
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/ctx-goal-nodes-adding-to-the-jo
 CTX Goals are added to track the number of leads that have come in the bot journey and is a milestone-based approach to get drop-offs in the journey
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → CTX → CTX Goal Nodes and Conversions API: Adding to the journey
-
-### Where to configure it
-Gupshup Console → CTX → CTX Goal Nodes and Conversions API: Adding to the journey
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **CTX**.
-- Go to **CTX Goal Nodes and Conversions API: Adding to the journey**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -30,28 +20,41 @@ Gupshup Console → CTX → CTX Goal Nodes and Conversions API: Adding to the jo
 5. Add the following API:.
 6. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
+### Fields to configure
+- the following API
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **CTX**.
+- Go to **CTX Goal Nodes and Conversions API: Adding to the journey**.
+
+## Options / variants
 - In the API screen, click on the toggle and select "Curl"
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - CTX campaign → Bot Studio journey → Goal measurement
 
-## Module disambiguation
+## Module disambiguation docs
 - CTX covers ad-to-WhatsApp campaign flows; bot conversation logic still lives in **Bot Studio**.
 
 ## Reference (from source)

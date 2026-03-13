@@ -3,7 +3,9 @@ source_url: https://console-docs.gupshup.io/docs/others-agent-status
 
 
 
-<!-- agent-assist-golden:v8 -->
+
+
+<!-- agent-assist-golden:v10 -->
 # Others: Agent Status
 
 **Module**: Agent Assist
@@ -11,14 +13,8 @@ source_url: https://console-docs.gupshup.io/docs/others-agent-status
 ## What this feature does
 Agent Status Agent Status is a feature in Agent Assist that allows agents to communicate their current state to their teams. There are three main categories of Agent Status: Available, Busy, and Unavailable. Available: When an agent sets their status to "Available", it means they are ready to receive and handle new chats. They are actively monitoring the dashboard and can respond to customer inquiries in real time. Busy: When an agent sets their status to "Busy", it means they are currently handling a chat and cannot take on any new chats. This status is particularly useful when an agent is handling a complex issue and needs to focus on a single chat until it is resolved. Unavailable: When an agent sets their status to "Unavailable", it means they are temporarily not available to handle chats. This could be due to taking a break, being in a meeting, or dealing with an emergency.
 
-## Where to configure it
+## Exact UI path
 Agent Assist → Settings → Others
-
-## Exact path
-Agent Assist → Settings → Others
-
-## Prerequisites
-- _List required roles/access, teams, and any upstream configuration._
 
 ## Setup path
 - _Add the click-path in Console (breadcrumbs)._
@@ -28,28 +24,34 @@ Agent Assist → Settings → Others
 2. _Add the click-path in Console (breadcrumbs)._
 3. Click **Save** to apply changes.
 
-## Save/publish behavior
-- Click **Save** (or **Save & Deploy** if available) to apply changes.
-
-## Validation
+## Validation / where to check
 - _Run a quick test (new chat / assignment / workflow) and confirm expected behavior._
 
-## Available options
+## Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+## Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy** if available) to apply changes.
+
+## Troubleshooting
+- _Add common failure modes and how to fix them._
+
+## Prerequisites
+- _List required roles/access, teams, and any upstream configuration._
+
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Cross-module workflow docs
 - _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._
 
-## Module disambiguation
+## Module disambiguation docs
 - _Add 1–2 bullets distinguishing this feature from adjacent settings to reduce retrieval drift._
 
 ## Reference (from source)

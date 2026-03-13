@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/android-native-sdk
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Android Native
 
 **Module**: Channels
@@ -10,18 +10,8 @@ source_url: https://console-docs.gupshup.io/docs/android-native-sdk
 - Android Studio version 2022.3.1 or above
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Channels → Android Native
-
-### Where to configure it
-Gupshup Console → Channels → Android Native
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Channels**.
-- Go to **Android Native**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -31,32 +21,43 @@ Gupshup Console → Channels → Android Native
 5. Add the following permissions in your project manifest file.
 6. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
-- Prerequisites
-- Getting the App ID
-- The App ID, User Name and User ID must be set before you initialize the SDK.
+### Fields to configure
+- a custom repository to the dependency resolution block
+- the following permissions in your project manifest file
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Channels**.
+- Go to **Android Native**.
+
+## Options / variants
 - Add a custom repository to the dependency resolution block.
 - Add the following permissions in your project manifest file.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)

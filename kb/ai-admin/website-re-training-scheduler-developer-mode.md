@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/website-re-training-scheduler
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Website Re-training Scheduler (Developer Mode)
 
 **Module**: Ai Admin
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/website-re-training-scheduler
 Introduction: The Website Re-Training Scheduler is a powerful feature designed to automate the process of re-training your website URLs, significantly reducing manual content training efforts. This is particularly beneficial for businesses that frequently update their online content, ensuring your AI models are always up-to-date with the latest information.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Ai Admin → Website Re-training Scheduler (Developer Mode)
-
-### Where to configure it
-Gupshup Console → Ai Admin → Website Re-training Scheduler (Developer Mode)
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Ai Admin**.
-- Go to **Website Re-training Scheduler (Developer Mode)**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -29,29 +19,42 @@ Gupshup Console → Ai Admin → Website Re-training Scheduler (Developer Mode)
 4. Add New Button: A "Add New" button is available to create a new scheduler. However, if any scheduler is currently active, this button will be disabled. You must pause the active scheduler before creating a new one.
 5. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- End Date: (View Only) This date is automatically calculated based on the Start Date, Interval, and Frequency. You cannot manually select or change this field.
+- (View Only) This date is automatically calculated based on the Start Date, Interval, and Frequency. You cannot manually select or change this field.
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Ai Admin**.
+- Go to **Website Re-training Scheduler (Developer Mode)**.
+
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- End Date: (View Only) This date is automatically calculated based on the Start Date, Interval, and Frequency. You cannot manually select or change this field.
-- (View Only) This date is automatically calculated based on the Start Date, Interval, and Frequency. You cannot manually select or change this field.
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)

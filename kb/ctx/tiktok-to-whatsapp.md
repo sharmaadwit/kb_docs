@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/tiktok-to-whatsapp
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # TikTok to WhatsApp
 
 **Module**: Ctx
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/tiktok-to-whatsapp
 Please fill out the form and our sales team will reach out to you shortly!
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → CTX → TikTok to WhatsApp
-
-### Where to configure it
-Gupshup Console → CTX → TikTok to WhatsApp
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **CTX**.
-- Go to **TikTok to WhatsApp**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -30,28 +20,41 @@ Gupshup Console → CTX → TikTok to WhatsApp
 5. Connect the chatbot to the CTWA enabled ad under Click to Chat Ads -> Ad Management.
 6. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **CTX**.
+- Go to **TikTok to WhatsApp**.
+
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - CTX campaign → Bot Studio journey → Goal measurement
 
-## Module disambiguation
+## Module disambiguation docs
 - CTX covers ad-to-WhatsApp campaign flows; bot conversation logic still lives in **Bot Studio**.
 
 ## Reference (from source)

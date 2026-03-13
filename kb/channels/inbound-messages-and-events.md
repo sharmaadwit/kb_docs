@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/inbound-messages-and-events
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Inbound Messages and Events
 
 **Module**: Channels
@@ -9,11 +9,26 @@ source_url: https://console-docs.gupshup.io/docs/inbound-messages-and-events
 As a console user, if you configure a secondary URL on your WhatsApp self-serve application, you will receive inbound events including message status events and inbound messages. Here are some details:
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Channels → Inbound Messages and Events
 
-### Where to configure it
-Gupshup Console → Channels → Inbound Messages and Events
+### Steps
+1. Open Gupshup Console.
+2. Go to **Channels**.
+3. Go to **Inbound Messages and Events**.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Validation / where to check
+- You set a callback URL for your app, or you have used the proxy command to invoke your app on Gupshup Proxy bot phone number (+917834811114) to test the app in sandbox mode.
+
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
 
 ### Prerequisites
 - _List required access, assets, and upstream setup needed before configuration._
@@ -22,34 +37,22 @@ Gupshup Console → Channels → Inbound Messages and Events
 - Go to **Channels**.
 - Go to **Inbound Messages and Events**.
 
-### Steps
-1. Open Gupshup Console.
-2. Go to **Channels**.
-3. Go to **Inbound Messages and Events**.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
-- You set a callback URL for your app, or you have used the proxy command to invoke your app on Gupshup Proxy bot phone number (+917834811114) to test the app in sandbox mode.
-
-## Available options
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)

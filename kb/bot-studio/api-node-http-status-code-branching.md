@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/api-node-http-status-code-branching
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # API Node: HTTP Status Code Branching
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/api-node-http-status-code-branc
 Lets you route bot logic differently based on API's HTTP response codes (e.g., 200 OK vs 500 Error).
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → API Node: HTTP Status Code Branching
-
-### Where to configure it
-Gupshup Console → Bot Studio → API Node: HTTP Status Code Branching
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **API Node: HTTP Status Code Branching**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -31,14 +21,28 @@ Gupshup Console → Bot Studio → API Node: HTTP Status Code Branching
 6. Add connectors and tag them with codes like 200, 400, 401, 503.
 7. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - Set up your API call and test connection
 
-## Available options
-- 🧭 How to Use
+### Fields to configure
+- up your API call and test connection
+- Fallback connector path
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- Lets you route bot logic differently based on API's HTTP response codes (e.g., 200 OK vs 500 Error).
+- Customize error response (400/500)
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Bot Studio**.
+- Go to **API Node: HTTP Status Code Branching**.
+
+## Options / variants
 - Set up your API call and test connection
 - Toggle ON the “HTTP Status Code” switch
 - Add connectors and tag them with codes like 200, 400, 401, 503
@@ -46,18 +50,17 @@ Gupshup Console → Bot Studio → API Node: HTTP Status Code Branching
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- Lets you route bot logic differently based on API's HTTP response codes (e.g., 200 OK vs 500 Error).
-- Customize error response (400/500)
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

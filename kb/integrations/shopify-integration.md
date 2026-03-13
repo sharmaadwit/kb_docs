@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/shopify-integration
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Shopify Integration
 
 **Module**: Integrations
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/shopify-integration
 Enhance Customer Engagement and Boost Sales with Gupshup's Shopify Integration
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Integrations → Shopify Integration
-
-### Where to configure it
-Gupshup Console → Integrations → Shopify Integration
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Integrations**.
-- Go to **Shopify Integration**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -29,28 +19,41 @@ Gupshup Console → Integrations → Shopify Integration
 4. Click on the integration tab, where you will be able to view the Shopify widget and click on it.
 5. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Integrations**.
+- Go to **Shopify Integration**.
+
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - Integrations configure connectivity/events; they don’t change bot conversation logic (Bot Studio) by themselves.
 
 ## Reference (from source)

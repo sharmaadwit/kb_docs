@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/getting-started
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Welcome to Gupshup Console
 
 **Module**: Overview
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/getting-started
 Your unified platform for conversational messaging across WhatsApp, SMS, Web, and Instagram. Manage campaigns, bots, and customer support all in one place.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Overview → Welcome to Gupshup Console
-
-### Where to configure it
-Gupshup Console → Overview → Welcome to Gupshup Console
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Navigate to the project selector (top-left)
-- Go to the Channels section
 
 ### Steps
 1. Open Gupshup Console.
@@ -36,16 +26,29 @@ Gupshup Console → Overview → Welcome to Gupshup Console
 11. Connect Console with your existing tools and workflows.
 12. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - Complete the verification process
 - Test your connection
 
-## Available options
-- Projects & Organizations
-- User Management & Permissions
+### Fields to configure
+- and manage users
+- up your preferred messaging channels
+- up analytics
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- Screenshots or error messages (if applicable)
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Navigate to the project selector (top-left)
+- Go to the Channels section
+
+## Options / variants
 - Add and manage users
 - Set up your preferred messaging channels
 - Set up analytics to track campaign performance
@@ -53,16 +56,16 @@ Gupshup Console → Overview → Welcome to Gupshup Console
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- Screenshots or error messages (if applicable)
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
 
 ## Reference (from source)

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/insights-and-analytics
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Insights and Analytics
 
 **Module**: Ctx
@@ -9,11 +9,26 @@ source_url: https://console-docs.gupshup.io/docs/insights-and-analytics
 How to track performance of CTWA Campaigns and Ads
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → CTX → Insights and Analytics
 
-### Where to configure it
-Gupshup Console → CTX → Insights and Analytics
+### Steps
+1. Open Gupshup Console.
+2. Go to **CTX**.
+3. Go to **Insights and Analytics**.
+4. Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Validation / where to check
+- _Run a quick smoke test and confirm expected behavior._
+
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- This report showcases the number of Lead and Purchase signals that are sent to Meta. It shows both successful and failed signals.
 
 ### Prerequisites
 - _List required access, assets, and upstream setup needed before configuration._
@@ -22,34 +37,22 @@ Gupshup Console → CTX → Insights and Analytics
 - Go to **CTX**.
 - Go to **Insights and Analytics**.
 
-### Steps
-1. Open Gupshup Console.
-2. Go to **CTX**.
-3. Go to **Insights and Analytics**.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
-- _Run a quick smoke test and confirm expected behavior._
-
-## Available options
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- This report showcases the number of Lead and Purchase signals that are sent to Meta. It shows both successful and failed signals.
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - CTX campaign → Bot Studio journey → Goal measurement
 
-## Module disambiguation
+## Module disambiguation docs
 - CTX covers ad-to-WhatsApp campaign flows; bot conversation logic still lives in **Bot Studio**.
 
 ## Reference (from source)

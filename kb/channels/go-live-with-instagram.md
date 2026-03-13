@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/go-live-with-instagram
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Go Live with Instagram
 
 **Module**: Channels
@@ -10,18 +10,8 @@ source_url: https://console-docs.gupshup.io/docs/go-live-with-instagram
 Log in to Gupshup Conversational Cloud and go to Instagram under Channels.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Channels → Go Live with Instagram
-
-### Where to configure it
-Gupshup Console → Channels → Go Live with Instagram
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Channels**.
-- Go to **Go Live with Instagram**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -32,30 +22,41 @@ Gupshup Console → Channels → Go Live with Instagram
 6. Click Next on the success popup to access settings where you can enable Instagram-only features such as Ice Breakers and Persistent Menu.
 7. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
-- Log in to Instagram
-- Allow permissions
-- By default, autoresponders are enabled once you go live with Instagram.
+### Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Go to **Channels**.
+- Go to **Go Live with Instagram**.
+
+## Options / variants
+- _List the key variants/toggles visible in the UI._
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)

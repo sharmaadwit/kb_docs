@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/webhooks
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Webhooks
 
 **Module**: Integrations
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/webhooks
 New Webhooks section in integrations providing ability to send specific events to these webhooks.
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Integrations → Webhooks
-
-### Where to configure it
-Gupshup Console → Integrations → Webhooks
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Log into your Gupshup Console.
-- Navigate to your App > Integration > Webhooks.
 
 ### Steps
 1. Open Gupshup Console.
@@ -30,21 +20,31 @@ Gupshup Console → Integrations → Webhooks
 5. Choose the module and respective events: WhatsApp Profile (Account) Template Campaign Manager and API Delivery events.
 6. Add your Callback URL and save.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - _Run a quick smoke test and confirm expected behavior._
 
-## Available options
+### Fields to configure
+- Callback URL
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Important Note: You can configure only 1 URL for Delivery Events. Additional webhooks created will update the URL and events will be sent to the latest URL saved. _
+
+### Prerequisites
+- _List required access, assets, and upstream setup needed before configuration._
+
+### Setup path
+- Log into your Gupshup Console.
+- Navigate to your App > Integration > Webhooks.
+
+## Options / variants
 - Choose the module and respective events: WhatsApp Profile (Account) Template Campaign Manager and API Delivery events
 - Add your Callback URL and save.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
-
-## Troubleshooting
-- _Important Note: You can configure only 1 URL for Delivery Events. Additional webhooks created will update the URL and events will be sent to the latest URL saved. _
 
 ## Field mapping / schemas
 Keys/fields called out in the source:
@@ -58,11 +58,16 @@ Keys/fields called out in the source:
 - owner_business_id : Meta Business Manager ID that owns the WABA and associated assets.
 - ad_account_id : Meta Ad Account ID linked for running Click-to-WhatsApp ads or templates in MM Lite.
 
-## Cross-module workflows
+## Field/payload examples
+- `{ "app": "jeet20", "timestamp": 1636986446609, "version": 2, "type": "account-event", "payload": { "type": "review-event", "payload": { "status": "approved", "actionDate": "January 31,2021" } } }`
+- `{ "app": "jeet20", "timestamp": 1636986446609, "version": 2, "type": "account-event", "payload": { "type": "status-event", "payload": { "status": "ACCOUNT_VIOLATION", "violation_type": "GAMBLING" } } }`
+- `{ "app": "<appname>", "appId": "<id>", "timestamp": 1713531530035, "version": 2, "type": "account-event", "payload": { "type": "status-event", "payload": { "status": "DISABLE", "actionDate": "February28,2024" } } }`
+
+## Cross-module workflow docs
 - Delivery Webhooks → Campaign Manager analytics
 - Webhook events → downstream CRM/warehouse ingestion
 
-## Module disambiguation
+## Module disambiguation docs
 - Integrations configure connectivity/events; they don’t change bot conversation logic (Bot Studio) by themselves.
 
 ## Reference (from source)

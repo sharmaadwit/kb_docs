@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/create-a-new-journey
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Getting Started with Bot Studio
 
 **Module**: Bot Studio
@@ -9,18 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/create-a-new-journey
 Journeys Landing Page
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Bot Studio → Getting Started with Bot Studio
-
-### Where to configure it
-Gupshup Console → Bot Studio → Getting Started with Bot Studio
-
-### Prerequisites
-- Preview - Users have the option to preview a template to ensure it fits their requirements before using it.
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **Getting Started with Bot Studio**.
 
 ### Steps
 1. Open Gupshup Console.
@@ -34,10 +24,7 @@ Gupshup Console → Bot Studio → Getting Started with Bot Studio
 9. Save & Deploy: Makes the journey live for production use.
 10. Test Bot: Lets you test the journey on the Web widget. Use it to validate message flows and payloads.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - Database (Dev Mode), Test Bot & Create Journey
 - Test Bot: Preview your journey (Web channel only; some WhatsApp-exclusive features may not work)
 - ### Test Bot & Saving options
@@ -45,33 +32,42 @@ Gupshup Console → Bot Studio → Getting Started with Bot Studio
 - ### Note: Test Bot becomes available only after you Save & Deploy your journey.
 - NOTE: You can use the Test Bot only after Saving and Deploying the journey
 
-## Available options
-- Key Sections on the Landing Page
-- Side Options
-- 🔧 Side Panel Tools
-- 🗺️ Mini-Map & Tools
-- Starting Node
-- Test Bot & Saving options
-- Note: Test Bot becomes available only after you Save & Deploy your journey.
-- Analytics Toggle
+### Fields to configure
+- Message content
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- Preview - Users have the option to preview a template to ensure it fits their requirements before using it.
+
+### Setup path
+- Go to **Bot Studio**.
+- Go to **Getting Started with Bot Studio**.
+
+## Options / variants
 - Canvas Tools: Zoom in/out Fit View Toggle Interactivity Organize blocks Align nodes horizontally/vertically
 - Toggle Interactivity
 - ### Analytics Toggle
+- Analytics Toggle
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
 - Bot Studio journey → Observability via Webhooks
 
-## Module disambiguation
+## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 

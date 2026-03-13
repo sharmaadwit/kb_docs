@@ -3,7 +3,9 @@ source_url: https://console-docs.gupshup.io/docs/underlying-raw-data-for-chat-su
 
 
 
-<!-- agent-assist-golden:v8 -->
+
+
+<!-- agent-assist-golden:v10 -->
 # Underlying Raw Data for Chat Summary
 
 **Module**: Agent Assist
@@ -63,14 +65,8 @@ source_url: https://console-docs.gupshup.io/docs/underlying-raw-data-for-chat-su
 - FRT Bucket: Categorization of sessions into different time buckets based on first response time. IF ("min_FRT" <= 5 , '0-5 sec', IF ("min_FRT" > 5 AND "min_FRT" <= 10, '5-10 sec', IF ("min_FRT" > 10 AND "min_FRT" <= 30, '10-30 sec', IF ("min_FRT" > 30 AND "min_FRT"/60 <= 1, '30 sec-1 min', IF ("min_FRT"/60 > 1 AND "min_FRT"/60 <= 5, '1-5 min', IF ("min_FRT"/60 > 5 AND "min_FRT"/60 <= 10, '5-10 min', IF ("min_FRT"/60 > 10 AND "min_FRT"/60 <= 20, '10-20 min', IF ("min_FRT"/60 > 20, '> 20 min', null))))))))
 - Category: This will either be assigned to an agent or handled by bot/ unassigned
 
-## Where to configure it
+## Exact UI path
 Agent Assist
-
-## Exact path
-Agent Assist
-
-## Prerequisites
-- _List required roles/access, teams, and any upstream configuration._
 
 ## Setup path
 - _Add the click-path in Console (breadcrumbs)._
@@ -79,30 +75,36 @@ Agent Assist
 1. Open Agent Assist.
 2. _Add the click-path in Console (breadcrumbs)._
 
-## Save/publish behavior
-- _No save/publish step is required for this page unless explicitly stated in the UI._
-
-## Validation
+## Validation / where to check
 - _Run a quick test (new chat / assignment / workflow) and confirm expected behavior._
 
-## Available options
+## Fields to configure
+- _List the fields/inputs you must set in the UI (and expected format)._
+
+## Save / publish / deploy behavior
+- _No save/publish step is required for this page unless explicitly stated in the UI._
+
+## Troubleshooting
+- If something doesn’t work as expected, re-check the **Exact UI path** and confirm you saved changes.
+- _Add common failure modes and how to fix them._
+
+## Prerequisites
+- _List required roles/access, teams, and any upstream configuration._
+
+## Options / variants
 - _List the key variants/toggles visible in the UI._
 
 ## Notes
 - m_imp_agent_msg: Count of important messages sent by the agent.
 - m_imp_cust_msg: Count of important messages sent by the customer.
 
-## Troubleshooting
-- If something doesn’t work as expected, re-check the **Exact path** and confirm you saved changes.
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Cross-module workflow docs
 - _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._
 
-## Module disambiguation
+## Module disambiguation docs
 - _Add 1–2 bullets distinguishing this feature from adjacent settings to reduce retrieval drift._
 
 ## Reference (from source)

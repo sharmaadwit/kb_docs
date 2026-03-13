@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/before-you-begin
 
-<!-- kb-golden:v7 -->
+<!-- kb-golden:v9 -->
 # Before you begin
 
 **Module**: Channels
@@ -9,19 +9,8 @@ source_url: https://console-docs.gupshup.io/docs/before-you-begin
 Before linking your Instagram account with Gupshup, confirm that you have:
 
 ## Procedure
-### Exact path
+### Exact UI path
 Gupshup Console → Channels → Before you begin
-
-### Where to configure it
-Gupshup Console → Channels → Before you begin
-
-### Prerequisites
-- # Before you begin
-
-### Setup path
-- Go to your Instagram profile and tap the hamburger icon (three short horizontal lines stacked on top of each other). The icon is present in the top right-hand corner for the mobile version of Instagram. The icon is present at the bottom of the navigation sidebar on the left for the web version.
-- Go to your Instagram profile and tap the hamburger icon (three short horizontal lines stacked on top of each other).
-- Go to your profile and tap the hamburger icon in the top right.
 
 ### Steps
 1. Open Gupshup Console.
@@ -38,20 +27,29 @@ Gupshup Console → Channels → Before you begin
 12. Select Message controls.
 13. Click **Save** (or **Save & Deploy**) to apply changes.
 
-### Save/publish behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Validation
+### Validation / where to check
 - Before linking your Instagram account with Gupshup, confirm that you have:
 - Tap OK to confirm.
 - Verify your account using a confirmation code sent to the phone number and email address.
 
-## Available options
-- Converting your profile to a professional account
-- Connecting your Facebook Page and your Instagram business (Professional) account
-- Enabling "Allow access to Instagram messages in Inbox"
-- Unable to turn on the toggle from Facebook?
-- Registering as a Facebook Developer
+### Fields to configure
+- Message content
+
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
+
+### Troubleshooting
+- _Add common failure modes and how to fix them._
+
+### Prerequisites
+- # Before you begin
+
+### Setup path
+- Go to your Instagram profile and tap the hamburger icon (three short horizontal lines stacked on top of each other). The icon is present in the top right-hand corner for the mobile version of Instagram. The icon is present at the bottom of the navigation sidebar on the left for the web version.
+- Go to your Instagram profile and tap the hamburger icon (three short horizontal lines stacked on top of each other).
+- Go to your profile and tap the hamburger icon in the top right.
+
+## Options / variants
 - Tap Switch to professional account.
 - For some accounts, the Switch to professional account option will be listed directly under Settings.
 - Select a category for your account and tap Done.
@@ -59,20 +57,23 @@ Gupshup Console → Channels → Before you begin
 - Click See all profiles, then select the Page that you want to switch into.
 - Turn on the toggle next to Allow access to Instagram messages in Inbox.
 - #### Unable to turn on the toggle from Facebook?
+- Select Messages and story replies.
+- Select Message controls.
+- Under Connected tools, you can toggle on Allow access to messages.
 
 ## Notes
 - _Add prerequisites, constraints, and rollout behavior._
 
-## Troubleshooting
-- _Add common failure modes and how to fix them._
-
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
 
-## Cross-module workflows
+## Field/payload examples
+- _Add a minimal example payload or field/value example._
+
+## Cross-module workflow docs
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
-## Module disambiguation
+## Module disambiguation docs
 - Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.
 
 ## Reference (from source)
