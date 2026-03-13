@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/whatsapp-flows-enhancement-dynamic-flow-support
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # WhatsApp Flows - Dynamic
 
 **Module**: Bot Studio
@@ -19,13 +19,15 @@ Gupshup Console → Bot Studio → WhatsApp Flows - Dynamic
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **WhatsApp Flows - Dynamic**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → WhatsApp Flows - Dynamic**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **WhatsApp Flows - Dynamic**.
+4. Select the type of First Screen that will be sent.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

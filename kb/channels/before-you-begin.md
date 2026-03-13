@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/before-you-begin
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Before you begin
 
 **Module**: Channels
@@ -28,7 +28,15 @@ Gupshup Console → Channels → Before you begin
 2. Go to your Instagram profile and tap the hamburger icon (three short horizontal lines stacked on top of each other). The icon is present in the top right-hand corner for the mobile version of Instagram. The icon is present at the bottom of the navigation sidebar on the left for the web version.
 3. Go to your Instagram profile and tap the hamburger icon (three short horizontal lines stacked on top of each other).
 4. Go to your profile and tap the hamburger icon in the top right.
-5. Click **Save** (or **Save & Deploy**) to apply changes.
+5. Select a category for your account and tap Done.
+6. Add contact details and tap Next. Or tap Don't use my contact info to skip this step.
+7. Click See all profiles, then select the Page that you want to switch into.
+8. Click your Page's profile picture in the top right of Facebook.
+9. Click Settings and privacy, then click Settings.
+10. Click Connect account, then follow the steps to connect your Facebook Page and Instagram account.
+11. Select Messages and story replies.
+12. Select Message controls.
+13. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

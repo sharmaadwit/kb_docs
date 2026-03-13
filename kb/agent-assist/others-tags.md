@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/others-tags
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Others: Tags
 
 **Module**: Agent Assist

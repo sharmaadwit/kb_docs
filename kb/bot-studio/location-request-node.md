@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/location-request-node
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Location Request Node
 
 **Module**: Bot Studio
@@ -19,13 +19,19 @@ Gupshup Console → Bot Studio → Location Request Node
 - Response Validation: The response must be of type location. If the response does not meet this requirement, validation will trigger, and the user may be prompted to provide a valid location.
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Location Request Node**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Location Request Node**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Location Request Node**.
+4. Add the Location Node:.
+5. Choose only a JSON variable to store the response by selecting the ‘store response in’ field.
+6. Set Up Timeout and Failure Handling:.
+7. Configure the timeout duration for how long the bot should wait for a response.
+8. Enable failure message handling to retry the prompt with a custom failure message if the user’s response is invalid after all retries are over.
+9. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

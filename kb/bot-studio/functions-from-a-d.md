@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/functions-from-a-d
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Functions from A - D
 
 **Module**: Bot Studio
@@ -19,13 +19,23 @@ Gupshup Console → Bot Studio → Functions from A - D
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Functions from A - D**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Functions from A - D**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Functions from A - D**.
+4. add(<item1>, <item2>, ...).
+5. add(1, 1.5).
+6. add('hello',null).
+7. add('hello','world').
+8. Add a number of days to a timestamp in an optional locale format.
+9. Add a number of hours to a timestamp in an optional locale format.
+10. Add a number of minutes to a timestamp in an optional locale format.
+11. Add a property and its value, or name-value pair, to a JSON object, and return the updated object. If the object already exists at runtime the function throws an error.
+12. Add a number of seconds to a timestamp.
+13. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

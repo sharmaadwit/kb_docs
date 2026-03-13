@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/campaign-and-ctx-ad-preview
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Campaign and CTX Ad Preview
 
 **Module**: Agent Assist

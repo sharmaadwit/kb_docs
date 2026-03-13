@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/api-node-http-status-code-branching
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # API Node: HTTP Status Code Branching
 
 **Module**: Bot Studio
@@ -19,13 +19,17 @@ Gupshup Console → Bot Studio → API Node: HTTP Status Code Branching
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **API Node: HTTP Status Code Branching**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → API Node: HTTP Status Code Branching**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **API Node: HTTP Status Code Branching**.
+4. Set up your API call and test connection.
+5. Toggle ON the “HTTP Status Code” switch.
+6. Add connectors and tag them with codes like 200, 400, 401, 503.
+7. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

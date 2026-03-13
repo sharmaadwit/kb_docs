@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/manage-variables
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Manage Variables
 
 **Module**: Bot Studio
@@ -19,13 +19,15 @@ Gupshup Console → Bot Studio → Manage Variables
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Manage Variables**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Manage Variables**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Manage Variables**.
+4. Select the appropriate variable type.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
@@ -50,7 +52,25 @@ Gupshup Console → Bot Studio → Manage Variables
 - _Add common failure modes and how to fix them._
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+Tables from the source:
+
+| Variable Name | Description | Data Type |
+| --- | --- | --- |
+| event_type | Type of incoming event (user_input, ctx, ai_intent, etc.) | String |
+| user_input | Keyword or button click payload sent by user (e.g., "Hi", Button "Yes") | String |
+| channel | Channel from which the event/message was received (e.g., WhatsApp) | String |
+| user_channel_id | Channel ID from which the event/message was received (e.g., WhatsApp) | String |
+| payloadString | Complex JSON object containing metadata of the event | String |
+| timeStampEpoch | Timestamp in epoch format | String |
+| user_name | Name of the user | String |
+| conversation_context_type | Context type of the conversation | String |
+| conversation_context_id | Context ID of the conversation | String |
+| ai_inference_payload | JSON payload from AI Backend | JSON |
+| ai_intent | Identified intent from user message | String |
+| payloadJson | JSON payload from the backend | JSON |
+| event_id | Unique ID for the event | String |
+| message_metadata | Additional message metadata | JSON |
+| conversation_language | Language used in the conversation | String |
 
 ## Cross-module workflows
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
@@ -102,6 +122,24 @@ Variables are categorized into five types:
 #### 3. System Variables
 
 - Purpose: Provide read-only system-generated information.
+
+| Variable Name | Description | Data Type |
+| --- | --- | --- |
+| event_type | Type of incoming event (user_input, ctx, ai_intent, etc.) | String |
+| user_input | Keyword or button click payload sent by user (e.g., "Hi", Button "Yes") | String |
+| channel | Channel from which the event/message was received (e.g., WhatsApp) | String |
+| user_channel_id | Channel ID from which the event/message was received (e.g., WhatsApp) | String |
+| payloadString | Complex JSON object containing metadata of the event | String |
+| timeStampEpoch | Timestamp in epoch format | String |
+| user_name | Name of the user | String |
+| conversation_context_type | Context type of the conversation | String |
+| conversation_context_id | Context ID of the conversation | String |
+| ai_inference_payload | JSON payload from AI Backend | JSON |
+| ai_intent | Identified intent from user message | String |
+| payloadJson | JSON payload from the backend | JSON |
+| event_id | Unique ID for the event | String |
+| message_metadata | Additional message metadata | JSON |
+| conversation_language | Language used in the conversation | String |
 #### 4. Constant Variables
 
 - Purpose: Store values consistent across all users, typically used for static information like interest rates, discounts, or event dates.

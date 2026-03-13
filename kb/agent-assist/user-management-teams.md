@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/teams
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # User Management: Teams
 
 **Module**: Agent Assist
@@ -27,6 +28,11 @@ Agent Assist → Settings → User Management
 1. Open Agent Assist.
 2. Navigate to the settings tab on your dashboard.
 3. Click **Save** to apply changes.
+4. Navigate to the settings tab on your dashboard.
+5. Click "Add New Team" and provide the team name.
+6. Select a supervisor for the team from the dropdown list.
+7. Add executive users/agents to the team by selecting them from the dropdown.
+8. Choose between "None," "Load Balancer," and "Round Robin" for assignment type.
 
 ## Save/publish behavior
 - Click **Save** (or **Save & Deploy** if available) to apply changes.

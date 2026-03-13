@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/underlying-raw-data-for-chat-su
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Underlying Raw Data for Chat Summary
 
 **Module**: Agent Assist

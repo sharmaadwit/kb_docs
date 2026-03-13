@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/ios-native-sdk
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # iOS Native
 
 **Module**: Channels
@@ -20,13 +20,16 @@ Gupshup Console → Channels → iOS Native
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Channels**.
+- Go to **iOS Native**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Channels → iOS Native**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Channels**.
+3. Go to **iOS Native**.
+4. Add the framework to the target of the application if not already done.
+5. Add the following keys to Info tab on the project target.
+6. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

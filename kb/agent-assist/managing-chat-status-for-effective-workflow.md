@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/managing-chat-status-for-effect
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Managing Chat Status for Effective Workflow
 
 **Module**: Agent Assist

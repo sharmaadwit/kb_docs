@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/api-node
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # API Node
 
 **Module**: Bot Studio
@@ -24,7 +24,11 @@ Gupshup Console → Bot Studio → API Node
 ### Steps
 1. Open Gupshup Console.
 2. Go to the left-hand menu under Action Nodes.
-3. Click **Save** (or **Save & Deploy**) to apply changes.
+3. Add an API Node.
+4. Click the +Add new API on the API Node dropdwon.
+5. Configure the API Request In the right configuration panel:.
+6. Test your journey using the Test Bot before going live.
+7. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

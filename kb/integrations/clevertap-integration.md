@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/clevertap-integration
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # CleverTap Integration
 
 **Module**: Integrations
@@ -24,7 +24,9 @@ Gupshup Console → Integrations → CleverTap Integration
 ### Steps
 1. Open Gupshup Console.
 2. Go to the integrations tab, where you can find the CleverTap integration widget
-3. Click **Save** (or **Save & Deploy**) to apply changes.
+3. Enable CX experiences for your customers in Clevertap.
+4. Click on connect for CleverTap and agree to terms and conditions, and then click on connect.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/clear-context-nodedev-mode-only
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Clear Context Node (Gupshup Dev Access Only)
 
 **Module**: Bot Studio
@@ -19,12 +19,13 @@ Gupshup Console → Bot Studio → Clear Context Node (Gupshup Dev Access Only)
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Clear Context Node (Gupshup Dev Access Only)**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Clear Context Node (Gupshup Dev Access Only)**.
-3. Configure the required fields.
+2. Go to **Bot Studio**.
+3. Go to **Clear Context Node (Gupshup Dev Access Only)**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

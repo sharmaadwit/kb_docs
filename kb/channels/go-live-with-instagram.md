@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/go-live-with-instagram
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Go Live with Instagram
 
 **Module**: Channels
@@ -20,13 +20,17 @@ Gupshup Console → Channels → Go Live with Instagram
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Channels**.
+- Go to **Go Live with Instagram**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Channels → Go Live with Instagram**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Channels**.
+3. Go to **Go Live with Instagram**.
+4. Ensure that you have all the prerequisites and then click Go Live.
+5. Ensure that all permissions are selected (ticked) and click Allow.
+6. Click Next on the success popup to access settings where you can enable Instagram-only features such as Ice Breakers and Persistent Menu.
+7. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

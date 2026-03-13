@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/how-to-create-whatsapp-static-flows
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # How to Create WhatsApp Static Flows
 
 **Module**: Bot Studio
@@ -26,7 +26,9 @@ Gupshup Console → Bot Studio → How to Create WhatsApp Static Flows
 1. Open Gupshup Console.
 2. Navigate to the Flow Builder via the Create Template Action on Meta BM
 3. Navigate to the Flows section in Meta BM.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+4. Add the WhatsApp Flow Node:.
+5. Select the Flow Journey:.
+6. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

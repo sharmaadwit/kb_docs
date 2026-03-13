@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/manage-api
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Manage API
 
 **Module**: Bot Studio
@@ -19,12 +19,13 @@ Gupshup Console → Bot Studio → Manage API
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Manage API**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Manage API**.
-3. Configure the required fields.
+2. Go to **Bot Studio**.
+3. Go to **Manage API**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

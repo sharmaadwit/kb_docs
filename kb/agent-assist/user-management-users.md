@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/user-management-teams-and-busin
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # User Management: Users
 
 **Module**: Agent Assist
@@ -26,6 +27,11 @@ Agent Assist → Settings → User Management
 1. Open Agent Assist.
 2. Navigate to the settings tab located on the bottom left side of your Agent Assist dashboard.
 3. Click **Save** to apply changes.
+4. Navigate to the settings tab located on the bottom left side of your Agent Assist dashboard.
+5. Click on the "Add New User" button on the User List page.
+6. Enter the correct email ID of the user you want to add.
+7. Choose between two access types: Supervisor (for managing agents and viewing reports) or Executive (for customer chat interaction).
+8. Click "Send Invite" to send an email invitation to the user.
 
 ## Save/publish behavior
 - Click **Save** (or **Save & Deploy** if available) to apply changes.

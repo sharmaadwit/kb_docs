@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/sending-templates-after-the-24-
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Sending Templates After the 24-Hour Window
 
 **Module**: Agent Assist
@@ -25,6 +26,8 @@ Agent Assist
 ## Steps
 1. Open Agent Assist.
 2. _Add the click-path in Console (breadcrumbs)._
+3. Click on the "Send a Template" button within the Agent Assist console.
+4. Select the marketing template you wish to send to end customers.
 
 ## Save/publish behavior
 - _No save/publish step is required for this page unless explicitly stated in the UI._

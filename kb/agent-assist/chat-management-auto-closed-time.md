@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/chat-management-re-open-time
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Chat Management: Auto Closed time
 
 **Module**: Agent Assist

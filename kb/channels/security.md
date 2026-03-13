@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/web-security
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Security
 
 **Module**: Channels
@@ -19,12 +19,13 @@ Gupshup Console → Channels → Security
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Channels**.
+- Go to **Security**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Channels → Security**.
-3. Configure the required fields.
+2. Go to **Channels**.
+3. Go to **Security**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

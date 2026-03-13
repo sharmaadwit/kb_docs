@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/functions-from-r-u
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Functions from R - U
 
 **Module**: Bot Studio
@@ -19,13 +19,19 @@ Gupshup Console → Bot Studio → Functions from R - U
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Functions from R - U**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Functions from R - U**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Functions from R - U**.
+4. select([<collection/instance>], <iteratorName>, <function>).
+5. select(createArray(0, 1, 2, 3), x, x + 1).
+6. select(json("{'name': 'jack', 'age': '15'}"), x, concat(x.key, ':', x.value)).
+7. select(json("{'name': 'jack', 'age': '15'}"), x=> concat(x.key, ':', x.value)).
+8. Set the value of an object's property and return the updated object. To add a new property, use this function or the addProperty() function.
+9. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

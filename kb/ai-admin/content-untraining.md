@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/content-untraining
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Content Untraining
 
 **Module**: Ai Admin
@@ -19,13 +19,19 @@ Gupshup Console → Ai Admin → Content Untraining
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Ai Admin**.
+- Go to **Content Untraining**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Ai Admin → Content Untraining**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Ai Admin**.
+3. Go to **Content Untraining**.
+4. Click on the Untrain Website Links button present in the Website Links section to open a modal that contains all the trained URLs. Untrain button gets enabled when the user clicks on Edit Content button.
+5. Select all the URLs you want to untrain & click on the Review Link Button.
+6. Click on the Save & Train button present in the Content section to complete the Untraining.
+7. Click on the Edit Content button present in the Content section.
+8. Click on the Delete icon present on each file you want to untrain. If the Delete icon is accidentally clicked for a file then you can revert the action by clicking on undo icon.
+9. Click on Save & Train button present in Content section to complete the Untraining.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

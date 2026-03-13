@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/entity-creation
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Naming Guidelines for Intent & Entity
 
 **Module**: Ai Admin
@@ -19,12 +19,13 @@ Gupshup Console → Ai Admin → Naming Guidelines for Intent & Entity
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Ai Admin**.
+- Go to **Naming Guidelines for Intent & Entity**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Ai Admin → Naming Guidelines for Intent & Entity**.
-3. Configure the required fields.
+2. Go to **Ai Admin**.
+3. Go to **Naming Guidelines for Intent & Entity**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

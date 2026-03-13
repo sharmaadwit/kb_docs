@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/about-agent-assist
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # About Agent Assist
 
 **Module**: Agent Assist

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/automated-campaign-analytics
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Automated Campaign analytics
 
 **Module**: Campaign Manager
@@ -19,12 +19,13 @@ Gupshup Console → Campaign Manager → Automated Campaign analytics
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Campaign Manager**.
+- Go to **Automated Campaign analytics**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Campaign Manager → Automated Campaign analytics**.
-3. Configure the required fields.
+2. Go to **Campaign Manager**.
+3. Go to **Automated Campaign analytics**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

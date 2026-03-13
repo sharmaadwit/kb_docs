@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/custom-document-name
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Custom Document Name
 
 **Module**: Bot Studio
@@ -19,12 +19,13 @@ Gupshup Console → Bot Studio → Custom Document Name
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Custom Document Name**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Custom Document Name**.
-3. Configure the required fields.
+2. Go to **Bot Studio**.
+3. Go to **Custom Document Name**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

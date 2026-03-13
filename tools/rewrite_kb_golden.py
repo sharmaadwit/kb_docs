@@ -12,7 +12,7 @@ Scope
 - Preserves original content under "Reference (from source)".
 
 Idempotency
-- Rewritten files include `<!-- kb-golden:v4 -->`
+- Rewritten files include `<!-- kb-golden:v7 -->`
 """
 
 from __future__ import annotations
@@ -29,8 +29,11 @@ OLD_MARKERS = {
     "<!-- kb-golden:v1 -->",
     "<!-- kb-golden:v2 -->",
     "<!-- kb-golden:v3 -->",
+    "<!-- kb-golden:v4 -->",
+    "<!-- kb-golden:v5 -->",
+    "<!-- kb-golden:v6 -->",
 }
-MARKER = "<!-- kb-golden:v4 -->"
+MARKER = "<!-- kb-golden:v7 -->"
 
 META_LINE_RE = re.compile(r"^[a-zA-Z0-9_]+:\s+\S+.*$")
 H1_RE = re.compile(r"^#\s+(.+?)\s*$")
@@ -170,6 +173,65 @@ def extract_setup_path(body: str) -> List[str]:
         seen.add(k)
         steps.append(s)
     return steps[:12]
+
+def synthesize_setup_path_from_exact_path(exact_path: str) -> List[str]:
+    # Convert "A → B → C" into click-by-click bullets.
+    parts = [p.strip() for p in exact_path.split("→") if p.strip()]
+    if not parts:
+        return []
+    out: List[str] = []
+    # Drop the root "Gupshup Console" since Steps already includes opening it.
+    parts2 = parts[1:] if parts and parts[0].lower() == "gupshup console" else parts
+    for p in parts2:
+        out.append(f"Go to **{p}**.")
+    return out[:10]
+
+def extract_action_bullets(text: str) -> List[str]:
+    """
+    Pull operator actions from the source (usually under how-to sections).
+    """
+    actions: List[str] = []
+    seen = set()
+    for ln in text.splitlines():
+        s = ln.strip()
+        if not s:
+            continue
+        if s.startswith("- "):
+            b = s[2:].strip()
+        else:
+            b = s
+        if b.startswith("_"):
+            continue
+        if re.match(r"^(select|click|enable|disable|enter|provide|choose|configure|add|go|navigate|open|set|toggle|connect|deploy|save|test|verify|confirm|ensure|note that)\b", b, re.IGNORECASE):
+            k = b.lower()
+            if k in seen:
+                continue
+            seen.add(k)
+            actions.append(b.rstrip(".") + ".")
+    return actions[:18]
+
+def extract_markdown_tables(text: str) -> List[str]:
+    """
+    Extract up to 2 markdown tables (pipe tables) as raw blocks.
+    """
+    lines = text.splitlines()
+    tables: List[str] = []
+    i = 0
+    while i < len(lines) - 1:
+        if "|" in lines[i] and "|" in lines[i + 1] and re.search(r"\|\s*---", lines[i + 1]):
+            start = i
+            j = i + 2
+            while j < len(lines) and "|" in lines[j]:
+                j += 1
+            block = "\n".join(lines[start:j]).strip()
+            if block:
+                tables.append(block)
+                if len(tables) >= 2:
+                    break
+            i = j
+            continue
+        i += 1
+    return tables
 
 def extract_prerequisites(text: str) -> List[str]:
     prereq: List[str] = []
@@ -347,22 +409,41 @@ def synthesize_steps(where: str, setup_path: List[str], body: str) -> List[str]:
     # If we have explicit bullet steps, reuse them
     if setup_path:
         out = ["Open Gupshup Console."]
-        out.extend(setup_path)
+        # Avoid repeating "Open ..." if it's already in setup path
+        for s in setup_path:
+            if re.match(r"^open\b", s.strip(), flags=re.IGNORECASE):
+                continue
+            out.append(s)
+        # Add extracted action bullets from the source (how-to lists)
+        actions = extract_action_bullets(body)
+        if actions:
+            # avoid duplicating navigation-like actions
+            nav_prefixes = ("go to ", "navigate to ", "open ")
+            for a in actions:
+                if a.lower().startswith(nav_prefixes):
+                    continue
+                out.append(a)
+                if len(out) >= 12:
+                    break
         if not any(re.search(r"\bsave\b|\bdeploy\b|\bpublish\b", s, re.IGNORECASE) for s in out):
             # add save step only if doc mentions it
-            if re.search(r"\b(save|deploy|publish)\b", body, flags=re.IGNORECASE):
+            if re.search(r"\b(save|deploy|publish|go live)\b", body, flags=re.IGNORECASE):
                 out.append("Click **Save** (or **Save & Deploy**) to apply changes.")
         return out[:14]
 
-    # Otherwise synthesize generic
+    # Otherwise synthesize generic but include any extracted action bullets from the source
     out = [
         "Open Gupshup Console.",
         f"Navigate to **{where}**.",
-        "Configure the required fields.",
     ]
-    if re.search(r"\b(save|deploy|publish)\b", body, flags=re.IGNORECASE):
+    actions = extract_action_bullets(body)
+    if actions:
+        out.extend(actions[:10])
+    else:
+        out.append("Configure the required fields.")
+    if re.search(r"\b(save|deploy|publish|go live)\b", body, flags=re.IGNORECASE):
         out.append("Click **Save** (or **Save & Deploy**) to apply changes.")
-    return out
+    return out[:14]
 
 
 def rewrite_one(path: Path) -> bool:
@@ -388,11 +469,14 @@ def rewrite_one(path: Path) -> bool:
     where = guess_where_to_configure(rel, title, module)
     exact_path = where  # single canonical breadcrumb used by the KB
     setup_path = extract_setup_path(body)
+    if not setup_path:
+        setup_path = synthesize_setup_path_from_exact_path(exact_path)
     steps = synthesize_steps(where, setup_path, body)
     prereq = extract_prerequisites(body)
     validation = extract_validation(body)
     troubleshooting = extract_troubleshooting(body)
     field_map = extract_field_mapping(body)
+    tables = extract_markdown_tables(body)
     opt2 = extract_options(body)
 
     # Options: reuse any "Business hours vs after-hours" section or pull obvious headings
@@ -442,12 +526,9 @@ def rewrite_one(path: Path) -> bool:
         out.append("- _List required access, assets, and upstream setup needed before configuration._\n\n")
 
     out.append("### Setup path\n")
-    if setup_path:
-        for s in setup_path:
-            out.append(f"- {s}\n")
-        out.append("\n")
-    else:
-        out.append("- _Add the click-by-click navigation path for this page._\n\n")
+    for s in setup_path[:10]:
+        out.append(f"- {s}\n")
+    out.append("\n")
 
     out.append("### Steps\n")
     for i, s in enumerate(steps, start=1):
@@ -521,12 +602,16 @@ def rewrite_one(path: Path) -> bool:
         out.append("- _Add common failure modes and how to fix them._\n\n")
 
     out.append("## Field mapping / schemas\n")
+    if tables:
+        out.append("Tables from the source:\n\n")
+        for t in tables:
+            out.append(t.strip() + "\n\n")
     if field_map:
         out.append("Keys/fields called out in the source:\n\n")
         for fm in field_map:
             out.append(f"- {fm}\n")
         out.append("\n")
-    else:
+    elif not tables:
         out.append("- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._\n\n")
 
     out.append("## Cross-module workflows\n")

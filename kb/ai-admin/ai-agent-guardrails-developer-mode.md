@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/ai-agent-guardrails
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # AI Agent Guardrails (Developer Mode)
 
 **Module**: Ai Admin
@@ -19,13 +19,14 @@ Gupshup Console → Ai Admin → AI Agent Guardrails (Developer Mode)
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Ai Admin**.
+- Go to **AI Agent Guardrails (Developer Mode)**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Ai Admin → AI Agent Guardrails (Developer Mode)**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Ai Admin**.
+3. Go to **AI Agent Guardrails (Developer Mode)**.
+4. Click "Save" once you have added all your examples.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

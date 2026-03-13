@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-click-to-whatsapp-ad-on-ttam
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Creating a Click-to-WhatsApp Ad on TTAM
 
 **Module**: Ctx
@@ -19,12 +19,13 @@ Gupshup Console → CTX → Creating a Click-to-WhatsApp Ad on TTAM
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **CTX**.
+- Go to **Creating a Click-to-WhatsApp Ad on TTAM**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → CTX → Creating a Click-to-WhatsApp Ad on TTAM**.
-3. Configure the required fields.
+2. Go to **CTX**.
+3. Go to **Creating a Click-to-WhatsApp Ad on TTAM**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

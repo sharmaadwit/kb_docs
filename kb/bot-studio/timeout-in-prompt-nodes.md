@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/timeout-in-prompt-nodes
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Timeout in Prompt Nodes
 
 **Module**: Bot Studio
@@ -19,13 +19,20 @@ Gupshup Console → Bot Studio → Timeout in Prompt Nodes
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Timeout in Prompt Nodes**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Timeout in Prompt Nodes**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Timeout in Prompt Nodes**.
+4. Select the prompt node that requires configuration.
+5. Configure the message and validation as needed to prompt the user for input.
+6. Enable the Timeout option located at the bottom of the prompt node settings.
+7. Provide the desired timeout duration in minutes or hours.
+8. Note that the minimum duration is 1 second, and the maximum duration is 60 minutes.
+9. Ensure that the fallback connector is properly configured with the desired action for any error or timeout scenarios.
+10. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

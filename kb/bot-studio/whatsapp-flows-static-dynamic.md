@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/whatsapp-flows-static-2-way
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # WhatsApp Flows - Static/Dynamic
 
 **Module**: Bot Studio
@@ -19,13 +19,16 @@ Gupshup Console → Bot Studio → WhatsApp Flows - Static/Dynamic
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **WhatsApp Flows - Static/Dynamic**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → WhatsApp Flows - Static/Dynamic**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **WhatsApp Flows - Static/Dynamic**.
+4. Ensure the WABA is hosted on Cloud API of WhatsApp.
+5. Ensure the Console Project is using V3 version of WhatsApp Service - Contact Support to confirm incase required.
+6. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

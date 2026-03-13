@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/regex-validation-in-prompt-nodes
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # RegEx Validation in Prompt Nodes
 
 **Module**: Bot Studio
@@ -19,13 +19,15 @@ Gupshup Console → Bot Studio → RegEx Validation in Prompt Nodes
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **RegEx Validation in Prompt Nodes**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → RegEx Validation in Prompt Nodes**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **RegEx Validation in Prompt Nodes**.
+4. Test your regex in a Re2-compatible environment before using it in Console.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

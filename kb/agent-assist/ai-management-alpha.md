@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/ai-management-alpha
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # AI Management (Alpha)
 
 **Module**: Agent Assist

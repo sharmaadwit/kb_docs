@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/invite-members
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Invite Org Admins
 
 **Module**: Overview
@@ -19,12 +19,13 @@ Gupshup Console → Overview → Invite Org Admins
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Overview**.
+- Go to **Invite Org Admins**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Overview → Invite Org Admins**.
-3. Configure the required fields.
+2. Go to **Overview**.
+3. Go to **Invite Org Admins**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

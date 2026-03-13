@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/how-to-measure-click-through-rates
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # How to measure Click through Rates?
 
 **Module**: Campaign Manager
@@ -19,13 +19,15 @@ Gupshup Console → Campaign Manager → How to measure Click through Rates?
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Campaign Manager**.
+- Go to **How to measure Click through Rates?**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Campaign Manager → How to measure Click through Rates?**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Campaign Manager**.
+3. Go to **How to measure Click through Rates?**.
+4. Click Through Rate - Indicates the % of times users have Clicked a link of a WhatsApp campaign after viewing it. It is calculated as [(Total Clicks / Total Read) * 100][(Total Clicks / Total Read) * 100].
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

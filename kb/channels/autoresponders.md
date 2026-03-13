@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/instagram-autoresponders
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Autoresponders
 
 **Module**: Channels
@@ -28,7 +28,15 @@ Gupshup Console → Channels → Autoresponders
 2. Go to Journeys under Bot Studio and click the Create Journey button.
 3. Go to Manage Variables by clicking the {x} icon of the left on the canvas and select "Global" from the dropdown.
 4. Go to the Welcome Journey and delete the text node connected to the Starting Node.
-5. Click **Save** (or **Save & Deploy**) to apply changes.
+5. Choose the Start from Scratch option.
+6. Click the Add Row button and create a "String" type variable named "type".
+7. Select the event in the Starting Node as "No Event".
+8. Add a new Action node called JSON Handler after the Starting Node.
+9. Select the system variable named "payloadJson " from the Select variable dropdown.
+10. Click the MAP JSON Attribute to Variable button.
+11. Click the Format ">" button in between the two sections.
+12. Select the global variable "type" that you just created from the dropdown in the popup that appears.
+13. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

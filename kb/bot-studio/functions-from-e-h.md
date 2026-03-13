@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/functions-from-e-h
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Functions from E - H
 
 **Module**: Bot Studio
@@ -19,12 +19,13 @@ Gupshup Console → Bot Studio → Functions from E - H
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Functions from E - H**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Functions from E - H**.
-3. Configure the required fields.
+2. Go to **Bot Studio**.
+3. Go to **Functions from E - H**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

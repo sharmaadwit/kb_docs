@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/block-templates
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Block Templates
 
 **Module**: Bot Studio
@@ -24,7 +24,9 @@ Gupshup Console → Bot Studio → Block Templates
 ### Steps
 1. Open Gupshup Console.
 2. Navigate to the Blocks tab on the left panel of the canvas
-3. Click **Save** (or **Save & Deploy**) to apply changes.
+3. Select one or more connected nodes on the canvas.
+4. Click on the preview icon to see the structure and nodes.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

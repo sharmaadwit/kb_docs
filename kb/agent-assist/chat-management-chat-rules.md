@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/chat-management-chat-rules
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Chat Management: Chat Rules
 
 **Module**: Agent Assist
@@ -26,6 +27,11 @@ Agent Assist → Settings → Chat Management
 1. Open Agent Assist.
 2. Navigate to "Settings" > "Chat Rules" in Agent Assist.
 3. Click **Save** to apply changes.
+4. Navigate to "Settings" > "Chat Rules" in Agent Assist.
+5. Click "Add New Rule.".
+6. Choose from priority levels: High, Medium, and Low.
+7. Add tags to categorize chats based on different criteria.
+8. Click "Save" to save the rule.
 
 ## Save/publish behavior
 - Click **Save** (or **Save & Deploy** if available) to apply changes.

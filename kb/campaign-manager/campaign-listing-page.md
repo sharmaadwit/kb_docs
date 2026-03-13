@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/campaign-listing-page
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Campaign Listing Page
 
 **Module**: Campaign Manager
@@ -24,12 +24,13 @@ Gupshup Console → Campaign Manager → Campaign Listing Page
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Campaign Manager**.
+- Go to **Campaign Listing Page**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Campaign Manager → Campaign Listing Page**.
-3. Configure the required fields.
+2. Go to **Campaign Manager**.
+3. Go to **Campaign Listing Page**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

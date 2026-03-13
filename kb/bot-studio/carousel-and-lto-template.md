@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/carousel-and-lto-template-support-via-send-message-node
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Carousel & LTO Template
 
 **Module**: Bot Studio
@@ -19,13 +19,15 @@ Gupshup Console → Bot Studio → Carousel & LTO Template
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Carousel & LTO Template**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Carousel & LTO Template**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Carousel & LTO Template**.
+4. Select the Text/Template option on the send message node and use the below sample payload format for reference. Designers can dynamically create the Payload in the same format mentioned below to send customized Templates during bot runtime.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

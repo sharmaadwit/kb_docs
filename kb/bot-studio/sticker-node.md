@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/sticker-node
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Sticker Node
 
 **Module**: Bot Studio
@@ -20,13 +20,15 @@ Gupshup Console → Bot Studio → Sticker Node
 - File Upload: Bot designers can upload stickers directly into the node, as long as they meet the format and size requirements.
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Sticker Node**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Sticker Node**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Sticker Node**.
+4. Add the Sticker Node: In Journey Builder, insert the Sticker Node into your flow. Choose whether to upload a file or link a URL for the sticker content.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

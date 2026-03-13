@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/dynamic-carouselcta-url-qr
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Dynamic Carousel (CTA URL + QR)
 
 **Module**: Bot Studio
@@ -19,13 +19,15 @@ Gupshup Console → Bot Studio → Dynamic Carousel (CTA URL + QR)
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Dynamic Carousel (CTA URL + QR)**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Dynamic Carousel (CTA URL + QR)**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Dynamic Carousel (CTA URL + QR)**.
+4. Toggle on the 'Dynamic' switch of the Carousel node.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

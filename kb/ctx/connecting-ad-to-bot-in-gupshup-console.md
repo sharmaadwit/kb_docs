@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/connecting-ad-to-bot-in-gupshup-console
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Connecting ad to bot in Gupshup Console
 
 **Module**: Ctx
@@ -19,13 +19,20 @@ Gupshup Console → CTX → Connecting ad to bot in Gupshup Console
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **CTX**.
+- Go to **Connecting ad to bot in Gupshup Console**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → CTX → Connecting ad to bot in Gupshup Console**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **CTX**.
+3. Go to **Connecting ad to bot in Gupshup Console**.
+4. Click on Bot Studio -> Journeys.
+5. Click on "+Create Ad Journey" button on the top right corner and select "Start from scratch".
+6. Click on the "Call and Return" node and this will get added in the journey. Click on the node and select the desired user journey that needs to be connected to CTWA ads.
+7. Click on Click to Chat Ads -> Ad Management.
+8. Click on "View Campaigns".
+9. Select the Ad journey from the list of journeys that appear and click on "Connect Bot". Disclaimer: Only Ad Journeys are visible in this list, so as a best practice please ensure your user journey has been converted to an ad journey, following the steps shown in section 2.
+10. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

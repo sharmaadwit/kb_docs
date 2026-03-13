@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/controls-on-bot-studio-canvas
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Controls on Bot Studio Canvas
 
 **Module**: Bot Studio
@@ -19,12 +19,13 @@ Gupshup Console → Bot Studio → Controls on Bot Studio Canvas
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Controls on Bot Studio Canvas**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Controls on Bot Studio Canvas**.
-3. Configure the required fields.
+2. Go to **Bot Studio**.
+3. Go to **Controls on Bot Studio Canvas**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

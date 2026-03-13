@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/settings-beta
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Settings (Developer Mode)
 
 **Module**: Ai Admin
@@ -19,12 +19,13 @@ Gupshup Console → Ai Admin → Settings (Developer Mode)
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Ai Admin**.
+- Go to **Settings (Developer Mode)**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Ai Admin → Settings (Developer Mode)**.
-3. Configure the required fields.
+2. Go to **Ai Admin**.
+3. Go to **Settings (Developer Mode)**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

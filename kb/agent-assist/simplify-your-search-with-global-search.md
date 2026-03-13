@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/simplify-your-search-with-globa
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Simplify Your Search with Global Search
 
 **Module**: Agent Assist
@@ -25,6 +26,7 @@ Agent Assist → Chats → Search
 ## Steps
 1. Open Agent Assist.
 2. _Add the click-path in Console (breadcrumbs)._
+3. Enter your search query and press "Enter" to initiate the search.
 
 ## Save/publish behavior
 - _No save/publish step is required for this page unless explicitly stated in the UI._

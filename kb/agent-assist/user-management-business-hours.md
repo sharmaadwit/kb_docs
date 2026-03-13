@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/user-management-business-hours
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # User Management: Business Hours
 
 **Module**: Agent Assist
@@ -26,6 +27,8 @@ Agent Assist → Settings → User Management
 1. Open Agent Assist.
 2. Go to settings and click on "Business Hours."
 3. Click **Save** to apply changes.
+4. Go to settings and click on "Business Hours.".
+5. Click "Add New" to configure business hours, including naming, time zone, and daily hours.
 
 ## Save/publish behavior
 - Click **Save** (or **Save & Deploy** if available) to apply changes.

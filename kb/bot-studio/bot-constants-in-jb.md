@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/bot-constants-in-jb
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Bot Constants in JB
 
 **Module**: Bot Studio
@@ -19,13 +19,17 @@ Gupshup Console → Bot Studio → Bot Constants in JB
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Bot Constants in JB**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Bot Constants in JB**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Bot Constants in JB**.
+4. Go on any journey.
+5. Choose the ‘Manage Variable’.
+6. Click on the ‘Add Row’ button to make a new variable.
+7. Click on ‘Save’.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

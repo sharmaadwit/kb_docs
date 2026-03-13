@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/whatsapp-carousel-message-using-the-send-message-node
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # WhatsApp Carousel Message Using the Send Message Node
 
 **Module**: Bot Studio
@@ -19,13 +19,15 @@ Gupshup Console → Bot Studio → WhatsApp Carousel Message Using the Send Mess
 - WhatsApp's Media Carousel Message allows businesses to send up to 10 media cards in a horizontally scrollable carousel. Each card must meet the following requirements:
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **WhatsApp Carousel Message Using the Send Message Node**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → WhatsApp Carousel Message Using the Send Message Node**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **WhatsApp Carousel Message Using the Send Message Node**.
+4. Add a Send Message Node to your journey.
+5. Save & Deploy your journey.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

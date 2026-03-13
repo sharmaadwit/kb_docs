@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/exploring-insights-exporting-ra
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Exploring Insights & Exporting Raw Data
 
 **Module**: Agent Assist

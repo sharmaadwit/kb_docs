@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-tiktok-specific-bot-journey-copy
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Creating a TikTok-specific Bot Journey
 
 **Module**: Ctx

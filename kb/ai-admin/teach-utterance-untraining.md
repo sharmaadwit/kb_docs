@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/teach-utterance-untraining
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Teach Utterance Untraining
 
 **Module**: Ai Admin
@@ -24,7 +24,8 @@ Gupshup Console → Ai Admin → Teach Utterance Untraining
 ### Steps
 1. Open Gupshup Console.
 2. Go to the Teach section & navigate to the utterances you want to remove from the training data.
-3. Click **Save** (or **Save & Deploy**) to apply changes.
+3. Click on the Delete icon. If the Delete icon is accidentally clicked for an utterance then you can revert the action by clicking on the undo icon.
+4. Click on Save & Train button to complete the untraining.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/streamlining-your-workflow-with
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Streamlining Your Workflow with Bulk Actions
 
 **Module**: Agent Assist

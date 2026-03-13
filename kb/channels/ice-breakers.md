@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/instagram-ice-breakers
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Ice Breakers
 
 **Module**: Channels
@@ -27,7 +27,12 @@ Gupshup Console → Channels → Ice Breakers
 ### Steps
 1. Open Gupshup Console.
 2. Go to the Instagram Settings tab.
-3. Click **Save** (or **Save & Deploy**) to apply changes.
+3. Click Edit under Ice Breakers.
+4. Enter the first question you wish to add as an Ice Breaker.
+5. Enter payload for the first option.
+6. Click Add Ice Breaker to enter another Ice Breaker. Click the delete icon to remove an Ice Breaker.
+7. Click Save. Ice Breakers will now start appearing for first time users in your linked Instagram account's DM.
+8. Enter Ice Breakers for that region. Click Save. The corresponding Ice Breakers will start appearing for first time users located in that region.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

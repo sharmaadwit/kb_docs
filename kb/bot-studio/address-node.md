@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/address-node
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Address Node
 
 **Module**: Bot Studio
@@ -19,13 +19,17 @@ Gupshup Console → Bot Studio → Address Node
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Address Node**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Address Node**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Address Node**.
+4. Add the Address Node to the journey in the Journey Builder.
+5. Configure the node by selecting India or Singapore as the WABA region.
+6. Deploy and Collect: Deploy the journey. Users will receive the address form on WhatsApp, input their details, and submit.
+7. Deploy the journey.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

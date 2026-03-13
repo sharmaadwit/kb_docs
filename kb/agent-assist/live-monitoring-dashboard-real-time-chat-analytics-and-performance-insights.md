@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/live-monitoring-dashboard-20
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Live Monitoring Dashboard: Real-Time Chat Analytics & Performance Insights
 
 **Module**: Agent Assist

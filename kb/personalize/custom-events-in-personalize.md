@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/custom-events-in-customer360
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Custom events in Personalize
 
 **Module**: Personalize
@@ -19,12 +19,13 @@ Gupshup Console → Personalize → Custom events in Personalize
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Personalize**.
+- Go to **Custom events in Personalize**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Personalize → Custom events in Personalize**.
-3. Configure the required fields.
+2. Go to **Personalize**.
+3. Go to **Custom events in Personalize**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

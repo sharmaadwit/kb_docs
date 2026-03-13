@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/web-persistent-menu
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Persistent Menu
 
 **Module**: Channels
@@ -28,7 +28,8 @@ Gupshup Console → Channels → Persistent Menu
 1. Open Gupshup Console.
 2. Go to the Settings in the Web channel.
 3. Go to the Persistent Menu tab.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+4. Click Add Menu Button and select the button type from the dropdown. For Reply button, enter the button text. For URL button, enter the button text and the URL you wish to redirect to.
+5. Click Save. The Persistent Menu will start appearing for all users in the linked Instagram account's DM.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/insights-team-summary
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Insights: Team Summary
 
 **Module**: Agent Assist

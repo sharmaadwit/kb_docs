@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/ways-to-use-goals
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Ways to Use Goals
 
 **Module**: Goals
@@ -20,12 +20,13 @@ Gupshup Console → Goals → Ways to Use Goals
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Goals**.
+- Go to **Ways to Use Goals**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Goals → Ways to Use Goals**.
-3. Configure the required fields.
+2. Go to **Goals**.
+3. Go to **Ways to Use Goals**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

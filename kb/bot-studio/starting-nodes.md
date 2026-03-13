@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/starting-nodes
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Starting Nodes
 
 **Module**: Bot Studio
@@ -19,13 +19,16 @@ Gupshup Console → Bot Studio → Starting Nodes
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Starting Nodes**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Starting Nodes**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Starting Nodes**.
+4. Click on the Starting Node to open the Node configuration on the right side.
+5. Select from the the available list of Event based on which you would like to trigger the journey.
+6. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

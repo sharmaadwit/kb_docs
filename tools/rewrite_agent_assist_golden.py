@@ -11,7 +11,7 @@ hand-authored) into a predictable, operator-first template while preserving
 source content in a trailing "Reference" section.
 
 Idempotency
-- Rewritten files include `<!-- agent-assist-golden:v7 -->`.
+- Rewritten files include `<!-- agent-assist-golden:v8 -->`.
 """
 
 from __future__ import annotations
@@ -31,8 +31,30 @@ OLD_MARKERS = {
     "<!-- agent-assist-golden:v4 -->",
     "<!-- agent-assist-golden:v5 -->",
     "<!-- agent-assist-golden:v6 -->",
+    "<!-- agent-assist-golden:v7 -->",
 }
-MARKER = "<!-- agent-assist-golden:v7 -->"
+MARKER = "<!-- agent-assist-golden:v8 -->"
+
+def extract_action_bullets(text: str) -> List[str]:
+    actions: List[str] = []
+    seen = set()
+    for ln in text.splitlines():
+        s = ln.strip()
+        if not s:
+            continue
+        if s.startswith("- "):
+            b = s[2:].strip()
+        else:
+            b = s
+        if b.startswith("_"):
+            continue
+        if re.match(r"^(select|click|enable|disable|enter|provide|choose|configure|add|go|navigate|open|set|toggle|connect|save|test|verify|confirm|ensure)\b", b, re.IGNORECASE):
+            k = b.lower()
+            if k in seen:
+                continue
+            seen.add(k)
+            actions.append(b.rstrip(".") + ".")
+    return actions[:12]
 
 META_LINE_RE = re.compile(r"^[a-zA-Z0-9_]+:\s+\S+.*$")
 H_RE = re.compile(r"^(#{1,6})\s+(.*)\s*$")
@@ -390,6 +412,12 @@ def rewrite_one(path: Path) -> bool:
     if step_by_step and re.search(r"\b(save|deploy|publish)\b", step_by_step, flags=re.IGNORECASE):
         needs_save = True
     steps = synthesize_steps(where, setup_path, needs_save=needs_save)
+    # Enrich steps with any actionable bullets in the reference details
+    extra = extract_action_bullets(ref_body)
+    if extra:
+        # Insert after navigation steps (keep small)
+        steps = steps[:3] + extra[:6] + steps[3:]
+        steps = steps[:14]
     definition = extract_definition(overview, when_to_use)
     # If definition is still low-signal, try the first useful paragraph from details
     low_signal = definition.strip().lower() in {"short description in 2–3 lines.", "short description in 2-3 lines."}
@@ -438,7 +466,8 @@ def rewrite_one(path: Path) -> bool:
             out.append(f"- {s}\n")
         out.append("\n")
     else:
-        out.append("- _Add the click-path in Console (breadcrumbs)._ \n\n")
+        # fallback: derive from where string
+        out.append(f"- {where}\n\n")
 
     out.append("## Steps\n")
     for i, s in enumerate(steps, start=1):

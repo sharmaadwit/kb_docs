@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/enhanced-list-nodedynamic
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Enhanced List Node(Dynamic)
 
 **Module**: Bot Studio
@@ -19,13 +19,15 @@ Gupshup Console → Bot Studio → Enhanced List Node(Dynamic)
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Enhanced List Node(Dynamic)**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Enhanced List Node(Dynamic)**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Enhanced List Node(Dynamic)**.
+4. Provide selection of different Cities(in rows) where service centers are available in different States(in section).
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

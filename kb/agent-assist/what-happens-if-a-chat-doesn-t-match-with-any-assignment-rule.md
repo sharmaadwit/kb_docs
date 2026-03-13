@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/what-happens-if-a-chat-doesnt-m
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # What happens if a chat doesn't match with any assignment rule?
 
 **Module**: Agent Assist

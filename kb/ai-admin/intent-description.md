@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/intent-description-1
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Intent Description
 
 **Module**: Ai Admin
@@ -19,13 +19,15 @@ Gupshup Console → Ai Admin → Intent Description
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Ai Admin**.
+- Go to **Intent Description**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Ai Admin → Intent Description**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Ai Admin**.
+3. Go to **Intent Description**.
+4. Provide an example in descriptions (Optional): Not mandatory, but in case of overlapping intent scope between two or more intents. Only include example(s) for those ambiguous intents wherever required.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

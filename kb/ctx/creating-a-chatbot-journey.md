@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-chatbot-journey
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Creating a chatbot journey
 
 **Module**: Ctx
@@ -19,13 +19,19 @@ Gupshup Console → CTX → Creating a chatbot journey
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **CTX**.
+- Go to **Creating a chatbot journey**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → CTX → Creating a chatbot journey**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **CTX**.
+3. Go to **Creating a chatbot journey**.
+4. Click on Bot Studio -> Journeys in the left hand menu.
+5. Click on "+Create Journey" on the top-right corner of the screen.
+6. Click on Bot Studio -> Journeys.
+7. Click on "+Create Ad Journey" button on the top right corner and select "Start from scratch".
+8. Click on the "Call and Return" node and this will get added in the journey. Click on the node and select the desired user journey that needs to be connected to CTWA ads.
+9. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

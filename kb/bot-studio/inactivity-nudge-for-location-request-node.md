@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/inactivity-nudge-for-location-request-node
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Inactivity Nudge for Location Request Node
 
 **Module**: Bot Studio
@@ -19,13 +19,18 @@ Gupshup Console → Bot Studio → Inactivity Nudge for Location Request Node
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Inactivity Nudge for Location Request Node**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Inactivity Nudge for Location Request Node**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Inactivity Nudge for Location Request Node**.
+4. Click on Node Settings.
+5. Configure Nudge Settings: Set the desired inactivity timeout duration. Choose or create a custom nudge message that will be sent to users when they don’t respond within the specified time.
+6. Set the desired inactivity timeout duration.
+7. Choose or create a custom nudge message that will be sent to users when they don’t respond within the specified time.
+8. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/bot-analytics-exit-nodes
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Exit Nodes
 
 **Module**: Bot Studio Analytics
@@ -19,12 +19,13 @@ Gupshup Console → Bot Studio Analytics → Exit Nodes
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio Analytics**.
+- Go to **Exit Nodes**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio Analytics → Exit Nodes**.
-3. Configure the required fields.
+2. Go to **Bot Studio Analytics**.
+3. Go to **Exit Nodes**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/remove-members-from-a-project
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Remove Members from a Project
 
 **Module**: Overview
@@ -19,12 +19,13 @@ Gupshup Console → Overview → Remove Members from a Project
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Overview**.
+- Go to **Remove Members from a Project**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Overview → Remove Members from a Project**.
-3. Configure the required fields.
+2. Go to **Overview**.
+3. Go to **Remove Members from a Project**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

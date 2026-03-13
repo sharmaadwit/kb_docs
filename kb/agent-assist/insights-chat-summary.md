@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/insights-chat-summary
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Insights: Chat Summary
 
 **Module**: Agent Assist

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/gupshup-journey-builder-legacy-vs-v2-vs-pro
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Gupshup Journey Builder: Legacy vs V2 vs Pro
 
 **Module**: Bot Studio
@@ -19,13 +19,15 @@ Gupshup Console → Bot Studio → Gupshup Journey Builder: Legacy vs V2 vs Pro
 - Gupshup’s Journey Builder (JB) platform has evolved through multiple versions to address different user segments and technical requirements. The three key versions are:
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Gupshup Journey Builder: Legacy vs V2 vs Pro**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Gupshup Journey Builder: Legacy vs V2 vs Pro**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Gupshup Journey Builder: Legacy vs V2 vs Pro**.
+4. Test Bot and Inline Message Logs: Enable debugging directly within the canvas.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

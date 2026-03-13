@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/how-to-access-campaigns
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # How To Access Campaign Manager?
 
 **Module**: Campaign Manager
@@ -19,12 +19,13 @@ Gupshup Console → Campaign Manager → How To Access Campaign Manager?
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Campaign Manager**.
+- Go to **How To Access Campaign Manager?**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Campaign Manager → How To Access Campaign Manager?**.
-3. Configure the required fields.
+2. Go to **Campaign Manager**.
+3. Go to **How To Access Campaign Manager?**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

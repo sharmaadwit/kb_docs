@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/about-whatsapp
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # About WhatsApp
 
 **Module**: Channels
@@ -19,13 +19,16 @@ Gupshup Console → Channels → About WhatsApp
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Channels**.
+- Go to **About WhatsApp**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Channels → About WhatsApp**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Channels**.
+3. Go to **About WhatsApp**.
+4. Configure a Webhook/Callback URL to receive inbound events and messages (optional to use secondary URL for this purpose when using Gupshup via console).
+5. Go Live with your WhatsApp Business API number.
+6. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

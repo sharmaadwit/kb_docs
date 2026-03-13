@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/expression-library-in-journey-builder-canvas
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Expression Library in Journey builder Canvas
 
 **Module**: Bot Studio
@@ -24,7 +24,14 @@ Gupshup Console → Bot Studio → Expression Library in Journey builder Canvas
 ### Steps
 1. Open Gupshup Console.
 2. Navigate to the Modify Variable node and open the Modifier dropdown.
-3. Click **Save** (or **Save & Deploy**) to apply changes.
+3. Test Expression Functionality: Designers can test expressions with sample values to verify results. Outputs or errors are displayed instantly, allowing iterative testing and corrections.
+4. Save Validation: Expressions must pass validation before saving. Invalid expressions or mismatched data types disable the Save button, ensuring error-free runtime execution.
+5. Select the Expression option at the bottom of the list.
+6. Click on Build Expression open the editor.
+7. Add sample values for testing the expression.
+8. Click the play icon to execute the test.
+9. Ensure the "Store in Variable" selection matches the output data type.
+10. Select the Expression option from the Modifier dropdown.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

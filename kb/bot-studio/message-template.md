@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/message-template
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Message Template
 
 **Module**: Bot Studio
@@ -19,13 +19,16 @@ Gupshup Console → Bot Studio → Message Template
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Message Template**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Message Template**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Message Template**.
+4. Select one of the listed templates.
+5. Add the Fallback Value per variable present in the template.
+6. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

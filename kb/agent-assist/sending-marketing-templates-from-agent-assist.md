@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/sending-marketing-templates-fro
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Sending Marketing Templates from Agent Assist
 
 **Module**: Agent Assist

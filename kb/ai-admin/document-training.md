@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/document-training
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Document Training
 
 **Module**: Ai Admin
@@ -24,7 +24,8 @@ Gupshup Console → Ai Admin → Document Training
 ### Steps
 1. Open Gupshup Console.
 2. Go to "Files" section in Content Tab.
-3. Click **Save** (or **Save & Deploy**) to apply changes.
+3. Click on choose File to upload single/multiple files.
+4. Click on "Save & Train".
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

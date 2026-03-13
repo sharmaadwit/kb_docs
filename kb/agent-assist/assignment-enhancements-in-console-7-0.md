@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/assignment-20-covering-consulta
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Assignment Enhancements in Console 7.0
 
 **Module**: Agent Assist

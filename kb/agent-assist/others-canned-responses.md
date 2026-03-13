@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/others-canned-responses
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Others: Canned Responses
 
 **Module**: Agent Assist

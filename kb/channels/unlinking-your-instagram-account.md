@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/unlinking-your-instagram-account
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Unlinking your Instagram account
 
 **Module**: Channels
@@ -34,7 +34,15 @@ Gupshup Console → Channels → Unlinking your Instagram account
 2. Go to Instagram and log in to the account that you linked with Gupshup.
 3. Go to your Instagram Profile and click the Settings (gear) icon.
 4. Go to Facebook and log in to the account which you used to link the Instagram account previously.
-5. Click **Save** (or **Save & Deploy**) to apply changes.
+5. Click Apps and websites. You can also click Settings and privacy and then go to Website permissions under Your app and media.
+6. Click Remove against Gupshup app under the Active tab.
+7. Click Remove in the confirmation popup.
+8. Click on the Account icon in the top right corner of the screen and select Settings & privacy.
+9. Select Settings and go to Business integrations under the Your activity section in the navigation sidebar on the left.
+10. Click the Remove button next to Gupshup Bot.
+11. Click Remove again in the confirmation popup.
+12. Go Live with Instagram.
+13. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

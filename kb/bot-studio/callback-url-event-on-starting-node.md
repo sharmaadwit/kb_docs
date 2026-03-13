@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/callback-url-event-on-starting-node
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Callback URL Event on Starting Node
 
 **Module**: Bot Studio
@@ -19,13 +19,18 @@ Gupshup Console → Bot Studio → Callback URL Event on Starting Node
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Callback URL Event on Starting Node**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Callback URL Event on Starting Node**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Callback URL Event on Starting Node**.
+4. Select Custom event from the top Event selection dropdown.
+5. Select a Channel type to use the Event (This is required in order to send the user a BIC Notification or a UIC Message while in an open session).
+6. Select the Integration from which you would like to receive the events.
+7. Select the specific event based on which the journey should be triggered.
+8. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

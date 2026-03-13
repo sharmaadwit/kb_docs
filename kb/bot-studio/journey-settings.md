@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/journey-settings
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Journey Settings
 
 **Module**: Bot Studio
@@ -19,12 +19,13 @@ Gupshup Console → Bot Studio → Journey Settings
 - This behavior can also be modified as per requirement using the Sticky Journeys concept which is discussed later part of this doc.
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Journey Settings**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Journey Settings**.
-3. Configure the required fields.
+2. Go to **Bot Studio**.
+3. Go to **Journey Settings**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

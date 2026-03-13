@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/assigning-projects
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Assign/Unassign Projects
 
 **Module**: Overview
@@ -19,13 +19,16 @@ Gupshup Console → Overview → Assign/Unassign Projects
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Overview**.
+- Go to **Assign/Unassign Projects**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Overview → Assign/Unassign Projects**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Overview**.
+3. Go to **Assign/Unassign Projects**.
+4. Select the projects that you want to assign to the member. You may be able to select projects by clicking on checkboxes next to each project name, or by using a dropdown menu to select multiple projects.
+5. Click on the “cross” button of the assigned project to unassign it.
+6. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

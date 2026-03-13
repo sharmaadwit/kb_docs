@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/inbound-messages-and-events
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Inbound Messages and Events
 
 **Module**: Channels
@@ -19,12 +19,13 @@ Gupshup Console → Channels → Inbound Messages and Events
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Channels**.
+- Go to **Inbound Messages and Events**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Channels → Inbound Messages and Events**.
-3. Configure the required fields.
+2. Go to **Channels**.
+3. Go to **Inbound Messages and Events**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

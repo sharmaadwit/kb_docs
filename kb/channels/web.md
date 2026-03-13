@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/web
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Web
 
 **Module**: Channels
@@ -21,12 +21,13 @@ Gupshup Console → Channels → Web
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Channels**.
+- Go to **Web**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Channels → Web**.
-3. Configure the required fields.
+2. Go to **Channels**.
+3. Go to **Web**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/send-location-node
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Send Location Node
 
 **Module**: Bot Studio
@@ -19,13 +19,18 @@ Gupshup Console → Bot Studio → Send Location Node
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Send Location Node**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Send Location Node**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Send Location Node**.
+4. Add Location Node: Insert the Location Node (Message Node) into your flow at the desired point where you need to share location information with the user.
+5. Configure Latitude and Longitude: Enter numeric values manually or map a number variable for Latitude and Longitude. Ensure that only valid number/integer values are used for these fields.
+6. Enter numeric values manually or map a number variable for Latitude and Longitude.
+7. Ensure that only valid number/integer values are used for these fields.
+8. Save and Deploy: Once the node is configured, save your journey and deploy it. The location will now be sent to users when they reach this node in the flow.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

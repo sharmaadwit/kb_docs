@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/chats
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Chats
 
 **Module**: Agent Assist

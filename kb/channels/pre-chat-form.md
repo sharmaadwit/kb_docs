@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/web-pre-chat-form
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Pre-Chat Form
 
 **Module**: Channels

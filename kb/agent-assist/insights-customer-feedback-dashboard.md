@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/insights-customer-feedback-dash
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Insights: Customer Feedback Dashboard
 
 **Module**: Agent Assist
@@ -25,6 +26,7 @@ Agent Assist → Insights
 ## Steps
 1. Open Agent Assist.
 2. _Add the click-path in Console (breadcrumbs)._
+3. Test different feedback collection methods.
 
 ## Save/publish behavior
 - _No save/publish step is required for this page unless explicitly stated in the UI._

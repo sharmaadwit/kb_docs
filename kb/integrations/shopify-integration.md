@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/shopify-integration
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Shopify Integration
 
 **Module**: Integrations
@@ -19,13 +19,15 @@ Gupshup Console → Integrations → Shopify Integration
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Integrations**.
+- Go to **Shopify Integration**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Integrations → Shopify Integration**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Integrations**.
+3. Go to **Shopify Integration**.
+4. Click on the integration tab, where you will be able to view the Shopify widget and click on it.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

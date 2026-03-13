@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/assign-services-to-a-member
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Assign/unassign Modules to a Member
 
 **Module**: Overview
@@ -19,13 +19,15 @@ Gupshup Console → Overview → Assign/unassign Modules to a Member
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Overview**.
+- Go to **Assign/unassign Modules to a Member**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Overview → Assign/unassign Modules to a Member**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Overview**.
+3. Go to **Assign/unassign Modules to a Member**.
+4. Click on "Update Modules" button to update the modules to a member.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

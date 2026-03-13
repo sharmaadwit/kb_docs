@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/intent-creation
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Intent Creation
 
 **Module**: Ai Admin
@@ -26,7 +26,12 @@ Gupshup Console → Ai Admin → Intent Creation
 1. Open Gupshup Console.
 2. Go to Intent section & Select the required intent to start the untraining
 3. Navigate to the utterance you want to untrain & click on the Delete icon. If the Delete icon is accidentally clicked for an utterance then you can revert the action by clicking on the undo icon.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+4. Click on Create Intent button present in Intents tag.
+5. Enter the Intent Name & Description.
+6. Click on Generate Utterances button. AI will generate utterances based on provided intent description.
+7. Add few manual utterances to include more variations. (Optional).
+8. Click on Save & Train.
+9. Click on Save & Train button to complete the untraining.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/webhooks
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Webhooks
 
 **Module**: Integrations
@@ -26,7 +26,9 @@ Gupshup Console → Integrations → Webhooks
 1. Open Gupshup Console.
 2. Log into your Gupshup Console.
 3. Navigate to your App > Integration > Webhooks.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+4. Click on create Webhook.
+5. Choose the module and respective events: WhatsApp Profile (Account) Template Campaign Manager and API Delivery events.
+6. Add your Callback URL and save.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

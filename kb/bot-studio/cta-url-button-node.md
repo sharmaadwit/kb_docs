@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/cta-url-support-on-reply-button
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # CTA URL Button Node
 
 **Module**: Bot Studio
@@ -24,7 +24,17 @@ Gupshup Console → Bot Studio → CTA URL Button Node
 ### Steps
 1. Open Gupshup Console.
 2. Navigate to Message Nodes in Journey Builder and select the CTA URL Button Node.
-3. Click **Save** (or **Save & Deploy**) to apply changes.
+3. Add the CTA URL Button Node Navigate to Message Nodes in Journey Builder and select the CTA URL Button Node.
+4. Add the CTA URL Button Node.
+5. Configure the URL Enter a direct URL for validation during design time, or use variables to pass dynamic URLs.
+6. Configure the URL.
+7. Enter a direct URL for validation during design time, or use variables to pass dynamic URLs.
+8. Set Button Name Provide a name for the CTA button, ensuring it is clear and action-oriented. Utilize multi-lingual support if needed.
+9. Set Button Name.
+10. Provide a name for the CTA button, ensuring it is clear and action-oriented. Utilize multi-lingual support if needed.
+11. Add Media Header (Optional) If desired, add a media header similar to the Reply Button Node for a richer message experience.
+12. Add Media Header (Optional).
+13. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

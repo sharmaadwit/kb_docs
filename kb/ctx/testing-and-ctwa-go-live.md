@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/testing-and-ctwa-go-live
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Testing and CTWA go-live
 
 **Module**: Ctx
@@ -23,12 +23,13 @@ Gupshup Console → CTX → Testing and CTWA go-live
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **CTX**.
+- Go to **Testing and CTWA go-live**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → CTX → Testing and CTWA go-live**.
-3. Configure the required fields.
+2. Go to **CTX**.
+3. Go to **Testing and CTWA go-live**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

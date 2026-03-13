@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/workspace-validation
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Workspace Validation
 
 **Module**: Ai Admin
@@ -19,12 +19,13 @@ Gupshup Console → Ai Admin → Workspace Validation
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Ai Admin**.
+- Go to **Workspace Validation**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Ai Admin → Workspace Validation**.
-3. Configure the required fields.
+2. Go to **Ai Admin**.
+3. Go to **Workspace Validation**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

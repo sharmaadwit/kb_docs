@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/trigger-event-node
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Trigger Event Node
 
 **Module**: Bot Studio
@@ -24,7 +24,11 @@ Gupshup Console → Bot Studio → Trigger Event Node
 ### Steps
 1. Open Gupshup Console.
 2. Go to Console Sidebar → Event Manager
-3. Click **Save** (or **Save & Deploy**) to apply changes.
+3. Click "Add Event".
+4. Click "Save".
+5. Choose the Event Category (Custom only).
+6. Select your Event Name from the dropdown.
+7. Click "Save & Deploy".
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

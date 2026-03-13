@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-workspace-1
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Creating a Workspace
 
 **Module**: Ai Admin
@@ -24,7 +24,9 @@ Gupshup Console → Ai Admin → Creating a Workspace
 ### Steps
 1. Open Gupshup Console.
 2. Go to the AI Admin section under Bot Studio in the navigation sidebar on the left.
-3. Click **Save** (or **Save & Deploy**) to apply changes.
+3. Click on the Create Workspace to create a workspace.
+4. Click on the Start From Scratch tile to create a Generic domain workspace or Commerce tile to create commerce domain workspace.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

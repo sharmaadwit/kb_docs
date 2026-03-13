@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/chat-management-assignment-rule
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Chat Management: Assignment Rules
 
 **Module**: Agent Assist
@@ -27,7 +28,13 @@ Agent Assist → Settings → Chat Management
 1. Open Agent Assist.
 2. Navigate to the "Settings" tab on the bottom left side of your Agent Assist dashboard.
 3. Go to "Assignment Rules" in the "Settings" section.
-4. Click **Save** to apply changes.
+4. Navigate to the "Settings" tab on the bottom left side of your Agent Assist dashboard.
+5. Select "Assignment Rules.".
+6. Click on the "Add New Rule" button to create a new rule.
+7. Add conditions to the rule, such as "Channel is equal to WhatsApp," to specify which chats the rule should apply to.
+8. Choose between "Sticky Assignment" or specify a "Team/Agent Name" to assign chats to.
+9. Click "Save" to save the rule.
+10. Click **Save** to apply changes.
 
 ## Save/publish behavior
 - Click **Save** (or **Save & Deploy** if available) to apply changes.

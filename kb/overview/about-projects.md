@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/about-project
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # About Projects
 
 **Module**: Overview
@@ -19,12 +19,13 @@ Gupshup Console → Overview → About Projects
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Overview**.
+- Go to **About Projects**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Overview → About Projects**.
-3. Configure the required fields.
+2. Go to **Overview**.
+3. Go to **About Projects**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

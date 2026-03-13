@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/ctx-goal-nodes-adding-to-the-journey
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # CTX Goal Nodes and Conversions API: Adding to the journey
 
 **Module**: Ctx
@@ -19,13 +19,16 @@ Gupshup Console → CTX → CTX Goal Nodes and Conversions API: Adding to the jo
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **CTX**.
+- Go to **CTX Goal Nodes and Conversions API: Adding to the journey**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → CTX → CTX Goal Nodes and Conversions API: Adding to the journey**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **CTX**.
+3. Go to **CTX Goal Nodes and Conversions API: Adding to the journey**.
+4. Add the following API: curl --location --request POST 'https://ctx-be.gupshup.io/external/facebook/capi/events' \ --header 'externalApiKey: EXTERNAL_API_KEY' \ //EXTERNAL_API_KEY is a variable and needs to be filled --header 'Content-Type: application/json' \ --data-raw '{ "user_channel_id" : {{var_system.user_channel_id}}, "ad_id" : "{{var_system.conversation_context_id}}", "event_name" : "LeadSubmitted" }'.
+5. Add the following API:.
+6. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

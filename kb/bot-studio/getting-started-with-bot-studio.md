@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/create-a-new-journey
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Getting Started with Bot Studio
 
 **Module**: Bot Studio
@@ -19,13 +19,20 @@ Gupshup Console → Bot Studio → Getting Started with Bot Studio
 - Preview - Users have the option to preview a template to ensure it fits their requirements before using it.
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Getting Started with Bot Studio**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Getting Started with Bot Studio**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Getting Started with Bot Studio**.
+4. Test Bot: Preview your journey (Web channel only; some WhatsApp-exclusive features may not work).
+5. Click the ‘Create Journey’ button on the landing page.
+6. Click ‘Create Journey’.
+7. Toggle Interactivity.
+8. Save: Use this button to save progress frequently.
+9. Save & Deploy: Makes the journey live for production use.
+10. Test Bot: Lets you test the journey on the Web widget. Use it to validate message flows and payloads.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

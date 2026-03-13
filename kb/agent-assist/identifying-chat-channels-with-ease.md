@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/identifying-chat-channels-with-
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Identifying Chat Channels with Ease
 
 **Module**: Agent Assist

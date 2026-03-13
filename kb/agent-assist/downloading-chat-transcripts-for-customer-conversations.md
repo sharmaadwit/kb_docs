@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/downloading-chat-transcripts-fo
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Downloading Chat Transcripts for Customer Conversations
 
 **Module**: Agent Assist
@@ -25,6 +26,9 @@ Agent Assist → Chats
 ## Steps
 1. Open Agent Assist.
 2. _Add the click-path in Console (breadcrumbs)._
+3. Click on the "More" option within the chat interface.
+4. Choose "Download Transcript" from the available options.
+5. Select the date range for the data you want to include in the transcript. You can also opt to download data for the last 30 days.
 
 ## Save/publish behavior
 - _No save/publish step is required for this page unless explicitly stated in the UI._

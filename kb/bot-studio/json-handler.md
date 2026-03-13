@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/json-response-attribute-mapping-in-api-node
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # JSON Handler
 
 **Module**: Bot Studio
@@ -24,7 +24,16 @@ Gupshup Console → Bot Studio → JSON Handler
 ### Steps
 1. Open Gupshup Console.
 2. Navigate to Action Nodes in Journey Builder and select JSON Handler.\
-3. Click **Save** (or **Save & Deploy**) to apply changes.
+3. Select from Local, Global, and System variables containing JSON responses.
+4. Add the JSON Handler Node Navigate to Action Nodes in Journey Builder and select JSON Handler.\.
+5. Add the JSON Handler Node.
+6. Select JSON Variable Choose the variable containing the JSON response from the dropdown (Local, Global, or System).\.
+7. Select JSON Variable.
+8. Choose the variable containing the JSON response from the dropdown (Local, Global, or System).\.
+9. Click on the Map JSON Attribute to add sample JSON for parsing.
+10. Save and Deploy Click Save to store your mappings and JSON structure. Deploy the journey to apply the JSON Handler Node in live scenarios.
+11. Save and Deploy.
+12. Click Save to store your mappings and JSON structure.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/android-native-sdk
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Android Native
 
 **Module**: Channels
@@ -20,13 +20,16 @@ Gupshup Console → Channels → Android Native
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Channels**.
+- Go to **Android Native**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Channels → Android Native**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Channels**.
+3. Go to **Android Native**.
+4. Add a custom repository to the dependency resolution block.
+5. Add the following permissions in your project manifest file.
+6. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

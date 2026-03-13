@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/web-chat-widget-functions
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Chat Widget Functions
 
 **Module**: Channels
@@ -19,13 +19,15 @@ Gupshup Console → Channels → Chat Widget Functions
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Channels**.
+- Go to **Chat Widget Functions**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Channels → Chat Widget Functions**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Channels**.
+3. Go to **Chat Widget Functions**.
+4. Enable Authenticated Users.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

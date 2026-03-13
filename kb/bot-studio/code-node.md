@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/code-node
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Code Node
 
 **Module**: Bot Studio
@@ -20,12 +20,13 @@ Gupshup Console → Bot Studio → Code Node
 - Node is used to complete the entire end-to-end journey flow, by writing code for components not included in the journey builder or code representing custom requirements for a brand.
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Code Node**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Code Node**.
-3. Configure the required fields.
+2. Go to **Bot Studio**.
+3. Go to **Code Node**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

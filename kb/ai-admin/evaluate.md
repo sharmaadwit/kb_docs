@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/generate-qa
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Evaluate
 
 **Module**: Ai Admin
@@ -19,13 +19,20 @@ Gupshup Console → Ai Admin → Evaluate
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Ai Admin**.
+- Go to **Evaluate**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Ai Admin → Evaluate**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Ai Admin**.
+3. Go to **Evaluate**.
+4. Enter file name for export.
+5. Select All or Individual Content tags.
+6. Enter Topic Prompt & Question count for generation.
+7. Select LLM Configuration (Model, Answer Type & Precision).
+8. Click on Generate button.
+9. Click on Generate button.
+10. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

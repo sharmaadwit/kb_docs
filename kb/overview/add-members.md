@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/manage-project
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Add Members
 
 **Module**: Overview
@@ -19,12 +19,13 @@ Gupshup Console → Overview → Add Members
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Overview**.
+- Go to **Add Members**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Overview → Add Members**.
-3. Configure the required fields.
+2. Go to **Overview**.
+3. Go to **Add Members**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

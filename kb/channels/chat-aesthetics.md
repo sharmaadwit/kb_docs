@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/web-chat-aesthetics
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Chat Aesthetics
 
 **Module**: Channels
@@ -26,7 +26,9 @@ Gupshup Console → Channels → Chat Aesthetics
 ### Steps
 1. Open Gupshup Console.
 2. Go to Google Fonts.
-3. Click **Save** (or **Save & Deploy**) to apply changes.
+3. Click Get Font in the top right corner. You will be redirected to a new page title "1 font family selected".
+4. Click <> Get embed code.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

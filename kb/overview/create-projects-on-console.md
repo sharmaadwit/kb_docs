@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/create-projects-on-console
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Create Projects on Console
 
 **Module**: Overview
@@ -19,13 +19,16 @@ Gupshup Console → Overview → Create Projects on Console
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Overview**.
+- Go to **Create Projects on Console**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Overview → Create Projects on Console**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Overview**.
+3. Go to **Create Projects on Console**.
+4. Click on the projects dropdown menu and select Create new project.
+5. Provide a name for the project and click on the Create project button.
+6. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

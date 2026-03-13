@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/intent-description
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Entity Creation
 
 **Module**: Ai Admin
@@ -24,7 +24,13 @@ Gupshup Console → Ai Admin → Entity Creation
 ### Steps
 1. Open Gupshup Console.
 2. Go to the Description section and change the description as per the redefined piece of information that needs to be extracted.
-3. Click **Save** (or **Save & Deploy**) to apply changes.
+3. Click on the Entities tab on Workspace and click on Create Entity button to create an Entity.
+4. Provide the Name of Entity, choose the type of Entity between Global or Intent related Entity, provide a short description of the Entity, and link with the Intents already created.
+5. Click on "Additional Parameters" to add any further details for the Entity being created.
+6. Click on the Entity that you want to edit from the List of Entities that got created which can be found in the Types of Entity dropdown.
+7. Click on Type of Entity* dropdown to change the Entity type from Intent-Related Entity to Global Entity.
+8. Click on Associate Intents dropdown to associate the entity with the pre-created Intents.
+9. Click on the Save button to save the Entity edited.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

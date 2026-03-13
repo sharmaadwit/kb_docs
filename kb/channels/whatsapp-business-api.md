@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/whatsapp-business-api
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # WhatsApp Business API
 
 **Module**: Channels
@@ -19,12 +19,13 @@ Gupshup Console → Channels → WhatsApp Business API
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Channels**.
+- Go to **WhatsApp Business API**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Channels → WhatsApp Business API**.
-3. Configure the required fields.
+2. Go to **Channels**.
+3. Go to **WhatsApp Business API**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/skills
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Skills (Developer Mode)
 
 **Module**: Ai Admin
@@ -19,13 +19,15 @@ Gupshup Console → Ai Admin → Skills (Developer Mode)
 - Skill Objective: You are a real estate assistant for a client, who helps by collecting property requirements from the user and sharing suitable property options based on their criteria
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Ai Admin**.
+- Go to **Skills (Developer Mode)**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Ai Admin → Skills (Developer Mode)**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Ai Admin**.
+3. Go to **Skills (Developer Mode)**.
+4. Verify appropriate responses when:.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

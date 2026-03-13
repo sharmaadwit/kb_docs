@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/extension
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Overview of Extensions
 
 **Module**: Extension
@@ -24,7 +24,17 @@ Gupshup Console → Extensions → Overview of Extensions
 ### Steps
 1. Open Gupshup Console.
 2. Navigate to the Extensions tab to add the desired extension.
-3. Click **Save** (or **Save & Deploy**) to apply changes.
+3. Select the desired organization and project.
+4. Click on the Add button within the Enterprise WhatsApp tile.
+5. Enter your account credentials.
+6. Click on Add extension to integrate Enterprise WhatsApp with Console.
+7. Click Add button within the Enterprise SMS tile.
+8. Provide your account credentials.
+9. Click Add extension to integrate Enterprise SMS with Console.
+10. Click Add button within the RCS tile.
+11. Enter your RCS account credentials.
+12. Click Add extension to integrate RCS with the Console seamlessly.
+13. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

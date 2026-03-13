@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/prompts
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Prompt Nodes
 
 **Module**: Bot Studio
@@ -19,13 +19,16 @@ Gupshup Console → Bot Studio → Prompt Nodes
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Prompt Nodes**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Prompt Nodes**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Prompt Nodes**.
+4. Enable Failure Message - By default on validation failure the Question prompt is repeated. If there is a need to customise the prompt sent to user when user input has failed, this checkbox needs to be checked.
+5. Enable Timeout - The bot will wait for the user input till the set timeout value and will proceed to the fallback path once timed out.
+6. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/navigating-through-the-views
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Efficient Chat Navigation for Different User Roles Through Views
 
 **Module**: Agent Assist
@@ -25,6 +26,7 @@ Agent Assist
 ## Steps
 1. Open Agent Assist.
 2. _Add the click-path in Console (breadcrumbs)._
+3. Navigate through your chat workload efficiently with role-specific views designed to streamline operations for administrators, supervisors, and agents.
 
 ## Save/publish behavior
 - _No save/publish step is required for this page unless explicitly stated in the UI._

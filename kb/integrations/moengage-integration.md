@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/moengage-integration
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Moengage Integration
 
 **Module**: Integrations
@@ -24,7 +24,9 @@ Gupshup Console → Integrations → Moengage Integration
 ### Steps
 1. Open Gupshup Console.
 2. Go to the integrations tab, where you can find the Moengage integration widget
-3. Click **Save** (or **Save & Deploy**) to apply changes.
+3. Enable CX experiences for your customers in Moengage.
+4. Click on connect for Moengage and agree to terms and conditions, and then click on connect.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/conne
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Connecting FB Ad Account to Gupshup Ads Management
 
 **Module**: Ctx
@@ -24,7 +24,10 @@ Gupshup Console → CTX → Connecting FB Ad Account to Gupshup Ads Management
 ### Steps
 1. Open Gupshup Console.
 2. Go to Click to Chat Ads -> Ads Management
-3. Click **Save** (or **Save & Deploy**) to apply changes.
+3. Click on "Connect Facebook Ad Account".
+4. Click on "Confirm" and keep clicking on "Next" till the Gupshup console screen appears again.
+5. Click on "Continue" and the onboarding is complete.
+6. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/others-customer-fields
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Others: Customer Fields
 
 **Module**: Agent Assist

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/delay-node
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Delay Node
 
 **Module**: Bot Studio
@@ -19,12 +19,13 @@ Gupshup Console → Bot Studio → Delay Node
 - Delay can be used as per the requirement wherever there is a need to introduce a certain time gap between 2 chatbot messages and enhance the user experience.
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Delay Node**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Delay Node**.
-3. Configure the required fields.
+2. Go to **Bot Studio**.
+3. Go to **Delay Node**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

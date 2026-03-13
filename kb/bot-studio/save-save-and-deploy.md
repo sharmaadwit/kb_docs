@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/save-save-deploy
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Save, Save & Deploy
 
 **Module**: Bot Studio
@@ -19,13 +19,14 @@ Gupshup Console → Bot Studio → Save, Save & Deploy
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Save, Save & Deploy**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Save, Save & Deploy**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Save, Save & Deploy**.
+4. Save & Deploy is a mandatory step to see all the changes done, in the live environment.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

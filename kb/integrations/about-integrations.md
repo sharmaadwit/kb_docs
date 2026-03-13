@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/about-integrations
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # About integrations
 
 **Module**: Integrations
@@ -19,12 +19,13 @@ Gupshup Console → Integrations → About integrations
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Integrations**.
+- Go to **About integrations**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Integrations → About integrations**.
-3. Configure the required fields.
+2. Go to **Integrations**.
+3. Go to **About integrations**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

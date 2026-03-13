@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/react-native-sdk
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # React Native
 
 **Module**: Channels
@@ -22,13 +22,15 @@ Gupshup Console → Channels → React Native
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Channels**.
+- Go to **React Native**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Channels → React Native**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Channels**.
+3. Go to **React Native**.
+4. add(GipChatModule()).
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

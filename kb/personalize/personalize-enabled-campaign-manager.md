@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/power-of-customer360-in-campaign-manager
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Personalize enabled Campaign Manager
 
 **Module**: Personalize
@@ -21,12 +21,13 @@ Gupshup Console → Personalize → Personalize enabled Campaign Manager
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Personalize**.
+- Go to **Personalize enabled Campaign Manager**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Personalize → Personalize enabled Campaign Manager**.
-3. Configure the required fields.
+2. Go to **Personalize**.
+3. Go to **Personalize enabled Campaign Manager**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/test-your-bot
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Test your Bot
 
 **Module**: Bot Studio
@@ -19,13 +19,15 @@ Gupshup Console → Bot Studio → Test your Bot
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Test your Bot**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Test your Bot**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Test your Bot**.
+4. Test Bot feature is also equipped with a message log button across each user message on the Bot widget which will help to identify any errors or bugs in the bot design. This will incrementally reduce the efforts to debug a bot or fix issues without requiring a need to reach out to support. The message log is available for every user message only where it renders the payload generated after the user message is sent.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

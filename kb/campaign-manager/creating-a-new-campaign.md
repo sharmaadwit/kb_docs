@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-new-campaign
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Creating A New Campaign
 
 **Module**: Campaign Manager
@@ -22,13 +22,16 @@ Gupshup Console → Campaign Manager → Creating A New Campaign
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Campaign Manager**.
+- Go to **Creating A New Campaign**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Campaign Manager → Creating A New Campaign**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Campaign Manager**.
+3. Go to **Creating A New Campaign**.
+4. Select a WhatsApp approved template.
+5. Provide a publicly available URL and personalize the other variables by selecting from column headers or by fallback value.
+6. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

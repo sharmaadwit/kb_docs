@@ -2,7 +2,8 @@ source_url: https://console-docs.gupshup.io/docs/webhook
 
 
 
-<!-- agent-assist-golden:v7 -->
+
+<!-- agent-assist-golden:v8 -->
 # Others: Webhooks
 
 **Module**: Agent Assist
@@ -26,6 +27,9 @@ Agent Assist → Settings → Others
 1. Open Agent Assist.
 2. Navigate to Settings > Webhooks > Create Webhook.
 3. Click **Save** to apply changes.
+4. Navigate to Settings > Webhooks > Create Webhook.
+5. Provide a Name and description for the webhook.
+6. Choose the authentication method - either Basic Authentication or API key based on your API equirements.
 
 ## Save/publish behavior
 - Click **Save** (or **Save & Deploy** if available) to apply changes.

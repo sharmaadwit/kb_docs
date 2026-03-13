@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/getting-started
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Welcome to Gupshup Console
 
 **Module**: Overview
@@ -26,7 +26,15 @@ Gupshup Console → Overview → Welcome to Gupshup Console
 1. Open Gupshup Console.
 2. Navigate to the project selector (top-left)
 3. Go to the Channels section
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+4. Add and manage users.
+5. Configure your project settings and branding.
+6. Set up your preferred messaging channels.
+7. Test your connection.
+8. Set up analytics to track campaign performance.
+9. Configure customer context and history settings.
+10. Configure WhatsApp, SMS, Web, and Instagram integrations.
+11. Connect Console with your existing tools and workflows.
+12. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

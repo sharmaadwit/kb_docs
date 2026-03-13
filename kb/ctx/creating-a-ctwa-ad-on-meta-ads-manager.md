@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-ctwa-ad-on-meta-ads-manager
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Creating a CTWA Ad on Meta Ads Manager
 
 **Module**: Ctx
@@ -19,13 +19,20 @@ Gupshup Console → CTX → Creating a CTWA Ad on Meta Ads Manager
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **CTX**.
+- Go to **Creating a CTWA Ad on Meta Ads Manager**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → CTX → Creating a CTWA Ad on Meta Ads Manager**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **CTX**.
+3. Go to **Creating a CTWA Ad on Meta Ads Manager**.
+4. Enter the desired names for your ad campaign, Ad set, and ads.
+5. Select the performance goal as: Maximize number of conversations.
+6. Add the audience filtration, if any basis your target audience. You may also use traditional campaign audience.
+7. Select the placement for the ads and where you want your ads to appear in the feed.
+8. Choose the ad creative and enter the headline, description and CTWA to be displayed.
+9. Select the Message template (icebreaker message) that the users will send the brand to trigger the journey once they reach the WhatsApp environment. You can either customize the template or choose one from the existing templates.
+10. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

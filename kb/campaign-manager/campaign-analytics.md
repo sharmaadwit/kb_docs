@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/campaign-analytics
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Campaign Analytics
 
 **Module**: Campaign Manager
@@ -34,13 +34,16 @@ Gupshup Console → Campaign Manager → Campaign Analytics
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Campaign Manager**.
+- Go to **Campaign Analytics**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Campaign Manager → Campaign Analytics**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Campaign Manager**.
+3. Go to **Campaign Analytics**.
+4. Click Analysis - Total Clicks - Indicates the total number of times users have clicked on a link included in the campaign. This means that if a user clicks 3 times on a link and 1 time on another link in the message, then Total clicks will be 4. Unique Clicks - Indicates the number of users that have clicked on a link included in the campaign. This means that if a user clicks 3 times on a link and 1 time on another link in the message, then Unique clicks will be 1. Click Through Rate - Indicates the % of times users have Clicked a link of a WhatsApp campaign after viewing it. It is calculated as [(Total Clicks / Total Read) * 100][(Total Clicks / Total Read) * 100].
+5. Click Through Rate - Indicates the % of times users have Clicked a link of a WhatsApp campaign after viewing it. It is calculated as [(Total Clicks / Total Read) * 100][(Total Clicks / Total Read) * 100].
+6. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

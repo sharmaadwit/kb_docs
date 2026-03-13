@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/adaptive-expressions
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Operations
 
 **Module**: Bot Studio
@@ -19,12 +19,13 @@ Gupshup Console → Bot Studio → Operations
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Operations**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Operations**.
-3. Configure the required fields.
+2. Go to **Bot Studio**.
+3. Go to **Operations**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

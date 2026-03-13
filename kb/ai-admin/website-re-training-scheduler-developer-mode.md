@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/website-re-training-scheduler
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Website Re-training Scheduler (Developer Mode)
 
 **Module**: Ai Admin
@@ -19,13 +19,15 @@ Gupshup Console → Ai Admin → Website Re-training Scheduler (Developer Mode)
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Ai Admin**.
+- Go to **Website Re-training Scheduler (Developer Mode)**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Ai Admin → Website Re-training Scheduler (Developer Mode)**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Ai Admin**.
+3. Go to **Website Re-training Scheduler (Developer Mode)**.
+4. Add New Button: A "Add New" button is available to create a new scheduler. However, if any scheduler is currently active, this button will be disabled. You must pause the active scheduler before creating a new one.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

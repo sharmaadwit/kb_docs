@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/tools-beta
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Tools (Developer Mode)
 
 **Module**: Ai Admin
@@ -19,13 +19,16 @@ Gupshup Console → Ai Admin → Tools (Developer Mode)
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Ai Admin**.
+- Go to **Tools (Developer Mode)**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Ai Admin → Tools (Developer Mode)**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Ai Admin**.
+3. Go to **Tools (Developer Mode)**.
+4. Provide Tool Name & Description: Provide a clear and descriptive name for the tool along with a description that captures its purpose and variables to be used in the tool schema.
+5. Add API Specification (Optional) You can configure how the tool connects to an external system by sharing a sample API request & response OR adding OpenAPI endpoint.
+6. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

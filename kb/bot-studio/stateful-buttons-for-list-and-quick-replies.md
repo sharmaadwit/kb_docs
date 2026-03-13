@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/stateful-buttons-for-static-button-based-nodes
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Stateful Buttons for List and Quick Replies
 
 **Module**: Bot Studio
@@ -19,12 +19,13 @@ Gupshup Console → Bot Studio → Stateful Buttons for List and Quick Replies
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Stateful Buttons for List and Quick Replies**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Stateful Buttons for List and Quick Replies**.
-3. Configure the required fields.
+2. Go to **Bot Studio**.
+3. Go to **Stateful Buttons for List and Quick Replies**.
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/tiktok-to-whatsapp
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # TikTok to WhatsApp
 
 **Module**: Ctx
@@ -19,13 +19,16 @@ Gupshup Console → CTX → TikTok to WhatsApp
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **CTX**.
+- Go to **TikTok to WhatsApp**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → CTX → TikTok to WhatsApp**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **CTX**.
+3. Go to **TikTok to WhatsApp**.
+4. Connect/onboard Ads Manager to Gupshup console under Click to Chat Ads -> Ad Management.
+5. Connect the chatbot to the CTWA enabled ad under Click to Chat Ads -> Ad Management.
+6. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

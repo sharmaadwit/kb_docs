@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/dynamic-image-url-node
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Dynamic Image URL Node
 
 **Module**: Bot Studio
@@ -19,13 +19,16 @@ Gupshup Console → Bot Studio → Dynamic Image URL Node
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Dynamic Image URL Node**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Dynamic Image URL Node**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Dynamic Image URL Node**.
+4. Select one of the three templates and fill the content. TemplateTemplate ContentTemplate 1Card titleSubtitleDescriptionImage(16MB)Image(16MB)Template 2Card TitleSubtitleImage(16MB)DescriptionTemplate 3Card TitleSubtitleDescriptionImage(16MB).
+5. Select one of the three templates and fill the content.
+6. Save the image in a string variable and bot designer can use a reply node or image node to send the dynamic card image URL to the channel.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

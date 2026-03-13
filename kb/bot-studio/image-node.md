@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/image-node
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Image Node
 
 **Module**: Bot Studio
@@ -19,13 +19,18 @@ Gupshup Console → Bot Studio → Image Node
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Image Node**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Image Node**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Image Node**.
+4. Add visual confirmation messages to make chat responses more engaging and interactive.
+5. Connect it to the previous node (such as API Node or Prompt Node).
+6. Click on the Upload Image button.
+7. Choose a file from your local device.
+8. Save the API response field (for example, product_image_url) into a variable:.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

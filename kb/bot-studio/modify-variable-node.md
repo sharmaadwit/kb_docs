@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/modify-variable-node
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Modify Variable Node
 
 **Module**: Bot Studio
@@ -19,13 +19,17 @@ Gupshup Console → Bot Studio → Modify Variable Node
 - _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
-- _Add the click-by-click navigation path for this page._
+- Go to **Bot Studio**.
+- Go to **Modify Variable Node**.
 
 ### Steps
 1. Open Gupshup Console.
-2. Navigate to **Gupshup Console → Bot Studio → Modify Variable Node**.
-3. Configure the required fields.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+2. Go to **Bot Studio**.
+3. Go to **Modify Variable Node**.
+4. Add at Beginning: The “Add at Beginning” modifier is used for appending a specified string value to the beginning of the string variable.(For e.g - Add Mr. to “JOHN DOE” → “Mr.JOHN DOE”).
+5. Add at Last: The “Add at Last” modifier is used for appending a specified string value to the end of the string variable.(For e.g - Add “ Department” to “Artificial Intelligence” → “Artificial Intelligence Department”).
+6. Add at Both Side: The “Add at Both Side” adds a specified string value to both the beginning and end of the string variable.(For e.g - Add quotes(“) to John → “John”).
+7. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.

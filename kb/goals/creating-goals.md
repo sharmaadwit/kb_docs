@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/creating-goals
 
-<!-- kb-golden:v4 -->
+<!-- kb-golden:v7 -->
 # Creating Goals
 
 **Module**: Goals
@@ -24,7 +24,9 @@ Gupshup Console → Goals → Creating Goals
 ### Steps
 1. Open Gupshup Console.
 2. Go to the Goals section under Bot Studio in the navigation sidebar on the left.
-3. Click **Save** (or **Save & Deploy**) to apply changes.
+3. Click on the Create your first goal button to get started.
+4. Enter a name for the Goal in Goal Name.
+5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Save/publish behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
