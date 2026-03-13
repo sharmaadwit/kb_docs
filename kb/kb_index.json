@@ -1,14 +1,14 @@
 {
   "ok": true,
-  "created_at": "2026-03-13T08:08:49.930827+00:00",
+  "created_at": "2026-03-13T09:09:51.429426+00:00",
   "repo": "sharmaadwit/kb_docs",
   "branch": "main",
   "docs_path": "kb",
   "excluded": [
     "kb/analytics"
   ],
-  "md_files": 252,
-  "chunks": 7171,
+  "md_files": 253,
+  "chunks": 7191,
   "docs": [
     {
       "path": "kb/agent-assist/about-agent-assist.md",
@@ -588,7 +588,7 @@
     },
     {
       "path": "kb/bot-studio/manage-variables.md",
-      "chunks": 32
+      "chunks": 34
     },
     {
       "path": "kb/bot-studio/message-nodes.md",
@@ -1012,6 +1012,10 @@
     },
     {
       "path": "kb/workflows/ctwa-to-bot-to-goals.md",
+      "chunks": 18
+    },
+    {
+      "path": "kb/workflows/variables-across-multiple-journeys.md",
       "chunks": 18
     },
     {
