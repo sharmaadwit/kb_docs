@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "created_at": "2026-03-14T12:35:13.796681+00:00",
+  "created_at": "2026-03-14T13:23:02.753042+00:00",
   "repo": "sharmaadwit/kb_docs",
   "branch": "main",
   "docs_path": "kb",
@@ -8,7 +8,7 @@
     "kb/analytics"
   ],
   "md_files": 254,
-  "chunks": 7058,
+  "chunks": 6939,
   "docs": [
     {
       "path": "kb/agent-assist/about-agent-assist.md",
@@ -28,7 +28,7 @@
     },
     {
       "path": "kb/agent-assist/chat-management-assignment-rules.md",
-      "chunks": 25
+      "chunks": 16
     },
     {
       "path": "kb/agent-assist/chat-management-auto-closed-time.md",
@@ -84,7 +84,7 @@
     },
     {
       "path": "kb/agent-assist/live-monitoring-dashboard-real-time-chat-analytics-and-performance-insights.md",
-      "chunks": 21
+      "chunks": 15
     },
     {
       "path": "kb/agent-assist/managing-chat-status-for-effective-workflow.md",
@@ -120,7 +120,7 @@
     },
     {
       "path": "kb/agent-assist/response-management-auto-replies-and-customer-satisfaction.md",
-      "chunks": 23
+      "chunks": 20
     },
     {
       "path": "kb/agent-assist/response-management-customer-satisfaction.md",
@@ -152,7 +152,7 @@
     },
     {
       "path": "kb/agent-assist/user-management-business-hours.md",
-      "chunks": 19
+      "chunks": 7
     },
     {
       "path": "kb/agent-assist/user-management-teams.md",
@@ -648,7 +648,7 @@
     },
     {
       "path": "kb/bot-studio/save-vs-save-deploy.md",
-      "chunks": 14
+      "chunks": 5
     },
     {
       "path": "kb/bot-studio/send-location-node.md",
@@ -680,7 +680,7 @@
     },
     {
       "path": "kb/bot-studio/test-your-bot.md",
-      "chunks": 27
+      "chunks": 15
     },
     {
       "path": "kb/bot-studio/text-node.md",
@@ -688,7 +688,7 @@
     },
     {
       "path": "kb/bot-studio/timeout-in-prompt-nodes.md",
-      "chunks": 29
+      "chunks": 7
     },
     {
       "path": "kb/bot-studio/trigger-event-node.md",
@@ -728,7 +728,7 @@
     },
     {
       "path": "kb/campaign-manager/campaign-analytics.md",
-      "chunks": 14
+      "chunks": 13
     },
     {
       "path": "kb/campaign-manager/campaign-listing-page.md",
@@ -776,7 +776,7 @@
     },
     {
       "path": "kb/channels/go-live-with-instagram.md",
-      "chunks": 13
+      "chunks": 8
     },
     {
       "path": "kb/channels/greeting-message.md",
@@ -816,7 +816,7 @@
     },
     {
       "path": "kb/channels/retain-customer-chat-history.md",
-      "chunks": 14
+      "chunks": 9
     },
     {
       "path": "kb/channels/security.md",
@@ -904,7 +904,7 @@
     },
     {
       "path": "kb/goals/goal-analytics.md",
-      "chunks": 14
+      "chunks": 13
     },
     {
       "path": "kb/goals/goals.md",
@@ -944,7 +944,7 @@
     },
     {
       "path": "kb/integrations/webhooks.md",
-      "chunks": 18
+      "chunks": 10
     },
     {
       "path": "kb/overview/about-projects.md",
@@ -1012,19 +1012,19 @@
     },
     {
       "path": "kb/workflows/agent-assist-availability-vs-auto-replies.md",
-      "chunks": 15
+      "chunks": 8
     },
     {
       "path": "kb/workflows/ctwa-to-bot-to-goals.md",
-      "chunks": 17
+      "chunks": 8
     },
     {
       "path": "kb/workflows/variables-across-multiple-journeys.md",
-      "chunks": 18
+      "chunks": 12
     },
     {
       "path": "kb/workflows/webhooks-to-delivery-analytics.md",
-      "chunks": 11
+      "chunks": 7
     }
   ],
   "chunking": {
