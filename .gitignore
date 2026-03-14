@@ -6,3 +6,12 @@ artifacts/
 *.pptx
 .antigravityignore
 kb/.DS_Store
+
+# Local-only non-markdown work should not be added by default.
+# Note: tracked files are not affected by .gitignore.
+github_kb_*.py
+kb_ingest.py
+UX_rule.md
+skills.md
+commit_policy.md
+.cursor/
