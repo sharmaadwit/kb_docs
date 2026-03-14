@@ -11,8 +11,7 @@ source_url: https://console-docs.gupshup.io/docs/teams
 **Module**: Agent Assist
 
 ## What this feature does
-- Navigate to the settings tab on your dashboard.
-Step 2: Creating a New Team
+Use **Teams** to group agents under a supervisor and define the **assignment policy inside a team** (e.g., Round Robin vs Load Balancer). Teams define **who belongs together**; they don’t define the full routing rules for every incoming chat.
 
 ## Exact UI path
 Agent Assist → Settings → User Management
@@ -34,7 +33,10 @@ Agent Assist → Settings → User Management
 
 ## Fields to configure
 - Add New Team
-- Assignment action (Team/Agent)
+- Team name
+- Supervisor
+- Agents (members)
+- Assignment type (None / Load Balancer / Round Robin)
 
 ## Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy** if available) to apply changes.
@@ -58,7 +60,8 @@ Agent Assist → Settings → User Management
 - _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._
 
 ## Module disambiguation docs
-- _Add 1–2 bullets distinguishing this feature from adjacent settings to reduce retrieval drift._
+- **Teams** define group membership + per-team assignment policy.
+- For **conditional assignment** (based on channel/tags/priority) to teams/agents, use **Settings → Chat Management → Assignment Rules**.
 
 ## Reference (from source)
 ### Overview

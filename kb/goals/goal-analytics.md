@@ -6,7 +6,11 @@ source_url: https://console-docs.gupshup.io/docs/goal-analytics
 **Module**: Goals
 
 ## Definition
-After creating a Goal and implementing within a journey, you can track it through Goal Analytics.
+Use **Goal Analytics** to view the **Goals module analytics dashboard** for a goal after you’ve implemented it in a journey. This page shows goal achievement, unique users, trends, and lets you export milestone/goal-level customer data.
+
+**Where to see goal analytics**: open **Goals → Goal Analytics** (goal analytics dashboard).
+
+If you’re asking **“Where do I see goal analytics?”** → open **Goals → Goal Analytics**.
 
 ## Procedure
 ### Exact UI path
@@ -16,16 +20,20 @@ Gupshup Console → Goals → Goal Analytics
 1. Open Gupshup Console.
 2. Go to **Goals**.
 3. Go to **Goal Analytics**.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+4. Open the goal you want to analyze (Analytics icon from the Goals dashboard, if applicable).
+5. Choose the date range (default is last 7 days).
+6. Review key metrics (Goal Achieved, Unique Users) and Trends.
+7. (Optional) Switch **Table View** on to see trends in a table.
+8. (Optional) Export customer data at milestone level or goal level.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
+- Trigger the goal in a test journey run, then confirm it appears in Goal Analytics.
 
 ### Fields to configure
 - _List the fields/inputs you must set in the UI (and expected format)._
 
 ### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
+- No save action is required; this is an analytics/reporting view.
 
 ### Troubleshooting
 - _Add common failure modes and how to fix them._
@@ -53,7 +61,8 @@ Gupshup Console → Goals → Goal Analytics
 - _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
 
 ## Module disambiguation docs
-- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
+- **Goal Analytics** is the **Goals module** reporting dashboard.
+- **Goal Node** is a Bot Studio journey node; it is not the analytics UI.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

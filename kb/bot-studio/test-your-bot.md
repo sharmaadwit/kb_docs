@@ -6,31 +6,41 @@ source_url: https://console-docs.gupshup.io/docs/test-your-bot
 **Module**: Bot Studio
 
 ## Definition
-Now you can Test your Bot on-the-go without the need to connect to Proxy or Webapp on different tabs.
+Use **Test your Bot** to **test and debug your bot before going live**. It lets you run a conversation in a widget and inspect **message logs / payloads** for each user message without switching tools.
+
+**Where to test your bot before go-live**: **Bot Studio → Journeys → Test your Bot** (Test Bot widget).
+
+If you’re asking **“How do I test my bot before going live?”** → open **Bot Studio → Journeys → Test your Bot** and use Message Log to debug.
 
 ## Procedure
 ### Exact UI path
-Gupshup Console → Bot Studio → Test your Bot
+Gupshup Console → Bot Studio → Journeys → Test your Bot
 
 ### Steps
 1. Open Gupshup Console.
 2. Go to **Bot Studio**.
-3. Go to **Test your Bot**.
-4. Test Bot feature is also equipped with a message log button across each user message on the Bot widget which will help to identify any errors or bugs in the bot design. This will incrementally reduce the efforts to debug a bot or fix issues without requiring a need to reach out to support. The message log is available for every user message only where it renders the payload generated after the user message is sent.
-5. Click **Save** (or **Save & Deploy**) to apply changes.
+3. Go to **Journeys**.
+4. Open **Test your Bot** (Test Bot widget).
+5. Send a message (and any required trigger inputs from the Starting Node).
+6. For a user message, open **Message Log** to inspect:
+   - **Basic Info** (nodes executed, variables updated)
+   - **Payload** (backend JSON generated)
 
 ### Validation / where to check
-- # Test your Bot
-- Now you can Test your Bot on-the-go without the need to connect to Proxy or Webapp on different tabs.
+- Confirm the journey starts as expected (Starting Node trigger inputs).
+- Confirm Message Log shows the expected node path and variable updates after each user message.
 
 ### Fields to configure
-- Message content
+- Starting Node trigger inputs (if required)
+- Journey variables (validate values via Message Log)
 
 ### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
+- Testing does not require a save action by itself. To test the latest journey changes, **Save** (and **Deploy** if required for channel testing) in Bot Studio.
 
 ### Troubleshooting
-- _Add common failure modes and how to fix them._
+- If the journey doesn’t start, confirm you entered the correct **Starting Node trigger inputs**.
+- If you don’t see expected steps, use Message Log → **Basic Info** to find where the path diverged.
+- If payloads look wrong, check Message Log → **Payload** and validate variable values and API responses.
 
 ### Prerequisites
 - _List required access, assets, and upstream setup needed before configuration._

@@ -6,7 +6,11 @@ source_url: https://console-docs.gupshup.io/docs/automated-campaign-analytics
 **Module**: Campaign Manager
 
 ## Definition
-For each completed Automated Campaign we show analytics in 2 levels:
+Use **Automated Campaign analytics** to measure automated campaign performance at two levels:
+- **Message Analytics** (aggregate across multiple WhatsApp Template nodes)
+- **Template node analytics** (template-level stats per message step)
+
+**Where to see campaign analytics for automated campaigns**: open **Campaign Manager → Automated Campaign analytics**.
 
 ## Procedure
 ### Exact UI path
@@ -16,16 +20,19 @@ Gupshup Console → Campaign Manager → Automated Campaign analytics
 1. Open Gupshup Console.
 2. Go to **Campaign Manager**.
 3. Go to **Automated Campaign analytics**.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+4. Select the automated campaign execution you want to analyze.
+5. Review **Message Analytics** (aggregate delivery and engagement metrics).
+6. Drill down into a **WhatsApp Template node** to view template-level stats.
+7. (Optional) Download response files at the aggregate level (About section) and template level.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
+- Run a small automated campaign and confirm analytics populate after completion.
 
 ### Fields to configure
 - _List the fields/inputs you must set in the UI (and expected format)._
 
 ### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
+- No save action is required; this is a reporting/analytics view.
 
 ### Troubleshooting
 - _Add common failure modes and how to fix them._

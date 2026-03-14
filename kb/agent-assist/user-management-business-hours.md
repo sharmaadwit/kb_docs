@@ -13,8 +13,12 @@ source_url: https://console-docs.gupshup.io/docs/user-management-business-hours
 ## What this feature does
 Agent Assist simplifies chat assignment by creating default business hours when a brand is established. The default business hours are set to operate 24 hours a day, 7 days a week. They are pre-mapped to the default team within the system. This means that as soon as agents are added to the platform, chats begin to be automatically assigned to them, ensuring a prompt response to customer inquiries.
 
+If you’re asking **“Where do I configure Business Hours for agent availability?”** → open **Agent Assist → Settings → User Management → Business Hours**.
+
+Business Hours define **agent availability windows** (working hours) used by Agent Assist for assignment/availability behavior.
+
 ## Exact UI path
-Agent Assist → Settings → User Management
+Agent Assist → Settings → User Management → Business Hours
 
 ## Setup path
 - Go to settings and click on "Business Hours."
@@ -27,7 +31,8 @@ Agent Assist → Settings → User Management
 5. Click "Add New" to configure business hours, including naming, time zone, and daily hours.
 
 ## Validation / where to check
-- _Run a quick test (new chat / assignment / workflow) and confirm expected behavior._
+- Confirm the team is considered **available** during the configured window.
+- Test a chat during business hours vs outside business hours and confirm assignment/behavior matches expectations.
 
 ## Fields to configure
 - Business Hours.

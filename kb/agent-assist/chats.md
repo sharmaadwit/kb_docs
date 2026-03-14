@@ -51,7 +51,8 @@ Agent Assist → Chats
 - _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._
 
 ## Module disambiguation docs
-- _Add 1–2 bullets distinguishing this feature from adjacent settings to reduce retrieval drift._
+- **Chats** is the inbox where agents work on conversations.
+- To change who receives a chat, use **Settings → Chat Management**.
 
 ## Reference (from source)
 ### Overview

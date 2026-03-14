@@ -11,10 +11,14 @@ source_url: https://console-docs.gupshup.io/docs/chat-management-assignment-rule
 **Module**: Agent Assist
 
 ## What this feature does
-Definition: Chat Management in Agent Assist refer to the tools and strategies used to streamline the process of handling customer chats, assigning them to the appropriate agents or teams, and maintaining service quality and efficiency.
+Use **Assignment Rules** to automatically **route chats to teams** (or specific agents) based on conditions like **channel** and **tags**. This is the primary place to configure **team routing** and who owns each incoming conversation.
+
+If you’re asking **“How do I set up assignment rules to route chats to a team?”** → create a rule, set conditions, and select the target team/agent.
+
+Assignment Rules determine which **Chats** inbox the conversation appears in (team/agent ownership).
 
 ## Exact UI path
-Agent Assist → Settings → Chat Management
+Agent Assist → Settings → Chat Management → Assignment Rules
 
 ## Setup path
 - Navigate to the "Settings" tab on the bottom left side of your Agent Assist dashboard.
@@ -26,27 +30,30 @@ Agent Assist → Settings → Chat Management
 3. Go to "Assignment Rules" in the "Settings" section.
 4. Select "Assignment Rules.".
 5. Click on the "Add New Rule" button to create a new rule.
-6. Add conditions to the rule, such as "Channel is equal to WhatsApp," to specify which chats the rule should apply to.
-7. Choose between "Sticky Assignment" or specify a "Team/Agent Name" to assign chats to.
+6. Add conditions (e.g., **Channel**, **Tags**) to specify which chats should be routed by this rule.
+7. Choose the **Team** (or **Agent**) to assign the chat to.
 8. Click "Save" to save the rule.
 9. Click **Save** to apply changes.
 
 ## Validation / where to check
-- _Run a quick test (new chat / assignment / workflow) and confirm expected behavior._
+- Send a **new test chat** and confirm it lands in the **expected team/agent inbox**.
+- If a chat is not assigned, check **Unassigned chats** and verify agents are available.
 
 ## Fields to configure
-- Channel is equal to WhatsApp,
-- Sticky Assignment
-- Team/Agent Name
-- Assignment action (Team/Agent)
-- Rule conditions (e.g., Channel, Tags)
-- API format you've created
+- **Rule name**
+- **Conditions** (e.g., **Channel**, **Tags**, or other configured fields)
+- **Assignment action**: assign to a **Team** or a specific **Agent**
+- **Sticky Assignment**: on/off (route reopened chats to the same agent)
+- **Rule order / priority** (ensure more specific rules run before the default rule)
+- **Default / catch-all rule** (routes anything that doesn’t match earlier rules)
 
 ## Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy** if available) to apply changes.
 
 ## Troubleshooting
-- _Add common failure modes and how to fix them._
+- If chats keep going to **Unassigned**, confirm at least one agent in the target team is **available/online**.
+- If nothing matches, confirm you created a **default/catch-all rule** at the end of the rule list.
+- If a rule doesn’t trigger, re-check the **conditions** (channel/tags) and rule order/priority.
 
 ## Prerequisites
 - _List required roles/access, teams, and any upstream configuration._
@@ -64,7 +71,8 @@ Agent Assist → Settings → Chat Management
 - _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._
 
 ## Module disambiguation docs
-- _Add 1–2 bullets distinguishing this feature from adjacent settings to reduce retrieval drift._
+- **Assignment Rules** decide **who gets the chat** (routing to team/agent).
+- **Chat Rules** decide **what happens to the chat** (automation/behavior), not routing.
 
 ## Reference (from source)
 ### Overview

@@ -6,7 +6,9 @@ source_url: https://console-docs.gupshup.io/docs/webhooks
 **Module**: Integrations
 
 ## Definition
-New Webhooks section in integrations providing ability to send specific events to these webhooks.
+Use **Webhooks** to subscribe to platform events (including **Delivery Events**) and send them to your **Callback URL**.
+
+If you’re asking **“How do I create a webhook for delivery events and set the callback URL?”** → create a webhook for **Delivery Events**, enter the **Callback URL**, and **Save**.
 
 ## Procedure
 ### Exact UI path
