@@ -1,14 +1,14 @@
 {
   "ok": true,
-  "created_at": "2026-03-14T09:37:28.896720+00:00",
+  "created_at": "2026-03-14T12:35:13.796681+00:00",
   "repo": "sharmaadwit/kb_docs",
   "branch": "main",
   "docs_path": "kb",
   "excluded": [
     "kb/analytics"
   ],
-  "md_files": 253,
-  "chunks": 7189,
+  "md_files": 254,
+  "chunks": 7058,
   "docs": [
     {
       "path": "kb/agent-assist/about-agent-assist.md",
@@ -647,6 +647,10 @@
       "chunks": 27
     },
     {
+      "path": "kb/bot-studio/save-vs-save-deploy.md",
+      "chunks": 14
+    },
+    {
       "path": "kb/bot-studio/send-location-node.md",
       "chunks": 33
     },
@@ -724,7 +728,7 @@
     },
     {
       "path": "kb/campaign-manager/campaign-analytics.md",
-      "chunks": 34
+      "chunks": 14
     },
     {
       "path": "kb/campaign-manager/campaign-listing-page.md",
@@ -772,7 +776,7 @@
     },
     {
       "path": "kb/channels/go-live-with-instagram.md",
-      "chunks": 30
+      "chunks": 13
     },
     {
       "path": "kb/channels/greeting-message.md",
@@ -804,7 +808,7 @@
     },
     {
       "path": "kb/channels/privacy-policy.md",
-      "chunks": 69
+      "chunks": 15
     },
     {
       "path": "kb/channels/react-native.md",
@@ -812,7 +816,7 @@
     },
     {
       "path": "kb/channels/retain-customer-chat-history.md",
-      "chunks": 27
+      "chunks": 14
     },
     {
       "path": "kb/channels/security.md",
@@ -900,7 +904,7 @@
     },
     {
       "path": "kb/goals/goal-analytics.md",
-      "chunks": 33
+      "chunks": 14
     },
     {
       "path": "kb/goals/goals.md",
@@ -940,7 +944,7 @@
     },
     {
       "path": "kb/integrations/webhooks.md",
-      "chunks": 33
+      "chunks": 18
     },
     {
       "path": "kb/overview/about-projects.md",
@@ -1020,7 +1024,7 @@
     },
     {
       "path": "kb/workflows/webhooks-to-delivery-analytics.md",
-      "chunks": 18
+      "chunks": 11
     }
   ],
   "chunking": {
