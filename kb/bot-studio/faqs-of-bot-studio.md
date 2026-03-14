@@ -57,6 +57,7 @@ Gupshup Console → Bot Studio → FAQs of Bot Studio
 ## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
+- For a direct **Save vs Save & Deploy** comparison, prefer `kb/bot-studio/save-vs-save-deploy.md`; this FAQ page is broader and should not be the primary compare source.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

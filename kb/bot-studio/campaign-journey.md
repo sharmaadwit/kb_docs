@@ -56,6 +56,7 @@ Gupshup Console → Bot Studio → Campaign Journey
 ## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
+- This page is about **Campaign Journey** behavior. For a dedicated explanation of **Save vs Save & Deploy**, prefer `kb/bot-studio/save-vs-save-deploy.md`.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

@@ -1,142 +1,73 @@
 source_url: https://console-docs.gupshup.io/docs/goal-analytics
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v11 -->
 # Goal Analytics
 
 **Module**: Goals
 
 ## Definition
-Use **Goal Analytics** to view the **Goals module analytics dashboard** for a goal after you’ve implemented it in a journey. This page shows goal achievement, unique users, trends, and lets you export milestone/goal-level customer data.
-
-**Where to see goal analytics**: open **Goals → Goal Analytics** (goal analytics dashboard).
-
-If you’re asking **“Where do I see goal analytics?”** → open **Goals → Goal Analytics**.
+- Use **Goal Analytics** to view conversion performance after a goal is implemented in a live bot journey.
+- **Goal Analytics** answers questions like:
+  - where to see goal conversions
+  - whether a goal fired
+  - which milestone was achieved
+  - how many unique users completed the goal
+- If you are asking **“Where do I view goal analytics for CTWA traffic after the campaign goes live?”** -> open **Goals -> Goal Analytics**.
 
 ## Procedure
 ### Exact UI path
-Gupshup Console → Goals → Goal Analytics
+Gupshup Console -> Goals -> Goal Analytics
 
 ### Steps
 1. Open Gupshup Console.
 2. Go to **Goals**.
-3. Go to **Goal Analytics**.
-4. Open the goal you want to analyze (Analytics icon from the Goals dashboard, if applicable).
-5. Choose the date range (default is last 7 days).
-6. Review key metrics (Goal Achieved, Unique Users) and Trends.
-7. (Optional) Switch **Table View** on to see trends in a table.
-8. (Optional) Export customer data at milestone level or goal level.
+3. Open **Goal Analytics**.
+4. Open the target goal from the Goals dashboard using the analytics icon if needed.
+5. Select the date range.
+6. Review **Goal Achieved**, **Unique Users**, **Trends**, and milestone-level progress.
+7. Use **Table View** if you need a tabular trend breakdown.
+8. Export milestone-level or goal-level customer data if you need to verify who converted.
 
 ### Validation / where to check
-- Trigger the goal in a test journey run, then confirm it appears in Goal Analytics.
-
-### Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
+- Trigger the goal in a controlled journey test and confirm the goal appears in **Goal Analytics**.
+- Check the milestone trend or export data to verify the correct user reached the expected conversion point.
+- If the goal should fire from CTWA traffic, confirm the source appears as the expected CTWA / campaign source in the export.
 
 ### Save / publish / deploy behavior
-- No save action is required; this is an analytics/reporting view.
+- Goal Analytics is a reporting view; there is no save action here.
+- If analytics are missing, validate that the upstream **Bot Studio** journey was **Save & Deploy**'d and the goal is implemented on the live path.
 
 ### Troubleshooting
-- _Add common failure modes and how to fix them._
+- If clicks are happening but no conversions appear, confirm the goal is implemented at the correct journey step, not only defined in Goals.
+- If the bot path works but Goal Analytics is empty, re-check the goal node or milestone implementation in the live journey.
+- If the wrong step seems to be firing the goal, run a controlled journey test and inspect which milestone count changes in Goal Analytics.
+- If data looks stale, re-check the selected date range before assuming the goal did not fire.
 
 ### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Goals**.
-- Go to **Goal Analytics**.
+- A goal already created in **Goals**.
+- The goal implemented in the relevant **Bot Studio** journey.
+- Live traffic or a test run that can reach the goal step.
 
 ## Options / variants
-- You can view Trends data in a tabular format by switching the on the Table View toggle.
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- **Goal Achieved**: number of completed goals.
+- **Unique Users**: unique users who completed the goal.
+- **Trends**: milestone progress over time.
+- **Export**: milestone-level or goal-level customer data.
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
-
-## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- Exported goal analytics can include:
+  - **DateTime**
+  - **Customer ID**
+  - **Source Type** such as Organic, Marketing, or Click to Chat (CTX)
+  - **Source Value** such as conversation ID, campaign ID, or CTWA ad ID
 
 ## Cross-module workflow docs
-- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+- CTWA / Campaign -> Bot Studio journey -> Goal hit -> Goal Analytics
+- Bot Studio live journey -> milestone reached -> Goal Analytics trend / export
 
 ## Module disambiguation docs
-- **Goal Analytics** is the **Goals module** reporting dashboard.
-- **Goal Node** is a Bot Studio journey node; it is not the analytics UI.
-
-## Reference (from source)
-<!-- procedural:v2 -->
-# Goal Analytics
-
-**Module**: Goals
-
-## Overview
-After creating a Goal and implementing within a journey, you can track it through Goal Analytics.
-
-## When to use
-_Add the primary scenarios and personas._
-
-## Setup path
-_In Console: add the navigation path (e.g., `Module → Settings → …`)._
-
-## Step-by-step configuration
-After creating a Goal and implementing within a journey, you can track it through Goal Analytics.
-
-You can access Goal Analytics for a Goal by clicking the Analytics (pie chart) icon on the Goals Dashboard.
-
-Analytics icon appears when you hover on the Goal
-
-## Goal Metrics & Visualizations
-
-Goal Analytics
-
-- The name and description of the Goal are present at the top of the screen.
-- You can select the time period for your Goal's analytics using the start date and end date filters. By default, Goal Analytics is displayed for the last 7 days.
-- By default, Goal Analytics is displayed for the last 7 days.
-- Goal Achieved represents the number of times all Milestones of that Goal were achieved.
-- Unique Users represents the number of unique customer IDs that achieved all Milestones of that Goal.
-- By default, Trends is a line graph that displays the time-interval spaced progress of the Milestones being achieved. Each Milestone is represented by a separate line in the graph. Hovering on the graph will display the exact count of each Milestone for that particular time interval.
-- Each Milestone is represented by a separate line in the graph.
-- Hovering on the graph will display the exact count of each Milestone for that particular time interval.
-- The data in Trends will be displayed in terms of Unique Users by choosing the "Unique Users" option from the Type dropdown. "Achieved" representing Milestone Achieved is selected by default in the dropdown.
-- "Achieved" representing Milestone Achieved is selected by default in the dropdown.
-- You can view Trends data in a tabular format by switching the on the Table View toggle.
-Trends - Table View
-
-- The Milestones table displays the Achieved & Unique Users counts of individual Milestones and their Trackers. Achieved represents the number of times the Milestone was achieved. Unique Users represents the number of unique customer IDs that achieved the Milestone.
-- Achieved represents the number of times the Milestone was achieved.
-- Unique Users represents the number of unique customer IDs that achieved the Milestone.
-Milestones Table
-
-## Exporting Customer Data from Goal Analytics
-
-### Milestone Level
-
-- The Export option next to each Milestone provides an Excel file containing a list of all values entered by users for the Trackers of that Milestone.
-- The Excel file has the following columns: DateTime displays the timestamp when the milestone was achieved. Customer ID displays the unique identifier of the customer on that channel. For example, phone number is the Customer ID for the WhatsApp channel. Source Type displays the source of the conversation - Organic, Marketing or Click to Chat (CTX). Source Value displays the Organic Conversation ID, the Marketing Campaign ID, or the Click to Chat Ad ID.
-- DateTime displays the timestamp when the milestone was achieved.
-- Customer ID displays the unique identifier of the customer on that channel. For example, phone number is the Customer ID for the WhatsApp channel.
-- Source Type displays the source of the conversation - Organic, Marketing or Click to Chat (CTX).
-- Source Value displays the Organic Conversation ID, the Marketing Campaign ID, or the Click to Chat Ad ID.
-- A column will be present for each Tracker with the Tracker Name as the column header and Tracker Values below it. All Tracker Values entered by a user for a single Milestone will appear in the same row.
-- All Tracker Values entered by a user for a single Milestone will appear in the same row.
-Downloaded Excel sheet sample
-
-### If a Milestone is skipped and a Milestone after it in the sequence of creation is achieved, the Tracker Values for that milestone are automatically filled with the respective Default Values against the user’s customer ID.
-
-For example, if a user achieves the third Milestone without achieving the first and second Milestones, the respective Default Values are set as Tracker Values entered by that user in the first and second Milestones.
-
-### Goal Level
-
-- The Export button at the top right of the Goal Analytics page provides an Excel file containing a list of all values entered by users for the Trackers of all Milestones present in the Goal.
-- Customer data from each Milestone is present in the Excel in a separate sub-sheet titled with the sequence number of the Milestone and the Milestone Name. For example, if the Milestone named "Qualified Lead" is 2nd in the sequence of Milestones within the Goal, the sub-sheet will be titled "2. Qualified Lead".
-- For example, if the Milestone named "Qualified Lead" is 2nd in the sequence of Milestones within the Goal, the sub-sheet will be titled "2. Qualified Lead".
-- The aggregate data from the Trends table is also present in a separate sub-sheet titled "Trends".
-
-## Business hours vs after-hours behavior
-_Not applicable / not specified._
-
-## Save/publish behavior
-_Not specified._
-
-**Last updated (from source)**: Updated 10 months ago
+- **Goal Analytics** is the **Goals** reporting dashboard for conversions.
+- **Campaign Analytics** is the **Campaign Manager** dashboard for campaign send, delivery, read, click, and failure metrics.
+- **Goal Analytics** tells you whether the intended conversion happened.
+- **Campaign Analytics** tells you how the campaign delivery performed.
+- **Goal Node** is implemented in **Bot Studio**; it is not the reporting screen.

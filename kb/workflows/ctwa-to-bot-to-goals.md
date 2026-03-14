@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/creating-and-analysing-a-click-to-whatsapp-campaign
 
-<!-- kb-golden:v10 -->
+<!-- kb-golden:v11 -->
 # Ctwa To Bot To Goals
 
 **Module**: Workflows
@@ -49,11 +49,14 @@ Gupshup Console → Goals
 - Confirm the user enters the correct **Bot Studio** journey path.
 - Confirm the configured **Goal** is hit for the successful conversion path.
 - Verify the result in **Goal Analytics**.
+- Check **Campaign Analytics** separately if the question is about delivery, reads, clicks, or failures.
 
 ### Troubleshooting
 - If the CTWA click opens WhatsApp but not the right bot flow, re-check the CTWA destination and the deployed Bot Studio entry flow.
 - If the bot behaves correctly but conversions are not counted, re-check where the **Goal** is implemented in the journey.
 - If the live experience is outdated, confirm Bot Studio changes were **Save & Deploy**'d, not just saved.
+- If the campaign delivered successfully but no conversion is visible, compare **Campaign Analytics** with **Goal Analytics** instead of troubleshooting CTWA setup only.
+- If you need to confirm the goal fires from the expected step, run a controlled test and inspect which milestone count changes in **Goal Analytics**.
 
 ### Save / publish / deploy behavior
 - Save/publish the CTWA campaign in **CTX**.
@@ -71,11 +74,14 @@ Gupshup Console → Goals
 ## Cross-module workflow docs
 - CTX campaign → WhatsApp click → Bot Studio journey → Goal hit → Goal Analytics
 - Campaign launch → live bot behavior → conversion measurement
+- Campaign Manager send → Campaign Analytics for delivery and click performance
 
 ## Module disambiguation docs
 - **CTX / CTWA** controls the ad/campaign entry.
 - **Bot Studio** controls the conversation logic after the click.
 - **Goals** controls conversion measurement; it does not control campaign routing or bot deployment.
+- **Campaign Analytics** tells you whether the campaign was delivered and clicked.
+- **Goal Analytics** tells you whether the post-click conversion actually happened.
 
 ## Reference (from source)
 - CTX: `kb/ctx/creating-and-analysing-a-click-to-whatsapp-campaign.md`

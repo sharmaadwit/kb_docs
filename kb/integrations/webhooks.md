@@ -1,223 +1,89 @@
 source_url: https://console-docs.gupshup.io/docs/webhooks
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v11 -->
 # Webhooks
 
 **Module**: Integrations
 
 ## Definition
-Use **Webhooks** to subscribe to platform events (including **Delivery Events**) and send them to your **Callback URL**.
-
-If you’re asking **“How do I create a webhook for delivery events and set the callback URL?”** → create a webhook for **Delivery Events**, enter the **Callback URL**, and **Save**.
+- Use **Webhooks** to send platform events to your **Callback URL**.
+- For delivery reporting and troubleshooting, focus on **Delivery Events** only.
+- If you are asking:
+  - **How do I set up delivery webhooks?** -> create a webhook for **Delivery Events** and save the **Callback URL**.
+  - **What fields/statuses should I store?** -> use the **Delivery Events** payload fields, not Profile or Template events.
+  - **Why are message IDs missing?** -> inspect the delivery payload reaching your endpoint and validate your downstream parser/mapping.
 
 ## Procedure
 ### Exact UI path
-Gupshup Console → Integrations → Webhooks
+Gupshup Console -> Integrations -> Webhooks
 
 ### Steps
 1. Open Gupshup Console.
-2. Log into your Gupshup Console.
-3. Navigate to your App > Integration > Webhooks.
-4. Click on create Webhook.
-5. Choose the module and respective events: WhatsApp Profile (Account) Template Campaign Manager and API Delivery events.
-6. Add your Callback URL and save.
+2. Go to **Integrations**.
+3. Open **Webhooks**.
+4. Click **Create Webhook**.
+5. Select **Delivery Events** if your goal is delivery tracking.
+6. Enter the **Callback URL**.
+7. Save the webhook.
+8. Trigger a test send and confirm delivery callbacks reach your endpoint.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
+- Confirm the receiver endpoint returns **HTTP 2xx**.
+- Confirm a delivery payload reaches your endpoint after a test send.
+- Confirm the event family is **Delivery Events**, not **Profile Events** or **Template Events**.
 
 ### Fields to configure
-- Callback URL
+- **Callback URL**
+- Event family: **Delivery Events**
 
 ### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
+- Saving the delivery webhook updates the active callback URL for that event family.
+- Only **one active URL** is supported for delivery events; saving another delivery-event webhook can overwrite the previous one.
 
 ### Troubleshooting
-- _Important Note: You can configure only 1 URL for Delivery Events. Additional webhooks created will update the URL and events will be sent to the latest URL saved. _
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Log into your Gupshup Console.
-- Navigate to your App > Integration > Webhooks.
+- If callbacks are missing, verify the **Callback URL** is reachable and returns **2xx** quickly.
+- If a new webhook seems to replace the old one, confirm whether another delivery-event webhook was saved later.
+- If message IDs or identifiers are missing downstream, inspect the raw payload first, then validate parser logic and field mapping in your receiver.
+- If you are seeing unrelated WABA/account/template data, you are likely consuming the wrong event family instead of **Delivery Events**.
 
 ## Options / variants
-- Choose the module and respective events: WhatsApp Profile (Account) Template Campaign Manager and API Delivery events
-- Add your Callback URL and save.
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- **Delivery Events**: for sent, delivered, read, and failed message status tracking.
+- **Profile / Account Events**: for WABA/account state changes.
+- **Template Events**: for template status/category updates.
 
 ## Field mapping / schemas
-Keys/fields called out in the source:
+### Delivery-only fields to store
+- **eventType**: delivery lifecycle status such as `SENT`, `DELIVERED`, `READ`, `FAILED`
+- **cause**: status/cause value from the delivery event
+- **eventTs**: event timestamp
+- **destAddr**: recipient address
+- **srcAddr**: source address
+- **externalId**: message/external identifier for dedupe or reconciliation
+- **errorCode**: failure code when present
 
-- review-event : Triggered when the submitted WABA is approved or rejected. Possible values: APPROVED, REJECTED
-- status-event : Triggered when the status of the WABA changes. Possible values:
-- pndn-event : Triggered when the status of a submitted Phone Number or Display Name is updated. Possible values:
-- tier-event : Notifies changes in the messaging tier of a phone number. Event values: ONBOARDING, UPGRADE, DOWNGRADE, UNFLAGGED, FLAGGED Tier levels: TIER_250, TIER_1K, TIER_10K, TIER_100K, TIER_UNLIMITED
-- capability-event : Provides updates on WABA's messaging capabilities. Includes:
-- waba_id : Unique identifier of the WhatsApp Business Account (WABA).
-- owner_business_id : Meta Business Manager ID that owns the WABA and associated assets.
-- ad_account_id : Meta Ad Account ID linked for running Click-to-WhatsApp ads or templates in MM Lite.
+### Delivery statuses to expect
+- **SENT**
+- **DELIVERED**
+- **READ**
+- **FAILED**
+
+### What not to mix into delivery schema answers
+- **review-event**
+- **status-event** for WABA/account state
+- **pndn-event**
+- **capability-event**
+- **template-event**
+- generic **account-event** payloads
 
 ## Field/payload examples
-- `{ "app": "jeet20", "timestamp": 1636986446609, "version": 2, "type": "account-event", "payload": { "type": "review-event", "payload": { "status": "approved", "actionDate": "January 31,2021" } } }`
-- `{ "app": "jeet20", "timestamp": 1636986446609, "version": 2, "type": "account-event", "payload": { "type": "status-event", "payload": { "status": "ACCOUNT_VIOLATION", "violation_type": "GAMBLING" } } }`
-- `{ "app": "<appname>", "appId": "<id>", "timestamp": 1713531530035, "version": 2, "type": "account-event", "payload": { "type": "status-event", "payload": { "status": "DISABLE", "actionDate": "February28,2024" } } }`
+- Delivery payload example:
+  - `{ "srcAddr": "919898989898", "channel": "WHATSAPP", "externalId": "4873914210717831261-128116432999904428", "cause": "SENT", "errorCode": "025", "destAddr": "91XXXXXXXXXX", "eventType": "SENT", "eventTs": 1680527479000 }`
 
 ## Cross-module workflow docs
-- Delivery Webhooks → Campaign Manager analytics
-- Webhook events → downstream CRM/warehouse ingestion
+- Integrations -> Delivery Webhooks -> downstream system / warehouse / CRM
+- Integrations -> Delivery Webhooks -> Campaign Analytics response-file reconciliation
 
 ## Module disambiguation docs
-- Integrations configure connectivity/events; they don’t change bot conversation logic (Bot Studio) by themselves.
-
-## Reference (from source)
-<!-- procedural:v2 -->
-# Webhooks
-
-**Module**: Integrations
-
-## Overview
-New Webhooks section in integrations providing ability to send specific events to these webhooks.
-
-## When to use
-_Add the primary scenarios and personas._
-
-## Setup path
-- Log into your Gupshup Console.
-- Navigate to your App > Integration > Webhooks.
-
-## Step-by-step configuration
-New Webhooks section in integrations providing ability to send specific events to these webhooks.
-
-The Webhooks feature allows you to subscribe to real-time events triggered by the Gupshup platform and receive updates on your callback URL. This enables you to automate your workflows, monitor system-level changes, and track message delivery statuses as they happen.
-
-How to configure Webhooks?
-
-- Log into your Gupshup Console.
-- Navigate to your App > Integration > Webhooks.
-- Click on create Webhook.
-- Choose the module and respective events: WhatsApp Profile (Account) Template Campaign Manager and API Delivery events
-- WhatsApp Profile (Account) Template
-- Profile (Account)
-- Template
-- Campaign Manager and API Delivery events
-- Delivery events
-- Add your Callback URL and save.
-_Important Note: You can configure only 1 URL for Delivery Events. Additional webhooks created will update the URL and events will be sent to the latest URL saved. _
-
-Once configured, the Gupshup platform will begin pushing events to your callback URL via HTTPS POST requests.
-
-You can configure your app to receive the following categories of webhook events:
-
-- Profile Events
-- Template Events
-- Delivery Events
-Event Types
-
-- Profile Events (Account Events) Profile or Account Events are triggered when a change or update occurs in your WhatsApp Business Account (WABA), such as: Business review status Policy violations WABA restrictions Tier changes Capability updates
-- Business review status
-- Policy violations
-- WABA restrictions
-- Tier changes
-- Capability updates
-🛠️ Event Types
-
-🧾 Sample Payload
-
-- Review event
-`{ "app": "jeet20", "timestamp": 1636986446609, "version": 2, "type": "account-event", "payload": { "type": "review-event", "payload": { "status": "approved", "actionDate": "January 31,2021" } } }`
-
-- status-event(account violation)
-`{ "app": "jeet20", "timestamp": 1636986446609, "version": 2, "type": "account-event", "payload": { "type": "status-event", "payload": { "status": "ACCOUNT_VIOLATION", "violation_type": "GAMBLING" } } }`
-
-- status-event(account disable)
-`{ "app": "<appname>", "appId": "<id>", "timestamp": 1713531530035, "version": 2, "type": "account-event", "payload": { "type": "status-event", "payload": { "status": "DISABLE", "actionDate": "February28,2024" } } }`
-
-- status-event(account restriction)
-`{ "app":"appname", "timestamp":1636986446609, "version":2, "type":"account-event", "phone":"9180xxxxxxxx", "payload":{ "type":"status-event", "payload":{ "status":"ACCOUNT_RESTRICTED", "restrictionInfo":[ { "restrictionType":"RESTRICTION_ADD_PHONE_NUMBER_ACTION", "expiration":1636986446609 }, { "restrictionType":"RESTRICTED_BIZ_INITIATED_MESSAGING", "expiration":1636986446609 }, { "restrictionType":"RESTRICTED_CUSTOMER_INITIATED_MESSAGING", "expiration":1636986446609 } ] } } }`
-
-- status-event(reinstate)
-`{ "app": "ShipxxxxxxxxxxxxxxxxxxWapp", "appId": "e4c9dbe0-b1ef-4add-97a2-a8fdba0666ad", "phone": "918xxxxxxxxx2", "timestamp": 1717061550941, "version": 2, "type": "account-event", "payload": { "type": "status-event", "payload": { "status": "REINSTATE", "actionDate": "30 May 2024" } } }`
-
-- pndn-event
-`{ "app": "jeet20", "timestamp": 1636986446609, "version": 2, "type": "account-event", "payload": { "type": "pndn-event", "payload": { "status": "approved/rejected", "rejectedReason": "INVALID_FORMAT" } } }`
-
-- tier-event
-`{ "app": "jeet20", "timestamp": 1636986446609, "version": 2, "type": "account-event", "payload": { "type": "tier-event", "payload": { "event": "onboarding/ upgrade/ downgrade /unflagged/ flagged", "oldLimit": "TIER_10K", "currentLimit": "TIER_100K" } } }`
-
-- capability-event
-`{ "app":"appname", "timestamp":1636986446609, "version":2, "type":"account-event", "payload":{ "type":"capability-event", "payload":{ "maxDailyConversationPerPhone":100, "maxPhoneNumbersPerBusiness":100 } } }`
-
-## Key : Description
-
-review-event : Triggered when the submitted WABA is approved or rejected. Possible values: APPROVED, REJECTED
-
-status-event : Triggered when the status of the WABA changes. Possible values:
-
-- ACCOUNT_VIOLATION: WABA flagged due to policy violation.
-- ACCOUNT_DISABLE: WABA has been disabled.
-- ACCOUNT_VERIFIED: App upgraded from Sandbox to Live.
-- ACCOUNT_RESTRICTED: WABA restricted due to policy issues. Restriction types: • RESTRICTION_ADD_PHONE_NUMBER_ACTION • RESTRICTED_BIZ_INITIATED_MESSAGING • RESTRICTED_CUSTOMER_INITIATED_MESSAGING (Includes restriction expiry)
-pndn-event : Triggered when the status of a submitted Phone Number or Display Name is updated. Possible values:
-
-- INVALID_FORMAT
-- NAME_END_CLIENT_VIOLATION
-- NAME_FORMAT_UNACCEPTABLE
-- NAME_NOT_CONSISTENT
-- NAME_INDIVIDUAL_ISSUE
-- NAME_ENDCLIENT_NOTRELATED
-tier-event : Notifies changes in the messaging tier of a phone number. Event values: ONBOARDING, UPGRADE, DOWNGRADE, UNFLAGGED, FLAGGED Tier levels: TIER_250, TIER_1K, TIER_10K, TIER_100K, TIER_UNLIMITED
-
-capability-event : Provides updates on WABA's messaging capabilities. Includes:
-
-- maxDailyConversationPerPhone: Max users a phone number can message daily.
-- maxPhoneNumbersPerBusiness: Max phone numbers allowed in a business. (Minimum limit shown across phone numbers)
-waba_id : Unique identifier of the WhatsApp Business Account (WABA).
-
-owner_business_id : Meta Business Manager ID that owns the WABA and associated assets.
-
-ad_account_id : Meta Ad Account ID linked for running Click-to-WhatsApp ads or templates in MM Lite.
-
-- Template Events Template events notify you of the status or category of your WhatsApp message templates. These are generated automatically by Gupshup when any change occurs.
-📌 Event Types
-
-🔁 Automatic Template Category Migration Starting June 1, 2024, if a template is incorrectly categorized, you will receive two events:
-
-- A category alert with current and correct category.
-- A final update once the change is applied.
-✅ First Payload (Alert)
-
-{ "type": "template-event", "payload": { "type": "category-update", "category": { "current": "MARKETING", "correct": "UTILITY" } } }
-
-📤 Second Payload (Confirmed Update) json
-
-{ "type": "template-event", "payload": { "type": "category-update", "category": { "old": "MARKETING", "new": "UTILITY" } } }
-
-🧾 Sample status-update Payload
-
-{ "type": "template-event", "payload": { "type": "status-update", "id": "4dacef15-6c04-12db-b393-6190ac567eff", "status": "approved", "elementName": "order_update", "languageCode": "en_US" } }
-
-- Delivery Events (Real-Time Message Status) Delivery webhooks notify you in real-time about message delivery statuses for Campaigns and API sent messages over WhatsApp. These events help track: Message sent Delivered Read Failed
-- Message sent
-- Delivered
-- Read
-- Failed
-Each event includes metadata about the conversation and pricing category (marketing, utility, authentication).
-
-🧾 Sample Payload
-
-{ "srcAddr": "919898989898", "channel": "WHATSAPP", "hsmTemplateId": "6330963", "externalId": "4873914210717831261-128116432999904428", "cause": "SENT", "errorCode": "025", "destAddr": "91XXXXXXXXXX", "eventType": "SENT", "eventTs": 1680527479000, "conversation": { "expiration_timestamp": 1680613560, "origin": { "type": "marketing" }, "id": "072a7f95683c6c2bffef5655c706c50d" }, "pricing": { "category": "marketing" } }
-
-🔑 Key Parameters Explained
-
-## Business hours vs after-hours behavior
-_Not applicable / not specified._
-
-## Save/publish behavior
-Key notes found in source:
-
-- - Add your Callback URL and save.
-
-**Last updated (from source)**: Updated 7 months ago
+- **Delivery Events** are for message lifecycle tracking.
+- **Profile / Account Events** are for WABA/account changes and should not be mixed into delivery schema answers.
+- **Template Events** are for template approval/category/status changes and should not be used as delivery-status evidence.

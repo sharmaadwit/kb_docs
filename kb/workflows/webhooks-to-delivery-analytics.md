@@ -1,74 +1,59 @@
 source_url: https://console-docs.gupshup.io/docs/webhooks
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v11 -->
 # Webhooks To Delivery Analytics
 
 **Module**: Workflows
 
 ## Definition
-Use this workflow when you want **delivery event data** (sent/delivered/read/failed) to flow from **delivery webhooks** into your downstream systems (warehouse/CRM) and/or be validated against **delivery analytics** in **Campaign Manager**.
-
-**Where to see delivery analytics**: open **Campaign Manager → Campaign Analytics** (delivery analytics dashboard + response files).
-
-If you’re asking **“After configuring delivery webhooks, where do I see delivery analytics?”** → use **Campaign Manager → Campaign Analytics** (and optionally download the response file for per-recipient delivery status).
-
-If you’re asking **“How do I connect Campaign Manager sends → Delivery Webhooks → analytics?”** → configure delivery webhooks in **Integrations**, send the campaign from **Campaign Manager**, then validate delivery outcomes in **Campaign Analytics**.
+- Use this workflow when you want **Delivery Events** from **Webhooks** to feed downstream systems and be reconciled against **Campaign Analytics**.
+- This workflow is useful for:
+  - delivery-status tracking
+  - webhook validation
+  - response-file reconciliation
+  - duplicate or missing event troubleshooting
 
 ## Procedure
 ### Exact UI path
-Gupshup Console → Integrations → Webhooks
-Gupshup Console → Campaign Manager → Campaign Analytics
-
-### Where to configure it
-- Configure delivery webhooks in **Integrations → Webhooks**.
-- Validate results in **Campaign Manager → Campaign Analytics** (and/or response files).
-
-### Prerequisites
-- A project/app in Gupshup Console with delivery events enabled for the relevant channel/campaign.
-- A reachable **Callback URL** (HTTPS endpoint) to receive webhook POSTs.
-- At least one sent campaign (or test traffic) to generate delivery events.
-
-### Setup path
-- Go to **Integrations → Webhooks**.
-- Create/Update a webhook for **Delivery Events** and set your **Callback URL**.
-- Go to **Campaign Manager → Campaign Analytics** to review delivery metrics (and download response files if needed).
+Gupshup Console -> Integrations -> Webhooks
+Gupshup Console -> Campaign Manager -> Campaign Analytics
 
 ### Steps
-1. Open Gupshup Console.
-2. Go to **Integrations → Webhooks**.
-3. Click **Create Webhook**.
-4. Select the module/events for **Delivery Events**.
-5. Enter the **Callback URL** and **Save**.
-6. Trigger a **test send** (or use an existing campaign) to generate delivery events.
-7. Go to **Campaign Manager → Campaign Analytics** and confirm delivery analytics metrics (Sent/Delivered/Read/Failed).
-8. If you need per-recipient status, download the **response file** from Campaign Analytics.
+1. Open **Integrations -> Webhooks**.
+2. Create or update a webhook for **Delivery Events**.
+3. Enter the **Callback URL** and save it.
+4. Trigger a test send or use a sent campaign to generate delivery events.
+5. Confirm the receiver endpoint logs the delivery payload.
+6. Open **Campaign Manager -> Campaign Analytics** for the same campaign.
+7. Compare aggregate statuses in Campaign Analytics with the delivery events received by your system.
 
-### Save/publish behavior
-- Saving the webhook updates the active callback URL for those events.
+### Validation / where to check
+- Confirm webhook callbacks are received by the endpoint.
+- Confirm the callback payload contains delivery fields such as status, identifiers, and timestamps.
+- Confirm Campaign Analytics shows matching sent/delivered/read/failed counts for the same campaign.
 
-### Validation
-- Confirm webhook callbacks are received by your endpoint (HTTP 2xx at receiver).
-- Confirm the campaign shows expected delivery counts in **Campaign Analytics**.
+### Save / publish / deploy behavior
+- Saving a new delivery webhook updates the active callback URL for delivery events.
+- Delivery events support only one active callback URL; a later save can overwrite the previous delivery-event URL.
 
-## Available options
-- Event types/modules vary by channel and feature (e.g., campaign delivery events vs account/template events).
-
-## Notes
-- Delivery Events typically allow **only one active URL**; saving a new one can override the previous URL.
-
-## Troubleshooting
-- If you’re not receiving callbacks, verify the **Callback URL** is reachable and returns **2xx** quickly.
-- If delivery counts don’t match, use the **response file** to find failed/dropped reasons per recipient.
+### Troubleshooting
+- If duplicate delivery events appear, dedupe using message/external identifier plus status and timestamp.
+- If message IDs are missing downstream, inspect the raw webhook payload before debugging analytics.
+- If Campaign Analytics has delivery data but your endpoint does not, re-check the callback URL and endpoint response.
+- If your answer or downstream schema includes WABA/account/template fields, you are using the wrong webhook event family.
 
 ## Field mapping / schemas
-- See `kb/integrations/webhooks.md` for event keys and sample payloads.
+- Recommended delivery fields to store:
+  - **eventType**
+  - **cause**
+  - **eventTs**
+  - **externalId**
+  - **destAddr**
+  - **srcAddr**
+  - **errorCode** when present
 
-## Cross-module workflows
-- Integrations (Webhooks) → Campaign Manager (Campaign Analytics / response files) → downstream analytics/CRM
-
-## Module disambiguation
-- **Delivery webhooks** are the event stream (near real-time).
-- **Campaign Analytics** is the console UI view (aggregate + downloadable response files).
-
-## Reference (from source)
-- Webhooks: `kb/integrations/webhooks.md`
+## Module disambiguation docs
+- **Webhooks** gives you near-real-time event delivery.
+- **Campaign Analytics** gives you the console view and response files for delivery outcomes.
+- Use **Webhooks** for ingestion and troubleshooting.
+- Use **Campaign Analytics** for verification and reporting.
