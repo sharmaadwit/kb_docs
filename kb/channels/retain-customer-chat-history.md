@@ -1,60 +1,37 @@
 source_url: https://console-docs.gupshup.io/docs/web-retain-customer-chat-history
 
-<!-- kb-golden:v11 -->
+<!-- kb-golden:v12 -->
 # Retain Customer Chat History
 
 **Module**: Channels
 
 ## Definition
-- Use this setting when you want repeat visitors to see previous web-widget conversations.
-- The feature stores up to **255** of the latest customer and bot messages in the web widget.
-- If you are asking **“Customers say old widget chats disappear after refresh. What settings control chat retention?”** -> check **Channels -> Retain Customer Chat History** first.
+This feature shows messages from a user's previous conversations in the Web chat widget for repeat visits from the same browser and device.
 
-## Procedure
-### Exact UI path
-Gupshup Console -> Channels -> Retain Customer Chat History
+## Where It Is Configured
+- A toggle is provided in the `Preferences` tab in `Settings`.
 
-### Where to configure it
-- Open the web channel settings.
-- Go to the chat-history retention setting in the widget preferences area.
+## Behavior
+- Up to `255` latest messages are shown.
+- Messages are stored on a `First In, First Out (FIFO)` basis.
+- Once enabled, messages are stored indefinitely and encrypted using `AES-GCM`.
+- By default, the toggle is disabled and customer chat history is not retained.
 
-### Prerequisites
-- Access to the **Web channel** configuration.
-- A web widget already installed so you can test the behavior after saving.
+## What Happens When Disabled
+- Disabling the toggle does not delete previous chat history that was already saved.
+- If the toggle is disabled, new messages are not saved.
 
-### Fields to configure
-- **Retain Customer Chat History** toggle
-- **Enable Authenticated Users** if your widget distinguishes logged-in users
+## Anonymous User Behavior
+- For anonymous users, retained chat history is stored in the browser's local storage and not cookies.
+- If an anonymous user clears browser local storage, chat history is deleted from the widget.
+- If an anonymous user clears browsing history and cookies, there is no impact on chat history.
 
-### Steps
-1. Open Gupshup Console.
-2. Go to **Channels**.
-3. Open **Retain Customer Chat History**.
-4. Enable the chat-history retention toggle.
-5. Enable **Authenticated Users** if required for your use case.
-6. Save the widget settings.
+## Related Pre-Chat Form Behavior
+From the `Pre-Chat Form` page:
 
-### Validation / where to check
-- Open the widget, exchange a few messages, then refresh or reopen the same widget.
-- Confirm the old conversation still appears.
-- Test both anonymous and authenticated-user behavior if your setup supports both.
+- If Retain Customer Chat History is enabled, the Pre-Chat Form is shown to new anonymous users only once.
+- Logged in users are shown the form every time regardless of this setting.
 
-### Troubleshooting
-- If old chats disappear, confirm the **Retain Customer Chat History** toggle is enabled.
-- If the issue affects anonymous users only, check whether browser local storage was cleared.
-- If the toggle is disabled, new messages will not be retained for future sessions.
-- Disabling the setting does not automatically remove messages that were already stored earlier.
-
-### Save / publish / deploy behavior
-- Save the widget configuration after changing retention settings.
-- Re-test in the same browser after saving.
-
-## Options / variants
-- Up to **255** latest messages are shown on a FIFO basis.
-- Anonymous-user history is stored in browser local storage.
-- Authenticated-user behavior can be configured separately.
-
-## Module disambiguation docs
-- **Retain Customer Chat History** controls whether old widget conversations remain visible.
-- **Pre-Chat Form** controls what the user must submit before starting a chat.
-- **Security** controls allowed domains; it does not store conversation history.
+## Source Notes
+- Primary source: `https://console-docs.gupshup.io/docs/web-retain-customer-chat-history`
+- Additional source: `https://console-docs.gupshup.io/docs/web-pre-chat-form`

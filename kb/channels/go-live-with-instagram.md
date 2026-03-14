@@ -1,59 +1,44 @@
 source_url: https://console-docs.gupshup.io/docs/go-live-with-instagram
 
-<!-- kb-golden:v11 -->
+<!-- kb-golden:v12 -->
 # Go Live with Instagram
 
 **Module**: Channels
 
 ## Definition
-- Use this page to connect Instagram to Gupshup and make the live bot available on Instagram DM.
-- After Instagram is live, your active **Bot Studio** journeys can respond on Instagram.
-- If you are asking **“Instagram is connected but incoming messages are not reaching the intended journey”** or **“WhatsApp works but Instagram does not”**, start with this page and then isolate channel connection, journey mapping, and live deployment.
+Use this page to connect an Instagram account and make Bot Studio journeys active on Instagram DM.
 
-## Procedure
-### Exact UI path
-Gupshup Console -> Channels -> Go Live with Instagram
+## Steps
+1. Log in to Gupshup Conversational Cloud and go to `Instagram` under `Channels`.
+2. Ensure that you have all the prerequisites and click `Go Live`.
+3. Log in with your Instagram credentials in the new window.
+4. Ensure that all permissions are selected and click `Allow`.
+5. After the success popup, click `Next` to access settings where Instagram-only features such as `Ice Breakers` and `Persistent Menu` can be enabled.
 
-### Prerequisites
-- Access to the Instagram channel setup in Gupshup Console.
-- Valid Instagram credentials and permissions required for connection.
-- A Bot Studio journey already ready for live traffic.
+## Channel Behavior
+- Once you go live, all journeys in Bot Studio will be active on Instagram DM.
+- By default, autoresponders are enabled once you go live with Instagram.
 
-### Steps
-1. Open Gupshup Console.
-2. Go to **Channels**.
-3. Open **Go Live with Instagram**.
-4. Click **Go Live**.
-5. Log in with the Instagram account when prompted.
-6. Allow the required permissions.
-7. Complete the connection flow and return to Gupshup.
-8. Open the channel settings and confirm Instagram-only features if needed.
-9. Re-test the live Instagram DM experience.
+## Related Instagram Journey Behavior
+From the linked Instagram docs:
 
-### Validation / where to check
-- Send a test DM from Instagram and confirm the bot responds.
-- Confirm the message enters the intended live Bot Studio journey.
-- If the same bot should work on WhatsApp and Instagram, verify both channels reach the expected live path after deployment.
+- For existing or ongoing conversations, the user enters the `Fallback Journey`.
+- For new conversations, the user enters the `Welcome Journey`.
 
-### Troubleshooting
-- If Instagram is connected but the wrong journey starts, verify the live Bot Studio journey and any channel-specific routing or mapping rules.
-- If WhatsApp works but Instagram does not, isolate the issue in this order: **channel connection -> channel mapping/config -> Bot Studio live journey**.
-- If Instagram still shows old behavior, confirm the bot changes were **Save & Deploy**'d after the channel was connected.
-- If the connection flow succeeds but no messages arrive, re-check permissions and whether the correct Instagram account was connected.
+The `Default Journeys` page also states:
 
-### Save / publish / deploy behavior
-- Connecting Instagram makes the channel live.
-- If the conversation logic changes later, use **Save & Deploy** in **Bot Studio** so Instagram receives the latest live journey behavior.
+- `Welcome Journey` is triggered when the user input does not match configured start-node events and the user is not already inside a journey, or the previous session has expired.
+- `Fallback Journey` is triggered when a node fails to proceed based on user input or technical failures.
 
-## Options / variants
-- Instagram-only features can be enabled after the channel goes live.
-- Shared bot logic can be used across WhatsApp and Instagram, but channel connection and mapping still need to be correct.
+## Multiple Channels
+The Instagram autoresponders page states that channel-based differentiation can be handled in `Welcome Journey` and `Fallback Journey` by using the system variable `channel` and adding conditions for values such as:
 
-## Cross-module workflow docs
-- Channels -> Instagram connection -> Bot Studio live journey -> Instagram DM response
-- WhatsApp channel live -> Instagram channel live -> verify shared journey behavior on both channels
+- `instagram`
+- `whatsapp`
+- `gipwebchannel`
 
-## Module disambiguation docs
-- **Channels** controls the Instagram connection and channel availability.
-- **Bot Studio** controls the live journey behavior after the Instagram message enters the bot.
-- A channel connection problem is different from a journey logic problem.
+## Source Notes
+- Primary source: `https://console-docs.gupshup.io/docs/go-live-with-instagram`
+- Additional sources used for journey behavior:
+  - `https://console-docs.gupshup.io/docs/default-journeys`
+  - `https://console-docs.gupshup.io/docs/instagram-autoresponders`

@@ -5,183 +5,69 @@ source_url: https://console-docs.gupshup.io/docs/chat-management-assignment-rule
 
 
 
-<!-- agent-assist-golden:v10 -->
+<!-- agent-assist-golden:v12 -->
 # Chat Management: Assignment Rules
 
 **Module**: Agent Assist
 
-## What this feature does
-Use **Assignment Rules** to automatically **route chats to teams** (or specific agents) based on conditions like **channel** and **tags**. This is the primary place to configure **team routing** and who owns each incoming conversation.
+## Definition
+`Assignment Rules` are part of chat management in Agent Assist and are used to assign chats to the appropriate agents or teams.
 
-If you’re asking **“How do I set up assignment rules to route chats to a team?”** → create a rule, set conditions, and select the target team/agent.
+- The `Default Assignment Rule` assigns chats to agents or teams without specific assignment preferences.
+- `Sticky Assignment` assigns reopened chats to the same agent who previously handled them.
+- `External Assignment Rule` allows CRM-based assignment through an external API.
 
-Assignment Rules determine which **Chats** inbox the conversation appears in (team/agent ownership).
-
-## Exact UI path
+## Procedure
+### Exact UI path
 Agent Assist → Settings → Chat Management → Assignment Rules
 
-## Setup path
-- Navigate to the "Settings" tab on the bottom left side of your Agent Assist dashboard.
-- Go to "Assignment Rules" in the "Settings" section.
-
-## Steps
+### Steps
 1. Open Agent Assist.
-2. Navigate to the "Settings" tab on the bottom left side of your Agent Assist dashboard.
-3. Go to "Assignment Rules" in the "Settings" section.
-4. Select "Assignment Rules.".
-5. Click on the "Add New Rule" button to create a new rule.
-6. Add conditions (e.g., **Channel**, **Tags**) to specify which chats should be routed by this rule.
-7. Choose the **Team** (or **Agent**) to assign the chat to.
-8. Click "Save" to save the rule.
-9. Click **Save** to apply changes.
+2. Navigate to the `Settings` tab on the bottom left side of the dashboard.
+3. Select `Assignment Rules`.
+4. Click `Add New Rule`.
+5. Specify the name of the rule.
+6. Add conditions, such as `Channel is equal to WhatsApp`.
+7. Choose either `Sticky Assignment` or a `Team/Agent Name`.
+8. Click `Save`.
 
-## Validation / where to check
-- Send a **new test chat** and confirm it lands in the **expected team/agent inbox**.
-- If a chat is not assigned, check **Unassigned chats** and verify agents are available.
+### Validation / where to check
+- Check whether the rule has been created and saved.
+- For automatic assignment, make sure an `Agent Handover Node` has been added on the bot journey.
 
-## Fields to configure
-- **Rule name**
-- **Conditions** (e.g., **Channel**, **Tags**, or other configured fields)
-- **Assignment action**: assign to a **Team** or a specific **Agent**
-- **Sticky Assignment**: on/off (route reopened chats to the same agent)
-- **Rule order / priority** (ensure more specific rules run before the default rule)
-- **Default / catch-all rule** (routes anything that doesn’t match earlier rules)
+### Fields to configure
+- `Rule name`
+- Rule conditions
+- `Sticky Assignment` or `Team/Agent Name`
 
-## Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy** if available) to apply changes.
-
-## Troubleshooting
-- If chats keep going to **Unassigned**, confirm at least one agent in the target team is **available/online**.
-- If nothing matches, confirm you created a **default/catch-all rule** at the end of the rule list.
-- If a rule doesn’t trigger, re-check the **conditions** (channel/tags) and rule order/priority.
+### Save / publish / deploy behavior
+- Click `Save` to save the rule.
 
 ## Prerequisites
-- _List required roles/access, teams, and any upstream configuration._
+- An `Agent Handover Node` on the bot journey is required for automatic assignment.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
+- `Default Assignment Rule`
+- `Sticky Assignment`
+- `External Assignment Rule`
+- Tag-based assignment
 
 ## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- If agents are not available when a chat comes for assignment, the system retries assignment for the next 30 minutes.
+- If agents become available during that time, the chat is assigned.
+- Otherwise the chat moves to unassigned chats and the supervisor must assign it manually.
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No payload schema is described on this page.
 
 ## Cross-module workflow docs
-- _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._
+- Agent Assist tags can be used in assignment rules.
+- Tags can also be mapped in the `Agent Handover` node in `Bot Studio`.
 
 ## Module disambiguation docs
-- **Assignment Rules** decide **who gets the chat** (routing to team/agent).
-- **Chat Rules** decide **what happens to the chat** (automation/behavior), not routing.
+- `Assignment Rules` handle team or agent assignment.
+- `Chat Rules` are a separate concept on the same source page.
+- `Sticky Assignment` controls reassignment behavior for reopened chats.
 
 ## Reference (from source)
-### Overview
-Section 1: Introduction
-
-### When to use
-- Chat management and assignment rules are crucial in ensuring that customer queries and requests are handled promptly, assigned to the right agents or teams, and adhere to service level agreements (SLAs).
-- The default assignment rule is useful for brands with no specific assignment preferences, as it ensures prompt chat assignment and minimizes manual configuration.
-- Tags play a significant role in chat assignment by allowing brands to direct chats to teams based on tags, making it easier to manage and assign chats efficiently.
-- Sticky Assignment enhances customer-agent relationships by ensuring that customers interact with the same agent when reopening chats, thereby improving the overall customer experience.
-- External Assignment Rules are beneficial for brands looking to align their CRM data with chat assignment, ensuring that customers are directed to the most appropriate agents based on CRM information.
-
-### Details
-Section 1: Introduction
-
-Definition: Chat Management in Agent Assist refer to the tools and strategies used to streamline the process of handling customer chats, assigning them to the appropriate agents or teams, and maintaining service quality and efficiency.
-
-Uses: Chat management and assignment rules are crucial in ensuring that customer queries and requests are handled promptly, assigned to the right agents or teams, and adhere to service level agreements (SLAs).
-
-Section 2: Default Assignment Rule
-
-Definition: The Default Assignment Rule is an automated rule that assigns chats to agents or teams without specific assignment preferences. It operates continuously, ensuring that chats are assigned as soon as agents are added.
-
-Uses: The default assignment rule is useful for brands with no specific assignment preferences, as it ensures prompt chat assignment and minimizes manual configuration.
-
-Steps to Customize Assignment Rules for Your Operations:
-
-Step 1: Accessing the Assignment Rules Page
-
-- Navigate to the "Settings" tab on the bottom left side of your Agent Assist dashboard.
-- Select "Assignment Rules."
-Step 2: Creating a New Rule
-
-- Click on the "Add New Rule" button to create a new rule.
-- Specify the name of the rule.
-Step 3: Adding Conditions to the Rule
-
-- Add conditions to the rule, such as "Channel is equal to WhatsApp," to specify which chats the rule should apply to.
-Step 4: Specifying Actions for the Rule
-
-- Choose between "Sticky Assignment" or specify a "Team/Agent Name" to assign chats to.
-- "Sticky Assignment" ensures that reopened chats go to the same agent.
-Step 5: Saving the Rule
-
-- Click "Save" to save the rule.
-Note: For automatic assignment to happen, Please make sure you have added Agent Handover Node on the Bot Journey
-
-Note: Whenever a chat comes for assignment and the agents are not available to take the chat then the system will retry the chat for assignment for next 30 minutes. If agents are available within that time then the chat will be assigned to them else the chat will move to unassigned chats. The Supervisor will then have to manually assign the chats to the agents
-
-Section 3: The Role of Tags in Assigning Chats
-
-Definition: Tags are labels or identifiers that can be applied to chats to categorize them based on specific criteria, such as team structure or bot journeys.
-
-Uses: Tags play a significant role in chat assignment by allowing brands to direct chats to teams based on tags, making it easier to manage and assign chats efficiently.
-
-Steps to Use Tags for Chat Assignment:
-
-Step 1: Create Tags
-
-- In Agent Assist, go to "Settings" > "Tags."
-- Create tags as per the teams or bot journeys you've defined.
-Step 2: Create Assignment Rules
-
-- Go to "Assignment Rules" in the "Settings" section.
-- In the condition, select "chat tags includes any of the following" and choose one of the created tags.
-- In the action, select the team to which you want to map the tag in the condition.
-Step 3: Map Tags in Bot Studio
-
-- In the agent handover node on a specific journey in Bot Studio, click on the tags dropdown and select the tag to map it with the journey.
-Section 4: Sticky Assignment
-
-Definition: Sticky Assignment is a feature that assigns reopened chats to the same agent who previously handled them, ensuring chat continuity.
-
-Uses: Sticky Assignment enhances customer-agent relationships by ensuring that customers interact with the same agent when reopening chats, thereby improving the overall customer experience.
-
-There are a few scenarios in which Sticky assignment works depending on the configuration:
-
-- If Sticky Assignment is disabled then if the chat is re-opening from resolve then the chat will go for re-assignment and it will try to match the assignment rules. If the chat matches with the assignment rules then the chat will be assigned to the agents according to the matched assignment rule
-- If Sticky assignment is set to Active Agent only then whenever the chat is re-opening from resolve then the system will check if the previously assigned agent is available. If the agent is available and online then the chat will be assigned to that same agent else it will get assigned to another available agent
-- If Sticky assignment is set to all agents then whenever the chat is re-opening from resolve then the system will assign the chat to the same agent who addressed the chat even if the agent is available or busy
-Note: When the chat re-opens from awaiting response or pending response then the chats remain assigned to the same agent even if the agent has logged out. This is to insure that the consistency between the customer and agent is maintained
-
-Section 5: External Assignment Rule
-
-Definition: The External Assignment Rule allows integration with Customer Relationship Management (CRM) systems to map customers to specific agents or account managers.
-
-Uses: External Assignment Rules are beneficial for brands looking to align their CRM data with chat assignment, ensuring that customers are directed to the most appropriate agents based on CRM information.
-
-Steps to Configure External Assignment Rule:
-
-Step 1: Go to Assignment Rules
-
-- In Agent Assist, go to "Assignment Rules."
-Step 2: Add Conditions
-
-- Add conditions based on your CRM data integration needs.
-Step 3: Specify Actions
-
-- Select "External Assignment" in the action.
-- Enter the API format you've created.
-- Execute and verify the response for a dummy value.
-Step 4: Optional - Forceful Assignment
-
-- If needed, choose to forcefully assign the chat to the agent, even if the agent is unavailable.
-Step 5: Set Fall-Back Team
-
-- Select a fall-back team to assign the chat if the API fails or the agent is unavailable.
-Note: To enable this feature, contact console-support@gupshup.io. The API doc can also be requested from support team
-
-Updated 10 months ago
-
-- Assignment Enhancements in Console 7.0
+- Tags can be created in `Settings > Tags` and then used in assignment-rule conditions.

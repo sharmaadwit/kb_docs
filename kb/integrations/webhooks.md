@@ -1,89 +1,66 @@
 source_url: https://console-docs.gupshup.io/docs/webhooks
 
-<!-- kb-golden:v11 -->
+<!-- kb-golden:v12 -->
 # Webhooks
 
 **Module**: Integrations
 
 ## Definition
-- Use **Webhooks** to send platform events to your **Callback URL**.
-- For delivery reporting and troubleshooting, focus on **Delivery Events** only.
-- If you are asking:
-  - **How do I set up delivery webhooks?** -> create a webhook for **Delivery Events** and save the **Callback URL**.
-  - **What fields/statuses should I store?** -> use the **Delivery Events** payload fields, not Profile or Template events.
-  - **Why are message IDs missing?** -> inspect the delivery payload reaching your endpoint and validate your downstream parser/mapping.
+The Webhooks feature lets you subscribe to real-time events triggered by the Gupshup platform and receive updates on your callback URL.
 
-## Procedure
-### Exact UI path
-Gupshup Console -> Integrations -> Webhooks
+## How To Configure
+1. Log into Gupshup Console.
+2. Navigate to `App > Integration > Webhooks`.
+3. Add your `Callback URL` and save.
+4. Choose the module and respective events:
+   - `WhatsApp Profile (Account)`
+   - `Template`
+   - `Campaign Manager`
+   - `API Delivery events`
+5. Click `Create Webhook`.
 
-### Steps
-1. Open Gupshup Console.
-2. Go to **Integrations**.
-3. Open **Webhooks**.
-4. Click **Create Webhook**.
-5. Select **Delivery Events** if your goal is delivery tracking.
-6. Enter the **Callback URL**.
-7. Save the webhook.
-8. Trigger a test send and confirm delivery callbacks reach your endpoint.
+## Important Note
+- You can configure only `1 URL` for `Delivery Events`.
+- Additional webhooks created for delivery events update the URL, and events are sent to the latest URL saved.
 
-### Validation / where to check
-- Confirm the receiver endpoint returns **HTTP 2xx**.
-- Confirm a delivery payload reaches your endpoint after a test send.
-- Confirm the event family is **Delivery Events**, not **Profile Events** or **Template Events**.
+## Event Categories
+### Delivery Events
+Delivery webhooks notify you in real time about message delivery statuses for Campaigns and API-sent WhatsApp messages.
 
-### Fields to configure
-- **Callback URL**
-- Event family: **Delivery Events**
+The source page lists:
+- `SENT`
+- `DELIVERED`
+- `READ`
+- `FAILED`
 
-### Save / publish / deploy behavior
-- Saving the delivery webhook updates the active callback URL for that event family.
-- Only **one active URL** is supported for delivery events; saving another delivery-event webhook can overwrite the previous one.
+Key parameters explained in the source:
+- `externalId`
+- `eventType`
+- `srcAddr`
+- `destAddr`
+- `conversation.id`
+- `conversation.expiration_timestamp`
+- `pricing.category`
 
-### Troubleshooting
-- If callbacks are missing, verify the **Callback URL** is reachable and returns **2xx** quickly.
-- If a new webhook seems to replace the old one, confirm whether another delivery-event webhook was saved later.
-- If message IDs or identifiers are missing downstream, inspect the raw payload first, then validate parser logic and field mapping in your receiver.
-- If you are seeing unrelated WABA/account/template data, you are likely consuming the wrong event family instead of **Delivery Events**.
+### Template Events
+Template events notify you of template status or category changes.
 
-## Options / variants
-- **Delivery Events**: for sent, delivered, read, and failed message status tracking.
-- **Profile / Account Events**: for WABA/account state changes.
-- **Template Events**: for template status/category updates.
+Examples listed in the source:
+- `status-update`
+- `category-update`
+- `quality-update`
 
-## Field mapping / schemas
-### Delivery-only fields to store
-- **eventType**: delivery lifecycle status such as `SENT`, `DELIVERED`, `READ`, `FAILED`
-- **cause**: status/cause value from the delivery event
-- **eventTs**: event timestamp
-- **destAddr**: recipient address
-- **srcAddr**: source address
-- **externalId**: message/external identifier for dedupe or reconciliation
-- **errorCode**: failure code when present
+### Profile Events (Account Events)
+Profile or Account events are triggered when a change occurs in the WhatsApp Business Account.
 
-### Delivery statuses to expect
-- **SENT**
-- **DELIVERED**
-- **READ**
-- **FAILED**
+Examples listed in the source:
+- `review-event`
+- `status-event`
+- `pndn-event`
+- `tier-event`
+- `capability-event`
 
-### What not to mix into delivery schema answers
-- **review-event**
-- **status-event** for WABA/account state
-- **pndn-event**
-- **capability-event**
-- **template-event**
-- generic **account-event** payloads
+## Delivery Payload Example
+The source page includes this example:
 
-## Field/payload examples
-- Delivery payload example:
-  - `{ "srcAddr": "919898989898", "channel": "WHATSAPP", "externalId": "4873914210717831261-128116432999904428", "cause": "SENT", "errorCode": "025", "destAddr": "91XXXXXXXXXX", "eventType": "SENT", "eventTs": 1680527479000 }`
-
-## Cross-module workflow docs
-- Integrations -> Delivery Webhooks -> downstream system / warehouse / CRM
-- Integrations -> Delivery Webhooks -> Campaign Analytics response-file reconciliation
-
-## Module disambiguation docs
-- **Delivery Events** are for message lifecycle tracking.
-- **Profile / Account Events** are for WABA/account changes and should not be mixed into delivery schema answers.
-- **Template Events** are for template approval/category/status changes and should not be used as delivery-status evidence.
+`{ "srcAddr": "919898989898", "channel": "WHATSAPP", "hsmTemplateId": "6330963", "externalId": "4873914210717831261-128116432999904428", "cause": "SENT", "errorCode": "025", "destAddr": "91XXXXXXXXXX", "eventType": "SENT", "eventTs": 1680527479000, "conversation": { "expiration_timestamp": 1680613560, "origin": { "type": "marketing" }, "id": "072a7f95683c6c2bffef5655c706c50d" }, "pricing": { "category": "marketing" } }`

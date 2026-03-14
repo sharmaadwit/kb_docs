@@ -1,16 +1,16 @@
 source_url: https://console-docs.gupshup.io/docs/test-your-bot
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v12 -->
 # Test your Bot
 
 **Module**: Bot Studio
 
 ## Definition
-Use **Test your Bot** to **test and debug your bot before going live**. It lets you run a conversation in a widget and inspect **message logs / payloads** for each user message without switching tools.
+Use `Test your Bot` to test and debug your bot while you build it on console.
 
-**Where to test your bot before go-live**: **Bot Studio → Journeys → Test your Bot** (Test Bot widget).
-
-If you’re asking **“How do I test my bot before going live?”** → open **Bot Studio → Journeys → Test your Bot** and use Message Log to debug.
+- The feature is available on the journey listing page in `Bot Studio > Journeys`.
+- You can use the widget to send messages and initiate a conversation using the configured trigger inputs on the starting node.
+- `Message Log` is available for every user message and renders the payload generated after the user message is sent.
 
 ## Procedure
 ### Exact UI path
@@ -20,95 +20,40 @@ Gupshup Console → Bot Studio → Journeys → Test your Bot
 1. Open Gupshup Console.
 2. Go to **Bot Studio**.
 3. Go to **Journeys**.
-4. Open **Test your Bot** (Test Bot widget).
-5. Send a message (and any required trigger inputs from the Starting Node).
-6. For a user message, open **Message Log** to inspect:
-   - **Basic Info** (nodes executed, variables updated)
-   - **Payload** (backend JSON generated)
+4. Open `Test your Bot`.
+5. Send messages using the widget.
+6. Use the configured trigger inputs on the starting node if required.
+7. Open `Message Log` for a user message.
+8. Review `Basic Info` and `Payload`.
 
 ### Validation / where to check
-- Confirm the journey starts as expected (Starting Node trigger inputs).
-- Confirm Message Log shows the expected node path and variable updates after each user message.
+- Check `Basic Info` to view detailed information about the journeys and nodes executed.
+- Check `Payload` to view the backend JSON payload generated after a user message is sent.
 
 ### Fields to configure
 - Starting Node trigger inputs (if required)
-- Journey variables (validate values via Message Log)
+- Message Log sections: `Basic Info` and `Payload`
 
 ### Save / publish / deploy behavior
-- Testing does not require a save action by itself. To test the latest journey changes, **Save** (and **Deploy** if required for channel testing) in Bot Studio.
-
-### Troubleshooting
-- If the journey doesn’t start, confirm you entered the correct **Starting Node trigger inputs**.
-- If you don’t see expected steps, use Message Log → **Basic Info** to find where the path diverged.
-- If payloads look wrong, check Message Log → **Payload** and validate variable values and API responses.
+- No save or publish action is described on this page.
 
 ### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
-
-### Setup path
-- Go to **Bot Studio**.
-- Go to **Test your Bot**.
+- Access to `Bot Studio > Journeys`.
+- A created journey that can be tested.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- `Message Log -> Basic Info`
+- `Message Log -> Payload`
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
-
-## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- `Payload` shows the backend JSON payload generated after a user message is sent.
 
 ## Cross-module workflow docs
-- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
-- Bot Studio journey → Observability via Webhooks
+- Bot Studio journey build -> Test your Bot -> debug before go-live
 
 ## Module disambiguation docs
-- **Save** stores changes; **Save & Deploy** publishes to live channels.
-- Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
+- `Test your Bot` is for testing and debugging during build time.
+- Analytics or channel go-live pages are separate from this testing widget.
 
 ## Reference (from source)
-<!-- procedural:v2 -->
-# Test your Bot
-
-**Module**: Bot Studio
-
-## Overview
-Now you can Test your Bot on-the-go without the need to connect to Proxy or Webapp on different tabs.
-
-## When to use
-_Add the primary scenarios and personas._
-
-## Setup path
-_In Console: add the navigation path (e.g., `Module → Settings → …`)._
-
-## Step-by-step configuration
-Now you can Test your Bot on-the-go without the need to connect to Proxy or Webapp on different tabs.
-
-Overview
-
-Journey Builder is equipped with a Test Bot functionality to help you Test and Debug your Bot while you build it on console. Test Bot feature is available for all console projects and can be found on the right top of the journey listing page in Bot Studio > Journeys.
-
-You can use the widget to send messages and initiate a conversation using the configured trigger inputs on the Starting Node of the created journeys.
-
-Test Bot feature is also equipped with a message log button across each user message on the Bot widget which will help to identify any errors or bugs in the bot design. This will incrementally reduce the efforts to debug a bot or fix issues without requiring a need to reach out to support. The message log is available for every user message only where it renders the payload generated after the user message is sent.
-
-Message Log
-
-Message Log consists of two sections viz. Basic Info and Payload. These two sections helps a Bot Designer or a Bot Dev to view detailed info of the Journeys and Nodes executed after the user message is sent.
-
-- Basic Info : This section contains the information in a structured manner showing the execution of each node inside a journey once a user message is sent. The tabs inside the Basic Info can be expanded to view more about about the execution of the node and the variables that were updated during the process.
-Basic Info : This section contains the information in a structured manner showing the execution of each node inside a journey once a user message is sent. The tabs inside the Basic Info can be expanded to view more about about the execution of the node and the variables that were updated during the process.
-
-- Payload : Payload Section will contain the backend JSON Payload that got generated post a user message is sent. The payload can also be copied to view separately.
-Payload : Payload Section will contain the backend JSON Payload that got generated post a user message is sent. The payload can also be copied to view separately.
-
-## Business hours vs after-hours behavior
-_Not applicable / not specified._
-
-## Save/publish behavior
-_Not specified._
-
-**Last updated (from source)**: Updated 10 months ago
+- Journey Builder is equipped with a Test Bot functionality to help you test and debug your bot while you build it on console.

@@ -1,18 +1,13 @@
 source_url: https://console-docs.gupshup.io/docs/goal-analytics
 
-<!-- kb-golden:v11 -->
+<!-- kb-golden:v12 -->
 # Goal Analytics
 
 **Module**: Goals
 
 ## Definition
-- Use **Goal Analytics** to view conversion performance after a goal is implemented in a live bot journey.
-- **Goal Analytics** answers questions like:
-  - where to see goal conversions
-  - whether a goal fired
-  - which milestone was achieved
-  - how many unique users completed the goal
-- If you are asking **“Where do I view goal analytics for CTWA traffic after the campaign goes live?”** -> open **Goals -> Goal Analytics**.
+- After creating a Goal and implementing it within a journey, you can track it through `Goal Analytics`.
+- You can access Goal Analytics for a goal by clicking the analytics icon on the Goals dashboard.
 
 ## Procedure
 ### Exact UI path
@@ -22,37 +17,29 @@ Gupshup Console -> Goals -> Goal Analytics
 1. Open Gupshup Console.
 2. Go to **Goals**.
 3. Open **Goal Analytics**.
-4. Open the target goal from the Goals dashboard using the analytics icon if needed.
+4. Click the analytics icon for the target goal from the Goals dashboard.
 5. Select the date range.
-6. Review **Goal Achieved**, **Unique Users**, **Trends**, and milestone-level progress.
-7. Use **Table View** if you need a tabular trend breakdown.
-8. Export milestone-level or goal-level customer data if you need to verify who converted.
+6. Review `Goal Achieved`, `Unique Users`, and `Trends`.
+7. Use `Table View` if you need trends in tabular format.
+8. Use export if you need customer data for milestones or the full goal.
 
 ### Validation / where to check
-- Trigger the goal in a controlled journey test and confirm the goal appears in **Goal Analytics**.
-- Check the milestone trend or export data to verify the correct user reached the expected conversion point.
-- If the goal should fire from CTWA traffic, confirm the source appears as the expected CTWA / campaign source in the export.
+- Check the graph hover state to view the exact count of each milestone for the selected time interval.
+- Check the milestones table for `Achieved` and `Unique Users` counts of individual milestones and their trackers.
+- Use the export file if you need milestone-level customer data.
 
 ### Save / publish / deploy behavior
-- Goal Analytics is a reporting view; there is no save action here.
-- If analytics are missing, validate that the upstream **Bot Studio** journey was **Save & Deploy**'d and the goal is implemented on the live path.
-
-### Troubleshooting
-- If clicks are happening but no conversions appear, confirm the goal is implemented at the correct journey step, not only defined in Goals.
-- If the bot path works but Goal Analytics is empty, re-check the goal node or milestone implementation in the live journey.
-- If the wrong step seems to be firing the goal, run a controlled journey test and inspect which milestone count changes in Goal Analytics.
-- If data looks stale, re-check the selected date range before assuming the goal did not fire.
+- Goal Analytics is a reporting view; no save action is described on this page.
 
 ### Prerequisites
 - A goal already created in **Goals**.
-- The goal implemented in the relevant **Bot Studio** journey.
-- Live traffic or a test run that can reach the goal step.
+- The goal implemented within a journey.
 
 ## Options / variants
-- **Goal Achieved**: number of completed goals.
-- **Unique Users**: unique users who completed the goal.
-- **Trends**: milestone progress over time.
-- **Export**: milestone-level or goal-level customer data.
+- `Trends` can be viewed in graph format or with the `Table View` toggle.
+- `Achieved` is selected by default in the dropdown.
+- `Type` can be changed to `Unique Users`.
+- Export is available at `Milestone Level` and `Goal Level`.
 
 ## Field mapping / schemas
 - Exported goal analytics can include:
@@ -60,6 +47,7 @@ Gupshup Console -> Goals -> Goal Analytics
   - **Customer ID**
   - **Source Type** such as Organic, Marketing, or Click to Chat (CTX)
   - **Source Value** such as conversation ID, campaign ID, or CTWA ad ID
+  - Tracker columns with tracker names and tracker values
 
 ## Cross-module workflow docs
 - CTWA / Campaign -> Bot Studio journey -> Goal hit -> Goal Analytics
@@ -68,6 +56,5 @@ Gupshup Console -> Goals -> Goal Analytics
 ## Module disambiguation docs
 - **Goal Analytics** is the **Goals** reporting dashboard for conversions.
 - **Campaign Analytics** is the **Campaign Manager** dashboard for campaign send, delivery, read, click, and failure metrics.
-- **Goal Analytics** tells you whether the intended conversion happened.
-- **Campaign Analytics** tells you how the campaign delivery performed.
+- **Goal Analytics** shows goal and milestone achievement data.
 - **Goal Node** is implemented in **Bot Studio**; it is not the reporting screen.

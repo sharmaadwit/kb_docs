@@ -1,89 +1,66 @@
-source_url: https://console-docs.gupshup.io/docs/creating-and-analysing-a-click-to-whatsapp-campaign
+source_url: https://console-docs.gupshup.io/docs/creating-a-tiktok-specific-bot-journey
 
-<!-- kb-golden:v11 -->
+<!-- kb-golden:v12 -->
 # Ctwa To Bot To Goals
 
 **Module**: Workflows
 
 ## Definition
-Use this workflow when you want to:
-- launch a **Click-to-WhatsApp (CTWA / CTX)** campaign
-- send the click into the correct **Bot Studio** journey
-- measure conversion using **Goals**
+This workflow combines:
 
-## Procedure
-### Exact UI path
-Gupshup Console → CTX / Campaign setup
-Gupshup Console → Bot Studio → Journey Builder
-Gupshup Console → Goals
+- connecting an ad journey to a CTWA campaign
+- measuring campaign delivery and clicks in Campaign Analytics
+- measuring conversion after goal implementation in Goal Analytics
 
-### Where to configure it
-- Configure the ad/campaign in **CTX**.
-- Configure the bot entry flow in **Bot Studio**.
-- Configure measurement in **Goals** / **Goal Analytics**.
+## Connect Bot To CTWA Campaign
+From the CTWA source page:
 
-### Prerequisites
-- Access to **CTX**, **Bot Studio**, and **Goals**.
-- A WhatsApp destination/campaign setup that can launch the bot flow.
-- A Bot Studio journey that is ready to receive the CTWA user entry.
-- A goal definition for the conversion event you want to measure.
+1. Click `Click to Chat Ads -> Ad Management -> Ad Campaigns`.
+2. Search for the campaign configured for TikTok to WhatsApp and click `View Ads`.
+3. Click `Connect Bot`, then click `Confirm`.
+4. In the bot setup page, select the `Ad Journey` and click `Publish`.
 
-### Fields to configure
-- **Campaign / ad destination**
-- **Bot journey / starting flow**
-- **Goal / milestone / conversion point**
+## Prepare The Ad Journey
+From the Bot Studio source page:
 
-### Steps
-1. Open Gupshup Console.
-2. In **CTX**, create or open the Click-to-WhatsApp campaign/ad.
-3. Configure the campaign so users land in the intended WhatsApp/bot entry point.
-4. In **Bot Studio**, open the target journey and confirm the entry/start flow is ready for CTWA users.
-5. Use **Save & Deploy** in Bot Studio so the live bot is ready before traffic is sent.
-6. In **Goals**, create or update the goal that should represent conversion.
-7. Implement the goal in the relevant Bot Studio journey path.
-8. Launch a test click from the CTWA campaign and complete the intended conversion path.
-9. Verify the goal/conversion appears in Goal Analytics.
+- Only `Ad Journeys` can be connected to CTWA ads.
+- To prepare one:
+  1. Go to `Bot Studio -> Journeys`.
+  2. Open `Ad Journeys`.
+  3. Click `+Create Ad Journey`.
+  4. Add a `Call and Return` action.
+  5. Select the desired user journey.
+  6. Click `Save and Deploy`.
 
-### Validation / where to check
-- Confirm the CTWA click opens the expected WhatsApp/bot experience.
-- Confirm the user enters the correct **Bot Studio** journey path.
-- Confirm the configured **Goal** is hit for the successful conversion path.
-- Verify the result in **Goal Analytics**.
-- Check **Campaign Analytics** separately if the question is about delivery, reads, clicks, or failures.
+## Campaign Analytics
+From `Campaign Analytics`:
 
-### Troubleshooting
-- If the CTWA click opens WhatsApp but not the right bot flow, re-check the CTWA destination and the deployed Bot Studio entry flow.
-- If the bot behaves correctly but conversions are not counted, re-check where the **Goal** is implemented in the journey.
-- If the live experience is outdated, confirm Bot Studio changes were **Save & Deploy**'d, not just saved.
-- If the campaign delivered successfully but no conversion is visible, compare **Campaign Analytics** with **Goal Analytics** instead of troubleshooting CTWA setup only.
-- If you need to confirm the goal fires from the expected step, run a controlled test and inspect which milestone count changes in **Goal Analytics**.
+- Available for campaigns that are `sent`.
+- Metrics shown include:
+  - `Targeted`
+  - `Sent`
+  - `Delivered`
+  - `Read`
+  - `Dropped`
+  - `Failed`
+  - `Unique Clicks`
+  - `Total Clicks`
+  - `Click Through Rate`
+- `Response file` gives a timewise summary of all delivery events for all phone numbers.
 
-### Save / publish / deploy behavior
-- Save/publish the CTWA campaign in **CTX**.
-- Use **Save & Deploy** in **Bot Studio** so the live bot receives traffic correctly.
-- Save the **Goal** configuration before validating analytics.
+## Goal Analytics
+From `Goal Analytics`:
 
-## Options / variants
-- CTWA / CTX campaign setup
-- Bot entry flow / journey selection
-- Goal definition / milestone-based conversion measurement
+- After creating a Goal and implementing it within a journey, you can track it through Goal Analytics.
+- You can access Goal Analytics by clicking the analytics icon on the Goals dashboard.
+- Goal Analytics shows:
+  - `Goal Achieved`
+  - `Unique Users`
+  - `Trends`
+  - milestone-level exports
 
-## Field mapping / schemas
-- No single schema is defined on this workflow page; see the linked CTX, Bot Studio, and Goals pages for module-specific fields.
-
-## Cross-module workflow docs
-- CTX campaign → WhatsApp click → Bot Studio journey → Goal hit → Goal Analytics
-- Campaign launch → live bot behavior → conversion measurement
-- Campaign Manager send → Campaign Analytics for delivery and click performance
-
-## Module disambiguation docs
-- **CTX / CTWA** controls the ad/campaign entry.
-- **Bot Studio** controls the conversation logic after the click.
-- **Goals** controls conversion measurement; it does not control campaign routing or bot deployment.
-- **Campaign Analytics** tells you whether the campaign was delivered and clicked.
-- **Goal Analytics** tells you whether the post-click conversion actually happened.
-
-## Reference (from source)
-- CTX: `kb/ctx/creating-and-analysing-a-click-to-whatsapp-campaign.md`
-- Bot Studio: `kb/bot-studio/getting-started-with-bot-studio.md`
-- Goals: `kb/goals/creating-goals.md`, `kb/goals/goal-analytics.md`
+## Source Notes
+- CTWA campaign source: `https://console-docs.gupshup.io/docs/creating-a-tiktok-specific-bot-journey`
+- Ad-journey source: `https://console-docs.gupshup.io/docs/connecting-ad-to-bot-in-gupshup-console`
+- Campaign analytics source: `https://console-docs.gupshup.io/docs/campaign-analytics`
+- Goal analytics source: `https://console-docs.gupshup.io/docs/goal-analytics`

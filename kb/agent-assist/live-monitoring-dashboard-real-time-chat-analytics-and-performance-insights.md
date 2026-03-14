@@ -5,74 +5,75 @@ source_url: https://console-docs.gupshup.io/docs/live-monitoring-dashboard-20
 
 
 
-<!-- agent-assist-golden:v10 -->
+<!-- agent-assist-golden:v12 -->
 # Live Monitoring Dashboard: Real-Time Chat Analytics & Performance Insights
 
 **Module**: Agent Assist
 
-## What this feature does
-Use the **Live Monitoring Dashboard** to monitor **real-time chat analytics** in Agent Assist: chat volume, queue/wait time, agent performance, and SLA/response-time health. This is the primary **real-time dashboard** for support operations.
+## Definition
+The live monitoring dashboard provides real-time insights into customer support operations.
 
-**Where to monitor live chat analytics**: open **Agent Assist → Insights → Live Monitoring Dashboard**.
+- It is organized into sections covering chat flows, agent performance, and system efficiency.
+- It includes real-time chat metrics, agent performance tracking, wait times analysis, and customer feedback insights.
 
-If you’re asking **“Where can I monitor live chat analytics?”** → open **Agent Assist → Insights → Live Monitoring Dashboard**.
-
-## Exact UI path
+## Procedure
+### Exact UI path
 Agent Assist → Insights → Live Monitoring Dashboard
 
-## Setup path
-- Open **Agent Assist**.
-- Go to **Insights**.
-- Open **Live Monitoring Dashboard**.
-
-## Steps
+### Steps
 1. Open Agent Assist.
 2. Go to **Insights**.
 3. Open **Live Monitoring Dashboard**.
-4. Review real-time panels for chat volume, wait time, and agent performance.
+4. Review the dashboard sections and metrics.
 
-## Validation / where to check
-- Send a test chat and confirm it appears in the live monitoring/real-time views.
-- Cross-check agent availability and queue/wait time changes after assignments.
+### Validation / where to check
+- Check `Real-Time Monitoring Data` for current chat metrics.
+- Check `Agent Status Overview` for active, busy, and offline agents.
+- Check `Wait Time Analytics` for average and maximum wait times.
+- Check `Daily Chat Creation Trends` and `Key Performance Indicators`.
 
-## Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
+### Fields to configure
+- No configurable fields are described on this page.
 
-## Save / publish / deploy behavior
-- _No save/publish step is required for this page unless explicitly stated in the UI._
-
-## Troubleshooting
-- _Add common failure modes and how to fix them._
+### Save / publish / deploy behavior
+- This page is described as a live dashboard that updates in real time.
 
 ## Prerequisites
-- _List required roles/access, teams, and any upstream configuration._
+- Access to Agent Assist insights.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- `Real-Time Monitoring Data`
+- `Agent Status Overview`
+- `Wait Time Analytics`
+- `Daily Chat Creation Trends`
+- `Key Performance Indicators`
+- `Agent & Team Performance Summary`
+- `Customer Feedback Integration`
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- Real-time chat metrics shown include:
+  - `Ongoing Chats`
+  - `Bot Chats`
+  - `No Rule Matched`
+  - `Waiting for Assignment`
+  - `Open Chats (Assigned)`
+  - `Awaiting Response`
+  - `Pending`
+- Agent status metrics shown include:
+  - `Active Agents`
+  - `Busy Agents`
+  - `Offline Agents`
+- Response metrics shown include:
+  - `Average First Response Time`
+  - `Average Response Time`
+  - `Average Resolution Time`
 
 ## Cross-module workflow docs
-- _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._
+- Live Monitoring can be used alongside assignment-rule monitoring because the dashboard includes `No Rule Matched` and `Waiting for Assignment`.
 
 ## Module disambiguation docs
-- **Live Monitoring Dashboard** = real-time operational view (Agent Assist).
-- **Insights dashboards** (Agent/Chat summaries) are reporting views; they may lag behind real-time monitoring.
+- `Live Monitoring Dashboard` is the real-time operational dashboard.
+- It is different from static or separate reporting views because this page updates in real time.
 
 ## Reference (from source)
-### Overview
-Comprehensive guide to the live monitoring dashboard featuring real-time chat metrics, agent performance tracking, wait times analysis, and customer feedback insights for optimal customer support management.
-
-### When to use
-_Add the primary scenarios and personas._
-
-### Details
-Comprehensive guide to the live monitoring dashboard featuring real-time chat metrics, agent performance tracking, wait times analysis, and customer feedback insights for optimal customer support management.
-
-# Live Monitoring Dashboard Overview
-
-The live monitoring dashboard provides comprehensive real-time insights into your customer support operations. This powerful tool is organized into four main sections that give you complete visibility into chat flows, agent performance, and system efficiency.
+- The live monitoring dashboard updates in real-time.
