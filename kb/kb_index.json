@@ -1,1041 +1,260 @@
 {
-  "ok": true,
-  "created_at": "2026-03-14T14:56:00.848770+00:00",
-  "repo": "sharmaadwit/kb_docs",
-  "branch": "main",
-  "docs_path": "kb",
-  "excluded": [
-    "kb/analytics"
-  ],
-  "md_files": 254,
-  "chunks": 412,
-  "docs": [
-    {
-      "path": "kb/agent-assist/about-agent-assist.md",
-      "chunks": 0
-    },
-    {
-      "path": "kb/agent-assist/ai-management-alpha.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/assignment-enhancements-in-console-7-0.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/campaign-and-ctx-ad-preview.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/chat-management-assignment-rules.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/agent-assist/chat-management-auto-closed-time.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/agent-assist/chat-management-chat-rules.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/chat-management-sla.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/chats.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/downloading-chat-transcripts-for-customer-conversations.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/agent-assist/efficient-chat-navigation-for-different-user-roles-through-views.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/exploring-insights-and-exporting-raw-data.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/identifying-chat-channels-with-ease.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/agent-assist/insights-agent-summary.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/agent-assist/insights-agent-timesheet.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/agent-assist/insights-chat-summary.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/agent-assist/insights-customer-feedback-dashboard.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/agent-assist/insights-team-summary.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/agent-assist/live-monitoring-dashboard-real-time-chat-analytics-and-performance-insights.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/managing-chat-status-for-effective-workflow.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/agent-assist/others-agent-status.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/others-canned-responses.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/others-chat-fields.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/others-customer-fields.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/agent-assist/others-tags.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/others-views.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/others-webhooks.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/response-management-auto-replies-and-customer-satisfaction.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/response-management-customer-satisfaction.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/sending-marketing-templates-from-agent-assist.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/sending-templates-after-the-24-hour-window.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/agent-assist/settings.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/simplify-your-search-with-global-search.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/streamlining-your-workflow-with-bulk-actions.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/underlying-raw-data-for-chat-summary.md",
-      "chunks": 4
-    },
-    {
-      "path": "kb/agent-assist/user-management-business-hours.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/user-management-teams.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/agent-assist/user-management-users.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/agent-assist/what-happens-if-a-chat-doesn-t-match-with-any-assignment-rule.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ai-admin/ace-and-agentic-llm-overview.md",
-      "chunks": 0
-    },
-    {
-      "path": "kb/ai-admin/agent-personality-developer-mode.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ai-admin/ai-agent-guardrails-developer-mode.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ai-admin/ai-agents-developer-mode.md",
-      "chunks": 4
-    },
-    {
-      "path": "kb/ai-admin/ai-enhanced-description-writing.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ai-admin/backward-compatibility-for-existing-ai-journeys.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ai-admin/catalog-training.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ai-admin/content-tags.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ai-admin/content-training.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ai-admin/content-untraining.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ai-admin/creating-a-workspace.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ai-admin/document-training.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ai-admin/entity-creation.md",
-      "chunks": 3
-    },
-    {
-      "path": "kb/ai-admin/entity-description.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ai-admin/evaluate.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ai-admin/intent-and-entity.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ai-admin/intent-creation.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ai-admin/intent-description.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ai-admin/llm-consumption.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ai-admin/monitoring.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ai-admin/naming-guidelines-for-intent-and-entity.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ai-admin/settings-developer-mode.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ai-admin/settings.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ai-admin/skill-prompt-enhancer-developer-mode.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ai-admin/skills-developer-mode.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ai-admin/teach-csv-file.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ai-admin/teach-utterance-untraining.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ai-admin/teach.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ai-admin/text-training.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ai-admin/tools-developer-mode.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ai-admin/website-re-training-scheduler-developer-mode.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ai-admin/website-training.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ai-admin/workspace-audit.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ai-admin/workspace-validation.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ai-admin/workspace.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio-analytics/ai-analytics.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio-analytics/conversational-path.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio-analytics/dashboard.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio-analytics/exit-nodes.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio-analytics/filters-in-bot-analytics.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio-analytics/inline-analytics.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio-analytics/journey-tracking.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/about-bot-studio.md",
-      "chunks": 0
-    },
-    {
-      "path": "kb/bot-studio/action-nodes.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/ad-journey.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/address-node.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/agent-transfer-node.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/ai-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/ai-trigger-event.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/api-node-http-status-code-branching.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/api-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/api-timeout-default-to-10-secs.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/audio-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/block-templates.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/bot-constants-in-jb.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/call-and-return-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/callback-url-event-on-starting-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/campaign-journey.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/carousel-and-lto-template.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/carousels.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/clear-context-node-gupshup-dev-access-only.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/code-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/condition-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/configuration-journey.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/controls-on-bot-studio-canvas.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/cta-url-button-node.md",
-      "chunks": 5
-    },
-    {
-      "path": "kb/bot-studio/custom-document-name.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/customer-360-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/date-node.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/date-prompt-validation-enhancement.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/default-journeys.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/delay-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/document-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/dynamic-carousel-cta-url-qr.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/dynamic-carousel-node.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/dynamic-image-url-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/email-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/enhanced-list-node-dynamic.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/expression-library-in-journey-builder-canvas.md",
-      "chunks": 4
-    },
-    {
-      "path": "kb/bot-studio/extracting-and-manipulating-data-using-expression-library-functions-instead-of-code-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/faqs-of-bot-studio.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/free-text-node.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/functions-from-a-d.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/functions-from-e-h.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/functions-from-i-l.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/functions-from-m-q.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/functions-from-r-u.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/functions-from-v-z.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/getting-started-with-bot-studio.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/goal-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/gupshup-journey-builder-legacy-vs-v2-vs-pro.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/how-do-the-elements-of-bot-studio-work-together.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/how-to-create-whatsapp-static-flows.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/how-to-trigger-a-user-journey.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/image-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/inactivity-nudge-for-location-request-node.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/journey-builder-platform-upgrade-and-node-deprecation.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/journey-canvas-controls.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/journey-settings.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/json-handler-instead-of-code-node.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/json-handler.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/list-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/list-of-functions.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/location-request-node.md",
-      "chunks": 3
-    },
-    {
-      "path": "kb/bot-studio/manage-api.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/manage-variables.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/message-nodes.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/message-template.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/modify-variable-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/multi-journey-user-journeys.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/nodes.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/number-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/operations.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/phone-node.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/bot-studio/proactive-persistent-message-sticky-journey-upgrade.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/prompt-nodes.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/quick-reply.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/regex-validation-in-prompt-nodes.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/reply-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/save-save-and-deploy.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/save-vs-save-deploy.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/send-location-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/skip-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/starting-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/starting-nodes.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/stateful-buttons-for-list-and-quick-replies.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/sticker-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/test-bot-widget-on-jb-canvas.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/test-your-bot.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/text-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/timeout-in-prompt-nodes.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/trigger-event-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/video-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/wait-for-event.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/whatsapp-carousel-message-using-the-send-message-node.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/whatsapp-flows-dynamic.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/bot-studio/whatsapp-flows-static-dynamic.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/campaign-manager/about-campaign-manager.md",
-      "chunks": 0
-    },
-    {
-      "path": "kb/campaign-manager/automated-campaign-analytics.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/campaign-manager/automated-campaign.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/campaign-manager/campaign-analytics.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/campaign-manager/campaign-listing-page.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/campaign-manager/creating-a-new-campaign.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/campaign-manager/how-to-access-campaign-manager.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/campaign-manager/how-to-measure-click-through-rates.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/campaign-manager/sending-an-automated-campaign.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/channels/about-whatsapp.md",
-      "chunks": 0
-    },
-    {
-      "path": "kb/channels/android-native.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/channels/autoresponders.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/channels/before-you-begin.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/channels/chat-aesthetics.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/channels/chat-widget-functions.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/channels/go-live-with-instagram.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/channels/greeting-message.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/channels/ice-breakers.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/channels/inbound-messages-and-events.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/channels/ios-native.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/channels/mobile-sdks-beta.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/channels/persistent-menu.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/channels/pre-chat-form.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/channels/privacy-policy.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/channels/react-native.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/channels/retain-customer-chat-history.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/channels/security.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/channels/sync-browser-login-with-your-chat-widget.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/channels/unlinking-your-instagram-account.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/channels/web.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/channels/whatsapp-business-api.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ctx/connecting-ad-to-bot-in-gupshup-console.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ctx/connecting-fb-ad-account-to-gupshup-ads-management.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ctx/creating-a-chatbot-journey.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ctx/creating-a-click-to-whatsapp-ad-on-ttam.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ctx/creating-a-ctwa-ad-on-meta-ads-manager.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ctx/creating-a-tiktok-specific-bot-journey.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ctx/creating-and-analysing-a-click-to-whatsapp-campaign.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ctx/ctx-goal-nodes-and-conversions-api-adding-to-the-journey.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ctx/insights-and-analytics.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ctx/meta-ads-to-whatsapp.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ctx/onboarding-tiktok-ads-manager-to-gupshup.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/ctx/setting-up-retargeting-post-go-live.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ctx/testing-and-ctwa-go-live.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/ctx/tiktok-to-whatsapp.md",
-      "chunks": 3
-    },
-    {
-      "path": "kb/extension/overview-of-extensions.md",
-      "chunks": 0
-    },
-    {
-      "path": "kb/goals/creating-goals.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/goals/goal-analytics.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/goals/goals.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/goals/implementing-goals.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/goals/lead-generation.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/goals/ways-to-use-goals.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/integrations/about-integrations.md",
-      "chunks": 0
-    },
-    {
-      "path": "kb/integrations/clevertap-integration.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/integrations/custom-integrations.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/integrations/moengage-integration.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/integrations/shopify-integration.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/integrations/webhooks.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/overview/about-projects.md",
-      "chunks": 0
-    },
-    {
-      "path": "kb/overview/add-members.md",
-      "chunks": 0
-    },
-    {
-      "path": "kb/overview/assign-unassign-modules-to-a-member.md",
-      "chunks": 0
-    },
-    {
-      "path": "kb/overview/assign-unassign-projects.md",
-      "chunks": 0
-    },
-    {
-      "path": "kb/overview/create-projects-on-console.md",
-      "chunks": 0
-    },
-    {
-      "path": "kb/overview/delete-members-of-an-organisation.md",
-      "chunks": 0
-    },
-    {
-      "path": "kb/overview/invite-org-admins.md",
-      "chunks": 0
-    },
-    {
-      "path": "kb/overview/manage-organisation.md",
-      "chunks": 0
-    },
-    {
-      "path": "kb/overview/remove-members-from-a-project.md",
-      "chunks": 0
-    },
-    {
-      "path": "kb/overview/reset-password.md",
-      "chunks": 0
-    },
-    {
-      "path": "kb/overview/welcome-to-gupshup-console.md",
-      "chunks": 0
-    },
-    {
-      "path": "kb/personalize/about-personalize.md",
-      "chunks": 0
-    },
-    {
-      "path": "kb/personalize/custom-events-in-personalize.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/personalize/personalize-enabled-campaign-manager.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/personalize/salient-features.md",
-      "chunks": 1
-    },
-    {
-      "path": "kb/wallet/wallet-overview.md",
-      "chunks": 0
-    },
-    {
-      "path": "kb/workflows/agent-assist-availability-vs-auto-replies.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/workflows/ctwa-to-bot-to-goals.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/workflows/variables-across-multiple-journeys.md",
-      "chunks": 2
-    },
-    {
-      "path": "kb/workflows/webhooks-to-delivery-analytics.md",
-      "chunks": 2
-    }
-  ],
-  "chunking": {
-    "strategy": "heading_path_section_blocks",
-    "chunk_size": 1200,
-    "overlap": 120,
-    "metadata": [
-      "heading",
-      "heading_path",
-      "section_type",
-      "is_reference"
-    ]
-  }
+  "generated_at": "2026-03-14T15:14:08.978459+00:00",
+  "count": 1565,
+  "sources": [
+    "kb/agent-assist/about-agent-assist.md",
+    "kb/agent-assist/ai-management-alpha.md",
+    "kb/agent-assist/assignment-enhancements-in-console-7-0.md",
+    "kb/agent-assist/campaign-and-ctx-ad-preview.md",
+    "kb/agent-assist/chat-management-assignment-rules.md",
+    "kb/agent-assist/chat-management-auto-closed-time.md",
+    "kb/agent-assist/chat-management-chat-rules.md",
+    "kb/agent-assist/chat-management-sla.md",
+    "kb/agent-assist/chats.md",
+    "kb/agent-assist/downloading-chat-transcripts-for-customer-conversations.md",
+    "kb/agent-assist/efficient-chat-navigation-for-different-user-roles-through-views.md",
+    "kb/agent-assist/exploring-insights-and-exporting-raw-data.md",
+    "kb/agent-assist/identifying-chat-channels-with-ease.md",
+    "kb/agent-assist/insights-agent-summary.md",
+    "kb/agent-assist/insights-agent-timesheet.md",
+    "kb/agent-assist/insights-chat-summary.md",
+    "kb/agent-assist/insights-customer-feedback-dashboard.md",
+    "kb/agent-assist/insights-team-summary.md",
+    "kb/agent-assist/live-monitoring-dashboard-real-time-chat-analytics-and-performance-insights.md",
+    "kb/agent-assist/managing-chat-status-for-effective-workflow.md",
+    "kb/agent-assist/others-agent-status.md",
+    "kb/agent-assist/others-canned-responses.md",
+    "kb/agent-assist/others-chat-fields.md",
+    "kb/agent-assist/others-customer-fields.md",
+    "kb/agent-assist/others-tags.md",
+    "kb/agent-assist/others-views.md",
+    "kb/agent-assist/others-webhooks.md",
+    "kb/agent-assist/response-management-auto-replies-and-customer-satisfaction.md",
+    "kb/agent-assist/response-management-customer-satisfaction.md",
+    "kb/agent-assist/sending-marketing-templates-from-agent-assist.md",
+    "kb/agent-assist/sending-templates-after-the-24-hour-window.md",
+    "kb/agent-assist/settings.md",
+    "kb/agent-assist/simplify-your-search-with-global-search.md",
+    "kb/agent-assist/streamlining-your-workflow-with-bulk-actions.md",
+    "kb/agent-assist/underlying-raw-data-for-chat-summary.md",
+    "kb/agent-assist/user-management-business-hours.md",
+    "kb/agent-assist/user-management-teams.md",
+    "kb/agent-assist/user-management-users.md",
+    "kb/agent-assist/what-happens-if-a-chat-doesn-t-match-with-any-assignment-rule.md",
+    "kb/ai-admin/ace-and-agentic-llm-overview.md",
+    "kb/ai-admin/agent-personality-developer-mode.md",
+    "kb/ai-admin/ai-agent-guardrails-developer-mode.md",
+    "kb/ai-admin/ai-agents-developer-mode.md",
+    "kb/ai-admin/ai-enhanced-description-writing.md",
+    "kb/ai-admin/backward-compatibility-for-existing-ai-journeys.md",
+    "kb/ai-admin/catalog-training.md",
+    "kb/ai-admin/content-tags.md",
+    "kb/ai-admin/content-training.md",
+    "kb/ai-admin/content-untraining.md",
+    "kb/ai-admin/creating-a-workspace.md",
+    "kb/ai-admin/document-training.md",
+    "kb/ai-admin/entity-creation.md",
+    "kb/ai-admin/entity-description.md",
+    "kb/ai-admin/evaluate.md",
+    "kb/ai-admin/intent-and-entity.md",
+    "kb/ai-admin/intent-creation.md",
+    "kb/ai-admin/intent-description.md",
+    "kb/ai-admin/llm-consumption.md",
+    "kb/ai-admin/monitoring.md",
+    "kb/ai-admin/naming-guidelines-for-intent-and-entity.md",
+    "kb/ai-admin/settings-developer-mode.md",
+    "kb/ai-admin/settings.md",
+    "kb/ai-admin/skill-prompt-enhancer-developer-mode.md",
+    "kb/ai-admin/skills-developer-mode.md",
+    "kb/ai-admin/teach-csv-file.md",
+    "kb/ai-admin/teach-utterance-untraining.md",
+    "kb/ai-admin/teach.md",
+    "kb/ai-admin/text-training.md",
+    "kb/ai-admin/tools-developer-mode.md",
+    "kb/ai-admin/website-re-training-scheduler-developer-mode.md",
+    "kb/ai-admin/website-training.md",
+    "kb/ai-admin/workspace-audit.md",
+    "kb/ai-admin/workspace-validation.md",
+    "kb/ai-admin/workspace.md",
+    "kb/bot-studio-analytics/ai-analytics.md",
+    "kb/bot-studio-analytics/conversational-path.md",
+    "kb/bot-studio-analytics/dashboard.md",
+    "kb/bot-studio-analytics/exit-nodes.md",
+    "kb/bot-studio-analytics/filters-in-bot-analytics.md",
+    "kb/bot-studio-analytics/inline-analytics.md",
+    "kb/bot-studio-analytics/journey-tracking.md",
+    "kb/bot-studio/about-bot-studio.md",
+    "kb/bot-studio/action-nodes.md",
+    "kb/bot-studio/ad-journey.md",
+    "kb/bot-studio/address-node.md",
+    "kb/bot-studio/agent-transfer-node.md",
+    "kb/bot-studio/ai-node.md",
+    "kb/bot-studio/ai-trigger-event.md",
+    "kb/bot-studio/api-node-http-status-code-branching.md",
+    "kb/bot-studio/api-node.md",
+    "kb/bot-studio/api-timeout-default-to-10-secs.md",
+    "kb/bot-studio/audio-node.md",
+    "kb/bot-studio/block-templates.md",
+    "kb/bot-studio/bot-constants-in-jb.md",
+    "kb/bot-studio/call-and-return-node.md",
+    "kb/bot-studio/callback-url-event-on-starting-node.md",
+    "kb/bot-studio/campaign-journey.md",
+    "kb/bot-studio/carousel-and-lto-template.md",
+    "kb/bot-studio/carousels.md",
+    "kb/bot-studio/clear-context-node-gupshup-dev-access-only.md",
+    "kb/bot-studio/code-node.md",
+    "kb/bot-studio/condition-node.md",
+    "kb/bot-studio/configuration-journey.md",
+    "kb/bot-studio/controls-on-bot-studio-canvas.md",
+    "kb/bot-studio/cta-url-button-node.md",
+    "kb/bot-studio/custom-document-name.md",
+    "kb/bot-studio/customer-360-node.md",
+    "kb/bot-studio/date-node.md",
+    "kb/bot-studio/date-prompt-validation-enhancement.md",
+    "kb/bot-studio/default-journeys.md",
+    "kb/bot-studio/delay-node.md",
+    "kb/bot-studio/document-node.md",
+    "kb/bot-studio/dynamic-carousel-cta-url-qr.md",
+    "kb/bot-studio/dynamic-carousel-node.md",
+    "kb/bot-studio/dynamic-image-url-node.md",
+    "kb/bot-studio/email-node.md",
+    "kb/bot-studio/enhanced-list-node-dynamic.md",
+    "kb/bot-studio/expression-library-in-journey-builder-canvas.md",
+    "kb/bot-studio/extracting-and-manipulating-data-using-expression-library-functions-instead-of-code-node.md",
+    "kb/bot-studio/faqs-of-bot-studio.md",
+    "kb/bot-studio/free-text-node.md",
+    "kb/bot-studio/functions-from-a-d.md",
+    "kb/bot-studio/functions-from-e-h.md",
+    "kb/bot-studio/functions-from-i-l.md",
+    "kb/bot-studio/functions-from-m-q.md",
+    "kb/bot-studio/functions-from-r-u.md",
+    "kb/bot-studio/functions-from-v-z.md",
+    "kb/bot-studio/getting-started-with-bot-studio.md",
+    "kb/bot-studio/goal-node.md",
+    "kb/bot-studio/gupshup-journey-builder-legacy-vs-v2-vs-pro.md",
+    "kb/bot-studio/how-do-the-elements-of-bot-studio-work-together.md",
+    "kb/bot-studio/how-to-create-whatsapp-static-flows.md",
+    "kb/bot-studio/how-to-trigger-a-user-journey.md",
+    "kb/bot-studio/image-node.md",
+    "kb/bot-studio/inactivity-nudge-for-location-request-node.md",
+    "kb/bot-studio/journey-builder-platform-upgrade-and-node-deprecation.md",
+    "kb/bot-studio/journey-canvas-controls.md",
+    "kb/bot-studio/journey-settings.md",
+    "kb/bot-studio/json-handler-instead-of-code-node.md",
+    "kb/bot-studio/json-handler.md",
+    "kb/bot-studio/list-node.md",
+    "kb/bot-studio/list-of-functions.md",
+    "kb/bot-studio/location-request-node.md",
+    "kb/bot-studio/manage-api.md",
+    "kb/bot-studio/manage-variables.md",
+    "kb/bot-studio/message-nodes.md",
+    "kb/bot-studio/message-template.md",
+    "kb/bot-studio/modify-variable-node.md",
+    "kb/bot-studio/multi-journey-user-journeys.md",
+    "kb/bot-studio/nodes.md",
+    "kb/bot-studio/number-node.md",
+    "kb/bot-studio/operations.md",
+    "kb/bot-studio/phone-node.md",
+    "kb/bot-studio/proactive-persistent-message-sticky-journey-upgrade.md",
+    "kb/bot-studio/prompt-nodes.md",
+    "kb/bot-studio/quick-reply.md",
+    "kb/bot-studio/regex-validation-in-prompt-nodes.md",
+    "kb/bot-studio/reply-node.md",
+    "kb/bot-studio/save-save-and-deploy.md",
+    "kb/bot-studio/save-vs-save-deploy.md",
+    "kb/bot-studio/send-location-node.md",
+    "kb/bot-studio/skip-node.md",
+    "kb/bot-studio/starting-node.md",
+    "kb/bot-studio/starting-nodes.md",
+    "kb/bot-studio/stateful-buttons-for-list-and-quick-replies.md",
+    "kb/bot-studio/sticker-node.md",
+    "kb/bot-studio/test-bot-widget-on-jb-canvas.md",
+    "kb/bot-studio/test-your-bot.md",
+    "kb/bot-studio/text-node.md",
+    "kb/bot-studio/timeout-in-prompt-nodes.md",
+    "kb/bot-studio/trigger-event-node.md",
+    "kb/bot-studio/video-node.md",
+    "kb/bot-studio/wait-for-event.md",
+    "kb/bot-studio/whatsapp-carousel-message-using-the-send-message-node.md",
+    "kb/bot-studio/whatsapp-flows-dynamic.md",
+    "kb/bot-studio/whatsapp-flows-static-dynamic.md",
+    "kb/campaign-manager/about-campaign-manager.md",
+    "kb/campaign-manager/automated-campaign-analytics.md",
+    "kb/campaign-manager/automated-campaign.md",
+    "kb/campaign-manager/campaign-analytics.md",
+    "kb/campaign-manager/campaign-listing-page.md",
+    "kb/campaign-manager/creating-a-new-campaign.md",
+    "kb/campaign-manager/how-to-access-campaign-manager.md",
+    "kb/campaign-manager/how-to-measure-click-through-rates.md",
+    "kb/campaign-manager/sending-an-automated-campaign.md",
+    "kb/channels/about-whatsapp.md",
+    "kb/channels/android-native.md",
+    "kb/channels/autoresponders.md",
+    "kb/channels/before-you-begin.md",
+    "kb/channels/chat-aesthetics.md",
+    "kb/channels/chat-widget-functions.md",
+    "kb/channels/go-live-with-instagram.md",
+    "kb/channels/greeting-message.md",
+    "kb/channels/ice-breakers.md",
+    "kb/channels/inbound-messages-and-events.md",
+    "kb/channels/ios-native.md",
+    "kb/channels/mobile-sdks-beta.md",
+    "kb/channels/persistent-menu.md",
+    "kb/channels/pre-chat-form.md",
+    "kb/channels/privacy-policy.md",
+    "kb/channels/react-native.md",
+    "kb/channels/retain-customer-chat-history.md",
+    "kb/channels/security.md",
+    "kb/channels/sync-browser-login-with-your-chat-widget.md",
+    "kb/channels/unlinking-your-instagram-account.md",
+    "kb/channels/web.md",
+    "kb/channels/whatsapp-business-api.md",
+    "kb/ctx/connecting-ad-to-bot-in-gupshup-console.md",
+    "kb/ctx/connecting-fb-ad-account-to-gupshup-ads-management.md",
+    "kb/ctx/creating-a-chatbot-journey.md",
+    "kb/ctx/creating-a-click-to-whatsapp-ad-on-ttam.md",
+    "kb/ctx/creating-a-ctwa-ad-on-meta-ads-manager.md",
+    "kb/ctx/creating-a-tiktok-specific-bot-journey.md",
+    "kb/ctx/creating-and-analysing-a-click-to-whatsapp-campaign.md",
+    "kb/ctx/ctx-goal-nodes-and-conversions-api-adding-to-the-journey.md",
+    "kb/ctx/insights-and-analytics.md",
+    "kb/ctx/meta-ads-to-whatsapp.md",
+    "kb/ctx/onboarding-tiktok-ads-manager-to-gupshup.md",
+    "kb/ctx/setting-up-retargeting-post-go-live.md",
+    "kb/ctx/testing-and-ctwa-go-live.md",
+    "kb/ctx/tiktok-to-whatsapp.md",
+    "kb/extension/overview-of-extensions.md",
+    "kb/goals/creating-goals.md",
+    "kb/goals/goal-analytics.md",
+    "kb/goals/goals.md",
+    "kb/goals/implementing-goals.md",
+    "kb/goals/lead-generation.md",
+    "kb/goals/ways-to-use-goals.md",
+    "kb/integrations/about-integrations.md",
+    "kb/integrations/clevertap-integration.md",
+    "kb/integrations/custom-integrations.md",
+    "kb/integrations/moengage-integration.md",
+    "kb/integrations/shopify-integration.md",
+    "kb/integrations/webhooks.md",
+    "kb/overview/about-projects.md",
+    "kb/overview/add-members.md",
+    "kb/overview/assign-unassign-modules-to-a-member.md",
+    "kb/overview/assign-unassign-projects.md",
+    "kb/overview/create-projects-on-console.md",
+    "kb/overview/delete-members-of-an-organisation.md",
+    "kb/overview/invite-org-admins.md",
+    "kb/overview/manage-organisation.md",
+    "kb/overview/remove-members-from-a-project.md",
+    "kb/overview/reset-password.md",
+    "kb/overview/welcome-to-gupshup-console.md",
+    "kb/personalize/about-personalize.md",
+    "kb/personalize/custom-events-in-personalize.md",
+    "kb/personalize/personalize-enabled-campaign-manager.md",
+    "kb/personalize/salient-features.md",
+    "kb/wallet/wallet-overview.md",
+    "kb/workflows/agent-assist-availability-vs-auto-replies.md",
+    "kb/workflows/ctwa-to-bot-to-goals.md",
+    "kb/workflows/variables-across-multiple-journeys.md",
+    "kb/workflows/webhooks-to-delivery-analytics.md"
+  ]
 }
