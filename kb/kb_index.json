@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "created_at": "2026-03-14T08:28:06.175169+00:00",
+  "created_at": "2026-03-14T09:19:32.520909+00:00",
   "repo": "sharmaadwit/kb_docs",
   "branch": "main",
   "docs_path": "kb",
@@ -8,7 +8,7 @@
     "kb/analytics"
   ],
   "md_files": 253,
-  "chunks": 7131,
+  "chunks": 7189,
   "docs": [
     {
       "path": "kb/agent-assist/about-agent-assist.md",
@@ -20,7 +20,7 @@
     },
     {
       "path": "kb/agent-assist/assignment-enhancements-in-console-7-0.md",
-      "chunks": 23
+      "chunks": 24
     },
     {
       "path": "kb/agent-assist/campaign-and-ctx-ad-preview.md",
@@ -64,7 +64,7 @@
     },
     {
       "path": "kb/agent-assist/insights-agent-summary.md",
-      "chunks": 20
+      "chunks": 22
     },
     {
       "path": "kb/agent-assist/insights-agent-timesheet.md",
@@ -80,7 +80,7 @@
     },
     {
       "path": "kb/agent-assist/insights-team-summary.md",
-      "chunks": 21
+      "chunks": 22
     },
     {
       "path": "kb/agent-assist/live-monitoring-dashboard-real-time-chat-analytics-and-performance-insights.md",
@@ -92,7 +92,7 @@
     },
     {
       "path": "kb/agent-assist/others-agent-status.md",
-      "chunks": 18
+      "chunks": 19
     },
     {
       "path": "kb/agent-assist/others-canned-responses.md",
@@ -120,11 +120,11 @@
     },
     {
       "path": "kb/agent-assist/response-management-auto-replies-and-customer-satisfaction.md",
-      "chunks": 22
+      "chunks": 23
     },
     {
       "path": "kb/agent-assist/response-management-customer-satisfaction.md",
-      "chunks": 18
+      "chunks": 19
     },
     {
       "path": "kb/agent-assist/sending-marketing-templates-from-agent-assist.md",
@@ -132,7 +132,7 @@
     },
     {
       "path": "kb/agent-assist/sending-templates-after-the-24-hour-window.md",
-      "chunks": 18
+      "chunks": 19
     },
     {
       "path": "kb/agent-assist/settings.md",
@@ -148,7 +148,7 @@
     },
     {
       "path": "kb/agent-assist/underlying-raw-data-for-chat-summary.md",
-      "chunks": 21
+      "chunks": 26
     },
     {
       "path": "kb/agent-assist/user-management-business-hours.md",
@@ -212,7 +212,7 @@
     },
     {
       "path": "kb/ai-admin/document-training.md",
-      "chunks": 26
+      "chunks": 27
     },
     {
       "path": "kb/ai-admin/entity-creation.md",
@@ -260,7 +260,7 @@
     },
     {
       "path": "kb/ai-admin/skill-prompt-enhancer-developer-mode.md",
-      "chunks": 28
+      "chunks": 30
     },
     {
       "path": "kb/ai-admin/skills-developer-mode.md",
@@ -288,11 +288,11 @@
     },
     {
       "path": "kb/ai-admin/website-re-training-scheduler-developer-mode.md",
-      "chunks": 27
+      "chunks": 30
     },
     {
       "path": "kb/ai-admin/website-training.md",
-      "chunks": 28
+      "chunks": 31
     },
     {
       "path": "kb/ai-admin/workspace-audit.md",
@@ -360,7 +360,7 @@
     },
     {
       "path": "kb/bot-studio/ai-trigger-event.md",
-      "chunks": 25
+      "chunks": 27
     },
     {
       "path": "kb/bot-studio/api-node-http-status-code-branching.md",
@@ -428,7 +428,7 @@
     },
     {
       "path": "kb/bot-studio/cta-url-button-node.md",
-      "chunks": 32
+      "chunks": 34
     },
     {
       "path": "kb/bot-studio/custom-document-name.md",
@@ -480,7 +480,7 @@
     },
     {
       "path": "kb/bot-studio/expression-library-in-journey-builder-canvas.md",
-      "chunks": 34
+      "chunks": 35
     },
     {
       "path": "kb/bot-studio/extracting-and-manipulating-data-using-expression-library-functions-instead-of-code-node.md",
@@ -532,7 +532,7 @@
     },
     {
       "path": "kb/bot-studio/how-do-the-elements-of-bot-studio-work-together.md",
-      "chunks": 27
+      "chunks": 28
     },
     {
       "path": "kb/bot-studio/how-to-create-whatsapp-static-flows.md",
@@ -560,7 +560,7 @@
     },
     {
       "path": "kb/bot-studio/journey-settings.md",
-      "chunks": 30
+      "chunks": 31
     },
     {
       "path": "kb/bot-studio/json-handler-instead-of-code-node.md",
@@ -568,7 +568,7 @@
     },
     {
       "path": "kb/bot-studio/json-handler.md",
-      "chunks": 32
+      "chunks": 33
     },
     {
       "path": "kb/bot-studio/list-node.md",
@@ -580,7 +580,7 @@
     },
     {
       "path": "kb/bot-studio/location-request-node.md",
-      "chunks": 32
+      "chunks": 33
     },
     {
       "path": "kb/bot-studio/manage-api.md",
@@ -608,7 +608,7 @@
     },
     {
       "path": "kb/bot-studio/nodes.md",
-      "chunks": 27
+      "chunks": 28
     },
     {
       "path": "kb/bot-studio/number-node.md",
@@ -628,7 +628,7 @@
     },
     {
       "path": "kb/bot-studio/prompt-nodes.md",
-      "chunks": 30
+      "chunks": 31
     },
     {
       "path": "kb/bot-studio/quick-reply.md",
@@ -648,7 +648,7 @@
     },
     {
       "path": "kb/bot-studio/send-location-node.md",
-      "chunks": 32
+      "chunks": 33
     },
     {
       "path": "kb/bot-studio/skip-node.md",
@@ -660,7 +660,7 @@
     },
     {
       "path": "kb/bot-studio/starting-nodes.md",
-      "chunks": 30
+      "chunks": 31
     },
     {
       "path": "kb/bot-studio/stateful-buttons-for-list-and-quick-replies.md",
@@ -704,11 +704,11 @@
     },
     {
       "path": "kb/bot-studio/whatsapp-flows-dynamic.md",
-      "chunks": 34
+      "chunks": 35
     },
     {
       "path": "kb/bot-studio/whatsapp-flows-static-dynamic.md",
-      "chunks": 40
+      "chunks": 41
     },
     {
       "path": "kb/campaign-manager/about-campaign-manager.md",
@@ -724,7 +724,7 @@
     },
     {
       "path": "kb/campaign-manager/campaign-analytics.md",
-      "chunks": 28
+      "chunks": 34
     },
     {
       "path": "kb/campaign-manager/campaign-listing-page.md",
@@ -740,7 +740,7 @@
     },
     {
       "path": "kb/campaign-manager/how-to-measure-click-through-rates.md",
-      "chunks": 26
+      "chunks": 28
     },
     {
       "path": "kb/campaign-manager/sending-an-automated-campaign.md",
@@ -800,15 +800,15 @@
     },
     {
       "path": "kb/channels/pre-chat-form.md",
-      "chunks": 32
+      "chunks": 33
     },
     {
       "path": "kb/channels/privacy-policy.md",
-      "chunks": 66
+      "chunks": 69
     },
     {
       "path": "kb/channels/react-native.md",
-      "chunks": 45
+      "chunks": 46
     },
     {
       "path": "kb/channels/retain-customer-chat-history.md",
@@ -840,11 +840,11 @@
     },
     {
       "path": "kb/ctx/connecting-fb-ad-account-to-gupshup-ads-management.md",
-      "chunks": 25
+      "chunks": 26
     },
     {
       "path": "kb/ctx/creating-a-chatbot-journey.md",
-      "chunks": 25
+      "chunks": 26
     },
     {
       "path": "kb/ctx/creating-a-click-to-whatsapp-ad-on-ttam.md",
@@ -852,7 +852,7 @@
     },
     {
       "path": "kb/ctx/creating-a-ctwa-ad-on-meta-ads-manager.md",
-      "chunks": 25
+      "chunks": 27
     },
     {
       "path": "kb/ctx/creating-a-tiktok-specific-bot-journey.md",
@@ -896,7 +896,7 @@
     },
     {
       "path": "kb/goals/creating-goals.md",
-      "chunks": 31
+      "chunks": 32
     },
     {
       "path": "kb/goals/goal-analytics.md",
@@ -928,11 +928,11 @@
     },
     {
       "path": "kb/integrations/custom-integrations.md",
-      "chunks": 26
+      "chunks": 27
     },
     {
       "path": "kb/integrations/moengage-integration.md",
-      "chunks": 25
+      "chunks": 26
     },
     {
       "path": "kb/integrations/shopify-integration.md",
@@ -1000,7 +1000,7 @@
     },
     {
       "path": "kb/personalize/salient-features.md",
-      "chunks": 26
+      "chunks": 27
     },
     {
       "path": "kb/wallet/wallet-overview.md",
@@ -1030,7 +1030,8 @@
     "metadata": [
       "heading",
       "heading_path",
-      "section_type"
+      "section_type",
+      "is_reference"
     ]
   }
 }
