@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/extension
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Overview of Extensions
 
 **Module**: Extension
@@ -11,6 +11,20 @@ Console offers extensions to seamlessly integrate additional services such as En
 ## Procedure
 ### Exact UI path
 Gupshup Console → Extensions → Overview of Extensions
+
+### Prerequisites
+- Access to **Gupshup Console → Extensions → Overview of Extensions** in Gupshup Console.
+
+### Fields to configure
+- the desired extension
+- button within the Enterprise WhatsApp tile
+- your account credentials
+- extension to integrate Enterprise WhatsApp with Console
+- button within the Enterprise SMS tile
+- extension to integrate Enterprise SMS with Console
+- button within the RCS tile
+- your RCS account credentials
+- extension to integrate RCS with the Console seamlessly
 
 ### Steps
 1. Open Gupshup Console.
@@ -28,27 +42,13 @@ Gupshup Console → Extensions → Overview of Extensions
 13. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
+- Run a quick test and confirm the expected behavior appears in the target module/UI.
 
-### Fields to configure
-- the desired extension
-- button within the Enterprise WhatsApp tile
-- your account credentials
-- extension to integrate Enterprise WhatsApp with Console
-- button within the Enterprise SMS tile
-- extension to integrate Enterprise SMS with Console
-- button within the RCS tile
-- your RCS account credentials
-- extension to integrate RCS with the Console seamlessly
+### Troubleshooting
+- If something does not work as expected, re-check the exact UI path, required fields, and any save/deploy step.
 
 ### Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Troubleshooting
-- _Add common failure modes and how to fix them._
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Navigate to the Extensions tab to add the desired extension.
@@ -58,20 +58,17 @@ Gupshup Console → Extensions → Overview of Extensions
 - Enter your account credentials.
 - Enter your RCS account credentials.
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
-- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+- Identify the upstream module where this is configured and the downstream module where the outcome is verified.
 
 ## Module disambiguation docs
-- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
+- Distinguish this page from adjacent modules/settings before troubleshooting elsewhere.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

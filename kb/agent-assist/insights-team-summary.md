@@ -5,7 +5,8 @@ source_url: https://console-docs.gupshup.io/docs/insights-team-summary
 
 
 
-<!-- agent-assist-golden:v10 -->
+
+<!-- agent-assist-golden:v11 -->
 # Insights: Team Summary
 
 **Module**: Agent Assist
@@ -16,43 +17,40 @@ Overview The Team Summary Report provides team-level productivity metrics across
 ## Exact UI path
 Agent Assist → Insights
 
+## Prerequisites
+- Access to the relevant Insights dashboard in Agent Assist.
+- Underlying chat/agent activity available for the reporting window you want to inspect.
+
 ## Setup path
 - _Add the click-path in Console (breadcrumbs)._
+
+## Fields to configure
+- No explicit fields were identified in the source; use the controls shown on this page.
 
 ## Steps
 1. Open Agent Assist.
 2. _Add the click-path in Console (breadcrumbs)._
 
 ## Validation / where to check
-- _Run a quick test (new chat / assignment / workflow) and confirm expected behavior._
-
-## Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
+- Confirm the expected data appears in the dashboard/report for a known recent test case or date range.
 
 ## Save / publish / deploy behavior
-- _No save/publish step is required for this page unless explicitly stated in the UI._
+- No save/publish step is required for this page unless explicitly stated in the UI.
 
 ## Troubleshooting
-- If something doesn’t work as expected, re-check the **Exact UI path** and confirm you saved changes.
-- _Add common failure modes and how to fix them._
-
-## Prerequisites
-- _List required roles/access, teams, and any upstream configuration._
+- If data looks incomplete, re-check filters/date range and confirm the underlying activity actually occurred.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
+- No explicit UI variants/toggles were identified in the source for this page.
+
+## Cross-module workflow docs
+- Chats / assignments / resolutions → Insights dashboards
+
+## Module disambiguation docs
+- Insights pages are for monitoring/reporting; they do not change live routing or chat behavior.
 
 ## Notes
 - Important Notes
-
-## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
-
-## Cross-module workflow docs
-- _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._
-
-## Module disambiguation docs
-- _Add 1–2 bullets distinguishing this feature from adjacent settings to reduce retrieval drift._
 
 ## Reference (from source)
 ### Overview

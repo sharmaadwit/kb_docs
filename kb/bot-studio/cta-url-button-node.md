@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/cta-url-support-on-reply-button
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # CTA URL Button Node
 
 **Module**: Bot Studio
@@ -11,6 +11,17 @@ The CTA URL Button Node is a new addition to the Message Category in Journey Bui
 ## Procedure
 ### Exact UI path
 Gupshup Console → Bot Studio → CTA URL Button Node
+
+### Prerequisites
+- Access to the relevant bot/project in Gupshup Console.
+- A journey/app where you can test the configuration.
+
+### Fields to configure
+- Message content
+- the CTA URL Button Node
+- Validation rules
+- Button Name
+- Media Header (Optional)
 
 ### Steps
 1. Open Gupshup Console.
@@ -28,23 +39,14 @@ Gupshup Console → Bot Studio → CTA URL Button Node
 13. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
-
-### Fields to configure
-- Message content
-- the CTA URL Button Node
-- Validation rules
-- Button Name
-- Media Header (Optional)
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
+- Run the flow in **Test your Bot** and confirm the expected node/path executes.
+- If the change must affect live traffic, use **Save & Deploy** and verify on the target channel.
 
 ### Troubleshooting
 - # Error Handling
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Setup path
 - Navigate to Message Nodes in Journey Builder and select the CTA URL Button Node.
@@ -53,14 +55,11 @@ Gupshup Console → Bot Studio → CTA URL Button Node
 - Add the CTA URL Button Node Navigate to Message Nodes in Journey Builder and select the CTA URL Button Node.
 - Enter a direct URL for validation during design time, or use variables to pass dynamic URLs.
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)

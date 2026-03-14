@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/expression-library-in-journey-builder-canvas
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Expression Library in Journey builder Canvas
 
 **Module**: Bot Studio
@@ -11,6 +11,14 @@ The Expression Library enhancement in the Modify Variable node is designed to em
 ## Procedure
 ### Exact UI path
 Gupshup Console → Bot Studio → Journey Builder
+
+### Prerequisites
+- Access to the relevant bot/project in Gupshup Console.
+- A journey/app where you can test the configuration.
+
+### Fields to configure
+- Validation rules
+- sample values for testing the expression
 
 ### Steps
 1. Open Gupshup Console.
@@ -34,13 +42,6 @@ Gupshup Console → Bot Studio → Journey Builder
 - Follow the intuitive interface to create, test, and save expressions.
 - Is real-time typo detection available? Not yet. However, the Test Expression functionality provides feedback for correcting errors.
 
-### Fields to configure
-- Validation rules
-- sample values for testing the expression
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
 ### Troubleshooting
 - Save Validation: Expressions must pass validation before saving. Invalid expressions or mismatched data types disable the Save button, ensuring error-free runtime execution.
 - Invalid expressions or mismatched data types disable the Save button, ensuring error-free runtime execution.
@@ -52,8 +53,8 @@ Gupshup Console → Bot Studio → Journey Builder
 - Review the output or error feedback in the Output Box.
 - # Error Handling
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Setup path
 - Navigate to the Modify Variable node and open the Modifier dropdown.
@@ -63,14 +64,11 @@ Gupshup Console → Bot Studio → Journey Builder
 - Add sample values for testing the expression.
 - Select the Expression option from the Modifier dropdown.
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)

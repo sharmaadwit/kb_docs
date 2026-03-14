@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/api-node-http-status-code-branching
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # API Node: HTTP Status Code Branching
 
 **Module**: Bot Studio
@@ -11,6 +11,14 @@ Lets you route bot logic differently based on API's HTTP response codes (e.g., 2
 ## Procedure
 ### Exact UI path
 Gupshup Console → Bot Studio → API Node: HTTP Status Code Branching
+
+### Prerequisites
+- Access to the relevant bot/project in Gupshup Console.
+- A journey/app where you can test the configuration.
+
+### Fields to configure
+- up your API call and test connection
+- Fallback connector path
 
 ### Steps
 1. Open Gupshup Console.
@@ -24,19 +32,12 @@ Gupshup Console → Bot Studio → API Node: HTTP Status Code Branching
 ### Validation / where to check
 - Set up your API call and test connection
 
-### Fields to configure
-- up your API call and test connection
-- Fallback connector path
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
 ### Troubleshooting
 - Lets you route bot logic differently based on API's HTTP response codes (e.g., 200 OK vs 500 Error).
 - Customize error response (400/500)
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Setup path
 - Go to **Bot Studio**.
@@ -47,14 +48,11 @@ Gupshup Console → Bot Studio → API Node: HTTP Status Code Branching
 - Toggle ON the “HTTP Status Code” switch
 - Add connectors and tag them with codes like 200, 400, 401, 503
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/regex-validation-in-prompt-nodes
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # RegEx Validation in Prompt Nodes
 
 **Module**: Bot Studio
@@ -12,6 +12,13 @@ As part of our platform hardening and bot reliability initiatives, Gupshup Conso
 ### Exact UI path
 Gupshup Console → Bot Studio → RegEx Validation in Prompt Nodes
 
+### Prerequisites
+- Access to the relevant bot/project in Gupshup Console.
+- A journey/app where you can test the configuration.
+
+### Fields to configure
+- No explicit fields were identified in the source; use the UI controls shown on this page.
+
 ### Steps
 1. Open Gupshup Console.
 2. Go to **Bot Studio**.
@@ -22,36 +29,27 @@ Gupshup Console → Bot Studio → RegEx Validation in Prompt Nodes
 ### Validation / where to check
 - Test your regex in a Re2-compatible environment before using it in Console
 
-### Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
 ### Troubleshooting
 - Regex entered during node configuration is validated on click of Tick icon on the regex field. If the expression does not conform to Re2 standards, an error is shown and the journey cannot be saved until it is corrected.
 - You will see an error: Invalid regex expression. learn more.
 - An error toast appears below the regex field: Invalid regex expression. learn more
 - The journey cannot be saved until the regex is correctly saved
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Setup path
 - Go to **Bot Studio**.
 - Go to **RegEx Validation in Prompt Nodes**.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- No explicit UI variants/toggles were identified in the source for this page.
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)

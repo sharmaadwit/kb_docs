@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/test-bot-widget-on-jb-canvas
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Test Bot Widget on JB Canvas
 
 **Module**: Bot Studio
@@ -11,6 +11,13 @@ Test bot widget is an existing feature on the Journey List page which lets Bot d
 ## Procedure
 ### Exact UI path
 Gupshup Console → Bot Studio → Test Bot Widget on JB Canvas
+
+### Prerequisites
+- Access to the relevant bot/project in Gupshup Console.
+- A journey/app where you can test the configuration.
+
+### Fields to configure
+- Message content
 
 ### Steps
 1. Open Gupshup Console.
@@ -23,33 +30,25 @@ Gupshup Console → Bot Studio → Test Bot Widget on JB Canvas
 - Dedicated Widget “ Test Bot” for the Deployed Bot where in, the user can view the message logs to test, debug and fix the Journey flow
 - Following actions result in new Test Bot conversations and message logs will not be available for all messages sent before the action:
 
-### Fields to configure
-- Message content
+### Troubleshooting
+- If behavior is unchanged, confirm you updated the correct node and used **Save & Deploy** for live channels.
+- If the wrong branch/path runs, re-check conditions, connected nodes, and fallback connectors.
 
 ### Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Troubleshooting
-- _Add common failure modes and how to fix them._
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to **Bot Studio**.
 - Go to **Test Bot Widget on JB Canvas**.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- No explicit UI variants/toggles were identified in the source for this page.
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)

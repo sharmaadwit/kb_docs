@@ -5,7 +5,8 @@ source_url: https://console-docs.gupshup.io/docs/insights-agent-timesheet
 
 
 
-<!-- agent-assist-golden:v10 -->
+
+<!-- agent-assist-golden:v11 -->
 # Insights: Agent Timesheet
 
 **Module**: Agent Assist
@@ -16,42 +17,37 @@ Overview The Agent Timesheet Report provides comprehensive insights into agent a
 ## Exact UI path
 Agent Assist → Insights
 
+## Prerequisites
+- Access to the relevant Insights dashboard in Agent Assist.
+- Underlying chat/agent activity available for the reporting window you want to inspect.
+
 ## Setup path
 - Login: Moment when agent signs into the system
+
+## Fields to configure
+- No explicit fields were identified in the source; use the controls shown on this page.
 
 ## Steps
 1. Open Agent Assist.
 2. Login: Moment when agent signs into the system
 
 ## Validation / where to check
-- _Run a quick test (new chat / assignment / workflow) and confirm expected behavior._
-
-## Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
+- Confirm the expected data appears in the dashboard/report for a known recent test case or date range.
 
 ## Save / publish / deploy behavior
-- _No save/publish step is required for this page unless explicitly stated in the UI._
+- No save/publish step is required for this page unless explicitly stated in the UI.
 
 ## Troubleshooting
-- _Add common failure modes and how to fix them._
-
-## Prerequisites
-- _List required roles/access, teams, and any upstream configuration._
+- If data looks incomplete, re-check filters/date range and confirm the underlying activity actually occurred.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
-## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit UI variants/toggles were identified in the source for this page.
 
 ## Cross-module workflow docs
-- _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._
+- Chats / assignments / resolutions → Insights dashboards
 
 ## Module disambiguation docs
-- _Add 1–2 bullets distinguishing this feature from adjacent settings to reduce retrieval drift._
+- Insights pages are for monitoring/reporting; they do not change live routing or chat behavior.
 
 ## Reference (from source)
 ### Overview

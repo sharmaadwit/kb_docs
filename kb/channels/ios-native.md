@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/ios-native-sdk
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # iOS Native
 
 **Module**: Channels
@@ -13,6 +13,14 @@ source_url: https://console-docs.gupshup.io/docs/ios-native-sdk
 ### Exact UI path
 Gupshup Console → Channels → iOS Native
 
+### Prerequisites
+- Access to the target channel configuration in Gupshup Console.
+- A connected bot/app if the channel must route traffic to Bot Studio.
+
+### Fields to configure
+- following command
+- the following keys to Info tab on the project target
+
 ### Steps
 1. Open Gupshup Console.
 2. Go to **Channels**.
@@ -22,22 +30,15 @@ Gupshup Console → Channels → iOS Native
 6. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
-
-### Fields to configure
-- following command
-- the following keys to Info tab on the project target
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
+- Send a live test on the target channel and confirm the bot/channel behavior matches the configuration.
 
 ### Troubleshooting
 - If the initialization fails, the method returns false.
 - ## Listening for error messages
 - App can register a delegate and listen for error messages that the SDK can generate.
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Setup path
 - Go to **Channels**.
@@ -47,17 +48,14 @@ Gupshup Console → Channels → iOS Native
 - Add the framework to the target of the application if not already done.
 - Add the following keys to Info tab on the project target.
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
-- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+- Identify the upstream module where this is configured and the downstream module where the outcome is verified.
 
 ## Module disambiguation docs
 - Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.

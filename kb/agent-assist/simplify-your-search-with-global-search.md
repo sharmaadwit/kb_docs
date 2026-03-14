@@ -5,7 +5,8 @@ source_url: https://console-docs.gupshup.io/docs/simplify-your-search-with-globa
 
 
 
-<!-- agent-assist-golden:v10 -->
+
+<!-- agent-assist-golden:v11 -->
 # Simplify Your Search with Global Search
 
 **Module**: Agent Assist
@@ -16,8 +17,14 @@ Agent Assist offers a robust Global Search feature, allowing users to search for
 ## Exact UI path
 Agent Assist → Chats → Search
 
+## Prerequisites
+- Access to the relevant Agent Assist module/page.
+
 ## Setup path
 - _Add the click-path in Console (breadcrumbs)._
+
+## Fields to configure
+- search query and press "Enter" to initiate the search
 
 ## Steps
 1. Open Agent Assist.
@@ -25,34 +32,22 @@ Agent Assist → Chats → Search
 3. Enter your search query and press "Enter" to initiate the search.
 
 ## Validation / where to check
-- _Run a quick test (new chat / assignment / workflow) and confirm expected behavior._
-
-## Fields to configure
-- search query and press "Enter" to initiate the search
+- Run a quick test and confirm the expected behavior in Agent Assist.
 
 ## Save / publish / deploy behavior
-- _No save/publish step is required for this page unless explicitly stated in the UI._
+- No save/publish step is required for this page unless explicitly stated in the UI.
 
 ## Troubleshooting
-- _Add common failure modes and how to fix them._
-
-## Prerequisites
-- _List required roles/access, teams, and any upstream configuration._
+- If something does not work as expected, re-check the exact path, required fields, and save step.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
-## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit UI variants/toggles were identified in the source for this page.
 
 ## Cross-module workflow docs
-- _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._
+- Identify the upstream Agent Assist setting and the downstream chat/reporting behavior it affects.
 
 ## Module disambiguation docs
-- _Add 1–2 bullets distinguishing this feature from adjacent settings to reduce retrieval drift._
+- Distinguish this page from adjacent Agent Assist settings before troubleshooting elsewhere.
 
 ## Reference (from source)
 ### Overview

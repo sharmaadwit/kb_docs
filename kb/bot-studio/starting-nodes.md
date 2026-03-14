@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/starting-nodes
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Starting Nodes
 
 **Module**: Bot Studio
@@ -12,6 +12,13 @@ The Starting Node in Journey Builder is the foundational point where a journey b
 ### Exact UI path
 Gupshup Console → Bot Studio → Starting Nodes
 
+### Prerequisites
+- Access to the relevant bot/project in Gupshup Console.
+- A journey/app where you can test the configuration.
+
+### Fields to configure
+- No explicit fields were identified in the source; use the UI controls shown on this page.
+
 ### Steps
 1. Open Gupshup Console.
 2. Go to **Bot Studio**.
@@ -21,19 +28,14 @@ Gupshup Console → Bot Studio → Starting Nodes
 6. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
-
-### Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
+- Run the flow in **Test your Bot** and confirm the expected node/path executes.
+- If the change must affect live traffic, use **Save & Deploy** and verify on the target channel.
 
 ### Troubleshooting
 - Only 1 out of 5 Event can be selected User Event or AI Trigger
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Setup path
 - Go to **Bot Studio**.
@@ -42,14 +44,11 @@ Gupshup Console → Bot Studio → Starting Nodes
 ## Options / variants
 - Select from the the available list of Event based on which you would like to trigger the journey
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)

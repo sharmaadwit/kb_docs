@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/insights-and-analytics
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Insights and Analytics
 
 **Module**: Ctx
@@ -12,6 +12,12 @@ How to track performance of CTWA Campaigns and Ads
 ### Exact UI path
 Gupshup Console → CTX → Insights and Analytics
 
+### Prerequisites
+- Access to **Gupshup Console → CTX → Insights and Analytics** in Gupshup Console.
+
+### Fields to configure
+- No explicit fields were identified in the source; use the UI controls shown on this page.
+
 ### Steps
 1. Open Gupshup Console.
 2. Go to **CTX**.
@@ -19,35 +25,26 @@ Gupshup Console → CTX → Insights and Analytics
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
-
-### Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
+- Run a test event/journey and confirm the expected analytics or goal data appears in the UI.
 
 ### Troubleshooting
 - This report showcases the number of Lead and Purchase signals that are sent to Meta. It shows both successful and failed signals.
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Setup path
 - Go to **CTX**.
 - Go to **Insights and Analytics**.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- No explicit UI variants/toggles were identified in the source for this page.
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - CTX campaign → Bot Studio journey → Goal measurement

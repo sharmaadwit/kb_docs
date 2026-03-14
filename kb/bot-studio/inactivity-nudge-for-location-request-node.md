@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/inactivity-nudge-for-location-request-node
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Inactivity Nudge for Location Request Node
 
 **Module**: Bot Studio
@@ -11,6 +11,15 @@ Click on Node Settings
 ## Procedure
 ### Exact UI path
 Gupshup Console → Bot Studio → Inactivity Nudge for Location Request Node
+
+### Prerequisites
+- Access to the relevant bot/project in Gupshup Console.
+- A journey/app where you can test the configuration.
+
+### Fields to configure
+- desired
+- Timeout duration
+- Message content
 
 ### Steps
 1. Open Gupshup Console.
@@ -28,19 +37,12 @@ Gupshup Console → Bot Studio → Inactivity Nudge for Location Request Node
 - Scenario: A food delivery service needs to confirm a user’s location for accurate order delivery.
 - Scenario: A local business requests location verification to confirm if a customer is within a serviceable area.
 
-### Fields to configure
-- desired
-- Timeout duration
-- Message content
+### Troubleshooting
+- If behavior is unchanged, confirm you updated the correct node and used **Save & Deploy** for live channels.
+- If the wrong branch/path runs, re-check conditions, connected nodes, and fallback connectors.
 
 ### Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Troubleshooting
-- _Add common failure modes and how to fix them._
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to **Bot Studio**.
@@ -50,14 +52,11 @@ Gupshup Console → Bot Studio → Inactivity Nudge for Location Request Node
 - Set the desired inactivity timeout duration.
 - Choose or create a custom nudge message that will be sent to users when they don’t respond within the specified time.
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/generate-qa
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Evaluate
 
 **Module**: Ai Admin
@@ -11,6 +11,13 @@ Introduction: User can now generate Q&A from the trained content via topic promp
 ## Procedure
 ### Exact UI path
 Gupshup Console → Ai Admin → Evaluate
+
+### Prerequisites
+- Access to **Gupshup Console → Ai Admin → Evaluate** in Gupshup Console.
+
+### Fields to configure
+- file name for export
+- Topic Prompt & Question count for generation
 
 ### Steps
 1. Open Gupshup Console.
@@ -25,20 +32,13 @@ Gupshup Console → Ai Admin → Evaluate
 10. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
-
-### Fields to configure
-- file name for export
-- Topic Prompt & Question count for generation
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
+- Run a quick test and confirm the expected behavior appears in the target module/UI.
 
 ### Troubleshooting
 - Only 1 generation/regeneration request allowed at a given time in the workspace.
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Setup path
 - Go to **Ai Admin**.
@@ -50,20 +50,17 @@ Gupshup Console → Ai Admin → Evaluate
 - Enter Topic Prompt & Question count for generation.
 - Select LLM Configuration (Model, Answer Type & Precision)
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
-- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+- Identify the upstream module where this is configured and the downstream module where the outcome is verified.
 
 ## Module disambiguation docs
-- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
+- Distinguish this page from adjacent modules/settings before troubleshooting elsewhere.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/location-request-node
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Location Request Node
 
 **Module**: Bot Studio
@@ -11,6 +11,14 @@ The Location Request Node(CTA Based) in Journey Builder allows businesses to sen
 ## Procedure
 ### Exact UI path
 Gupshup Console → Bot Studio → Location Request Node
+
+### Prerequisites
+- Response Validation: The response must be of type location. If the response does not meet this requirement, validation will trigger, and the user may be prompted to provide a valid location.
+
+### Fields to configure
+- the Location Node
+- Timeout duration
+- Message content
 
 ### Steps
 1. Open Gupshup Console.
@@ -26,19 +34,12 @@ Gupshup Console → Bot Studio → Location Request Node
 ### Validation / where to check
 - Scenario: A food delivery service needs to confirm the customer’s delivery address during order processing.
 
-### Fields to configure
-- the Location Node
-- Timeout duration
-- Message content
+### Troubleshooting
+- If behavior is unchanged, confirm you updated the correct node and used **Save & Deploy** for live channels.
+- If the wrong branch/path runs, re-check conditions, connected nodes, and fallback connectors.
 
 ### Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Troubleshooting
-- _Add common failure modes and how to fix them._
-
-### Prerequisites
-- Response Validation: The response must be of type location. If the response does not meet this requirement, validation will trigger, and the user may be prompted to provide a valid location.
 
 ### Setup path
 - Go to **Bot Studio**.
@@ -47,11 +48,8 @@ Gupshup Console → Bot Studio → Location Request Node
 ## Options / variants
 - Choose only a JSON variable to store the response by selecting the ‘store response in’ field
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
 - `{"latitude":"24.6845804","longitude":"92.5756971"}`

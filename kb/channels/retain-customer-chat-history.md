@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/web-retain-customer-chat-history
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Retain Customer Chat History
 
 **Module**: Channels
@@ -12,6 +12,13 @@ This feature allows you to show the messages from a user's previous conversation
 ### Exact UI path
 Gupshup Console → Channels → Retain Customer Chat History
 
+### Prerequisites
+- Access to the target channel configuration in Gupshup Console.
+- A connected bot/app if the channel must route traffic to Bot Studio.
+
+### Fields to configure
+- No explicit fields were identified in the source; use the UI controls shown on this page.
+
 ### Steps
 1. Open Gupshup Console.
 2. Go to **Channels**.
@@ -20,19 +27,13 @@ Gupshup Console → Channels → Retain Customer Chat History
 5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
+- Send a live test on the target channel and confirm the bot/channel behavior matches the configuration.
 
-### Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
+### Troubleshooting
+- If channel behavior is wrong, confirm the correct channel/app is connected and the latest bot configuration is live.
 
 ### Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Troubleshooting
-- _Add common failure modes and how to fix them._
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to **Channels**.
@@ -42,17 +43,14 @@ Gupshup Console → Channels → Retain Customer Chat History
 - By default, the toggle is disabled and the customer chat history is NOT retained.
 - Enable Authenticated Users
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
-- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+- Identify the upstream module where this is configured and the downstream module where the outcome is verified.
 
 ## Module disambiguation docs
 - Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.

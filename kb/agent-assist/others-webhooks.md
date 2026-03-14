@@ -5,7 +5,8 @@ source_url: https://console-docs.gupshup.io/docs/webhook
 
 
 
-<!-- agent-assist-golden:v10 -->
+
+<!-- agent-assist-golden:v11 -->
 # Others: Webhooks
 
 **Module**: Agent Assist
@@ -16,8 +17,14 @@ By leveraging the Webhooks feature, a brand can receive notifications for specif
 ## Exact UI path
 Agent Assist → Settings → Others
 
+## Prerequisites
+- Access to the relevant Agent Assist module/page.
+
 ## Setup path
 - Navigate to Settings > Webhooks > Create Webhook.
+
+## Fields to configure
+- a Name and description for the webhook
 
 ## Steps
 1. Open Agent Assist.
@@ -27,34 +34,22 @@ Agent Assist → Settings → Others
 5. Choose the authentication method - either Basic Authentication or API key based on your API equirements.
 
 ## Validation / where to check
-- _Run a quick test (new chat / assignment / workflow) and confirm expected behavior._
-
-## Fields to configure
-- a Name and description for the webhook
+- Run a quick test and confirm the expected behavior in Agent Assist.
 
 ## Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy** if available) to apply changes.
 
 ## Troubleshooting
-- _Add common failure modes and how to fix them._
-
-## Prerequisites
-- _List required roles/access, teams, and any upstream configuration._
+- If something does not work as expected, re-check the exact path, required fields, and save step.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
-## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit UI variants/toggles were identified in the source for this page.
 
 ## Cross-module workflow docs
-- _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._
+- Identify the upstream Agent Assist setting and the downstream chat/reporting behavior it affects.
 
 ## Module disambiguation docs
-- _Add 1–2 bullets distinguishing this feature from adjacent settings to reduce retrieval drift._
+- Distinguish this page from adjacent Agent Assist settings before troubleshooting elsewhere.
 
 ## Reference (from source)
 ### Overview

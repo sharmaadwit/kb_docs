@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/web
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Web
 
 **Module**: Channels
@@ -14,6 +14,13 @@ source_url: https://console-docs.gupshup.io/docs/web
 ### Exact UI path
 Gupshup Console → Channels → Web
 
+### Prerequisites
+- Access to the target channel configuration in Gupshup Console.
+- A connected bot/app if the channel must route traffic to Bot Studio.
+
+### Fields to configure
+- No explicit fields were identified in the source; use the UI controls shown on this page.
+
 ### Steps
 1. Open Gupshup Console.
 2. Go to **Channels**.
@@ -23,36 +30,27 @@ Gupshup Console → Channels → Web
 ### Validation / where to check
 - On clicking the Test button, you are redirected to your dedicated testing page.
 
-### Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
+### Troubleshooting
+- If channel behavior is wrong, confirm the correct channel/app is connected and the latest bot configuration is live.
 
 ### Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Troubleshooting
-- _Add common failure modes and how to fix them._
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to **Channels**.
 - Go to **Web**.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- No explicit UI variants/toggles were identified in the source for this page.
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
-- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+- Identify the upstream module where this is configured and the downstream module where the outcome is verified.
 
 ## Module disambiguation docs
 - Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.

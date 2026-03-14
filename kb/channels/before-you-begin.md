@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/before-you-begin
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Before you begin
 
 **Module**: Channels
@@ -11,6 +11,12 @@ Before linking your Instagram account with Gupshup, confirm that you have:
 ## Procedure
 ### Exact UI path
 Gupshup Console → Channels → Before you begin
+
+### Prerequisites
+- # Before you begin
+
+### Fields to configure
+- Message content
 
 ### Steps
 1. Open Gupshup Console.
@@ -32,17 +38,11 @@ Gupshup Console → Channels → Before you begin
 - Tap OK to confirm.
 - Verify your account using a confirmation code sent to the phone number and email address.
 
-### Fields to configure
-- Message content
+### Troubleshooting
+- If channel behavior is wrong, confirm the correct channel/app is connected and the latest bot configuration is live.
 
 ### Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Troubleshooting
-- _Add common failure modes and how to fix them._
-
-### Prerequisites
-- # Before you begin
 
 ### Setup path
 - Go to your Instagram profile and tap the hamburger icon (three short horizontal lines stacked on top of each other). The icon is present in the top right-hand corner for the mobile version of Instagram. The icon is present at the bottom of the navigation sidebar on the left for the web version.
@@ -61,17 +61,14 @@ Gupshup Console → Channels → Before you begin
 - Select Message controls.
 - Under Connected tools, you can toggle on Allow access to messages.
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
-- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+- Identify the upstream module where this is configured and the downstream module where the outcome is verified.
 
 ## Module disambiguation docs
 - Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.

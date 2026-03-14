@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/whatsapp-carousel-message-using-the-send-message-node
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # WhatsApp Carousel Message Using the Send Message Node
 
 **Module**: Bot Studio
@@ -12,6 +12,12 @@ This guide explains how to send a WhatsApp Media Carousel Message using the Send
 ### Exact UI path
 Gupshup Console → Bot Studio → WhatsApp Carousel Message Using the Send Message Node
 
+### Prerequisites
+- WhatsApp's Media Carousel Message allows businesses to send up to 10 media cards in a horizontally scrollable carousel. Each card must meet the following requirements:
+
+### Fields to configure
+- Message content
+
 ### Steps
 1. Open Gupshup Console.
 2. Go to **Bot Studio**.
@@ -20,19 +26,15 @@ Gupshup Console → Bot Studio → WhatsApp Carousel Message Using the Send Mess
 5. Save & Deploy your journey.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
+- Run the flow in **Test your Bot** and confirm the expected node/path executes.
+- If the change must affect live traffic, use **Save & Deploy** and verify on the target channel.
 
-### Fields to configure
-- Message content
+### Troubleshooting
+- If behavior is unchanged, confirm you updated the correct node and used **Save & Deploy** for live channels.
+- If the wrong branch/path runs, re-check conditions, connected nodes, and fallback connectors.
 
 ### Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Troubleshooting
-- _Add common failure modes and how to fix them._
-
-### Prerequisites
-- WhatsApp's Media Carousel Message allows businesses to send up to 10 media cards in a horizontally scrollable carousel. Each card must meet the following requirements:
 
 ### Setup path
 - Go to **Bot Studio**.
@@ -41,14 +43,11 @@ Gupshup Console → Bot Studio → WhatsApp Carousel Message Using the Send Mess
 ## Options / variants
 - Add a Send Message Node to your journey.
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)

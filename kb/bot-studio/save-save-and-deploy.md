@@ -1,60 +1,68 @@
 source_url: https://console-docs.gupshup.io/docs/save-save-deploy
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Save, Save & Deploy
 
 **Module**: Bot Studio
 
 ## Definition
-Assuming a journey is to be made which is complex to design and has a lot of nodes involved. You are done with designing a small part of the flow for instance say 10% of the complete. It is advised to save the progress done so far. For this purpose, you get a ‘Save’ button on the Bot Studio itself.
+Use **Save** when you want to keep draft progress inside Bot Studio. Use **Save & Deploy** when you want the latest saved journey changes to go live on the connected channel.
 
 ## Procedure
 ### Exact UI path
-Gupshup Console → Bot Studio → Save, Save & Deploy
+Gupshup Console → Bot Studio → Journey Builder → Save / Save & Deploy
+
+### Prerequisites
+- Access to the relevant bot/project in Gupshup Console.
+- A journey/app where you can test the configuration.
+
+### Fields to configure
+- No explicit fields were identified in the source; use the UI controls shown on this page.
 
 ### Steps
 1. Open Gupshup Console.
 2. Go to **Bot Studio**.
-3. Go to **Save, Save & Deploy**.
-4. Save & Deploy is a mandatory step to see all the changes done, in the live environment.
+3. Open the target journey in **Journey Builder**.
+4. While building or editing the journey, click **Save** to store draft progress in Bot Studio.
+5. When you want the latest saved journey to affect the live channel, click **Save & Deploy**.
+6. Run a channel test to confirm the live bot reflects the deployed change.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
-
-### Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
+- After **Save**, reopen or refresh the builder and confirm your draft changes are still present.
+- After **Save & Deploy**, test on the target live channel and confirm the customer sees the updated behavior.
+- If you want a draft-only check first, use **Test your Bot** before deploying.
 
 ### Troubleshooting
-- _Add common failure modes and how to fix them._
+- If behavior is unchanged, confirm you updated the correct node and used **Save & Deploy** for live channels.
+- If the wrong branch/path runs, re-check conditions, connected nodes, and fallback connectors.
+- If the builder shows the latest change but the live channel does not, the most common cause is that the journey was **saved but not deployed**.
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- **Save** stores progress in Bot Studio.
+- **Save & Deploy** pushes the saved journey to the live environment/channel.
+- **Save & Deploy** is required to see the latest changes in the live environment.
 
 ### Setup path
 - Go to **Bot Studio**.
-- Go to **Save, Save & Deploy**.
+- Open **Journey Builder**.
+- Use **Save** or **Save & Deploy** from the builder.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- **Save**
+- **Save & Deploy**
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
-- Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Test your Bot → Save & Deploy → live channel verification
 - Bot Studio journey → Observability via Webhooks
 
 ## Module disambiguation docs
-- **Save** stores changes; **Save & Deploy** publishes to live channels.
+- **Save** stores changes in the builder; **Save & Deploy** publishes those changes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
 
 ## Reference (from source)

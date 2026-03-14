@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/web-chat-aesthetics
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Chat Aesthetics
 
 **Module**: Channels
@@ -12,6 +12,14 @@ You can customize the look & feel of your Web chat widget via the Chat Aesthetic
 ### Exact UI path
 Gupshup Console → Channels → Chat Aesthetics
 
+### Prerequisites
+- You can customize the colors of the following elements of your chat widget as per your brand requirements: Header Chat Background Bot Message Bubble User Message Bubble
+- You can modify the size (height and width) of your chat widget as per your requirements.
+- You can modify the size of your chat widget icon as per your requirements.
+
+### Fields to configure
+- No explicit fields were identified in the source; use the UI controls shown on this page.
+
 ### Steps
 1. Open Gupshup Console.
 2. Go to Google Fonts.
@@ -20,39 +28,28 @@ Gupshup Console → Channels → Chat Aesthetics
 5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
+- Send a live test on the target channel and confirm the bot/channel behavior matches the configuration.
 
-### Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
+### Troubleshooting
+- If channel behavior is wrong, confirm the correct channel/app is connected and the latest bot configuration is live.
 
 ### Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Troubleshooting
-- _Add common failure modes and how to fix them._
-
-### Prerequisites
-- You can customize the colors of the following elements of your chat widget as per your brand requirements: Header Chat Background Bot Message Bubble User Message Bubble
-- You can modify the size (height and width) of your chat widget as per your requirements.
-- You can modify the size of your chat widget icon as per your requirements.
 
 ### Setup path
 - Go to Google Fonts.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- No explicit UI variants/toggles were identified in the source for this page.
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
-- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+- Identify the upstream module where this is configured and the downstream module where the outcome is verified.
 
 ## Module disambiguation docs
 - Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.

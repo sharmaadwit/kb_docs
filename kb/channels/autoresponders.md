@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/instagram-autoresponders
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Autoresponders
 
 **Module**: Channels
@@ -11,6 +11,14 @@ Autoresponders on Instagram are single message replies that a business can send 
 ## Procedure
 ### Exact UI path
 Gupshup Console → Channels → Autoresponders
+
+### Prerequisites
+- Access to the target channel configuration in Gupshup Console.
+- A connected bot/app if the channel must route traffic to Bot Studio.
+
+### Fields to configure
+- Row button and create a "String" type variable named "type"
+- Fallback connector path
 
 ### Steps
 1. Open Gupshup Console.
@@ -28,20 +36,13 @@ Gupshup Console → Channels → Autoresponders
 13. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
-
-### Fields to configure
-- Row button and create a "String" type variable named "type"
-- Fallback connector path
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
+- Send a live test on the target channel and confirm the bot/channel behavior matches the configuration.
 
 ### Troubleshooting
 - You can request an input from the user in the Autoresponder message and continue the journey ahead from there, but you cannot send multiple replies for the same comment/reply/mention.
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Setup path
 - Go to Journeys under Bot Studio and click the Create Journey button.
@@ -57,17 +58,14 @@ Gupshup Console → Channels → Autoresponders
 - Add six conditions with the variable as "type", the operator as "Equal to" and the value as each of the options below:
 - Add an Action node called Call & Return and attach it to the Starting Node.
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
-- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+- Identify the upstream module where this is configured and the downstream module where the outcome is verified.
 
 ## Module disambiguation docs
 - Channel setup governs connectivity and channel features; bot logic is configured separately in **Bot Studio**.

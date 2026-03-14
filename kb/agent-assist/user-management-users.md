@@ -5,7 +5,8 @@ source_url: https://console-docs.gupshup.io/docs/user-management-teams-and-busin
 
 
 
-<!-- agent-assist-golden:v10 -->
+
+<!-- agent-assist-golden:v11 -->
 # User Management: Users
 
 **Module**: Agent Assist
@@ -16,8 +17,15 @@ To add new users to your Agent Assist account, follow these steps:
 ## Exact UI path
 Agent Assist → Settings → User Management
 
+## Prerequisites
+- Access to **Agent Assist → Settings → User Management**.
+- Relevant teams/users already created if this page depends on them.
+
 ## Setup path
 - Navigate to the settings tab located on the bottom left side of your Agent Assist dashboard.
+
+## Fields to configure
+- correct email ID of the user you want to add
 
 ## Steps
 1. Open Agent Assist.
@@ -29,34 +37,22 @@ Agent Assist → Settings → User Management
 7. Click "Send Invite" to send an email invitation to the user.
 
 ## Validation / where to check
-- _Run a quick test (new chat / assignment / workflow) and confirm expected behavior._
-
-## Fields to configure
-- correct email ID of the user you want to add
+- Confirm the updated team/user/availability behavior appears on a new test chat or in the relevant settings view.
 
 ## Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy** if available) to apply changes.
 
 ## Troubleshooting
-- _Add common failure modes and how to fix them._
-
-## Prerequisites
-- _List required roles/access, teams, and any upstream configuration._
+- If updates do not affect new chats, re-check the target team/user assignment and confirm the change was saved.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
-## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit UI variants/toggles were identified in the source for this page.
 
 ## Cross-module workflow docs
-- _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._
+- User Management → Chat Management / assignment and availability behavior
 
 ## Module disambiguation docs
-- _Add 1–2 bullets distinguishing this feature from adjacent settings to reduce retrieval drift._
+- User Management defines users/teams/availability; Chat Management decides how chats are routed or automated.
 
 ## Reference (from source)
 ### Overview

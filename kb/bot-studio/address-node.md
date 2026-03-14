@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/address-node
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Address Node
 
 **Module**: Bot Studio
@@ -12,6 +12,13 @@ Address Node
 ### Exact UI path
 Gupshup Console → Bot Studio → Address Node
 
+### Prerequisites
+- Access to the relevant bot/project in Gupshup Console.
+- A journey/app where you can test the configuration.
+
+### Fields to configure
+- the Address Node to the journey in the Journey Builder
+
 ### Steps
 1. Open Gupshup Console.
 2. Go to **Bot Studio**.
@@ -22,19 +29,14 @@ Gupshup Console → Bot Studio → Address Node
 7. Deploy the journey.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
-
-### Fields to configure
-- the Address Node to the journey in the Journey Builder
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
+- Run the flow in **Test your Bot** and confirm the expected node/path executes.
+- If the change must affect live traffic, use **Save & Deploy** and verify on the target channel.
 
 ### Troubleshooting
 - Error Handling: For unsupported regions, the bot designer must configure fallback logic or alternative messages.
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Setup path
 - Go to **Bot Studio**.
@@ -43,14 +45,11 @@ Gupshup Console → Bot Studio → Address Node
 ## Options / variants
 - Add the Address Node to the journey in the Journey Builder.
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)

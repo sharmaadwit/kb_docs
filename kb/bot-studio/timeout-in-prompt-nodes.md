@@ -27,7 +27,9 @@ Gupshup Console → Bot Studio → Journey Builder → Prompt Node → Timeout
 12. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
+- Send a test message that reaches the prompt node and reply within the timeout window.
+- Confirm the journey continues on the expected success path instead of the fallback path.
+- Test again with no reply and confirm the fallback connector fires only after the configured timeout duration.
 
 ### Fields to configure
 - Message content
@@ -40,6 +42,12 @@ Gupshup Console → Bot Studio → Journey Builder → Prompt Node → Timeout
 
 ### Troubleshooting
 - Ensure that the fallback connector is properly configured with the desired action for any error or timeout scenarios.
+- If the prompt node times out even when the user replies, check:
+- **Variables / capture setup**: confirm the prompt is configured to capture the expected input and validation rules are not rejecting the reply.
+- **Node wiring**: confirm the success connector from the prompt node leads to the next intended node and the fallback connector is reserved for timeout/error handling.
+- **Deployment state**: if you changed timeout or prompt logic, use **Save & Deploy** so the live channel gets the latest journey version.
+- **Validation logic**: if regex or prompt validation fails, the reply may not count as a valid answer even though the user responded.
+- **Timeout value**: confirm the timeout is long enough for the use case and within the supported range (1 second to 60 minutes).
 
 ### Prerequisites
 - _List required access, assets, and upstream setup needed before configuration._
@@ -55,7 +63,7 @@ Gupshup Console → Bot Studio → Journey Builder → Prompt Node → Timeout
 - Enable the Timeout option located at the bottom of the prompt node settings.
 
 ## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- If you fix timeout behavior in the builder but the live bot still times out, the most common cause is that the updated journey was **saved but not deployed**.
 
 ## Field mapping / schemas
 - _If this feature emits/consumes payloads or requires mapping, document the fields and examples._

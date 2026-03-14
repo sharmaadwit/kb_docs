@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-ctwa-ad-on-meta-ads-manager
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Creating a CTWA Ad on Meta Ads Manager
 
 **Module**: Ctx
@@ -11,6 +11,14 @@ Meta's guide to creating CTWA ads: https://www.facebook.com/business/help/447934
 ## Procedure
 ### Exact UI path
 Gupshup Console → CTX → Creating a CTWA Ad on Meta Ads Manager
+
+### Prerequisites
+- Access to **Gupshup Console → CTX → Creating a CTWA Ad on Meta Ads Manager** in Gupshup Console.
+
+### Fields to configure
+- names for your ad campaign, Ad set, and ads
+- headline, description and CTWA
+- Message content
 
 ### Steps
 1. Open Gupshup Console.
@@ -25,21 +33,13 @@ Gupshup Console → CTX → Creating a CTWA Ad on Meta Ads Manager
 10. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
+- Run a quick test and confirm the expected behavior appears in the target module/UI.
 
-### Fields to configure
-- names for your ad campaign, Ad set, and ads
-- headline, description and CTWA
-- Message content
+### Troubleshooting
+- If something does not work as expected, re-check the exact UI path, required fields, and any save/deploy step.
 
 ### Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Troubleshooting
-- _Add common failure modes and how to fix them._
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to **CTX**.
@@ -52,14 +52,11 @@ Gupshup Console → CTX → Creating a CTWA Ad on Meta Ads Manager
 - Select the placement for the ads and where you want your ads to appear in the feed
 - Choose the ad creative and enter the headline, description and CTWA to be displayed
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - CTX campaign → Bot Studio journey → Goal measurement

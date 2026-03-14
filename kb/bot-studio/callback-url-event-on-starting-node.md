@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/callback-url-event-on-starting-node
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Callback URL Event on Starting Node
 
 **Module**: Bot Studio
@@ -11,6 +11,13 @@ The Callback Event is an event type on the Starting Node in JB Canvas. This enha
 ## Procedure
 ### Exact UI path
 Gupshup Console → Bot Studio → Callback URL Event on Starting Node
+
+### Prerequisites
+- Access to the relevant bot/project in Gupshup Console.
+- A journey/app where you can test the configuration.
+
+### Fields to configure
+- Message content
 
 ### Steps
 1. Open Gupshup Console.
@@ -25,17 +32,11 @@ Gupshup Console → Bot Studio → Callback URL Event on Starting Node
 ### Validation / where to check
 - – External system events such as subscription renewals, shipment updates, or verification completions.
 
-### Fields to configure
-- Message content
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
 ### Troubleshooting
 - The available Sender Details will be pre-populated by the system and cannot be updated(as of now)
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Setup path
 - Go to **Bot Studio**.
@@ -46,14 +47,11 @@ Gupshup Console → Bot Studio → Callback URL Event on Starting Node
 - Select the Integration from which you would like to receive the events
 - Select the specific event based on which the journey should be triggered
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)

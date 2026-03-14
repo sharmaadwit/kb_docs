@@ -12,6 +12,8 @@ Use this workflow when you want **delivery event data** (sent/delivered/read/fai
 
 If you’re asking **“After configuring delivery webhooks, where do I see delivery analytics?”** → use **Campaign Manager → Campaign Analytics** (and optionally download the response file for per-recipient delivery status).
 
+If you’re asking **“How do I connect Campaign Manager sends → Delivery Webhooks → analytics?”** → configure delivery webhooks in **Integrations**, send the campaign from **Campaign Manager**, then validate delivery outcomes in **Campaign Analytics**.
+
 ## Procedure
 ### Exact UI path
 Gupshup Console → Integrations → Webhooks

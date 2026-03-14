@@ -5,7 +5,8 @@ source_url: https://console-docs.gupshup.io/docs/chat-management-sla
 
 
 
-<!-- agent-assist-golden:v10 -->
+
+<!-- agent-assist-golden:v11 -->
 # Chat Management: SLA
 
 **Module**: Agent Assist
@@ -16,8 +17,15 @@ Definition: Service Level Agreement (SLA) is a tool that sets specific condition
 ## Exact UI path
 Agent Assist → Settings → Chat Management
 
+## Prerequisites
+- Access to **Agent Assist → Settings → Chat Management**.
+- A test chat flow or team/agent setup to validate behavior.
+
 ## Setup path
 - _Add the click-path in Console (breadcrumbs)._
+
+## Fields to configure
+- No explicit fields were identified in the source; use the controls shown on this page.
 
 ## Steps
 1. Open Agent Assist.
@@ -25,34 +33,22 @@ Agent Assist → Settings → Chat Management
 3. Click **Save** to apply changes.
 
 ## Validation / where to check
-- _Run a quick test (new chat / assignment / workflow) and confirm expected behavior._
-
-## Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
+- Create or use a test chat and confirm the chat follows the expected routing/automation rule.
 
 ## Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy** if available) to apply changes.
 
 ## Troubleshooting
-- _Add common failure modes and how to fix them._
-
-## Prerequisites
-- _List required roles/access, teams, and any upstream configuration._
+- If the chat does not follow the expected rule, re-check rule order, conditions, and target team/agent configuration.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
-## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit UI variants/toggles were identified in the source for this page.
 
 ## Cross-module workflow docs
-- _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._
+- Chat Management → Teams / Users / Chats
 
 ## Module disambiguation docs
-- _Add 1–2 bullets distinguishing this feature from adjacent settings to reduce retrieval drift._
+- Chat Management controls routing/automation behavior; User Management controls teams, users, and availability setup.
 
 ## Reference (from source)
 ### Overview

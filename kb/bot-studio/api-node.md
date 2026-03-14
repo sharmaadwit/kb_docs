@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/api-node
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # API Node
 
 **Module**: Bot Studio
@@ -11,6 +11,14 @@ Request an API response in the conversation flow using the API Node. API node ha
 ## Procedure
 ### Exact UI path
 Gupshup Console → Bot Studio → API Node
+
+### Prerequisites
+- Access to the relevant bot/project in Gupshup Console.
+- A journey/app where you can test the configuration.
+
+### Fields to configure
+- an API Node
+- new API on the API Node dropdwon
 
 ### Steps
 1. Open Gupshup Console.
@@ -24,18 +32,12 @@ Gupshup Console → Bot Studio → API Node
 ### Validation / where to check
 - Test your journey using the Test Bot before going live.
 
-### Fields to configure
-- an API Node
-- new API on the API Node dropdwon
+### Troubleshooting
+- If behavior is unchanged, confirm you updated the correct node and used **Save & Deploy** for live channels.
+- If the wrong branch/path runs, re-check conditions, connected nodes, and fallback connectors.
 
 ### Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Troubleshooting
-- _Add common failure modes and how to fix them._
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to the left-hand menu under Action Nodes.
@@ -43,14 +45,11 @@ Gupshup Console → Bot Studio → API Node
 ## Options / variants
 - Add an API Node
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/prompts
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Prompt Nodes
 
 **Module**: Bot Studio
@@ -12,6 +12,16 @@ We need to capture user details and ask them basic questions like their Name, Em
 ### Exact UI path
 Gupshup Console → Bot Studio → Prompt Nodes
 
+### Prerequisites
+- Access to the relevant bot/project in Gupshup Console.
+- A journey/app where you can test the configuration.
+
+### Fields to configure
+- Message content
+- Validation rules
+- Timeout duration
+- Fallback connector path
+
 ### Steps
 1. Open Gupshup Console.
 2. Go to **Bot Studio**.
@@ -21,39 +31,28 @@ Gupshup Console → Bot Studio → Prompt Nodes
 6. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
-
-### Fields to configure
-- Message content
-- Validation rules
-- Timeout duration
-- Fallback connector path
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
+- Run the flow in **Test your Bot** and confirm the expected node/path executes.
+- If the change must affect live traffic, use **Save & Deploy** and verify on the target channel.
 
 ### Troubleshooting
 - The behaviour of the bot can be customised if the validation of user input fails. If the validation of user input fails, the validation section helps to set the behaviour of the bot.
 - Enable Failure Message - By default on validation failure the Question prompt is repeated. If there is a need to customise the prompt sent to user when user input has failed, this checkbox needs to be checked.
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Setup path
 - Go to **Bot Studio**.
 - Go to **Prompt Nodes**.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- No explicit UI variants/toggles were identified in the source for this page.
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)

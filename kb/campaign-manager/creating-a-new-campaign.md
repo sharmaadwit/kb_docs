@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-new-campaign
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Creating A New Campaign
 
 **Module**: Campaign Manager
@@ -15,6 +15,13 @@ A new campaign can be created in just 4 steps -
 ### Exact UI path
 Gupshup Console → Campaign Manager → Creating A New Campaign
 
+### Prerequisites
+- Access to Campaign Manager for the target brand/project.
+- A campaign or campaign draft relevant to this configuration.
+
+### Fields to configure
+- Fallback connector path
+
 ### Steps
 1. Open Gupshup Console.
 2. Go to **Campaign Manager**.
@@ -24,38 +31,29 @@ Gupshup Console → Campaign Manager → Creating A New Campaign
 6. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
+- Run a small test send and confirm the expected campaign status/metrics appear in Campaign Manager.
 
-### Fields to configure
-- Fallback connector path
+### Troubleshooting
+- If data is missing or stale, confirm the campaign has actually run and refresh/reopen the analytics view.
 
 ### Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Troubleshooting
-- _Add common failure modes and how to fix them._
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to **Campaign Manager**.
 - Go to **Creating A New Campaign**.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- No explicit UI variants/toggles were identified in the source for this page.
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
-- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+- Identify the upstream module where this is configured and the downstream module where the outcome is verified.
 
 ## Module disambiguation docs
 - Campaign creation/config is in **Campaign Manager**; delivery status can also be observed via **Webhooks** (Integrations).

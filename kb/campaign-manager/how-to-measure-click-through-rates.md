@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/how-to-measure-click-through-rates
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # How to measure Click through Rates?
 
 **Module**: Campaign Manager
@@ -12,6 +12,13 @@ You can now track click through rates for a campaign. Now track which links were
 ### Exact UI path
 Gupshup Console → Campaign Manager → How to measure Click through Rates?
 
+### Prerequisites
+- Access to Campaign Manager for the target brand/project.
+- A campaign or campaign draft relevant to this configuration.
+
+### Fields to configure
+- No explicit fields were identified in the source; use the UI controls shown on this page.
+
 ### Steps
 1. Open Gupshup Console.
 2. Go to **Campaign Manager**.
@@ -20,38 +27,29 @@ Gupshup Console → Campaign Manager → How to measure Click through Rates?
 5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
-
-### Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
+- Run a small test send and confirm the expected campaign status/metrics appear in Campaign Manager.
 
 ### Troubleshooting
 - We need to note that links mentioned in the campaign message cannot be tracked. Only links which are replaced in place of variables in a template message or "Dynamic Link Tracking CTA Button link" can be tracked.
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Setup path
 - Go to **Campaign Manager**.
 - Go to **How to measure Click through Rates?**.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- No explicit UI variants/toggles were identified in the source for this page.
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
-- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+- Identify the upstream module where this is configured and the downstream module where the outcome is verified.
 
 ## Module disambiguation docs
 - Campaign creation/config is in **Campaign Manager**; delivery status can also be observed via **Webhooks** (Integrations).

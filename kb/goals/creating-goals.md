@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/creating-goals
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Creating Goals
 
 **Module**: Goals
@@ -12,6 +12,12 @@ Please refer to your journey and create Milestones and Trackers accordingly. You
 ### Exact UI path
 Gupshup Console → Goals → Creating Goals
 
+### Prerequisites
+- A goal configured in the Goals module or a journey that references it.
+
+### Fields to configure
+- a name for the Goal
+
 ### Steps
 1. Open Gupshup Console.
 2. Go to the Goals section under Bot Studio in the navigation sidebar on the left.
@@ -20,20 +26,14 @@ Gupshup Console → Goals → Creating Goals
 5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
-
-### Fields to configure
-- a name for the Goal
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
+- Run a test event/journey and confirm the expected analytics or goal data appears in the UI.
 
 ### Troubleshooting
 - Please refer to your journey and create Milestones and Trackers accordingly. You CANNOT implement Goal nodes without creating them.
 - You CANNOT delete existing Milestones.
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Setup path
 - Go to the Goals section under Bot Studio in the navigation sidebar on the left.
@@ -41,20 +41,17 @@ Gupshup Console → Goals → Creating Goals
 ## Options / variants
 - Enter a name for the Goal in Goal Name.
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
-- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+- Identify the upstream module where this is configured and the downstream module where the outcome is verified.
 
 ## Module disambiguation docs
-- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
+- Distinguish this page from adjacent modules/settings before troubleshooting elsewhere.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

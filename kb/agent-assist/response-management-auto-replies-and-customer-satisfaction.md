@@ -60,6 +60,14 @@ Agent Assist → Settings → Response Management → Auto Replies
 **Optional**: enable **Handover to Bot** (requires bot availability)  
 **Save**: click **Save**
 
+**Troubleshooting: agents are online but customers still see the after-hours reply**
+- Check **Business Hours** first: this controls whether the team is considered available at that time.
+- Confirm the correct **team** has the expected business hours, timezone, and holiday settings.
+- Verify you edited the correct Auto Replies variant: **Offline/busy during business hours** vs **Not available outside business hours**.
+- Test with a **new incoming chat after saving**; existing chats may not reflect the latest reply behavior.
+- If using **Handover to Bot**, confirm the bot path is only enabled for the intended offline scenario.
+- Disambiguation: **Business Hours** decides *when* the team is available; **Auto Replies** decides *what message/workflow fires* for that state.
+
 ### Customer reminder (customer inactivity)
 **Where**: Auto Replies → Customer Reminder  
 **Variants**:
@@ -79,6 +87,12 @@ Agent Assist → Settings → Response Management → Auto Replies
 ## Save/publish behavior
 - Click **Save** to apply changes.
 - Changes typically apply to **new/incoming chats** (validate on a test conversation after saving).
+
+## Validation / troubleshooting checks
+- For Business Hours + Auto Replies setup, run two tests:
+- Test during configured business hours and confirm the **business-hours/offline** behavior fires only when agents are unavailable/busy.
+- Test outside configured business hours and confirm the **after-hours** message fires instead.
+- If the wrong message appears, re-check **timezone**, **holiday/day schedule**, the **target team**, and the selected Auto Replies **scenario variant**.
 
 ## Notes
 - If you’re seeing answers drift toward Business Hours when asking “what message will the user see?”, anchor your query on **Auto Replies** + the specific scenario (Welcome / Offline / Reminder / Resolved).

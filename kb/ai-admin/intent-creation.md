@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/intent-creation
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Intent Creation
 
 **Module**: Ai Admin
@@ -11,6 +11,13 @@ Intent refers to the goal or purpose behind a user's input or query. It represen
 ## Procedure
 ### Exact UI path
 Gupshup Console → Ai Admin → Intent Creation
+
+### Prerequisites
+- Access to **Gupshup Console → Ai Admin → Intent Creation** in Gupshup Console.
+
+### Fields to configure
+- Intent Name & Description
+- few manual utterances to include more variations. (Optional)
 
 ### Steps
 1. Open Gupshup Console.
@@ -24,20 +31,13 @@ Gupshup Console → Ai Admin → Intent Creation
 9. Click on Save & Train button to complete the untraining.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
+- Run a quick test and confirm the expected behavior appears in the target module/UI.
 
-### Fields to configure
-- Intent Name & Description
-- few manual utterances to include more variations. (Optional)
+### Troubleshooting
+- If something does not work as expected, re-check the exact UI path, required fields, and any save/deploy step.
 
 ### Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Troubleshooting
-- _Add common failure modes and how to fix them._
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to Intent section & Select the required intent to start the untraining
@@ -47,20 +47,17 @@ Gupshup Console → Ai Admin → Intent Creation
 - Enter the Intent Name & Description.
 - Add few manual utterances to include more variations. (Optional)
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
-- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+- Identify the upstream module where this is configured and the downstream module where the outcome is verified.
 
 ## Module disambiguation docs
-- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
+- Distinguish this page from adjacent modules/settings before troubleshooting elsewhere.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

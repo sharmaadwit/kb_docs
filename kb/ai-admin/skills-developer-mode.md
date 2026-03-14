@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/skills
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Skills (Developer Mode)
 
 **Module**: Ai Admin
@@ -11,6 +11,12 @@ Introduction:
 ## Procedure
 ### Exact UI path
 Gupshup Console → Ai Admin → Skills (Developer Mode)
+
+### Prerequisites
+- Skill Objective: You are a real estate assistant for a client, who helps by collecting property requirements from the user and sharing suitable property options based on their criteria
+
+### Fields to configure
+- No explicit fields were identified in the source; use the UI controls shown on this page.
 
 ### Steps
 1. Open Gupshup Console.
@@ -27,41 +33,32 @@ Gupshup Console → Ai Admin → Skills (Developer Mode)
 - Tool Integration: Confirm @get_context_data properly retrieves and presents: Neighborhood amenities Property features Accurate pricing information
 - Guardrail Enforcement: Validate that responses:
 
-### Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
 ### Troubleshooting
 - a) Document proper parameter formatting in comments b) Include error handling for API failures c) Test with mock data before connecting to production systems d) Set appropriate timeouts to prevent conversation stalling
 - Include error handling for API failures a) Test with mock data before connecting to production systems b) Set appropriate timeouts to prevent conversation stalling
 - Error Handling:
 
-### Prerequisites
-- Skill Objective: You are a real estate assistant for a client, who helps by collecting property requirements from the user and sharing suitable property options based on their criteria
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Setup path
 - Go to **Ai Admin**.
 - Go to **Skills (Developer Mode)**.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- No explicit UI variants/toggles were identified in the source for this page.
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
-- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+- Identify the upstream module where this is configured and the downstream module where the outcome is verified.
 
 ## Module disambiguation docs
-- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
+- Distinguish this page from adjacent modules/settings before troubleshooting elsewhere.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

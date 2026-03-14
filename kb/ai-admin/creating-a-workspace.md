@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/creating-a-workspace-1
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Creating a Workspace
 
 **Module**: Ai Admin
@@ -12,6 +12,12 @@ To integrate an AI agent into a journey, creating a Workspace is the first essen
 ### Exact UI path
 Gupshup Console → Ai Admin → Creating a Workspace
 
+### Prerequisites
+- Access to **Gupshup Console → Ai Admin → Creating a Workspace** in Gupshup Console.
+
+### Fields to configure
+- No explicit fields were identified in the source; use the UI controls shown on this page.
+
 ### Steps
 1. Open Gupshup Console.
 2. Go to the AI Admin section under Bot Studio in the navigation sidebar on the left.
@@ -20,40 +26,31 @@ Gupshup Console → Ai Admin → Creating a Workspace
 5. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
-
-### Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
+- Run a quick test and confirm the expected behavior appears in the target module/UI.
 
 ### Troubleshooting
 - Failed: Whenever a Workspace training failed from any of the tabs; Intent, Entity, or Content the status of the Workspace will be “Failed” status.
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Setup path
 - Go to the AI Admin section under Bot Studio in the navigation sidebar on the left.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- No explicit UI variants/toggles were identified in the source for this page.
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
-- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+- Identify the upstream module where this is configured and the downstream module where the outcome is verified.
 
 ## Module disambiguation docs
-- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
+- Distinguish this page from adjacent modules/settings before troubleshooting elsewhere.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

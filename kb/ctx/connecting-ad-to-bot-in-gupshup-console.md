@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/connecting-ad-to-bot-in-gupshup-console
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Connecting ad to bot in Gupshup Console
 
 **Module**: Ctx
@@ -11,6 +11,12 @@ Best Practices:
 ## Procedure
 ### Exact UI path
 Gupshup Console → CTX → Connecting ad to bot in Gupshup Console
+
+### Prerequisites
+- Access to **Gupshup Console → CTX → Connecting ad to bot in Gupshup Console** in Gupshup Console.
+
+### Fields to configure
+- No explicit fields were identified in the source; use the UI controls shown on this page.
 
 ### Steps
 1. Open Gupshup Console.
@@ -27,33 +33,24 @@ Gupshup Console → CTX → Connecting ad to bot in Gupshup Console
 ### Validation / where to check
 - On the ads page, click on "Connect Bot" and in the pop-up that opens for verification, click on "Confirm"
 
-### Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
+### Troubleshooting
+- If something does not work as expected, re-check the exact UI path, required fields, and any save/deploy step.
 
 ### Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Troubleshooting
-- _Add common failure modes and how to fix them._
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to **CTX**.
 - Go to **Connecting ad to bot in Gupshup Console**.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- No explicit UI variants/toggles were identified in the source for this page.
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - CTX campaign → Bot Studio journey → Goal measurement

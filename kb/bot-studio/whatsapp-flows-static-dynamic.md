@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/whatsapp-flows-static-2-way
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # WhatsApp Flows - Static/Dynamic
 
 **Module**: Bot Studio
@@ -11,6 +11,13 @@ The WhatsApp Flows feature enhances the platform's capabilities by enabling two-
 ## Procedure
 ### Exact UI path
 Gupshup Console → Bot Studio → WhatsApp Flows - Static/Dynamic
+
+### Prerequisites
+- Access to the relevant bot/project in Gupshup Console.
+- A journey/app where you can test the configuration.
+
+### Fields to configure
+- No explicit fields were identified in the source; use the UI controls shown on this page.
 
 ### Steps
 1. Open Gupshup Console.
@@ -24,17 +31,12 @@ Gupshup Console → Bot Studio → WhatsApp Flows - Static/Dynamic
 - Ensure the Console Project is using V3 version of WhatsApp Service - Contact Support to confirm incase required.
 - Draft Toggle: Use this toggle to test Flow IDs in draft state on Meta BM (not yet published).
 
-### Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
+### Troubleshooting
+- If behavior is unchanged, confirm you updated the correct node and used **Save & Deploy** for live channels.
+- If the wrong branch/path runs, re-check conditions, connected nodes, and fallback connectors.
 
 ### Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Troubleshooting
-- _Add common failure modes and how to fix them._
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to **Bot Studio**.
@@ -43,14 +45,11 @@ Gupshup Console → Bot Studio → WhatsApp Flows - Static/Dynamic
 ## Options / variants
 - Draft Toggle: Use this toggle to test Flow IDs in draft state on Meta BM (not yet published).
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)

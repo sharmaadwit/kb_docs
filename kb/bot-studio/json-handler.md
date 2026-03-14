@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/json-response-attribute-mapping-in-api-node
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # JSON Handler
 
 **Module**: Bot Studio
@@ -11,6 +11,14 @@ The JSON Handler Node is a powerful new addition to the Journey Builder Canvas i
 ## Procedure
 ### Exact UI path
 Gupshup Console → Bot Studio → JSON Handler
+
+### Prerequisites
+- Access to the relevant bot/project in Gupshup Console.
+- A journey/app where you can test the configuration.
+
+### Fields to configure
+- the JSON Handler Node
+- sample JSON for parsing
 
 ### Steps
 1. Open Gupshup Console.
@@ -27,14 +35,8 @@ Gupshup Console → Bot Studio → JSON Handler
 12. Click Save to store your mappings and JSON structure.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
-
-### Fields to configure
-- the JSON Handler Node
-- sample JSON for parsing
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
+- Run the flow in **Test your Bot** and confirm the expected node/path executes.
+- If the change must affect live traffic, use **Save & Deploy** and verify on the target channel.
 
 ### Troubleshooting
 - Transform & Validation Transform Button reformats JSON for easier viewing. Real-time error handling for invalid JSON inputs.
@@ -44,8 +46,8 @@ Gupshup Console → Bot Studio → JSON Handler
 - Invalid JSON Inputs Real-time error messages appear in the editor if JSON is invalid.
 - Real-time error messages appear in the editor if JSON is invalid.
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Setup path
 - Navigate to Action Nodes in Journey Builder and select JSON Handler.\
@@ -56,14 +58,11 @@ Gupshup Console → Bot Studio → JSON Handler
 - Select JSON Variable Choose the variable containing the JSON response from the dropdown (Local, Global, or System).\
 - Choose the variable containing the JSON response from the dropdown (Local, Global, or System).\
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/how-do-the-elements-of-bot-studio-work-together
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # How do the Elements of Bot Studio Work Together?
 
 **Module**: Bot Studio
@@ -12,6 +12,13 @@ The Bot Studio has the following elements:
 ### Exact UI path
 Gupshup Console → Bot Studio → How do the Elements of Bot Studio Work Together?
 
+### Prerequisites
+- Access to the relevant bot/project in Gupshup Console.
+- A journey/app where you can test the configuration.
+
+### Fields to configure
+- No explicit fields were identified in the source; use the UI controls shown on this page.
+
 ### Steps
 1. Open Gupshup Console.
 2. Go to **Bot Studio**.
@@ -19,35 +26,27 @@ Gupshup Console → Bot Studio → How do the Elements of Bot Studio Work Togeth
 4. Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
-
-### Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
+- Run the flow in **Test your Bot** and confirm the expected node/path executes.
+- If the change must affect live traffic, use **Save & Deploy** and verify on the target channel.
 
 ### Troubleshooting
 - Fallback Journey - The Fallback Journey is default journey that is called when a node in any journey fails to execute if user input is not received correctly
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Setup path
 - Go to **Bot Studio**.
 - Go to **How do the Elements of Bot Studio Work Together?**.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- No explicit UI variants/toggles were identified in the source for this page.
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)

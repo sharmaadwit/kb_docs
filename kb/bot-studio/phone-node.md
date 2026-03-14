@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/phone-node
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Phone Node
 
 **Module**: Bot Studio
@@ -12,6 +12,14 @@ Phone Node
 ### Exact UI path
 Gupshup Console → Bot Studio → Phone Node
 
+### Prerequisites
+- Access to the relevant bot/project in Gupshup Console.
+- A journey/app where you can test the configuration.
+
+### Fields to configure
+- Timeout duration
+- Message content
+
 ### Steps
 1. Open Gupshup Console.
 2. Go to **Bot Studio**.
@@ -22,18 +30,12 @@ Gupshup Console → Bot Studio → Phone Node
 ### Validation / where to check
 - Answer - Validate and set restrictions on the input provided by using the field to enter a regex
 
-### Fields to configure
-- Timeout duration
-- Message content
+### Troubleshooting
+- If behavior is unchanged, confirm you updated the correct node and used **Save & Deploy** for live channels.
+- If the wrong branch/path runs, re-check conditions, connected nodes, and fallback connectors.
 
 ### Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Troubleshooting
-- _Add common failure modes and how to fix them._
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to **Bot Studio**.
@@ -42,14 +44,11 @@ Gupshup Console → Bot Studio → Phone Node
 ## Options / variants
 - Enable Timeout -Also you can enable timeout message to select the time in which you want the message to expire.
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)

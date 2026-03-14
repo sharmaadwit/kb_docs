@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/api-timeout-default-to-10-secs
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # API Timeout Default to 10 Secs
 
 **Module**: Bot Studio
@@ -12,6 +12,13 @@ Timeout Default Value
 ### Exact UI path
 Gupshup Console → Bot Studio → API Timeout Default to 10 Secs
 
+### Prerequisites
+- Access to the relevant bot/project in Gupshup Console.
+- A journey/app where you can test the configuration.
+
+### Fields to configure
+- No explicit fields were identified in the source; use the UI controls shown on this page.
+
 ### Steps
 1. Open Gupshup Console.
 2. Go to **Bot Studio**.
@@ -21,34 +28,25 @@ Gupshup Console → Bot Studio → API Timeout Default to 10 Secs
 ### Validation / where to check
 - When closing the API settings modal, the system will validate all API timeout values.
 
-### Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
 ### Troubleshooting
 - Error Validation: Any timeout set below 1 second or above 60 seconds will trigger an error notification, ensuring all timeout values remain within the valid range.
 - Invalid timeouts (e.g., 0 or outside the 1-60 second range) will prompt an error, requiring correction before proceeding.
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Setup path
 - Go to **Bot Studio**.
 - Go to **API Timeout Default to 10 Secs**.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- No explicit UI variants/toggles were identified in the source for this page.
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)

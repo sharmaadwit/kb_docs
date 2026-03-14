@@ -1,61 +1,79 @@
 source_url: https://console-docs.gupshup.io/docs/condition-node
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Condition Node
 
 **Module**: Bot Studio
 
 ## Definition
-These are automatically created when quick responses or buttons are used. By default, the condition will be on the current user message but you can create logic or conditions based on any other variable (any type).
+Use **Condition Node** to branch a journey based on the current user message or any other variable. This is the primary Bot Studio control for **if/else-style branching**.
 
 ## Procedure
 ### Exact UI path
-Gupshup Console → Bot Studio → Condition Node
+Gupshup Console → Bot Studio → Journey Builder → Condition Node
+
+### Prerequisites
+- Access to the relevant bot/project in Gupshup Console.
+- A journey/app where you can test the configuration.
+
+### Fields to configure
+- **Input source**: current user message or another variable
+- **Condition / operator**
+- **Compare value**
+- **Fallback path**
 
 ### Steps
 1. Open Gupshup Console.
 2. Go to **Bot Studio**.
-3. Go to **Condition Node**.
-4. Click **Save** (or **Save & Deploy**) to apply changes.
+3. Open the target journey in **Journey Builder**.
+4. Add or open the **Condition Node**.
+5. Select whether the condition should evaluate the **current user message** or another variable.
+6. Configure the condition/operator and comparison value.
+7. Connect the resulting branches to the correct next nodes.
+8. Configure the **fallback** path.
+9. Click **Save**.
+10. If you need the change live on the channel, click **Save & Deploy**.
 
 ### Validation / where to check
-- _Run a quick smoke test and confirm expected behavior._
-
-### Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
+- Run the flow in **Test your Bot** and trigger each expected branch value.
+- Confirm the conversation reaches the correct next node for each branch.
+- Confirm unmatched input follows the **fallback** path.
+- If the change must affect live traffic, use **Save & Deploy** and verify on the target channel.
 
 ### Troubleshooting
-- _Add common failure modes and how to fix them._
+- If behavior is unchanged, confirm you updated the correct node and used **Save & Deploy** for live channels.
+- If the wrong branch/path runs, re-check conditions, connected nodes, and fallback connectors.
+- If the condition never matches, verify the **value field is not empty** and the evaluated variable actually contains the expected data.
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- **Save** stores the updated node logic in Bot Studio.
+- **Save & Deploy** is required for the updated branch logic to affect the live channel.
 
 ### Setup path
 - Go to **Bot Studio**.
-- Go to **Condition Node**.
+- Open **Journey Builder**.
+- Open or add **Condition Node**.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- Condition on the **current user message**
+- Condition on **another variable**
+- **Fallback** path for unmatched cases
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
+- Bot Studio journey → Test your Bot → branch validation
 - Bot Studio journey → Observability via Webhooks
 
 ## Module disambiguation docs
 - **Save** stores changes; **Save & Deploy** publishes to live channels.
 - Node configuration happens in **Bot Studio**; delivery/engagement metrics are typically in **Analytics/Insights**.
+- **Condition Node** is for branching logic; **Quick Replies / Buttons** collect structured input but are not the main branching control by themselves.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

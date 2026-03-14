@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/create-a-new-journey
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Getting Started with Bot Studio
 
 **Module**: Bot Studio
@@ -11,6 +11,12 @@ Journeys Landing Page
 ## Procedure
 ### Exact UI path
 Gupshup Console → Bot Studio → Getting Started with Bot Studio
+
+### Prerequisites
+- Preview - Users have the option to preview a template to ensure it fits their requirements before using it.
+
+### Fields to configure
+- Message content
 
 ### Steps
 1. Open Gupshup Console.
@@ -32,17 +38,12 @@ Gupshup Console → Bot Studio → Getting Started with Bot Studio
 - ### Note: Test Bot becomes available only after you Save & Deploy your journey.
 - NOTE: You can use the Test Bot only after Saving and Deploying the journey
 
-### Fields to configure
-- Message content
+### Troubleshooting
+- If behavior is unchanged, confirm you updated the correct node and used **Save & Deploy** for live channels.
+- If the wrong branch/path runs, re-check conditions, connected nodes, and fallback connectors.
 
 ### Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Troubleshooting
-- _Add common failure modes and how to fix them._
-
-### Prerequisites
-- Preview - Users have the option to preview a template to ensure it fits their requirements before using it.
 
 ### Setup path
 - Go to **Bot Studio**.
@@ -54,14 +55,11 @@ Gupshup Console → Bot Studio → Getting Started with Bot Studio
 - ### Analytics Toggle
 - Analytics Toggle
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)

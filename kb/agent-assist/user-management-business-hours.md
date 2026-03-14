@@ -21,45 +21,52 @@ Business Hours define **agent availability windows** (working hours) used by Age
 Agent Assist → Settings → User Management → Business Hours
 
 ## Setup path
-- Go to settings and click on "Business Hours."
+- Go to **Settings**.
+- Open **User Management**.
+- Click **Business Hours**.
 
 ## Steps
 1. Open Agent Assist.
-2. Go to settings and click on "Business Hours."
-3. Click **Save** to apply changes.
-4. Go to settings and click on "Business Hours.".
-5. Click "Add New" to configure business hours, including naming, time zone, and daily hours.
+2. Go to **Settings → User Management → Business Hours**.
+3. Click **Add New**.
+4. Configure the business hours name, timezone, and working days/hours.
+5. Add holidays if those days should be treated as non-working hours.
+6. Click **Save**.
 
 ## Validation / where to check
 - Confirm the team is considered **available** during the configured window.
 - Test a chat during business hours vs outside business hours and confirm assignment/behavior matches expectations.
 
 ## Fields to configure
-- Business Hours.
+- **Business hours name**
+- **Timezone**
+- **Working days / hours**
+- **Holiday / non-working days**
 
 ## Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy** if available) to apply changes.
 
 ## Troubleshooting
-- _Add common failure modes and how to fix them._
+- If chats behave as if the team is offline at the wrong time, re-check the **timezone** and holiday schedule.
+- If only some chats are affected, confirm the correct **team** is linked to the expected business hours setup.
+- If the wrong customer message fires, also check **Auto Replies** because Business Hours controls availability, not message content.
 
 ## Prerequisites
-- _List required roles/access, teams, and any upstream configuration._
+- Access to **Agent Assist → Settings → User Management**.
+- The target **team** already exists.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
-## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- Create a **new** business hours schedule
+- Add **holidays / non-working days**
 
 ## Cross-module workflow docs
-- _Link this feature to adjacent modules (e.g., Business Hours ↔ Auto Replies; Assignment Rules ↔ Teams ↔ Views)._
+- Business Hours → Auto Replies / after-hours customer messaging
+- Business Hours → Assignment / team availability behavior
 
 ## Module disambiguation docs
-- _Add 1–2 bullets distinguishing this feature from adjacent settings to reduce retrieval drift._
+- **Business Hours** decides **when** a team is considered available.
+- **Auto Replies** decides **what the customer sees** for that availability state.
+- **Teams** defines membership/assignment policy; it does not define the working-hour schedule by itself.
 
 ## Reference (from source)
 ### Overview

@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/getting-started
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Welcome to Gupshup Console
 
 **Module**: Overview
@@ -11,6 +11,14 @@ Your unified platform for conversational messaging across WhatsApp, SMS, Web, an
 ## Procedure
 ### Exact UI path
 Gupshup Console → Overview → Welcome to Gupshup Console
+
+### Prerequisites
+- Access to **Gupshup Console → Overview → Welcome to Gupshup Console** in Gupshup Console.
+
+### Fields to configure
+- and manage users
+- up your preferred messaging channels
+- up analytics
 
 ### Steps
 1. Open Gupshup Console.
@@ -30,19 +38,11 @@ Gupshup Console → Overview → Welcome to Gupshup Console
 - Complete the verification process
 - Test your connection
 
-### Fields to configure
-- and manage users
-- up your preferred messaging channels
-- up analytics
-
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
-
 ### Troubleshooting
 - Screenshots or error messages (if applicable)
 
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
+### Save / publish / deploy behavior
+- Click **Save** (or **Save & Deploy**) to apply changes.
 
 ### Setup path
 - Navigate to the project selector (top-left)
@@ -53,20 +53,17 @@ Gupshup Console → Overview → Welcome to Gupshup Console
 - Set up your preferred messaging channels
 - Set up analytics to track campaign performance
 
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
-
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
-- _Link this feature to upstream/downstream modules (e.g., Bot Studio ↔ Channels ↔ Analytics)._
+- Identify the upstream module where this is configured and the downstream module where the outcome is verified.
 
 ## Module disambiguation docs
-- _Add 1–2 bullets distinguishing this module from adjacent modules to reduce retrieval drift._
+- Distinguish this page from adjacent modules/settings before troubleshooting elsewhere.
 
 ## Reference (from source)
 <!-- procedural:v2 -->

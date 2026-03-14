@@ -1,6 +1,6 @@
 source_url: https://console-docs.gupshup.io/docs/dynamic-carousel-node
 
-<!-- kb-golden:v9 -->
+<!-- kb-golden:v10 -->
 # Dynamic Carousel Node
 
 **Module**: Bot Studio
@@ -12,6 +12,13 @@ Send Personalized cards in the carousel for each user based on the user preferen
 ### Exact UI path
 Gupshup Console → Bot Studio → Dynamic Carousel Node
 
+### Prerequisites
+- Access to the relevant bot/project in Gupshup Console.
+- A journey/app where you can test the configuration.
+
+### Fields to configure
+- No explicit fields were identified in the source; use the UI controls shown on this page.
+
 ### Steps
 1. Open Gupshup Console.
 2. Go to **Bot Studio**.
@@ -21,33 +28,25 @@ Gupshup Console → Bot Studio → Dynamic Carousel Node
 ### Validation / where to check
 - "title": "Book Test Drive",
 
-### Fields to configure
-- _List the fields/inputs you must set in the UI (and expected format)._
+### Troubleshooting
+- If behavior is unchanged, confirm you updated the correct node and used **Save & Deploy** for live channels.
+- If the wrong branch/path runs, re-check conditions, connected nodes, and fallback connectors.
 
 ### Save / publish / deploy behavior
 - Click **Save** (or **Save & Deploy**) to apply changes.
-
-### Troubleshooting
-- _Add common failure modes and how to fix them._
-
-### Prerequisites
-- _List required access, assets, and upstream setup needed before configuration._
 
 ### Setup path
 - Go to **Bot Studio**.
 - Go to **Dynamic Carousel Node**.
 
 ## Options / variants
-- _List the key variants/toggles visible in the UI._
-
-## Notes
-- _Add prerequisites, constraints, and rollout behavior._
+- No explicit UI variants/toggles were identified in the source for this page.
 
 ## Field mapping / schemas
-- _If this feature emits/consumes payloads or requires mapping, document the fields and examples._
+- No explicit payload/schema details were identified in the source for this page.
 
 ## Field/payload examples
-- _Add a minimal example payload or field/value example._
+- No explicit payload examples were identified in the source.
 
 ## Cross-module workflow docs
 - Bot Studio journey → Channel go-live (WhatsApp/Instagram/Web)
