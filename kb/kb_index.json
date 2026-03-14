@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "created_at": "2026-03-13T09:45:05.653859+00:00",
+  "created_at": "2026-03-14T07:57:08.962778+00:00",
   "repo": "sharmaadwit/kb_docs",
   "branch": "main",
   "docs_path": "kb",
@@ -8,7 +8,7 @@
     "kb/analytics"
   ],
   "md_files": 253,
-  "chunks": 7401,
+  "chunks": 7402,
   "docs": [
     {
       "path": "kb/agent-assist/about-agent-assist.md",
@@ -724,7 +724,7 @@
     },
     {
       "path": "kb/campaign-manager/campaign-analytics.md",
-      "chunks": 27
+      "chunks": 28
     },
     {
       "path": "kb/campaign-manager/campaign-listing-page.md",
