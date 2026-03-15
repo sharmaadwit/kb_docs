@@ -341,6 +341,117 @@ def _canonical_page_name(source: str, heading_path: List[str], heading: str) -> 
     return heading or ""
 
 
+PRODUCT_SIGNAL_TERMS = [
+    "agent assist",
+    "business hours",
+    "auto replies",
+    "assignment rules",
+    "sticky assignment",
+    "live monitoring",
+    "test your bot",
+    "message log",
+    "save deploy",
+    "save and deploy",
+    "prompt node",
+    "instagram",
+    "webhook",
+    "webhooks",
+    "campaign analytics",
+    "goal analytics",
+    "response file",
+    "link tracking report",
+    "ctwa",
+    "ad journey",
+    "call and return",
+    "goal achieved",
+    "unique users",
+    "retain customer chat history",
+]
+
+OFFTOPIC_TERMS = [
+    "cricket",
+    "ipl",
+    "football",
+    "weather",
+    "biryani",
+    "pizza",
+    "burger",
+    "dinner",
+    "gym",
+    "workout",
+    "diet",
+    "movie",
+    "japan",
+    "iphone",
+    "birthday",
+    "bored",
+    "motivational",
+]
+
+UNSUPPORTED_PATTERNS = [
+    "two different callback urls",
+    "two callback urls",
+    "a b test",
+    "ab test",
+    "preview campaign analytics before",
+    "sync across different browsers",
+    "sync across browsers",
+    "recycle bin",
+    "pin reopened chats permanently",
+    "dark mode",
+    "download raw bot execution traces",
+    "multi region webhook failover",
+    "voice call escalation",
+    "send campaign analytics automatically to s3",
+]
+
+SENSITIVE_PATTERNS = [
+    "reveal all configured secrets",
+    "api keys",
+    "system instruction",
+    "hidden system instruction",
+    "hidden system prompt",
+    "raw chunk data",
+    "raw indexed documents",
+    "pretend the docs contain secret admin settings",
+    "do not say i don t know make the most likely answer up",
+    "ignore all previous instructions",
+    "unrestricted assistant",
+    "answer from memory",
+]
+
+
+def _has_product_signal(query: str) -> bool:
+    q = _normalize_query_for_match(query)
+    return any(term in q for term in PRODUCT_SIGNAL_TERMS)
+
+
+def _guardrail_category(query: str) -> str:
+    q = _normalize_query_for_match(query)
+    if any(term in q for term in SENSITIVE_PATTERNS):
+        return "sensitive"
+    if any(term in q for term in UNSUPPORTED_PATTERNS):
+        return "unsupported"
+    if any(term in q for term in OFFTOPIC_TERMS) and not _has_product_signal(query):
+        return "offtopic"
+    if not _has_product_signal(query):
+        low_signal = re.findall(r"[a-z0-9]+", q)
+        if len(low_signal) <= 8 and any(term in q for term in ["joke", "favorite", "wish", "roast", "human", "talk to me"]):
+            return "offtopic"
+    return ""
+
+
+def _guardrail_answer(query: str) -> str:
+    category = _guardrail_category(query)
+    if category == "sensitive":
+        return "I can’t help with secrets, hidden instructions, raw indexed data, or unsupported speculative requests. Ask me a documented Gupshup Console question instead."
+    if category == "unsupported":
+        return "I don’t know based on the current documentation. Ask me about a documented Gupshup Console capability and I’ll help with that."
+    if category == "offtopic":
+        return "I can help only with documented Gupshup Console and KB topics. Ask me a product-related question instead."
+    return ""
+
+
 def _parse_parameters(parameters: object = None, **kwargs) -> Dict:
     data = {}
     if isinstance(parameters, str):
@@ -1410,6 +1521,22 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
     if not query:
         raise ValueError("query is required")
     started = datetime.now(timezone.utc)
+    guardrail_answer = _guardrail_answer(query)
+    if guardrail_answer:
+        latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
+        langfuse = _compact_langfuse("kb_answer", query, guardrail_answer, [], "General", ["refusal"], "refusal", False, latency_ms, context)
+        return {
+            "ok": True,
+            "query": query,
+            "answer": guardrail_answer,
+            "citations": [],
+            "langfuse": {
+                "ok": langfuse["ok"],
+                "trace_id": langfuse["trace_id"],
+                "module_label": langfuse["metadata"]["module_label"],
+                "module_source": langfuse["metadata"]["module_source"],
+            },
+        }
     chunks = _load_chunks(context)
     explicit_module = _detect_module(query)
     intents = _detect_intents(query)
