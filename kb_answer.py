@@ -170,6 +170,10 @@ FEATURE_RULES = [
             "track milestones",
             "goal analytics toggle",
             "track purchase milestone",
+            "conversion milestone",
+            "milestone tracking",
+            "count toward goal analytics",
+            "goal achievement inside the flow",
         ],
         "preferred_sources": ["goal-node"],
         "penalty_sources": ["goal-analytics", "goals/"],
@@ -222,16 +226,30 @@ PRODUCT_SIGNAL_TERMS = [
     "branch based on response",
     "parse response",
 ]
-OFFTOPIC_TERMS = ["cricket", "ipl", "football", "weather", "biryani", "pizza", "burger", "dinner", "japan", "iphone", "birthday", "bored", "joke", "movie"]
+OFFTOPIC_TERMS = [
+    "cricket", "ipl", "football", "weather", "biryani", "pizza", "burger", "dinner",
+    "japan", "iphone", "birthday", "bored", "joke", "movie",
+    "tv show", "phone to buy", "workout routine", "travel plan", "cricket score",
+]
 UNSUPPORTED_PATTERNS = [
     "two different callback urls",
     "two callback urls",
+    "different callback urls",
+    "callback urls for delivered and read",
     "a b test",
     "ab test",
     "preview campaign analytics before",
+    "campaign analytics be previewed",
     "sync across different browsers",
     "sync across browsers",
+    "sync retained anonymous chat history across devices",
+    "sync automatically across browsers",
     "recycle bin",
+    "restore deleted goal analytics exports",
+    "schedule goal analytics exports",
+    "two parallel backend requests",
+    "one api node send two parallel",
+    "per event webhook retry",
     "pin reopened chats permanently",
     "dark mode",
     "download raw bot execution traces",
@@ -619,7 +637,14 @@ def _score_chunk(query: str, chunk: Dict, feature_rules: List[Dict], explicit_mo
         score += 5.0
     if ("agent transfer node" in q or "handover to agent" in q or "transfer to human agent" in q) and "agent-transfer-node" in source:
         score += 5.0
-    if ("goal node" in q or "track milestones" in q or "track purchase milestone" in q) and "goal-node" in source:
+    if (
+        any(term in q for term in [
+            "goal node", "track milestones", "track purchase milestone",
+            "conversion milestone", "milestone tracking", "count toward goal analytics",
+            "goal achievement inside the flow", "mark a purchase or signup milestone",
+        ])
+        and "goal-node" in source
+    ):
         score += 5.0
     if ("api node" in q or "external api" in q or "otp" in q or "third party api" in q or "call api" in q) and "how-to-create-whatsapp-static-flows" in source:
         score -= 8.0
@@ -885,7 +910,7 @@ def _handle_exact_cases(query: str, top: List[Dict], lines: List[str]) -> str:
             "- Use `JSON Handler` if you also need to parse fields from the API response body.",
         ])
     if (
-        ("journey builder" in q or "bot studio" in q)
+        ("journey builder" in q or "bot studio" in q or "journey" in q)
         and any(term in q for term in [
             "condition node",
             "branch based on variable",
@@ -896,6 +921,10 @@ def _handle_exact_cases(query: str, top: List[Dict], lines: List[str]) -> str:
             "fallback branch logic",
             "branch logic",
             "fallback path",
+            "else path when none of the condition checks match",
+            "configure an else path",
+            "fallback handling when branch conditions fail",
+            "conditional routing from parsed response values",
         ])
     ):
         return "\n".join([
@@ -911,8 +940,19 @@ def _handle_exact_cases(query: str, top: List[Dict], lines: List[str]) -> str:
             "- Use `Test your Bot` to trigger each expected branch value and confirm unmatched input follows the fallback path.",
         ])
     if (
-        ("journey builder" in q or "bot studio" in q)
-        and ("save user input into a variable" in q or "store user input" in q or "reuse it later" in q)
+        ("journey builder" in q or "bot studio" in q or "journey" in q)
+        and any(term in q for term in [
+            "save user input into a variable",
+            "store user input",
+            "reuse it later",
+            "define reusable journey variables",
+            "reusable journey variables",
+            "create a variable so multiple nodes can reference",
+            "manages variables used across a journey",
+            "set up variables before capturing user input",
+            "prepare journey variables ahead of",
+            "manage variables",
+        ])
     ):
         return "\n".join([
             "The documentation indicates you should use `Manage Variables` for this pattern.",
@@ -925,6 +965,26 @@ def _handle_exact_cases(query: str, top: List[Dict], lines: List[str]) -> str:
             "Useful related components",
             "- `Manage Variables` defines and manages the variable.",
             "- `Modify Variable Node` is used when you need to update or transform the stored value.",
+        ])
+    if any(term in q for term in [
+        "modify variable node",
+        "transform a variable value",
+        "updates an existing variable after it has already been stored",
+        "variable transformation rather than initial creation",
+        "saved variable needs to be updated",
+        "change stored values",
+    ]) and ("journey builder" in q or "bot studio" in q or "journey" in q or "variable" in q):
+        return "\n".join([
+            "The documentation indicates you should use `Modify Variable Node` for this pattern.",
+            "",
+            "Recommended setup",
+            "- Ensure the variable already exists (create it in `Manage Variables` if needed).",
+            "- Add `Modify Variable Node` at the point where the stored value should be updated or transformed.",
+            "- Select the variable and the operation (e.g. set, append, increment).",
+            "- Use the modified value in later steps or in `Condition Node` for branching.",
+            "",
+            "Useful related components",
+            "- `Manage Variables` defines the variable; `Modify Variable Node` updates it inside the journey.",
         ])
     if ("trigger event node" in q or "send custom event" in q or "event manager" in q) and ("journey builder" in q or "bot studio" in q):
         return "\n".join([
@@ -953,7 +1013,13 @@ def _handle_exact_cases(query: str, top: List[Dict], lines: List[str]) -> str:
             "- Add `Agent Transfer Node` at the point where the bot should hand over to a human agent.",
             "- Save the change in Bot Studio and use `Save & Deploy` if the handover should affect the live channel.",
         ])
-    if ("goal node" in q or "track milestones" in q or "track purchase milestone" in q) and ("journey builder" in q or "bot studio" in q):
+    if (
+        ("goal node" in q or "track milestones" in q or "track purchase milestone" in q
+         or "conversion milestone" in q or "milestone tracking" in q or "count toward goal analytics" in q
+         or "goal achievement inside the flow" in q or "mark a purchase or signup milestone" in q
+         or "records that a user reached a conversion milestone" in q)
+        and ("journey builder" in q or "bot studio" in q or "journey" in q or "flow" in q)
+    ):
         return "\n".join([
             "The documentation indicates you should use `Goal Node` for this pattern.",
             "",
@@ -961,6 +1027,25 @@ def _handle_exact_cases(query: str, top: List[Dict], lines: List[str]) -> str:
             "- Add `Goal Node` at the milestone you want to track in the journey.",
             "- Use it to track milestone attainment for users interacting with the bot.",
             "- If useful, enable the analytics toggle to see traversal and drop-outs for that goal.",
+        ])
+    if (
+        ("journey builder" in q or "bot studio" in q or "journey" in q)
+        and (
+            ("call an api" in q or "call api" in q) and ("parse" in q or "response" in q) and ("branch" in q or "conditional" in q)
+            or ("api node" in q and "json handler" in q and "condition node" in q)
+            or ("api node" in q and "parse the response" in q and "branch" in q)
+        )
+    ):
+        return "\n".join([
+            "The documentation indicates you should use **API Node**, **JSON Handler**, and **Condition Node** together for this pattern.",
+            "",
+            "Recommended setup",
+            "- Use **API Node** to call the backend and store the response in a variable.",
+            "- Use **JSON Handler** after the API Node to parse fields from the response into variables.",
+            "- Use **Condition Node** to branch the journey based on the parsed value (e.g. success/error flag).",
+            "",
+            "Useful related",
+            "- API Node: HTTP Status Code Branching if you also want to route by response code.",
         ])
     if ("flow trigger" in q or "launch a whatsapp flow" in q) and ("journey builder" in q or "whatsapp flow" in q):
         return "\n".join([
@@ -1060,13 +1145,19 @@ def _handle_exact_cases(query: str, top: List[Dict], lines: List[str]) -> str:
         ])
     if any(x in q for x in [
         "saved changes are not yet live on the channel",
+        "concept explains why saved",
+        "not yet live on the channel",
         "draft is updated but production behavior is still old",
+        "production behavior is still old",
         "saved versus actually live",
+        "merely saved versus actually live",
         "pushing live behavior",
+        "gap between saving progress and pushing live",
         "customers still see the old bot",
         "production bot still behaves old",
-        "changes are merely saved versus actually live"
-    ]):
+        "changes are merely saved versus actually live",
+        "testing looks right but customers still see the old bot",
+    ]) or ("save" in q and "deploy" in q and ("live" in q or "concept" in q or "difference" in q or "draft" in q)):
         return "\n".join([
             "Use Save when",
             "- `Save` stores progress in Bot Studio.",

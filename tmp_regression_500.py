@@ -31,7 +31,9 @@ def score_text(text, kind, required_any, required_all, bonus, penalty):
             "i can help only with documented gupshup console and kb topics",
             "i don t know based on the current documentation",
             "i don t know based on the docs",
+            "i don t know based on the documentation provided",
             "documented gupshup console question",
+            "documented gupshup console capability",
             "unsupported",
         ]
         return 1.0 if any(term in t for term in refusal_terms) else 0.15
