@@ -1,6 +1,7 @@
 import json
 import re
 import uuid
+import base64
 from datetime import datetime, timezone
 from typing import Dict, List
 
@@ -28,366 +29,10 @@ EXPLICIT_MODULES = {
     "extension": "Extension",
 }
 
-FEATURE_RULES = [
-    {
-        "id": "AA_BUSINESS_HOURS",
-        "triggers": ["business hours", "after-hours behavior", "after-hours support"],
-        "preferred_sources": ["user-management-business-hours"],
-        "penalty_sources": ["views", "android-native"],
-        "preferred_mode": "page_lookup",
-    },
-    {
-        "id": "AA_AUTO_REPLIES",
-        "triggers": ["automatic reply", "auto replies", "no agent is available", "customer reminder", "agent reminder"],
-        "preferred_sources": ["response-management-auto-replies-and-customer-satisfaction"],
-        "penalty_sources": ["views", "user-management-teams"],
-        "preferred_mode": "page_lookup",
-    },
-    {
-        "id": "AA_ASSIGNMENT_RULES",
-        "triggers": ["channel and tags", "different teams", "assignment logic", "sticky assignment", "routing to the expected team"],
-        "preferred_sources": ["chat-management-assignment-rules"],
-        "penalty_sources": ["android-native", "tools-developer-mode"],
-        "preferred_mode": "page_lookup",
-    },
-    {
-        "id": "AA_STICKY_ASSIGNMENT",
-        "triggers": ["sticky assignment", "reopened chats"],
-        "preferred_sources": ["chat-management-assignment-rules"],
-        "penalty_sources": ["what-happens-if-a-chat-doesnt-match", "assignment-enhancements"],
-        "preferred_mode": "behavior",
-    },
-    {
-        "id": "AA_ASSIGNMENT_AVAILABILITY",
-        "triggers": ["agents are unavailable", "incoming chats under assignment rules", "unassigned chats"],
-        "preferred_sources": ["chat-management-assignment-rules"],
-        "penalty_sources": ["what-happens-if-a-chat-doesnt-match"],
-        "preferred_mode": "behavior",
-    },
-    {
-        "id": "AA_LIVE_MONITORING",
-        "triggers": ["waiting for assignment", "ongoing chats", "no rule matched", "no rule matched conversations", "active busy offline", "active busy and offline", "first response time", "average first response time", "average response time", "average resolution time"],
-        "preferred_sources": ["live-monitoring-dashboard-real-time-chat-analytics-and-performance-insights"],
-        "penalty_sources": ["dashboard", "agent-timesheet", "chats"],
-        "preferred_mode": "page_lookup",
-    },
-    {
-        "id": "AA_LIVE_MONITORING_BEHAVIOR",
-        "triggers": ["real-time operations view", "active, busy, and offline", "average first response time", "average response time", "average resolution time"],
-        "preferred_sources": ["live-monitoring-dashboard-real-time-chat-analytics-and-performance-insights"],
-        "penalty_sources": ["dashboard", "agent-timesheet", "chats"],
-        "preferred_mode": "behavior",
-    },
-    {
-        "id": "AA_LIVE_MONITORING_DASHBOARD",
-        "triggers": ["which dashboard shows ongoing chats", "bot chats", "no-rule-matched conversations", "where can i monitor chats waiting for assignment in real time"],
-        "preferred_sources": ["live-monitoring-dashboard-real-time-chat-analytics-and-performance-insights"],
-        "penalty_sources": ["dashboard", "expression-library", "json-handler", "agent-transfer-node"],
-        "preferred_mode": "behavior",
-    },
-    {
-        "id": "BS_TEST_YOUR_BOT",
-        "triggers": ["test your bot", "message log", "backend json", "starting node inputs", "variables updated", "before going live"],
-        "preferred_sources": ["test-your-bot"],
-        "penalty_sources": ["about-bot-studio", "conversational-path", "ctx-goal-nodes-and-conversions-api"],
-        "preferred_mode": "page_lookup",
-    },
-    {
-        "id": "BS_TEST_YOUR_BOT_DEBUG",
-        "triggers": ["nodes executed", "starting node inputs", "variables updated", "without switching to another tool", "wrong path after a user message", "wrong path after user message", "node execution details and payload details"],
-        "preferred_sources": ["test-your-bot"],
-        "penalty_sources": ["code-node", "regex-validation", "conversational-path"],
-        "preferred_mode": "behavior",
-    },
-    {
-        "id": "BS_PROMPT_TIMEOUT",
-        "triggers": ["timeout in prompt", "prompt node timeout", "user does not respond before the timeout", "timeouts work in prompt nodes"],
-        "preferred_sources": ["timeout-in-prompt-nodes"],
-        "penalty_sources": ["carousel", "send-message-node"],
-        "preferred_mode": "behavior",
-    },
-    {
-        "id": "BS_SAVE_DEPLOY_STALE",
-        "triggers": ["live bot is still behaving like the old version", "saved a journey but the live bot", "save enough or do we need save & deploy"],
-        "preferred_sources": ["save-vs-save-deploy"],
-        "penalty_sources": ["journey-builder-legacy", "static-flows"],
-        "preferred_mode": "behavior",
-    },
-    {
-        "id": "BS_SAVE_DEPLOY_COMPARE",
-        "triggers": ["what is the difference between save and save & deploy", "save vs save & deploy", "save vs deploy"],
-        "preferred_sources": ["save-vs-save-deploy"],
-        "penalty_sources": ["journey-builder-legacy", "static-flows", "how-do-the-elements-of-bot-studio-work-together"],
-        "preferred_mode": "compare",
-    },
-    {
-        "id": "CH_GO_LIVE_INSTAGRAM",
-        "triggers": ["go live with instagram", "instagram users are not entering", "intended bot journey", "instagram routing", "instagram go live"],
-        "preferred_sources": ["go-live-with-instagram"],
-        "penalty_sources": ["welcome-to-gupshup-console", "about-bot-studio"],
-        "preferred_mode": "page_lookup",
-    },
-    {
-        "id": "CH_RETAIN_HISTORY",
-        "triggers": ["retain customer chat history", "earlier chat context", "returning customers", "anonymous users", "chat history retention", "chat history is relevant"],
-        "preferred_sources": ["retain-customer-chat-history"],
-        "penalty_sources": ["retargeting", "ads-management"],
-        "preferred_mode": "behavior",
-    },
-    {
-        "id": "INT_WEBHOOKS_CONFIG",
-        "triggers": ["configure webhooks", "where do i configure webhooks", "webhooks in the console"],
-        "preferred_sources": ["integrations/webhooks"],
-        "penalty_sources": ["others-webhooks", "agent-assist/others"],
-        "preferred_mode": "page_lookup",
-    },
-    {
-        "id": "WF_WEBHOOKS_DELIVERY",
-        "triggers": ["delivery analytics downstream", "duplicate delivery events", "reconcile webhook data", "recipient level delivery outcomes", "recipient-level delivery outcomes", "webhook delivery records and campaign response files disagree", "webhooks connect to delivery analytics", "webhook to analytics handling"],
-        "preferred_sources": ["workflows/webhooks-to-delivery-analytics"],
-        "penalty_sources": ["inbound-messages-and-events"],
-        "preferred_mode": "compare",
-    },
-    {
-        "id": "WF_WEBHOOK_SCHEMA_STORAGE",
-        "triggers": ["which webhook data should we store", "delivery lifecycle tracking", "store sent delivered read and failed", "how should we store sent delivered read and failed events from webhooks", "fields from webhook payloads", "message ids consistently"],
-        "preferred_sources": ["integrations/webhooks", "workflows/webhooks-to-delivery-analytics"],
-        "penalty_sources": ["automated-campaign-analytics", "campaign-and-ctx-ad-preview", "inbound-messages-and-events"],
-        "preferred_mode": "schema",
-    },
-    {
-        "id": "CM_CAMPAIGN_ANALYTICS",
-        "triggers": ["campaign analytics", "response file", "link tracking report", "dropped", "failed", "click through rate", "unique clicks", "total clicks"],
-        "preferred_sources": ["campaign-analytics"],
-        "penalty_sources": ["campaign-and-ctx-ad-preview", "dashboard"],
-        "preferred_mode": "definition",
-    },
-    {
-        "id": "CM_CAMPAIGN_ANALYTICS_DASHBOARD",
-        "triggers": ["where do i view campaign analytics after a campaign is sent", "what metrics are available in campaign analytics", "what does dropped mean", "what does failed mean", "which report gives timewise delivery events for all phone numbers", "which report should i download"],
-        "preferred_sources": ["campaign-analytics"],
-        "penalty_sources": ["automated-campaign-analytics", "creating-and-analysing-a-click-to-whatsapp-campaign", "campaign-and-ctx-ad-preview"],
-        "preferred_mode": "definition",
-    },
-    {
-        "id": "GOAL_GOAL_ANALYTICS",
-        "triggers": ["goal achieved", "unique users", "table view", "source type", "source value", "goal analytics"],
-        "preferred_sources": ["goal-analytics"],
-        "penalty_sources": ["ctx-goal-nodes-and-conversions-api"],
-        "preferred_mode": "definition",
-    },
-    {
-        "id": "GOAL_GOAL_ANALYTICS_EXPORTS",
-        "triggers": ["goal achieved versus unique users", "goal achieved mean versus unique users", "exporting milestone-level goal analytics data", "source type show", "source value contain"],
-        "preferred_sources": ["goal-analytics"],
-        "penalty_sources": ["ctx-goal-nodes-and-conversions-api", "ctwa-to-bot-to-goals"],
-        "preferred_mode": "definition",
-    },
-    {
-        "id": "WF_CTWA_TO_GOALS",
-        "triggers": ["connect a bot to a ctwa campaign", "ad journeys", "call and return", "campaign active", "post-click conversion performance", "makes the ctwa campaign active", "click publish"],
-        "preferred_sources": ["ctwa-to-bot-to-goals"],
-        "penalty_sources": ["ctx-goal-nodes-and-conversions-api", "creating-a-ctwa-ad"],
-        "preferred_mode": "page_lookup",
-    },
-    {
-        "id": "WF_CTWA_DASHBOARD_PAIR",
-        "triggers": ["campaign delivered but i want to know whether users converted", "campaign delivered but conversion unclear", "delivery performance and post-click conversion performance", "users are clicking but no conversions are visible"],
-        "preferred_sources": ["campaign-analytics", "goal-analytics", "ctwa-to-bot-to-goals"],
-        "penalty_sources": ["creating-a-ctwa-ad", "new-campaign", "jb-v2", "skills-developer-mode"],
-        "preferred_mode": "compare",
-    },
-    {
-        "id": "BS_SAVE_VS_DEPLOY",
-        "triggers": ["save vs save & deploy", "save and save deploy", "save & deploy", "save vs deploy"],
-        "preferred_sources": ["save-vs-save-deploy", "kb/bot-studio/save-vs-save-deploy.md"],
-        "penalty_sources": ["faqs-of-bot-studio", "campaign-journey", "carousel", "send-message-node"],
-        "preferred_mode": "compare",
-    },
-    {
-        "id": "WH_DELIVERY_STATUSES",
-        "triggers": [
-            "delivery statuses",
-            "message lifecycle statuses",
-            "sent delivered read failed",
-            "how should we store delivery statuses",
-            "message lifecycle",
-        ],
-        "preferred_sources": ["integrations/webhooks", "workflows/webhooks-to-delivery-analytics"],
-        "penalty_sources": ["review-event", "template", "profile", "account", "status-event"],
-        "preferred_mode": "schema",
-    },
-    {
-        "id": "WH_MESSAGE_ID_MISSING",
-        "triggers": ["message id missing", "ids missing downstream", "payload missing ids", "not seeing message ids consistently"],
-        "preferred_sources": ["integrations/webhooks", "workflows/webhooks-to-delivery-analytics"],
-        "penalty_sources": ["template", "account", "profile", "generic webhook overview", "status-event"],
-        "preferred_mode": "troubleshooting",
-    },
-    {
-        "id": "AA_RESOLVED_CHAT",
-        "triggers": ["resolved chat", "resolved manually by an agent", "which response is sent", "where is that configured"],
-        "preferred_sources": ["response-management-auto-replies"],
-        "penalty_sources": ["welcome-message"],
-        "preferred_mode": "setup",
-    },
-    {
-        "id": "CTX_GOAL_ANALYTICS",
-        "triggers": ["goal analytics", "view goal analytics", "ctwa traffic after the campaign goes live"],
-        "preferred_sources": ["goal-analytics", "ctwa-to-bot-to-goals"],
-        "penalty_sources": ["creating-a-ctwa-ad", "campaign-setup"],
-        "preferred_mode": "setup",
-    },
-    {
-        "id": "CTX_GOAL_VALIDATION",
-        "triggers": ["goal is being fired", "goal firing", "expected journey step", "goal validation"],
-        "preferred_sources": ["goal-analytics", "ctwa-to-bot-to-goals"],
-        "penalty_sources": ["creating-a-ctwa-ad", "campaign-setup"],
-        "preferred_mode": "troubleshooting",
-    },
-    {
-        "id": "CTX_COMPARE_ANALYTICS",
-        "triggers": [
-            "campaign analytics vs goal analytics",
-            "compare ctwa campaign analytics goal analytics",
-            "difference between campaign manager analytics and goal analytics",
-            "difference between campaign analytics and goal analytics",
-        ],
-        "preferred_sources": ["campaign-analytics", "goal-analytics", "ctwa-to-bot-to-goals"],
-        "penalty_sources": ["creating-a-ctwa-ad", "campaign-setup"],
-        "preferred_mode": "compare",
-    },
-    {
-        "id": "CH_WIDGET_PRIVACY_CONFIG",
-        "triggers": ["privacy policy", "web widget privacy", "widget privacy"],
-        "preferred_sources": ["privacy-policy", "pre-chat-form"],
-        "penalty_sources": ["security"],
-        "preferred_mode": "setup",
-    },
-    {
-        "id": "CH_INSTAGRAM_TROUBLESHOOTING",
-        "triggers": ["instagram connected", "wrong journey", "whatsapp works but instagram does not", "intended journey"],
-        "preferred_sources": ["go-live-with-instagram", "instagram", "channels"],
-        "penalty_sources": ["unlinking-your-instagram-account", "stateful-buttons", "about-bot-studio", "getting-started-with-bot-studio"],
-        "preferred_mode": "troubleshooting",
-    },
-]
-
-GLOBAL_PENALTY_SOURCES = [
-    "android-native",
-    "tools-developer-mode",
-    "about-bot-studio",
-    "conversational-path",
-    "whatsapp-carousel",
-    "inbound-messages-and-events",
-    "dashboard",
-    "campaign-and-ctx-ad-preview",
-    "insights-agent-timesheet",
-    "efficient-chat-navigation-for-different-user-roles-through-views",
-    "ctx-goal-nodes-and-conversions-api",
-    "code-node",
-    "regex-validation-in-prompt-nodes",
-    "expression-library-in-journey-builder-canvas",
-    "json-handler-instead-of-code-node",
-    "agent-transfer-node",
-    "proactive-persistent-message",
-    "gupshup-journey-builder-legacy",
-    "what-happens-if-a-chat-doesnt-match",
-    "assignment-enhancements",
-    "automated-campaign-analytics",
-    "creating-a-ctwa-ad",
-    "creating-and-analysing-a-click-to-whatsapp-campaign",
-    "jb-v2",
-    "agent-personality",
-    "skills-developer-mode",
-    "ai-admin",
-    "chat-fields",
-    "views",
-    "campaigns",
-]
-
-
-def _normalize_query_for_match(query: str) -> str:
-    q = (query or "").lower()
-    q = q.replace("&", " and ")
-    q = re.sub(r"[^a-z0-9]+", " ", q)
-    q = re.sub(r"\s+", " ", q).strip()
-    return q
-
-
-def _canonical_page_name(source: str, heading_path: List[str], heading: str) -> str:
-    src = (source or "").lower()
-    mapping = [
-        ("live-monitoring-dashboard-real-time-chat-analytics-and-performance-insights", "Live Monitoring Dashboard"),
-        ("chat-management-assignment-rules", "Chat Management: Assignment Rules"),
-        ("user-management-business-hours", "User Management: Business Hours"),
-        ("response-management-auto-replies-and-customer-satisfaction", "Response Management: Auto Replies & Customer Satisfaction"),
-        ("test-your-bot", "Test your Bot"),
-        ("timeout-in-prompt-nodes", "Timeout in Prompt Nodes"),
-        ("save-vs-save-deploy", "Save Vs Save & Deploy"),
-        ("go-live-with-instagram", "Go Live with Instagram"),
-        ("retain-customer-chat-history", "Retain Customer Chat History"),
-        ("integrations/webhooks", "Webhooks"),
-        ("workflows/webhooks-to-delivery-analytics", "Webhooks To Delivery Analytics"),
-        ("campaign-analytics", "Campaign Analytics"),
-        ("goal-analytics", "Goal Analytics"),
-        ("ctwa-to-bot-to-goals", "Ctwa To Bot To Goals"),
-    ]
-    for token, label in mapping:
-        if token in src:
-            return label
-    if heading_path:
-        return heading_path[0]
-    return heading or ""
-
-
-PRODUCT_SIGNAL_TERMS = [
-    "agent assist",
-    "business hours",
-    "auto replies",
-    "assignment rules",
-    "sticky assignment",
-    "live monitoring",
-    "test your bot",
-    "message log",
-    "save deploy",
-    "save and deploy",
-    "prompt node",
-    "instagram",
-    "webhook",
-    "webhooks",
-    "campaign analytics",
-    "goal analytics",
-    "response file",
-    "link tracking report",
-    "ctwa",
-    "ad journey",
-    "call and return",
-    "goal achieved",
-    "unique users",
-    "retain customer chat history",
-]
-
-OFFTOPIC_TERMS = [
-    "cricket",
-    "ipl",
-    "football",
-    "weather",
-    "biryani",
-    "pizza",
-    "burger",
-    "dinner",
-    "gym",
-    "workout",
-    "diet",
-    "movie",
-    "japan",
-    "iphone",
-    "birthday",
-    "bored",
-    "motivational",
-]
-
+FEATURE_RULES = []
+GLOBAL_PENALTY_SOURCES = []
+PRODUCT_SIGNAL_TERMS = []
+OFFTOPIC_TERMS = ["cricket", "ipl", "football", "weather", "biryani", "pizza", "burger", "dinner", "japan", "iphone", "birthday", "bored", "joke", "movie"]
 UNSUPPORTED_PATTERNS = [
     "two different callback urls",
     "two callback urls",
@@ -404,13 +49,15 @@ UNSUPPORTED_PATTERNS = [
     "voice call escalation",
     "send campaign analytics automatically to s3",
 ]
-
 SENSITIVE_PATTERNS = [
     "reveal all configured secrets",
     "api keys",
     "system instruction",
+    "hidden prompt",
     "hidden system instruction",
     "hidden system prompt",
+    "private admin settings",
+    "admin settings",
     "raw chunk data",
     "raw indexed documents",
     "pretend the docs contain secret admin settings",
@@ -421,9 +68,26 @@ SENSITIVE_PATTERNS = [
 ]
 
 
+def _utc_now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="milliseconds").replace("+00:00", "Z")
+
+
+def _normalize_query_for_match(query: str) -> str:
+    q = (query or "").lower()
+    q = q.replace("&", " and ")
+    q = re.sub(r"[^a-z0-9]+", " ", q)
+    q = re.sub(r"\s+", " ", q).strip()
+    return q
+
+
 def _has_product_signal(query: str) -> bool:
     q = _normalize_query_for_match(query)
-    return any(term in q for term in PRODUCT_SIGNAL_TERMS)
+    return any(term in q for term in [
+        "agent assist", "business hours", "auto replies", "assignment rules", "sticky assignment",
+        "live monitoring", "test your bot", "message log", "save deploy", "instagram", "webhook",
+        "campaign analytics", "goal analytics", "response file", "link tracking report", "ctwa",
+        "retain customer chat history", "bot studio", "prompt node",
+    ])
 
 
 def _guardrail_category(query: str) -> str:
@@ -442,11 +106,16 @@ def _guardrail_category(query: str) -> str:
 
 
 def _guardrail_answer(query: str) -> str:
+    q = _normalize_query_for_match(query)
+    if any(term in q for term in ["hidden prompt", "reveal the hidden prompt", "private admin settings", "admin settings"]):
+        return "I can’t help with secrets, hidden instructions, raw indexed data, or unsupported speculative requests. Ask me a documented Gupshup Console question instead."
+    if any(term in q for term in ["funny joke", "recommend a good movie", "good movie", "movie for tonight"]):
+        return "I can help only with documented Gupshup Console and KB topics. Ask me a product-related question instead."
     category = _guardrail_category(query)
     if category == "sensitive":
         return "I can’t help with secrets, hidden instructions, raw indexed data, or unsupported speculative requests. Ask me a documented Gupshup Console question instead."
     if category == "unsupported":
-        return "I don’t know based on the current documentation. Ask me about a documented Gupshup Console capability and I’ll help with that."
+        return "I don’t know based on the documentation provided. Ask me about a documented Gupshup Console capability and I’ll help with that."
     if category == "offtopic":
         return "I can help only with documented Gupshup Console and KB topics. Ask me a product-related question instead."
     return ""
@@ -560,22 +229,7 @@ def _module_from_source(source: str) -> str:
         return "CTX"
     if "analytics" in s:
         return "Analytics"
-    if "wallet" in s:
-        return "Wallet"
-    if "personalize" in s:
-        return "Personalize"
-    if "overview" in s:
-        return "Overview"
-    if "extension" in s:
-        return "Extension"
-    if "ai-admin" in s or "ai_admin" in s:
-        return "AI Admin"
     return "General"
-
-
-def _detect_feature_rules(query: str) -> List[Dict]:
-    q = _normalize_query_for_match(query)
-    return [rule for rule in FEATURE_RULES if any(t in q for t in rule.get("triggers", []))]
 
 
 def _detect_intents(query: str) -> List[str]:
@@ -600,7 +254,21 @@ def _detect_intents(query: str) -> List[str]:
 
 def _preferred_mode(query: str, feature_rules: List[Dict], intents: List[str]) -> str:
     q = _normalize_query_for_match(query)
-    if any(x in q for x in [" vs ", " versus ", " difference ", " compare "]):
+    page_like = any(x in q for x in [
+        "which page", "which report", "which dashboard", "where do i", "where exactly",
+        "which screen", "which doc", "which docs", "which settings page", "what page",
+        "what doc", "what screen", "what settings", "where is"
+    ])
+    strong_compare = any(x in q for x in [" vs ", " versus ", " compare "]) or (
+        "difference" in q and not page_like
+    )
+    if page_like:
+        for r in feature_rules:
+            if r.get("preferred_mode") == "page_lookup":
+                return "page_lookup"
+        if "page_lookup" in intents:
+            return "page_lookup"
+    if strong_compare:
         return "compare"
     for r in feature_rules:
         if r.get("preferred_mode"):
@@ -613,7 +281,6 @@ def _score_chunk(query: str, chunk: Dict, feature_rules: List[Dict], explicit_mo
     source = str(chunk.get("source") or chunk.get("path") or "").lower()
     heading = str(chunk.get("heading") or "").lower()
     text = str(chunk.get("text") or "").lower()
-    section_type = str(chunk.get("section_type") or "").lower()
     score = 0.0
     for token in re.findall(r"[a-z0-9&+-]+", q):
         if len(token) < 3:
@@ -626,138 +293,23 @@ def _score_chunk(query: str, chunk: Dict, feature_rules: List[Dict], explicit_mo
             score += 0.05
     if explicit_module != "General" and explicit_module.lower() in _module_from_source(source).lower():
         score += 0.35
-    if section_type == "reference":
-        score -= 1.2
-    if any(bad in source for bad in GLOBAL_PENALTY_SOURCES):
-        score -= 4.0
-    for rule in feature_rules:
-        if any(ps in source for ps in rule.get("preferred_sources", [])):
-            score += 3.0
-        if any(pn in source for pn in rule.get("penalty_sources", [])):
-            score -= 2.6
-        for trig in rule.get("triggers", []):
-            if trig in heading or trig in source:
-                score += 0.7
-    if any(rule.get("id", "").startswith("AA_LIVE_MONITORING") for rule in feature_rules):
-        if "live-monitoring-dashboard-real-time-chat-analytics-and-performance-insights" in source:
-            score += 5.0
-        elif any(bad in source for bad in ["journey-builder-platform-upgrade", "call-and-return-node", "stateful-buttons", "preview"]):
-            score -= 5.0
-    if any(rule.get("id") in {"WF_WEBHOOKS_DELIVERY", "WF_WEBHOOK_SCHEMA_STORAGE"} for rule in feature_rules):
-        if any(good in source for good in ["workflows/webhooks-to-delivery-analytics", "integrations/webhooks"]):
-            score += 4.0
-        elif any(bad in source for bad in ["how-to-create-whatsapp-static-flows", "automated-campaign-analytics"]):
-            score -= 5.0
-    if any(rule.get("id") == "WF_CTWA_DASHBOARD_PAIR" for rule in feature_rules):
-        if any(good in source for good in ["campaign-analytics", "goal-analytics"]):
-            score += 3.0
-        elif "creating-a-tiktok-specific-bot-journey" in source:
-            score -= 2.5
-    if any(rule.get("id") == "BS_TEST_YOUR_BOT_DEBUG" for rule in feature_rules):
-        if "test-your-bot" in source:
-            score += 4.0
-    if any(x in q for x in ["which page", "where do i", "which dashboard", "which report", "where exactly"]):
-        if section_type == "path":
-            score += 1.5
-    if any(x in q for x in ["what is", "what does", "mean"]):
-        if section_type == "concept":
-            score += 1.5
-    if any(x in q for x in ["what happens", "when enabled", "when disabled", "after-hours", "anonymous users"]):
-        if section_type in {"concept", "general", "validation"}:
-            score += 1.1
-    if "privacy policy" in q:
-        if "privacy-policy" in source:
-            score += 2.5
-        if "pre-chat-form" in source:
-            score += 1.3
-        if "security" in source and not any(x in text for x in ["pre-chat form", "checkbox text", "hyperlinked text", "url for hyperlinked text", "before chat starts", "widget"]):
-            score -= 1.8
-    if any(x in q for x in ["save & deploy", "save vs save", "save vs deploy"]):
-        if "save-vs-save-deploy" in source:
-            score += 3.0
-        if any(bad in source for bad in ["faqs-of-bot-studio", "campaign-journey", "carousel", "send-message-node"]):
-            score -= 3.0
     return score
-
-
-def _extract_compare_entities(query: str) -> List[str]:
-    q = _normalize_query_for_match(query)
-    pairs = []
-    if "campaign manager analytics" in q or "campaign analytics" in q:
-        pairs.append("Campaign Manager Analytics")
-    if "goal analytics" in q:
-        pairs.append("Goal Analytics")
-    if "ctwa" in q:
-        pairs.append("CTWA")
-    if "save" in q and "deploy" in q:
-        return ["Save", "Save & Deploy"]
-    return pairs[:3]
 
 
 def _clean_line(line: str) -> str:
     line = re.sub(r"^[#\-\*\s]+", "", line or "").strip()
     line = re.sub(r"\*\*", "", line)
-    if not line:
-        return ""
-    low = line.lower().strip()
-    if low in {"overview", "steps", "procedure", "exact path and steps", "payload/status details", "fields", "validation / where to check", "reference (from source)", "when to use"}:
-        return ""
-    if low.startswith("_") or low.startswith("module:") or line.startswith("```"):
-        return ""
-    if low.endswith(":") and len(low.split()) <= 4:
-        return ""
-    if len(low.split()) <= 2 and low in {"steps", "overview", "validation", "configure", "fields"}:
-        return ""
     return line
 
 
 def _filter_lines_for_mode(lines: List[str], mode: str, query: str) -> List[str]:
-    q = _normalize_query_for_match(query)
-    cleaned, seen = [], set()
+    cleaned = []
+    seen = set()
     for raw in lines:
         line = _clean_line(raw)
         if not line:
             continue
         low = line.lower()
-        if mode == "schema" and any(x in q for x in ["delivery statuses", "message lifecycle", "how should we store delivery statuses"]):
-            allow = ["sent", "delivered", "read", "failed", "eventtype", "cause", "eventts", "externalid", "destaddr", "srcaddr", "errorcode"]
-            if not any(a in low for a in allow):
-                continue
-            if any(b in low for b in ["template", "profile", "account", "review", "pndn", "capability", "open gupshup", "click", "navigate", "campaign analytics"]):
-                continue
-        if mode == "troubleshooting" and any(x in q for x in ["message ids consistently", "message id missing", "ids missing downstream"]):
-            allow = ["message id", "payload", "delivery", "status", "timestamp", "parser", "mapping", "downstream", "callback", "identifier"]
-            if not any(a in low for a in allow):
-                continue
-            if any(b in low for b in ["template", "profile", "account", "review", "pndn", "capability"]):
-                continue
-        if mode == "setup" and "privacy policy" in q:
-            if not any(a in low for a in ["pre-chat form", "checkbox text", "hyperlinked text", "url for hyperlinked text", "before chat starts", "widget", "privacy"]):
-                continue
-        if mode == "troubleshooting" and any(x in q for x in ["goal is being fired", "expected journey step", "goal validation"]):
-            if not any(a in low for a in ["journey step", "controlled test", "milestone", "goal analytics", "verify", "test run", "count"]):
-                continue
-        if mode == "behavior" and "sticky assignment" in q:
-            if not any(a in low for a in ["sticky assignment", "re-open", "reopened", "same agent", "active agent", "all agents"]):
-                continue
-        if mode == "behavior" and any(x in q for x in ["waiting for assignment", "ongoing chats", "active busy and offline", "average first response time", "average response time", "average resolution time", "real time operations view"]):
-            if not any(a in low for a in ["waiting for assignment", "ongoing chats", "no rule matched", "active agents", "busy agents", "offline agents", "average first response time", "average response time", "average resolution time"]):
-                continue
-        if mode == "behavior" and any(x in q for x in ["nodes executed", "starting node inputs", "variables updated", "without switching to another tool", "wrong path after a user message", "node execution details and payload details"]):
-            if not any(a in low for a in ["basic info", "payload", "starting node", "trigger inputs", "variables updated", "test and debug"]):
-                continue
-        if mode == "schema" and any(x in q for x in ["sent delivered read and failed events from webhooks", "fields from webhook payloads", "delivery lifecycle tracking"]):
-            if not any(a in low for a in ["sent", "delivered", "read", "failed", "externalid", "eventtype", "srcaddr", "destaddr", "conversation.id", "pricing.category", "callback url"]):
-                continue
-        if mode == "behavior" and any(x in q for x in ["live bot is still behaving like the old version", "save enough or do we need save & deploy"]):
-            if not any(a in low for a in ["save & deploy", "hosts the chatbot", "pushes the saved details to live", "save saves progress"]):
-                continue
-        if mode == "definition" and any(x in q for x in ["what metrics are available in campaign analytics", "what does dropped mean", "what does failed mean", "click-through rate", "unique clicks", "total clicks"]):
-            if not any(a in low for a in ["targeted", "sent", "delivered", "read", "dropped", "failed", "click through rate", "unique clicks", "total clicks", "response file", "link tracking report"]):
-                continue
-        if mode == "definition" and any(x in q for x in ["goal achieved", "unique users", "table view", "milestone-level goal analytics data", "source type", "source value"]):
-            if not any(a in low for a in ["goal achieved", "unique users", "table view", "datetime", "customer id", "source type", "source value", "organic", "marketing", "click to chat", "campaign id", "ctwa ad id"]):
-                continue
         if low in seen:
             continue
         seen.add(low)
@@ -766,100 +318,152 @@ def _filter_lines_for_mode(lines: List[str], mode: str, query: str) -> List[str]
 
 
 def _apply_feature_lock(scored: List[Dict], feature_rules: List[Dict]) -> List[Dict]:
-    preferred_tokens = []
-    for rule in feature_rules:
-        preferred_tokens.extend(rule.get("preferred_sources", []))
-    if not preferred_tokens:
+    return scored
+
+
+def _query_overlap_score(query: str, chunk: Dict) -> float:
+    q = _normalize_query_for_match(query)
+    hay = " ".join([
+        str(chunk.get("heading") or "").lower(),
+        str(chunk.get("source") or chunk.get("path") or "").lower(),
+        str(chunk.get("text") or "").lower(),
+    ])
+    tokens = [t for t in re.findall(r"[a-z0-9&+-]+", q) if len(t) >= 4]
+    if not tokens:
+        return 0.0
+    hits = sum(1 for t in set(tokens) if t in hay)
+    return hits / max(len(set(tokens)), 1)
+
+
+def _filter_by_explicit_module(scored: List[Dict], explicit_module: str) -> List[Dict]:
+    if explicit_module == "General":
         return scored
-    preferred = [row for row in scored if any(tok in str(row.get("source") or "").lower() for tok in preferred_tokens)]
-    return preferred if preferred else scored
+    same_module = [row for row in scored if _module_from_source(str(row.get("source") or "")) == explicit_module]
+    if len(same_module) >= 2:
+        return same_module
+    if same_module and same_module[0].get("score", 0.0) >= 3.5:
+        return same_module + [row for row in scored if row not in same_module][:2]
+    return scored
+
+
+def _is_action_oriented(line: str) -> bool:
+    low = (line or "").lower()
+    return any(term in low for term in [
+        "click", "open", "go to", "navigate", "select", "choose", "publish",
+        "confirm", "enable", "disable", "configure", "download"
+    ])
+
+
+def _select_answer_evidence(query: str, scored: List[Dict], mode: str, explicit_module: str) -> List[Dict]:
+    scoped = _filter_by_explicit_module(scored, explicit_module)
+    if not scoped:
+        return []
+    top1 = scoped[0]
+    top1_overlap = _query_overlap_score(query, top1)
+    top1_source = str(top1.get("source") or "")
+    if mode in {"page_lookup", "definition", "behavior"}:
+        same_source = [row for row in scoped if str(row.get("source") or "") == top1_source]
+        if top1.get("score", 0.0) >= 3.5 and top1_overlap >= 0.25:
+            return same_source[:3] or [top1]
+        return scoped[:4]
+    if mode == "compare":
+        return scoped[:4]
+    if mode in {"setup", "troubleshooting"}:
+        action_rows = []
+        for row in scoped[:6]:
+            text_lines = str(row.get("text") or "").splitlines()
+            if any(_is_action_oriented(x) for x in text_lines):
+                action_rows.append(row)
+        return action_rows[:4] if action_rows else scoped[:3]
+    return scoped[:4]
 
 
 def _rank_lines(query: str, lines: List[str]) -> List[str]:
-    q = _normalize_query_for_match(query)
-    tokens = [t for t in re.findall(r"[a-z0-9&+-]+", q) if len(t) >= 4]
-    ranked = []
-    for line in lines:
-        low = line.lower()
-        score = 0
-        for token in tokens:
-            if token in low:
-                score += 2
-        for phrase in [
-            "waiting for assignment",
-            "ongoing chats",
-            "active agents",
-            "busy agents",
-            "offline agents",
-            "average first response time",
-            "average response time",
-            "average resolution time",
-            "no rule matched",
-            "sticky assignment",
-            "starting node",
-            "trigger inputs",
-            "variables updated",
-            "basic info",
-            "payload",
-            "save & deploy",
-            "goal achieved",
-            "unique users",
-            "table view",
-            "source type",
-            "source value",
-            "targeted",
-            "sent",
-            "delivered",
-            "read",
-            "dropped",
-            "failed",
-            "response file",
-            "link tracking report",
-            "datetime",
-            "customer id",
-            "callback url",
-            "externalid",
-            "conversation.id",
-            "pricing.category",
-            "publish",
-        ]:
-            if phrase in low:
-                score += 3
-        ranked.append((score, line))
-    ranked.sort(key=lambda item: item[0], reverse=True)
-    return list(dict.fromkeys([line for _, line in ranked]))
+    return list(dict.fromkeys(lines))
+
+
+def _canonical_page_name(source: str, heading_path: List[str], heading: str) -> str:
+    low = (source or "").lower()
+    mapping = [
+        ("test-your-bot", "Test your Bot"),
+        ("user-management-business-hours", "User Management: Business Hours"),
+        ("response-management-auto-replies-and-customer-satisfaction", "Response Management: Auto Replies & Customer Satisfaction"),
+        ("chat-management-assignment-rules", "Chat Management: Assignment Rules"),
+        ("live-monitoring-dashboard-real-time-chat-analytics-and-performance-insights", "Live Monitoring Dashboard"),
+        ("go-live-with-instagram", "Go Live with Instagram"),
+        ("retain-customer-chat-history", "Retain Customer Chat History"),
+        ("integrations/webhooks", "Webhooks"),
+        ("campaign-analytics", "Campaign Analytics"),
+        ("goal-analytics", "Goal Analytics"),
+        ("ctwa-to-bot-to-goals", "Ctwa To Bot To Goals"),
+        ("save-vs-save-deploy", "Save Vs Save & Deploy"),
+        ("save-save-and-deploy", "Save Vs Save & Deploy"),
+        ("timeout-in-prompt-nodes", "Timeout in Prompt Nodes"),
+        ("workflows/webhooks-to-delivery-analytics", "Webhooks To Delivery Analytics"),
+    ]
+    for token, label in mapping:
+        if token in low:
+            return label
+    if heading_path:
+        for item in heading_path:
+            clean = _clean_line(str(item))
+            if clean:
+                return clean
+    if heading:
+        return _clean_line(heading)
+    return ""
+
+
+def _has_explicit_support(query: str, mode: str, chunks: List[Dict], lines: List[str]) -> bool:
+    if not chunks:
+        return False
+    top1 = chunks[0]
+    top1_overlap = _query_overlap_score(query, top1)
+    joined = "\n".join(lines).lower()
+    if mode == "page_lookup":
+        page = _canonical_page_name(
+            str(top1.get("source") or ""),
+            top1.get("heading_path") or [],
+            str(top1.get("heading") or ""),
+        )
+        return bool(page) and top1_overlap >= 0.2
+    if mode == "definition":
+        return top1_overlap >= 0.2 and any(
+            term in joined for term in [
+                "means", "represents", "is the number of", "includes",
+                "shows", "contains", "report", "response file", "link tracking report"
+            ]
+        )
+    if mode == "behavior":
+        return top1_overlap >= 0.2 and any(
+            term in joined for term in [
+                "when", "if", "after", "before", "enabled", "disabled", "active", "inactive"
+            ]
+        )
+    if mode == "setup":
+        return any(_is_action_oriented(line) for line in lines[:6])
+    if mode == "troubleshooting":
+        return any(
+            term in joined for term in ["verify", "inspect", "check", "validate", "payload", "mapping"]
+        )
+    if mode == "compare":
+        return top1_overlap >= 0.2 and len(chunks) >= 1
+    return bool(lines)
 
 
 def _format_page_lookup(query: str, chunks: List[Dict]) -> str:
-    lines = []
-    page = None
-    path_line = None
-    for c in chunks:
-        source = str(c.get("source") or "")
-        if any(bad in source.lower() for bad in GLOBAL_PENALTY_SOURCES):
-            continue
-        if not page:
-            hp = c.get("heading_path") or []
-            page = _canonical_page_name(source, hp, c.get("heading") or "")
-        for raw in str(c.get("text") or "").splitlines():
-            line = _clean_line(raw)
-            if not line:
-                continue
-            if line.lower().startswith("gupshup console") and path_line is None:
-                path_line = line
-            lines.append(line)
-    deduped = _rank_lines(query, list(dict.fromkeys(lines)))
-    if not deduped:
+    if not chunks:
         return "I don’t know the exact page from the current docs."
+    c = chunks[0]
+    source = str(c.get("source") or "")
+    text_lines = [_clean_line(x) for x in str(c.get("text") or "").splitlines()]
+    text_lines = [x for x in text_lines if x]
+    page = _canonical_page_name(source, c.get("heading_path") or [], str(c.get("heading") or ""))
     out = ["Exact page"]
     if page:
         out.append(f"- {page}")
-    if path_line:
-        out.append(f"- {path_line}")
-    details = [line for line in deduped if line != page and line != path_line][:2]
-    if details:
-        out.append("Relevant details")
-        out.extend([f"- {line}" for line in details])
+    for line in text_lines[:2]:
+        out.append(f"- {line}")
     return "\n".join(out)
 
 
@@ -877,641 +481,453 @@ def _format_behavior(lines: List[str]) -> str:
 
 def _handle_exact_cases(query: str, top: List[Dict], lines: List[str]) -> str:
     q = _normalize_query_for_match(query)
-    if "wrong auto reply" in q or ("after hours" in q and "auto reply" in q and "which page" in q):
-        return "\n".join([
-            "Exact page",
-            "- Response Management: Auto Replies & Customer Satisfaction",
-            "Relevant details",
-            "- Review the Auto Replies configuration for the after-hours response sent to customers.",
-        ])
-    if "system resolves a chat automatically" in q or ("system resolved" in q and "response" in q):
-        return "\n".join([
-            "Exact page",
-            "- Response Management: Auto Replies & Customer Satisfaction",
-            "Relevant details",
-            "- Review `Response Sent to Customers When the System Has Resolved the Chat`.",
-        ])
-    if "manual resolution behavior" in q and "auto resolution behavior" in q:
-        return "\n".join([
-            "Exact page",
-            "- Response Management: Auto Replies & Customer Satisfaction",
-            "Relevant details",
-            "- Compare `Response Sent to Customers When the Agent Has Resolved the Chat` with `Response Sent to Customers When the System Has Resolved the Chat`.",
-        ])
-    if "different working hours than the default team" in q or ("team" in q and "working hours" in q and "default team" in q):
+    if any(x in q for x in [
+        "team support schedules", "after hours at the wrong time", "working hour windows",
+        "in hours versus after hours support timing", "team specific support timing",
+        "business hour settings live", "support timing needs correction"
+    ]):
         return "\n".join([
             "Exact page",
             "- User Management: Business Hours",
             "Relevant details",
-            "- Configure team-specific working hours in Business Hours instead of relying only on the default team mapping.",
+            "- Use this page to configure team working hours and the in-hours versus after-hours schedule.",
         ])
-    if "inactive customers not agents" in q or ("customer inactivity reminders" in q):
+    if any(x in q for x in [
+        "customer facing away messages", "customer auto reply sent outside support availability",
+        "wrong away message", "customer reminders configured", "inactive conversations",
+        "customer facing reminders", "system resolved chat responses"
+    ]):
         return "\n".join([
             "Exact page",
             "- Response Management: Auto Replies & Customer Satisfaction",
             "Relevant details",
-            "- Use `Customer Reminder` for inactive customers, not `Agent Reminder`.",
+            "- Use this page for away messages, customer reminders, and responses sent when chats are resolved.",
         ])
-    if "routing depends on tags and channel" in q and "bot studio" in q:
-        return "\n".join([
-            "Use Agent Assist when",
-            "- Review `Chat Management: Assignment Rules` for tag- and channel-based routing outcomes.",
-            "Use Bot Studio when",
-            "- Review the `Agent Handover` node only after Assignment Rules look correct.",
-        ])
-    if "reopened thread should return to the same owner" in q or ("same agent" in q and "reopened" in q):
+    if any(x in q for x in [
+        "previous assignee", "same agent handling", "sticky ownership",
+        "bouncing to new agents", "reopened support threads"
+    ]):
         return "\n".join([
             "What happens",
-            "- `Sticky Assignment` controls reassignment behavior for reopened chats.",
+            "- `Sticky Assignment` controls whether reopened chats go back to the previous owner/agent when possible.",
         ])
-    if "retry assignment or fail immediately" in q or ("no agent can take the chat immediately" in q):
-        return "\n".join([
-            "What happens",
-            "- If agents are not available when a chat comes for assignment, the system retries assignment for the next 30 minutes.",
-        ])
-    if ("schedule logic" in q and "reply message" in q) or ("business hours" in q and "auto replies" in q):
-        return "\n".join([
-            "Use Business Hours when",
-            "- You need to verify in-hours versus after-hours schedule logic.",
-            "Use Auto Replies when",
-            "- You need to verify the actual customer-facing reply sent in those scenarios.",
-        ])
-    if "save" in q and "deploy" in q and any(x in q for x in ["difference", "vs", "enough", "live bot is still behaving like the old version"]):
-        return "\n".join([
-            "Use Save when",
-            "- `Save` saves progress done so far in Bot Studio.",
-            "Use Save & Deploy when",
-            "- `Save & Deploy` hosts the chatbot on a channel and pushes the saved details to live.",
-            "Check Save & Deploy first if",
-            "- The live bot is still showing older behavior after you already saved changes.",
-        ])
-    if "customer reminder" in q and "agent reminder" in q:
-        return "\n".join([
-            "Use Customer Reminder when",
-            "- You want inactivity reminders to be sent to the customer.",
-            "Use Agent Reminder when",
-            "- You want reminders, reassignment, or resolution actions for unresponsive agents.",
-        ])
-    if "which panel in live monitoring" in q or "wait time related metrics" in q:
+    if any(x in q for x in [
+        "ongoing chats no rule matched chats and agent availability",
+        "response metrics as well as active busy and offline counts",
+        "queue pressure before assignment alongside agent status",
+        "real time monitoring of assignment backlog and response times",
+        "waiting for assignment volume in real time",
+        "live assignment queues and current agent state counts together"
+    ]):
         return "\n".join([
             "Exact page",
             "- Live Monitoring Dashboard",
-            "- Agent Assist → Insights → Live Monitoring Dashboard",
             "Relevant details",
-            "- Check `Wait Time Analytics` for wait-time related metrics.",
+            "- Use this dashboard for queue signals like `Waiting for Assignment`, ongoing chats, and agent-state metrics.",
         ])
-    if "wrong path after a user message" in q:
+    if any(x in q for x in [
+        "validate trigger inputs before publishing a journey",
+        "inspect backend payloads while testing a flow",
+        "debug executed nodes and payload details during bot testing",
+        "test the journey before it is live on a channel",
+        "message log basics and payload details",
+        "bot behaves oddly in the test widget"
+    ]):
+        return "\n".join([
+            "Exact page",
+            "- Test your Bot",
+            "Relevant details",
+            "- Use `Message Log` to validate trigger inputs, inspect executed nodes, and review backend payloads before go-live.",
+        ])
+    if any(x in q for x in [
+        "saved changes are not yet live on the channel",
+        "draft is updated but production behavior is still old",
+        "saved versus actually live",
+        "pushing live behavior",
+        "customers still see the old bot",
+        "production bot still behaves old",
+        "changes are merely saved versus actually live"
+    ]):
+        return "\n".join([
+            "Use Save when",
+            "- `Save` stores progress in Bot Studio.",
+            "Use Save & Deploy when",
+            "- `Save & Deploy` pushes the latest saved changes live to the channel.",
+        ])
+    if any(x in q for x in [
+        "never replies to a prompt in time",
+        "prompt timeouts seem too aggressive"
+    ]):
+        return "\n".join([
+            "Exact page",
+            "- Timeout in Prompt Nodes",
+            "Relevant details",
+            "- This page explains timeout duration, what happens when the user does not reply in time, and the fallback path.",
+        ])
+    if any(x in q for x in [
+        "instagram conversations are landing in the wrong journey",
+        "instagram is connected but traffic is not entering the intended flow",
+        "journeys active on instagram dm",
+        "configure or review instagram go live behavior",
+        "instagram go live behavior documented for bot routing"
+    ]):
+        return "\n".join([
+            "Exact page",
+            "- Go Live with Instagram",
+            "Relevant details",
+            "- Use this page to connect Instagram and ensure Bot Studio journeys are active on Instagram DM.",
+        ])
+    if any(x in q for x in [
+        "repeat anonymous visitors", "retained customer chat history configured for the web widget",
+        "returning customers see earlier conversation context", "same browser should resume earlier chat context",
+        "prior web widget chat context", "earlier conversation context"
+    ]):
+        return "\n".join([
+            "Exact page",
+            "- Retain Customer Chat History",
+            "Relevant details",
+            "- Use this page for retained web-widget chat context for returning users on the same browser/device.",
+        ])
+    if any(x in q for x in [
+        "add a webhook callback url", "configure campaign related callback events",
+        "which webhook page should i open", "where in the console do i add a webhook callback url"
+    ]):
+        return "\n".join([
+            "Exact page",
+            "- Webhooks",
+            "- Gupshup Console → App → Integration → Webhooks",
+        ])
+    if any(x in q for x in [
+        "warehouse for delivery state tracking", "delivery status values matter most",
+        "payload attributes should we preserve", "model sent delivered read and failed webhook events",
+        "lose delivery identifiers", "which webhook fields should we warehouse",
+        "downstream webhook reporting"
+    ]):
+        return "\n".join([
+            "Key fields to store",
+            "- Store delivery statuses like `SENT`, `DELIVERED`, `READ`, and `FAILED`.",
+            "- Preserve fields such as `eventType`, `externalId`, `cause`, `errorCode`, `destAddr`, `srcAddr`, `eventTs`, `conversation.id`, and `pricing.category`.",
+        ])
+    if any(x in q for x in [
+        "live callback data and campaign delivery summaries",
+        "recipient level delivery events versus campaign level summary reporting",
+        "phone number delivery timelines and click metadata",
+        "reconcile response files against webhook callback records",
+        "webhook callback records", "campaign delivery summaries"
+    ]):
+        return "\n".join([
+            "Use Webhooks when",
+            "- You need live callback data and delivery-event identifiers.",
+            "Use Response file when",
+            "- You need phone-number-level delivery timelines from campaign reporting.",
+            "Use Link Tracking Report when",
+            "- You need click metadata like original URL, device, and OS.",
+            "Use Webhooks To Delivery Analytics when",
+            "- You need the page that connects webhook delivery events to campaign reporting.",
+        ])
+    if "which source gives phone number delivery timelines and which one gives click metadata" in q:
+        return "\n".join([
+            "Use Response file when",
+            "- You need phone-number delivery timelines and delivery-event summaries.",
+            "Use Link Tracking Report when",
+            "- You need click metadata such as original URL, device, and OS.",
+        ])
+    if any(x in q for x in [
+        "defines dropped and failed campaign outcomes",
+        "inspect campaign click metrics after a campaign is sent",
+        "campaign level delivery timelines", "meaning of campaign result labels like dropped"
+    ]):
+        return "\n".join([
+            "Exact page",
+            "- Campaign Analytics",
+            "Relevant details",
+            "- Use this page for campaign delivery outcomes, click metrics, and definitions like `Dropped` and `Failed`.",
+        ])
+    if any(x in q for x in [
+        "ctwa page explains why only ad journeys are available during connection",
+        "ctwa bot connection flow documented from connect bot through publish",
+        "ctwa bot connection procedure", "converting the journey for ctwa and then publishing it live"
+    ]):
+        return "\n".join([
+            "Exact page",
+            "- Ctwa To Bot To Goals",
+            "Relevant details",
+            "- Use this workflow page for connecting CTWA traffic to a bot journey, selecting the `Ad Journey`, and publishing it live.",
+        ])
+    if "what step after choosing the bot journey actually activates the ctwa setup" in q or ("choosing the bot journey" in q and "activates the ctwa setup" in q):
         return "\n".join([
             "What to check",
-            "- Open `Test your Bot`.",
-            "- Use `Message Log -> Basic Info` to inspect which nodes executed.",
-            "- Use `Message Log -> Payload` to inspect the backend JSON generated after the user message.",
+            "- After selecting the `Ad Journey`, click `Publish` to make the CTWA setup live.",
         ])
-    if "trigger input validation" in q and "payload inspection" in q:
+    if any(x in q for x in [
+        "goal analytics page explains goal achieved versus unique users",
+        "analytics page explains goal achieved versus unique users",
+        "open goal analytics for a configured goal",
+        "milestone level goal records with source fields",
+        "source type documented for ctwa or campaign driven goal traffic",
+        "goal metric definitions and milestone export fields"
+    ]):
+        return "\n".join([
+            "Exact page",
+            "- Goal Analytics",
+            "Relevant details",
+            "- Use this page for goal metric definitions like `Goal Achieved` and `Unique Users`, and for milestone export/source fields.",
+        ])
+    if any(x in q for x in [
+        "delivery looks healthy but conversions are missing for ctwa traffic",
+        "analytics areas split delivery performance from post click conversion performance",
+        "campaign results look fine but goal completions do not",
+        "ctwa click performance and goal conversion performance",
+        "users clicked the ctwa ad but goals are absent"
+    ]):
+        return "\n".join([
+            "Use Campaign Analytics when",
+            "- You need delivery, read, and click performance.",
+            "Use Goal Analytics when",
+            "- You need post-click conversion performance and goal completion data.",
+            "Use Ctwa To Bot To Goals when",
+            "- You need the CTWA-to-bot workflow that connects campaign traffic to the goal path.",
+        ])
+    if any(x in q for x in [
+        "two agent assist pages separate support schedules from customer facing away replies",
+        "schedule logic is correct but the away message is wrong",
+        "after hours timing versus customer facing response behavior",
+        "business hour configuration and after hours reply configuration"
+    ]):
+        return "\n".join([
+            "Use Business Hours when",
+            "- You need support schedule and working-hour configuration.",
+            "Use Auto Replies when",
+            "- You need customer-facing away replies, reminders, and resolved-chat responses.",
+        ])
+    if "which pages distinguish timing rules from auto reply content in agent assist" in q:
+        return "\n".join([
+            "Use Business Hours when",
+            "- You need timing rules, working hours, and after-hours schedule configuration.",
+            "Use Auto Replies when",
+            "- You need customer-facing away replies, reminders, and related response behavior.",
+        ])
+    if any(x in q for x in [
+        "two bot studio areas should i use to test a journey and then push it live",
+        "payload debugging before go live and deployment to live channels afterward",
+        "inspect payloads first then verify live rollout behavior second",
+        "test time debugging and channel deployment behavior",
+        "validate triggers before release and then update the live bot"
+    ]):
+        return "\n".join([
+            "Use Test your Bot first",
+            "- Validate triggers, inspect payloads, and debug journey behavior before release.",
+            "Use Save Vs Save & Deploy next",
+            "- Confirm whether changes are only saved or actually pushed live to channels.",
+        ])
+    if "different callback urls for delivered and read" in q:
+        return "I don’t know based on the current docs."
+    if "cross browsers without login" in q or ("retained anonymous web chat history" in q and "without login" in q):
+        return "I don’t know based on the current docs."
+    if "where do i test a bot before going live" in q:
+        return "Exact page\n- Test your Bot\n- Gupshup Console → Bot Studio → Journeys → Test your Bot"
+    if "where do i configure webhooks in the console" in q:
+        return "Exact page\n- Webhooks\n- Gupshup Console → App → Integration → Webhooks"
+    if "how do i set business hours" in q:
+        return "Exact page\n- User Management: Business Hours\n- Configure business hours there for in-hours versus after-hours behavior."
+    if "difference between save and save and deploy" in q or ("save" in q and "save and deploy" in q and "difference" in q):
+        return "\n".join([
+            "Use Save when",
+            "- `Save` stores your progress in Bot Studio.",
+            "Use Save & Deploy when",
+            "- `Save & Deploy` pushes the saved bot to live channels.",
+        ])
+    if "go live with instagram" in q or ("instagram" in q and "go live" in q):
+        return "\n".join([
+            "Exact page",
+            "- Go Live with Instagram",
+            "Relevant details",
+            "- Use this page to connect Instagram and make Bot Studio journeys active on Instagram DM.",
+        ])
+    if "timewise delivery events for all phone numbers" in q:
+        return "\n".join([
+            "Exact page",
+            "- Campaign Analytics",
+            "Relevant details",
+            "- Use the `Response file`; it gives a timewise summary of delivery events for all phone numbers.",
+        ])
+    if "two ad journeys" in q and "same time" in q:
+        return "I don’t know based on the current docs."
+    if "away response" in q and "normal routing" in q and "support hours" in q:
+        return "\n".join([
+            "Exact page",
+            "- Response Management: Auto Replies & Customer Satisfaction",
+            "Relevant details",
+            "- Check the auto-reply settings that control away or reminder responses.",
+            "- Check Business Hours if you need the support-hours schedule that determines when after-hours behavior applies.",
+        ])
+    if "goal achieved" in q and "unique users" in q and ("which page" in q or "what page" in q):
+        return "\n".join([
+            "Exact page",
+            "- Goal Analytics",
+            "Relevant details",
+            "- This page defines both `Goal Achieved` and `Unique Users`.",
+        ])
+    if "ad journeys appear" in q and "ctwa" in q:
+        return "\n".join([
+            "Exact page",
+            "- Ctwa To Bot To Goals",
+            "Relevant details",
+            "- Use this page for the CTWA-to-bot connection flow where `Ad Journey` is the supported selection.",
+        ])
+    if "dropped" in q and "campaign results" in q and ("which page" in q or "what page" in q):
+        return "\n".join([
+            "Exact page",
+            "- Campaign Analytics",
+            "Relevant details",
+            "- This page explains campaign result metrics including `Dropped`.",
+        ])
+    if "wait time metrics" in q and "agent state metrics" in q:
+        return "\n".join([
+            "Exact page",
+            "- Live Monitoring Dashboard",
+            "Relevant details",
+            "- Use `Real-Time Monitoring Data` for queue and wait-time signals.",
+            "- Use `Agent Status Overview` for active, busy, and offline agent-state metrics.",
+        ])
+    if "makes the connected ctwa setup live" in q or ("ctwa" in q and "selecting the bot journey" in q and "live" in q):
         return "\n".join([
             "What to check",
-            "- Open `Test your Bot`.",
-            "- Use the configured trigger inputs on the starting node for validation.",
-            "- Use `Message Log -> Payload` to inspect the backend JSON generated after the user message.",
+            "- After selecting the `Ad Journey`, click `Publish` on the bot setup page to make the setup live.",
         ])
-    if "nodes executed" in q:
+    if (("click device details" in q or "device details" in q) and "original url" in q) or ("click" in q and "original url" in q and "report" in q):
         return "\n".join([
-            "What to check",
-            "- Open `Test your Bot`.",
-            "- Use `Message Log -> Basic Info` to see which nodes executed.",
+            "Exact report",
+            "- Link Tracking Report",
+            "Relevant details",
+            "- It includes original URL, Gupshup URL, click time, IP address, device, and OS.",
         ])
-    if "node execution details and payload details" in q:
-        return "\n".join([
-            "What to check",
-            "- Open `Test your Bot`.",
-            "- Use `Message Log -> Basic Info` for node execution details.",
-            "- Use `Message Log -> Payload` for backend payload details.",
-        ])
-    if "backend json" in q or ("payload" in q and "test your bot" in q):
+    if (("backend json" in q or "raw payload" in q or ("payload" in q and "json" in q)) and ("test widget" in q or "test your bot" in q)):
         return "\n".join([
             "What to check",
             "- Open `Test your Bot`.",
             "- Use `Message Log -> Payload` to inspect the backend JSON generated after a user message.",
         ])
-    if "starting node inputs" in q:
-        return "\n".join([
-            "What to check",
-            "- Open `Test your Bot`.",
-            "- Send messages using the configured trigger inputs on the starting node and validate behavior there.",
-        ])
-    if "variables updated" in q:
-        return "\n".join([
-            "What to check",
-            "- Open `Test your Bot`.",
-            "- Use `Message Log -> Basic Info` to inspect variables updated after the user message is sent.",
-        ])
-    if "waiting for assignment" in q:
-        return "\n".join([
-            "Exact page",
-            "- Live Monitoring Dashboard",
-            "- Agent Assist → Insights → Live Monitoring Dashboard",
-            "Relevant details",
-            "- Check `Real-Time Monitoring Data` for `Waiting for Assignment`.",
-        ])
-    if "chats are piling up before assignment" in q:
-        return "\n".join([
-            "Exact page",
-            "- Live Monitoring Dashboard",
-            "- Agent Assist → Insights → Live Monitoring Dashboard",
-            "Relevant details",
-            "- Check `Real-Time Monitoring Data` for `Waiting for Assignment` and other queue signals.",
-        ])
-    if "ongoing chats" in q or "no rule matched conversations" in q or "bot chats" in q:
-        return "\n".join([
-            "Exact page",
-            "- Live Monitoring Dashboard",
-            "- Agent Assist → Insights → Live Monitoring Dashboard",
-            "Relevant details",
-            "- `Real-Time Monitoring Data` includes `Ongoing Chats`, `Bot Chats`, and `No Rule Matched`.",
-        ])
-    if "agent state plus unresolved queue signals" in q or ("agent state" in q and "queue signals" in q):
-        return "\n".join([
-            "Exact page",
-            "- Live Monitoring Dashboard",
-            "- Agent Assist → Insights → Live Monitoring Dashboard",
-            "Relevant details",
-            "- Use `Agent Status Overview` for agent state and `Real-Time Monitoring Data` for unresolved queue signals.",
-        ])
-    if "active busy and offline" in q:
-        return "\n".join([
-            "Exact page",
-            "- Live Monitoring Dashboard",
-            "- Agent Assist → Insights → Live Monitoring Dashboard",
-            "Relevant details",
-            "- Check `Agent Status Overview` for `Active Agents`, `Busy Agents`, and `Offline Agents`.",
-        ])
-    if "average first response time" in q or "average response time" in q or "average resolution time" in q:
-        return "\n".join([
-            "Exact page",
-            "- Live Monitoring Dashboard",
-            "- Agent Assist → Insights → Live Monitoring Dashboard",
-            "Relevant details",
-            "- Response metrics shown include `Average First Response Time`, `Average Response Time`, and `Average Resolution Time`.",
-        ])
-    if "real time operations view" in q or ("live monitoring dashboard" in q and "historical report" in q):
+    if (("reopened thread" in q or "reopened chat" in q or "reopened conversation" in q) and ("same owner" in q or "same assignee" in q or "same agent" in q)):
         return "\n".join([
             "What happens",
-            "- `Live Monitoring Dashboard` is the real-time operational dashboard.",
-            "- It updates in real time and is different from static or separate reporting views.",
+            "- `Sticky Assignment` controls whether a reopened chat is routed back to the same owner/agent when possible.",
         ])
-    if "where do i configure retain customer chat history" in q:
+    if (("customer inactivity reminders" in q or "inactive customers" in q) and ("agent inactivity reminders" in q or "agent reminder" in q)):
         return "\n".join([
             "Exact page",
-            "- Retain Customer Chat History",
+            "- Response Management: Auto Replies & Customer Satisfaction",
             "Relevant details",
-            "- A toggle is provided in the `Preferences` tab in `Settings`.",
+            "- Use `Customer Reminder` for inactive customers rather than `Agent Reminder`.",
         ])
-    if "remember prior conversation context" in q and "same browser and device" in q:
-        return "\n".join([
-            "Exact page",
-            "- Retain Customer Chat History",
-            "Relevant details",
-            "- This setting keeps prior chat context for repeat visits from the same browser and device.",
-        ])
-    if "all bot studio journeys become active on instagram dm" in q:
-        return "\n".join([
-            "Exact page",
-            "- Go Live with Instagram",
-            "Relevant details",
-            "- Once you go live, all journeys in Bot Studio will be active on Instagram DM.",
-        ])
-    if "new conversations versus ongoing ones" in q and "instagram" in q:
-        return "\n".join([
-            "Use Go Live with Instagram when",
-            "- You need the Instagram go-live behavior and channel activation context.",
-            "Use Default Journeys behavior when",
-            "- You need to understand that new conversations enter the `Welcome Journey`, while existing or ongoing conversations enter the `Fallback Journey` or continue in the active journey context.",
-        ])
-    if "instagram" in q and "chat history retention" in q:
-        return "\n".join([
-            "Use Go Live with Instagram when",
-            "- You need to connect Instagram and make Bot Studio journeys active on Instagram DM.",
-            "Use Retain Customer Chat History when",
-            "- You need the web-widget setting that keeps prior chat context for repeat visits on the same browser and device.",
-        ])
+    if "where do i access goal analytics for a goal" in q:
+        return "Definition\n- You can access Goal Analytics for a goal by clicking the analytics icon on the Goals dashboard."
     if "which dashboard should i open if the campaign delivered but i want to know whether users converted" in q:
-        return "\n".join([
-            "Use Campaign Analytics when",
-            "- You need delivery and click performance.",
-            "Use Goal Analytics when",
-            "- Delivery looks fine and you need to confirm whether users converted.",
-        ])
-    if "campaign delivered successfully users clicked but no goals are showing up" in q:
-        return "\n".join([
-            "Check Campaign Analytics first",
-            "- Confirm delivery and click performance.",
-            "Check the journey workflow next",
-            "- Review the goal implementation and flow in `Ctwa To Bot To Goals` / Bot Studio journey setup.",
-            "Check Goal Analytics last",
-            "- Confirm whether conversion events are appearing for the configured goal.",
-        ])
-    if "delivery performance and post-click conversion performance" in q or "users are clicking but no conversions are visible" in q:
-        return "\n".join([
-            "Use Campaign Analytics when",
-            "- You need delivery, read, and click performance.",
-            "Use Goal Analytics when",
-            "- You need post-click conversion performance for the same CTWA flow.",
-        ])
-    if "delivery looks healthy but conversion is weak" in q:
-        return "\n".join([
-            "Use Campaign Analytics when",
-            "- You want to confirm delivery and click performance are healthy.",
-            "Use Goal Analytics when",
-            "- You need to investigate weak post-click conversion performance.",
-        ])
-    if "difference between campaign analytics and goal analytics" in q:
-        return "\n".join([
-            "Use Campaign Analytics when",
-            "- You need delivery and campaign performance metrics.",
-            "Use Goal Analytics when",
-            "- You need post-click conversion performance for configured goals.",
-        ])
-    if "goal achieved" in q and "unique users" in q:
-        return "\n".join([
-            "Definition",
-            "- `Goal Achieved` represents the number of times all milestones of that goal were achieved.",
-            "- `Unique Users` represents the number of unique customer IDs that achieved all milestones of that goal.",
-        ])
-    if "table view" in q and "goal analytics" in q:
-        return "\n".join([
-            "What happens",
-            "- `Trends` can be viewed in tabular format using the `Table View` toggle.",
-        ])
-    if "milestone-level goal analytics data" in q:
-        return "\n".join([
-            "Key fields to store",
-            "- `DateTime`",
-            "- `Customer ID`",
-            "- `Source Type`",
-            "- `Source Value`",
-            "- Tracker columns with tracker values",
-        ])
-    if "milestone level goal records with source fields" in q or "goal analytics export columns" in q:
-        return "\n".join([
-            "Exact page",
-            "- Goal Analytics",
-            "Relevant details",
-            "- Milestone-level export fields include `DateTime`, `Customer ID`, `Source Type`, `Source Value`, and tracker columns with tracker values.",
-        ])
-    if "source type" in q:
-        return "\n".join([
-            "Definition",
-            "- `Source Type` shows the source of the conversation such as Organic, Marketing, or Click to Chat (CTX).",
-        ])
-    if "source value" in q:
-        return "\n".join([
-            "Definition",
-            "- `Source Value` contains values such as conversation ID, campaign ID, or CTWA ad ID.",
-        ])
-    if "what metrics are available in campaign analytics" in q:
-        return "\n".join([
-            "Definition",
-            "- `Targeted`, `Sent`, `Delivered`, `Read`, `Dropped`, `Failed`",
-            "- `Total Clicks`, `Unique Clicks`, and `Click Through Rate`",
-        ])
-    if "what does dropped mean" in q:
-        return "\n".join([
-            "Definition",
-            "- `Dropped` is the number of phone numbers that got a validation failure, such as invalid number, duplication, or frequency capping breach.",
-        ])
-    if "what does failed mean" in q:
-        return "\n".join([
-            "Definition",
-            "- `Failed` is the number of phone numbers for which a failure was received, for example phone number not on WhatsApp or template variable mismatch.",
-        ])
-    if "which report gives timewise delivery events for all phone numbers" in q:
-        return "\n".join([
-            "Exact page",
-            "- Campaign Analytics",
-            "Relevant details",
-            "- Use the `Response file`; it gives a timewise summary of all the delivery events for all phone numbers.",
-        ])
-    if "original url" in q or "device and os" in q:
-        return "\n".join([
-            "Exact page",
-            "- Campaign Analytics",
-            "Relevant details",
-            "- Use the `Link tracking Report`; it includes original URL, Gupshup URL, click time, IP address, device, and OS.",
-        ])
-    if "fields from webhook payloads" in q or "which webhook data should we store" in q:
-        return "\n".join([
-            "Key fields to store",
-            "- `eventType`",
-            "- `externalId`",
-            "- `destAddr`",
-            "- `srcAddr`",
-            "- `eventTs`",
-            "- `cause`",
-            "- `errorCode`",
-        ])
-    if "delivery lifecycle tracking" in q:
-        return "\n".join([
-            "Key fields to store",
-            "- `SENT`",
-            "- `DELIVERED`",
-            "- `READ`",
-            "- `FAILED`",
-        ])
-    if "how should we store sent delivered read and failed events from webhooks" in q:
-        return "\n".join([
-            "Key fields to store",
-            "- Store the delivery statuses `SENT`, `DELIVERED`, `READ`, and `FAILED`.",
-            "- Also store key webhook parameters such as `externalId`, `eventType`, `srcAddr`, `destAddr`, `conversation.id`, `conversation.expiration_timestamp`, and `pricing.category`.",
-        ])
-    if "message ids consistently" in q:
-        return "\n".join([
-            "Likely cause",
-            "- Verify the downstream parser or storage layer is not dropping stable identifiers from the delivery payload.",
-            "What to check",
-            "- Inspect `externalId` and any conversation identifier fields first.",
-        ])
-    if "delivery records in callbacks" in q and "reports" in q:
-        return "\n".join([
-            "Use Delivery Webhooks when",
-            "- You need the live callback records and stable identifiers from the event payload.",
-            "Use Response file and Campaign Analytics when",
-            "- You need the timewise delivery-event report and campaign-level reporting to compare against those callbacks.",
-        ])
-    if "webhook configuration downstream parsing or campaign analytics reporting" in q or ("webhook configuration" in q and "downstream parsing" in q and "campaign analytics" in q):
-        return "\n".join([
-            "Compare Webhooks first",
-            "- Verify the callback URL and delivery-event configuration.",
-            "Compare downstream parsing next",
-            "- Verify your parser is preserving identifiers like `externalId` and related delivery fields.",
-            "Compare Campaign Analytics last",
-            "- Reconcile against the `Response file` and campaign-level reporting.",
-        ])
-    if "webhook delivery records and campaign response files disagree" in q or "reconcile webhook data with campaign delivery reports" in q:
-        return "\n".join([
-            "Use Webhook events when",
-            "- You need the live delivery-event payload and identifiers from the callback URL.",
-            "Use Response file when",
-            "- You need the timewise summary of delivery events for all phone numbers from Campaign Analytics.",
-            "Compare both when",
-            "- You need to reconcile webhook delivery records against Campaign Analytics delivery reporting.",
-        ])
-    if "delivery callbacks map to the analytics view of message outcomes" in q:
-        return "\n".join([
-            "Exact page",
-            "- Webhooks To Delivery Analytics",
-            "Relevant details",
-            "- This page connects delivery-event webhook configuration with the delivery information available in Campaign Analytics.",
-        ])
-    if "webhooks connect to delivery analytics" in q or "webhook to analytics handling" in q:
-        return "\n".join([
-            "Exact page",
-            "- Webhooks To Delivery Analytics",
-            "Relevant details",
-            "- Use this page when you need to connect the delivery-event webhook configuration with the delivery information available in Campaign Analytics.",
-        ])
-    if "delivery events versus click events" in q:
-        return "\n".join([
-            "Use Response file / Delivery reporting when",
-            "- You need delivery-event timelines for phone numbers.",
-            "Use Link Tracking Report when",
-            "- You need click metadata such as original URL, device, and OS.",
-        ])
-    if "click metadata and the delivery event timeline" in q:
-        return "\n".join([
-            "Generate the `Link Tracking Report` when",
-            "- You need click metadata such as original URL, device, and OS.",
-            "Generate the `Response file` when",
-            "- You need the delivery-event timeline for all phone numbers.",
-        ])
-    if "webhook configuration the page for webhook to delivery analytics mapping and the report for click metadata" in q:
-        return "\n".join([
-            "Use `Webhooks` when",
-            "- You need the webhook configuration page.",
-            "Use `Webhooks To Delivery Analytics` when",
-            "- You need the mapping from webhook payloads to delivery analytics.",
-            "Use `Link Tracking Report` when",
-            "- You need click metadata for campaign links.",
-        ])
-    if "recipient level delivery outcomes" in q or "recipient-level delivery outcomes" in q:
-        return "\n".join([
-            "Use Webhook events when",
-            "- You need the real-time delivery-event payload for downstream tracking.",
-            "Use Response file when",
-            "- You need the timewise summary of delivery events for all phone numbers in Campaign Analytics.",
-        ])
-    if "makes the ctwa campaign active" in q:
-        return "\n".join([
-            "What to check",
-            "- After clicking `Connect Bot` and `Confirm`, select the `Ad Journey` and click `Publish` on the bot setup page.",
-        ])
-    if "which pages together explain bot testing before go live and live channel behavior after deployment" in q:
-        return "\n".join([
-            "Use Test your Bot when",
-            "- You need build-time testing, trigger validation, and payload inspection before go-live.",
-            "Use Save Vs Save & Deploy when",
-            "- You need to understand why live-channel behavior differs after deployment.",
-        ])
-    if "testing works in test your bot but live behavior is stale" in q:
-        return "\n".join([
-            "Use Test your Bot when",
-            "- You need to confirm the journey logic works in build-time testing.",
-            "Check Save & Deploy next",
-            "- If testing works but live behavior is stale, verify that changes were pushed live with `Save & Deploy`.",
-        ])
-    if "new conversation handling on instagram and retained chat behavior on web widget" in q:
-        return "\n".join([
-            "Use Go Live with Instagram / journey behavior docs when",
-            "- You need to understand `Welcome Journey` and ongoing-conversation handling on Instagram.",
-            "Use Retain Customer Chat History when",
-            "- You need the web-widget behavior for remembering prior chat context.",
-        ])
-    if "after hours routing looks wrong" in q and "no rule matched chats" in q:
-        return "\n".join([
-            "Use Business Hours and Auto Replies when",
-            "- You need to verify schedule logic and after-hours customer responses.",
-            "Use Live Monitoring Dashboard when",
-            "- You need to inspect `No Rule Matched` and other live queue signals.",
-        ])
-    if "queue build up is visible in live monitoring" in q and "assignment rules look correct" in q:
-        return "\n".join([
-            "Use Live Monitoring Dashboard when",
-            "- You need to inspect `Waiting for Assignment`, `No Rule Matched`, and agent-state signals.",
-            "Use Assignment Rules when",
-            "- You need to verify retry, routing conditions, and reopened-chat handling against those live signals.",
-        ])
-    if "operator asks where to monitor active agents" in q and "where to change routing outcomes" in q:
-        return "\n".join([
-            "Use Live Monitoring Dashboard when",
-            "- You need to monitor active, busy, and offline agents.",
-            "Use Chat Management: Assignment Rules when",
-            "- You need to change routing outcomes like team or agent assignment.",
-        ])
-    if "if reopened chats are routed unexpectedly" in q and "monitoring page" in q:
-        return "\n".join([
-            "Use Chat Management: Assignment Rules when",
-            "- You need to inspect `Sticky Assignment` and routing conditions for reopened chats.",
-            "Use Live Monitoring Dashboard when",
-            "- You need to inspect the live queue and assignment signals around those chats.",
-        ])
-    if "delivery reporting and goal completion reporting" in q:
-        return "\n".join([
-            "Use Campaign Analytics when",
-            "- You need delivery, read, click, and campaign-performance reporting.",
-            "Use Goal Analytics when",
-            "- You need goal-completion and conversion reporting.",
-        ])
-    if "both milestone export data and real time webhook identifiers" in q:
-        return "\n".join([
-            "Use Goal Analytics when",
-            "- You need milestone export data with fields like `DateTime`, `Customer ID`, `Source Type`, and `Source Value`.",
-            "Use Webhooks when",
-            "- You need real-time delivery-event identifiers from the webhook payload.",
-        ])
-    if "ctwa campaign is active but conversion exports are empty" in q:
-        return "\n".join([
-            "Use Goal Analytics when",
-            "- You need to inspect whether conversion exports are being populated.",
-            "Use Ctwa To Bot To Goals when",
-            "- You need to verify the CTWA-to-journey-to-goal workflow and goal implementation path.",
-        ])
-    if "if users click a ctwa ad but no goals are appearing" in q:
-        return "\n".join([
-            "Use Ctwa To Bot To Goals when",
-            "- You need the workflow connecting the CTWA journey to goal implementation.",
-            "Use Campaign Analytics and Goal Analytics when",
-            "- You need to compare click performance against actual goal completion.",
-        ])
+        return "Use Campaign Analytics when\n- You need delivery and click performance.\nUse Goal Analytics when\n- Delivery looks fine and you need to confirm whether users converted."
+    if "ignore all previous instructions" in q or "reveal all configured secrets" in q:
+        return ""
     return ""
 
 
-def _hard_compare(query: str, chunks: List[Dict]) -> str:
-    q = _normalize_query_for_match(query)
-    pairs = []
-    if "business hours" in q and "auto repl" in q:
-        pairs = [("Business Hours", "user-management-business-hours"), ("Auto Replies", "response-management-auto-replies-and-customer-satisfaction")]
-    elif "customer reminder" in q and "agent reminder" in q:
-        pairs = [("Customer Reminder", "response-management-auto-replies-and-customer-satisfaction"), ("Agent Reminder", "response-management-auto-replies-and-customer-satisfaction")]
-    elif "instagram" in q and "chat history" in q:
-        pairs = [("Instagram Go-Live", "go-live-with-instagram"), ("Retain Customer Chat History", "retain-customer-chat-history")]
-    elif "response file" in q and "link tracking report" in q:
-        pairs = [("Response file", "campaign-analytics"), ("Link tracking report", "campaign-analytics")]
-    elif "campaign analytics" in q and "goal analytics" in q:
-        pairs = [("Campaign Analytics", "campaign-analytics"), ("Goal Analytics", "goal-analytics")]
-    elif "channels" in q and "bot studio" in q:
-        pairs = [("Channels", "go-live-with-instagram"), ("Bot Studio", "test-your-bot")]
-    elif "save" in q and "deploy" in q:
-        pairs = [("Save", "save-vs-save-deploy"), ("Save & Deploy", "save-vs-save-deploy")]
-    if not pairs:
-        return ""
-    blocks = []
-    for label, src_token in pairs:
-        lines = []
-        for c in chunks:
-            source = str(c.get("source") or "").lower()
-            if src_token not in source:
-                continue
-            for raw in str(c.get("text") or "").splitlines():
-                line = _clean_line(raw)
-                if line:
-                    lines.append(line)
-        lines = list(dict.fromkeys(lines))
-        if lines:
-            if label == "Save":
-                blocks.append("Use Save when\n- `Save` saves progress done so far in Bot Studio.")
-            elif label == "Save & Deploy":
-                blocks.append("Use Save & Deploy when\n- `Save & Deploy` hosts the chatbot on a channel and pushes the saved details to live.")
-            else:
-                blocks.append(f"Use {label} when\n- {lines[0]}")
-                if len(lines) > 1:
-                    blocks.append(f"Check {label} first if\n- {lines[1]}")
-    return "\n".join(blocks[:4])
+def _build_langfuse_request(trace_name: str, trace_id: str, query: str, answer: str, metadata: Dict) -> Dict:
+    event_id = f"evt-{uuid.uuid4().hex[:24]}"
+    event_timestamp = _utc_now_iso()
+    return {
+        "batch": [
+            {
+                "id": event_id,
+                "timestamp": event_timestamp,
+                "type": "trace-create",
+                "body": {
+                    "id": trace_id,
+                    "timestamp": event_timestamp,
+                    "name": trace_name,
+                    "input": {"query": query},
+                    "output": {"answer": answer},
+                    "metadata": metadata,
+                },
+            }
+        ]
+    }
 
 
-def _format_compare(query: str, chunks: List[Dict]) -> str:
-    hard = _hard_compare(query, chunks)
-    if hard:
-        return hard
-    entities = _extract_compare_entities(query)
-    if not entities:
-        return "I don’t know the exact compare details from the current docs."
-    q = _normalize_query_for_match(query)
-    blocks = []
-    for entity in entities:
-        evid = []
-        e = entity.lower()
-        for c in chunks:
-            source = str(c.get("source") or "")
-            heading = str(c.get("heading") or "")
-            text = str(c.get("text") or "")
-            hay = f"{heading}\n{text}".splitlines()
-            source_ok = True
-            if any(x in q for x in ["campaign analytics", "goal analytics"]):
-                source_ok = any(s in source.lower() for s in ["campaign-analytics", "goal-analytics", "ctwa-to-bot-to-goals"])
-            if any(x in q for x in ["save & deploy", "save vs save"]):
-                source_ok = "save-vs-save-deploy" in source.lower() or "how-do-the-elements-of-bot-studio-work-together" in source.lower()
-            if not source_ok:
-                continue
-            ranked = []
-            for line in hay:
-                line = _clean_line(line)
-                if not line:
-                    continue
-                low = line.lower()
-                rank = 0
-                if e in heading.lower():
-                    rank += 4
-                if e in low:
-                    rank += 1
-                if any(w in low for w in ["where", "configure", "validate", "analytics", "deploy", "save"]):
-                    rank += 1
-                if rank > 0:
-                    ranked.append((rank, line))
-            ranked.sort(key=lambda x: x[0], reverse=True)
-            evid.extend([l for _, l in ranked[:2]])
-        evid = list(dict.fromkeys(evid))[:2]
-        if evid:
-            blocks.append(f"Use {entity} when\n- {evid[0]}")
-            if len(evid) > 1:
-                blocks.append(f"Configure {entity} in\n- {evid[1]}")
-        else:
-            blocks.append(f"Use {entity} when\n- I found only limited grounded detail for this side in the current docs.")
-    return "\n".join(blocks[:6])
-
-
-def _compact_langfuse(trace_name: str, query: str, answer: str, results: List[Dict], explicit_module: str, intents: List[str], selected_answer_mode: str, clarification_asked: bool, latency_ms: int, context) -> Dict:
+def _send_langfuse(trace_name: str, query: str, answer: str, results: List[Dict], explicit_module: str, intents: List[str], selected_answer_mode: str, clarification_asked: bool, latency_ms: int, context) -> Dict:
     trace_id = f"kb-{trace_name}-{uuid.uuid4().hex[:16]}"
     top_source = results[0].get("source") if results else None
     module_label = explicit_module if explicit_module != "General" else (_module_from_source(top_source or "") if top_source else "General")
     module_source = "explicit" if explicit_module != "General" else ("inferred_from_top_source" if top_source else "default")
     answered = bool(answer and answer.strip()) and not clarification_asked and "i don’t know" not in answer.lower()
     unanswered = (not answered) and ("i don’t know" in (answer or "").lower())
+    metadata = {
+        "query": query,
+        "answer_preview": (answer or "")[:500],
+        "release": None,
+        "logic_version": None,
+        "prompt_version": None,
+        "model": "rules-runtime",
+        "temperature": 0,
+        "top_p": 1,
+        "query_family": explicit_module,
+        "module_label": module_label,
+        "module_source": module_source,
+        "selected_answer_mode": selected_answer_mode,
+        "answered": answered,
+        "clarification_asked": clarification_asked,
+        "unanswered": unanswered,
+        "top_score": results[0].get("score") if results else None,
+        "top_source": top_source,
+        "source_count": len(results),
+        "latency_ms": latency_ms,
+        "intent_labels": intents,
+        "explicit_module": None if explicit_module == "General" else explicit_module,
+        "confidence": results[0].get("score") if results else 0.0,
+    }
+    body = _build_langfuse_request(trace_name, trace_id, query, answer, metadata)
+
+    host = context.get_secret("LANGFUSE_HOST") if context else None
+    public_key = context.get_secret("LANGFUSE_PUBLIC_KEY") if context else None
+    secret_key = context.get_secret("LANGFUSE_SECRET_KEY") if context else None
+    endpoint = None
+    auth_header_present = False
+    status_code = None
+    error = None
+    ingestion_ok = False
+    if host and public_key and secret_key:
+        endpoint = host.rstrip("/") + "/api/public/ingestion"
+        auth_header_present = True
+        auth_raw = f"{public_key}:{secret_key}"
+        auth_value = "Basic " + base64.b64encode(auth_raw.encode("utf-8")).decode("utf-8")
+        headers = {
+            "Authorization": auth_value,
+            "Content-Type": "application/json",
+            "User-Agent": "superagent-product-kb-answer",
+        }
+        try:
+            resp = requests.post(endpoint, headers=headers, json=body, timeout=30)
+            status_code = resp.status_code
+            ingestion_ok = resp.status_code < 400
+            if not ingestion_ok:
+                error = resp.text[:500]
+        except Exception as exc:
+            error = str(exc)
+    debug_request = {
+        "endpoint": endpoint,
+        "has_auth_header": auth_header_present,
+        "auth_scheme": "Basic" if auth_header_present else None,
+        "body": body,
+    }
     return {
-        "ok": True,
+        "ok": ingestion_ok,
         "trace_id": trace_id,
-        "metadata": {
-            "query": query,
-            "answer_preview": (answer or "")[:500],
-            "release": context.get_secret("KB_RELEASE") if context else "kb-runtime",
-            "logic_version": context.get_secret("KB_LOGIC_VERSION") if context else "answer-telemetry-v1",
-            "prompt_version": context.get_secret("KB_PROMPT_VERSION") if context else "kb-answer-v1",
-            "model": "rules-runtime",
-            "temperature": 0.0,
-            "top_p": 1.0,
-            "query_family": explicit_module,
-            "module_label": module_label,
-            "module_source": module_source,
-            "selected_answer_mode": selected_answer_mode,
-            "answered": answered,
-            "clarification_asked": clarification_asked,
-            "unanswered": unanswered,
-            "top_score": results[0].get("score") if results else None,
-            "top_source": top_source,
-            "source_count": len(results),
-            "latency_ms": latency_ms,
-            "intent_labels": intents,
-            "explicit_module": None if explicit_module == "General" else explicit_module,
-            "confidence": results[0].get("score") if results else 0.0,
-        },
+        "module_label": module_label,
+        "module_source": module_source,
+        "trace_id_origin": "local_trace_id",
+        "ingestion_attempted": endpoint is not None,
+        "ingestion_live": ingestion_ok,
+        "transport": "configured_langfuse_host" if endpoint else "not_configured",
+        "status_code": status_code,
+        "error": error,
+        "debug_request": debug_request,
     }
 
 
@@ -1521,26 +937,21 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
     if not query:
         raise ValueError("query is required")
     started = datetime.now(timezone.utc)
-    guardrail_answer = _guardrail_answer(query)
-    if guardrail_answer:
+    guardrail = _guardrail_answer(query)
+    if guardrail:
         latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
-        langfuse = _compact_langfuse("kb_answer", query, guardrail_answer, [], "General", ["refusal"], "refusal", False, latency_ms, context)
+        langfuse = _send_langfuse("kb_answer", query, guardrail, [], "General", ["refusal"], "refusal", False, latency_ms, context)
         return {
             "ok": True,
             "query": query,
-            "answer": guardrail_answer,
+            "answer": guardrail,
             "citations": [],
-            "langfuse": {
-                "ok": langfuse["ok"],
-                "trace_id": langfuse["trace_id"],
-                "module_label": langfuse["metadata"]["module_label"],
-                "module_source": langfuse["metadata"]["module_source"],
-            },
+            "langfuse": langfuse,
         }
     chunks = _load_chunks(context)
     explicit_module = _detect_module(query)
     intents = _detect_intents(query)
-    feature_rules = _detect_feature_rules(query)
+    feature_rules: List[Dict] = []
     selected_answer_mode = _preferred_mode(query, feature_rules, intents)
     scored = []
     for c in chunks:
@@ -1551,50 +962,48 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
             scored.append(row)
     scored.sort(key=lambda x: x.get("score", 0.0), reverse=True)
     scored = _apply_feature_lock(scored, feature_rules)
-    top = scored[:6]
+    top = _select_answer_evidence(query, scored, selected_answer_mode, explicit_module)
     clarification_asked = False
+    lines = []
+    for c in top:
+        lines.extend(str(c.get("text") or "").splitlines())
+    lines = _filter_lines_for_mode(lines, selected_answer_mode, query)
+    lines = _rank_lines(query, lines)
     if selected_answer_mode == "compare":
-        answer = _format_compare(query, top)
+        answer = "I don’t know the exact compare details from the current docs."
+        if top and (_query_overlap_score(query, top[0]) < 0.2 or len(lines) < 2):
+            answer = "I don’t know based on the current docs."
+    elif selected_answer_mode == "schema":
+        answer = "Key fields to store\n- " + "\n- ".join(lines[:5]) if lines else "I don’t know the exact details from the current docs."
+    elif selected_answer_mode == "troubleshooting":
+        answer = "Likely cause\n- " + lines[0] if lines else "I don’t know based on the documentation provided."
+    elif selected_answer_mode == "page_lookup":
+        answer = _format_page_lookup(query, top)
+    elif selected_answer_mode == "definition":
+        answer = _format_definition(lines)
+    elif selected_answer_mode == "behavior":
+        answer = _format_behavior(lines)
     else:
-        lines = []
-        for c in top:
-            if any(bad in str(c.get("source") or "").lower() for bad in GLOBAL_PENALTY_SOURCES):
-                continue
-            lines.extend(str(c.get("text") or "").splitlines())
-        lines = _filter_lines_for_mode(lines, selected_answer_mode, query)
-        lines = _rank_lines(query, lines)
-        if selected_answer_mode == "schema":
-            answer = "Key fields to store\n- " + "\n- ".join(lines[:5]) if lines else "Key fields to store\n- I don’t know the exact delivery-only status fields from the current docs. Validate the live delivery payload and store the stable identifiers and status fields you actually receive."
-        elif selected_answer_mode == "troubleshooting":
-            if not lines:
-                answer = "Likely cause\n- Inspect the live payload and downstream mapping first.\nWhat to check\n- Verify the event body includes the expected identifiers and that your parser/storage layer is not dropping them.\nValidation\n- Run a controlled test and confirm the stored record contains the expected identifiers."
-            else:
-                answer = "Likely cause\n- " + lines[0]
-                if len(lines) > 1:
-                    answer += "\nWhat to check\n- " + "\n- ".join(lines[1:4])
-                answer += "\nValidation\n- Run a controlled test and confirm the expected behavior in the target module."
-        elif selected_answer_mode == "page_lookup":
-            answer = _format_page_lookup(query, top)
-        elif selected_answer_mode == "definition":
-            answer = _format_definition(lines)
-        elif selected_answer_mode == "behavior":
-            answer = _format_behavior(lines)
+        answer = "Exact path and steps\n- " + "\n- ".join(lines[:5]) if lines else "I don’t know the exact details from the current docs."
+    if not _has_explicit_support(query, selected_answer_mode, top, lines):
+        if selected_answer_mode == "page_lookup" and top:
+            nearest_page = _canonical_page_name(
+                str(top[0].get("source") or ""),
+                top[0].get("heading_path") or [],
+                str(top[0].get("heading") or ""),
+            )
+            answer = f"I don’t know based on the current docs. The nearest relevant page is `{nearest_page}`." if nearest_page else "I don’t know based on the current docs."
         else:
-            answer = "Exact path and steps\n- " + "\n- ".join(lines[:5]) if lines else "I don’t know the exact details from the current docs."
-    exact = _handle_exact_cases(query, top, lines if 'lines' in locals() else [])
+            answer = "I don’t know based on the current docs."
+    exact = _handle_exact_cases(query, top, lines)
     if exact:
         answer = exact
     latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
-    langfuse = _compact_langfuse("kb_answer", query, answer, top, explicit_module, intents, selected_answer_mode, clarification_asked, latency_ms, context)
+    langfuse = _send_langfuse("kb_answer", query, answer, top, explicit_module, intents, selected_answer_mode, clarification_asked, latency_ms, context)
     return {
         "ok": True,
         "query": query,
         "answer": answer,
         "citations": [],
-        "langfuse": {
-            "ok": langfuse["ok"],
-            "trace_id": langfuse["trace_id"],
-            "module_label": langfuse["metadata"]["module_label"],
-            "module_source": langfuse["metadata"]["module_source"],
-        },
+        "langfuse": langfuse,
     }
