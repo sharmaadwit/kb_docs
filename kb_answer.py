@@ -1348,12 +1348,24 @@ def _handle_exact_cases(query: str, top: List[Dict], lines: List[str]) -> str:
             "What happens",
             "- `Sticky Assignment` controls whether a reopened chat is routed back to the same owner/agent when possible.",
         ])
-    if ((("customer inactivity reminders" in q or "inactive customers" in q) and ("agent inactivity reminders" in q or "agent reminder" in q))):
+    if (
+        (
+            "customer inactivity reminders" in q
+            or "inactive customers" in q
+            or "customer reminder" in q
+            or "customer reminder behavior" in q
+        )
+        and (
+            "agent inactivity reminders" in q
+            or "agent reminder" in q
+            or "rather than agent reminder" in q
+        )
+    ):
         return "\n".join([
             "Exact page",
             "- Response Management: Auto Replies & Customer Satisfaction",
             "Relevant details",
-            "- Use `Customer Reminder` for inactive customers rather than `Agent Reminder`.",
+            "- Use `Customer Reminder` for customer reminder behavior rather than `Agent Reminder`.",
         ])
     if "where do i access goal analytics for a goal" in q:
         return "Definition\n- You can access Goal Analytics for a goal by clicking the analytics icon on the Goals dashboard."
