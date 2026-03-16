@@ -29,9 +29,199 @@ EXPLICIT_MODULES = {
     "extension": "Extension",
 }
 
-FEATURE_RULES = []
-GLOBAL_PENALTY_SOURCES = []
-PRODUCT_SIGNAL_TERMS = []
+FEATURE_RULES = [
+    {
+        "id": "BS_API_NODE",
+        "triggers": [
+            "api node",
+            "external api",
+            "backend api",
+            "api integration node",
+            "call an external api",
+            "call backend api",
+            "call api",
+            "third party api",
+            "3rd party api",
+            "send data to api",
+            "exchange data",
+            "fetch data from api",
+            "post request",
+            "get request",
+            "journey builder api",
+        ],
+        "preferred_sources": ["api-node", "api-node-http-status-code-branching"],
+        "penalty_sources": ["how-to-create-whatsapp-static-flows", "flow-trigger", "whatsapp-flow"],
+        "preferred_mode": "setup",
+    },
+    {
+        "id": "BS_API_NODE_BRANCHING",
+        "triggers": [
+            "http status code branching",
+            "http status",
+            "status code branching",
+            "response code branching",
+            "branch based on the result",
+            "branch based on response",
+            "route based on response",
+            "continue only if",
+            "move further in the journey",
+            "validate otp",
+            "otp validation",
+            "otp",
+        ],
+        "preferred_sources": ["api-node-http-status-code-branching", "api-node"],
+        "penalty_sources": ["how-to-create-whatsapp-static-flows", "flow-trigger", "whatsapp-flow"],
+        "preferred_mode": "setup",
+    },
+    {
+        "id": "BS_JSON_HANDLER",
+        "triggers": [
+            "json handler",
+            "json parser",
+            "parse response",
+            "parse api response",
+            "parse fields from api response",
+            "parse fields from an api response",
+            "extract response fields",
+            "extract fields from api response",
+            "response fields",
+            "extract fields from response",
+            "parse json response",
+            "response stored in a variable",
+            "api response stored in a variable",
+        ],
+        "preferred_sources": ["json-handler", "json-handler-instead-of-code-node"],
+        "penalty_sources": ["how-to-create-whatsapp-static-flows", "flow-trigger", "whatsapp-flow"],
+        "preferred_mode": "setup",
+    },
+    {
+        "id": "BS_CONDITION_NODE",
+        "triggers": [
+            "condition node",
+            "branch based on variable",
+            "branch based on a variable value",
+            "branching based on a variable value",
+            "if else branching",
+            "if else",
+            "fallback path",
+            "fallback branch logic",
+            "branch logic",
+        ],
+        "preferred_sources": ["condition-node"],
+        "penalty_sources": ["trigger-event-node", "how-to-create-whatsapp-static-flows"],
+        "preferred_mode": "setup",
+    },
+    {
+        "id": "BS_VARIABLES",
+        "triggers": [
+            "manage variables",
+            "save user input into a variable",
+            "reuse it later",
+            "store user input",
+            "modify variable node",
+            "update a variable value",
+            "transform a variable value",
+        ],
+        "preferred_sources": ["manage-variables", "modify-variable-node"],
+        "penalty_sources": ["expression-library-in-journey-builder-canvas", "how-to-trigger-a-user-journey"],
+        "preferred_mode": "setup",
+    },
+    {
+        "id": "BS_TRIGGER_EVENT_NODE",
+        "triggers": [
+            "trigger event node",
+            "send custom event",
+            "event manager",
+            "save in personalize",
+        ],
+        "preferred_sources": ["trigger-event-node"],
+        "penalty_sources": ["ai-trigger-event", "starting-node"],
+        "preferred_mode": "setup",
+    },
+    {
+        "id": "BS_CALL_RETURN_NODE",
+        "triggers": [
+            "call and return node",
+            "call return node",
+            "call another journey",
+            "return back to the same journey",
+            "sub journey",
+        ],
+        "preferred_sources": ["call-and-return-node", "multi-journey-user-journeys"],
+        "penalty_sources": ["campaign-journey"],
+        "preferred_mode": "setup",
+    },
+    {
+        "id": "BS_AGENT_TRANSFER_NODE",
+        "triggers": [
+            "agent transfer node",
+            "connect with a human agent",
+            "handover to agent",
+            "transfer to human agent",
+        ],
+        "preferred_sources": ["agent-transfer-node"],
+        "penalty_sources": ["agent-personality", "agent-assist"],
+        "preferred_mode": "setup",
+    },
+    {
+        "id": "BS_GOAL_NODE",
+        "triggers": [
+            "goal node",
+            "track milestones",
+            "goal analytics toggle",
+            "track purchase milestone",
+        ],
+        "preferred_sources": ["goal-node"],
+        "penalty_sources": ["goal-analytics", "goals/"],
+        "preferred_mode": "setup",
+    },
+]
+GLOBAL_PENALTY_SOURCES = [
+    "how-to-create-whatsapp-static-flows",
+]
+PRODUCT_SIGNAL_TERMS = [
+    "agent assist",
+    "business hours",
+    "auto replies",
+    "assignment rules",
+    "sticky assignment",
+    "live monitoring",
+    "test your bot",
+    "message log",
+    "save deploy",
+    "instagram",
+    "webhook",
+    "campaign analytics",
+    "goal analytics",
+    "response file",
+    "link tracking report",
+    "ctwa",
+    "retain customer chat history",
+    "bot studio",
+    "prompt node",
+    "journey builder",
+    "api node",
+    "external api",
+    "backend api",
+    "json handler",
+    "condition node",
+    "manage variables",
+    "modify variable node",
+    "trigger event node",
+    "call and return node",
+    "agent transfer node",
+    "goal node",
+    "http status",
+    "status code branching",
+    "click through rate",
+    "unique clicks",
+    "total clicks",
+    "otp",
+    "third party api",
+    "3rd party api",
+    "branch based on response",
+    "parse response",
+]
 OFFTOPIC_TERMS = ["cricket", "ipl", "football", "weather", "biryani", "pizza", "burger", "dinner", "japan", "iphone", "birthday", "bored", "joke", "movie"]
 UNSUPPORTED_PATTERNS = [
     "two different callback urls",
@@ -52,6 +242,10 @@ UNSUPPORTED_PATTERNS = [
 SENSITIVE_PATTERNS = [
     "reveal all configured secrets",
     "api keys",
+    "configured secret",
+    "configured secrets",
+    "list every configured secret",
+    "list every configured secrets",
     "system instruction",
     "hidden prompt",
     "hidden system instruction",
@@ -82,12 +276,7 @@ def _normalize_query_for_match(query: str) -> str:
 
 def _has_product_signal(query: str) -> bool:
     q = _normalize_query_for_match(query)
-    return any(term in q for term in [
-        "agent assist", "business hours", "auto replies", "assignment rules", "sticky assignment",
-        "live monitoring", "test your bot", "message log", "save deploy", "instagram", "webhook",
-        "campaign analytics", "goal analytics", "response file", "link tracking report", "ctwa",
-        "retain customer chat history", "bot studio", "prompt node",
-    ])
+    return any(term in q for term in PRODUCT_SIGNAL_TERMS)
 
 
 def _guardrail_category(query: str) -> str:
@@ -107,7 +296,7 @@ def _guardrail_category(query: str) -> str:
 
 def _guardrail_answer(query: str) -> str:
     q = _normalize_query_for_match(query)
-    if any(term in q for term in ["hidden prompt", "reveal the hidden prompt", "private admin settings", "admin settings"]):
+    if any(term in q for term in ["hidden prompt", "reveal the hidden prompt", "private admin settings", "admin settings", "configured secret", "configured secrets", "list every configured secret"]):
         return "I can’t help with secrets, hidden instructions, raw indexed data, or unsupported speculative requests. Ask me a documented Gupshup Console question instead."
     if any(term in q for term in ["funny joke", "recommend a good movie", "good movie", "movie for tonight"]):
         return "I can help only with documented Gupshup Console and KB topics. Ask me a product-related question instead."
@@ -167,6 +356,7 @@ def _gh_headers(context) -> Dict[str, str]:
         "Authorization": f"Bearer {token}",
         "Accept": "application/vnd.github+json",
         "User-Agent": "superagent-product-kb-answer",
+        "X-GitHub-Api-Version": "2022-11-28",
     }
 
 
@@ -252,6 +442,56 @@ def _detect_intents(query: str) -> List[str]:
     return intents
 
 
+def _detect_feature_rules(query: str) -> List[Dict]:
+    q = _normalize_query_for_match(query)
+    return [rule for rule in FEATURE_RULES if any(t in q for t in rule.get("triggers", []))]
+
+
+def _is_api_node_family_query(query: str) -> bool:
+    q = _normalize_query_for_match(query)
+    has_module = "journey builder" in q or "bot studio" in q
+    has_api_intent = any(term in q for term in [
+        "api",
+        "api node",
+        "external api",
+        "backend api",
+        "third party api",
+        "3rd party api",
+        "call api",
+        "fetch data",
+        "exchange data",
+    ])
+    return has_module and has_api_intent
+
+
+def _api_node_subtopics(query: str) -> Dict[str, bool]:
+    q = _normalize_query_for_match(query)
+    return {
+        "branching": any(term in q for term in [
+            "branch",
+            "continue only if",
+            "move further in the journey",
+            "route based on response",
+            "response code",
+            "http status",
+            "status code",
+            "success",
+            "failure",
+            "failed",
+            "returns success",
+            "returns failure",
+        ]),
+        "parsing": any(term in q for term in [
+            "parse",
+            "json",
+            "response fields",
+            "extract fields",
+            "response body",
+        ]),
+        "otp": "otp" in q,
+    }
+
+
 def _preferred_mode(query: str, feature_rules: List[Dict], intents: List[str]) -> str:
     q = _normalize_query_for_match(query)
     page_like = any(x in q for x in [
@@ -293,6 +533,96 @@ def _score_chunk(query: str, chunk: Dict, feature_rules: List[Dict], explicit_mo
             score += 0.05
     if explicit_module != "General" and explicit_module.lower() in _module_from_source(source).lower():
         score += 0.35
+    if any(bad in source for bad in GLOBAL_PENALTY_SOURCES):
+        score -= 3.0
+    for rule in feature_rules:
+        if any(ps in source for ps in rule.get("preferred_sources", [])):
+            score += 4.0
+        if any(pn in source for pn in rule.get("penalty_sources", [])):
+            score -= 4.0
+        for trig in rule.get("triggers", []):
+            if trig in heading or trig in source:
+                score += 0.8
+    if "api node" in q and ("api node" in heading or "api-node" in source):
+        score += 5.0
+    if ("external api" in q or "backend api" in q) and "api-node" in source:
+        score += 4.0
+    if ("third party api" in q or "3rd party api" in q or "call api" in q) and "api-node" in source:
+        score += 4.0
+    if ("exchange data" in q or "fetch data" in q or "send data" in q) and "api-node" in source:
+        score += 3.5
+    if ("otp" in q or "validate otp" in q or "otp validation" in q) and "api-node" in source:
+        score += 4.0
+    if any(term in q for term in ["branch based on response", "branch based on the result", "continue only if", "route based on response"]):
+        if "api-node-http-status-code-branching" in source:
+            score += 5.0
+        elif "api-node" in source:
+            score += 2.5
+    if ("http status" in q or "status code branching" in q) and "api-node-http-status-code-branching" in source:
+        score += 5.0
+    if any(term in q for term in [
+        "json handler",
+        "parse response",
+        "extract response fields",
+        "parse fields from api response",
+        "parse fields from an api response",
+        "extract fields from api response",
+        "response stored in a variable",
+        "api response stored in a variable",
+    ]) and ("json handler" in heading or "json-handler" in source):
+        score += 4.0
+    if any(term in q for term in [
+        "condition node",
+        "branch based on variable",
+        "branch based on a variable value",
+        "branching based on a variable value",
+        "if else branching",
+        "if else",
+        "fallback branch logic",
+        "branch logic",
+        "fallback path",
+    ]) and "condition-node" in source:
+        score += 5.0
+    if any(term in q for term in [
+        "condition node",
+        "branch based on variable",
+        "branch based on a variable value",
+        "branching based on a variable value",
+        "if else branching",
+        "if else",
+        "fallback branch logic",
+        "branch logic",
+        "fallback path",
+    ]) and "modify-variable-node" in source:
+        score -= 4.0
+    if any(term in q for term in [
+        "parse fields from api response",
+        "parse fields from an api response",
+        "extract fields from api response",
+        "response stored in a variable",
+        "api response stored in a variable",
+    ]):
+        if "json-handler" in source:
+            score += 5.0
+        if "ctx-goal-nodes-and-conversions-api" in source or "conversion" in source:
+            score -= 5.0
+    if any(term in q for term in ["click through rate", "click through rates", "unique clicks", "total clicks"]):
+        if "campaign-analytics" in source:
+            score += 4.0
+        if "how-to-measure-click-through-rates" in source:
+            score += 1.5
+    if ("manage variables" in q or "save user input into a variable" in q or "store user input" in q) and ("manage-variables" in source or "modify-variable-node" in source):
+        score += 4.5
+    if ("trigger event node" in q or "send custom event" in q or "event manager" in q) and "trigger-event-node" in source:
+        score += 5.0
+    if ("call and return node" in q or "call another journey" in q or "sub journey" in q) and ("call-and-return-node" in source or "multi-journey-user-journeys" in source):
+        score += 5.0
+    if ("agent transfer node" in q or "handover to agent" in q or "transfer to human agent" in q) and "agent-transfer-node" in source:
+        score += 5.0
+    if ("goal node" in q or "track milestones" in q or "track purchase milestone" in q) and "goal-node" in source:
+        score += 5.0
+    if ("api node" in q or "external api" in q or "otp" in q or "third party api" in q or "call api" in q) and "how-to-create-whatsapp-static-flows" in source:
+        score -= 8.0
     return score
 
 
@@ -317,7 +647,7 @@ def _filter_lines_for_mode(lines: List[str], mode: str, query: str) -> List[str]
     return cleaned
 
 
-def _apply_feature_lock(scored: List[Dict], feature_rules: List[Dict]) -> List[Dict]:
+def _apply_feature_lock(scored: List[Dict]) -> List[Dict]:
     return scored
 
 
@@ -400,6 +730,11 @@ def _canonical_page_name(source: str, heading_path: List[str], heading: str) -> 
         ("save-save-and-deploy", "Save Vs Save & Deploy"),
         ("timeout-in-prompt-nodes", "Timeout in Prompt Nodes"),
         ("workflows/webhooks-to-delivery-analytics", "Webhooks To Delivery Analytics"),
+        ("how-to-measure-click-through-rates", "Campaign Analytics"),
+        ("json-handler", "JSON Handler"),
+        ("condition-node", "Condition Node"),
+        ("manage-variables", "Manage Variables"),
+        ("modify-variable-node", "Modify Variable Node"),
     ]
     for token, label in mapping:
         if token in low:
@@ -438,6 +773,23 @@ def _has_explicit_support(query: str, mode: str, chunks: List[Dict], lines: List
         return top1_overlap >= 0.2 and any(
             term in joined for term in [
                 "when", "if", "after", "before", "enabled", "disabled", "active", "inactive"
+            ]
+        )
+    q = _normalize_query_for_match(query)
+    if (
+        ("journey builder" in q or "bot studio" in q)
+        and ("variable" in q or "variables" in q)
+        and ("message node" in q or "message nodes" in q)
+    ):
+        return any(
+            term in joined for term in [
+                "manage variables",
+                "mapped directly into nodes",
+                "map directly into nodes",
+                "modify variable node",
+                "modify variables",
+                "variable node",
+                "assign value",
             ]
         )
     if mode == "setup":
@@ -481,6 +833,173 @@ def _format_behavior(lines: List[str]) -> str:
 
 def _handle_exact_cases(query: str, top: List[Dict], lines: List[str]) -> str:
     q = _normalize_query_for_match(query)
+    if (
+        any(term in q for term in [
+            "json handler",
+            "json parser",
+            "parse api response",
+            "parse fields from api response",
+            "parse fields from an api response",
+            "extract fields from api response",
+            "response stored in a variable",
+            "api response stored in a variable",
+        ])
+        and any(term in q for term in [
+            "api response",
+            "backend response",
+            "response stored in a variable",
+            "api response stored in a variable",
+            "parse fields",
+        ])
+    ):
+        return "\n".join([
+            "The documentation indicates you should use `JSON Handler` for this pattern.",
+            "",
+            "Recommended setup",
+            "- Call the external or backend API first and store the response in a variable.",
+            "- Add `JSON Handler` in the journey after the API response is available.",
+            "- Select the variable that contains the JSON response.",
+            "- Map the JSON attributes you want to extract for later journey steps.",
+            "",
+            "Useful related components",
+            "- Use `API Node` to call the external system and store the response.",
+            "- Use `Condition Node` or response-based branching after extraction if the next step depends on the parsed value.",
+            "",
+            "What I could not verify from the available documentation",
+            "- The exact response schema for your backend API.",
+        ])
+    if (
+        ("api node" in q or "journey builder" in q or "bot studio" in q)
+        and any(term in q for term in ["response code", "http status", "status code", "returns success", "success or failure", "route the journey based on success or failure"])
+    ):
+        return "\n".join([
+            "The documentation indicates you should use `API Node: HTTP Status Code Branching` for this pattern.",
+            "",
+            "Recommended setup",
+            "- Add and configure the `API Node` first.",
+            "- Enable the `HTTP Status Code` switch.",
+            "- Add connectors and tag them with the response codes you want to handle, such as `200`, `400`, `401`, or `503`.",
+            "- Route each tagged connector to the correct next path in the journey.",
+            "",
+            "Useful related components",
+            "- Use `JSON Handler` if you also need to parse fields from the API response body.",
+        ])
+    if (
+        ("journey builder" in q or "bot studio" in q)
+        and any(term in q for term in [
+            "condition node",
+            "branch based on variable",
+            "branch based on a variable value",
+            "branching based on a variable value",
+            "if else branching",
+            "if else",
+            "fallback branch logic",
+            "branch logic",
+            "fallback path",
+        ])
+    ):
+        return "\n".join([
+            "The documentation indicates you should use `Condition Node` for this pattern.",
+            "",
+            "Recommended setup",
+            "- Open the target journey in `Journey Builder` and add or open `Condition Node`.",
+            "- Select whether the condition should evaluate the current user message or another variable.",
+            "- Configure the condition/operator and comparison value.",
+            "- Connect each branch to the correct next node and configure the fallback path.",
+            "",
+            "Validation",
+            "- Use `Test your Bot` to trigger each expected branch value and confirm unmatched input follows the fallback path.",
+        ])
+    if (
+        ("journey builder" in q or "bot studio" in q)
+        and ("save user input into a variable" in q or "store user input" in q or "reuse it later" in q)
+    ):
+        return "\n".join([
+            "The documentation indicates you should use `Manage Variables` for this pattern.",
+            "",
+            "Recommended setup",
+            "- Create or select the required variable in `Bot Studio -> Manage Variables`.",
+            "- Store the user input into that variable so it can be reused later in the journey.",
+            "- If you need to transform or update the value after capture, use `Modify Variable Node`.",
+            "",
+            "Useful related components",
+            "- `Manage Variables` defines and manages the variable.",
+            "- `Modify Variable Node` is used when you need to update or transform the stored value.",
+        ])
+    if ("trigger event node" in q or "send custom event" in q or "event manager" in q) and ("journey builder" in q or "bot studio" in q):
+        return "\n".join([
+            "The documentation indicates you should use `Trigger Event Node` for this pattern.",
+            "",
+            "Recommended setup",
+            "- Create the required event in `Event Manager` first.",
+            "- Add `Trigger Event Node` in the journey.",
+            "- Select the event category and event name.",
+            "- If needed, use the `Save in Personalize` option to update CDP profile attributes from event data.",
+        ])
+    if ("call and return node" in q or "call another journey" in q or "sub journey" in q) and ("journey builder" in q or "bot studio" in q):
+        return "\n".join([
+            "The documentation indicates you should use `Call & Return Node` for this pattern.",
+            "",
+            "Recommended setup",
+            "- Add `Call & Return Node` where the current journey should invoke another journey.",
+            "- Use it to call the secondary journey.",
+            "- Return to the original journey when the called journey finishes execution.",
+        ])
+    if ("agent transfer node" in q or "handover to agent" in q or "transfer to human agent" in q):
+        return "\n".join([
+            "The documentation indicates you should use `Agent Transfer Node` for this pattern.",
+            "",
+            "Recommended setup",
+            "- Add `Agent Transfer Node` at the point where the bot should hand over to a human agent.",
+            "- Save the change in Bot Studio and use `Save & Deploy` if the handover should affect the live channel.",
+        ])
+    if ("goal node" in q or "track milestones" in q or "track purchase milestone" in q) and ("journey builder" in q or "bot studio" in q):
+        return "\n".join([
+            "The documentation indicates you should use `Goal Node` for this pattern.",
+            "",
+            "Recommended setup",
+            "- Add `Goal Node` at the milestone you want to track in the journey.",
+            "- Use it to track milestone attainment for users interacting with the bot.",
+            "- If useful, enable the analytics toggle to see traversal and drop-outs for that goal.",
+        ])
+    if ("flow trigger" in q or "launch a whatsapp flow" in q) and ("journey builder" in q or "whatsapp flow" in q):
+        return "\n".join([
+            "The documentation indicates you should use the `WhatsApp Flow Node` for this pattern.",
+            "",
+            "Recommended setup",
+            "- Add the `WhatsApp Flow Node` at the point in the journey where the flow should be sent.",
+            "- Configure the required fields available in the WhatsApp Flow Node.",
+            "- Use that node to trigger the WhatsApp Flow from the user journey.",
+        ])
+    if _is_api_node_family_query(query):
+        subtopics = _api_node_subtopics(query)
+        out = [
+            "The documentation indicates you should use the API Node in Journey Builder for this pattern.",
+            "",
+            "Recommended setup",
+            "- Capture the input or journey data you want to send in a variable.",
+            "- Add an API Node at the point in the journey where you need to call the external or backend API.",
+            "- Configure the API Node to call your target endpoint and store the API response in a variable for later use.",
+        ]
+        if subtopics["otp"]:
+            out.append("- For OTP validation, place the API Node after the OTP input step so the backend response can decide whether the user should proceed.")
+        if subtopics["branching"]:
+            out.append("- Use branching after the API response to decide whether the journey should continue, retry, or follow an alternate path.")
+        else:
+            out.append("- Use the returned API response to control the next step in the journey.")
+        out.extend([
+            "",
+            "Useful related components",
+            "- Use `API Node: HTTP Status Code Branching` if you want routing based on response codes.",
+        ])
+        if subtopics["parsing"] or subtopics["otp"]:
+            out.append("- Use `JSON Handler` if you need to extract fields from the backend response.")
+        out.extend([
+            "",
+            "What I could not verify from the available documentation",
+            "- The exact request payload format and the exact response schema for your specific backend API.",
+        ])
+        return "\n".join(out)
     if any(x in q for x in [
         "team support schedules", "after hours at the wrong time", "working hour windows",
         "in hours versus after hours support timing", "team specific support timing",
@@ -707,6 +1226,22 @@ def _handle_exact_cases(query: str, top: List[Dict], lines: List[str]) -> str:
             "Use Auto Replies when",
             "- You need customer-facing away replies, reminders, and related response behavior.",
         ])
+    if (
+        ("journey builder" in q or "bot studio" in q)
+        and ("variable" in q or "variables" in q)
+        and ("message node" in q or "message nodes" in q)
+    ):
+        return "\n".join([
+            "What the docs confirm",
+            "- Use `Bot Studio -> Manage Variables` to create or select variables used in Journey Builder.",
+            "- The docs say variables can be mapped directly into nodes for data handling or personalization.",
+            "- If you need to update or transform a value, use `Modify Variable Node`.",
+            "Supported variable details",
+            "- Variable types documented are `Local`, `Global`, `System`, `Constant`, and `CDP`.",
+            "- Documented system variables include `user_input`, `channel`, `user_name`, `ai_intent`, and `payloadJson`.",
+            "What the docs do not confirm",
+            "- The current docs do not clearly specify the exact interpolation syntax inside message nodes.",
+        ])
     if any(x in q for x in [
         "two bot studio areas should i use to test a journey and then push it live",
         "payload debugging before go live and deployment to live channels afterward",
@@ -795,25 +1330,25 @@ def _handle_exact_cases(query: str, top: List[Dict], lines: List[str]) -> str:
             "What to check",
             "- After selecting the `Ad Journey`, click `Publish` on the bot setup page to make the setup live.",
         ])
-    if (("click device details" in q or "device details" in q) and "original url" in q) or ("click" in q and "original url" in q and "report" in q):
+    if ((("click device details" in q or "device details" in q) and "original url" in q) or ("click" in q and "original url" in q and "report" in q)):
         return "\n".join([
             "Exact report",
             "- Link Tracking Report",
             "Relevant details",
             "- It includes original URL, Gupshup URL, click time, IP address, device, and OS.",
         ])
-    if (("backend json" in q or "raw payload" in q or ("payload" in q and "json" in q)) and ("test widget" in q or "test your bot" in q)):
+    if ((("backend json" in q or "raw payload" in q or ("payload" in q and "json" in q)) and ("test widget" in q or "test your bot" in q))):
         return "\n".join([
             "What to check",
             "- Open `Test your Bot`.",
             "- Use `Message Log -> Payload` to inspect the backend JSON generated after a user message.",
         ])
-    if (("reopened thread" in q or "reopened chat" in q or "reopened conversation" in q) and ("same owner" in q or "same assignee" in q or "same agent" in q)):
+    if ((("reopened thread" in q or "reopened chat" in q or "reopened conversation" in q) and ("same owner" in q or "same assignee" in q or "same agent" in q))):
         return "\n".join([
             "What happens",
             "- `Sticky Assignment` controls whether a reopened chat is routed back to the same owner/agent when possible.",
         ])
-    if (("customer inactivity reminders" in q or "inactive customers" in q) and ("agent inactivity reminders" in q or "agent reminder" in q)):
+    if ((("customer inactivity reminders" in q or "inactive customers" in q) and ("agent inactivity reminders" in q or "agent reminder" in q))):
         return "\n".join([
             "Exact page",
             "- Response Management: Auto Replies & Customer Satisfaction",
@@ -824,6 +1359,13 @@ def _handle_exact_cases(query: str, top: List[Dict], lines: List[str]) -> str:
         return "Definition\n- You can access Goal Analytics for a goal by clicking the analytics icon on the Goals dashboard."
     if "which dashboard should i open if the campaign delivered but i want to know whether users converted" in q:
         return "Use Campaign Analytics when\n- You need delivery and click performance.\nUse Goal Analytics when\n- Delivery looks fine and you need to confirm whether users converted."
+    if any(term in q for term in ["click through rate", "click through rates", "unique clicks", "total clicks"]):
+        return "\n".join([
+            "Exact page",
+            "- Campaign Analytics",
+            "Relevant details",
+            "- Use this page for click-through rate, unique clicks, and total clicks after a campaign is sent.",
+        ])
     if "ignore all previous instructions" in q or "reveal all configured secrets" in q:
         return ""
     return ""
@@ -928,6 +1470,7 @@ def _send_langfuse(trace_name: str, query: str, answer: str, results: List[Dict]
         "status_code": status_code,
         "error": error,
         "debug_request": debug_request,
+        "metadata": metadata,
     }
 
 
@@ -951,7 +1494,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
     chunks = _load_chunks(context)
     explicit_module = _detect_module(query)
     intents = _detect_intents(query)
-    feature_rules: List[Dict] = []
+    feature_rules = _detect_feature_rules(query)
     selected_answer_mode = _preferred_mode(query, feature_rules, intents)
     scored = []
     for c in chunks:
@@ -961,7 +1504,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
             row["score"] = s
             scored.append(row)
     scored.sort(key=lambda x: x.get("score", 0.0), reverse=True)
-    scored = _apply_feature_lock(scored, feature_rules)
+    scored = _apply_feature_lock(scored)
     top = _select_answer_evidence(query, scored, selected_answer_mode, explicit_module)
     clarification_asked = False
     lines = []

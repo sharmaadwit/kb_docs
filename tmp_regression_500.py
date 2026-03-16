@@ -360,6 +360,71 @@ CATEGORY_SPECS = [
         "search_required_all": ["test-your-bot", "save-vs-save-deploy"],
     },
     {
+        "category": "api_node",
+        "kind": "supported",
+        "cores": [
+            "Which Bot Studio node should I use to call an external API from Journey Builder?",
+            "How do I use API Node to send journey data to a backend and continue based on the response?",
+            "Can API Node handle third-party system integration and response-based branching in Bot Studio?",
+            "Where is HTTP status code branching documented for API Node in Journey Builder?",
+            "If I need to post user data to my backend and route the journey by response, which node should I use?",
+        ],
+        "answer_required_any": ["api node"],
+        "answer_required_all": ["api node"],
+        "answer_bonus": ["http status code branching", "json handler", "backend"],
+        "search_required_any": ["api-node"],
+        "search_required_all": ["api-node"],
+        "search_bonus": ["api-node-http-status-code-branching"],
+    },
+    {
+        "category": "json_handler",
+        "kind": "supported",
+        "cores": [
+            "Which node should I use to parse a JSON response returned by an API call in Bot Studio?",
+            "How do I extract fields from an API response for later journey steps?",
+            "Where is JSON Handler documented for response parsing in Journey Builder?",
+            "Can JSON Handler read nested values from a backend response variable?",
+            "Which Bot Studio node maps JSON attributes into variables after API Node execution?",
+        ],
+        "answer_required_any": ["json handler"],
+        "answer_required_all": ["json handler"],
+        "answer_bonus": ["api node", "variable", "response"],
+        "search_required_any": ["json-handler"],
+        "search_required_all": ["json-handler"],
+    },
+    {
+        "category": "condition_and_variables",
+        "kind": "supported",
+        "cores": [
+            "Which node should I use for if-else branching based on a variable value in Journey Builder?",
+            "How do I configure Condition Node to compare one variable against another?",
+            "Where do I define journey variables before reusing them across nodes in Bot Studio?",
+            "When should I use Manage Variables versus Modify Variable Node?",
+            "How do I save user input, update it later, and branch on the final value?",
+        ],
+        "answer_required_any": ["condition node", "manage variables", "modify variable node"],
+        "answer_required_all": [],
+        "answer_bonus": ["variable", "branch"],
+        "search_required_any": ["condition-node", "manage-variables", "modify-variable-node"],
+        "search_required_all": [],
+    },
+    {
+        "category": "journey_nodes",
+        "kind": "supported",
+        "cores": [
+            "How do I send a custom event from Journey Builder to Event Manager?",
+            "Which node should I use to call a child journey and return to the parent flow later?",
+            "How do I transfer the conversation from Bot Studio to a live agent?",
+            "Which node marks a business milestone or conversion inside a journey?",
+            "Where are Trigger Event Node, Call and Return Node, Agent Transfer Node, and Goal Node documented?",
+        ],
+        "answer_required_any": ["trigger event node", "call and return node", "agent transfer node", "goal node"],
+        "answer_required_all": [],
+        "answer_bonus": ["event manager", "human agent", "milestone"],
+        "search_required_any": ["trigger-event-node", "call-and-return-node", "agent-transfer-node", "goal-node"],
+        "search_required_all": [],
+    },
+    {
         "category": "negative_sensitive",
         "kind": "negative",
         "cores": [
@@ -415,13 +480,13 @@ def build_question_specs():
                 "search_penalty": spec.get("search_penalty", []),
             }
             questions.append(row)
-    assert len(questions) == 500, len(questions)
+    assert len(questions) == 600, len(questions)
     return questions
 
 
 def write_questions_only(questions):
     payload = {
-        "dataset_name": "regression_500_stress_questions",
+        "dataset_name": "regression_500_stress_questions_plus_nodes",
         "total_questions": len(questions),
         "questions": [
             {

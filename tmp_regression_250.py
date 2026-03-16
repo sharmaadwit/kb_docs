@@ -1,11 +1,13 @@
 import importlib.util
 import json
 import re
+import sys
 from collections import Counter
 from pathlib import Path
 
 
 ROOT = Path("/Users/adwit.sharma/md files/drive-download-20260219T070629Z-3-001")
+ARTIFACTS = ROOT / "artifacts"
 
 
 def load_module(name: str, path: Path):
@@ -243,6 +245,76 @@ add_many(
     "bot_studio_misc",
     "supported",
     ["bot studio", "journey builder"],
+)
+
+add_many(
+    [
+        "Which node should I use to call an external API from Journey Builder?",
+        "Can API Node in Bot Studio send data to a backend system and use the response in the journey?",
+        "How do I use API Node with HTTP status code branching in Journey Builder?",
+        "Which Bot Studio node should handle third-party API calls and response-based continuation?",
+    ],
+    "api_node",
+    "supported",
+    ["api node"],
+    [],
+    ["http status code branching", "json handler", "backend"],
+)
+
+add_many(
+    [
+        "Which node should I use to parse a backend JSON response stored in a variable?",
+        "Can JSON Handler extract fields from an API response in Bot Studio?",
+        "Where do I configure JSON Handler after an API Node call?",
+        "How do I map JSON attributes from an API response for later journey steps?",
+    ],
+    "json_handler",
+    "supported",
+    ["json handler"],
+    [],
+    ["api node", "response", "variable"],
+)
+
+add_many(
+    [
+        "Which node should I use for if-else branching based on a variable value in Journey Builder?",
+        "How do I configure fallback path logic in Condition Node?",
+        "Where do I set condition operators and comparison values in Bot Studio?",
+        "Which node handles branching based on current user message versus another variable?",
+    ],
+    "condition_node",
+    "supported",
+    ["condition node"],
+    [],
+    ["fallback", "variable", "branch"],
+)
+
+add_many(
+    [
+        "Where do I create variables in Bot Studio so I can reuse user input later?",
+        "Which Bot Studio feature should I use to store and later update a variable value?",
+        "When should I use Manage Variables versus Modify Variable Node?",
+        "How do I save user input into a variable and transform it later in a journey?",
+    ],
+    "variable_management",
+    "supported",
+    ["manage variables", "modify variable node"],
+    [],
+    ["variable", "bot studio"],
+)
+
+add_many(
+    [
+        "How do I use Trigger Event Node to send a custom event to Event Manager?",
+        "Which Bot Studio node should I use to call another journey and return back later?",
+        "How do I hand over to a human agent using Agent Transfer Node?",
+        "How do I use Goal Node to track a purchase milestone in a journey?",
+    ],
+    "journey_nodes",
+    "supported",
+    ["trigger event node", "call and return node", "agent transfer node", "goal node"],
+    [],
+    ["event manager", "human agent", "milestone"],
 )
 
 add_many(
@@ -591,7 +663,31 @@ add_many(
     ["business hours", "auto replies", "sticky assignment", "live monitoring", "test your bot", "save", "instagram", "retain customer chat history", "webhooks", "campaign analytics", "goal analytics", "ctwa"],
 )
 
-assert len(questions) == 250, len(questions)
+assert len(questions) == 270, len(questions)
+
+questions_payload = {
+    "dataset_name": "regression_250_plus_node_questions",
+    "total_questions": len(questions),
+    "questions": [
+        {
+            "idx": i + 1,
+            "query": row["question"],
+            "category": row["category"],
+            "kind": row["kind"],
+        }
+        for i, row in enumerate(questions)
+    ],
+}
+
+ARTIFACTS.mkdir(exist_ok=True)
+(ARTIFACTS / "regression_250_questions.json").write_text(
+    json.dumps(questions_payload, ensure_ascii=False, indent=2),
+    encoding="utf-8",
+)
+
+if "--questions-only" in sys.argv:
+    print(json.dumps(questions_payload, ensure_ascii=False, indent=2))
+    raise SystemExit(0)
 
 results = []
 for i, qs in enumerate(questions, 1):

@@ -273,6 +273,56 @@ add_many(
 
 add_many(
     [
+        "Which Bot Studio node should I use to call an external API from Journey Builder?",
+        "Where is API Node documented for backend API calls in Journey Builder?",
+    ],
+    "api_node",
+    answer_required_any=["api node"],
+    answer_required_all=["api node"],
+    answer_bonus=["http status code branching", "json handler"],
+    search_required_any=["api-node"],
+    search_required_all=["api-node"],
+)
+
+add_many(
+    [
+        "Which node should I use to parse fields from an API response stored in a variable?",
+        "Where is JSON Handler documented in Bot Studio?",
+    ],
+    "json_handler",
+    answer_required_any=["json handler"],
+    answer_required_all=["json handler"],
+    answer_bonus=["api node", "response"],
+    search_required_any=["json-handler"],
+    search_required_all=["json-handler"],
+)
+
+add_many(
+    [
+        "Which Bot Studio node handles if-else branching based on a variable value?",
+        "Where should I configure fallback branch logic in Journey Builder?",
+    ],
+    "condition_node",
+    answer_required_any=["condition node"],
+    answer_required_all=["condition"],
+    answer_bonus=["fallback", "variable"],
+    search_required_any=["condition-node"],
+    search_required_all=["condition-node"],
+)
+
+add_many(
+    [
+        "Where do I create or manage variables for reuse later in Journey Builder?",
+        "Which Bot Studio feature should I use to store user input and later modify it?",
+    ],
+    "variable_management",
+    answer_required_any=["manage variables", "modify variable node"],
+    answer_bonus=["variable", "bot studio"],
+    search_required_any=["manage-variables", "modify-variable-node"],
+)
+
+add_many(
+    [
         "Where in the console do I add a webhook callback URL?",
         "Which webhook fields should we warehouse for delivery-state tracking?",
         "What delivery-status values matter most when storing webhook events downstream?",
@@ -432,7 +482,7 @@ add_many(
     kind="negative",
 )
 
-assert len(questions) == 100, len(questions)
+assert len(questions) == 108, len(questions)
 
 
 results = []
@@ -532,7 +582,7 @@ summary = {
 }
 
 questions_payload = {
-    "dataset_name": "regression_100_new_questions",
+    "dataset_name": "regression_100_plus_node_questions",
     "total_questions": len(questions),
     "questions": [
         {

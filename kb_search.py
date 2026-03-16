@@ -231,6 +231,62 @@ FEATURE_RULES = [
         "penalty_sources": ["creating-a-ctwa-ad", "campaign-setup"],
         "preferred_mode": "troubleshooting",
     },
+    {
+        "id": "BS_API_NODE",
+        "triggers": ["api node", "external api", "backend api", "api integration node", "call an external api", "call backend api", "call api", "third party api", "3rd party api", "send data to api", "exchange data", "fetch data from api", "post request", "get request", "journey builder api"],
+        "preferred_sources": ["api-node", "api-node-http-status-code-branching"],
+        "penalty_sources": ["how-to-create-whatsapp-static-flows", "flow-trigger", "whatsapp-flow"],
+        "preferred_mode": "setup",
+    },
+    {
+        "id": "BS_JSON_HANDLER",
+        "triggers": ["json handler", "json parser", "parse response", "parse api response", "parse fields from api response", "parse fields from an api response", "extract response fields", "extract fields from api response", "response fields", "extract fields from response", "parse json response", "response stored in a variable", "api response stored in a variable"],
+        "preferred_sources": ["json-handler", "json-handler-instead-of-code-node"],
+        "penalty_sources": ["how-to-create-whatsapp-static-flows", "flow-trigger", "whatsapp-flow"],
+        "preferred_mode": "setup",
+    },
+    {
+        "id": "BS_CONDITION_NODE",
+        "triggers": ["condition node", "branch based on variable", "branch based on a variable value", "branching based on a variable value", "if else branching", "if else", "fallback path", "fallback branch logic", "branch logic"],
+        "preferred_sources": ["condition-node"],
+        "penalty_sources": ["trigger-event-node", "how-to-create-whatsapp-static-flows"],
+        "preferred_mode": "setup",
+    },
+    {
+        "id": "BS_VARIABLES",
+        "triggers": ["manage variables", "save user input into a variable", "reuse it later", "store user input", "modify variable node", "update a variable value", "transform a variable value"],
+        "preferred_sources": ["manage-variables", "modify-variable-node"],
+        "penalty_sources": ["expression-library-in-journey-builder-canvas", "how-to-trigger-a-user-journey"],
+        "preferred_mode": "setup",
+    },
+    {
+        "id": "BS_TRIGGER_EVENT_NODE",
+        "triggers": ["trigger event node", "send custom event", "event manager", "save in personalize"],
+        "preferred_sources": ["trigger-event-node"],
+        "penalty_sources": ["ai-trigger-event", "starting-node"],
+        "preferred_mode": "setup",
+    },
+    {
+        "id": "BS_CALL_RETURN_NODE",
+        "triggers": ["call and return node", "call return node", "call another journey", "return back to the same journey", "sub journey"],
+        "preferred_sources": ["call-and-return-node", "multi-journey-user-journeys"],
+        "penalty_sources": ["campaign-journey"],
+        "preferred_mode": "setup",
+    },
+    {
+        "id": "BS_AGENT_TRANSFER_NODE",
+        "triggers": ["agent transfer node", "connect with a human agent", "handover to agent", "transfer to human agent"],
+        "preferred_sources": ["agent-transfer-node"],
+        "penalty_sources": ["agent-personality", "agent-assist"],
+        "preferred_mode": "setup",
+    },
+    {
+        "id": "BS_GOAL_NODE",
+        "triggers": ["goal node", "track milestones", "goal analytics toggle", "track purchase milestone"],
+        "preferred_sources": ["goal-node"],
+        "penalty_sources": ["goal-analytics", "goals/"],
+        "preferred_mode": "setup",
+    },
 ]
 
 GLOBAL_PENALTY_SOURCES = [
@@ -300,6 +356,20 @@ PRODUCT_SIGNAL_TERMS = [
     "goal achieved",
     "unique users",
     "retain customer chat history",
+    "api node",
+    "external api",
+    "backend api",
+    "json handler",
+    "condition node",
+    "manage variables",
+    "modify variable node",
+    "trigger event node",
+    "call and return node",
+    "agent transfer node",
+    "goal node",
+    "click through rate",
+    "unique clicks",
+    "total clicks",
 ]
 
 OFFTOPIC_TERMS = [
@@ -341,6 +411,10 @@ UNSUPPORTED_PATTERNS = [
 
 SENSITIVE_PATTERNS = [
     "reveal all configured secrets",
+    "configured secret",
+    "configured secrets",
+    "list every configured secret",
+    "list every configured secrets",
     "api keys",
     "system instruction",
     "hidden system instruction",
@@ -575,6 +649,50 @@ def _score_chunk(query: str, chunk: Dict, feature_rules: List[Dict], explicit_mo
     if any(rule.get("id") == "BS_TEST_YOUR_BOT_DEBUG" for rule in feature_rules):
         if "test-your-bot" in source:
             score += 4.0
+    if any(rule.get("id") == "BS_JSON_HANDLER" for rule in feature_rules):
+        if "json-handler" in source:
+            score += 5.0
+        elif "api-node-http-status-code-branching" in source:
+            score -= 2.5
+    if any(rule.get("id") == "BS_CONDITION_NODE" for rule in feature_rules):
+        if "condition-node" in source:
+            score += 5.0
+        elif "modify-variable-node" in source:
+            score -= 4.0
+    if any(rule.get("id") == "BS_AGENT_TRANSFER_NODE" for rule in feature_rules):
+        if "agent-transfer-node" in source:
+            score += 5.0
+    if any(term in q for term in [
+        "parse fields from api response",
+        "parse fields from an api response",
+        "extract fields from api response",
+        "response stored in a variable",
+        "api response stored in a variable",
+    ]):
+        if "json-handler" in source:
+            score += 5.0
+        if "ctx-goal-nodes-and-conversions-api" in source or "conversion" in source:
+            score -= 5.0
+    if any(term in q for term in [
+        "condition node",
+        "branch based on variable",
+        "branch based on a variable value",
+        "branching based on a variable value",
+        "if else branching",
+        "if else",
+        "fallback branch logic",
+        "branch logic",
+        "fallback path",
+    ]):
+        if "condition-node" in source:
+            score += 5.0
+        if "modify-variable-node" in source:
+            score -= 4.0
+    if any(term in q for term in ["click through rate", "click through rates", "unique clicks", "total clicks"]):
+        if "campaign-analytics" in source:
+            score += 4.0
+        if "how-to-measure-click-through-rates" in source:
+            score += 1.5
     if any(x in q for x in ["which page", "where do i", "which dashboard", "which report", "where exactly"]):
         if section_type == "path":
             score += 1.5
