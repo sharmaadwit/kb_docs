@@ -852,11 +852,11 @@ def _guardrail_category(query: str) -> str:
         return ""
     if any(term in q for term in OFFTOPIC_TERMS):
         return "offtopic"
-        low_signal = re.findall(r"[a-z0-9]+", q)
+    low_signal = re.findall(r"[a-z0-9]+", q)
     if len(low_signal) <= 8 and any(
         term in q for term in ["joke", "favorite", "wish", "roast", "human", "talk to me"]
     ):
-            return "offtopic"
+        return "offtopic"
     return ""
 
 

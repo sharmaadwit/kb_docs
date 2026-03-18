@@ -2467,12 +2467,12 @@ def _compose_from_evidence(
             c.get("heading_path") or [],
             str(c.get("heading") or ""),
         )
-    out = ["Exact page"]
-    if page:
-        out.append(f"- {page}")
+        out = ["Exact page"]
+        if page:
+            out.append(f"- {page}")
         for line in lines[:2]:
-        out.append(f"- {line}")
-    return "\n".join(out)
+            out.append(f"- {line}")
+        return "\n".join(out)
 
     if intent == "definition":
         heading = str(evidence[0].get("heading") or "").strip()
