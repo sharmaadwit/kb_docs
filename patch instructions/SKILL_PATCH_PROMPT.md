@@ -508,4 +508,209 @@ UNSUPPORTED_PATTERNS = [
 
 ---
 
+## 13. `kb_answer.py` — Add BS_PROMPT_NODE to FEATURE_RULES (after BS_GOAL_NODE)
+
+**Find (exact):**
+```python
+        "preferred_sources": ["goal-node"],
+        "penalty_sources": ["goal-analytics", "goals/"],
+        "preferred_mode": "setup",
+    },
+]
+GLOBAL_PENALTY_SOURCES = [
+```
+
+**Replace with:**
+```python
+        "preferred_sources": ["goal-node"],
+        "penalty_sources": ["goal-analytics", "goals/"],
+        "preferred_mode": "setup",
+    },
+    {
+        "id": "BS_PROMPT_NODE",
+        "triggers": [
+            "collect text user input",
+            "which node to collect text",
+            "save free-text user replies",
+            "save free text user replies",
+            "collect user input",
+            "collect user inputs",
+            "prompt node",
+        ],
+        "preferred_sources": ["prompt-nodes", "timeout-in-prompt-nodes"],
+        "penalty_sources": ["whatsapp-carousel-message", "send-message-node"],
+        "preferred_mode": "setup",
+    },
+]
+GLOBAL_PENALTY_SOURCES = [
+```
+
+---
+
+## 14. `kb_answer.py` — Add Prompt Nodes to _canonical_page_name mapping
+
+**Find (exact):**
+```python
+        ("modify-variable-node", "Modify Variable Node"),
+    ]
+    for token, label in mapping:
+```
+
+**Replace with:**
+```python
+        ("modify-variable-node", "Modify Variable Node"),
+        ("prompt-nodes", "Prompt Nodes"),
+    ]
+    for token, label in mapping:
+```
+
+---
+
+## 15. `kb_answer.py` — Add Prompt Node exact-case (before Condition Node block)
+
+**Find (exact):**
+```python
+    if (
+        ("journey builder" in q or "bot studio" in q or "journey" in q)
+        and any(term in q for term in [
+            "condition node",
+            "branch based on variable",
+```
+
+**Replace with:**
+```python
+    if (
+        ("journey builder" in q or "bot studio" in q or "journey" in q)
+        and any(term in q for term in [
+            "collect text user input",
+            "which node should be used to collect text",
+            "node to collect text user input",
+            "save free-text user replies",
+            "save free text user replies",
+            "collect user input",
+            "collect user inputs",
+        ])
+    ):
+        return "\n".join([
+            "The documentation indicates you should use **Prompt Node** to collect text user input in a journey.",
+            "",
+            "Recommended setup",
+            "- Add a **Prompt Node** where you need to capture free-text or other user replies.",
+            "- Configure the message and validation (e.g. in **Bot Studio → Prompt Nodes**).",
+            "- To save the reply for later use, store it in a variable: use **Manage Variables** to define the variable, and connect the Prompt Node output to that variable or use **Modify Variable Node** downstream.",
+            "",
+            "Relevant docs",
+            "- Prompt Nodes (capture user details, questions). Timeout and fallback: Timeout in Prompt Nodes.",
+            "- To reuse the value: Manage Variables, Modify Variable Node.",
+        ])
+    if (
+        ("journey builder" in q or "bot studio" in q or "journey" in q)
+        and any(term in q for term in [
+            "condition node",
+            "branch based on variable",
+```
+
+---
+
+## 16. `kb_answer.py` — Add prompt-nodes boost and carousel penalty in _score_chunk
+
+**Find (exact):**
+```python
+    if ("api node" in q or "external api" in q or "otp" in q or "third party api" in q or "call api" in q) and "how-to-create-whatsapp-static-flows" in source:
+        score -= 8.0
+    return score
+```
+
+**Replace with:**
+```python
+    if ("api node" in q or "external api" in q or "otp" in q or "third party api" in q or "call api" in q) and "how-to-create-whatsapp-static-flows" in source:
+        score -= 8.0
+    if any(term in q for term in [
+        "collect text user input",
+        "which node to collect text",
+        "save free-text user replies",
+        "save free text user replies",
+        "collect user input",
+        "collect user inputs",
+    ]):
+        if "prompt-nodes" in source or "timeout-in-prompt-nodes" in source:
+            score += 5.0
+        if "whatsapp-carousel" in source or "send-message-node" in source:
+            score -= 5.0
+    return score
+```
+
+---
+
+## 17. `kb_search.py` — Add BS_PROMPT_NODE to FEATURE_RULES (after BS_GOAL_NODE)
+
+**Find (exact):**
+```python
+        "preferred_sources": ["goal-node"],
+        "penalty_sources": ["goal-analytics", "goals/"],
+        "preferred_mode": "setup",
+    },
+]
+
+GLOBAL_PENALTY_SOURCES = [
+```
+
+**Replace with:**
+```python
+        "preferred_sources": ["goal-node"],
+        "penalty_sources": ["goal-analytics", "goals/"],
+        "preferred_mode": "setup",
+    },
+    {
+        "id": "BS_PROMPT_NODE",
+        "triggers": [
+            "collect text user input",
+            "which node to collect text",
+            "save free-text user replies",
+            "save free text user replies",
+            "collect user input",
+            "collect user inputs",
+            "prompt node",
+        ],
+        "preferred_sources": ["prompt-nodes", "timeout-in-prompt-nodes"],
+        "penalty_sources": ["whatsapp-carousel-message", "send-message-node"],
+        "preferred_mode": "setup",
+    },
+]
+
+GLOBAL_PENALTY_SOURCES = [
+```
+
+---
+
+## 18. `kb_search.py` — Add prompt-nodes boost and carousel penalty in _score_chunk
+
+**Find (exact):**
+```python
+        if "how-to-measure-click-through-rates" in source:
+            score += 1.5
+    if any(x in q for x in ["which page", "where do i", "which dashboard", "which report", "where exactly"]):
+```
+
+**Replace with:**
+```python
+        if "how-to-measure-click-through-rates" in source:
+            score += 1.5
+    if any(term in q for term in [
+        "collect text user input",
+        "which node to collect text",
+        "save free-text user replies",
+        "save free text user replies",
+        "collect user input",
+        "collect user inputs",
+    ]):
+        if "prompt-nodes" in source or "timeout-in-prompt-nodes" in source:
+            score += 5.0
+        if "whatsapp-carousel" in source or "send-message-node" in source:
+            score -= 5.0
+    if any(x in q for x in ["which page", "where do i", "which dashboard", "which report", "where exactly"]):
+```
+
+---
+
 **End of skill patches.** Apply only these edits; do not change anything else and do not touch telemetry code.
