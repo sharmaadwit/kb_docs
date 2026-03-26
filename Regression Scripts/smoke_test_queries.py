@@ -6,8 +6,12 @@ import json
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(__file__))
+_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+_SCRIPT_DIR = os.path.dirname(__file__)
+sys.path.insert(0, _ROOT)
+sys.path.insert(0, _SCRIPT_DIR)
 import kb_answer as kba
+from cursor_test_context import CursorKBTestContext
 
 # ---------------------------------------------------------------------------
 # Build synthetic chunks (same as local_regression_test.py)
@@ -61,6 +65,8 @@ def _build_synthetic_chunks():
 
 SYNTHETIC_CHUNKS = _build_synthetic_chunks()
 kba._load_chunks = lambda ctx: SYNTHETIC_CHUNKS
+
+CURSOR_KB_CONTEXT = CursorKBTestContext()
 
 
 # ---------------------------------------------------------------------------
@@ -227,7 +233,7 @@ def run():
 
         # Full answer
         try:
-            result = kba.kb_answer({"query": query}, context=None)
+            result = kba.kb_answer({"query": query}, context=CURSOR_KB_CONTEXT)
             answer = result.get("answer", "")
         except Exception as exc:
             answer = f"ERROR: {exc}"
@@ -287,7 +293,8 @@ def run():
     print(f"SMOKE TEST RESULTS: {passed} passed, {failed} failed out of {len(SMOKE_TESTS)}")
     print("=" * 70)
 
-    out_path = os.path.join(os.path.dirname(__file__), "artifacts", "smoke_test_results.json")
+    out_path = os.path.join(os.path.dirname(__file__), "..", "artifacts", "smoke_test_results.json")
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w") as f:
         json.dump(results, f, indent=2)
     print(f"\nDetailed results: {out_path}")

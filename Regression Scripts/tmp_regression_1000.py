@@ -1,6 +1,13 @@
 import argparse
 import json
+import sys
 from collections import Counter, defaultdict
+from pathlib import Path
+
+_SCRIPT_DIR = Path(__file__).resolve().parent
+if str(_SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(_SCRIPT_DIR))
+from cursor_test_context import CursorKBTestContext
 
 from tmp_regression_500 import (
     ARTIFACTS,
@@ -447,11 +454,7 @@ def run_regression(questions):
     kb_search._load_chunks = lambda context: chunks
     kb_answer._load_chunks = lambda context: chunks
 
-    class DummyContext:
-        def get_secret(self, key):
-            return ""
-
-    context = DummyContext()
+    context = CursorKBTestContext()
     results = []
 
     for idx, spec in enumerate(questions, 1):

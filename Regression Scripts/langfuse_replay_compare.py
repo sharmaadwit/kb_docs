@@ -12,6 +12,11 @@ import sys
 from difflib import SequenceMatcher
 from pathlib import Path
 
+_SCRIPT_DIR = Path(__file__).resolve().parent
+if str(_SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(_SCRIPT_DIR))
+from cursor_test_context import CursorKBTestContext
+
 ROOT = Path(__file__).resolve().parent.parent
 ARTIFACTS = ROOT / "artifacts"
 
@@ -136,11 +141,7 @@ def main():
                 chunks.append(json.loads(line))
     kb_answer._load_chunks = lambda ctx: chunks
 
-    class Ctx:
-        def get_secret(self, key):
-            return ""
-
-    ctx = Ctx()
+    ctx = CursorKBTestContext()
     rows = []
     for i, (query, lf_ans) in enumerate(pairs):
         if (i + 1) % 50 == 0:

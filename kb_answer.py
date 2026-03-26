@@ -3,7 +3,7 @@ import re
 import uuid
 import base64
 from datetime import datetime, timezone
-from typing import Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import requests
 
@@ -31,6 +31,19 @@ EXPLICIT_MODULES = {
     "personalize": "Personalize",
     "overview": "Overview",
     "extension": "Extension",
+}
+
+SCORING_STOP_WORDS = {
+    "how", "to", "use", "from", "in", "a", "the", "my", "is", "it",
+    "do", "can", "that", "this", "and", "or", "for", "with", "on",
+    "of", "what", "where", "when", "which", "are", "was", "will",
+    "should", "does", "have", "not", "but", "they", "their", "its",
+    "all", "an", "be", "so", "if", "am", "trying", "want", "ensure",
+    "also", "need", "using", "about", "into", "would", "could",
+    "dont", "get", "set", "go", "see", "way", "like", "just",
+    "any", "has", "been", "being", "were", "did", "had", "than",
+    "then", "there", "here", "these", "those", "each", "every",
+    "some", "such", "own", "same", "other", "only",
 }
 
 # ---------------------------------------------------------------------------
@@ -139,7 +152,14 @@ CONCEPT_REGISTRY: List[Dict] = [
             "3rd party api", "send data to api", "exchange data",
             "fetch data from api", "post request", "get request",
             "journey builder api",
+            "crm api", "connect with api", "connect to api",
+            "connect api from journey", "pass data to backend",
+            "backend system", "send data to backend",
+            "integrate with api", "call my api", "hit my api",
+            "api from journey", "connect to my backend",
+            "pass user data to api", "send user data to backend",
         ],
+        "keywords": ['api', 'crm', 'backend', 'endpoint', 'rest'],
         "module_context": ["journey builder", "bot studio"],
         "source_boosts": {"api-node": 5.0, "api-node-http-status-code-branching": 2.5},
         "source_penalties": {
@@ -180,6 +200,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "move further in the journey", "validate otp",
             "otp validation", "otp",
         ],
+        "keywords": ['status', 'branching', 'otp'],
         "module_context": ["journey builder", "bot studio", "api node"],
         "source_boosts": {
             "api-node-http-status-code-branching": 5.0,
@@ -220,6 +241,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "response stored in a variable",
             "api response stored in a variable",
         ],
+        "keywords": ['json', 'parse', 'parser', 'extract'],
         "module_context": [],
         "source_boosts": {"json-handler": 5.0, "json-handler-instead-of-code-node": 3.0},
         "source_penalties": {
@@ -264,6 +286,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "fallback handling when branch conditions fail",
             "conditional routing from parsed response values",
         ],
+        "keywords": ['condition', 'branch', 'branching'],
         "module_context": ["journey builder", "bot studio", "journey"],
         "source_boosts": {"condition-node": 5.0},
         "source_penalties": {
@@ -302,7 +325,11 @@ CONCEPT_REGISTRY: List[Dict] = [
             "manages variables used across a journey",
             "set up variables before capturing user input",
             "prepare journey variables ahead of",
+            "use variables", "variables in a journey",
+            "how to use variables", "use variables in journey",
+            "variables in journey builder",
         ],
+        "keywords": ['variable', 'variables'],
         "module_context": ["journey builder", "bot studio", "journey"],
         "source_boosts": {"manage-variables": 4.5, "modify-variable-node": 3.0},
         "source_penalties": {
@@ -337,6 +364,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "variable transformation rather than initial creation",
             "saved variable needs to be updated", "change stored values",
         ],
+        "keywords": ['variable', 'variables', 'modify', 'transform'],
         "module_context": ["journey builder", "bot studio", "journey", "variable"],
         "source_boosts": {"modify-variable-node": 4.5},
         "source_penalties": {},
@@ -375,6 +403,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "integrate event flows",
             "journey builder integration",
         ],
+        "keywords": ['event', 'trigger', 'personalize'],
         "module_context": ["journey builder", "bot studio"],
         "source_boosts": {"trigger-event-node": 5.0, "custom-integrations": 3.5},
         "source_penalties": {
@@ -422,6 +451,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "reuse a sub journey", "temporarily hand control",
             "parent journey", "invoke sub journey",
         ],
+        "keywords": ['subroutine', 'reusable'],
         "module_context": ["journey builder", "bot studio"],
         "source_boosts": {"call-and-return-node": 5.0, "multi-journey-user-journeys": 4.0},
         "source_penalties": {"campaign-journey": -4.0},
@@ -462,6 +492,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "human agent take over", "human take over",
             "bot flow to a live human agent",
         ],
+        "keywords": ['transfer', 'handover', 'escalate', 'escalation'],
         "module_context": [],
         "source_boosts": {"agent-transfer-node": 5.0, "chat-management-assignment-rules": 4.0},
         "source_penalties": {
@@ -507,6 +538,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "records that a user reached a conversion milestone",
             "how do i count toward goal analytics",
         ],
+        "keywords": ['goal', 'milestone', 'conversion'],
         "module_context": ["journey builder", "bot studio", "journey", "flow", "goal node", "milestone tracking"],
         "source_boosts": {"goal-node": 5.0},
         "source_penalties": {"goal-analytics": -2.0, "goals/": -2.0},
@@ -543,9 +575,14 @@ CONCEPT_REGISTRY: List[Dict] = [
             "which node should be used to collect text user input",
             "what node should i use for text input capture",
             "which node captures open text input and stores it in a variable",
-            "accept user input",
+            "accept user input", "accept user reply",
             "accept a user reply and reuse it in later steps",
+            "input validation", "validate input", "validate user input",
+            "restrict input", "ensure user input",
+            "regex validation", "input in a journey",
+            "enter numbers", "name field validation",
         ],
+        "keywords": ['input', 'prompt', 'validation', 'regex', 'capture'],
         "module_context": ["journey builder", "bot studio", "journey"],
         "source_boosts": {"prompt-nodes": 5.0, "timeout-in-prompt-nodes": 4.0, "free-text-node": 4.0},
         "source_penalties": {
@@ -581,6 +618,7 @@ CONCEPT_REGISTRY: List[Dict] = [
     {
         "id": "whatsapp_flow",
         "aliases": ["flow trigger", "launch a whatsapp flow", "whatsapp flow node"],
+        "keywords": ['flow', 'whatsapp'],
         "module_context": ["journey builder", "whatsapp flow"],
         "source_boosts": {"whatsapp-flow": 4.0, "flow-trigger": 4.0},
         "source_penalties": {},
@@ -610,6 +648,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "move chats to a different agent",
             "changing agent or team assignment behavior",
         ],
+        "keywords": ['reassign', 'reassignment'],
         "module_context": ["agent assist", "agent console", "chat"],
         "source_boosts": {
             "chat-management-assignment-rules": 5.0,
@@ -662,6 +701,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "working hour windows for agent assist teams",
             "business hour configuration",
         ],
+        "keywords": ['hours', 'schedule', 'offline'],
         "module_context": [],
         "source_boosts": {"user-management-business-hours": 5.0},
         "source_penalties": {"views": -3.0, "android-native": -3.0},
@@ -692,6 +732,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "customer reminder behavior",
             "after hours reply", "response behavior",
         ],
+        "keywords": ['reply', 'replies', 'auto', 'welcome', 'reminder'],
         "module_context": [],
         "source_boosts": {"response-management-auto-replies-and-customer-satisfaction": 5.0},
         "source_penalties": {"views": -3.0, "user-management-teams": -3.0},
@@ -710,7 +751,11 @@ CONCEPT_REGISTRY: List[Dict] = [
             "assignment rules", "channel and tags",
             "routing to the expected team",
             "routing depends on tags and channel",
+            "add assignment rules", "configure assignment rules",
+            "assign chats to agents", "chat assignment",
+            "agent routing", "team routing",
         ],
+        "keywords": ['assignment', 'routing', 'assign'],
         "module_context": ["agent assist"],
         "source_boosts": {"chat-management-assignment-rules": 5.0},
         "source_penalties": {"android-native": -3.0},
@@ -719,6 +764,26 @@ CONCEPT_REGISTRY: List[Dict] = [
         "module": "Agent Assist",
         "templates": {
             "page_lookup": "Exact page\n- Chat Management: Assignment Rules\n- `Agent Assist -> Settings -> Chat Management -> Assignment Rules`",
+            "setup": (
+                "The documentation indicates you should use `Assignment Rules` for this pattern.\n"
+                "\n"
+                "Recommended setup\n"
+                "- Open `Agent Assist -> Settings -> Chat Management -> Assignment Rules`.\n"
+                "- Click to add a new rule or edit an existing one.\n"
+                "- Configure the rule name and conditions (channel, tags, or team).\n"
+                "- Assign to a specific agent or team based on the conditions.\n"
+                "- Enable `Sticky Assignment` if reopened chats should return to the same agent.\n"
+                "- Click `Save` to activate the rule.\n"
+                "\n"
+                "Prerequisites\n"
+                "- An `Agent Handover Node` on the bot journey is required for automatic assignment.\n"
+                "\n"
+                "Available options\n"
+                "- Default Assignment Rule, Sticky Assignment, External Assignment Rule, Tag-based assignment.\n"
+                "\n"
+                "Useful related components\n"
+                "- If agents are unavailable, the system retries assignment for the next 30 minutes."
+            ),
         },
         "compare_blurb": "You need tag-based or team-based chat routing.",
         "related": ["business_hours", "agent_transfer"],
@@ -734,6 +799,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "same agent", "same owner",
             "reopened conversations", "reopened chat",
         ],
+        "keywords": ['sticky', 'reopened'],
         "module_context": [],
         "source_boosts": {"chat-management-assignment-rules": 5.0},
         "source_penalties": {},
@@ -767,6 +833,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "wait time metrics", "agent state metrics",
             "agent availability", "live agent",
         ],
+        "keywords": ['monitoring', 'dashboard', 'queue'],
         "module_context": [],
         "source_boosts": {"live-monitoring-dashboard-real-time-chat-analytics-and-performance-insights": 5.0},
         "source_penalties": {"agent-timesheet": -3.0},
@@ -801,6 +868,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "payload debugging", "inspect payloads",
             "debugging before go live",
         ],
+        "keywords": ['test', 'debug', 'payload'],
         "module_context": [],
         "source_boosts": {"test-your-bot": 5.0},
         "source_penalties": {
@@ -841,6 +909,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "live channel still see old behavior",
             "live channel behavior after deployment",
         ],
+        "keywords": ['deploy', 'publish', 'rollout'],
         "module_context": [],
         "source_boosts": {"save-vs-save-deploy": 5.0},
         "source_penalties": {
@@ -887,6 +956,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "timeout in prompt nodes", "prompt node timeout",
             "prompt node times out", "times out",
         ],
+        "keywords": ['timeout'],
         "module_context": [],
         "source_boosts": {"timeout-in-prompt-nodes": 5.0},
         "source_penalties": {"carousel": -3.0, "send-message-node": -3.0},
@@ -906,6 +976,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "how variables can be mapped directly into nodes",
             "interpolation syntax inside message nodes",
         ],
+        "keywords": ['variable', 'variables'],
         "module_context": ["journey builder", "bot studio"],
         "source_boosts": {"manage-variables": 4.0, "modify-variable-node": 3.0},
         "source_penalties": {},
@@ -940,6 +1011,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "configure or review instagram go live behavior",
             "instagram go live behavior documented for bot routing",
         ],
+        "keywords": ['instagram'],
         "module_context": [],
         "source_boosts": {"go-live-with-instagram": 5.0},
         "source_penalties": {"welcome-to-gupshup-console": -3.0, "about-bot-studio": -3.0},
@@ -963,6 +1035,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "prior web widget chat context",
             "earlier conversation context",
         ],
+        "keywords": ['history', 'retain', 'anonymous'],
         "module_context": [],
         "source_boosts": {"retain-customer-chat-history": 5.0},
         "source_penalties": {"retargeting": -3.0, "ads-management": -3.0},
@@ -987,6 +1060,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "where in the console do i add a webhook callback url",
             "configure webhooks", "webhooks in the console",
         ],
+        "keywords": ['webhook', 'webhooks', 'callback'],
         "module_context": [],
         "source_boosts": {"integrations/webhooks": 5.0},
         "source_penalties": {"others-webhooks": -3.0},
@@ -1018,6 +1092,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "delivery timelines", "delivery events",
             "recipient level delivery",
         ],
+        "keywords": ['delivery', 'statuses', 'lifecycle'],
         "module_context": [],
         "source_boosts": {
             "integrations/webhooks": 4.0,
@@ -1053,6 +1128,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "timewise delivery events for all phone numbers",
             "click metrics", "delivery performance",
         ],
+        "keywords": ['campaign', 'clicks', 'dropped'],
         "module_context": [],
         "source_boosts": {
             "campaign-analytics": 5.0,
@@ -1081,6 +1157,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "ctwa campaign", "after a ctwa",
             "ctwa traffic", "ctwa driven",
         ],
+        "keywords": ['ctwa', 'ad'],
         "module_context": ["ctwa"],
         "source_boosts": {"ctwa-to-bot-to-goals": 5.0},
         "source_penalties": {"ctx-goal-nodes-and-conversions-api": -3.0, "creating-a-ctwa-ad": -3.0},
@@ -1106,6 +1183,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "goal conversions", "goal completion",
             "conversions are missing",
         ],
+        "keywords": ['goal', 'conversions'],
         "module_context": [],
         "source_boosts": {"goal-analytics": 5.0},
         "source_penalties": {"ctx-goal-nodes-and-conversions-api": -3.0},
@@ -1128,6 +1206,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "data manipulation expression", "pre built functions",
             "expression instead of code node", "expression library functions",
         ],
+        "keywords": ['expression', 'manipulation'],
         "module_context": ["bot studio"],
         "source_boosts": {
             "expression-library-in-journey-builder-canvas": 6.0,
@@ -1152,6 +1231,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "wait for user input", "event timeout", "wait node",
             "hold the flow", "inactivity nudge", "wait for trigger",
         ],
+        "keywords": ['wait', 'pause', 'inactivity'],
         "module_context": ["bot studio"],
         "source_boosts": {"wait-for-event": 6.0},
         "source_penalties": {},
@@ -1173,6 +1253,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "whatsapp address", "waba address", "location collection",
             "address collection node",
         ],
+        "keywords": ['address', 'location'],
         "module_context": ["bot studio"],
         "source_boosts": {"address-node": 6.0},
         "source_penalties": {},
@@ -1194,6 +1275,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "ai enabled journey", "ai faq", "ai workspace node",
             "connect ai admin", "trained workspace",
         ],
+        "keywords": ['workspace'],
         "module_context": ["bot studio"],
         "source_boosts": {"ai-node": 6.0},
         "source_penalties": {},
@@ -1216,6 +1298,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "unfinished journey", "return to journey",
             "persistent prompt", "sticky bot",
         ],
+        "keywords": ['sticky', 'persistent', 'unfinished'],
         "module_context": ["bot studio"],
         "source_boosts": {"proactive-persistent-message": 6.0},
         "source_penalties": {},
@@ -1236,6 +1319,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "agent assist overview", "agent assist platform",
             "omnichannel conversation platform", "agent assist module",
         ],
+        "keywords": ['omnichannel'],
         "module_context": ["agent assist"],
         "source_boosts": {"about-agent-assist": 6.0},
         "source_penalties": {},
@@ -1256,6 +1340,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "auto assign tags", "filter by tags", "tag based routing",
             "add tag to chat",
         ],
+        "keywords": ['tags', 'tag', 'tagging'],
         "module_context": ["agent assist"],
         "source_boosts": {"others-tags": 6.0},
         "source_penalties": {},
@@ -1277,6 +1362,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "my views", "create view", "custom view", "view settings",
             "agent views", "chat navigation views",
         ],
+        "keywords": ['views', 'view'],
         "module_context": ["agent assist"],
         "source_boosts": {
             "others-views": 6.0,
@@ -1301,6 +1387,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "integration webhook setup", "webhook callback url",
             "webhook events", "webhook configuration integration",
         ],
+        "keywords": ['webhook', 'integration'],
         "module_context": ["integrations"],
         "source_boosts": {"integrations/webhooks": 5.0, "webhooks": 4.0},
         "source_penalties": {},
@@ -1322,6 +1409,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "satisfaction survey", "feedback rating", "thumbs stars emoji",
             "conditional questions", "customer feedback",
         ],
+        "keywords": ['csat', 'satisfaction', 'feedback'],
         "module_context": ["agent assist"],
         "source_boosts": {
             "response-management-customer-satisfaction": 6.0,
@@ -1346,6 +1434,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "quick reply template", "saved responses", "response templates",
             "canned response categories",
         ],
+        "keywords": ['canned', 'responses', 'templates'],
         "module_context": ["agent assist"],
         "source_boosts": {"others-canned-responses": 6.0},
         "source_penalties": {},
@@ -1366,6 +1455,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "resolution time", "response time sla", "sla settings",
             "sla conditions", "frt sla", "art sla",
         ],
+        "keywords": ['sla', 'frt', 'art'],
         "module_context": ["agent assist"],
         "source_boosts": {"chat-management-sla": 6.0},
         "source_penalties": {},
@@ -1386,6 +1476,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "search archived chats", "export csv", "chat export",
             "search all chats", "export chat data",
         ],
+        "keywords": ['search', 'archived', 'export'],
         "module_context": ["agent assist"],
         "source_boosts": {"simplify-your-search-with-global-search": 6.0},
         "source_penalties": {},
@@ -1406,6 +1497,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "bulk resolution", "bulk reply", "multiple chats",
             "bulk priority", "bulk operations",
         ],
+        "keywords": ['bulk'],
         "module_context": ["agent assist"],
         "source_boosts": {"streamlining-your-workflow-with-bulk-actions": 6.0},
         "source_penalties": {},
@@ -1427,6 +1519,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "agent frt", "agent art", "agent resolution time",
             "agent aht", "agent login logout",
         ],
+        "keywords": ['timesheet', 'productivity', 'aht'],
         "module_context": ["agent assist"],
         "source_boosts": {
             "insights-agent-summary": 6.0,
@@ -1451,6 +1544,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "business hours metrics", "calendar hours metrics",
             "chat volume", "chat insights",
         ],
+        "keywords": ['insights', 'volume', 'buckets'],
         "module_context": ["agent assist"],
         "source_boosts": {"insights-chat-summary": 6.0},
         "source_penalties": {},
@@ -1471,6 +1565,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "insights export", "csv export", "raw data fields",
             "session id", "underlying raw data",
         ],
+        "keywords": ['csv', 'raw'],
         "module_context": ["agent assist"],
         "source_boosts": {
             "exploring-insights-and-exporting-raw-data": 6.0,
@@ -1494,6 +1589,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "send template after", "whatsapp window", "24 hour messaging",
             "window expires", "template window",
         ],
+        "keywords": ['window', 'template', 'expires'],
         "module_context": ["agent assist"],
         "source_boosts": {"sending-templates-after-the-24-hour-window": 6.0},
         "source_penalties": {},
@@ -1514,6 +1610,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "gupshup wallet", "payment wallet", "converse wallet",
             "wallet balance", "top up wallet",
         ],
+        "keywords": ['wallet', 'billing', 'topup'],
         "module_context": ["wallet"],
         "source_boosts": {"wallet-overview": 6.0},
         "source_penalties": {},
@@ -1535,6 +1632,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "workspace validation", "workspace audit",
             "ai admin create workspace", "workspace settings",
         ],
+        "keywords": ['workspace'],
         "module_context": ["ai admin"],
         "source_boosts": {
             "creating-a-workspace": 6.0,
@@ -1562,6 +1660,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "train using documents", "upload training data",
             "scraping depth", "content training", "ai admin training",
         ],
+        "keywords": ['training', 'train', 'scraping'],
         "module_context": ["ai admin"],
         "source_boosts": {
             "website-training": 6.0,
@@ -1588,6 +1687,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "intent naming", "intent description", "ai admin intents",
             "intent guidelines", "user intent", "intents in ai admin",
         ],
+        "keywords": ['intent', 'intents', 'utterance'],
         "module_context": ["ai admin"],
         "source_boosts": {
             "intent-creation": 6.0,
@@ -1613,6 +1713,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "entity description", "ai admin entities",
             "entities in ai admin",
         ],
+        "keywords": ['entity', 'entities'],
         "module_context": ["ai admin"],
         "source_boosts": {
             "entity-creation": 6.0,
@@ -1637,6 +1738,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "ai admin evaluate", "generate qa", "evaluate tab",
             "ai testing", "evaluate performance",
         ],
+        "keywords": ['evaluate'],
         "module_context": ["ai admin"],
         "source_boosts": {"evaluate": 6.0},
         "source_penalties": {},
@@ -1657,6 +1759,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "llm consumption", "ai dashboard", "monitoring dashboard",
             "ai admin dashboard",
         ],
+        "keywords": ['llm', 'consumption'],
         "module_context": ["ai admin"],
         "source_boosts": {"monitoring": 6.0, "llm-consumption": 5.0},
         "source_penalties": {},
@@ -1677,6 +1780,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "ai admin teach", "utterance training",
             "faq intent", "product search intent",
         ],
+        "keywords": ['teach', 'utterances', 'faq'],
         "module_context": ["ai admin"],
         "source_boosts": {
             "teach": 6.0,
@@ -1700,6 +1804,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "content tags", "ai content tags", "ai admin tags",
             "content labeling", "tag content", "categorize content",
         ],
+        "keywords": ['labeling', 'categorize'],
         "module_context": ["ai admin"],
         "source_boosts": {"content-tags": 6.0},
         "source_penalties": {},
@@ -1721,6 +1826,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "digital assistant", "generative ai agent",
             "ai agent guardrails", "agent personality",
         ],
+        "keywords": ['agentic', 'ace', 'guardrails', 'skills'],
         "module_context": ["ai admin"],
         "source_boosts": {
             "ace-and-agentic-llm-overview": 6.0,
@@ -1831,6 +1937,7 @@ def _utc_now_iso() -> str:
 def _normalize_query_for_match(query: str) -> str:
     q = (query or "").lower()
     q = q.replace("&", " and ")
+    q = re.sub(r"'s\b", "", q)
     q = re.sub(r"[^a-z0-9]+", " ", q)
     q = re.sub(r"\s+", " ", q).strip()
     return q
@@ -2051,8 +2158,9 @@ def _canonical_page_name(source: str, heading_path: List[str] = None, heading: s
 
 def _extract_entities(query: str) -> List[Dict]:
     """Identify which concepts from the registry are mentioned in the query.
-    Results are sorted by match quality (total matched alias length) so the
-    most specific match is first."""
+    Pass 1: exact alias substring matching (highest priority).
+    Pass 2: keyword fallback when no alias matched — matches individual
+    discriminating tokens against concept keywords lists."""
     q = _normalize_query_for_match(query)
     matched = []
     matched_ids = set()
@@ -2068,6 +2176,27 @@ def _extract_entities(query: str) -> List[Dict]:
             match_score += 5
         matched.append((match_score, concept))
         matched_ids.add(concept["id"])
+
+    if not matched:
+        query_tokens = set(re.findall(r"[a-z0-9]+", q)) - SCORING_STOP_WORDS
+        kw_candidates = []
+        for concept in CONCEPT_REGISTRY:
+            if concept["id"] in matched_ids:
+                continue
+            kws = concept.get("keywords", [])
+            kw_hits = [k for k in kws if k in query_tokens]
+            if not kw_hits:
+                continue
+            kw_score = len(kw_hits) * 3
+            if concept.get("module_context") and any(ctx in q for ctx in concept["module_context"]):
+                kw_score += 3
+            kw_candidates.append((kw_score, concept))
+        if kw_candidates:
+            kw_candidates.sort(key=lambda x: x[0], reverse=True)
+            best_score = kw_candidates[0][0]
+            if len(kw_candidates) == 1 or best_score > kw_candidates[1][0]:
+                matched.append(kw_candidates[0])
+                matched_ids.add(kw_candidates[0][1]["id"])
 
     matched.sort(key=lambda pair: pair[0], reverse=True)
     return [pair[1] for pair in matched]
@@ -2181,7 +2310,7 @@ def _score_chunk(
     length_divisor = max(1.0, len(text) / 1500.0)
 
     for token in re.findall(r"[a-z0-9&+-]+", q):
-        if len(token) < 3:
+        if len(token) < 3 or token in SCORING_STOP_WORDS:
             continue
         if token in heading:
             score += 0.25
@@ -2510,30 +2639,279 @@ def _compose_from_evidence(
 
 
 # ---------------------------------------------------------------------------
+# Section 9b — Answer output policy (summary first, expand on request)
+#
+# Applied only in kb_answer() after composition. kb_search is unchanged.
+# Host can pass answer_depth / depth / answer_mode = full|complete|deep|expanded|verbose;
+# users can also ask for depth via phrases (see _policy_user_requests_full_depth).
+# ---------------------------------------------------------------------------
+
+ANSWER_POLICY_VERSION = "1.0.0"
+
+FAQ_SUMMARY_MAX_WORDS = 500
+FAQ_SUMMARY_MAX_BULLETS = 8
+
+FAQ_DEPTH_FOLLOWUP = (
+    "\n\n---\n**Need more detail?** Reply with **more detail**, **step by step**, or ask a "
+    "specific follow-up (fields, API payload, edge cases) and I’ll expand on this topic."
+)
+
+_FAQ_BULLET_LINE_RE = re.compile(r"^\s*([-*•]|\d+\.)\s+")
+
+
+def _faq_word_count(text: str) -> int:
+    return len((text or "").split())
+
+
+def _policy_user_requests_full_depth(query: str) -> bool:
+    q = _normalize_query_for_match(query)
+    phrases = (
+        "more detail",
+        "full detail",
+        "in depth",
+        "indepth",
+        "step by step",
+        "step by step instructions",
+        "elaborate",
+        "expand",
+        "go deeper",
+        "longer explanation",
+        "complete walkthrough",
+        "exhaustive",
+        "tell me everything",
+    )
+    return any(p in q for p in phrases)
+
+
+def _policy_params_request_full_depth(params: Optional[Dict[str, Any]]) -> bool:
+    if not params:
+        return False
+    depth = str(
+        params.get("answer_depth")
+        or params.get("depth")
+        or params.get("answer_mode")
+        or ""
+    ).lower()
+    return depth in ("full", "complete", "deep", "expanded", "verbose")
+
+
+def _policy_should_skip_summary_cap(answer: str) -> bool:
+    """Refusals and safe declines: no trim, no follow-up footer."""
+    if not (answer or "").strip():
+        return True
+    low = answer.lower()
+    if "i can help only" in low or "i can t help" in low:
+        return True
+    if "i don't know" in low or "i don t know" in low:
+        return True
+    if "cannot help" in low or "not something i can" in low:
+        return True
+    if "unsupported" in low and len(answer) < 400:
+        return True
+    if "sensitive" in low and len(answer) < 400:
+        return True
+    return False
+
+
+def _apply_faq_summary_cap(answer: str) -> str:
+    """Max bullets, then max words; drop trailing bullets before flattening."""
+    text = (answer or "").rstrip()
+    lines = text.split("\n")
+    out: List[str] = []
+    bullets_kept = 0
+    for line in lines:
+        if _FAQ_BULLET_LINE_RE.match(line):
+            if bullets_kept >= FAQ_SUMMARY_MAX_BULLETS:
+                continue
+            bullets_kept += 1
+        out.append(line)
+    trimmed = "\n".join(out).strip()
+
+    while _faq_word_count(trimmed) > FAQ_SUMMARY_MAX_WORDS and len(out) > 1:
+        removed = False
+        for i in range(len(out) - 1, -1, -1):
+            if _FAQ_BULLET_LINE_RE.match(out[i]):
+                out.pop(i)
+                removed = True
+                break
+        if not removed:
+            out.pop()
+        trimmed = "\n".join(out).strip()
+
+    if _faq_word_count(trimmed) > FAQ_SUMMARY_MAX_WORDS:
+        words = trimmed.split()
+        acc: List[str] = []
+        for w in words:
+            candidate = " ".join(acc + [w])
+            if _faq_word_count(candidate) > FAQ_SUMMARY_MAX_WORDS:
+                break
+            acc.append(w)
+        trimmed = " ".join(acc).rstrip(",;:") + "…"
+
+    return trimmed
+
+
+def _apply_answer_policy(
+    answer: str,
+    query: str,
+    params: Optional[Dict[str, Any]] = None,
+) -> Tuple[str, Dict[str, Any]]:
+    """Returns (final_answer, metadata) for telemetry."""
+    params = params or {}
+    meta: Dict[str, Any] = {
+        "version": ANSWER_POLICY_VERSION,
+        "applied": False,
+        "mode": "summary",
+    }
+
+    raw = (answer or "").strip()
+
+    if _policy_params_request_full_depth(params):
+        meta["mode"] = "full_param"
+        return raw, meta
+
+    if _policy_user_requests_full_depth(query):
+        meta["mode"] = "full_query_phrase"
+        return raw, meta
+
+    if _policy_should_skip_summary_cap(raw):
+        meta["mode"] = "skipped_guardrail_or_idk"
+        return raw, meta
+
+    capped = _apply_faq_summary_cap(raw)
+    meta["applied"] = True
+    meta["mode"] = "summary_plus_followup"
+    meta["bullet_cap"] = FAQ_SUMMARY_MAX_BULLETS
+    meta["word_cap"] = FAQ_SUMMARY_MAX_WORDS
+    return capped + FAQ_DEPTH_FOLLOWUP, meta
+
+
+# ---------------------------------------------------------------------------
 # Section 10 — Telemetry (Langfuse)
 # ---------------------------------------------------------------------------
 
+def _langfuse_user_context(
+    context, params: Optional[Dict[str, Any]] = None,
+) -> Tuple[Optional[str], Dict[str, Any]]:
+    """Returns (trace_user_id for Langfuse body.userId, user metadata).
+
+    User keys are always present in the metadata dict (None when unknown)
+    so Langfuse metadata shape matches older telemetry payloads."""
+    params = params or {}
+    user_email: Optional[str] = None
+    user_name: Optional[str] = None
+    user_id_val: Any = None
+
+    for key in ("user_email", "userEmail"):
+        v = params.get(key)
+        if isinstance(v, str) and v.strip():
+            user_email = v.strip()
+            break
+    for key in ("user_name", "userName"):
+        v = params.get(key)
+        if isinstance(v, str) and v.strip():
+            user_name = v.strip()
+            break
+    for key in ("user_id", "userId"):
+        if key in params and params.get(key) is not None:
+            user_id_val = params.get(key)
+            break
+
+    if context is not None:
+        if not user_email:
+            em = getattr(context, "user_email", None)
+            if isinstance(em, str) and em.strip():
+                user_email = em.strip()
+        if not user_name:
+            nm = getattr(context, "user_name", None)
+            if isinstance(nm, str) and nm.strip():
+                user_name = nm.strip()
+        if user_id_val is None:
+            user_id_val = getattr(context, "user_id", None)
+
+    trace_user_id = ""
+    if user_email:
+        trace_user_id = user_email
+    elif user_id_val is not None and str(user_id_val).strip():
+        trace_user_id = str(user_id_val).strip()
+
+    meta_user = {
+        "user_email": user_email,
+        "user_name": user_name,
+        "user_id": user_id_val,
+    }
+    return (trace_user_id or None, meta_user)
+
+
 def _build_langfuse_request(
     trace_name: str, trace_id: str, query: str, answer: str, metadata: Dict,
+    trace_user_id: Optional[str] = None,
 ) -> Dict:
     event_id = f"evt-{uuid.uuid4().hex[:24]}"
     event_timestamp = _utc_now_iso()
+    body: Dict[str, Any] = {
+        "id": trace_id,
+        "timestamp": event_timestamp,
+        "name": trace_name,
+        "input": {"query": query},
+        "output": {"answer": answer},
+        "metadata": metadata,
+    }
+    if trace_user_id:
+        body["userId"] = trace_user_id
     return {
         "batch": [
             {
                 "id": event_id,
                 "timestamp": event_timestamp,
                 "type": "trace-create",
-                "body": {
-                    "id": trace_id,
-                    "timestamp": event_timestamp,
-                    "name": trace_name,
-                    "input": {"query": query},
-                    "output": {"answer": answer},
-                    "metadata": metadata,
-                },
+                "body": body,
             }
         ]
+    }
+
+
+def _telemetry_identifiers(context, params: Optional[Dict[str, Any]] = None) -> Dict[str, Optional[str]]:
+    params = params or {}
+
+    def _pick_param(keys: List[str]) -> Optional[str]:
+        for key in keys:
+            val = params.get(key)
+            if isinstance(val, str) and val.strip():
+                return val.strip()
+        return None
+
+    def _pick_secret(keys: List[str]) -> Optional[str]:
+        if not context:
+            return None
+        for key in keys:
+            try:
+                val = context.get_secret(key)
+            except Exception:
+                val = None
+            if isinstance(val, str) and val.strip():
+                return val.strip()
+        return None
+
+    environment = (
+        _pick_param(["telemetry_env", "environment", "env", "stage"])
+        or _pick_secret(["KB_ENV", "APP_ENV", "ENVIRONMENT", "DEPLOY_ENV", "DEPLOYMENT_ENV", "RUNTIME_ENV"])
+        or "unknown"
+    )
+    deployment_label = (
+        _pick_param(["deployment_label", "telemetry_partition", "deployment", "service"])
+        or _pick_secret(["KB_DEPLOYMENT_LABEL", "SERVICE_NAME", "K8S_NAMESPACE"])
+        or "kb-runtime"
+    )
+    release = (
+        _pick_param(["release", "release_version", "build_version", "git_sha"])
+        or _pick_secret(["KB_RELEASE", "RELEASE_VERSION", "BUILD_VERSION", "GIT_SHA", "VERCEL_GIT_COMMIT_SHA"])
+    )
+    return {
+        "environment": environment,
+        "deployment_label": deployment_label,
+        "release": release,
+        "telemetry_partition": f"{environment}:{deployment_label}",
     }
 
 
@@ -2548,6 +2926,7 @@ def _send_langfuse(
     clarification_asked: bool,
     latency_ms: int,
     context,
+    params: Optional[Dict[str, Any]] = None,
 ) -> Dict:
     trace_id = f"kb-{trace_name}-{uuid.uuid4().hex[:16]}"
     top_source = results[0].get("source") if results else None
@@ -2563,10 +2942,19 @@ def _send_langfuse(
         and "i don't know" not in answer.lower()
     )
     unanswered = (not answered) and ("i don't know" in (answer or "").lower())
+    identifiers = _telemetry_identifiers(context, params)
+    trace_user_id, user_meta = _langfuse_user_context(context, params)
+    # Key order preserved in JSON; user identity first for Langfuse / dashboard scans.
     metadata = {
+        "user_email": user_meta.get("user_email"),
+        "user_name": user_meta.get("user_name"),
+        "user_id": user_meta.get("user_id"),
         "query": query,
         "answer_preview": (answer or "")[:500],
-        "release": None,
+        "release": identifiers.get("release"),
+        "environment": identifiers.get("environment"),
+        "deployment_label": identifiers.get("deployment_label"),
+        "telemetry_partition": identifiers.get("telemetry_partition"),
         "logic_version": "kb-answer-v2.0-concept-registry",
         "prompt_version": None,
         "model": "rules-runtime",
@@ -2575,6 +2963,7 @@ def _send_langfuse(
         "query_family": explicit_module,
         "module_label": module_label,
         "module_source": module_source,
+        "trace_env": identifiers.get("environment"),
         "selected_answer_mode": selected_answer_mode,
         "answered": answered,
         "clarification_asked": clarification_asked,
@@ -2586,8 +2975,14 @@ def _send_langfuse(
         "intent_labels": intents,
         "explicit_module": None if explicit_module == "General" else explicit_module,
         "confidence": results[0].get("score") if results else 0.0,
+        "failure_type": None,
+        "accuracy_label": None,
+        "accuracy_score": None,
+        "accuracy_source": None,
     }
-    body = _build_langfuse_request(trace_name, trace_id, query, answer, metadata)
+    body = _build_langfuse_request(
+        trace_name, trace_id, query, answer, metadata, trace_user_id=trace_user_id,
+    )
 
     host = context.get_secret("LANGFUSE_HOST") if context else None
     public_key = context.get_secret("LANGFUSE_PUBLIC_KEY") if context else None
@@ -2632,6 +3027,10 @@ def _send_langfuse(
         "transport": "configured_langfuse_host" if endpoint else "not_configured",
         "status_code": status_code,
         "error": error,
+        "environment": identifiers.get("environment"),
+        "deployment_label": identifiers.get("deployment_label"),
+        "telemetry_partition": identifiers.get("telemetry_partition"),
+        "trace_userId": trace_user_id,
         "debug_request": debug_request,
         "metadata": metadata,
     }
@@ -2654,7 +3053,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
         latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
         langfuse = _send_langfuse(
             "kb_answer", query, guardrail, [], "General",
-            ["refusal"], "refusal", False, latency_ms, context,
+            ["refusal"], "refusal", False, latency_ms, context, params,
         )
         return {"ok": True, "query": query, "answer": guardrail, "citations": [], "langfuse": langfuse}
 
@@ -2675,10 +3074,18 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
 
     evidence = _select_evidence(query, scored, intent, explicit_module)
     answer = _compose_answer(query, intent, entities, evidence)
+    answer, policy_meta = _apply_answer_policy(answer, query, params)
 
     latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
     langfuse = _send_langfuse(
         "kb_answer", query, answer, evidence, explicit_module,
-        intents_list, intent, False, latency_ms, context,
+        intents_list, intent, False, latency_ms, context, params,
     )
-    return {"ok": True, "query": query, "answer": answer, "citations": [], "langfuse": langfuse}
+    return {
+        "ok": True,
+        "query": query,
+        "answer": answer,
+        "citations": [],
+        "langfuse": langfuse,
+        "answer_policy": policy_meta,
+    }

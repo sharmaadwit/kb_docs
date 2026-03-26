@@ -11,6 +11,11 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
+_SCRIPT_DIR = Path(__file__).resolve().parent
+if str(_SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(_SCRIPT_DIR))
+from cursor_test_context import CursorKBTestContext
+
 ROOT = Path(__file__).resolve().parent.parent
 ARTIFACTS = ROOT / "artifacts"
 QUESTIONS_PATH = ARTIFACTS / "regression_v3_questions.json"
@@ -100,11 +105,7 @@ def main():
     kb_search._load_chunks = lambda context: chunks
     kb_answer._load_chunks = lambda context: chunks
 
-    class Ctx:
-        def get_secret(self, key):
-            return ""
-
-    context = Ctx()
+    context = CursorKBTestContext()
 
     data = json.loads(QUESTIONS_PATH.read_text(encoding="utf-8"))
     questions = data["questions"]
