@@ -1,7 +1,7 @@
 import json
 import re
 from datetime import datetime, timezone
-from typing import Dict, List
+from typing import Any, Dict, List, Optional
 
 import requests
 
@@ -1281,11 +1281,113 @@ def _apply_feature_lock(scored: List[Dict], entities: List[Dict]) -> List[Dict]:
 # Section 7 — Telemetry
 # ---------------------------------------------------------------------------
 
+def _langfuse_user_context_search(
+    context, params: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    """Stable user block for metadata + trace_user_id (email preferred)."""
+    params = params or {}
+    user_email: Optional[str] = None
+    user_name: Optional[str] = None
+    user_id_val: Any = None
+
+    for key in ("user_email", "userEmail"):
+        v = params.get(key)
+        if isinstance(v, str) and v.strip():
+            user_email = v.strip()
+            break
+    for key in ("user_name", "userName"):
+        v = params.get(key)
+        if isinstance(v, str) and v.strip():
+            user_name = v.strip()
+            break
+    for key in ("user_id", "userId"):
+        if key in params and params.get(key) is not None:
+            user_id_val = params.get(key)
+            break
+
+    if context is not None:
+        if not user_email:
+            em = getattr(context, "user_email", None)
+            if isinstance(em, str) and em.strip():
+                user_email = em.strip()
+        if not user_name:
+            nm = getattr(context, "user_name", None)
+            if isinstance(nm, str) and nm.strip():
+                user_name = nm.strip()
+        if user_id_val is None:
+            user_id_val = getattr(context, "user_id", None)
+
+    trace_user_id = ""
+    if user_email:
+        trace_user_id = user_email
+    elif user_id_val is not None and str(user_id_val).strip():
+        trace_user_id = str(user_id_val).strip()
+
+    return {
+        "trace_user_id": trace_user_id or None,
+        "user_email": user_email,
+        "user_name": user_name,
+        "user_id": user_id_val,
+    }
+
+
+def _kb_search_langfuse_client_view(compact: Dict[str, Any]) -> Dict[str, Any]:
+    md = compact.get("metadata") or {}
+    return {
+        "ok": compact.get("ok", True),
+        "trace_id": compact.get("trace_id"),
+        "module_label": md.get("module_label"),
+        "module_source": md.get("module_source"),
+        "environment": md.get("environment"),
+        "deployment_label": md.get("deployment_label"),
+        "telemetry_partition": md.get("telemetry_partition"),
+        "trace_userId": compact.get("trace_userId"),
+        "trace_id_origin": "local_trace_id",
+        "metadata": md,
+    }
+
+
 def _compact_langfuse(
     trace_name: str, query: str, results: List[Dict],
     explicit_module: str, intents: List[str], preferred_mode: str,
-    latency_ms: int, context,
+    latency_ms: int, context, params: Dict = None,
 ) -> Dict:
+    params = params or {}
+
+    def _pick_param(keys: List[str]) -> str:
+        for key in keys:
+            val = params.get(key)
+            if isinstance(val, str) and val.strip():
+                return val.strip()
+        return ""
+
+    def _pick_secret(keys: List[str]) -> str:
+        if not context:
+            return ""
+        for key in keys:
+            try:
+                val = context.get_secret(key)
+            except Exception:
+                val = None
+            if isinstance(val, str) and val.strip():
+                return val.strip()
+        return ""
+
+    environment = (
+        _pick_param(["telemetry_env", "environment", "env", "stage"])
+        or _pick_secret(["KB_ENV", "APP_ENV", "ENVIRONMENT", "DEPLOY_ENV", "DEPLOYMENT_ENV", "RUNTIME_ENV"])
+        or "unknown"
+    )
+    deployment_label = (
+        _pick_param(["deployment_label", "telemetry_partition", "deployment", "service"])
+        or _pick_secret(["KB_DEPLOYMENT_LABEL", "SERVICE_NAME", "K8S_NAMESPACE"])
+        or "kb-runtime"
+    )
+    rp_release = _pick_param(["release", "release_version", "build_version", "git_sha"])
+    rs_release = _pick_secret(["KB_RELEASE", "RELEASE_VERSION", "BUILD_VERSION", "GIT_SHA", "VERCEL_GIT_COMMIT_SHA"])
+    release = rp_release or rs_release or None
+    telemetry_partition = f"{environment}:{deployment_label}"
+
     trace_id = f"kb-{trace_name}-{datetime.now(timezone.utc).strftime('%H%M%S%f')}"
     top_source = results[0].get("source") if results else None
     module_label = explicit_module if explicit_module != "General" else (
@@ -1294,20 +1396,28 @@ def _compact_langfuse(
     module_source = "explicit" if explicit_module != "General" else (
         "inferred_from_top_source" if top_source else "default"
     )
+    user = _langfuse_user_context_search(context, params)
+    trace_user_id = user.get("trace_user_id")
+
     return {
         "ok": True,
         "trace_id": trace_id,
+        "trace_userId": trace_user_id,
         "metadata": {
             "query": query,
-            "release": context.get_secret("KB_RELEASE") if context else "kb-runtime",
+            "release": release,
+            "environment": environment,
+            "deployment_label": deployment_label,
+            "telemetry_partition": telemetry_partition,
             "logic_version": "kb-search-v2.0-concept-registry",
-            "prompt_version": context.get_secret("KB_PROMPT_VERSION") if context else "kb-search-v1",
+            "prompt_version": None,
             "model": "rules-runtime",
-            "temperature": 0.0,
-            "top_p": 1.0,
+            "temperature": 0,
+            "top_p": 1,
             "query_family": explicit_module,
             "module_label": module_label,
             "module_source": module_source,
+            "trace_env": environment,
             "selected_answer_mode": preferred_mode,
             "answered": len(results) > 0,
             "clarification_asked": False,
@@ -1319,6 +1429,13 @@ def _compact_langfuse(
             "intent_labels": intents,
             "explicit_module": None if explicit_module == "General" else explicit_module,
             "confidence": results[0].get("score") if results else 0.0,
+            "user_email": user.get("user_email"),
+            "user_name": user.get("user_name"),
+            "user_id": user.get("user_id"),
+            "failure_type": None,
+            "accuracy_label": None,
+            "accuracy_score": None,
+            "accuracy_source": None,
         },
     }
 
@@ -1339,19 +1456,14 @@ def kb_search(parameters: object = None, context=None, **kwargs) -> dict:
     if guardrail:
         latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
         langfuse = _compact_langfuse(
-            "kb_search", query, [], "General", [guardrail], "refusal", latency_ms, context,
+            "kb_search", query, [], "General", [guardrail], "refusal", latency_ms, context, params,
         )
         return {
             "ok": True,
             "query": query,
             "top_k": top_k,
             "results": [],
-            "langfuse": {
-                "ok": langfuse["ok"],
-                "trace_id": langfuse["trace_id"],
-                "module_label": langfuse["metadata"]["module_label"],
-                "module_source": langfuse["metadata"]["module_source"],
-            },
+            "langfuse": _kb_search_langfuse_client_view(langfuse),
         }
 
     chunks = _load_chunks(context)
@@ -1373,17 +1485,12 @@ def kb_search(parameters: object = None, context=None, **kwargs) -> dict:
     results = scored[:top_k]
     latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
     langfuse = _compact_langfuse(
-        "kb_search", query, results, explicit_module, intents, preferred_mode, latency_ms, context,
+        "kb_search", query, results, explicit_module, intents, preferred_mode, latency_ms, context, params,
     )
     return {
         "ok": True,
         "query": query,
         "top_k": top_k,
         "results": results,
-        "langfuse": {
-            "ok": langfuse["ok"],
-            "trace_id": langfuse["trace_id"],
-            "module_label": langfuse["metadata"]["module_label"],
-            "module_source": langfuse["metadata"]["module_source"],
-        },
+        "langfuse": _kb_search_langfuse_client_view(langfuse),
     }

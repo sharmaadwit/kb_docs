@@ -2790,27 +2790,128 @@ def _apply_answer_policy(
 # Section 10 — Telemetry (Langfuse)
 # ---------------------------------------------------------------------------
 
+def _langfuse_user_context(
+    context, params: Optional[Dict[str, Any]] = None,
+) -> Tuple[Optional[str], Dict[str, Any]]:
+    """Returns (trace_user_id for Langfuse body.userId, user metadata).
+
+    User keys are always present in the metadata dict (None when unknown)
+    so Langfuse metadata shape matches older telemetry payloads."""
+    params = params or {}
+    user_email: Optional[str] = None
+    user_name: Optional[str] = None
+    user_id_val: Any = None
+
+    for key in ("user_email", "userEmail"):
+        v = params.get(key)
+        if isinstance(v, str) and v.strip():
+            user_email = v.strip()
+            break
+    for key in ("user_name", "userName"):
+        v = params.get(key)
+        if isinstance(v, str) and v.strip():
+            user_name = v.strip()
+            break
+    for key in ("user_id", "userId"):
+        if key in params and params.get(key) is not None:
+            user_id_val = params.get(key)
+            break
+
+    if context is not None:
+        if not user_email:
+            em = getattr(context, "user_email", None)
+            if isinstance(em, str) and em.strip():
+                user_email = em.strip()
+        if not user_name:
+            nm = getattr(context, "user_name", None)
+            if isinstance(nm, str) and nm.strip():
+                user_name = nm.strip()
+        if user_id_val is None:
+            user_id_val = getattr(context, "user_id", None)
+
+    trace_user_id = ""
+    if user_email:
+        trace_user_id = user_email
+    elif user_id_val is not None and str(user_id_val).strip():
+        trace_user_id = str(user_id_val).strip()
+
+    meta_user = {
+        "user_email": user_email,
+        "user_name": user_name,
+        "user_id": user_id_val,
+    }
+    return (trace_user_id or None, meta_user)
+
+
 def _build_langfuse_request(
     trace_name: str, trace_id: str, query: str, answer: str, metadata: Dict,
+    trace_user_id: Optional[str] = None,
 ) -> Dict:
     event_id = f"evt-{uuid.uuid4().hex[:24]}"
     event_timestamp = _utc_now_iso()
+    body: Dict[str, Any] = {
+        "id": trace_id,
+        "timestamp": event_timestamp,
+        "name": trace_name,
+        "input": {"query": query},
+        "output": {"answer": answer},
+        "metadata": metadata,
+    }
+    if trace_user_id:
+        body["userId"] = trace_user_id
     return {
         "batch": [
             {
                 "id": event_id,
                 "timestamp": event_timestamp,
                 "type": "trace-create",
-                "body": {
-                    "id": trace_id,
-                    "timestamp": event_timestamp,
-                    "name": trace_name,
-                    "input": {"query": query},
-                    "output": {"answer": answer},
-                    "metadata": metadata,
-                },
+                "body": body,
             }
         ]
+    }
+
+
+def _telemetry_identifiers(context, params: Optional[Dict[str, Any]] = None) -> Dict[str, Optional[str]]:
+    params = params or {}
+
+    def _pick_param(keys: List[str]) -> Optional[str]:
+        for key in keys:
+            val = params.get(key)
+            if isinstance(val, str) and val.strip():
+                return val.strip()
+        return None
+
+    def _pick_secret(keys: List[str]) -> Optional[str]:
+        if not context:
+            return None
+        for key in keys:
+            try:
+                val = context.get_secret(key)
+            except Exception:
+                val = None
+            if isinstance(val, str) and val.strip():
+                return val.strip()
+        return None
+
+    environment = (
+        _pick_param(["telemetry_env", "environment", "env", "stage"])
+        or _pick_secret(["KB_ENV", "APP_ENV", "ENVIRONMENT", "DEPLOY_ENV", "DEPLOYMENT_ENV", "RUNTIME_ENV"])
+        or "unknown"
+    )
+    deployment_label = (
+        _pick_param(["deployment_label", "telemetry_partition", "deployment", "service"])
+        or _pick_secret(["KB_DEPLOYMENT_LABEL", "SERVICE_NAME", "K8S_NAMESPACE"])
+        or "kb-runtime"
+    )
+    release = (
+        _pick_param(["release", "release_version", "build_version", "git_sha"])
+        or _pick_secret(["KB_RELEASE", "RELEASE_VERSION", "BUILD_VERSION", "GIT_SHA", "VERCEL_GIT_COMMIT_SHA"])
+    )
+    return {
+        "environment": environment,
+        "deployment_label": deployment_label,
+        "release": release,
+        "telemetry_partition": f"{environment}:{deployment_label}",
     }
 
 
@@ -2825,6 +2926,7 @@ def _send_langfuse(
     clarification_asked: bool,
     latency_ms: int,
     context,
+    params: Optional[Dict[str, Any]] = None,
 ) -> Dict:
     trace_id = f"kb-{trace_name}-{uuid.uuid4().hex[:16]}"
     top_source = results[0].get("source") if results else None
@@ -2840,10 +2942,15 @@ def _send_langfuse(
         and "i don't know" not in answer.lower()
     )
     unanswered = (not answered) and ("i don't know" in (answer or "").lower())
+    identifiers = _telemetry_identifiers(context, params)
+    trace_user_id, user_meta = _langfuse_user_context(context, params)
     metadata = {
         "query": query,
         "answer_preview": (answer or "")[:500],
-        "release": None,
+        "release": identifiers.get("release"),
+        "environment": identifiers.get("environment"),
+        "deployment_label": identifiers.get("deployment_label"),
+        "telemetry_partition": identifiers.get("telemetry_partition"),
         "logic_version": "kb-answer-v2.0-concept-registry",
         "prompt_version": None,
         "model": "rules-runtime",
@@ -2852,6 +2959,7 @@ def _send_langfuse(
         "query_family": explicit_module,
         "module_label": module_label,
         "module_source": module_source,
+        "trace_env": identifiers.get("environment"),
         "selected_answer_mode": selected_answer_mode,
         "answered": answered,
         "clarification_asked": clarification_asked,
@@ -2863,8 +2971,15 @@ def _send_langfuse(
         "intent_labels": intents,
         "explicit_module": None if explicit_module == "General" else explicit_module,
         "confidence": results[0].get("score") if results else 0.0,
+        **user_meta,
+        "failure_type": None,
+        "accuracy_label": None,
+        "accuracy_score": None,
+        "accuracy_source": None,
     }
-    body = _build_langfuse_request(trace_name, trace_id, query, answer, metadata)
+    body = _build_langfuse_request(
+        trace_name, trace_id, query, answer, metadata, trace_user_id=trace_user_id,
+    )
 
     host = context.get_secret("LANGFUSE_HOST") if context else None
     public_key = context.get_secret("LANGFUSE_PUBLIC_KEY") if context else None
@@ -2909,6 +3024,10 @@ def _send_langfuse(
         "transport": "configured_langfuse_host" if endpoint else "not_configured",
         "status_code": status_code,
         "error": error,
+        "environment": identifiers.get("environment"),
+        "deployment_label": identifiers.get("deployment_label"),
+        "telemetry_partition": identifiers.get("telemetry_partition"),
+        "trace_userId": trace_user_id,
         "debug_request": debug_request,
         "metadata": metadata,
     }
@@ -2931,7 +3050,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
         latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
         langfuse = _send_langfuse(
             "kb_answer", query, guardrail, [], "General",
-            ["refusal"], "refusal", False, latency_ms, context,
+            ["refusal"], "refusal", False, latency_ms, context, params,
         )
         return {"ok": True, "query": query, "answer": guardrail, "citations": [], "langfuse": langfuse}
 
@@ -2957,7 +3076,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
     latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
     langfuse = _send_langfuse(
         "kb_answer", query, answer, evidence, explicit_module,
-        intents_list, intent, False, latency_ms, context,
+        intents_list, intent, False, latency_ms, context, params,
     )
     return {
         "ok": True,
