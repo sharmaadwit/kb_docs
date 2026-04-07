@@ -1,14 +1,14 @@
 {
   "ok": true,
-  "created_at": "2026-04-07T05:19:04.266280+00:00",
-  "repo": "local/kb_docs",
-  "branch": "local",
+  "created_at": "2026-04-07T05:29:35.354311+00:00",
+  "repo": "sharmaadwit/kb_docs",
+  "branch": "main",
   "docs_path": "kb",
   "excluded": [
     "kb/analytics"
   ],
   "md_files": 254,
-  "chunks": 5142,
+  "chunks": 5154,
   "docs": [
     {
       "path": "kb/agent-assist/about-agent-assist.md",
@@ -24,7 +24,7 @@
     },
     {
       "path": "kb/agent-assist/assignment-enhancements-in-console-7-0.md",
-      "chunks": 19
+      "chunks": 20
     },
     {
       "path": "kb/agent-assist/campaign-and-ctx-ad-preview.md",
@@ -84,7 +84,7 @@
     },
     {
       "path": "kb/agent-assist/insights-team-summary.md",
-      "chunks": 15
+      "chunks": 16
     },
     {
       "path": "kb/agent-assist/live-monitoring-dashboard-real-time-chat-analytics-and-performance-insights.md",
@@ -152,7 +152,7 @@
     },
     {
       "path": "kb/agent-assist/underlying-raw-data-for-chat-summary.md",
-      "chunks": 21
+      "chunks": 26
     },
     {
       "path": "kb/agent-assist/user-management-business-hours.md",
@@ -376,7 +376,7 @@
     },
     {
       "path": "kb/bot-studio/api-timeout-default-to-10-secs.md",
-      "chunks": 24
+      "chunks": 25
     },
     {
       "path": "kb/bot-studio/audio-node.md",
@@ -632,7 +632,7 @@
     },
     {
       "path": "kb/bot-studio/prompt-nodes.md",
-      "chunks": 24
+      "chunks": 25
     },
     {
       "path": "kb/bot-studio/quick-reply.md",
@@ -740,7 +740,7 @@
     },
     {
       "path": "kb/campaign-manager/creating-a-new-campaign.md",
-      "chunks": 23
+      "chunks": 24
     },
     {
       "path": "kb/campaign-manager/how-to-access-campaign-manager.md",
@@ -764,7 +764,7 @@
     },
     {
       "path": "kb/channels/autoresponders.md",
-      "chunks": 28
+      "chunks": 29
     },
     {
       "path": "kb/channels/before-you-begin.md",
@@ -928,7 +928,7 @@
     },
     {
       "path": "kb/integrations/clevertap-integration.md",
-      "chunks": 19
+      "chunks": 20
     },
     {
       "path": "kb/integrations/custom-integrations.md",
