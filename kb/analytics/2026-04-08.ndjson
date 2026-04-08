@@ -1,0 +1,1 @@
+{"event_id": "5064e904-57b6-4aee-b657-9d6264172975", "ts": "2026-04-08T08:58:28.539512+00:00", "event": "smoke_test", "payload": {"source": "superagent", "scope": "product_introduction_kb"}}
