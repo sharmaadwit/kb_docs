@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/assignment-20-covering-consulta
 Assignment enhancements targets to assign all the chats coming for assignment to the agents automatically & optimising the agent's threshold so that the agents work only on the chats where customers are active. Below are the detailed understanding of different features launched to solve the above to objective.
 
 ## Exact UI path
-Agent Assist
+Gupshup Console → Agent Assist → Settings → Chat Management
 
 ## Prerequisites
 - Access to the relevant Agent Assist module/page.

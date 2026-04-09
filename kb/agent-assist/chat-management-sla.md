@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/chat-management-sla
 Definition: Service Level Agreement (SLA) is a tool that sets specific conditions and time targets for agent responses, such as first response time, response time, and resolution time.
 
 ## Exact UI path
-Agent Assist → Settings → Chat Management
+Gupshup Console → Agent Assist → Settings → Chat Management
 
 ## Prerequisites
 - Access to **Agent Assist → Settings → Chat Management**.

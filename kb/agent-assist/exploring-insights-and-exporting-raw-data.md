@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/exploring-insights-exporting-ra
 Discover comprehensive analytics and data export capabilities with detailed insights into chat performance, agent productivity, team metrics, and customer feedback.
 
 ## Exact UI path
-Agent Assist → Insights
+Gupshup Console → Agent Assist → Insights
 
 ## Prerequisites
 - Access to the relevant Insights dashboard in Agent Assist.

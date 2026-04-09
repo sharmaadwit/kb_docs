@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/response-management-customer-sa
 Definition: Customer Satisfaction tools include feedback forms used to gather customer feedback, assess satisfaction levels, identify areas for improvement, and collect product or service suggestions.
 
 ## Exact UI path
-Agent Assist → Settings → Response Management
+Gupshup Console → Agent Assist → Settings → Response Management
 
 ## Prerequisites
 - Access to **Agent Assist → Settings → Response Management**.

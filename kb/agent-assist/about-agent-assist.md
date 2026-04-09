@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/about-agent-assist
 Agent Assist is an omnichannel conversation platform that unifies messaging channels, streamlines customer support operations, and enhances agent productivity with powerful workflows and analytics.
 
 ## Exact UI path
-Agent Assist
+Gupshup Console → Agent Assist
 
 ## Prerequisites
 - Access to the relevant Agent Assist module/page.

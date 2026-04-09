@@ -5,6 +5,9 @@ source_url: https://console-docs.gupshup.io/docs/webhooks
 
 **Module**: Workflows
 
+## Console path
+Gupshup Console → App → Integration → Webhooks (configure delivery events); **Campaign Manager** → **Campaign Analytics** (delivery metrics).
+
 ## Definition
 Use this page when you need to connect the delivery-event webhook configuration with the delivery information available in Campaign Analytics.
 

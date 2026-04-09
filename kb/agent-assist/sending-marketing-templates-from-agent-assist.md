@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/sending-marketing-templates-fro
 Learn how to configure and enable agents to send WhatsApp-approved marketing templates to customers through Agent Assist, including setup, configuration, and usage instructions.
 
 ## Exact UI path
-Agent Assist
+Gupshup Console → Agent Assist → Settings → Workflow & Automation → Agent Campaigns
 
 ## Prerequisites
 - Access to the relevant Agent Assist module/page.

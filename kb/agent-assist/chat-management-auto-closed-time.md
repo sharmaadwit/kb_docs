@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/chat-management-re-open-time
 Definition: Auto Closed Time is the duration configured for when chats are automatically closed from resolution based on channel preferences.
 
 ## Exact UI path
-Agent Assist → Settings → Chat Management
+Gupshup Console → Agent Assist → Settings → Chat Management
 
 ## Prerequisites
 - Access to **Agent Assist → Settings → Chat Management**.

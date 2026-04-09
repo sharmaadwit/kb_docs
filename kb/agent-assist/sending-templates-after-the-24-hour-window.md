@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/sending-templates-after-the-24-
 To adhere to WhatsApp's policy, businesses are restricted from sending messages to customers who haven't responded within the last 24 hours. However, if a brand wishes to send a marketing template in such cases, they can do so by following these steps:
 
 ## Exact UI path
-Agent Assist
+Gupshup Console → Agent Assist → Chats
 
 ## Prerequisites
 - Access to the relevant Agent Assist module/page.

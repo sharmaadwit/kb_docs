@@ -19,7 +19,7 @@ source_url: https://console-docs.gupshup.io/docs/chat-management-assignment-rule
 
 ## Procedure
 ### Exact UI path
-Agent Assist → Settings → Chat Management → Assignment Rules
+Gupshup Console → Agent Assist → Settings → Chat Management → Assignment Rules
 
 ### Steps
 1. Open Agent Assist.

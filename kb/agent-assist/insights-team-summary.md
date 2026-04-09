@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/insights-team-summary
 Overview The Team Summary Report provides team-level productivity metrics across four specialized tabs: Summary, FRT Summary, Resolution Summary, and Response Summary. Each tab offers insights into different aspects of team performance.
 
 ## Exact UI path
-Agent Assist → Insights
+Gupshup Console → Agent Assist → Insights
 
 ## Prerequisites
 - Access to the relevant Insights dashboard in Agent Assist.

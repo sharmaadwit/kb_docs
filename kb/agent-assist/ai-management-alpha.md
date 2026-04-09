@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/ai-management-alpha
 Definition: Text Generation in AI Management encompasses a set of features that assist agents in enhancing productivity and providing quicker and improved customer support. These features include Summary, Rephrase, and Expand.
 
 ## Exact UI path
-Agent Assist → Settings → AI Management → Text Generation
+Gupshup Console → Agent Assist → Settings → AI Management → Text Generation
 
 ## Prerequisites
 - Access to the relevant Agent Assist module/page.

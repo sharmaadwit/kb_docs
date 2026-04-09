@@ -5,6 +5,9 @@ source_url: https://console-docs.gupshup.io/docs/manage-variables
 
 **Module**: Workflows
 
+## Console path
+Gupshup Console → Bot Studio → Journey Builder → Manage Variables
+
 ## Definition
 This page explains how to choose a variable type in Journey Builder when you need data to remain available beyond a single step.
 

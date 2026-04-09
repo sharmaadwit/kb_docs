@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/others-agent-status
 Agent Status Agent Status is a feature in Agent Assist that allows agents to communicate their current state to their teams. There are three main categories of Agent Status: Available, Busy, and Unavailable. Available: When an agent sets their status to "Available", it means they are ready to receive and handle new chats. They are actively monitoring the dashboard and can respond to customer inquiries in real time. Busy: When an agent sets their status to "Busy", it means they are currently handling a chat and cannot take on any new chats. This status is particularly useful when an agent is handling a complex issue and needs to focus on a single chat until it is resolved. Unavailable: When an agent sets their status to "Unavailable", it means they are temporarily not available to handle chats. This could be due to taking a break, being in a meeting, or dealing with an emergency.
 
 ## Exact UI path
-Agent Assist → Settings → Others
+Gupshup Console → Agent Assist → Settings → Others
 
 ## Prerequisites
 - Access to the relevant Agent Assist module/page.

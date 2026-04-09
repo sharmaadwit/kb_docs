@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/insights-customer-feedback-dash
 Overview The Customer Feedback Dashboard provides insights into customer satisfaction through various rating mechanisms: thumbs ratings, star ratings, and emoji reactions.
 
 ## Exact UI path
-Agent Assist → Insights
+Gupshup Console → Agent Assist → Insights
 
 ## Prerequisites
 - Access to the relevant Insights dashboard in Agent Assist.

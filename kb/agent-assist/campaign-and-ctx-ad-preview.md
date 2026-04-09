@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/campaign-and-ctx-ad-preview
 Learn how to enable Campaign Context and Ad Preview features to provide agents with valuable customer interaction context and Click to Chat ad insights.
 
 ## Exact UI path
-Agent Assist
+Gupshup Console → Agent Assist → Settings
 
 ## Prerequisites
 - Access to the relevant Agent Assist module/page.

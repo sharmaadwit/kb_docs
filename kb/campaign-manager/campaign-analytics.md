@@ -11,7 +11,7 @@ source_url: https://console-docs.gupshup.io/docs/campaign-analytics
 
 ## Procedure
 ### Exact UI path
-Gupshup Console -> Campaign Manager -> Campaign Analytics
+Gupshup Console → Campaign Manager → Campaign Analytics
 
 ### Steps
 1. Open Gupshup Console.

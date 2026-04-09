@@ -67,7 +67,7 @@ source_url: https://console-docs.gupshup.io/docs/underlying-raw-data-for-chat-su
 - Category: This will either be assigned to an agent or handled by bot/ unassigned
 
 ## Exact UI path
-Agent Assist
+Gupshup Console → Agent Assist → Insights → Chat Summary
 
 ## Prerequisites
 - Access to the relevant Agent Assist module/page.

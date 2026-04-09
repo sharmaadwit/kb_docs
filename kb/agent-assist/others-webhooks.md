@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/webhook
 By leveraging the Webhooks feature, a brand can receive notifications for specific actions occurring on Agent Assist. Consider a scenario where a brand intends to send Push Notifications to its app users when they fail to respond. To achieve this, the brand can set up a webhook API within the configuration. By incorporating a reminder event in the webhook settings, the brand will receive reminder notifications through the API. These reminders can then be utilized internally to trigger Push Notifications, prompting customer engagement.
 
 ## Exact UI path
-Agent Assist → Settings → Others
+Gupshup Console → Agent Assist → Settings → Others
 
 ## Prerequisites
 - Access to the relevant Agent Assist module/page.

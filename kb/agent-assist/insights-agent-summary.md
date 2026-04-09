@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/insights-agent-summary
 Overview The Agent Summary Report provides comprehensive productivity metrics for agent performance in handling customer interactions. This report helps measure efficiency, response times, and service level adherence.
 
 ## Exact UI path
-Agent Assist → Insights
+Gupshup Console → Agent Assist → Insights
 
 ## Prerequisites
 - Access to the relevant Insights dashboard in Agent Assist.

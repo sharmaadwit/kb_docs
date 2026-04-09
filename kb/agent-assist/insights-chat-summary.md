@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/insights-chat-summary
 Tab 1: Overall Summary
 
 ## Exact UI path
-Agent Assist → Insights
+Gupshup Console → Agent Assist → Insights
 
 ## Prerequisites
 - Access to the relevant Insights dashboard in Agent Assist.

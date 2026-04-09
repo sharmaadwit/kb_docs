@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/what-happens-if-a-chat-doesnt-m
 Usually all the brands are created with a default assignment rule that insures that the chats are assigned to the default team. But in a scenario where default assignment rule is deleted, there comes a possibility when the chats don't match with any rules. Such chats are termed as "No Rule Matched" chats.
 
 ## Exact UI path
-Agent Assist
+Gupshup Console → Agent Assist → Settings → Chat Management → Assignment Rules
 
 ## Prerequisites
 - Access to the relevant Agent Assist module/page.

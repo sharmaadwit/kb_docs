@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/downloading-chat-transcripts-fo
 Agent Assist allows users to conveniently download chat conversation data for a specific customer over the last 30 days in PDF format. Follow these steps to access and download chat transcripts:
 
 ## Exact UI path
-Agent Assist → Chats
+Gupshup Console → Agent Assist → Chats
 
 ## Prerequisites
 - Access to the relevant Agent Assist module/page.

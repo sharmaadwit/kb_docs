@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/chat-management-chat-rules
 Definition: Chat Rules are rules that prioritize and tag chats based on specific conditions, helping brands manage and categorize chats more effectively.
 
 ## Exact UI path
-Agent Assist → Settings → Chat Management
+Gupshup Console → Agent Assist → Settings → Chat Management
 
 ## Prerequisites
 - Access to **Agent Assist → Settings → Chat Management**.

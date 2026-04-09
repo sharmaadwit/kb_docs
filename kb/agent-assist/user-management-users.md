@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/user-management-teams-and-busin
 To add new users to your Agent Assist account, follow these steps:
 
 ## Exact UI path
-Agent Assist → Settings → User Management
+Gupshup Console → Agent Assist → Settings → User Management
 
 ## Prerequisites
 - Access to **Agent Assist → Settings → User Management**.

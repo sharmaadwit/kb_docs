@@ -5,6 +5,10 @@ source_url: https://console-docs.gupshup.io/docs/user-management-business-hours
 
 **Module**: Workflows
 
+## Console path
+- **Business hours:** Gupshup Console → Agent Assist → Settings → User Management → Business Hours
+- **Auto replies / offline responses:** Gupshup Console → Agent Assist → Settings → Response Management
+
 ## Definition
 Use this workflow when you need to distinguish between:
 

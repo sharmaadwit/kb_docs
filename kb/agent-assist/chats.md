@@ -14,7 +14,7 @@ source_url: https://console-docs.gupshup.io/docs/chats
 Streamline your customer support with our state-of-the-art chat inbox. Manage conversations efficiently with three organized sections designed to improve agent workflows and response times.
 
 ## Exact UI path
-Agent Assist → Chats
+Gupshup Console → Agent Assist → Chats
 
 ## Setup path
 - Gupshup Console → **Agent Assist** → **Chats**

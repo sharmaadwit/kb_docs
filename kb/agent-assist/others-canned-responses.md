@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/others-canned-responses
 Canned Responses Canned Responses is a feature in Agent Assist that allows agents to create and save template responses for common customer inquiries. These responses can be used to quickly respond to customers, saving time and effort.
 
 ## Exact UI path
-Agent Assist → Settings → Others
+Gupshup Console → Agent Assist → Settings → Others
 
 ## Prerequisites
 - Access to the relevant Agent Assist module/page.

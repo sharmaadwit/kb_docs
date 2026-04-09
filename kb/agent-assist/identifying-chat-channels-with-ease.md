@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/identifying-chat-channels-with-
 In the chat profile, you'll find a convenient feature that allows you to identify the specific channel from which the chat originates. Currently, our Console supports the following channels:
 
 ## Exact UI path
-Agent Assist
+Gupshup Console → Agent Assist → Chats
 
 ## Prerequisites
 - Access to the relevant Agent Assist module/page.

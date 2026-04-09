@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/simplify-your-search-with-globa
 Agent Assist offers a robust Global Search feature, allowing users to search for all chats present in the system. It simplifies the process of finding relevant chat data quickly.
 
 ## Exact UI path
-Agent Assist → Chats → Search
+Gupshup Console → Agent Assist → Chats → Search
 
 ## Prerequisites
 - Access to the relevant Agent Assist module/page.

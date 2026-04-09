@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/others
 Views A view is a useful feature that allows agents to access chats of a particular category in a dedicated bucket, which can be accessed from the chat panel. Views can be created by going to the settings> views > add view and then specifying the name of the view and the access level, which can be either for the whole team or for the individual user. Once created, views can be customized by matching conditions for a particular category of chats, which are then displayed in the view.
 
 ## Exact UI path
-Agent Assist → Settings → Others
+Gupshup Console → Agent Assist → Settings → Others
 
 ## Prerequisites
 - Access to the relevant Agent Assist module/page.

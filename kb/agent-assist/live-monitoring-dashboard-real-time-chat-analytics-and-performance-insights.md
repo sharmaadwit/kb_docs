@@ -18,7 +18,7 @@ The live monitoring dashboard provides real-time insights into customer support 
 
 ## Procedure
 ### Exact UI path
-Agent Assist → Insights → Live Monitoring Dashboard
+Gupshup Console → Agent Assist → Insights → Live Monitoring Dashboard
 
 ### Steps
 1. Open Agent Assist.

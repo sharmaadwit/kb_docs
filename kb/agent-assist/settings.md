@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/settings
 Comprehensive settings hub for configuring and optimizing your Agent Assist platform, including user management, automation, AI capabilities, and account controls.
 
 ## Exact UI path
-Agent Assist → Settings
+Gupshup Console → Agent Assist → Settings
 
 ## Prerequisites
 - Access to the relevant Agent Assist module/page.

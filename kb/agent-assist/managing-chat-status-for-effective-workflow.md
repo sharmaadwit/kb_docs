@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/managing-chat-status-for-effect
 Learn about the eight chat status types in Agent Assist and how to use them effectively for streamlined workflow management and performance tracking.
 
 ## Exact UI path
-Agent Assist
+Gupshup Console → Agent Assist → Chats
 
 ## Prerequisites
 - Access to the relevant Agent Assist module/page.

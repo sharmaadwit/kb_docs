@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/insights-agent-timesheet
 Overview The Agent Timesheet Report provides comprehensive insights into agent activity and time management across four distinct tabs. This guide explains each tab's purpose and its constituent columns.
 
 ## Exact UI path
-Agent Assist → Insights
+Gupshup Console → Agent Assist → Insights
 
 ## Prerequisites
 - Access to the relevant Insights dashboard in Agent Assist.

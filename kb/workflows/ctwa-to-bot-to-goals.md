@@ -5,6 +5,9 @@ source_url: https://console-docs.gupshup.io/docs/creating-a-tiktok-specific-bot-
 
 **Module**: Workflows
 
+## Console path
+Cross-module workflow: **CTX** (Click to Chat / Ad Management) → **Bot Studio** (Ad Journey) → **Campaign Manager** (campaign analytics) → **Goals** (Goal Analytics).
+
 ## Definition
 This workflow combines:
 

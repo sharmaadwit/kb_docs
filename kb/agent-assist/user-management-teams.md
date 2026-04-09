@@ -14,7 +14,7 @@ source_url: https://console-docs.gupshup.io/docs/teams
 Use **Teams** to group agents under a supervisor and define the **assignment policy inside a team** (e.g., Round Robin vs Load Balancer). Teams define **who belongs together**; they don’t define the full routing rules for every incoming chat.
 
 ## Exact UI path
-Agent Assist → Settings → User Management
+Gupshup Console → Agent Assist → Settings → User Management
 
 ## Setup path
 - Navigate to the settings tab on your dashboard.

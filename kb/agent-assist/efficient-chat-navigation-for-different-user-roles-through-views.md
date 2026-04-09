@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/navigating-through-the-views
 Learn how to navigate chat views efficiently across different user roles - admins, supervisors, and agents. Discover role-specific views and customization options for optimal chat management.
 
 ## Exact UI path
-Agent Assist
+Gupshup Console → Agent Assist → Settings → Others → Views
 
 ## Prerequisites
 - Access to the relevant Agent Assist module/page.

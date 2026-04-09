@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/others-tags
 Tags Tags are a way to define a certain set of chats. Once a tag is added to the chat, the brands can create custom views for those chats, automatically assign those chats, filter the chats based on the tags and use them for better analytics.
 
 ## Exact UI path
-Agent Assist → Settings → Others
+Gupshup Console → Agent Assist → Settings → Others
 
 ## Prerequisites
 - Access to the relevant Agent Assist module/page.

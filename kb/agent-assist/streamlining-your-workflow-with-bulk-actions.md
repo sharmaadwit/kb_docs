@@ -15,7 +15,7 @@ source_url: https://console-docs.gupshup.io/docs/streamlining-your-workflow-with
 Learn how to efficiently manage multiple chats using bulk actions including assignment, tagging, priority changes, resolution, private notes, and bulk replies to streamline your workflow.
 
 ## Exact UI path
-Agent Assist
+Gupshup Console → Agent Assist → Chats
 
 ## Prerequisites
 - Access to the relevant Agent Assist module/page.

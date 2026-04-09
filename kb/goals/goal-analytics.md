@@ -11,7 +11,7 @@ source_url: https://console-docs.gupshup.io/docs/goal-analytics
 
 ## Procedure
 ### Exact UI path
-Gupshup Console -> Goals -> Goal Analytics
+Gupshup Console → Goals → Goal Analytics
 
 ### Steps
 1. Open Gupshup Console.
