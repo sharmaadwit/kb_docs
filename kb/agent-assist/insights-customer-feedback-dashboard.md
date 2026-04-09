@@ -22,14 +22,14 @@ Agent Assist → Insights
 - Underlying chat/agent activity available for the reporting window you want to inspect.
 
 ## Setup path
-- _Add the click-path in Console (breadcrumbs)._
+- Gupshup Console → **Agent Assist** → **Insights** → **Customer Feedback**
 
 ## Fields to configure
 - No explicit fields were identified in the source; use the controls shown on this page.
 
 ## Steps
 1. Open Agent Assist.
-2. _Add the click-path in Console (breadcrumbs)._
+2. Open **Insights** → **Customer Feedback Dashboard**.
 3. Test different feedback collection methods.
 
 ## Validation / where to check

@@ -22,14 +22,14 @@ Agent Assist → Insights
 - Underlying chat/agent activity available for the reporting window you want to inspect.
 
 ## Setup path
-- _Add the click-path in Console (breadcrumbs)._
+- Gupshup Console → **Agent Assist** → **Insights**
 
 ## Fields to configure
 - No explicit fields were identified in the source; use the controls shown on this page.
 
 ## Steps
 1. Open Agent Assist.
-2. _Add the click-path in Console (breadcrumbs)._
+2. Open **Insights** and use export / download / raw data options where shown.
 
 ## Validation / where to check
 - Confirm the expected data appears in the dashboard/report for a known recent test case or date range.

@@ -21,14 +21,14 @@ Agent Assist → Chats
 - Access to the relevant Agent Assist module/page.
 
 ## Setup path
-- _Add the click-path in Console (breadcrumbs)._
+- Gupshup Console → **Agent Assist** → **Chats**
 
 ## Fields to configure
 - No explicit fields were identified in the source; use the controls shown on this page.
 
 ## Steps
 1. Open Agent Assist.
-2. _Add the click-path in Console (breadcrumbs)._
+2. Open **Chats**, select a conversation, and use the transcript / download action from the chat view.
 3. Click on the "More" option within the chat interface.
 4. Choose "Download Transcript" from the available options.
 5. Select the date range for the data you want to include in the transcript. You can also opt to download data for the last 30 days.

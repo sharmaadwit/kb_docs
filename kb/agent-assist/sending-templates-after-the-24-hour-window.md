@@ -21,14 +21,14 @@ Agent Assist
 - Access to the relevant Agent Assist module/page.
 
 ## Setup path
-- _Add the click-path in Console (breadcrumbs)._
+- Gupshup Console → **Agent Assist** → **Chats**
 
 ## Fields to configure
 - No explicit fields were identified in the source; use the controls shown on this page.
 
 ## Steps
 1. Open Agent Assist.
-2. _Add the click-path in Console (breadcrumbs)._
+2. In **Chats**, start or continue a conversation and send an approved template per the template / session rules.
 3. Click on the "Send a Template" button within the Agent Assist console.
 4. Select the marketing template you wish to send to end customers.
 

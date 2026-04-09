@@ -21,14 +21,19 @@ Agent Assist
 - Access to the relevant Agent Assist module/page.
 
 ## Setup path
-- _Add the click-path in Console (breadcrumbs)._
+- Gupshup Console → **Agent Assist**
+
+## Where to work next (breadcrumbs)
+- **Inbox / agent work:** Gupshup Console → **Agent Assist** → **Chats**
+- **Configuration (users, teams, chat rules, responses, AI):** Gupshup Console → **Agent Assist** → **Settings**
+- **Reports:** Gupshup Console → **Agent Assist** → **Insights**
 
 ## Fields to configure
 - No explicit fields were identified in the source; use the controls shown on this page.
 
 ## Steps
-1. Open Agent Assist.
-2. _Add the click-path in Console (breadcrumbs)._
+1. Open **Gupshup Console**.
+2. Select **Agent Assist** from the module menu, then go to **Chats**, **Settings**, or **Insights** as needed.
 
 ## Validation / where to check
 - Run a quick test and confirm the expected behavior in Agent Assist.

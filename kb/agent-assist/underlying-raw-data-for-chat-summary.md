@@ -73,14 +73,14 @@ Agent Assist
 - Access to the relevant Agent Assist module/page.
 
 ## Setup path
-- _Add the click-path in Console (breadcrumbs)._
+- Gupshup Console → **Agent Assist** → **Insights** → **Chat Summary**
 
 ## Fields to configure
 - No explicit fields were identified in the source; use the controls shown on this page.
 
 ## Steps
 1. Open Agent Assist.
-2. _Add the click-path in Console (breadcrumbs)._
+2. Open **Insights** → **Chat Summary** (or **Export raw data** from Insights where available).
 
 ## Validation / where to check
 - Run a quick test and confirm the expected behavior in Agent Assist.

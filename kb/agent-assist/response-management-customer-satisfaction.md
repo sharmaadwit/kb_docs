@@ -22,14 +22,14 @@ Agent Assist → Settings → Response Management
 - Business Hours or bot configuration already set up if this feature depends on availability or handover.
 
 ## Setup path
-- _Add the click-path in Console (breadcrumbs)._
+- Gupshup Console → **Agent Assist** → **Settings** → **Response Management** → **Customer Satisfaction**
 
 ## Fields to configure
 - No explicit fields were identified in the source; use the controls shown on this page.
 
 ## Steps
 1. Open Agent Assist.
-2. _Add the click-path in Console (breadcrumbs)._
+2. Open **Settings** → **Response Management** → **Customer Satisfaction**.
 3. Click **Save** to apply changes.
 
 ## Validation / where to check

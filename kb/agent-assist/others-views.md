@@ -21,7 +21,7 @@ Agent Assist → Settings → Others
 - Access to the relevant Agent Assist module/page.
 
 ## Setup path
-- _Add the click-path in Console (breadcrumbs)._
+- Gupshup Console → **Agent Assist** → **Settings** → **Others** → **Views**
 
 ## Fields to configure
 - whole team
@@ -29,7 +29,7 @@ Agent Assist → Settings → Others
 
 ## Steps
 1. Open Agent Assist.
-2. _Add the click-path in Console (breadcrumbs)._
+2. Open **Settings** → **Others** → **Views**.
 3. Click **Save** to apply changes.
 
 ## Validation / where to check

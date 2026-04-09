@@ -5,6 +5,11 @@ source_url: https://console-docs.gupshup.io/docs/response-management-auto-replie
 
 **Module**: Agent Assist
 
+## Console path
+Gupshup Console → **Agent Assist** → **Settings** → **Response Management**
+
+Use this area for **standard auto-replies**, **Customer Reminder** (inactive customers), and **Agent Reminder** (inactive agents), alongside **Customer Satisfaction** settings.
+
 ## Definition
 Auto Replies allow brands to set up automated responses to end customers based on specific conditions. Customer Satisfaction tools collect feedback from customers to assess satisfaction and gather insights for improvement.
 

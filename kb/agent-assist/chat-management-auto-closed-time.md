@@ -22,14 +22,14 @@ Agent Assist → Settings → Chat Management
 - A test chat flow or team/agent setup to validate behavior.
 
 ## Setup path
-- _Add the click-path in Console (breadcrumbs)._
+- Gupshup Console → **Agent Assist** → **Settings** → **Chat Management** → **Auto Closed Time**
 
 ## Fields to configure
 - No explicit fields were identified in the source; use the controls shown on this page.
 
 ## Steps
 1. Open Agent Assist.
-2. _Add the click-path in Console (breadcrumbs)._
+2. Open **Settings** → **Chat Management** → **Auto Closed Time**.
 3. Click **Save** to apply changes.
 
 ## Validation / where to check

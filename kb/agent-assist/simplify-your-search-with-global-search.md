@@ -21,14 +21,14 @@ Agent Assist → Chats → Search
 - Access to the relevant Agent Assist module/page.
 
 ## Setup path
-- _Add the click-path in Console (breadcrumbs)._
+- Gupshup Console → **Agent Assist** → **Chats** → **Search**
 
 ## Fields to configure
 - search query and press "Enter" to initiate the search
 
 ## Steps
 1. Open Agent Assist.
-2. _Add the click-path in Console (breadcrumbs)._
+2. In **Chats**, use **Search** / global search at the top of the inbox.
 3. Enter your search query and press "Enter" to initiate the search.
 
 ## Validation / where to check

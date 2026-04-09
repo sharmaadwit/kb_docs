@@ -21,14 +21,14 @@ Agent Assist
 - Access to the relevant Agent Assist module/page.
 
 ## Setup path
-- _Add the click-path in Console (breadcrumbs)._
+- Gupshup Console → **Agent Assist** → **Settings** → **Chat Management** → **Assignment Rules**
 
 ## Fields to configure
 - No explicit fields were identified in the source; use the controls shown on this page.
 
 ## Steps
 1. Open Agent Assist.
-2. _Add the click-path in Console (breadcrumbs)._
+2. Open **Settings** → **Chat Management** → **Assignment Rules** (and related queues such as *No Rules Matched* / *Waiting for assignment*).
 
 ## Validation / where to check
 - Run a quick test and confirm the expected behavior in Agent Assist.

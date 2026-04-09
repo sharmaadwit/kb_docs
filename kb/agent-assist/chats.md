@@ -17,11 +17,11 @@ Streamline your customer support with our state-of-the-art chat inbox. Manage co
 Agent Assist → Chats
 
 ## Setup path
-- _Add the click-path in Console (breadcrumbs)._
+- Gupshup Console → **Agent Assist** → **Chats**
 
 ## Steps
 1. Open Agent Assist.
-2. _Add the click-path in Console (breadcrumbs)._
+2. In Agent Assist, open **Chats** from the left navigation.
 
 ## Validation / where to check
 - _Run a quick test (new chat / assignment / workflow) and confirm expected behavior._

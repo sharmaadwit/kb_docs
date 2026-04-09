@@ -21,14 +21,14 @@ Agent Assist
 - Access to the relevant Agent Assist module/page.
 
 ## Setup path
-- _Add the click-path in Console (breadcrumbs)._
+- Gupshup Console → **Agent Assist** → **Settings** → **Others** → **Views**
 
 ## Fields to configure
 - No explicit fields were identified in the source; use the controls shown on this page.
 
 ## Steps
 1. Open Agent Assist.
-2. _Add the click-path in Console (breadcrumbs)._
+2. Open **Settings** → **Others** → **Views** to switch role-specific inbox views.
 3. Navigate through your chat workload efficiently with role-specific views designed to streamline operations for administrators, supervisors, and agents.
 
 ## Validation / where to check
