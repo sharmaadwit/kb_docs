@@ -634,10 +634,20 @@ CONCEPT_REGISTRY: List[Dict] = [
             "restrict input", "ensure user input",
             "regex validation", "input in a journey",
             "enter numbers", "name field validation",
+            "collect demographic questions",
+            "collect age gender city",
+            "collect lead demographics",
+            "store demographic answers",
         ],
-        "keywords": ['input', 'prompt', 'validation', 'regex', 'capture'],
+        "keywords": ['input', 'prompt', 'validation', 'regex', 'capture', 'demographic', 'age', 'gender', 'city', 'lead'],
         "module_context": ["journey builder", "bot studio", "journey"],
-        "source_boosts": {"prompt-nodes": 5.0, "timeout-in-prompt-nodes": 4.0, "free-text-node": 4.0},
+        "source_boosts": {
+            "prompt-nodes": 5.0,
+            "timeout-in-prompt-nodes": 4.0,
+            "free-text-node": 4.0,
+            "number-node": 3.0,
+            "email-node": 2.5,
+        },
         "source_penalties": {
             "whatsapp-carousel": -5.0, "send-message-node": -5.0,
             "journey-builder-platform-upgrade-and-node-deprecation": -5.0,
@@ -2036,6 +2046,24 @@ def _guardrail_answer(query: str) -> str:
     return ""
 
 
+def _external_integration_gap_answer(query: str) -> Optional[str]:
+    q = _normalize_query_for_match(query)
+    external_markers = [
+        "google sheets", "google sheet", "spreadsheet", "airtable", "notion",
+    ]
+    if not any(m in q for m in external_markers):
+        return None
+    return (
+        "I don't know based on the current docs.\n\n"
+        "What is documented\n"
+        "- Use `API Node` in Journey Builder to call an external/backend API.\n"
+        "- Use variables (for example via `Manage Variables` / `Modify Variable Node`) "
+        "to capture and pass data into that API call.\n\n"
+        "What I could not verify from the current documentation\n"
+        "- A native step-by-step Google Sheets integration flow is not explicitly documented."
+    )
+
+
 def _parse_parameters(parameters: object = None, **kwargs) -> Dict:
     data = {}
     if isinstance(parameters, str):
@@ -2273,7 +2301,9 @@ def _extract_entities(query: str) -> List[Dict]:
         matched_ids.add(concept["id"])
 
     if not matched:
-        query_tokens = set(re.findall(r"[a-z0-9]+", q)) - SCORING_STOP_WORDS
+        query_words = re.findall(r"[a-z0-9]+", q)
+        query_tokens = set(query_words) - SCORING_STOP_WORDS
+        early_tokens = set(query_words[:8])
         kw_candidates = []
         for concept in CONCEPT_REGISTRY:
             if concept["id"] in matched_ids:
@@ -2290,15 +2320,20 @@ def _extract_entities(query: str) -> List[Dict]:
             if len(kw_hits) < 2 and not has_context:
                 continue
             kw_score = len(kw_hits) * 3
+            # Keywords mentioned early in the query usually indicate the primary intent.
+            if any(k in early_tokens for k in kw_hits):
+                kw_score += 2
             if has_context:
                 kw_score += 3
             kw_candidates.append((kw_score, concept))
         if kw_candidates:
             kw_candidates.sort(key=lambda x: x[0], reverse=True)
-            best_score = kw_candidates[0][0]
-            if len(kw_candidates) == 1 or best_score > kw_candidates[1][0]:
-                matched.append(kw_candidates[0])
-                matched_ids.add(kw_candidates[0][1]["id"])
+            top_score = kw_candidates[0][0]
+            top_matches = [pair for pair in kw_candidates if pair[0] == top_score][:2]
+            for pair in top_matches:
+                if pair[1]["id"] not in matched_ids:
+                    matched.append(pair)
+                    matched_ids.add(pair[1]["id"])
 
     matched.sort(key=lambda pair: pair[0], reverse=True)
     return [pair[1] for pair in matched]
@@ -2319,6 +2354,10 @@ _PAGE_LOOKUP_SIGNALS = [
     "what doc", "what screen", "what settings", "where is",
 ]
 _DEFINITION_SIGNALS = ["what is", "what does", "mean in"]
+_SETUP_SIGNALS = [
+    "setup", "set up", "step by step", "steps", "how to", "how do i",
+    "recommended", "configure", "collect", "store", "for later use",
+]
 _BEHAVIOR_SIGNALS = [
     "what happens", "how do timeouts work", "when enabled", "when disabled",
     "after hours", "anonymous users", "returning customers",
@@ -2432,6 +2471,7 @@ def _classify_intent(query: str, entities: List[Dict]) -> str:
     is_choose = any(x in q for x in _CHOOSE_SIGNALS)
     is_page = any(x in q for x in _PAGE_LOOKUP_SIGNALS)
     is_definition = any(x in q for x in _DEFINITION_SIGNALS)
+    is_setup = any(x in q for x in _SETUP_SIGNALS)
     is_behavior = any(x in q for x in _BEHAVIOR_SIGNALS)
     is_troubleshoot = any(x in q for x in _TROUBLESHOOT_SIGNALS)
     is_schema = any(x in q for x in _SCHEMA_SIGNALS)
@@ -2446,6 +2486,11 @@ def _classify_intent(query: str, entities: List[Dict]) -> str:
         if len(entities) >= 2:
             return "compare"
         return "page_lookup"
+    # "what is ... setup / step-by-step" should be treated as setup, not definition.
+    if is_setup and not is_definition:
+        return "setup"
+    if is_setup and is_definition:
+        return "setup"
     if is_schema:
         return "schema"
     if is_behavior:
@@ -2474,6 +2519,8 @@ def _detect_intents(query: str) -> List[str]:
         intents.append("page_lookup")
     if any(x in q for x in _DEFINITION_SIGNALS):
         intents.append("definition")
+    if any(x in q for x in _SETUP_SIGNALS):
+        intents.append("setup")
     if any(x in q for x in _BEHAVIOR_SIGNALS):
         intents.append("behavior")
     if any(x in q for x in _TROUBLESHOOT_SIGNALS):
@@ -2543,6 +2590,14 @@ def _score_chunk(
             score -= 10.0
         elif any(x in hl for x in ("steps", "definition", "channel behavior")) or hl.strip() == "go live with instagram":
             score += 4.0
+
+    # Avoid over-ranking timeout docs for generic prompt/input-collection setups.
+    timeout_terms = ("timeout", "otp", "expires", "validity window")
+    if "timeout-in-prompt-nodes" in source and not any(t in q for t in timeout_terms):
+        score -= 4.0
+    demographic_terms = ("demographic", "age", "gender", "city", "lead")
+    if "timeout-in-prompt-nodes" in source and any(t in q for t in demographic_terms):
+        score -= 2.0
 
     return score
 
@@ -2642,10 +2697,11 @@ def _filter_by_explicit_module(scored: List[Dict], explicit_module: str) -> List
         row for row in scored
         if _module_from_source(str(row.get("source") or "")) == explicit_module
     ]
-    if len(same_module) >= 2:
+    # If the user explicitly asked about a module, keep evidence scoped to that
+    # module whenever we have at least one matching chunk. Falling back to global
+    # ranking here can produce plausible but wrong cross-module setup steps.
+    if same_module:
         return same_module
-    if same_module and same_module[0].get("score", 0.0) >= 3.5:
-        return same_module + [row for row in scored if row not in same_module][:2]
     return scored
 
 
@@ -3044,7 +3100,22 @@ def _has_explicit_support(
             return False
         if _query_topic_not_in_evidence(query, joined):
             return False
-        return any(_is_action_oriented(line) for line in lines[:6]) or top1_overlap >= 0.3
+        has_action = any(_is_action_oriented(line) for line in lines[:6])
+        # Guard against generic "open console/go to X" snippets being accepted
+        # for specific setup questions (e.g., Goal/Personalize/Trigger Event).
+        core_tokens = [
+            t for t in re.findall(r"[a-z0-9&+-]+", _normalize_query_for_match(query))
+            if len(t) >= 5
+            and t not in SCORING_STOP_WORDS
+            and t not in {
+                "journey", "builder", "studio", "console", "gupshup",
+                "steps", "step", "setup", "node", "nodes",
+            }
+        ]
+        core_hits = sum(1 for t in set(core_tokens) if t in joined)
+        if core_tokens and core_hits == 0 and top1_overlap < 0.45:
+            return False
+        return (has_action and top1_overlap >= 0.2) or top1_overlap >= 0.45
 
     if intent == "troubleshooting":
         qn = _normalize_query_for_match(query)
@@ -3074,6 +3145,21 @@ def _has_explicit_support(
         return bool(evidence)
 
     return bool(lines)
+
+
+def _is_demographic_capture_query(query: str) -> bool:
+    q = _normalize_query_for_match(query)
+    has_demographic = any(
+        token in q for token in [
+            "demographic", "age", "gender", "city", "lead",
+        ]
+    )
+    has_capture_intent = any(
+        token in q for token in [
+            "collect", "store", "later use", "step by step", "setup",
+        ]
+    )
+    return has_demographic and has_capture_intent
 
 
 def _compose_answer(
@@ -3122,6 +3208,23 @@ def _compose_answer(
     # --- Single-entity template lookup (with score gate + alias gate) ---
     if entities and evidence:
         primary = entities[0]
+        if (
+            intent == "setup"
+            and primary.get("id") == "prompt_node"
+            and _is_demographic_capture_query(query)
+        ):
+            return (
+                "Recommended step-by-step setup (documented pattern)\n"
+                "1. In Journey Builder, add prompt-based input nodes for each field you need.\n"
+                "2. Use a `Number Node` for Age so numeric validation is applied.\n"
+                "3. Use `Prompt Node` / `Free Text Node` for Gender and Current City.\n"
+                "4. Configure validation rules and fallback behavior for each prompt.\n"
+                "5. Define variables via `Manage Variables` and map each captured response to a variable.\n"
+                "6. If you need to transform/update values later, use `Modify Variable Node`.\n"
+                "7. Save and run the journey in Test your Bot; use Save & Deploy for live traffic.\n\n"
+                "What I could not verify from the current docs\n"
+                "- An explicit CTX profile-attribute mapping screen/flow for these exact fields is not clearly specified on the retrieved pages."
+            )
         top_score = evidence[0].get("score", 0.0) if evidence else 0.0
         top_source = str(evidence[0].get("source") or "").lower() if evidence else ""
         boosted_slugs = list(primary.get("source_boosts", {}).keys())
@@ -3749,6 +3852,15 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
             ["refusal"], "refusal", False, latency_ms, context, params,
         )
         return {"ok": True, "query": query, "answer": guardrail, "citations": [], "langfuse": langfuse}
+
+    external_gap = _external_integration_gap_answer(query)
+    if external_gap:
+        latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
+        langfuse = _send_langfuse(
+            "kb_answer", query, external_gap, [], "General",
+            ["setup"], "setup", False, latency_ms, context, params,
+        )
+        return {"ok": True, "query": query, "answer": external_gap, "citations": [], "langfuse": langfuse}
 
     chunks = _load_chunks(context)
     explicit_module = _detect_module(query)

@@ -238,9 +238,19 @@ CONCEPT_REGISTRY: List[Dict] = [
             "restrict input", "ensure user input",
             "regex validation", "input in a journey",
             "enter numbers", "name field validation",
+            "collect demographic questions",
+            "collect age gender city",
+            "collect lead demographics",
+            "store demographic answers",
         ],
-        "keywords": ["input", "prompt", "validation", "regex", "capture"],
-        "source_boosts": {"prompt-nodes": 5.0, "timeout-in-prompt-nodes": 4.0, "free-text-node": 4.0},
+        "keywords": ["input", "prompt", "validation", "regex", "capture", "demographic", "age", "gender", "city", "lead"],
+        "source_boosts": {
+            "prompt-nodes": 5.0,
+            "timeout-in-prompt-nodes": 4.0,
+            "free-text-node": 4.0,
+            "number-node": 3.0,
+            "email-node": 2.5,
+        },
         "source_penalties": {
             "whatsapp-carousel": -5.0, "send-message-node": -5.0,
             "journey-builder-platform-upgrade-and-node-deprecation": -5.0,
@@ -1086,7 +1096,9 @@ def _extract_entities(query: str) -> List[Dict]:
         matched_ids.add(concept["id"])
 
     if not matched:
-        query_tokens = set(re.findall(r"[a-z0-9]+", q)) - SCORING_STOP_WORDS
+        query_words = re.findall(r"[a-z0-9]+", q)
+        query_tokens = set(query_words) - SCORING_STOP_WORDS
+        early_tokens = set(query_words[:8])
         kw_candidates = []
         for concept in CONCEPT_REGISTRY:
             if concept["id"] in matched_ids:
@@ -1096,13 +1108,18 @@ def _extract_entities(query: str) -> List[Dict]:
             if not kw_hits:
                 continue
             kw_score = len(kw_hits) * 3
+            # Keywords mentioned early in the query usually indicate primary intent.
+            if any(k in early_tokens for k in kw_hits):
+                kw_score += 2
             kw_candidates.append((kw_score, concept))
         if kw_candidates:
             kw_candidates.sort(key=lambda x: x[0], reverse=True)
-            best_score = kw_candidates[0][0]
-            if len(kw_candidates) == 1 or best_score > kw_candidates[1][0]:
-                matched.append((best_score, kw_candidates[0][1]))
-                matched_ids.add(kw_candidates[0][1]["id"])
+            top_score = kw_candidates[0][0]
+            top_matches = [pair for pair in kw_candidates if pair[0] == top_score][:2]
+            for score, concept in top_matches:
+                if concept["id"] not in matched_ids:
+                    matched.append((score, concept))
+                    matched_ids.add(concept["id"])
 
     matched.sort(key=lambda pair: pair[0], reverse=True)
     return [pair[1] for pair in matched]
@@ -1114,6 +1131,10 @@ _PAGE_LOOKUP_SIGNALS = [
     "which report", "what page", "where can i monitor",
 ]
 _DEFINITION_SIGNALS = ["what is", "what does", "mean in"]
+_SETUP_SIGNALS = [
+    "setup", "set up", "step by step", "steps", "how to", "how do i",
+    "recommended", "configure", "collect", "store", "for later use",
+]
 _BEHAVIOR_SIGNALS = [
     "what happens", "how do timeouts work", "when enabled", "when disabled",
     "after hours", "anonymous users", "returning customers",
@@ -1138,6 +1159,8 @@ def _detect_intents(query: str) -> List[str]:
         intents.append("page_lookup")
     if any(x in q for x in _DEFINITION_SIGNALS):
         intents.append("definition")
+    if any(x in q for x in _SETUP_SIGNALS):
+        intents.append("setup")
     if any(x in q for x in _BEHAVIOR_SIGNALS):
         intents.append("behavior")
     if any(x in q for x in _TROUBLESHOOT_SIGNALS):
@@ -1155,6 +1178,8 @@ def _classify_intent(query: str, entities: List[Dict]) -> str:
         return "compare"
     if any(x in q for x in _PAGE_LOOKUP_SIGNALS):
         return "page_lookup"
+    if any(x in q for x in _SETUP_SIGNALS):
+        return "setup"
     if any(x in q for x in _SCHEMA_SIGNALS):
         return "schema"
     if any(x in q for x in _BEHAVIOR_SIGNALS):
@@ -1238,6 +1263,14 @@ def _score_chunk(
             ]
         ):
             score -= 1.8
+
+    # Avoid over-ranking timeout docs for generic prompt/input-collection setups.
+    timeout_terms = ("timeout", "otp", "expires", "validity window")
+    if "timeout-in-prompt-nodes" in source and not any(t in q for t in timeout_terms):
+        score -= 4.0
+    demographic_terms = ("demographic", "age", "gender", "city", "lead")
+    if "timeout-in-prompt-nodes" in source and any(t in q for t in demographic_terms):
+        score -= 2.0
 
     return score
 
