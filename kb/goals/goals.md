@@ -8,6 +8,11 @@ source_url: https://console-docs.gupshup.io/docs/goals
 ## Definition
 The Goals feature enable businesses to define and track specific points in a bot journey where the Goal of the journey is being achieved.
 
+## How Goals work with Journey Builder
+- **Configure goals** in the **Goals** module: `Gupshup Console → Goals` (Concepts, Creating Goals, Implementing Goals).
+- **Use goals inside a bot flow** in **Bot Studio → Journey Builder** by adding a **Goal Node** at the step where a user reaches a milestone.
+- A **Goal** is made of **milestones** and **trackers**; the journey records progress when users hit the configured Goal Node.
+
 ## Procedure
 ### Exact UI path
 Gupshup Console → Goals → Concepts

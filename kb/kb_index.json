@@ -8,7 +8,7 @@
     "kb/analytics"
   ],
   "md_files": 254,
-  "chunks": 5216,
+  "chunks": 5220,
   "docs": [
     {
       "path": "kb/agent-assist/about-agent-assist.md",
@@ -528,7 +528,7 @@
     },
     {
       "path": "kb/bot-studio/goal-node.md",
-      "chunks": 19
+      "chunks": 20
     },
     {
       "path": "kb/bot-studio/gupshup-journey-builder-legacy-vs-v2-vs-pro.md",
@@ -900,7 +900,7 @@
     },
     {
       "path": "kb/goals/creating-goals.md",
-      "chunks": 23
+      "chunks": 24
     },
     {
       "path": "kb/goals/goal-analytics.md",
@@ -908,11 +908,11 @@
     },
     {
       "path": "kb/goals/goals.md",
-      "chunks": 22
+      "chunks": 23
     },
     {
       "path": "kb/goals/implementing-goals.md",
-      "chunks": 19
+      "chunks": 20
     },
     {
       "path": "kb/goals/lead-generation.md",

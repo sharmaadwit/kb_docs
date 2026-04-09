@@ -8,9 +8,14 @@ source_url: https://console-docs.gupshup.io/docs/goal-node-beta
 ## Definition
 To track the milestones attained by users who are interacting with a Bot, bot designer can add the Goal Node in journeys. For instance, if a business wants to track how many customers have purchased a certain product, a goal node can be introduced in the journey.
 
+## Goals module vs Journey Builder
+- **Define goals** (names, milestones, trackers) in **Gupshup Console → Goals** before using them in a journey.
+- **Implement in Journey Builder**: open **Bot Studio → Journey Builder**, drag **Goal Node** from the node panel onto the canvas, and bind it to the goal/milestone/tracker created in the Goals module.
+- This page documents the **Goal Node** inside **Journey Builder**; see also **Goals → Concepts** and **Goals → Implementing Goals** for how goals are configured end-to-end.
+
 ## Procedure
 ### Exact UI path
-Gupshup Console → Bot Studio → Goal Node
+Gupshup Console → Bot Studio → Journey Builder → Goal Node
 
 ### Prerequisites
 - Access to the relevant bot/project in Gupshup Console.

@@ -8,6 +8,11 @@ source_url: https://console-docs.gupshup.io/docs/implementing-goals
 ## Definition
 Please refer to your journey and create Milestones and Trackers accordingly. You CANNOT implement Goal nodes without creating them.
 
+## Journey Builder setup
+- Create the **goal**, **milestones**, and **trackers** in **Gupshup Console → Goals** first.
+- Open **Bot Studio → Journey Builder**, then add a **Goal Node** on the canvas where the milestone should fire.
+- Configure the Goal Node to select the goal, milestone, and tracker; users traversing the journey will then count toward **Goal Analytics**.
+
 ## Procedure
 ### Exact UI path
 Gupshup Console → Goals → Implementing Goals
