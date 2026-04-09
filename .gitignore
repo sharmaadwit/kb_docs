@@ -7,14 +7,28 @@ artifacts/
 .antigravityignore
 kb/.DS_Store
 
-# Local-only non-markdown work should not be added by default.
-# Note: tracked files are not affected by .gitignore.
-github_kb_*.py
+# Agent-generated (do not commit; Cursor / local agent may create these)
+SKILL.md
+**/SKILL.md
+
+# Local-only docs / scratch (optional)
 UX_rule.md
 skills.md
 commit_policy.md
 se_evaluation_framework.md
+PLAN_*.md
+*-export-*.json
+
+# Secrets
 .cursor/
 .env
 .env.*
 !.env.example
+
+# Legacy / ad-hoc local scripts (not part of published kb_docs contract)
+github_kb_*.py
+analyze_kb_analytics.py
+kb_answer_runtime.py
+Regression Scripts/
+patch instructions/
+tools/
