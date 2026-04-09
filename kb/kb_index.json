@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "created_at": "2026-04-07T05:29:35.354311+00:00",
+  "created_at": "2026-04-09T16:13:38.722862+00:00",
   "repo": "sharmaadwit/kb_docs",
   "branch": "main",
   "docs_path": "kb",
@@ -8,11 +8,11 @@
     "kb/analytics"
   ],
   "md_files": 254,
-  "chunks": 5154,
+  "chunks": 5212,
   "docs": [
     {
       "path": "kb/agent-assist/about-agent-assist.md",
-      "chunks": 2
+      "chunks": 3
     },
     {
       "path": "kb/agent-assist/agent-assist-api-documentation.md",
@@ -20,15 +20,15 @@
     },
     {
       "path": "kb/agent-assist/ai-management-alpha.md",
-      "chunks": 14
+      "chunks": 16
     },
     {
       "path": "kb/agent-assist/assignment-enhancements-in-console-7-0.md",
-      "chunks": 20
+      "chunks": 22
     },
     {
       "path": "kb/agent-assist/campaign-and-ctx-ad-preview.md",
-      "chunks": 12
+      "chunks": 14
     },
     {
       "path": "kb/agent-assist/chat-management-assignment-rules.md",
@@ -36,7 +36,7 @@
     },
     {
       "path": "kb/agent-assist/chat-management-auto-closed-time.md",
-      "chunks": 13
+      "chunks": 15
     },
     {
       "path": "kb/agent-assist/chat-management-chat-rules.md",
@@ -44,31 +44,31 @@
     },
     {
       "path": "kb/agent-assist/chat-management-sla.md",
-      "chunks": 12
-    },
-    {
-      "path": "kb/agent-assist/chats.md",
-      "chunks": 8
-    },
-    {
-      "path": "kb/agent-assist/downloading-chat-transcripts-for-customer-conversations.md",
-      "chunks": 13
-    },
-    {
-      "path": "kb/agent-assist/efficient-chat-navigation-for-different-user-roles-through-views.md",
       "chunks": 14
     },
     {
+      "path": "kb/agent-assist/chats.md",
+      "chunks": 10
+    },
+    {
+      "path": "kb/agent-assist/downloading-chat-transcripts-for-customer-conversations.md",
+      "chunks": 15
+    },
+    {
+      "path": "kb/agent-assist/efficient-chat-navigation-for-different-user-roles-through-views.md",
+      "chunks": 16
+    },
+    {
       "path": "kb/agent-assist/exploring-insights-and-exporting-raw-data.md",
-      "chunks": 11
+      "chunks": 13
     },
     {
       "path": "kb/agent-assist/identifying-chat-channels-with-ease.md",
-      "chunks": 12
+      "chunks": 14
     },
     {
       "path": "kb/agent-assist/insights-agent-summary.md",
-      "chunks": 15
+      "chunks": 17
     },
     {
       "path": "kb/agent-assist/insights-agent-timesheet.md",
@@ -76,15 +76,15 @@
     },
     {
       "path": "kb/agent-assist/insights-chat-summary.md",
-      "chunks": 16
+      "chunks": 18
     },
     {
       "path": "kb/agent-assist/insights-customer-feedback-dashboard.md",
-      "chunks": 14
+      "chunks": 16
     },
     {
       "path": "kb/agent-assist/insights-team-summary.md",
-      "chunks": 16
+      "chunks": 18
     },
     {
       "path": "kb/agent-assist/live-monitoring-dashboard-real-time-chat-analytics-and-performance-insights.md",
@@ -92,31 +92,31 @@
     },
     {
       "path": "kb/agent-assist/managing-chat-status-for-effective-workflow.md",
-      "chunks": 12
+      "chunks": 14
     },
     {
       "path": "kb/agent-assist/others-agent-status.md",
-      "chunks": 13
+      "chunks": 15
     },
     {
       "path": "kb/agent-assist/others-canned-responses.md",
-      "chunks": 12
+      "chunks": 14
     },
     {
       "path": "kb/agent-assist/others-chat-fields.md",
-      "chunks": 12
+      "chunks": 14
     },
     {
       "path": "kb/agent-assist/others-customer-fields.md",
-      "chunks": 12
+      "chunks": 14
     },
     {
       "path": "kb/agent-assist/others-tags.md",
-      "chunks": 12
+      "chunks": 14
     },
     {
       "path": "kb/agent-assist/others-views.md",
-      "chunks": 13
+      "chunks": 15
     },
     {
       "path": "kb/agent-assist/others-webhooks.md",
@@ -124,11 +124,11 @@
     },
     {
       "path": "kb/agent-assist/response-management-auto-replies-and-customer-satisfaction.md",
-      "chunks": 19
+      "chunks": 20
     },
     {
       "path": "kb/agent-assist/response-management-customer-satisfaction.md",
-      "chunks": 14
+      "chunks": 16
     },
     {
       "path": "kb/agent-assist/sending-marketing-templates-from-agent-assist.md",
@@ -136,23 +136,23 @@
     },
     {
       "path": "kb/agent-assist/sending-templates-after-the-24-hour-window.md",
-      "chunks": 12
+      "chunks": 14
     },
     {
       "path": "kb/agent-assist/settings.md",
-      "chunks": 11
+      "chunks": 13
     },
     {
       "path": "kb/agent-assist/simplify-your-search-with-global-search.md",
-      "chunks": 13
+      "chunks": 15
     },
     {
       "path": "kb/agent-assist/streamlining-your-workflow-with-bulk-actions.md",
-      "chunks": 13
+      "chunks": 15
     },
     {
       "path": "kb/agent-assist/underlying-raw-data-for-chat-summary.md",
-      "chunks": 26
+      "chunks": 28
     },
     {
       "path": "kb/agent-assist/user-management-business-hours.md",
@@ -168,7 +168,7 @@
     },
     {
       "path": "kb/agent-assist/what-happens-if-a-chat-doesn-t-match-with-any-assignment-rule.md",
-      "chunks": 14
+      "chunks": 16
     },
     {
       "path": "kb/ai-admin/ace-and-agentic-llm-overview.md",
