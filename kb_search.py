@@ -13,6 +13,8 @@ import requests
 EXPLICIT_MODULES = {
     "agent assist": "Agent Assist",
     "bot studio": "Bot Studio",
+    "goals": "Goals",
+    "goal analytics": "Goals",
     "journey builder": "Bot Studio",
     "campaign manager": "Campaign Manager",
     "channels": "Channels",
@@ -22,8 +24,6 @@ EXPLICIT_MODULES = {
     "ai admin": "AI Admin",
     "analytics": "Analytics",
     "bot studio analytics": "Bot Studio Analytics",
-    "goals": "Goals",
-    "goal analytics": "Goals",
     "workflows": "Workflows",
     "wallet": "Wallet",
     "personalize": "Personalize",
