@@ -1,0 +1,1 @@
+{"ts": "2026-04-13T04:39:35.681024+00:00", "event": "test_secret_redaction", "payload": {"api_key": "[REDACTED]", "user_question": "hi"}}
