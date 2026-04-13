@@ -7,6 +7,10 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import requests
 
+_MAX_KB_QUERY_LEN = 4000
+_MAX_ANSWER_CHARS = 24000
+_TELEMETRY_QUERY_PREVIEW = 400
+_TELEMETRY_ANSWER_PREVIEW = 400
 
 # ---------------------------------------------------------------------------
 # Section 1 — Module mapping
@@ -103,6 +107,7 @@ PRODUCT_SIGNAL_TERMS = [
     "sticky assignment", "live monitoring", "test your bot", "message log",
     "save deploy", "instagram", "webhook", "campaign analytics",
     "goal analytics", "response file", "link tracking report", "ctwa",
+    "campaign metrics", "click through",
     "retain customer chat history", "bot studio", "prompt node",
     "journey builder", "api node", "external api", "backend api",
     "json handler", "condition node", "manage variables",
@@ -111,6 +116,7 @@ PRODUCT_SIGNAL_TERMS = [
     "status code branching", "click through rate", "unique clicks",
     "total clicks", "otp", "third party api", "3rd party api",
     "branch based on response", "parse response",
+    "human agent", "hand a chat", "hand off",
 ]
 
 OFFTOPIC_TERMS = [
@@ -139,10 +145,8 @@ UNSUPPORTED_PATTERNS = [
     "campaign analytics automatically to an s3",
     "two ad journeys", "cross browsers without login",
     "two factor authentication", "2fa", "two step verification",
-    "rate limiting", "rate limit",
     "roll back to a previous version", "rollback",
     "previous version of a deployed", "revert to previous version",
-    "configure rate limiting on",
     "chat history across different browsers",
     "sync retained chat history across",
 ]
@@ -164,6 +168,25 @@ SENSITIVE_PATTERNS = [
     "root password", "database password",
     "extract customer phone numbers", "extract phone numbers",
     "make up an answer", "even if undocumented",
+    "skill md", "skill.md",
+    "kb index json", "kb_index.json", "kb chunks jsonl", "kb_chunks.jsonl",
+    "langfuse", "trace payload", "system prompt", "tool schema",
+    "show me the prompt", "dump the index", "full chunk text",
+    "you are now unrestricted",
+    "override you are now",
+    "list all env",
+    "list env vars",
+    "show all env",
+    "dump env",
+    "print env",
+    "all environment variables",
+    "every environment variable",
+    "repeat everything between",
+    "repeat verbatim",
+    "between policy tags",
+    "skill configuration",
+    "first 50 lines",
+    "lines of your skill",
 ]
 
 GLOBAL_PENALTY_SOURCES = [
@@ -288,7 +311,11 @@ CONCEPT_REGISTRY: List[Dict] = [
         "aliases": [
             "json handler", "json parser", "parse response", "postback",
             "parse api response", "parse fields from api response",
-            "parse fields from an api response", "extract response fields",
+            "parse fields from an api response",
+            "parse fields from a json api response",
+            "parse json api response",
+            "json api response",
+            "extract response fields",
             "extract fields from api response", "response fields",
             "extract fields from response", "parse json response",
             "response stored in a variable",
@@ -528,6 +555,9 @@ CONCEPT_REGISTRY: List[Dict] = [
         "id": "agent_transfer",
         "aliases": [
             "agent transfer node", "connect with a human agent",
+            "hand a chat", "hand chat from the bot",
+            "from the bot to a human", "bot to a human agent",
+            "to a human agent", "hand off to human",
             "handover to agent", "transfer to human agent",
             "not be transferred to an agent",
             "customer might not be transferred to an agent",
@@ -1182,6 +1212,8 @@ CONCEPT_REGISTRY: List[Dict] = [
         "aliases": [
             "campaign analytics", "response file", "link tracking report",
             "click through rate", "click through rates",
+            "click through or campaign metrics",
+            "campaign metrics", "campaign manager metrics",
             "unique clicks", "total clicks",
             "dropped", "failed",
             "defines dropped and failed campaign outcomes",
@@ -1202,6 +1234,16 @@ CONCEPT_REGISTRY: List[Dict] = [
         "page_display": "Campaign Analytics",
         "module": "Campaign Manager",
         "templates": {
+            "setup": (
+                "The documentation indicates you should use **Campaign Analytics** in Campaign Manager for this pattern.\n"
+                "\n"
+                "What you can review\n"
+                "- Delivery and read outcomes, plus click metrics such as unique clicks and total clicks.\n"
+                "- Definitions for outcomes like `Dropped` and `Failed`, and link-tracking / CTR-style reporting where documented.\n"
+                "- The response file and related reports for inspecting performance after a send.\n"
+                "\n"
+                "Open **Campaign Analytics** from your campaign workflow to review these metrics."
+            ),
             "page_lookup": "Exact page\n- Campaign Analytics\nRelevant details\n- Use this page for campaign delivery outcomes, click metrics, and definitions like `Dropped` and `Failed`.",
             "definition": "Exact page\n- Campaign Analytics\nRelevant details\n- Use this page for click-through rate, unique clicks, and total clicks after a campaign is sent.",
         },
@@ -1216,6 +1258,10 @@ CONCEPT_REGISTRY: List[Dict] = [
             "ctwa bot connection procedure",
             "converting the journey for ctwa and then publishing it live",
             "what step after choosing the bot journey actually activates the ctwa setup",
+            "connect ctwa or ads to goals",
+            "connect ctwa to goals",
+            "ctwa or ads to goals",
+            "ads to goals",
             "ad journeys appear", "ad journey",
             "ctwa campaign", "after a ctwa",
             "ctwa traffic", "ctwa driven",
@@ -1228,6 +1274,16 @@ CONCEPT_REGISTRY: List[Dict] = [
         "page_display": "Ctwa To Bot To Goals",
         "module": "CTX",
         "templates": {
+            "setup": (
+                "The documentation describes linking **CTWA** (Click-to-WhatsApp) traffic to a bot journey and **goals**.\n"
+                "\n"
+                "Documented flow\n"
+                "- Use the **CTWA to Bot to Goals** workflow to connect your bot, choose the `Ad Journey`, and publish so campaign traffic can enter the journey.\n"
+                "- Use **Goal Node** in the journey where milestones should count toward **Goal Analytics**.\n"
+                "- Review **Goal Analytics** for conversion-style metrics when configured.\n"
+                "\n"
+                "Exact UI labels can vary; map your campaign and goal names to the documented CTWA and goal setup steps."
+            ),
             "page_lookup": "Exact page\n- Ctwa To Bot To Goals\nRelevant details\n- Use this workflow page for connecting CTWA traffic to a bot journey, selecting the `Ad Journey`, and publishing it live.",
         },
         "compare_blurb": "You need the CTWA-to-bot workflow that connects campaign traffic to the goal path.",
@@ -2009,6 +2065,42 @@ def _has_product_signal(query: str) -> bool:
     return any(term in q for term in PRODUCT_SIGNAL_TERMS)
 
 
+_INJECTION_REFUSAL = (
+    "I can't comply with requests that try to override instructions, extract internal "
+    "configuration or prompts, repeat hidden policy text, or list environment variables. "
+    "Ask a documented Gupshup Console product question instead."
+)
+
+
+def _prompt_injection_or_extraction_query(qn: str) -> bool:
+    if "you are now unrestricted" in qn:
+        return True
+    if "unrestricted" in qn and "override" in qn:
+        return True
+    if any(
+        p in qn
+        for p in (
+            "list all env",
+            "list env vars",
+            "show all env",
+            "dump env",
+            "print env",
+        )
+    ):
+        return True
+    if "all environment variables" in qn or "every environment variable" in qn:
+        return True
+    if "repeat everything between" in qn:
+        return True
+    if "verbatim" in qn and "policy" in qn:
+        return True
+    if "first 50 lines" in qn or "lines of your skill" in qn:
+        return True
+    if "skill configuration" in qn and any(w in qn for w in ("paste", "lines", "copy", "show")):
+        return True
+    return False
+
+
 def _guardrail_category(query: str) -> str:
     q = _normalize_query_for_match(query)
     if any(term in q for term in SENSITIVE_PATTERNS):
@@ -2028,10 +2120,14 @@ def _guardrail_category(query: str) -> str:
 
 def _guardrail_answer(query: str) -> str:
     q = _normalize_query_for_match(query)
+    if _prompt_injection_or_extraction_query(q):
+        return _INJECTION_REFUSAL
     if any(term in q for term in [
         "hidden prompt", "reveal the hidden prompt", "private admin settings",
         "admin settings", "configured secret", "configured secrets",
         "list every configured secret",
+        "skill md", "kb index json", "kb chunks jsonl", "langfuse",
+        "system prompt", "tool schema", "trace payload",
     ]):
         return "I can't help with secrets, hidden instructions, raw indexed data, or unsupported speculative requests. Ask me a documented Gupshup Console question instead."
     if any(term in q for term in ["funny joke", "recommend a good movie", "good movie", "movie for tonight"]):
@@ -2064,6 +2160,69 @@ def _external_integration_gap_answer(query: str) -> Optional[str]:
     )
 
 
+def _redact_secrets_in_query_echo(text: str) -> str:
+    if not text:
+        return text
+    out = re.sub(r"\bsk-[a-zA-Z0-9_-]{4,}\b", "[redacted]", text, flags=re.IGNORECASE)
+    return out
+
+
+def _visible_kb_answer_query_field(query: str, refusal_category: str) -> str:
+    if refusal_category == "sensitive":
+        return ""
+    return _redact_secrets_in_query_echo(query)
+
+
+def _sensitive_token_chat_guidance(query: str) -> Optional[str]:
+    if re.search(r"\bsk-[a-zA-Z0-9_-]{4,}\b", query or "", flags=re.IGNORECASE):
+        return (
+            "I can't validate API keys or tokens in chat, and you should avoid pasting secrets here.\n\n"
+            "If this value was exposed in chat, treat it as compromised: rotate or revoke it in the "
+            "relevant provider or Gupshup account settings, and use your organization's support "
+            "channel if you need account assistance."
+        )
+    qn = _normalize_query_for_match(query or "")
+    if "is it valid" in qn and any(t in qn for t in ("token", "api key", "apikey", "secret", "password")):
+        return (
+            "I can't verify whether a token or secret is valid from chat.\n\n"
+            "Do not share production credentials here. Check validity in the provider's console or "
+            "rotate the credential if it may have been exposed."
+        )
+    return None
+
+
+def _rate_limit_numeric_gap_answer(query: str) -> Optional[str]:
+    """Numeric quotas / RPS for API Node or Console are not documented in the KB."""
+    q = _normalize_query_for_match(query)
+    if "rate limit" not in q and "rate limiting" not in q:
+        return None
+    if not any(
+        w in q
+        for w in (
+            "exact",
+            "values",
+            "value",
+            "number",
+            "numbers",
+            "how many",
+            "rps",
+            "quota",
+            "per second",
+            "requests per",
+            "throttle",
+            "limit is",
+            "limits are",
+        )
+    ):
+        return None
+    return (
+        "I don't know based on the documentation provided.\n\n"
+        "The indexed documentation does not specify numeric rate limits, quotas, or "
+        "requests-per-second values for `API Node` or the Console API surface.\n\n"
+        "Ask me how to configure or use `API Node` in a journey, and I can help with the documented setup steps."
+    )
+
+
 def _parse_parameters(parameters: object = None, **kwargs) -> Dict:
     data = {}
     if isinstance(parameters, str):
@@ -2071,13 +2230,40 @@ def _parse_parameters(parameters: object = None, **kwargs) -> Dict:
         if p:
             try:
                 data = json.loads(p)
-            except Exception:
-                data = {}
+            except Exception as exc:
+                raise ValueError("Invalid parameters: expected JSON object") from exc
+            if not isinstance(data, dict):
+                raise ValueError("Invalid parameters: expected a JSON object")
     elif isinstance(parameters, dict):
         data = dict(parameters)
+    elif parameters is not None:
+        raise ValueError("Invalid parameters: expected dict or JSON string")
     if kwargs:
         data.update(kwargs)
     return data
+
+
+def _sanitize_kb_query(raw: str) -> str:
+    q = (raw or "").replace("\x00", "")
+    q = re.sub(r"\s+", " ", q).strip()
+    if len(q) > _MAX_KB_QUERY_LEN:
+        q = q[:_MAX_KB_QUERY_LEN]
+    return q
+
+
+def _redact_answer_disclosures(text: str) -> str:
+    if not text:
+        return text
+    redactions = [
+        (r"kb[_/]?chunks\.jsonl", "[internal artifact]"),
+        (r"kb[_/]?index\.json", "[internal artifact]"),
+        (r"(?i)skill\.md", "[internal artifact]"),
+        (r"(?i)\.cursor[/\\][^\s]+", "[internal path]"),
+    ]
+    out = text
+    for pat, repl in redactions:
+        out = re.sub(pat, repl, out)
+    return out
 
 
 def _extract_query(params: Dict) -> str:
@@ -2135,8 +2321,11 @@ def _load_chunks(context) -> List[Dict]:
         f"https://raw.githubusercontent.com/{cfg['owner']}/{cfg['repo']}"
         f"/{cfg['branch']}/{cfg['chunks_path']}"
     )
-    r = requests.get(url, headers=_gh_headers(context), timeout=30)
-    r.raise_for_status()
+    try:
+        r = requests.get(url, headers=_gh_headers(context), timeout=30)
+        r.raise_for_status()
+    except Exception as exc:
+        raise RuntimeError("Could not load knowledge base content") from exc
     items: List[Dict] = []
     for line in r.text.splitlines():
         line = line.strip()
@@ -3243,6 +3432,35 @@ def _compose_answer(
                         if template:
                             return template
 
+    # JSON Handler: natural questions often insert extra words (e.g. "a json") so aliases
+    # do not substring-match; still return the full setup template when intent is clear.
+    if intent == "setup" and entities:
+        jh = next((e for e in entities if e.get("id") == "json_handler"), None)
+        if jh:
+            qn = _normalize_query_for_match(query)
+            parse_json_api = (
+                "parse" in qn
+                and "json" in qn
+                and ("api" in qn or "response" in qn or "field" in qn)
+            )
+            if _entity_alias_in_query(query, jh) or parse_json_api:
+                tpl = jh.get("templates", {}).get("setup")
+                if tpl:
+                    return tpl
+
+    if intent == "setup" and entities:
+        ctwa = next((e for e in entities if e.get("id") == "ctwa_to_goals"), None)
+        if ctwa:
+            qn_ct = _normalize_query_for_match(query)
+            ctwa_goals_q = (
+                "ctwa" in qn_ct
+                and ("goal" in qn_ct or "ads" in qn_ct or "ad " in qn_ct or "campaign" in qn_ct)
+            )
+            if _entity_alias_in_query(query, ctwa) or ctwa_goals_q:
+                tpl = ctwa.get("templates", {}).get("setup")
+                if tpl:
+                    return tpl
+
     # --- Chain pattern: multiple entities, setup intent ---
     if intent == "chain" and len(entities) >= 2:
         answer = _compose_chain(entities)
@@ -3740,18 +3958,22 @@ def _send_langfuse(
     unanswered = (not answered) and ("i don't know" in (answer or "").lower())
     identifiers = _telemetry_identifiers(context, params)
     trace_user_id, user_meta = _langfuse_user_context(context, params)
+    q_prev = query if len(query) <= _TELEMETRY_QUERY_PREVIEW else query[:_TELEMETRY_QUERY_PREVIEW] + "…"
+    a_prev = (answer or "")[:_TELEMETRY_ANSWER_PREVIEW]
+    if len(answer or "") > _TELEMETRY_ANSWER_PREVIEW:
+        a_prev = a_prev + "…"
     # Key order preserved in JSON; user identity first for Langfuse / dashboard scans.
     metadata = {
         "user_email": user_meta.get("user_email"),
         "user_name": user_meta.get("user_name"),
         "user_id": user_meta.get("user_id"),
-        "query": query,
-        "answer_preview": (answer or "")[:500],
+        "query": q_prev,
+        "answer_preview": a_prev,
         "release": identifiers.get("release"),
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "logic_version": "kb-answer-v2.0-concept-registry",
+        "logic_version": "kb-answer-v2.1-hardened",
         "prompt_version": None,
         "model": "rules-runtime",
         "temperature": 0,
@@ -3784,13 +4006,11 @@ def _send_langfuse(
     public_key = context.get_secret("LANGFUSE_PUBLIC_KEY") if context else None
     secret_key = context.get_secret("LANGFUSE_SECRET_KEY") if context else None
     endpoint = None
-    auth_header_present = False
     status_code = None
     error = None
     ingestion_ok = False
     if host and public_key and secret_key:
         endpoint = host.rstrip("/") + "/api/public/ingestion"
-        auth_header_present = True
         auth_raw = f"{public_key}:{secret_key}"
         auth_value = "Basic " + base64.b64encode(auth_raw.encode("utf-8")).decode("utf-8")
         headers = {
@@ -3803,15 +4023,17 @@ def _send_langfuse(
             status_code = resp.status_code
             ingestion_ok = resp.status_code < 400
             if not ingestion_ok:
-                error = resp.text[:500]
-        except Exception as exc:
-            error = str(exc)
-    debug_request = {
-        "endpoint": endpoint,
-        "has_auth_header": auth_header_present,
-        "auth_scheme": "Basic" if auth_header_present else None,
-        "body": body,
+                error = "ingestion_failed"
+        except Exception:
+            error = "ingestion_transport_error"
+    meta_out = {
+        k: v
+        for k, v in metadata.items()
+        if k not in ("user_email", "user_name", "user_id")
     }
+    qm = meta_out.get("query")
+    if isinstance(qm, str) and len(qm) > _TELEMETRY_QUERY_PREVIEW:
+        meta_out["query"] = qm[:_TELEMETRY_QUERY_PREVIEW] + "…"
     return {
         "ok": ingestion_ok,
         "trace_id": trace_id,
@@ -3826,9 +4048,7 @@ def _send_langfuse(
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "trace_userId": trace_user_id,
-        "debug_request": debug_request,
-        "metadata": metadata,
+        "metadata": meta_out,
     }
 
 
@@ -3838,20 +4058,27 @@ def _send_langfuse(
 
 def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
     params = _parse_parameters(parameters, **kwargs)
-    query = _extract_query(params)
+    query = _sanitize_kb_query(_extract_query(params))
     if not query:
         raise ValueError("query is required")
 
     started = datetime.now(timezone.utc)
 
     guardrail = _guardrail_answer(query)
+    gr_cat = _guardrail_category(query)
     if guardrail:
         latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
         langfuse = _send_langfuse(
             "kb_answer", query, guardrail, [], "General",
             ["refusal"], "refusal", False, latency_ms, context, params,
         )
-        return {"ok": True, "query": query, "answer": guardrail, "citations": [], "langfuse": langfuse}
+        return {
+            "ok": True,
+            "query": _visible_kb_answer_query_field(query, gr_cat),
+            "answer": guardrail,
+            "citations": [],
+            "langfuse": langfuse,
+        }
 
     external_gap = _external_integration_gap_answer(query)
     if external_gap:
@@ -3860,9 +4087,60 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
             "kb_answer", query, external_gap, [], "General",
             ["setup"], "setup", False, latency_ms, context, params,
         )
-        return {"ok": True, "query": query, "answer": external_gap, "citations": [], "langfuse": langfuse}
+        return {
+            "ok": True,
+            "query": _redact_secrets_in_query_echo(query),
+            "answer": external_gap,
+            "citations": [],
+            "langfuse": langfuse,
+        }
 
-    chunks = _load_chunks(context)
+    rate_gap = _rate_limit_numeric_gap_answer(query)
+    if rate_gap:
+        latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
+        langfuse = _send_langfuse(
+            "kb_answer", query, rate_gap, [], "General",
+            ["setup"], "setup", False, latency_ms, context, params,
+        )
+        return {
+            "ok": True,
+            "query": _redact_secrets_in_query_echo(query),
+            "answer": rate_gap,
+            "citations": [],
+            "langfuse": langfuse,
+        }
+
+    secret_guidance = _sensitive_token_chat_guidance(query)
+    if secret_guidance:
+        latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
+        langfuse = _send_langfuse(
+            "kb_answer", query, secret_guidance, [], "General",
+            ["refusal"], "refusal", False, latency_ms, context, params,
+        )
+        return {
+            "ok": True,
+            "query": _redact_secrets_in_query_echo(query),
+            "answer": secret_guidance,
+            "citations": [],
+            "langfuse": langfuse,
+        }
+
+    try:
+        chunks = _load_chunks(context)
+    except RuntimeError:
+        latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
+        msg = "The knowledge base could not be loaded right now. Try again later."
+        langfuse = _send_langfuse(
+            "kb_answer", query, msg, [], "General",
+            ["kb_error"], "refusal", False, latency_ms, context, params,
+        )
+        return {
+            "ok": False,
+            "query": _redact_secrets_in_query_echo(query),
+            "answer": msg,
+            "citations": [],
+            "langfuse": langfuse,
+        }
     explicit_module = _detect_module(query)
     entities = _extract_entities(query)
     intent = _classify_intent(query, entities)
@@ -3880,6 +4158,9 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
     evidence = _select_evidence(query, scored, intent, explicit_module)
     answer = _compose_answer(query, intent, entities, evidence, explicit_module)
     answer, policy_meta = _apply_answer_policy(answer, query, params)
+    answer = _redact_answer_disclosures(answer)
+    if len(answer) > _MAX_ANSWER_CHARS:
+        answer = answer[:_MAX_ANSWER_CHARS] + "…"
 
     latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
     langfuse = _send_langfuse(
@@ -3888,7 +4169,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
     )
     return {
         "ok": True,
-        "query": query,
+        "query": _redact_secrets_in_query_echo(query),
         "answer": answer,
         "citations": [],
         "langfuse": langfuse,

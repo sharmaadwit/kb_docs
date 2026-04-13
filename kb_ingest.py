@@ -11,7 +11,14 @@ def _parse_parameters(parameters: object = None, **kwargs) -> Dict:
     if parameters is None:
         parameters = {}
     if isinstance(parameters, str):
-        parameters = json.loads(parameters)
+        p = parameters.strip()
+        if not p:
+            parameters = {}
+        else:
+            try:
+                parameters = json.loads(p)
+            except Exception as exc:
+                raise ValueError("Invalid parameters: expected JSON object") from exc
     if not isinstance(parameters, dict):
         raise ValueError("parameters must be a dict or JSON string")
     return {**parameters, **kwargs}
@@ -31,14 +38,14 @@ def _gh_headers(context) -> Dict[str, str]:
 def _gh_get_json(url: str, context, params: Dict = None) -> Dict:
     r = requests.get(url, headers=_gh_headers(context), params=params or {}, timeout=30)
     if r.status_code >= 400:
-        raise RuntimeError(f"GitHub API error {r.status_code}: {r.text}")
+        raise RuntimeError("GitHub API request failed")
     return r.json()
 
 
 def _gh_put_json(url: str, context, payload: Dict) -> Dict:
     r = requests.put(url, headers=_gh_headers(context), data=json.dumps(payload), timeout=30)
     if r.status_code >= 400:
-        raise RuntimeError(f"GitHub API error {r.status_code}: {r.text}")
+        raise RuntimeError("GitHub API request failed")
     return r.json()
 
 
@@ -69,12 +76,21 @@ def _list_md_files(owner: str, repo: str, branch: str, docs_path: str, context) 
     return sorted(set(out))
 
 
+_MAX_RAW_FILE_BYTES = 1_500_000
+_MAX_MD_FILES = 400
+_MAX_CHUNKS_PER_FILE = 400
+_MAX_TOTAL_CHUNKS = 80_000
+
+
 def _get_raw(owner: str, repo: str, branch: str, path_in_repo: str, context) -> str:
     url = f"https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path_in_repo}"
-    r = requests.get(url, headers=_gh_headers(context), timeout=30)
+    r = requests.get(url, headers=_gh_headers(context), timeout=60)
     if r.status_code >= 400:
-        raise RuntimeError(f"GitHub RAW fetch error {r.status_code}: {r.text}")
-    return r.text
+        raise RuntimeError("GitHub content fetch failed")
+    data = r.content
+    if len(data) > _MAX_RAW_FILE_BYTES:
+        raise RuntimeError("Document exceeds maximum size for ingestion")
+    return data.decode("utf-8", errors="replace")
 
 
 def _normalize_whitespace(text: str) -> str:
@@ -340,7 +356,7 @@ def _get_file_sha(owner: str, repo: str, branch: str, path_in_repo: str, context
     if r.status_code == 404:
         return ""
     if r.status_code >= 400:
-        raise RuntimeError(f"GitHub API error {r.status_code}: {r.text}")
+        raise RuntimeError("GitHub API request failed")
     return (r.json() or {}).get("sha", "")
 
 
@@ -353,69 +369,106 @@ def _write_file(owner: str, repo: str, branch: str, path_in_repo: str, content: 
     _gh_put_json(url, context, payload)
 
 
-def kb_ingest(parameters: object = None, context=None) -> dict:
+def _safe_path_segment(path: str, fallback: str) -> str:
+    p = (path or "").strip().strip("/")
+    if not p or ".." in p or "\x00" in p:
+        return fallback
+    if not re.match(r"^[a-zA-Z0-9][a-zA-Z0-9_./-]*$", p):
+        return fallback
+    return p
+
+
+def kb_ingest(parameters: object = None, context=None, **kwargs) -> dict:
     """Ingest markdown docs from a GitHub repo path, chunk them, and write index artifacts."""
     if context is None:
         raise RuntimeError("Skill execution context is missing")
 
-    _ = _parse_parameters(parameters)
+    try:
+        params = _parse_parameters(parameters, **kwargs)
+    except ValueError:
+        return {"ok": False, "error": "Invalid parameters"}
+
     owner = context.get_secret("GITHUB_OWNER")
     repo = context.get_secret("GITHUB_REPO")
-    branch = context.get_secret("GITHUB_BRANCH") or "main"
-    docs_path = (context.get_secret("GITHUB_DOCS_PATH") or "kb").strip("/")
+    branch = (context.get_secret("GITHUB_BRANCH") or "main").strip()
+    docs_path = _safe_path_segment(
+        context.get_secret("GITHUB_DOCS_PATH") or "kb",
+        "kb",
+    )
     chunks_out = context.get_secret("GITHUB_KB_CHUNKS_PATH") or f"{docs_path}/kb_chunks.jsonl"
     index_out = context.get_secret("GITHUB_KB_INDEX_PATH") or f"{docs_path}/kb_index.json"
+    if isinstance(params.get("docs_path"), str) and params.get("docs_path").strip():
+        docs_path = _safe_path_segment(params["docs_path"], docs_path)
+    if isinstance(params.get("branch"), str) and params["branch"].strip():
+        branch = params["branch"].strip()[:256]
+        if ".." in branch or "\x00" in branch:
+            return {"ok": False, "error": "Invalid branch override"}
 
     if not owner or not repo or not branch:
         raise RuntimeError("Missing GitHub configuration secrets")
 
     excluded = [f"{docs_path}/analytics"]
-    md_files = _list_md_files(owner, repo, branch, docs_path, context)
+    try:
+        md_files = _list_md_files(owner, repo, branch, docs_path, context)
+    except Exception:
+        return {"ok": False, "error": "Could not list documentation files"}
+
+    if len(md_files) > _MAX_MD_FILES:
+        md_files = md_files[:_MAX_MD_FILES]
 
     chunks_lines = []
     doc_entries = []
     total_chunks = 0
 
-    for fp in md_files:
-        raw = _get_raw(owner, repo, branch, fp, context)
-        chunk_records = _chunk_text(raw, fp)
-        doc_entries.append({"path": fp, "chunks": len(chunk_records)})
-        for idx, rec in enumerate(chunk_records):
-            chunks_lines.append(json.dumps({
-                "id": f"{fp}::chunk_{idx}",
-                "source": fp,
-                "chunk": idx,
-                "section": rec.get("section"),
-                "heading": rec.get("heading") or "",
-                "heading_path": rec.get("heading_path") or [],
-                "section_type": rec.get("section_type") or "general",
-                "is_reference": rec.get("section_type") == "reference",
-                "local_chunk": rec.get("local_chunk"),
-                "text": rec.get("text") or "",
-            }, ensure_ascii=False))
-        total_chunks += len(chunk_records)
+    try:
+        for fp in md_files:
+            raw = _get_raw(owner, repo, branch, fp, context)
+            chunk_records = _chunk_text(raw, fp)
+            if len(chunk_records) > _MAX_CHUNKS_PER_FILE:
+                chunk_records = chunk_records[:_MAX_CHUNKS_PER_FILE]
+            doc_entries.append({"path": fp, "chunks": len(chunk_records)})
+            for idx, rec in enumerate(chunk_records):
+                if total_chunks >= _MAX_TOTAL_CHUNKS:
+                    break
+                chunks_lines.append(json.dumps({
+                    "id": f"{fp}::chunk_{idx}",
+                    "source": fp,
+                    "chunk": idx,
+                    "section": rec.get("section"),
+                    "heading": rec.get("heading") or "",
+                    "heading_path": rec.get("heading_path") or [],
+                    "section_type": rec.get("section_type") or "general",
+                    "is_reference": rec.get("section_type") == "reference",
+                    "local_chunk": rec.get("local_chunk"),
+                    "text": rec.get("text") or "",
+                }, ensure_ascii=False))
+                total_chunks += 1
+            if total_chunks >= _MAX_TOTAL_CHUNKS:
+                break
 
-    now = datetime.now(timezone.utc).isoformat()
-    index = {
-        "ok": True,
-        "created_at": now,
-        "repo": f"{owner}/{repo}",
-        "branch": branch,
-        "docs_path": docs_path,
-        "excluded": excluded,
-        "md_files": len(md_files),
-        "chunks": total_chunks,
-        "docs": doc_entries,
-        "chunking": {
-            "strategy": "heading_path_section_blocks",
-            "chunk_size": 1200,
-            "overlap": 120,
-            "metadata": ["heading", "heading_path", "section_type", "is_reference"],
-        },
-    }
+        now = datetime.now(timezone.utc).isoformat()
+        index = {
+            "ok": True,
+            "created_at": now,
+            "repo": f"{owner}/{repo}",
+            "branch": branch,
+            "docs_path": docs_path,
+            "excluded": excluded,
+            "md_files": len(md_files),
+            "chunks": total_chunks,
+            "docs": doc_entries,
+            "chunking": {
+                "strategy": "heading_path_section_blocks",
+                "chunk_size": 1200,
+                "overlap": 120,
+                "metadata": ["heading", "heading_path", "section_type", "is_reference"],
+            },
+        }
 
-    _write_file(owner, repo, branch, chunks_out, "\n".join(chunks_lines) + "\n", "KB ingest: write chunks", context)
-    _write_file(owner, repo, branch, index_out, json.dumps(index, indent=2), "KB ingest: write index", context)
+        _write_file(owner, repo, branch, chunks_out, "\n".join(chunks_lines) + "\n", "KB ingest: write chunks", context)
+        _write_file(owner, repo, branch, index_out, json.dumps(index, indent=2), "KB ingest: write index", context)
+    except Exception:
+        return {"ok": False, "error": "Ingest failed"}
 
     return {
         "ok": True,

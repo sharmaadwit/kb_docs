@@ -5,6 +5,21 @@ from typing import Any, Dict, List, Optional
 
 import requests
 
+_MAX_SEARCH_QUERY_LEN = 4000
+_MAX_TOP_K = 25
+_PUBLIC_SNIPPET_LEN = 900
+_TELEMETRY_QUERY_PREVIEW = 400
+_CLIENT_QUERY_VISIBLE_MAX = 500
+
+
+def _visible_query_echo(raw: str, omit_entirely: bool) -> str:
+    """Do not echo hostile/sensitive full queries in API responses (F2)."""
+    if omit_entirely:
+        return ""
+    if len(raw) > _CLIENT_QUERY_VISIBLE_MAX:
+        return raw[:_CLIENT_QUERY_VISIBLE_MAX] + "…"
+    return raw
+
 
 # ---------------------------------------------------------------------------
 # Section 1 — Module mapping
@@ -98,7 +113,11 @@ CONCEPT_REGISTRY: List[Dict] = [
         "aliases": [
             "json handler", "json parser", "parse response",
             "parse api response", "parse fields from api response",
-            "parse fields from an api response", "extract response fields",
+            "parse fields from an api response",
+            "parse fields from a json api response",
+            "parse json api response",
+            "json api response",
+            "extract response fields",
             "extract fields from api response", "response fields",
             "extract fields from response", "parse json response",
             "response stored in a variable", "api response stored in a variable",
@@ -188,6 +207,9 @@ CONCEPT_REGISTRY: List[Dict] = [
         "id": "agent_transfer",
         "aliases": [
             "agent transfer node", "connect with a human agent",
+            "hand a chat", "hand chat from the bot",
+            "from the bot to a human", "bot to a human agent",
+            "to a human agent", "hand off to human",
             "handover to agent", "transfer to human agent",
             "not be transferred to an agent",
             "customer might not be transferred to an agent",
@@ -406,7 +428,9 @@ CONCEPT_REGISTRY: List[Dict] = [
         "id": "campaign_analytics",
         "aliases": [
             "campaign analytics", "response file", "link tracking report",
-            "click through rate", "unique clicks", "total clicks",
+            "click through rate", "click through or campaign metrics",
+            "campaign metrics", "campaign manager metrics",
+            "unique clicks", "total clicks",
             "dropped", "failed", "click metrics", "campaign click",
             "campaign performance", "delivery stats",
         ],
@@ -416,7 +440,15 @@ CONCEPT_REGISTRY: List[Dict] = [
     },
     {
         "id": "ctwa_to_goals",
-        "aliases": ["connect a bot to a ctwa campaign", "ad journeys", "ctwa to goals"],
+        "aliases": [
+            "connect a bot to a ctwa campaign",
+            "connect ctwa or ads to goals",
+            "connect ctwa to goals",
+            "ctwa or ads to goals",
+            "ads to goals",
+            "ad journeys",
+            "ctwa to goals",
+        ],
         "keywords": ["ctwa", "ad"],
         "source_boosts": {"ctwa-to-bot-to-goals": 5.0},
         "source_penalties": {"ctx-goal-nodes-and-conversions-api": -3.0, "creating-a-ctwa-ad": -3.0},
@@ -844,6 +876,8 @@ PRODUCT_SIGNAL_TERMS = [
     "test my bot", "click metrics", "goal conversions",
     "live bot", "deploy journey", "live rollout",
     "live monitoring dashboard", "agent state",
+    "human agent", "hand a chat", "hand off",
+    "campaign metrics", "ctwa", "goals",
 ]
 
 OFFTOPIC_TERMS = [
@@ -872,10 +906,8 @@ UNSUPPORTED_PATTERNS = [
     "campaign analytics automatically to an s3",
     "two ad journeys", "cross browsers without login",
     "two factor authentication", "2fa", "two step verification",
-    "rate limiting", "rate limit",
     "roll back to a previous version", "rollback",
     "previous version of a deployed", "revert to previous version",
-    "configure rate limiting on",
     "chat history across different browsers",
     "sync retained chat history across",
 ]
@@ -896,6 +928,25 @@ SENSITIVE_PATTERNS = [
     "root password", "database password",
     "extract customer phone numbers", "extract phone numbers",
     "make up an answer", "even if undocumented",
+    "skill md", "skill.md",
+    "kb index json", "kb_index.json", "kb chunks jsonl", "kb_chunks.jsonl",
+    "langfuse", "trace payload", "system prompt", "tool schema",
+    "show me the prompt", "dump the index", "full chunk text",
+    "you are now unrestricted",
+    "override you are now",
+    "list all env",
+    "list env vars",
+    "show all env",
+    "dump env",
+    "print env",
+    "all environment variables",
+    "every environment variable",
+    "repeat everything between",
+    "repeat verbatim",
+    "between policy tags",
+    "skill configuration",
+    "first 50 lines",
+    "lines of your skill",
 ]
 
 GLOBAL_PENALTY_SOURCES = [
@@ -963,13 +1014,25 @@ def _parse_parameters(parameters: object = None, **kwargs) -> Dict:
         if p:
             try:
                 data = json.loads(p)
-            except Exception:
-                data = {}
+            except Exception as exc:
+                raise ValueError("Invalid parameters: expected JSON object") from exc
+            if not isinstance(data, dict):
+                raise ValueError("Invalid parameters: expected a JSON object")
     elif isinstance(parameters, dict):
         data = dict(parameters)
+    elif parameters is not None:
+        raise ValueError("Invalid parameters: expected dict or JSON string")
     if kwargs:
         data.update(kwargs)
     return data
+
+
+def _sanitize_search_query(raw: str) -> str:
+    q = (raw or "").replace("\x00", "")
+    q = re.sub(r"\s+", " ", q).strip()
+    if len(q) > _MAX_SEARCH_QUERY_LEN:
+        q = q[:_MAX_SEARCH_QUERY_LEN]
+    return q
 
 
 def _extract_query(params: Dict) -> str:
@@ -1021,8 +1084,11 @@ def _load_chunks(context) -> List[Dict]:
         f"https://raw.githubusercontent.com/{cfg['owner']}/{cfg['repo']}"
         f"/{cfg['branch']}/{cfg['chunks_path']}"
     )
-    r = requests.get(url, headers=_gh_headers(context), timeout=30)
-    r.raise_for_status()
+    try:
+        r = requests.get(url, headers=_gh_headers(context), timeout=30)
+        r.raise_for_status()
+    except Exception as exc:
+        raise RuntimeError("Could not load knowledge base content") from exc
     items: List[Dict] = []
     for line in r.text.splitlines():
         line = line.strip()
@@ -1365,7 +1431,13 @@ def _langfuse_user_context_search(
 
 
 def _kb_search_langfuse_client_view(compact: Dict[str, Any]) -> Dict[str, Any]:
-    md = compact.get("metadata") or {}
+    md_in = compact.get("metadata") or {}
+    md = dict(md_in)
+    q = md.get("query")
+    if isinstance(q, str) and len(q) > _TELEMETRY_QUERY_PREVIEW:
+        md["query"] = q[:_TELEMETRY_QUERY_PREVIEW] + "…"
+    for k in ("user_email", "user_name", "user_id"):
+        md.pop(k, None)
     return {
         "ok": compact.get("ok", True),
         "trace_id": compact.get("trace_id"),
@@ -1374,10 +1446,24 @@ def _kb_search_langfuse_client_view(compact: Dict[str, Any]) -> Dict[str, Any]:
         "environment": md.get("environment"),
         "deployment_label": md.get("deployment_label"),
         "telemetry_partition": md.get("telemetry_partition"),
-        "trace_userId": compact.get("trace_userId"),
         "trace_id_origin": "local_trace_id",
         "metadata": md,
     }
+
+
+def _public_search_row(row: Dict[str, Any]) -> Dict[str, Any]:
+    text = row.get("text") or ""
+    if isinstance(text, str) and len(text) > _PUBLIC_SNIPPET_LEN:
+        text = text[:_PUBLIC_SNIPPET_LEN] + "…"
+    out: Dict[str, Any] = {
+        "source": row.get("source"),
+        "score": row.get("score"),
+        "text": text,
+        "snippet": text,
+        "heading": row.get("heading"),
+        "section_type": row.get("section_type"),
+    }
+    return {k: v for k, v in out.items() if v is not None}
 
 
 def _compact_langfuse(
@@ -1422,6 +1508,7 @@ def _compact_langfuse(
     telemetry_partition = f"{environment}:{deployment_label}"
 
     trace_id = f"kb-{trace_name}-{datetime.now(timezone.utc).strftime('%H%M%S%f')}"
+    query_meta = query if len(query) <= _TELEMETRY_QUERY_PREVIEW else query[:_TELEMETRY_QUERY_PREVIEW] + "…"
     top_source = results[0].get("source") if results else None
     module_label = explicit_module if explicit_module != "General" else (
         _module_from_source(top_source or "") if top_source else "General"
@@ -1440,12 +1527,12 @@ def _compact_langfuse(
             "user_email": user.get("user_email"),
             "user_name": user.get("user_name"),
             "user_id": user.get("user_id"),
-            "query": query,
+            "query": query_meta,
             "release": release,
             "environment": environment,
             "deployment_label": deployment_label,
             "telemetry_partition": telemetry_partition,
-            "logic_version": "kb-search-v2.0-concept-registry",
+            "logic_version": "kb-search-v2.1-hardened",
             "prompt_version": None,
             "model": "rules-runtime",
             "temperature": 0,
@@ -1479,8 +1566,12 @@ def _compact_langfuse(
 
 def kb_search(parameters: object = None, context=None, **kwargs) -> dict:
     params = _parse_parameters(parameters, **kwargs)
-    query = _extract_query(params)
-    top_k = int(params.get("top_k") or 5)
+    query = _sanitize_search_query(_extract_query(params))
+    try:
+        top_k = int(params.get("top_k") or 5)
+    except (TypeError, ValueError):
+        top_k = 5
+    top_k = max(1, min(top_k, _MAX_TOP_K))
     if not query:
         raise ValueError("query is required")
 
@@ -1488,18 +1579,35 @@ def kb_search(parameters: object = None, context=None, **kwargs) -> dict:
     guardrail = _guardrail_category(query)
     if guardrail:
         latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
+        omit_q = guardrail == "sensitive"
+        meta_q = "" if omit_q else query
         langfuse = _compact_langfuse(
-            "kb_search", query, [], "General", [guardrail], "refusal", latency_ms, context, params,
+            "kb_search", meta_q, [], "General", [guardrail], "refusal", latency_ms, context, params,
         )
         return {
             "ok": True,
-            "query": query,
+            "query": _visible_query_echo(query, omit_q),
+            "query_omitted": omit_q,
             "top_k": top_k,
             "results": [],
             "langfuse": _kb_search_langfuse_client_view(langfuse),
         }
 
-    chunks = _load_chunks(context)
+    try:
+        chunks = _load_chunks(context)
+    except RuntimeError:
+        latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
+        langfuse = _compact_langfuse(
+            "kb_search", query, [], "General", ["kb_error"], "refusal", latency_ms, context, params,
+        )
+        return {
+            "ok": False,
+            "query": _visible_query_echo(query, False),
+            "top_k": top_k,
+            "results": [],
+            "error": "kb_unavailable",
+            "langfuse": _kb_search_langfuse_client_view(langfuse),
+        }
     explicit_module = _detect_module(query)
     entities = _extract_entities(query)
     intents = _detect_intents(query)
@@ -1516,14 +1624,16 @@ def kb_search(parameters: object = None, context=None, **kwargs) -> dict:
     scored = _apply_feature_lock(scored, entities)
 
     results = scored[:top_k]
+    public_results = [_public_search_row(r) for r in results]
     latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
     langfuse = _compact_langfuse(
         "kb_search", query, results, explicit_module, intents, preferred_mode, latency_ms, context, params,
     )
     return {
         "ok": True,
-        "query": query,
+        "query": _visible_query_echo(query, False),
         "top_k": top_k,
-        "results": results,
+        "top_k_effective": top_k,
+        "results": public_results,
         "langfuse": _kb_search_langfuse_client_view(langfuse),
     }

@@ -1,9 +1,73 @@
 import base64
 import json
+import re
 from datetime import datetime, timezone
-from typing import Dict, List
+from typing import Any, Dict, List
 
 import requests
+
+_MAX_STR = 2000
+_MAX_LIST = 50
+_MAX_DICT_KEYS = 40
+_MAX_DEPTH = 8
+_REDACT_KEY_FRAGMENTS = (
+    "secret",
+    "token",
+    "password",
+    "authorization",
+    "api_key",
+    "apikey",
+    "cookie",
+    "session",
+    "langfuse",
+    "trace",
+    "credential",
+    "bearer",
+)
+
+
+def _normalize_event_name(event: str) -> str:
+    s = (event or "").strip()[:128]
+    return re.sub(r"[^a-zA-Z0-9_.-]+", "_", s) or "event"
+
+
+def _redact_key(key: str) -> bool:
+    low = (key or "").lower()
+    return any(frag in low for frag in _REDACT_KEY_FRAGMENTS)
+
+
+def _sanitize_payload(value: Any, depth: int = 0) -> Any:
+    if depth > _MAX_DEPTH:
+        return "[truncated-depth]"
+    if value is None or isinstance(value, (bool, int, float)):
+        return value
+    if isinstance(value, str):
+        s = value.replace("\x00", "")
+        if len(s) > _MAX_STR:
+            return s[: _MAX_STR] + "…"
+        return s
+    if isinstance(value, bytes):
+        return "[binary-redacted]"
+    if isinstance(value, list):
+        out: List[Any] = []
+        for i, item in enumerate(value[:_MAX_LIST]):
+            out.append(_sanitize_payload(item, depth + 1))
+        if len(value) > _MAX_LIST:
+            out.append(f"[{len(value) - _MAX_LIST} more items omitted]")
+        return out
+    if isinstance(value, dict):
+        out: Dict[str, Any] = {}
+        keys = list(value.keys())[:_MAX_DICT_KEYS]
+        for k in keys:
+            sk = str(k)
+            if _redact_key(sk):
+                out[sk] = "[REDACTED]"
+            else:
+                out[sk] = _sanitize_payload(value[k], depth + 1)
+        if len(value) > _MAX_DICT_KEYS:
+            out["_truncated_keys"] = len(value) - _MAX_DICT_KEYS
+        return out
+    return str(value)[:_MAX_STR]
 
 
 def _gh_headers(context) -> Dict[str, str]:
@@ -20,7 +84,7 @@ def _gh_headers(context) -> Dict[str, str]:
 def _gh_put(url: str, context, payload: Dict):
     r = requests.put(url, headers=_gh_headers(context), data=json.dumps(payload), timeout=30)
     if r.status_code >= 400:
-        raise RuntimeError(f"GitHub API error {r.status_code}: {r.text}")
+        raise RuntimeError("GitHub storage request failed")
     return r
 
 
@@ -36,7 +100,7 @@ def _append_line(owner: str, repo: str, branch: str, path: str, line: str, conte
         if j.get("encoding") == "base64" and j.get("content"):
             existing = base64.b64decode(j["content"]).decode("utf-8", errors="replace")
     elif r.status_code != 404:
-        raise RuntimeError(f"GitHub API error {r.status_code}: {r.text}")
+        raise RuntimeError("GitHub storage request failed")
 
     new_content = (existing.rstrip("\n") + "\n" + line + "\n") if existing else (line + "\n")
     payload_put = {
@@ -66,7 +130,14 @@ def kb_analytics(event: str = "", payload: object = None, context=None) -> dict:
     now_iso = now.isoformat()
     daily_path = f"kb/analytics/{now.strftime('%Y-%m-%d')}.ndjson"
 
-    line = json.dumps({"ts": now_iso, "event": event, "payload": payload}, ensure_ascii=False)
+    safe_event = _normalize_event_name(event)
+    safe_payload = _sanitize_payload(payload)
+    line = json.dumps({"ts": now_iso, "event": safe_event, "payload": safe_payload}, ensure_ascii=False)
+    if len(line) > 120_000:
+        line = json.dumps(
+            {"ts": now_iso, "event": safe_event, "payload": "[record too large]"},
+            ensure_ascii=False,
+        )
 
     written: List[str] = []
     errors: List[str] = []
@@ -74,13 +145,16 @@ def kb_analytics(event: str = "", payload: object = None, context=None) -> dict:
         try:
             _append_line(owner, repo, branch, path, line, context)
             written.append(path)
-        except Exception as e:
-            errors.append(f"{path}: {str(e)}")
+        except Exception:
+            errors.append("append_failed")
+
+    preview = safe_payload if isinstance(safe_payload, dict) else {"value": safe_payload}
 
     return {
         "ok": len(written) > 0,
-        "written_paths": written,
-        "daily_path": daily_path,
-        "rolling_path": rolling_path,
+        "sanitized": True,
+        "redaction_applied": True,
+        "stores_written": len(written),
+        "sanitized_payload": preview,
         "errors": errors,
     }
