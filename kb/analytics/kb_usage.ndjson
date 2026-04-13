@@ -99,3 +99,4 @@
 {"event_id": "6a51d61c-05d2-4e98-a358-6243d04b0bf2", "ts": "2026-03-15T10:05:58.450838+00:00", "event": "smoke_test", "payload": {"source": "superagent", "purpose": "kb_analytics smoke test"}}
 {"event_id": "5064e904-57b6-4aee-b657-9d6264172975", "ts": "2026-04-08T08:58:28.539512+00:00", "event": "smoke_test", "payload": {"source": "superagent", "scope": "product_introduction_kb"}}
 {"ts": "2026-04-13T04:39:35.681024+00:00", "event": "test_secret_redaction", "payload": {"api_key": "[REDACTED]", "user_question": "hi"}}
+{"ts": "2026-04-13T05:07:54.663616+00:00", "event": "test_secret_redaction", "payload": {"api_key": "[REDACTED]", "user_question": "hi"}}
