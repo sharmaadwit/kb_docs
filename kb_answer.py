@@ -3507,7 +3507,14 @@ def _compose_compare(
             blurb = ent.get("compare_blurb", "")
             if blurb:
                 label = ent.get("display", ent["id"].replace("_", " ").title())
-                parts.append(f"**{label}**\n- Use this when {blurb}")
+                # Blurbs often start with "You need ..."; keep sentence case after "when".
+                if blurb.startswith("You "):
+                    blurb = "you" + blurb[3:]
+                if blurb.startswith("Use "):
+                    line = f"**{label}**\n- {blurb}"
+                else:
+                    line = f"**{label}**\n- Use this when {blurb}"
+                parts.append(line)
         if parts:
             return "\n".join(parts)
 
