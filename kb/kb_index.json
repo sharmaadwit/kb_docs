@@ -1,14 +1,14 @@
 {
   "ok": true,
-  "created_at": "2026-04-13T05:09:31.074948+00:00",
+  "created_at": "2026-04-14T14:48:27.024585+00:00",
   "repo": "sharmaadwit/kb_docs",
   "branch": "main",
   "docs_path": "kb",
   "excluded": [
     "kb/analytics"
   ],
-  "md_files": 254,
-  "chunks": 5220,
+  "md_files": 260,
+  "chunks": 5277,
   "docs": [
     {
       "path": "kb/agent-assist/about-agent-assist.md",
@@ -945,6 +945,30 @@
     {
       "path": "kb/integrations/webhooks.md",
       "chunks": 7
+    },
+    {
+      "path": "kb/integrations/whatsapp-voice-sip-call-permissions-and-errors.md",
+      "chunks": 12
+    },
+    {
+      "path": "kb/integrations/whatsapp-voice-sip-inbound-calls.md",
+      "chunks": 11
+    },
+    {
+      "path": "kb/integrations/whatsapp-voice-sip-network-and-media.md",
+      "chunks": 9
+    },
+    {
+      "path": "kb/integrations/whatsapp-voice-sip-operations-faq.md",
+      "chunks": 11
+    },
+    {
+      "path": "kb/integrations/whatsapp-voice-sip-outbound-calls.md",
+      "chunks": 9
+    },
+    {
+      "path": "kb/integrations/whatsapp-voice-sip-overview.md",
+      "chunks": 5
     },
     {
       "path": "kb/overview/about-projects.md",
