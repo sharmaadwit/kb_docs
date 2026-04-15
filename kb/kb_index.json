@@ -1,14 +1,14 @@
 {
   "ok": true,
-  "created_at": "2026-04-14T14:54:22.162177+00:00",
+  "created_at": "2026-04-15T07:09:38.560755+00:00",
   "repo": "sharmaadwit/kb_docs",
   "branch": "main",
   "docs_path": "kb",
   "excluded": [
     "kb/analytics"
   ],
-  "md_files": 260,
-  "chunks": 5277,
+  "md_files": 263,
+  "chunks": 5335,
   "docs": [
     {
       "path": "kb/agent-assist/about-agent-assist.md",
@@ -837,6 +837,18 @@
     {
       "path": "kb/channels/whatsapp-business-api.md",
       "chunks": 39
+    },
+    {
+      "path": "kb/channels/whatsapp-voice-cdr-insights-and-agent-analytics.md",
+      "chunks": 22
+    },
+    {
+      "path": "kb/channels/whatsapp-voice-outbound-calls-session-and-permissions.md",
+      "chunks": 21
+    },
+    {
+      "path": "kb/channels/whatsapp-voice-overview-and-inbound-calls.md",
+      "chunks": 15
     },
     {
       "path": "kb/ctx/connecting-ad-to-bot-in-gupshup-console.md",
