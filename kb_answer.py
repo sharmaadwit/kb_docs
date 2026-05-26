@@ -1986,7 +1986,10 @@ COMPARE_OVERRIDES: Dict[Tuple[str, ...], str] = {
         "Use Campaign Analytics when\n"
         "- You need delivery, read, and click performance for outbound campaigns in Campaign Manager.\n"
         "Use Goal Analytics when\n"
-        "- You need post-click conversion performance, goal completion, or journey-attributed outcomes in Goals (not the same as general campaign delivery views)."
+        "- You need post-click conversion performance, goal completion, or journey-attributed outcomes in Goals (not the same as general campaign delivery views).\n"
+        "Which to check first for clicks\n"
+        "- Start with Campaign Analytics for click activity on campaign links and related delivery/read metrics.\n"
+        "- Use Goal Analytics when you need goal completion or conversion milestones after the click, not for general campaign link clicks."
     ),
     ("test_your_bot", "save_deploy"): (
         "Use Test your Bot first\n"
@@ -2652,9 +2655,262 @@ INTENT_TYPES = [
 ]
 
 
+# ---------------------------------------------------------------------------
+# Section 6b — Canonical override: SuperAgent for internal use cases
+# ---------------------------------------------------------------------------
+
+SUPERAGENT_INTERNAL_OVERRIDE_HEADER = (
+    "**SuperAgent for internal use cases — enablement guide**"
+)
+
+SUPERAGENT_INTERNAL_ENABLEMENT_ANSWER = (
+    SUPERAGENT_INTERNAL_OVERRIDE_HEADER
+    + "\n\n"
+    + """
+## 1) What SuperAgent should do
+For internal use cases, SuperAgent should sit as an **AI orchestration layer over the customer's existing systems**.
+It is not meant to replace their warehouse, CRM, ticketing, or internal APIs. Instead, it uses those systems through controlled integrations.
+
+Typical internal use cases:
+- Internal ops copilot
+- Campaign operations assistant
+- Template management assistant
+- Support / Agent Assist admin helper
+- Analytics / troubleshooting assistant
+- Internal workflow automation via APIs / webhooks
+
+## 2) Recommended architecture
+A safe and scalable setup usually looks like this:
+- **Customer data stays in customer-controlled systems** — CRM, CDP, DB, BI tools, ticketing tools, internal dashboards, etc.
+- **Customer exposes only what is needed** — secure APIs, webhooks, scheduled exports, middleware / iPaaS layer, read-only service endpoints where possible.
+- **SuperAgent uses skills to interact with those systems** — each skill handles a narrow task (fetch open tickets, create a campaign draft, check template status, sync analytics, trigger webhook).
+- **Secrets stay in skill settings** — API keys, tokens, base URLs, client credentials should be stored in Skill Settings / secrets, not pasted into prompts.
+
+## 3) How to build this in SuperAgent
+**Step A: Define the use case clearly.** Lock these before building:
+- Who will use it?
+- What questions / actions should it support?
+- Which systems will it read from?
+- Which systems will it write to?
+- What actions require confirmation?
+
+Good first use cases:
+- "Show campaign performance for the last 7 days"
+- "Fetch failed WhatsApp templates and suggest next steps"
+- "Create a draft response for support escalation"
+- "Trigger a webhook when a lead reaches a stage"
+
+Avoid starting with:
+- "Connect everything"
+- "Let the AI access all internal data"
+
+## 4) Using Build Skills & Recipes
+If you want custom internal workflows, this is the main entry point.
+
+Use **Build Skills & Recipes** when you need to:
+- Create a custom skill for an internal API
+- Add logic for a private workflow
+- Build a reusable internal automation
+- Standardize a multi-step operational flow
+
+**When to create a Skill** — when the agent needs to call an API, read or update structured data, trigger a webhook, perform a repeatable business action, or validate inputs before acting.
+Examples: `get_open_tickets`, `fetch_internal_kpi`, `create_campaign_approval_request`, `sync_customer_status`, `trigger_internal_incident_webhook`.
+
+**When to create a Recipe** — when you need a guided workflow using one or more skills, best-practice orchestration, or a repeatable process with business rules.
+Examples: campaign launch checklist, lead qualification workflow, escalation handling flow, delivery request orchestration.
+
+## 5) Best practice for Skill Secrets
+For internal use cases, credentials should be stored in **skill secrets / settings**, not hardcoded and not shared in chat.
+
+Store things like API base URLs, client ID / client secret, API keys, bearer tokens, service account values, project IDs, workspace IDs.
+
+Why use skill secrets:
+- Keeps auth separate from chat
+- Prevents users from seeing credentials
+- Makes the skill reusable across sessions
+- Easier to rotate credentials later
+- Safer than embedding tokens in prompts or code
+
+Important rules:
+- Never ask end users to paste passwords or raw secrets into chat
+- Keep secrets per skill if scopes differ
+- Use least-privilege credentials
+- Prefer short-lived tokens where possible
+- Rotate keys periodically
+
+## 6) Suggested pattern for custom internal skills
+A strong internal skill usually follows this pattern:
+- **One clear purpose** (e.g. "Fetch open finance approvals")
+- **Defined inputs** (date range, team, status, campaign ID, template name, etc.)
+- **Secure auth from skill secrets**
+- **Validation** — reject missing / invalid inputs, prevent unsafe writes
+- **Clear output** — structured, short, reliable; avoid dumping raw backend payloads
+- **Confirmation for sensitive actions** — especially create, update, delete, send, or publish
+
+## 7) What the customer team usually needs to provide
+**Data access layer** — at least one of: internal API endpoints, middleware service, webhook receiver / sender, read-only reporting endpoint, export pipeline into an accessible system.
+
+**Authentication model**, for example: API key, OAuth client credentials, JWT / Bearer token flow, Basic auth if unavoidable, IP allowlisting if required.
+
+**Data contract** — define input parameters, output fields, error states, rate limits, pagination, freshness / SLA expectations.
+
+**Ownership** — someone must own API uptime, schema changes, credential rotation, incident handling, and access approval.
+
+## 8) Recommended rollout plan
+- **Phase 1: Discovery** — document use case, users, systems, inputs / outputs, permissions, approval needs, expected business value.
+- **Phase 2: Build a thin slice** — one skill, one API, one clear result, one user persona.
+- **Phase 3: Add guardrails** — read-only vs write, approval-required actions, who can invoke what, allowed environments, logging / audit expectations.
+- **Phase 4: Pilot** — small internal team, verify answers, test edge cases, refine prompts and outputs, improve error handling.
+- **Phase 5: Expand** — more skills, multi-step recipes, scheduled automations, analytics / reporting helpers.
+
+## 9) Good internal use-case examples
+**Read-heavy, low-risk starters:** fetch analytics summaries, check WABA health, list templates by status, find delivery issues, summarize campaign performance, list open support items, retrieve goal / journey status.
+
+**Medium-complexity:** draft campaign setup from inputs, create internal review summaries, map template variables, segment / customer lookup helpers, support routing recommendations.
+
+**Higher-risk (add only after controls are clear):** publish campaigns, update production journeys, modify live configs, create users / access, write back to internal systems, trigger customer-facing outbound actions.
+
+## 10) Guardrails to define upfront
+- Who can use it
+- What systems it can access
+- Which actions are read-only
+- Which actions require confirmation
+- What data must never be exposed
+- What logs / audits are needed
+- What happens on auth failure or bad input
+
+Simple rule: start with read-only, add writes later, and require confirmation for destructive or customer-impacting actions.
+
+## 11) How to explain this to a customer
+> SuperAgent can support internal workflows, but the recommended model is to
+> connect it to your existing systems through secure APIs, webhooks, or
+> controlled data services. For custom workflows we use **Build Skills &
+> Recipes** to create reusable capabilities. Authentication should be stored
+> securely in skill secrets / settings, not passed through chat. We usually
+> start with a narrow use case, pilot it with read-only access, and then
+> expand once the data contracts and controls are stable.
+
+## 12) Practical implementation checklist
+- Identify one internal use case
+- List source systems involved
+- Define read / write scope
+- Ask customer team for API or webhook access
+- Define request / response schema
+- Build a custom skill using **Build Skills & Recipes**
+- Store auth in Skill Settings / secrets
+- Test with sample inputs
+- Add confirmation for sensitive actions
+- Pilot with a small user group
+- Review failures and edge cases
+- Expand to more workflows only after stability
+
+## 13) What not to do
+- Don't ask users to paste credentials in chat
+- Don't hardcode secrets inside prompts
+- Don't start with broad production write access
+- Don't connect the agent to every internal system at once
+- Don't skip schema and ownership discussions
+- Don't let the AI invent unsupported actions against internal tools
+
+## 14) Suggested first pilot
+- One read-only internal API
+- One reporting or troubleshooting workflow
+- One or two user personas
+- One custom skill
+- Secrets stored in skill settings
+- No production writes
+
+That usually drives adoption faster and avoids data-pipeline complexity early.
+""".strip()
+)
+
+
+def _is_superagent_internal_enablement_query(q: str) -> bool:
+    """Return the canned SuperAgent internal-enablement guide for these queries.
+
+    Triggers when the query mentions SuperAgent + an internal-use signal
+    (internal, internally, in house, data pipeline, build pipeline, enablement, deploy
+    internally, custom skill, build skills, internal API), or asks how to enable
+    SuperAgent for the customer's own systems.
+    """
+    qn = (q or "").lower()
+    has_superagent = "superagent" in qn or "super agent" in qn
+    if not has_superagent:
+        return False
+    internal_signals = (
+        "internal",
+        "internally",
+        "in house",
+        "in-house",
+        "our own",
+        "customer's own",
+        "customers own",
+        "data pipeline",
+        "data pipelines",
+        "build pipeline",
+        "build pipelines",
+        "build skill",
+        "build skills",
+        "custom skill",
+        "custom skills",
+        "skills and recipes",
+        "build skills and recipes",
+        "internal api",
+        "internal apis",
+        "enablement",
+        "enable them",
+        "enable customers",
+        "enable customer",
+        "enable our team",
+        "for internal use",
+    )
+    return any(sig in qn for sig in internal_signals)
+
+
+def _is_campaign_manager_dynamic_link_send_setup_query(q: str) -> bool:
+    """Campaign Manager + dynamic/tracked links + how-to send — not analytics A/B compare.
+
+    Queries often phrase alternatives as 'dynamic link tracking or tracked dynamic links', which
+    would otherwise match len(entities)>=2 and ' or ' in q → compare (false positive).
+    """
+    qn = _normalize_query_for_match(q)
+    if "campaign manager" not in qn:
+        return False
+    if not any(
+        t in qn
+        for t in (
+            "dynamic link",
+            "dynamic links",
+            "tracked dynamic",
+            "link tracking",
+            "tracked link",
+        )
+    ):
+        return False
+    return any(
+        t in qn
+        for t in (
+            "how do",
+            "how users",
+            "how to send",
+            "send campaign",
+            "sending campaign",
+            "setup step",
+            "prerequisite",
+            "insert",
+            "reporting",
+            "limitation",
+            "documentation",
+        )
+    )
+
+
 def _classify_intent(query: str, entities: List[Dict]) -> str:
     """Determine the primary intent type for this query."""
     q = _normalize_query_for_match(query)
+
+    if _is_campaign_manager_dynamic_link_send_setup_query(q):
+        return "setup"
 
     is_compare = any(x in q for x in _COMPARE_SIGNALS)
     is_choose = any(x in q for x in _CHOOSE_SIGNALS)
@@ -2767,6 +3023,21 @@ def _score_chunk(
         score -= 3.0
 
     score += _query_source_penalty_adjustment(q, source)
+
+    if (
+        "click" in q
+        and "campaign analytics" in q
+        and "goal analytics" in q
+        and "campaign-analytics" in source
+    ):
+        score += 12.0
+    if (
+        "live monitoring" in q
+        and "agent-assist-api-documentation" in source
+        and "api" not in q
+        and "endpoint" not in q
+    ):
+        score -= 10.0
 
     if "goal node" in q and ("/ctx/" in source or "ctx-goal" in source):
         score -= 14.0
@@ -3362,6 +3633,9 @@ def _compose_answer(
     q = _normalize_query_for_match(query)
     lines = _evidence_lines(evidence)
 
+    if _is_superagent_internal_enablement_query(query):
+        return SUPERAGENT_INTERNAL_ENABLEMENT_ANSWER
+
     if entities and explicit_module != "General" and intent != "compare":
         entities = [
             e for e in entities
@@ -3569,10 +3843,18 @@ def _compose_from_evidence(
             str(c.get("heading") or ""),
         )
         out = ["Exact page"]
+        seen_lower: set = set()
         if page:
             out.append(f"- {page}")
-        for line in lines[:2]:
+            seen_lower.add(page.strip().lower())
+        for line in lines:
+            lk = (line or "").strip().lower()
+            if not lk or lk in seen_lower:
+                continue
+            seen_lower.add(lk)
             out.append(f"- {line}")
+            if len(out) >= 4:
+                break
         return "\n".join(out)
 
     if intent == "definition":
@@ -3730,6 +4012,8 @@ def _policy_should_skip_summary_cap(answer: str) -> bool:
     if "unsupported" in low and len(answer) < 400:
         return True
     if "sensitive" in low and len(answer) < 400:
+        return True
+    if SUPERAGENT_INTERNAL_OVERRIDE_HEADER.lower() in low:
         return True
     return False
 
