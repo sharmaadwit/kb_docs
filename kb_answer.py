@@ -2380,6 +2380,199 @@ def _module_from_source(source: str) -> str:
     return "General"
 
 
+# ---------------------------------------------------------------------------
+# Section 5b — Case study matching (success stories library)
+# ---------------------------------------------------------------------------
+
+CASE_STUDY_SECTION_HEADER = "## Related success stories"
+MAX_CASE_STUDIES_PER_ANSWER = 3
+MIN_CASE_STUDY_SCORE = 2.0
+
+_CASE_STUDY_QUERY_SIGNALS = (
+    "case study", "case studies", "success story", "success stories",
+    "customer example", "customer story", "customer examples",
+    "who uses", "who else", "similar company", "reference customer",
+    "example of", "examples of", "examples in", "marketing examples",
+    "proof point", "social proof",
+    "roi story", "real world", "in production",
+)
+
+_CASE_STUDY_NEGATIVE_SIGNALS = (
+    "payload", "schema", "field mapping", "api endpoint", "curl ",
+    "error code", "status code", "troubleshoot", "not working",
+    "json handler", "webhook payload", "request body",
+)
+
+_CASE_STUDY_SKIP_INTENTS = frozenset({"schema", "chain", "troubleshooting"})
+
+_INDUSTRY_QUERY_HINTS: Dict[str, str] = {
+    "food": "Food & Restaurant", "restaurant": "Food & Restaurant", "qsr": "Food & Restaurant",
+    "bank": "Financial Services", "insurance": "Financial Services", "fintech": "Financial Services",
+    "retail": "Retail & D2C", "d2c": "Retail & D2C", "ecommerce": "Retail & D2C",
+    "travel": "Travel & Hospitality", "hotel": "Travel & Hospitality", "hospitality": "Travel & Hospitality",
+    "ride": "Ride Hailing", "automotive": "Automotive", "auto ": "Automotive",
+    "healthcare": "Healthcare", "dental": "Healthcare", "telecom": "Telecom",
+    "education": "Education", "edtech": "Education", "government": "Government",
+    "cpg": "CPG", "real estate": "Real Estate", "entertainment": "Entertainment",
+}
+
+
+def _is_case_study_source(source: str) -> bool:
+    return "/case-studies/" in (source or "").lower().replace("\\", "/")
+
+
+def _case_study_field(text: str, field: str) -> str:
+    m = re.search(rf"\*\*{re.escape(field)}\*\*:\s*(.+)", text, re.I)
+    return (m.group(1).strip() if m else "")
+
+
+def _case_study_metrics(text: str, limit: int = 3) -> List[str]:
+    m = re.search(r"## Key results\s*\n(.*?)(?:\n## |\Z)", text, re.S | re.I)
+    if not m:
+        return []
+    out: List[str] = []
+    for line in m.group(1).splitlines():
+        line = line.strip()
+        if line.startswith("- "):
+            out.append(line[2:].strip())
+        if len(out) >= limit:
+            break
+    return out
+
+
+def _case_study_capabilities(text: str, limit: int = 3) -> List[str]:
+    m = re.search(r"## Gupshup capabilities used\s*\n(.*?)(?:\n## |\n\*\*|\Z)", text, re.S | re.I)
+    if not m:
+        return []
+    out: List[str] = []
+    for line in m.group(1).splitlines():
+        line = line.strip()
+        if line.startswith("- "):
+            out.append(line[2:].strip())
+        if len(out) >= limit:
+            break
+    return out
+
+
+def _score_case_study_chunk(query: str, chunk: Dict, explicit_module: str) -> float:
+    score = _score_chunk(query, chunk, [], explicit_module)
+    text = str(chunk.get("text") or "")
+    text_low = text.lower()
+    q = _normalize_query_for_match(query)
+
+    mod_line = _case_study_field(text, "Module")
+    if explicit_module != "General" and explicit_module.lower() in mod_line.lower():
+        score += 1.5
+
+    industry = _case_study_field(text, "Industry")
+    for hint, ind in _INDUSTRY_QUERY_HINTS.items():
+        if hint in q and ind.lower() == industry.lower():
+            score += 1.2
+
+    if any(sig in q for sig in _CASE_STUDY_QUERY_SIGNALS):
+        score += 0.8
+    if "case_study" in text_low or "content type**: case_study" in text_low:
+        score += 0.3
+    if _case_study_metrics(text):
+        score += 0.4
+    return score
+
+
+def _should_include_case_studies(query: str, intent: str, answer: str) -> bool:
+    if intent in _CASE_STUDY_SKIP_INTENTS:
+        return False
+    q = _normalize_query_for_match(query)
+    if any(neg in q for neg in _CASE_STUDY_NEGATIVE_SIGNALS):
+        return False
+    if SUPERAGENT_INTERNAL_OVERRIDE_HEADER.lower() in (answer or "").lower():
+        return False
+
+    explicit_case_request = (
+        any(sig in q for sig in _CASE_STUDY_QUERY_SIGNALS)
+        or re.search(r"\bexamples?\b", q)
+    )
+    if explicit_case_request:
+        return True
+
+    if not (answer or "").strip():
+        return False
+    low = answer.lower()
+    if "i don't know" in low or "i don t know" in low:
+        return False
+
+    if intent in ("overview", "compare", "definition", "setup", "page_lookup"):
+        if any(h in q for h in _INDUSTRY_QUERY_HINTS):
+            return True
+        if any(t in q for t in ("ctwa", "commerce", "marketing", "engagement", "rcs", "support", "whatsapp")):
+            return True
+    return False
+
+
+def _select_case_studies(
+    query: str, case_chunks: List[Dict], explicit_module: str,
+) -> List[Dict]:
+    by_source: Dict[str, List[Tuple[float, Dict]]] = {}
+    all_by_source: Dict[str, List[Dict]] = {}
+    for c in case_chunks:
+        src = str(c.get("source") or "")
+        all_by_source.setdefault(src, []).append(c)
+        s = _score_case_study_chunk(query, c, explicit_module)
+        if s < MIN_CASE_STUDY_SCORE:
+            continue
+        by_source.setdefault(src, []).append((s, c))
+
+    merged: List[Dict] = []
+    for src, rows in by_source.items():
+        rows.sort(key=lambda x: x[0], reverse=True)
+        combined_text = "\n\n".join(
+            x.get("text") or "" for x in all_by_source.get(src, [r[1] for r in rows])
+        )
+        best = dict(rows[0][1])
+        best["text"] = combined_text
+        best["_case_score"] = rows[0][0]
+        merged.append(best)
+
+    ranked = sorted(merged, key=lambda x: x.get("_case_score", 0.0), reverse=True)
+    out: List[Dict] = []
+    seen_companies: set = set()
+    for row in ranked:
+        company = _case_study_field(str(row.get("text") or ""), "Company").lower()
+        if company and company in seen_companies:
+            continue
+        if company:
+            seen_companies.add(company)
+        out.append(row)
+        if len(out) >= MAX_CASE_STUDIES_PER_ANSWER:
+            break
+    return out
+
+
+def _format_case_study_entry(chunk: Dict) -> str:
+    text = str(chunk.get("text") or "")
+    company = _case_study_field(text, "Company") or "Enterprise customer"
+    industry = _case_study_field(text, "Industry") or "General"
+    metrics = _case_study_metrics(text, limit=2)
+    caps = _case_study_capabilities(text, limit=3)
+    detail_parts: List[str] = []
+    if metrics:
+        detail_parts.append("; ".join(metrics))
+    if caps:
+        detail_parts.append(", ".join(caps))
+    detail = "; ".join(detail_parts) if detail_parts else "conversational messaging outcomes"
+    return f"- **{company}** ({industry}) — {detail}"
+
+
+def _append_case_study_section(answer: str, case_rows: List[Dict]) -> str:
+    if not case_rows:
+        return answer
+    lines = [answer.rstrip(), "", CASE_STUDY_SECTION_HEADER]
+    for row in case_rows:
+        lines.append(_format_case_study_entry(row))
+    lines.append("")
+    lines.append("_Up to 3 relevant examples. Some stories are anonymized for confidential clients._")
+    return "\n".join(lines)
+
+
 _PAGE_DISPLAY_MAP = [
     ("test-your-bot", "Test your Bot"),
     ("user-management-business-hours", "User Management: Business Hours"),
@@ -4480,13 +4673,15 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
             "citations": [],
             "langfuse": langfuse,
         }
+    product_chunks = [c for c in chunks if not _is_case_study_source(str(c.get("source") or ""))]
+    case_chunks = [c for c in chunks if _is_case_study_source(str(c.get("source") or ""))]
     explicit_module = _detect_module(query)
     entities = _extract_entities(query)
     intent = _classify_intent(query, entities)
     intents_list = _detect_intents(query)
 
     scored = []
-    for c in chunks:
+    for c in product_chunks:
         s = _score_chunk(query, c, entities, explicit_module)
         if s >= MIN_CHUNK_SCORE:
             row = dict(c)
@@ -4497,6 +4692,12 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
     evidence = _select_evidence(query, scored, intent, explicit_module)
     answer = _compose_answer(query, intent, entities, evidence, explicit_module)
     answer, policy_meta = _apply_answer_policy(answer, query, params)
+    if case_chunks and _should_include_case_studies(query, intent, answer):
+        matched_cases = _select_case_studies(query, case_chunks, explicit_module)
+        if matched_cases:
+            answer = _append_case_study_section(answer, matched_cases)
+            policy_meta = dict(policy_meta or {})
+            policy_meta["case_studies_appended"] = len(matched_cases)
     answer = _redact_answer_disclosures(answer)
     if len(answer) > _MAX_ANSWER_CHARS:
         answer = answer[:_MAX_ANSWER_CHARS] + "…"

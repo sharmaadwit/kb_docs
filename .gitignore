@@ -25,7 +25,12 @@ PLAN_*.md
 .env.*
 !.env.example
 
-# Legacy / ad-hoc local scripts (not part of published kb_docs contract)
+# Success story source PDFs (local only — markdown lives in kb/case-studies/)
+Success Story Library*.pdf
+_Master Success Stories*.pdf
+API+DOCUMENTATION.pdf
+Enterprise Messaging APIs for WhatsApp Business.pdf
+
 github_kb_*.py
 analyze_kb_analytics.py
 kb_answer_runtime.py

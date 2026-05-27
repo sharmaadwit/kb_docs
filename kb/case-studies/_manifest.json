@@ -1,0 +1,754 @@
+[
+  {
+    "file": "swiggy.md",
+    "story_id": "2025-p4",
+    "company": "Swiggy",
+    "industry": "Food & Restaurant",
+    "confidential": false,
+    "headline": "Swiggy grows customer engagement"
+  },
+  {
+    "file": "wow-momo.md",
+    "story_id": "2025-p6",
+    "company": "Wow! Momo",
+    "industry": "Food & Restaurant",
+    "confidential": false,
+    "headline": "Wow! Momo introduced WhatsApp as a channel in mid 2022 \u25cf The chain engages it 2.9 million opted-in u"
+  },
+  {
+    "file": "large-food-restaurant-company-in-india.md",
+    "story_id": "2025-p8",
+    "company": "Large food & restaurant company in India",
+    "industry": "Food & Restaurant",
+    "confidential": true,
+    "headline": "Large food & restaurant company in India \u2014 suggesting beverages that match their mood. India's most "
+  },
+  {
+    "file": "large-food-restaurant-company-in-india-2.md",
+    "story_id": "2025-p9",
+    "company": "Large food & restaurant company in India",
+    "industry": "Food & Restaurant",
+    "confidential": true,
+    "headline": "Large food & restaurant company in India \u2014 the organization to collect new rider information for aut"
+  },
+  {
+    "file": "housing-com.md",
+    "story_id": "2025-p11",
+    "company": "Housing.Com",
+    "industry": "Real Estate",
+    "confidential": false,
+    "headline": "collection rate Leading real estate platform grows conversions by 1.8X, simplifies listing creation "
+  },
+  {
+    "file": "nobroker.md",
+    "story_id": "2025-p13",
+    "company": "Nobroker",
+    "industry": "Real Estate",
+    "confidential": false,
+    "headline": "NoBroker realized that 80% of the owners prefer WhatsApp"
+  },
+  {
+    "file": "leading-real-estate-platform-in-india.md",
+    "story_id": "2025-p14",
+    "company": "Leading real estate platform in India",
+    "industry": "Real Estate",
+    "confidential": true,
+    "headline": "Leading real estate platform in India \u2014 to complete their transaction Middle East\u2019s top provider of "
+  },
+  {
+    "file": "leading-travel-hospitality-company-in-india.md",
+    "story_id": "2025-p16",
+    "company": "Leading travel & hospitality company in India",
+    "industry": "Travel & Hospitality",
+    "confidential": true,
+    "headline": "Leading travel & hospitality company in India \u2014 on human agents the organization makes the most of c"
+  },
+  {
+    "file": "leading-travel-hospitality-company-in-india-2.md",
+    "story_id": "2025-p18",
+    "company": "Leading travel & hospitality company in India",
+    "industry": "Travel & Hospitality",
+    "confidential": true,
+    "headline": "Leading travel & hospitality company in India \u2014 the organization Hospitality Ventures \u201cGupshup Conve"
+  },
+  {
+    "file": "leading-travel-hospitality-company-in-india-3.md",
+    "story_id": "2025-p19",
+    "company": "Leading travel & hospitality company in India",
+    "industry": "Travel & Hospitality",
+    "confidential": true,
+    "headline": "Leading travel & hospitality company in India \u2014 personal details and car preferences. With lead qual"
+  },
+  {
+    "file": "leading-enterprise-in-its-sector.md",
+    "story_id": "2025-p20",
+    "company": "Leading enterprise in its sector",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading enterprise in its sector \u2014 Leading bus ticket booking platform operating in 6 countries crea"
+  },
+  {
+    "file": "leading-travel-hospitality-company-in-india-4.md",
+    "story_id": "2025-p21",
+    "company": "Leading travel & hospitality company in India",
+    "industry": "Travel & Hospitality",
+    "confidential": true,
+    "headline": "Leading travel & hospitality company in India \u2014 the organization uses RCS to create an unparalleled "
+  },
+  {
+    "file": "leading-travel-hospitality-company-in-india-5.md",
+    "story_id": "2025-p22",
+    "company": "Leading travel & hospitality company in India",
+    "industry": "Travel & Hospitality",
+    "confidential": true,
+    "headline": "Leading travel & hospitality company in India \u2014 the organization sought to manage agent workload and"
+  },
+  {
+    "file": "engagement-online-education-company-supports-students-with-faqs-and-learning-tools-over-wh.md",
+    "story_id": "2025-p24",
+    "company": "",
+    "industry": "General",
+    "confidential": false,
+    "headline": "engagement Online education company supports students with FAQs and learning tools over WhatsApp via"
+  },
+  {
+    "file": "doubtnut.md",
+    "story_id": "2025-p25",
+    "company": "Doubtnut",
+    "industry": "Education",
+    "confidential": false,
+    "headline": "Doubtnut team to resolve student queries leveraging rich media such as images and videos \u25cf Helped re"
+  },
+  {
+    "file": "leading-enterprise-in-its-sector-in-india.md",
+    "story_id": "2025-p26",
+    "company": "Leading enterprise in its sector in India",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading enterprise in its sector in India \u2014 used amongst four of its study verticals. Equipped with "
+  },
+  {
+    "file": "mtv.md",
+    "story_id": "2025-p28",
+    "company": "Mtv",
+    "industry": "Entertainment",
+    "confidential": false,
+    "headline": "viewers hooked in a world with expanding content options. They partnered with Gupshup to bring inter"
+  },
+  {
+    "file": "leading-entertainment-sports-brand-in-india.md",
+    "story_id": "2025-p30",
+    "company": "Leading entertainment / sports brand in India",
+    "industry": "Entertainment",
+    "confidential": true,
+    "headline": "Leading entertainment / sports brand in India \u2014 exploring late-stage journeys and answering FAQs on "
+  },
+  {
+    "file": "leading-entertainment-sports-brand.md",
+    "story_id": "2025-p31",
+    "company": "Leading entertainment / sports brand",
+    "industry": "Entertainment",
+    "confidential": true,
+    "headline": "Leading entertainment / sports brand \u2014 Leads generated in Online platform for all things sports gene"
+  },
+  {
+    "file": "leading-entertainment-sports-brand-2.md",
+    "story_id": "2025-p32",
+    "company": "Leading entertainment / sports brand",
+    "industry": "Entertainment",
+    "confidential": true,
+    "headline": "Leading entertainment / sports brand \u2014 to traditional ads Cost per lead compared to traditional ads "
+  },
+  {
+    "file": "leading-entertainment-sports-brand-3.md",
+    "story_id": "2025-p33",
+    "company": "Leading entertainment / sports brand",
+    "industry": "Entertainment",
+    "confidential": true,
+    "headline": "Leading entertainment / sports brand \u2014 qualified lead conversions at cost per lead of INR 20 Fantasy"
+  },
+  {
+    "file": "major-telecom-operator.md",
+    "story_id": "2025-p35",
+    "company": "Major telecom operator",
+    "industry": "Telecom",
+    "confidential": true,
+    "headline": "Major telecom operator \u2014 the organization wanted to improve customer experience"
+  },
+  {
+    "file": "cars24.md",
+    "story_id": "2025-p37",
+    "company": "Cars24",
+    "industry": "Automotive",
+    "confidential": false,
+    "headline": "Customers can chat with the bot to either buy or sell a car, specifying their needs in natural langu"
+  },
+  {
+    "file": "ayush-gupta-senior-general-manager-growth-marketing-buying-a-car-is-a-big-decision-for-mos.md",
+    "story_id": "2025-p38",
+    "company": "",
+    "industry": "General",
+    "confidential": false,
+    "headline": "Ayush Gupta Senior General Manager (Growth Marketing) \u201cBuying a car is a big decision for most famil"
+  },
+  {
+    "file": "leading-enterprise-in-its-sector-2.md",
+    "story_id": "2025-p39",
+    "company": "Leading enterprise in its sector",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading enterprise in its sector \u2014 messages (example - Hot leads, i.e. who selected \u2018Book your Nexon"
+  },
+  {
+    "file": "leading-automobile-company-in-india.md",
+    "story_id": "2025-p40",
+    "company": "Leading automobile company in India",
+    "industry": "Automotive",
+    "confidential": true,
+    "headline": "Leading automobile company in India \u2014 decreasing their average re-engagement CPA (cost per action) b"
+  },
+  {
+    "file": "leading-enterprise-in-its-sector-3.md",
+    "story_id": "2025-p43",
+    "company": "Leading enterprise in its sector",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading enterprise in its sector \u2014 Leading ride-hailing company simplifies everyday commute planning"
+  },
+  {
+    "file": "leading-enterprise-in-its-sector-4.md",
+    "story_id": "2025-p44",
+    "company": "Leading enterprise in its sector",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading enterprise in its sector \u2014 A Leading sustainable urban mobility solution company simplifies "
+  },
+  {
+    "file": "leading-company-in-the-uae.md",
+    "story_id": "2025-p46",
+    "company": "Leading company in the UAE",
+    "industry": "Government",
+    "confidential": true,
+    "headline": "Leading company in the UAE \u2014 the organization, Dubai\u2019s state-run utility company launches Gen AI-bas"
+  },
+  {
+    "file": "whatsapp-for-communication-partnering-with-gupshup-to-enhance-access-for-one-third-of-the-.md",
+    "story_id": "2025-p47",
+    "company": "",
+    "industry": "General",
+    "confidential": false,
+    "headline": "WhatsApp for communication, partnering with Gupshup to enhance access for one-third of the state's e"
+  },
+  {
+    "file": "leading-enterprise-in-its-sector-5.md",
+    "story_id": "2025-p48",
+    "company": "Leading enterprise in its sector",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading enterprise in its sector \u2014 election days Madhya Pradesh Election Commission allows citizens "
+  },
+  {
+    "file": "leading-enterprise-in-its-sector-6.md",
+    "story_id": "2025-p49",
+    "company": "Leading enterprise in its sector",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading enterprise in its sector \u2014 TNSDC aims to improve employability and transform the state into "
+  },
+  {
+    "file": "leading-enterprise-in-its-sector-7.md",
+    "story_id": "2025-p50",
+    "company": "Leading enterprise in its sector",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading enterprise in its sector \u2014 details of the grievance, consumers undergo OTP verification and "
+  },
+  {
+    "file": "healthcare-provider.md",
+    "story_id": "2025-p52",
+    "company": "Healthcare provider",
+    "industry": "Healthcare",
+    "confidential": true,
+    "headline": "Healthcare provider \u2014 the organization wanted to increase leads in a cost effective way \u25cf The brand "
+  },
+  {
+    "file": "leading-company-in-the-uae-2.md",
+    "story_id": "2025-p53",
+    "company": "Leading company in the UAE",
+    "industry": "Healthcare",
+    "confidential": true,
+    "headline": "Leading company in the UAE \u2014 within 45 days Medical center in UAE drives appointment booking via Cli"
+  },
+  {
+    "file": "tata-cliq.md",
+    "story_id": "2024-p4",
+    "company": "Tata Cliq",
+    "industry": "Retail & D2C",
+    "confidential": false,
+    "headline": "follow-ups and price drop alerts for wishlisted products, TataCliq re-engaged customers with dramati"
+  },
+  {
+    "file": "reserva.md",
+    "story_id": "2024-p5",
+    "company": "Reserva",
+    "industry": "Retail & D2C",
+    "confidential": false,
+    "headline": "Brazil\u2019s leading fashion retailer sees 7X ROI with Gupshup Conversation Cloud; pioneers the use of G"
+  },
+  {
+    "file": "8-5-influenced-order-conversion-rate-powering-website-search-ai-chatbot-size-finder-app-lu.md",
+    "story_id": "2024-p8",
+    "company": "",
+    "industry": "General",
+    "confidential": false,
+    "headline": "8.5% influenced order conversion rate Powering website search, AI Chatbot & Size Finder App Luxury f"
+  },
+  {
+    "file": "11-influenced-order-rate-ideas-for-new-products-styles-from-conversations-discovered-new-i.md",
+    "story_id": "2024-p9",
+    "company": "",
+    "industry": "General",
+    "confidential": false,
+    "headline": "11% influenced order rate Ideas for new products & styles from conversations Discovered new internat"
+  },
+  {
+    "file": "leading-enterprise-in-its-sector-8.md",
+    "story_id": "2024-p10",
+    "company": "Leading enterprise in its sector",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading enterprise in its sector \u2014 Leading fashion eCommerce company revolutionizes CX with self-ser"
+  },
+  {
+    "file": "leading-retail-d2c-brand.md",
+    "story_id": "2024-p11",
+    "company": "Leading retail / D2C brand",
+    "industry": "Retail & D2C",
+    "confidential": true,
+    "headline": "Leading retail / D2C brand \u2014 compared to traditional digital ads Direct to consumer home furnishings"
+  },
+  {
+    "file": "leading-retail-d2c-brand-2.md",
+    "story_id": "2024-p12",
+    "company": "Leading retail / D2C brand",
+    "industry": "Retail & D2C",
+    "confidential": true,
+    "headline": "Leading retail / D2C brand \u2014 the organization built an AI-powered omnichannel virtual assistant, hel"
+  },
+  {
+    "file": "leading-retail-d2c-brand-3.md",
+    "story_id": "2024-p13",
+    "company": "Leading retail / D2C brand",
+    "industry": "Retail & D2C",
+    "confidential": true,
+    "headline": "Leading retail / D2C brand \u2014 the organization team is excited to introduce gamification and engaging"
+  },
+  {
+    "file": "leading-retail-d2c-brand-4.md",
+    "story_id": "2024-p14",
+    "company": "Leading retail / D2C brand",
+    "industry": "Retail & D2C",
+    "confidential": true,
+    "headline": "Leading retail / D2C brand \u2014 the organization needed a reliable WhatsApp"
+  },
+  {
+    "file": "leading-retail-d2c-brand-5.md",
+    "story_id": "2024-p15",
+    "company": "Leading retail / D2C brand",
+    "industry": "Retail & D2C",
+    "confidential": true,
+    "headline": "Leading retail / D2C brand \u2014 the organization Salon needed a reliable messaging"
+  },
+  {
+    "file": "lakme.md",
+    "story_id": "2024-p16",
+    "company": "Lakm\u00e9",
+    "industry": "Retail & D2C",
+    "confidential": false,
+    "headline": "Lakm\u00e9 saw a 1.5X increase in user interaction and 2X orders placed using WhatsApp"
+  },
+  {
+    "file": "leading-company-in-the-uae-3.md",
+    "story_id": "2024-p17",
+    "company": "Leading company in the UAE",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading company in the UAE \u2014 Recency Score connections with our customers, leveraging personalized c"
+  },
+  {
+    "file": "leading-company-in-the-uae-4.md",
+    "story_id": "2024-p18",
+    "company": "Leading company in the UAE",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading company in the UAE \u2014 UAE\u2019s leading fashion retailer provides post purchase assistance using "
+  },
+  {
+    "file": "leading-retail-d2c-brand-in-india.md",
+    "story_id": "2024-p19",
+    "company": "Leading retail / D2C brand in India",
+    "industry": "Retail & D2C",
+    "confidential": true,
+    "headline": "Leading retail / D2C brand in India \u2014 an exceptional 99.7% delivery rate the organization, India\u2019s l"
+  },
+  {
+    "file": "leading-retail-d2c-brand-in-india-2.md",
+    "story_id": "2024-p20",
+    "company": "Leading retail / D2C brand in India",
+    "industry": "Retail & D2C",
+    "confidential": true,
+    "headline": "Leading retail / D2C brand in India \u2014 Cost per lead Supermarket chain leverages CTWA to acquire new "
+  },
+  {
+    "file": "leading-retail-d2c-brand-6.md",
+    "story_id": "2024-p21",
+    "company": "Leading retail / D2C brand",
+    "industry": "Retail & D2C",
+    "confidential": true,
+    "headline": "Leading retail / D2C brand \u2014 the organization, top online grocery e-tailer embraces RCS for a Sizzli"
+  },
+  {
+    "file": "leading-retail-d2c-brand-7.md",
+    "story_id": "2024-p22",
+    "company": "Leading retail / D2C brand",
+    "industry": "Retail & D2C",
+    "confidential": true,
+    "headline": "Leading retail / D2C brand \u2014 Leads in 27 days Cost per Lead Leading omnichannel home goods brand lev"
+  },
+  {
+    "file": "leading-enterprise-in-its-sector-9.md",
+    "story_id": "2024-p23",
+    "company": "Leading enterprise in its sector",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading enterprise in its sector \u2014 and personalized promotions Comfort tech brand bridges offline an"
+  },
+  {
+    "file": "leading-retail-d2c-brand-in-india-3.md",
+    "story_id": "2024-p24",
+    "company": "Leading retail / D2C brand in India",
+    "industry": "Retail & D2C",
+    "confidential": true,
+    "headline": "Leading retail / D2C brand in India \u2014 1/10 Cost Per Lead (Rs. 112 vs 10k) compared to the print camp"
+  },
+  {
+    "file": "leading-retail-d2c-brand-8.md",
+    "story_id": "2024-p25",
+    "company": "Leading retail / D2C brand",
+    "industry": "Retail & D2C",
+    "confidential": true,
+    "headline": "Leading retail / D2C brand \u2014 party database and increase visits to their partner stores"
+  },
+  {
+    "file": "leading-retail-d2c-brand-in-india-4.md",
+    "story_id": "2024-p26",
+    "company": "Leading retail / D2C brand in India",
+    "industry": "Retail & D2C",
+    "confidential": true,
+    "headline": "Leading retail / D2C brand in India \u2014 (App Downloads) Cost per install with gamification eCommerce g"
+  },
+  {
+    "file": "leading-retail-d2c-brand-9.md",
+    "story_id": "2024-p27",
+    "company": "Leading retail / D2C brand",
+    "industry": "Retail & D2C",
+    "confidential": true,
+    "headline": "Leading retail / D2C brand \u2014 Electronics retailer and e-commerce player achieves 4X ROAS with Click "
+  },
+  {
+    "file": "leading-retail-d2c-brand-10.md",
+    "story_id": "2024-p28",
+    "company": "Leading retail / D2C brand",
+    "industry": "Retail & D2C",
+    "confidential": true,
+    "headline": "Leading retail / D2C brand \u2014 Rising star smart wearables brand garnered interest in their new produc"
+  },
+  {
+    "file": "leading-company-in-the-uae-5.md",
+    "story_id": "2024-p29",
+    "company": "Leading company in the UAE",
+    "industry": "Retail & D2C",
+    "confidential": true,
+    "headline": "Leading company in the UAE \u2014 know more about the offers, contests, delivery status and more Online s"
+  },
+  {
+    "file": "leading-retail-d2c-brand-11.md",
+    "story_id": "2024-p30",
+    "company": "Leading retail / D2C brand",
+    "industry": "Retail & D2C",
+    "confidential": true,
+    "headline": "Leading retail / D2C brand \u2014 with businesses and homeowners, by enabling WhatsApp-based ordering and"
+  },
+  {
+    "file": "leading-retail-d2c-brand-12.md",
+    "story_id": "2024-p31",
+    "company": "Leading retail / D2C brand",
+    "industry": "Retail & D2C",
+    "confidential": true,
+    "headline": "Leading retail / D2C brand \u2014 Industry-first AI and OCR powered conversational commerce experience to"
+  },
+  {
+    "file": "max-fashion.md",
+    "story_id": "2024-p32",
+    "company": "Max Fashion",
+    "industry": "Retail & D2C",
+    "confidential": false,
+    "headline": "Max Fashion Grows Sales 30% YoY with Personalized Marketing using Gupshup and WhatsApp"
+  },
+  {
+    "file": "max-fashion-2.md",
+    "story_id": "2024-p33",
+    "company": "Max Fashion",
+    "industry": "Retail & D2C",
+    "confidential": false,
+    "headline": "Ekta Khandelwal Manager, CRM, Max Fashion \u201cWhatsApp has become a powerful bridge between our offline"
+  },
+  {
+    "file": "leading-enterprise-in-its-sector-10.md",
+    "story_id": "2024-p34",
+    "company": "Leading enterprise in its sector",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading enterprise in its sector \u2014 MENA\u2019s leading retail and ecommerce group uni\ufb01es marketing and cu"
+  },
+  {
+    "file": "fastest.md",
+    "story_id": "2024-p38",
+    "company": "Fastest",
+    "industry": "General",
+    "confidential": false,
+    "headline": "Fastest growing Indian beauty brand transforms customer support with voice AI To e\ue007iciently scale cu"
+  },
+  {
+    "file": "brand.md",
+    "story_id": "2024-p39",
+    "company": "Brand",
+    "industry": "General",
+    "confidential": false,
+    "headline": "Brand launched a digital loyalty and claims campaign across WhatsApp"
+  },
+  {
+    "file": "25-countries-15-languages-13-influenced-conversions-30-000-unique-q-as-paints-and-coatings.md",
+    "story_id": "2024-p40",
+    "company": "",
+    "industry": "General",
+    "confidential": false,
+    "headline": "25+ countries, 15 languages 13% influenced conversions 30,000+ unique Q&A\u2019s Paints and coatings bran"
+  },
+  {
+    "file": "leading-enterprise-in-its-sector-11.md",
+    "story_id": "2024-p41",
+    "company": "Leading enterprise in its sector",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading enterprise in its sector \u2014 opt-ins and email addresses were stored to run future campaigns. "
+  },
+  {
+    "file": "leading-consumer-goods-brand.md",
+    "story_id": "2024-p42",
+    "company": "Leading consumer goods brand",
+    "industry": "CPG",
+    "confidential": true,
+    "headline": "Leading consumer goods brand \u2014 the organization and Publicis partnered with Gupshup for their 2023 R"
+  },
+  {
+    "file": "leading-enterprise-in-its-sector-12.md",
+    "story_id": "2024-p43",
+    "company": "Leading enterprise in its sector",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading enterprise in its sector \u2014 Early nutrition brand automates responses for 1000s of complex qu"
+  },
+  {
+    "file": "leading-enterprise-in-its-sector-13.md",
+    "story_id": "2024-p44",
+    "company": "Leading enterprise in its sector",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading enterprise in its sector \u2014 recommendations based on user\u2019s personality. Users can connect vi"
+  },
+  {
+    "file": "leading-consumer-goods-brand-2.md",
+    "story_id": "2024-p45",
+    "company": "Leading consumer goods brand",
+    "industry": "CPG",
+    "confidential": true,
+    "headline": "Leading consumer goods brand \u2014 the organization needed a dynamic and reliable dedicated communicatio"
+  },
+  {
+    "file": "pureit.md",
+    "story_id": "2024-p46",
+    "company": "Pureit",
+    "industry": "CPG",
+    "confidential": false,
+    "headline": "Pureit initially offered its customers the option to inquire, schedule home demonstrations, and rais"
+  },
+  {
+    "file": "unilevers-eco-friendly-beauty-brand-builds-brand-awareness-and-boosts-conversions-with-wha.md",
+    "story_id": "2024-p47",
+    "company": "",
+    "industry": "General",
+    "confidential": false,
+    "headline": "Unilever\u2019s eco-friendly beauty brand builds brand awareness and boosts conversions with WhatsApp bas"
+  },
+  {
+    "file": "leading-fabric-care-brand.md",
+    "story_id": "2024-p48",
+    "company": "leading fabric care brand",
+    "industry": "General",
+    "confidential": false,
+    "headline": "website traffic as a result of the WhatsApp campaign Unilever\u2019s leading fabric care brand boosts web"
+  },
+  {
+    "file": "horlicks.md",
+    "story_id": "2024-p49",
+    "company": "Horlicks",
+    "industry": "CPG",
+    "confidential": false,
+    "headline": "Horlicks worked with Gupshup to adopt WhatsApp"
+  },
+  {
+    "file": "to.md",
+    "story_id": "2024-p50",
+    "company": "To",
+    "industry": "General",
+    "confidential": false,
+    "headline": "To launch its product Choco Stars, Britannia leveraged a hyper-personalized AI-driven experience to "
+  },
+  {
+    "file": "prabakaran-k-head-digital-center-of-excellence-britannia-with-whatsapp-we-brought-choco-st.md",
+    "story_id": "2024-p51",
+    "company": "",
+    "industry": "General",
+    "confidential": false,
+    "headline": "Prabakaran K Head - Digital Center of Excellence, Britannia \u201cWith WhatsApp, we brought Choco Stars t"
+  },
+  {
+    "file": "leading-enterprise-in-its-sector-14.md",
+    "story_id": "2024-p53",
+    "company": "Leading enterprise in its sector",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading enterprise in its sector \u2014 services, account opening process, medical insurance coverage, pr"
+  },
+  {
+    "file": "leading-enterprise-in-its-sector-in-india-2.md",
+    "story_id": "2024-p54",
+    "company": "Leading enterprise in its sector in India",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading enterprise in its sector in India \u2014 Top private bank acclaimed for Best Use of AI/ ML in Ban"
+  },
+  {
+    "file": "standard-chartered-leverages-chatbots-in-43-countries-for-corporate-banking-service-reques.md",
+    "story_id": "2024-p55",
+    "company": "",
+    "industry": "General",
+    "confidential": false,
+    "headline": "Standard Chartered leverages Chatbots in 43 countries for Corporate Banking service requests, inquir"
+  },
+  {
+    "file": "leading-financial-services-company-in-india.md",
+    "story_id": "2024-p56",
+    "company": "Leading financial services company in India",
+    "industry": "Financial Services",
+    "confidential": true,
+    "headline": "Leading financial services company in India \u2014 the organization engages customers with two-way commun"
+  },
+  {
+    "file": "leading-financial-services-company-in-india-2.md",
+    "story_id": "2024-p57",
+    "company": "Leading financial services company in India",
+    "industry": "Financial Services",
+    "confidential": true,
+    "headline": "Leading financial services company in India \u2014 with an impressive 98% acknowledgment rate. This strea"
+  },
+  {
+    "file": "leading-financial-services-company-in-india-3.md",
+    "story_id": "2024-p58",
+    "company": "Leading financial services company in India",
+    "industry": "Financial Services",
+    "confidential": true,
+    "headline": "Leading financial services company in India \u2014 the organization leverages RCS to enhance customer eng"
+  },
+  {
+    "file": "leading-enterprise-in-its-sector-15.md",
+    "story_id": "2024-p59",
+    "company": "Leading enterprise in its sector",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading enterprise in its sector \u2014 Insurance comparison company generates qualified leads and builds"
+  },
+  {
+    "file": "leading-enterprise-in-its-sector-16.md",
+    "story_id": "2024-p60",
+    "company": "Leading enterprise in its sector",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading enterprise in its sector \u2014 New loan applications 2.5X Increase in verified sales TWO WHEELER"
+  },
+  {
+    "file": "leading-financial-services-company-in-india-4.md",
+    "story_id": "2024-p61",
+    "company": "Leading financial services company in India",
+    "industry": "Financial Services",
+    "confidential": true,
+    "headline": "Leading financial services company in India \u2014 the organization implements Conversational AI Bot - VA"
+  },
+  {
+    "file": "leading-enterprise-in-its-sector-in-india-3.md",
+    "story_id": "2024-p62",
+    "company": "Leading enterprise in its sector in India",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading enterprise in its sector in India \u2014 compared to email & SMS campaigns. Of this, 73% leads we"
+  },
+  {
+    "file": "leading-financial-services-company-in-india-5.md",
+    "story_id": "2024-p63",
+    "company": "Leading financial services company in India",
+    "industry": "Financial Services",
+    "confidential": true,
+    "headline": "Leading financial services company in India \u2014 the organization Capital wanted to use WhatsApp"
+  },
+  {
+    "file": "leading-enterprise-in-its-sector-17.md",
+    "story_id": "2024-p64",
+    "company": "Leading enterprise in its sector",
+    "industry": "General",
+    "confidential": true,
+    "headline": "Leading enterprise in its sector \u2014 Flow completion rate Insurance aggregator automates lead qualific"
+  },
+  {
+    "file": "leading-financial-services-company-in-india-6.md",
+    "story_id": "2024-p65",
+    "company": "Leading financial services company in India",
+    "industry": "Financial Services",
+    "confidential": true,
+    "headline": "Leading financial services company in India \u2014 the organization enabled customers with insurance poli"
+  },
+  {
+    "file": "leading-financial-services-company-in-india-7.md",
+    "story_id": "2024-p66",
+    "company": "Leading financial services company in India",
+    "industry": "Financial Services",
+    "confidential": true,
+    "headline": "Leading financial services company in India \u2014 the organization becomes the first-public sector bank "
+  },
+  {
+    "file": "ola-electric.md",
+    "story_id": "2024-p100",
+    "company": "Ola Electric",
+    "industry": "Automotive",
+    "confidential": false,
+    "headline": "Ola Electric used Click-to-Chat Ads to drive high-intent leads for its new product launch. \u25cf The cam"
+  },
+  {
+    "file": "leading-automobile-company-in-india-2.md",
+    "story_id": "2024-p105",
+    "company": "Leading automobile company in India",
+    "industry": "Automotive",
+    "confidential": true,
+    "headline": "Leading automobile company in India \u2014 the organization center and provide feedback, all in rich form"
+  }
+]

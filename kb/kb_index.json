@@ -7,8 +7,8 @@
   "excluded": [
     "kb/analytics"
   ],
-  "md_files": 264,
-  "chunks": 5356,
+  "md_files": 358,
+  "chunks": 5892,
   "docs": [
     {
       "path": "kb/agent-assist/about-agent-assist.md",
@@ -753,6 +753,382 @@
     {
       "path": "kb/campaign-manager/sending-an-automated-campaign.md",
       "chunks": 27
+    },
+    {
+      "path": "kb/case-studies/11-influenced-order-rate-ideas-for-new-products-styles-from-conversations-discovered-new-i.md",
+      "chunks": 3
+    },
+    {
+      "path": "kb/case-studies/25-countries-15-languages-13-influenced-conversions-30-000-unique-q-as-paints-and-coatings.md",
+      "chunks": 4
+    },
+    {
+      "path": "kb/case-studies/8-5-influenced-order-conversion-rate-powering-website-search-ai-chatbot-size-finder-app-lu.md",
+      "chunks": 4
+    },
+    {
+      "path": "kb/case-studies/ayush-gupta-senior-general-manager-growth-marketing-buying-a-car-is-a-big-decision-for-mos.md",
+      "chunks": 5
+    },
+    {
+      "path": "kb/case-studies/brand.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/cars24.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/doubtnut.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/engagement-online-education-company-supports-students-with-faqs-and-learning-tools-over-wh.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/fastest.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/healthcare-provider.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/horlicks.md",
+      "chunks": 5
+    },
+    {
+      "path": "kb/case-studies/housing-com.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/lakme.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/large-food-restaurant-company-in-india-2.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/large-food-restaurant-company-in-india.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-automobile-company-in-india-2.md",
+      "chunks": 5
+    },
+    {
+      "path": "kb/case-studies/leading-automobile-company-in-india.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-company-in-the-uae-2.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-company-in-the-uae-3.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-company-in-the-uae-4.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-company-in-the-uae-5.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-company-in-the-uae.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-consumer-goods-brand-2.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-consumer-goods-brand.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-enterprise-in-its-sector-10.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-enterprise-in-its-sector-11.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-enterprise-in-its-sector-12.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-enterprise-in-its-sector-13.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-enterprise-in-its-sector-14.md",
+      "chunks": 7
+    },
+    {
+      "path": "kb/case-studies/leading-enterprise-in-its-sector-15.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-enterprise-in-its-sector-16.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-enterprise-in-its-sector-17.md",
+      "chunks": 4
+    },
+    {
+      "path": "kb/case-studies/leading-enterprise-in-its-sector-2.md",
+      "chunks": 5
+    },
+    {
+      "path": "kb/case-studies/leading-enterprise-in-its-sector-3.md",
+      "chunks": 4
+    },
+    {
+      "path": "kb/case-studies/leading-enterprise-in-its-sector-4.md",
+      "chunks": 5
+    },
+    {
+      "path": "kb/case-studies/leading-enterprise-in-its-sector-5.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-enterprise-in-its-sector-6.md",
+      "chunks": 5
+    },
+    {
+      "path": "kb/case-studies/leading-enterprise-in-its-sector-7.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-enterprise-in-its-sector-8.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-enterprise-in-its-sector-9.md",
+      "chunks": 4
+    },
+    {
+      "path": "kb/case-studies/leading-enterprise-in-its-sector-in-india-2.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-enterprise-in-its-sector-in-india-3.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-enterprise-in-its-sector-in-india.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-enterprise-in-its-sector.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-entertainment-sports-brand-2.md",
+      "chunks": 7
+    },
+    {
+      "path": "kb/case-studies/leading-entertainment-sports-brand-3.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-entertainment-sports-brand-in-india.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-entertainment-sports-brand.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-fabric-care-brand.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-financial-services-company-in-india-2.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-financial-services-company-in-india-3.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-financial-services-company-in-india-4.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-financial-services-company-in-india-5.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-financial-services-company-in-india-6.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-financial-services-company-in-india-7.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-financial-services-company-in-india.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-real-estate-platform-in-india.md",
+      "chunks": 5
+    },
+    {
+      "path": "kb/case-studies/leading-retail-d2c-brand-10.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-retail-d2c-brand-11.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-retail-d2c-brand-12.md",
+      "chunks": 5
+    },
+    {
+      "path": "kb/case-studies/leading-retail-d2c-brand-2.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-retail-d2c-brand-3.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-retail-d2c-brand-4.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-retail-d2c-brand-5.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-retail-d2c-brand-6.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-retail-d2c-brand-7.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-retail-d2c-brand-8.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-retail-d2c-brand-9.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-retail-d2c-brand-in-india-2.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-retail-d2c-brand-in-india-3.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-retail-d2c-brand-in-india-4.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-retail-d2c-brand-in-india.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-retail-d2c-brand.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-travel-hospitality-company-in-india-2.md",
+      "chunks": 5
+    },
+    {
+      "path": "kb/case-studies/leading-travel-hospitality-company-in-india-3.md",
+      "chunks": 4
+    },
+    {
+      "path": "kb/case-studies/leading-travel-hospitality-company-in-india-4.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/leading-travel-hospitality-company-in-india-5.md",
+      "chunks": 7
+    },
+    {
+      "path": "kb/case-studies/leading-travel-hospitality-company-in-india.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/major-telecom-operator.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/max-fashion-2.md",
+      "chunks": 4
+    },
+    {
+      "path": "kb/case-studies/max-fashion.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/mtv.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/nobroker.md",
+      "chunks": 5
+    },
+    {
+      "path": "kb/case-studies/ola-electric.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/prabakaran-k-head-digital-center-of-excellence-britannia-with-whatsapp-we-brought-choco-st.md",
+      "chunks": 4
+    },
+    {
+      "path": "kb/case-studies/pureit.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/reserva.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/standard-chartered-leverages-chatbots-in-43-countries-for-corporate-banking-service-reques.md",
+      "chunks": 5
+    },
+    {
+      "path": "kb/case-studies/swiggy.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/tata-cliq.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/to.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/unilevers-eco-friendly-beauty-brand-builds-brand-awareness-and-boosts-conversions-with-wha.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/case-studies/whatsapp-for-communication-partnering-with-gupshup-to-enhance-access-for-one-third-of-the-.md",
+      "chunks": 5
+    },
+    {
+      "path": "kb/case-studies/wow-momo.md",
+      "chunks": 6
     },
     {
       "path": "kb/channels/about-whatsapp.md",
