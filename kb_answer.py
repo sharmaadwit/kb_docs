@@ -2667,6 +2667,9 @@ SUPERAGENT_INTERNAL_ENABLEMENT_ANSWER = (
     SUPERAGENT_INTERNAL_OVERRIDE_HEADER
     + "\n\n"
     + """
+## 0) Applies to any external / third-party system
+This guidance applies to **any system the customer already uses** — CRMs (HubSpot, Salesforce, Zoho, SAP, Dynamics), helpdesks / ticketing (Zendesk, Freshdesk, Jira, ServiceNow, Intercom), data warehouses (Snowflake, BigQuery, Databricks, Redshift), BI tools (Looker, Tableau, Power BI, Metabase), marketing platforms (Marketo, Braze, CleverTap, MoEngage, Mailchimp), collab tools (Slack, Notion, Asana, Monday, ClickUp, Airtable, Google Sheets), and their own internal APIs. The pattern below is the same regardless of the underlying tool: expose it via API / webhook, wrap each action as a **Skill** in SuperAgent, keep credentials in **Skill Secrets**, and start read-only before adding writes.
+
 ## 1) What SuperAgent should do
 For internal use cases, SuperAgent should sit as an **AI orchestration layer over the customer's existing systems**.
 It is not meant to replace their warehouse, CRM, ticketing, or internal APIs. Instead, it uses those systems through controlled integrations.
@@ -2825,46 +2828,91 @@ That usually drives adoption faster and avoids data-pipeline complexity early.
 )
 
 
+_SUPERAGENT_INTERNAL_SIGNALS = (
+    "internal",
+    "internally",
+    "in house",
+    "in-house",
+    "our own",
+    "customer's own",
+    "customers own",
+    "data pipeline",
+    "data pipelines",
+    "build pipeline",
+    "build pipelines",
+    "build skill",
+    "build skills",
+    "custom skill",
+    "custom skills",
+    "skills and recipes",
+    "build skills and recipes",
+    "internal api",
+    "internal apis",
+    "enablement",
+    "enable them",
+    "enable customers",
+    "enable customer",
+    "enable our team",
+    "for internal use",
+)
+
+_SUPERAGENT_THIRD_PARTY_SYSTEMS = (
+    # CRMs / sales
+    "hubspot", "salesforce", "sfdc", "zoho", "pipedrive", "freshsales",
+    "dynamics", "sap", "oracle crm", "leadsquared",
+    # Support / ticketing
+    "zendesk", "freshdesk", "intercom", "jira", "service now", "servicenow",
+    "kustomer", "helpscout", "help scout",
+    # Productivity / collab
+    "slack", "notion", "asana", "monday.com", "monday ", "clickup", "airtable",
+    "google sheet", "google sheets", "gsheet", "gsheets",
+    # Data / BI / warehouses
+    "snowflake", "databricks", "bigquery", "redshift", "looker", "tableau",
+    "metabase", "power bi", "powerbi", "mongo", "mongodb", "postgres",
+    "postgresql", "mysql", "s3 bucket", "data warehouse", "data lake",
+    # Marketing
+    "marketo", "pardot", "mailchimp", "braze", "clevertap", "moengage",
+    "segment", "mixpanel", "amplitude", "iterable", "klaviyo",
+    # Finance / ops
+    "stripe", "razorpay", "quickbooks", "netsuite",
+    # Generic categories
+    "crm", "cdp", "helpdesk", "help desk", "ticketing tool", "ticketing system",
+    "warehouse", "third party", "3rd party", "third-party", "external system",
+    "external api", "external tool",
+)
+
+_SUPERAGENT_AUTOMATION_VERBS = (
+    "automation", "automate", "automating",
+    "integrate", "integration", "integrating",
+    "connect to", "connect with", "connector",
+    "sync with", "syncing", "sync to",
+    "webhook to", "webhook from",
+    "pipe into", "plug into", "hook up",
+)
+
+
 def _is_superagent_internal_enablement_query(q: str) -> bool:
     """Return the canned SuperAgent internal-enablement guide for these queries.
 
-    Triggers when the query mentions SuperAgent + an internal-use signal
-    (internal, internally, in house, data pipeline, build pipeline, enablement, deploy
-    internally, custom skill, build skills, internal API), or asks how to enable
-    SuperAgent for the customer's own systems.
+    Fires when the query mentions SuperAgent AND any of:
+      - an internal-use signal (internal, in house, data pipeline, enablement,
+        build skills, custom skill, internal API, etc.), OR
+      - a recognized third-party system name (HubSpot, Salesforce, Zendesk,
+        Jira, Snowflake, Slack, etc.), OR
+      - an automation/integration verb (automate, connect to, integrate,
+        sync with, webhook to, etc.).
     """
     qn = (q or "").lower()
     has_superagent = "superagent" in qn or "super agent" in qn
     if not has_superagent:
         return False
-    internal_signals = (
-        "internal",
-        "internally",
-        "in house",
-        "in-house",
-        "our own",
-        "customer's own",
-        "customers own",
-        "data pipeline",
-        "data pipelines",
-        "build pipeline",
-        "build pipelines",
-        "build skill",
-        "build skills",
-        "custom skill",
-        "custom skills",
-        "skills and recipes",
-        "build skills and recipes",
-        "internal api",
-        "internal apis",
-        "enablement",
-        "enable them",
-        "enable customers",
-        "enable customer",
-        "enable our team",
-        "for internal use",
-    )
-    return any(sig in qn for sig in internal_signals)
+    if any(sig in qn for sig in _SUPERAGENT_INTERNAL_SIGNALS):
+        return True
+    if any(sys in qn for sys in _SUPERAGENT_THIRD_PARTY_SYSTEMS):
+        return True
+    if any(verb in qn for verb in _SUPERAGENT_AUTOMATION_VERBS):
+        return True
+    return False
 
 
 def _is_campaign_manager_dynamic_link_send_setup_query(q: str) -> bool:

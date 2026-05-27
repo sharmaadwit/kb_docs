@@ -8,7 +8,7 @@
     "kb/analytics"
   ],
   "md_files": 264,
-  "chunks": 5354,
+  "chunks": 5356,
   "docs": [
     {
       "path": "kb/agent-assist/about-agent-assist.md",
@@ -1044,7 +1044,7 @@
     },
     {
       "path": "kb/superagent/enabling-superagent-for-internal-use-cases.md",
-      "chunks": 19
+      "chunks": 21
     },
     {
       "path": "kb/wallet/wallet-overview.md",

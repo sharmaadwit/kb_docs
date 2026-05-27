@@ -11,6 +11,33 @@ How to enable SuperAgent for a customer's **internal** use cases when the
 deployment involves connecting to their internal systems, building data
 pipelines on their side, and running agent-driven actions safely.
 
+This page also applies when the customer wants to use SuperAgent with
+**any third-party system** they already run — CRMs, helpdesks, data
+warehouses, BI tools, marketing platforms, collab tools, payment / billing
+systems, and their own internal APIs. The pattern is the same regardless of
+the underlying tool.
+
+## 0) Applies to any external / third-party system
+The exact same enablement model applies whether the customer's stack is
+built on internal APIs **or** a popular third-party tool. Common examples:
+
+- **CRMs** — HubSpot, Salesforce, Zoho, SAP, Microsoft Dynamics, Pipedrive
+- **Support / ticketing** — Zendesk, Freshdesk, Jira, ServiceNow, Intercom, Kustomer
+- **Data warehouses** — Snowflake, BigQuery, Databricks, Redshift
+- **BI / analytics** — Looker, Tableau, Power BI, Metabase, Mixpanel, Amplitude
+- **Marketing automation** — Marketo, Braze, CleverTap, MoEngage, Mailchimp, Klaviyo
+- **Collaboration** — Slack, Notion, Asana, Monday, ClickUp, Airtable, Google Sheets
+- **Finance / ops** — Stripe, Razorpay, QuickBooks, NetSuite
+- **Custom internal APIs** — anything the customer's engineering team owns
+
+For each of these the recipe is the same:
+
+1. Expose the tool through a stable **API, webhook, or middleware endpoint**
+2. Wrap each action (read or write) as a narrow **Skill** in SuperAgent
+3. Store credentials in **Skill Secrets**, never in chat or prompts
+4. Start with **read-only** workflows; add writes once controls are clear
+5. Require **confirmation** for destructive or customer-impacting actions
+
 ## 1) What SuperAgent should do
 For internal use cases, SuperAgent should sit as an **AI orchestration layer over the customer's existing systems**.
 It is not meant to replace their warehouse, CRM, ticketing, or internal APIs. Instead, it uses those systems through controlled integrations.
