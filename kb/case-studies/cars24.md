@@ -1,10 +1,13 @@
-# Customers can chat with the bot to either buy or sell a car, specifying their needs in natural language, and even explore financing options from CARS24
+# Cars24 — Automotive success story
 
 **Content type**: case_study
 **Company**: Cars24
 **Module**: AI Admin, Bot Studio, SuperAgent
 **Industry**: Automotive
 **Sharing tier**: public
+
+## Outcome
+Customers can chat with the bot to either buy or sell a car, specifying their needs in natural language, and even explore financing options from CARS24
 
 ## Summary
 A automotive organization used Gupshup conversational messaging to drive measurable business outcomes.

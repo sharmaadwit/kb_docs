@@ -42,7 +42,7 @@ COMPANY_INDUSTRY: Dict[str, str] = {
     "gujarat titans": "Entertainment", "mtv": "Entertainment", "dream11": "Entertainment", "dream 11": "Entertainment",
     "dewa": "Government", "khan academy": "Education", "doubtnut": "Education", "byju's": "Education", "byjus": "Education",
     "oralsin": "Healthcare", "oral sin": "Healthcare", "damas": "Healthcare",
-    "tata cliq": "Retail & D2C", "tata cliq": "Retail & D2C", "bata": "Retail & D2C", "noise": "Retail & D2C",
+    "tata cliq": "Retail & D2C", "bata": "Retail & D2C", "noise": "Retail & D2C",
     "lakme": "Retail & D2C", "lakmé": "Retail & D2C", "bombay shaving company": "Retail & D2C",
     "dmart": "Retail & D2C", "bigbasket": "Retail & D2C", "lenskart": "Retail & D2C", "myntra": "Retail & D2C",
     "snapdeal": "Retail & D2C", "6th street": "Retail & D2C", "schneider": "Retail & D2C", "vivo": "Retail & D2C",
@@ -83,6 +83,20 @@ ANON_BY_INDUSTRY: Dict[str, str] = {
     "General": "Leading enterprise in its sector",
 }
 
+# Fix #3: regex patterns for stripping identifying phrases from anonymized content
+_ANON_PHRASE_REPLACEMENTS = [
+    (re.compile(r"\bthird[-\s]largest\b", re.I), "leading"),
+    (re.compile(r"\bsecond[-\s]largest\b", re.I), "leading"),
+    (re.compile(r"\b1st brand\b|\bfirst brand\b", re.I), "an early brand"),
+    (re.compile(r"\boperating in \d+\s*countries\b", re.I), "operating across multiple countries"),
+    (re.compile(r"\btop private bank\b", re.I), "leading bank"),
+    (re.compile(r"\bIPL team\b", re.I), "professional sports team"),
+    (re.compile(r"\bMP Election Commission\b", re.I), "state election authority"),
+]
+
+# Fix #7: quote pattern recognizing straight and Unicode smart quotes
+_QUOTE_RE = re.compile(r'["\u201C\u201D]([^"\u201C\u201D]{30,400})["\u201C\u201D]')
+
 
 @dataclass
 class Story:
@@ -105,6 +119,13 @@ def _slug(s: str) -> str:
     s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode("ascii")
     s = re.sub(r"[^a-zA-Z0-9]+", "-", s.lower()).strip("-")
     return s[:90] or "case-study"
+
+
+def _industry_slug(industry: str) -> str:
+    """Convert an industry name to a filename-safe slug (Fix #1)."""
+    s = unicodedata.normalize("NFKD", industry).encode("ascii", "ignore").decode("ascii")
+    s = re.sub(r"[^a-zA-Z0-9]+", "-", s.lower()).strip("-")
+    return s or "general"
 
 
 def _norm(s: str) -> str:
@@ -238,6 +259,8 @@ def _extract_company(text: str, headline: str, bullets: List[str]) -> Tuple[str,
     m = re.match(r"^([A-Z][A-Za-z0-9'&.\-]+(?:\s+[A-Z][A-Za-z0-9'&.\-]+){0,4})\s+(?:grow|grows|achiev|deliver|simplif|boost|make|get|launch|creat)", headline)
     if m:
         comp = m.group(1).strip()
+        if comp.lower() in {"brand", "the brand", "the organization", "the company", "company"}:
+            return "", "General"
         return comp, COMPANY_INDUSTRY.get(comp.lower(), "General")
 
     m = re.search(r"(leading|major|top)\s+(.{5,70}?)\s+(company|brand|operator|platform|maker|retailer)", headline, re.I)
@@ -245,6 +268,29 @@ def _extract_company(text: str, headline: str, bullets: List[str]) -> Tuple[str,
         return _norm(m.group(0)), "General"
 
     return "", "General"
+
+
+def _infer_industry_from_text(text: str) -> str:
+    """Return the best industry label from page text when detection yields 'General' (Fix #4)."""
+    low = text.lower()
+    checks = [
+        (["bus ", "hotel", "booking", "tourist", "hospitality"], "Travel & Hospitality"),
+        (["ride ", "driver ", "commute", "cab ", "hailing"], "Ride Hailing"),
+        (["bank", "loan", "credit", "insurance", "banking", "fintech"], "Financial Services"),
+        (["food", "restaurant", "menu", "qsr", "dining"], "Food & Restaurant"),
+        (["retail", "d2c", "fashion", "apparel", "jewelry", "catalog"], "Retail & D2C"),
+        (["healthcare", "medical", "hospital", "clinic", "dental", "patient"], "Healthcare"),
+        (["automotive", "car ", "vehicle", "automobile", "motorcycle"], "Automotive"),
+        (["telecom"], "Telecom"),
+        (["education", "edtech", "student", "learning"], "Education"),
+        (["entertainment", "streaming", "sports", "gaming"], "Entertainment"),
+        (["real estate", "housing", "property"], "Real Estate"),
+        (["cpg", "consumer goods", "fmcg", "beauty", "nutrition"], "CPG"),
+    ]
+    for keywords, industry in checks:
+        if any(kw in low for kw in keywords):
+            return industry
+    return "General"
 
 
 def _infer_use_cases(text: str) -> List[str]:
@@ -294,6 +340,37 @@ def _infer_modules(use_cases: List[str]) -> List[str]:
     return sorted(mods) if mods else ["Campaign Manager"]
 
 
+def _lift_metrics_from_bullets(bullets: List[str]) -> List[str]:
+    """Extract up to 3 inline metrics from bullets when the metrics list is empty (Fix #6)."""
+    inline_patterns = [
+        re.compile(r"\b(\d+(?:\.\d+)?[xX])\b"),
+        re.compile(r"\b(\d+(?:\.\d+)?)\s*(%)"),
+        re.compile(r"\b(\d+(?:\.\d+)?)\s*(mn|million|k|cr|lakh|bn)\b", re.I),
+    ]
+    date_version_re = re.compile(r"^(?:20\d\d|v\d+|\d+\.\d+\.\d+)$", re.I)
+
+    lifted: List[str] = []
+    seen_vals: Set[str] = set()
+    for bullet in bullets:
+        if len(lifted) >= 3:
+            break
+        for pat in inline_patterns:
+            m = pat.search(bullet)
+            if not m:
+                continue
+            val_str = m.group(0).strip()
+            if date_version_re.match(val_str):
+                continue
+            if val_str in seen_vals:
+                continue
+            rest = bullet[m.end():].strip()
+            context = " ".join(rest.split()[:6]).strip(" .,;:")
+            lifted.append(f"{val_str} — {context}" if context else val_str)
+            seen_vals.add(val_str)
+            break  # one metric per bullet
+    return lifted
+
+
 def _parse_story_page(text: str, page_num: int, library: str) -> Optional[Story]:
     if "Index (Click on the name" in text:
         return None
@@ -317,6 +394,10 @@ def _parse_story_page(text: str, page_num: int, library: str) -> Optional[Story]
     if company and industry == "General":
         industry = COMPANY_INDUSTRY.get(company.lower(), "General")
 
+    # Fix #4: reclassify "General" using keyword inference
+    if industry == "General":
+        industry = _infer_industry_from_text(text)
+
     if not headline and not bullets:
         return None
     if not bullets and len(metrics) < 2 and "Read the full story" not in text:
@@ -324,19 +405,34 @@ def _parse_story_page(text: str, page_num: int, library: str) -> Optional[Story]
     if headline and len(headline) < 25 and not bullets:
         return None
 
+    # Fix #7: quote extraction using regex with smart-quote support
     quote = ""
-    for x in lines:
-        if (x.startswith('"') and x.endswith('"')) or ("CTO" in x and '"' in x):
-            quote = x.strip('"“"')
-            break
+    joined_text = " ".join(lines)
+    m_quote = _QUOTE_RE.search(joined_text)
+    if m_quote:
+        quote = m_quote.group(1).strip()
 
     company, industry = _extract_company(text, headline, bullets)
     if company and industry == "General":
         industry = COMPANY_INDUSTRY.get(company.lower(), "General")
 
+    # Fix #4: reclassify again after final company extraction
+    if industry == "General":
+        industry = _infer_industry_from_text(text)
+
     use_cases = _infer_use_cases(text)
     channels = _infer_channels(text)
     confidential = _page_confidential(text)
+    # Auto-anonymize when the slide already uses descriptor-style language ("Leading X", "Major Y").
+    # These slides are usually internal-only even without a "Confidential" watermark.
+    if not confidential and company and re.match(
+        r"^(leading|major|top|large)\b", company.strip(), re.I,
+    ):
+        confidential = True
+
+    # Fix #6: lift inline metrics from bullets when metrics list is empty
+    if not metrics and bullets:
+        metrics = _lift_metrics_from_bullets(bullets)
 
     story_id = f"{library}-p{page_num}"
     return Story(
@@ -371,7 +467,6 @@ def _anonymize_story(story: Story) -> Story:
 
     story.company = descriptor
     replace_patterns = sorted(COMPANY_INDUSTRY.keys(), key=len, reverse=True)
-    # Common multi-word brand patterns in confidential slides
     replace_patterns += [
         "kotak mahindra bank", "kotak bank", "kotak", "hdfc", "icici", "sbi",
         "standard chartered", "canara bank", "dream11", "dream 11", "gujarat titans",
@@ -383,6 +478,17 @@ def _anonymize_story(story: Story) -> Story:
         story.headline = pat.sub("the organization", story.headline)
         story.bullets = [pat.sub("The organization", b) for b in story.bullets]
         story.metrics = [pat.sub("", m).strip(" —") for m in story.metrics if pat.sub("", m).strip(" —")]
+
+    # Fix #3: strip identifying phrases from anonymized headline, bullets, metrics
+    def _clean_text(t: str) -> str:
+        for pat, replacement in _ANON_PHRASE_REPLACEMENTS:
+            t = pat.sub(replacement, t)
+        return t
+
+    story.headline = _clean_text(story.headline)
+    story.bullets = [_clean_text(b) for b in story.bullets]
+    story.metrics = [_clean_text(m) for m in story.metrics]
+
     story.headline = re.sub(r"\bGupshup Confidential\b", "", story.headline, flags=re.I)
     story.headline = re.sub(r"www\.gupshup\.io", "", story.headline, flags=re.I)
     story.headline = re.sub(r"\s+", " ", story.headline).strip()
@@ -391,16 +497,37 @@ def _anonymize_story(story: Story) -> Story:
         story.headline = f"{descriptor} achieved measurable KPI improvements through conversational messaging"
     elif descriptor.lower() not in story.headline.lower()[: len(descriptor) + 8]:
         story.headline = f"{descriptor} — {story.headline}"
+
+    # Fix #5: append use-case suffix to the anonymized descriptor (skip degenerate cases)
+    if story.use_cases:
+        first_uc = story.use_cases[0].strip().lower()
+        if first_uc and len(first_uc) >= 2 and not story.company.lower().endswith(first_uc):
+            candidate = f"{story.company} — {first_uc}"
+            story.company = candidate[:80]
+
     return story
 
 
 def _story_to_markdown(story: Story) -> str:
+    """Convert a story to markdown with deterministic H1 and Outcome section (Fix #2)."""
     modules = _infer_modules(story.use_cases)
     display = story.company or ANON_BY_INDUSTRY.get(story.industry, "Enterprise customer")
-    title = story.headline
+
+    # Fix #2: deterministic H1 title
+    if story.confidential:
+        primary_uc = story.use_cases[0].lower() if story.use_cases else "conversational messaging"
+        # display may already have " — {use_case}" appended by Fix #5; strip it to avoid duplication
+        base_display = display
+        uc_suffix = f" — {primary_uc}"
+        if base_display.endswith(uc_suffix):
+            base_display = base_display[: -len(uc_suffix)].strip()
+        h1 = f"# {base_display} — {primary_uc} success story"
+    else:
+        h1 = f"# {display} — {story.industry} success story"
+
     tier = "internal_anonymized" if story.confidential else "public"
     lines = [
-        f"# {title}",
+        h1,
         "",
         "**Content type**: case_study",
         f"**Company**: {display}",
@@ -408,6 +535,14 @@ def _story_to_markdown(story: Story) -> str:
         f"**Industry**: {story.industry}",
         f"**Sharing tier**: {tier}",
         "",
+    ]
+
+    # Fix #2: Outcome section (original PDF headline) before Summary
+    outcome_text = story.headline.strip()
+    if outcome_text:
+        lines += ["## Outcome", outcome_text, ""]
+
+    lines += [
         "## Summary",
         f"A {story.industry.lower()} organization used Gupshup conversational messaging to drive measurable business outcomes.",
         "",
@@ -473,21 +608,79 @@ def main() -> None:
     merged = merge_stories(s2024 + s2025)
     merged = [_anonymize_story(s) for s in merged]
 
+    # Fix #5: descriptor deduplication — disambiguate duplicate company strings after merge
+    company_counts: Dict[str, int] = {}
+    for story in merged:
+        company_counts[story.company] = company_counts.get(story.company, 0) + 1
+
+    company_seen: Dict[str, int] = {}
+    for story in merged:
+        key = story.company
+        if not key.strip() or key.startswith(" "):
+            # Repair degenerate descriptors before dedup tagging
+            descriptor = ANON_BY_INDUSTRY.get(story.industry, ANON_BY_INDUSTRY["General"])
+            uc = (story.use_cases[0].lower() if story.use_cases else "")
+            story.company = f"{descriptor} — {uc}".rstrip(" —") if uc else descriptor
+            key = story.company
+        if company_counts.get(key, 0) > 1:
+            company_seen[key] = company_seen.get(key, 0) + 1
+            if company_seen[key] > 1:
+                tag = ""
+                if story.metrics:
+                    metric = story.metrics[0]
+                    if "—" in metric:
+                        val, label = metric.split("—", 1)
+                        val = val.strip()
+                        label = label.strip()
+                        tag = f"{val} {label[:18]}".strip()[:24]
+                    else:
+                        tag = metric.strip()[:24]
+                if not tag and story.use_cases and len(story.use_cases) > 1:
+                    tag = story.use_cases[1].strip()[:18]
+                if not tag and story.channels:
+                    tag = story.channels[0].strip()[:18]
+                tag = (tag or f"variant {company_seen[key]}").strip()
+                story.company = f"{story.company} · {tag}"[:80]
+
     for f in OUT_DIR.glob("*.md"):
         f.unlink()
     if (OUT_DIR / "_manifest.json").exists():
         (OUT_DIR / "_manifest.json").unlink()
 
     manifest = []
-    used: Set[str] = set()
+    used_slugs: Set[str] = set()
+    # Fix #1: per-industry counters for confidential slug generation
+    industry_slug_counters: Dict[str, int] = {}
+
     for story in merged:
-        base = _slug(story.company if story.company else story.headline)
-        slug = base
-        n = 2
-        while slug in used:
-            slug = f"{base}-{n}"
-            n += 1
-        used.add(slug)
+        if story.confidential:
+            # Slug must NOT contain any brand token — use industry slug + counter
+            ind_slug = _industry_slug(story.industry)
+            industry_slug_counters[ind_slug] = industry_slug_counters.get(ind_slug, 0) + 1
+            slug = f"{ind_slug}-{industry_slug_counters[ind_slug]}"
+        else:
+            # Public story: derive slug from company; refuse degenerate slugs.
+            base_company = story.company or ""
+            base_company = re.sub(r"\s*\(#\d+\)\s*$", "", base_company)
+            base_company = re.sub(r"\s*·\s*.*$", "", base_company).strip()
+            base = _slug(base_company)
+            DEGENERATE = {"case-study", "to", "the", "for", "and"}
+            if (
+                not base
+                or len(base) < 3
+                or base.isdigit()
+                or base in DEGENERATE
+            ):
+                ind_slug = _industry_slug(story.industry)
+                industry_slug_counters[ind_slug] = industry_slug_counters.get(ind_slug, 0) + 1
+                slug = f"{ind_slug}-public-{industry_slug_counters[ind_slug]}"
+            else:
+                slug = base
+                n = 2
+                while slug in used_slugs:
+                    slug = f"{base}-{n}"
+                    n += 1
+        used_slugs.add(slug)
         path = OUT_DIR / f"{slug}.md"
         path.write_text(_story_to_markdown(story), encoding="utf-8")
         manifest.append({
@@ -500,10 +693,14 @@ def main() -> None:
         })
 
     (OUT_DIR / "_manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    total = len(manifest)
+    anon_count = sum(1 for m in manifest if m["confidential"])
+    pub_count = sum(1 for m in manifest if not m["confidential"])
     print(f"2024 pages parsed: {len(s2024)}")
     print(f"2025 pages parsed: {len(s2025)}")
-    print(f"Merged unique stories: {len(merged)}")
-    print(f"Anonymized: {sum(1 for m in manifest if m['confidential'])}")
+    print(f"Merged unique stories: {total}")
+    print(f"Anonymized: {anon_count}")
+    print(f"Public: {pub_count}")
 
 
 if __name__ == "__main__":

@@ -1,10 +1,13 @@
-# Swiggy grows customer engagement
+# Swiggy — Food & Restaurant success story
 
 **Content type**: case_study
 **Company**: Swiggy
 **Module**: Bot Studio, Campaign Manager, Channels, Goals
 **Industry**: Food & Restaurant
 **Sharing tier**: public
+
+## Outcome
+Swiggy grows customer engagement
 
 ## Summary
 A food & restaurant organization used Gupshup conversational messaging to drive measurable business outcomes.

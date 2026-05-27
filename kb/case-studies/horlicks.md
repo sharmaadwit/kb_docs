@@ -1,10 +1,13 @@
-# Horlicks worked with Gupshup to adopt WhatsApp
+# Horlicks — CPG success story
 
 **Content type**: case_study
 **Company**: Horlicks
 **Module**: Bot Studio, Campaign Manager, Goals
 **Industry**: CPG
 **Sharing tier**: public
+
+## Outcome
+Horlicks worked with Gupshup to adopt WhatsApp
 
 ## Summary
 A cpg organization used Gupshup conversational messaging to drive measurable business outcomes.

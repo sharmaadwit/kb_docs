@@ -1,10 +1,13 @@
-# follow-ups and price drop alerts for wishlisted products, TataCliq re-engaged customers with dramatically higher conversions
+# Tata Cliq — Retail & D2C success story
 
 **Content type**: case_study
 **Company**: Tata Cliq
 **Module**: Bot Studio, Campaign Manager
 **Industry**: Retail & D2C
 **Sharing tier**: public
+
+## Outcome
+follow-ups and price drop alerts for wishlisted products, TataCliq re-engaged customers with dramatically higher conversions
 
 ## Summary
 A retail & d2c organization used Gupshup conversational messaging to drive measurable business outcomes.

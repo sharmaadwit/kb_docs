@@ -1,10 +1,13 @@
-# viewers hooked in a world with expanding content options. They partnered with Gupshup to bring interactive, gamified contests to life, offering real-time engagement.
+# Mtv — Entertainment success story
 
 **Content type**: case_study
 **Company**: Mtv
 **Module**: Bot Studio, Campaign Manager, Goals
 **Industry**: Entertainment
 **Sharing tier**: public
+
+## Outcome
+viewers hooked in a world with expanding content options. They partnered with Gupshup to bring interactive, gamified contests to life, offering real-time engagement.
 
 ## Summary
 A entertainment organization used Gupshup conversational messaging to drive measurable business outcomes.

@@ -54,7 +54,7 @@ class CaseStudyTests(unittest.TestCase):
         scored.sort(key=lambda x: x["score"], reverse=True)
         evidence = kb._select_evidence(query, scored, intent, explicit)
         answer = kb._compose_answer(query, intent, entities, evidence, explicit)
-        if kb._should_include_case_studies(query, intent, answer):
+        if kb._should_include_case_studies(query, intent, answer, explicit):
             cases = kb._select_case_studies(query, self.case, explicit)
             if cases:
                 answer = kb._append_case_study_section(answer, cases)
@@ -73,6 +73,29 @@ class CaseStudyTests(unittest.TestCase):
 
     def test_ctwa_retail_stories(self):
         ans = self._answer_with_cases("Show me CTWA success stories for retail")
+        self.assertIn(kb.CASE_STUDY_SECTION_HEADER, ans)
+
+    def test_anonymized_slug_does_not_leak_brand(self):
+        from pathlib import Path
+        BANNED = (
+            "kotak", "britannia", "hdfc", "icici", "sbi", "treebo",
+            "dream11", "swiggy", "zomato", "lakme", "byju",
+            "doubtnut", "wow-momo", "tata-cliq", "horlicks", "ola",
+            "cars24", "nobroker", "mtv", "max-fashion", "pureit", "reserva",
+        )
+        leaks = []
+        for path in Path("kb/case-studies").glob("*.md"):
+            text = path.read_text(encoding="utf-8").lower()
+            if "sharing tier**: internal_anonymized" not in text:
+                continue
+            slug = path.stem.lower()
+            for brand in BANNED:
+                if brand in slug:
+                    leaks.append((path.name, brand))
+        self.assertEqual(leaks, [], f"Anonymized slugs leak brand tokens: {leaks}")
+
+    def test_definition_intent_module_query_shows_cases(self):
+        ans = self._answer_with_cases("What is Agent Assist?")
         self.assertIn(kb.CASE_STUDY_SECTION_HEADER, ans)
 
 

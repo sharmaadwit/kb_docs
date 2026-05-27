@@ -1,10 +1,13 @@
-# Lakmé saw a 1.5X increase in user interaction and 2X orders placed using WhatsApp
+# Lakmé — Retail & D2C success story
 
 **Content type**: case_study
 **Company**: Lakmé
 **Module**: Bot Studio, Campaign Manager, Goals
 **Industry**: Retail & D2C
 **Sharing tier**: public
+
+## Outcome
+Lakmé saw a 1.5X increase in user interaction and 2X orders placed using WhatsApp
 
 ## Summary
 A retail & d2c organization used Gupshup conversational messaging to drive measurable business outcomes.

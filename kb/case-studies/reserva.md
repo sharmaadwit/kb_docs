@@ -1,10 +1,13 @@
-# Brazil’s leading fashion retailer sees 7X ROI with Gupshup Conversation Cloud; pioneers the use of Gen AI powered shopping assistant online sales attributed to marketing
+# Reserva — Retail & D2C success story
 
 **Content type**: case_study
 **Company**: Reserva
 **Module**: AI Admin, Bot Studio, Campaign Manager, Goals, SuperAgent
 **Industry**: Retail & D2C
 **Sharing tier**: public
+
+## Outcome
+Brazil’s leading fashion retailer sees 7X ROI with Gupshup Conversation Cloud; pioneers the use of Gen AI powered shopping assistant online sales attributed to marketing
 
 ## Summary
 A retail & d2c organization used Gupshup conversational messaging to drive measurable business outcomes.

@@ -1,10 +1,13 @@
-# Ola Electric used Click-to-Chat Ads to drive high-intent leads for its new product launch. ● The campaign connected users directly on WhatsApp
+# Ola Electric — Automotive success story
 
 **Content type**: case_study
 **Company**: Ola Electric
 **Module**: Campaign Manager
 **Industry**: Automotive
 **Sharing tier**: public
+
+## Outcome
+Ola Electric used Click-to-Chat Ads to drive high-intent leads for its new product launch. ● The campaign connected users directly on WhatsApp
 
 ## Summary
 A automotive organization used Gupshup conversational messaging to drive measurable business outcomes.

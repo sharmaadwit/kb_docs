@@ -1,10 +1,13 @@
-# collection rate Leading real estate platform grows conversions by 1.8X, simplifies listing creation with conversations
+# Housing.Com — Real Estate success story
 
 **Content type**: case_study
 **Company**: Housing.Com
 **Module**: AI Admin, Bot Studio, Campaign Manager
 **Industry**: Real Estate
 **Sharing tier**: public
+
+## Outcome
+collection rate Leading real estate platform grows conversions by 1.8X, simplifies listing creation with conversations
 
 ## Summary
 A real estate organization used Gupshup conversational messaging to drive measurable business outcomes.

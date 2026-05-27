@@ -1,10 +1,13 @@
-# Doubtnut team to resolve student queries leveraging rich media such as images and videos ● Helped reduce drop-off rates and increased engagement
+# Doubtnut — Education success story
 
 **Content type**: case_study
 **Company**: Doubtnut
 **Module**: AI Admin, Bot Studio, Campaign Manager, Goals
 **Industry**: Education
 **Sharing tier**: public
+
+## Outcome
+Doubtnut team to resolve student queries leveraging rich media such as images and videos ● Helped reduce drop-off rates and increased engagement
 
 ## Summary
 A education organization used Gupshup conversational messaging to drive measurable business outcomes.

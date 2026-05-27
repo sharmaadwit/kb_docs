@@ -2386,15 +2386,16 @@ def _module_from_source(source: str) -> str:
 
 CASE_STUDY_SECTION_HEADER = "## Related success stories"
 MAX_CASE_STUDIES_PER_ANSWER = 3
-MIN_CASE_STUDY_SCORE = 2.0
+MIN_CASE_STUDY_SCORE = 1.5
 
 _CASE_STUDY_QUERY_SIGNALS = (
-    "case study", "case studies", "success story", "success stories",
+    "case study", "case studies", "success story", "success stories", "successes",
     "customer example", "customer story", "customer examples",
     "who uses", "who else", "similar company", "reference customer",
     "example of", "examples of", "examples in", "marketing examples",
     "proof point", "social proof",
     "roi story", "real world", "in production",
+    "win", "wins",
 )
 
 _CASE_STUDY_NEGATIVE_SIGNALS = (
@@ -2469,16 +2470,26 @@ def _score_case_study_chunk(query: str, chunk: Dict, explicit_module: str) -> fl
         if hint in q and ind.lower() == industry.lower():
             score += 1.2
 
-    if any(sig in q for sig in _CASE_STUDY_QUERY_SIGNALS):
-        score += 0.8
+    if any(sig in q for sig in _CASE_STUDY_QUERY_SIGNALS) or re.search(r"\bexamples?\b", q):
+        score += 1.5
     if "case_study" in text_low or "content type**: case_study" in text_low:
         score += 0.3
+    # Match query keywords against use cases to surface RCS/CTWA/etc cross-industry stories
+    for kw, _ in _INDUSTRY_QUERY_HINTS.items():
+        if kw in q:
+            break
+    use_case_keywords = ("ctwa", "commerce", "marketing", "engagement", "rcs",
+                         "support", "voice", "instagram", "ai")
+    for kw in use_case_keywords:
+        if kw in q and kw in text_low:
+            score += 0.4
+            break
     if _case_study_metrics(text):
         score += 0.4
     return score
 
 
-def _should_include_case_studies(query: str, intent: str, answer: str) -> bool:
+def _should_include_case_studies(query: str, intent: str, answer: str, explicit_module: str = "General") -> bool:
     if intent in _CASE_STUDY_SKIP_INTENTS:
         return False
     q = _normalize_query_for_match(query)
@@ -2505,6 +2516,8 @@ def _should_include_case_studies(query: str, intent: str, answer: str) -> bool:
             return True
         if any(t in q for t in ("ctwa", "commerce", "marketing", "engagement", "rcs", "support", "whatsapp")):
             return True
+    if intent in ("definition", "page_lookup", "overview") and explicit_module != "General":
+        return True
     return False
 
 
@@ -2555,10 +2568,10 @@ def _format_case_study_entry(chunk: Dict) -> str:
     caps = _case_study_capabilities(text, limit=3)
     detail_parts: List[str] = []
     if metrics:
-        detail_parts.append("; ".join(metrics))
+        detail_parts.append(" · ".join(metrics))
     if caps:
-        detail_parts.append(", ".join(caps))
-    detail = "; ".join(detail_parts) if detail_parts else "conversational messaging outcomes"
+        detail_parts.append(" · ".join(caps))
+    detail = " — ".join(detail_parts) if detail_parts else "conversational messaging outcomes"
     return f"- **{company}** ({industry}) — {detail}"
 
 
@@ -4692,11 +4705,21 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
     evidence = _select_evidence(query, scored, intent, explicit_module)
     answer = _compose_answer(query, intent, entities, evidence, explicit_module)
     answer, policy_meta = _apply_answer_policy(answer, query, params)
-    if case_chunks and _should_include_case_studies(query, intent, answer):
+    if case_chunks and _should_include_case_studies(query, intent, answer, explicit_module):
         matched_cases = _select_case_studies(query, case_chunks, explicit_module)
+        considered = sum(
+            1 for c in case_chunks
+            if _score_case_study_chunk(query, c, explicit_module) >= MIN_CASE_STUDY_SCORE
+        )
+        top_score = max(
+            (_score_case_study_chunk(query, c, explicit_module) for c in case_chunks),
+            default=0.0,
+        )
+        policy_meta = dict(policy_meta or {})
+        policy_meta["case_studies_considered"] = considered
+        policy_meta["case_studies_top_score"] = round(top_score, 2)
         if matched_cases:
             answer = _append_case_study_section(answer, matched_cases)
-            policy_meta = dict(policy_meta or {})
             policy_meta["case_studies_appended"] = len(matched_cases)
     answer = _redact_answer_disclosures(answer)
     if len(answer) > _MAX_ANSWER_CHARS:

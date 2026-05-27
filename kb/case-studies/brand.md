@@ -1,10 +1,13 @@
-# Brand launched a digital loyalty and claims campaign across WhatsApp
+# Brand — General success story
 
 **Content type**: case_study
 **Company**: Brand
 **Module**: Agent Assist, Campaign Manager
 **Industry**: General
 **Sharing tier**: public
+
+## Outcome
+Brand launched a digital loyalty and claims campaign across WhatsApp
 
 ## Summary
 A general organization used Gupshup conversational messaging to drive measurable business outcomes.

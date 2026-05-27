@@ -1,10 +1,13 @@
-# Pureit initially offered its customers the option to inquire, schedule home demonstrations, and raise complaints via phone support
+# Pureit — CPG success story
 
 **Content type**: case_study
 **Company**: Pureit
 **Module**: Agent Assist, Bot Studio, Campaign Manager, Channels, Goals
 **Industry**: CPG
 **Sharing tier**: public
+
+## Outcome
+Pureit initially offered its customers the option to inquire, schedule home demonstrations, and raise complaints via phone support
 
 ## Summary
 A cpg organization used Gupshup conversational messaging to drive measurable business outcomes.

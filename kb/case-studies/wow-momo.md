@@ -1,10 +1,13 @@
-# Wow! Momo introduced WhatsApp as a channel in mid 2022 ● The chain engages it 2.9 million opted-in users on WhatsApp
+# Wow! Momo — Food & Restaurant success story
 
 **Content type**: case_study
 **Company**: Wow! Momo
 **Module**: Bot Studio, Campaign Manager
 **Industry**: Food & Restaurant
 **Sharing tier**: public
+
+## Outcome
+Wow! Momo introduced WhatsApp as a channel in mid 2022 ● The chain engages it 2.9 million opted-in users on WhatsApp
 
 ## Summary
 A food & restaurant organization used Gupshup conversational messaging to drive measurable business outcomes.

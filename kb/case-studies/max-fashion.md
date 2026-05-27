@@ -1,10 +1,13 @@
-# Max Fashion Grows Sales 30% YoY with Personalized Marketing using Gupshup and WhatsApp
+# Max Fashion — Retail & D2C success story
 
 **Content type**: case_study
 **Company**: Max Fashion
 **Module**: Bot Studio, Campaign Manager, Goals
 **Industry**: Retail & D2C
 **Sharing tier**: public
+
+## Outcome
+Max Fashion Grows Sales 30% YoY with Personalized Marketing using Gupshup and WhatsApp
 
 ## Summary
 A retail & d2c organization used Gupshup conversational messaging to drive measurable business outcomes.
@@ -23,6 +26,9 @@ A retail & d2c organization used Gupshup conversational messaging to drive measu
 - Marketing
 
 **Channels**: WhatsApp
+
+## Customer quote
+> during late Ramadan hours, womenswear promos for moms buying kidswear, post-purchase rewards to encourage repeat buys, and event-driven offers for Back to School and White Wednesday. ● Clear CTAs like
 
 ## Good fit when
 - You are in **Retail & D2C** and want similar outcomes

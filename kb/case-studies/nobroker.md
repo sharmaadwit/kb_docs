@@ -1,10 +1,13 @@
-# NoBroker realized that 80% of the owners prefer WhatsApp
+# Nobroker — Real Estate success story
 
 **Content type**: case_study
 **Company**: Nobroker
 **Module**: Campaign Manager
 **Industry**: Real Estate
 **Sharing tier**: public
+
+## Outcome
+NoBroker realized that 80% of the owners prefer WhatsApp
 
 ## Summary
 A real estate organization used Gupshup conversational messaging to drive measurable business outcomes.
