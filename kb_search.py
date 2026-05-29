@@ -1057,48 +1057,22 @@ def _extract_query(params: Dict) -> str:
     return ""
 
 
-def _gh_headers(context) -> Dict[str, str]:
-    token = context.get_secret("GITHUB_TOKEN")
-    if not token:
-        raise RuntimeError("Missing GitHub configuration secrets")
-    return {
-        "Authorization": f"Bearer {token}",
-        "Accept": "application/vnd.github+json",
-        "User-Agent": "superagent-product-kb-search",
-    }
-
-
 def _repo_cfg(context) -> Dict[str, str]:
-    owner = context.get_secret("GITHUB_OWNER")
-    repo = context.get_secret("GITHUB_REPO")
-    branch = context.get_secret("GITHUB_BRANCH") or "main"
-    chunks_path = context.get_secret("GITHUB_KB_CHUNKS_PATH") or "kb/kb_chunks.jsonl"
-    if not owner or not repo:
-        raise RuntimeError("Missing GitHub configuration secrets")
-    return {"owner": owner, "repo": repo, "branch": branch, "chunks_path": chunks_path}
+    import kb_git
+    return kb_git.repo_cfg(context, include_docs=False)
 
 
 def _load_chunks(context) -> List[Dict]:
-    cfg = _repo_cfg(context)
-    url = (
-        f"https://raw.githubusercontent.com/{cfg['owner']}/{cfg['repo']}"
-        f"/{cfg['branch']}/{cfg['chunks_path']}"
-    )
+    import kb_git
     try:
-        r = requests.get(url, headers=_gh_headers(context), timeout=30)
-        r.raise_for_status()
+        cfg = kb_git.require_repo_config(context)
+        return kb_git.fetch_raw_jsonl(
+            context, cfg["chunks_path"], user_agent="superagent-product-kb-search",
+        )
+    except RuntimeError:
+        raise
     except Exception as exc:
         raise RuntimeError("Could not load knowledge base content") from exc
-    items: List[Dict] = []
-    for line in r.text.splitlines():
-        line = line.strip()
-        if not line:
-            continue
-        try:
-            items.append(json.loads(line))
-        except Exception:
-            continue
-    return items
 
 
 def _detect_module(query: str) -> str:
