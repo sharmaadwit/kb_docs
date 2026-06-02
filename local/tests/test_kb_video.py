@@ -232,6 +232,75 @@ class TestKbVideo(unittest.TestCase):
         finally:
             kb_video.kb_storage.read_json = original
 
+    def test_select_video_broad_query_uses_overview_fallback(self):
+        # A broad discovery/pitch question whose top results are unmapped pages
+        # should still surface the overview video flagged broad_fallback.
+        manifest = [
+            {
+                "source": "kb/ctx/connecting-fb-ad-account-to-gupshup-ads-management.md",
+                "video_id": "vidCTX",
+                "title": "CTX Setup",
+                "default_lang": "en",
+                "caption_langs": ["en"],
+                "embeddable": True,
+            },
+            {
+                "source": "kb/overview/welcome-to-gupshup-console.md",
+                "video_id": "vidOV",
+                "title": "Gupshup Console Overview",
+                "default_lang": "en",
+                "caption_langs": ["en"],
+                "embeddable": True,
+                "broad_fallback": True,
+            },
+        ]
+        original = kb_video.kb_storage.read_json
+        try:
+            kb_video.kb_storage.read_json = lambda path, context=None: (
+                manifest if path == "kb/video_manifest.json" else []
+            )
+            got = kb_video.select_video(
+                query="which modules are suitable for retail and what use cases work",
+                intent="overview",
+                module="x",
+                ranked_rows=[{"source": "kb/case-studies/retail-d2c-1.md", "score": 0.9}],
+                context=FakeContext({}),
+            )
+            self.assertIsNotNone(got)
+            self.assertEqual(got["video_id"], "vidOV")
+            self.assertTrue(got["fallback"])
+        finally:
+            kb_video.kb_storage.read_json = original
+
+    def test_select_video_specific_query_no_fallback(self):
+        # A non-broad off-topic query must NOT trigger the overview fallback.
+        manifest = [
+            {
+                "source": "kb/overview/welcome-to-gupshup-console.md",
+                "video_id": "vidOV",
+                "title": "Gupshup Console Overview",
+                "default_lang": "en",
+                "caption_langs": ["en"],
+                "embeddable": True,
+                "broad_fallback": True,
+            }
+        ]
+        original = kb_video.kb_storage.read_json
+        try:
+            kb_video.kb_storage.read_json = lambda path, context=None: (
+                manifest if path == "kb/video_manifest.json" else []
+            )
+            got = kb_video.select_video(
+                query="what is the refund policy",
+                intent="definition",
+                module="x",
+                ranked_rows=[{"source": "kb/agent-assist/user-management-teams.md", "score": 0.5}],
+                context=FakeContext({}),
+            )
+            self.assertIsNone(got)
+        finally:
+            kb_video.kb_storage.read_json = original
+
 
 if __name__ == "__main__":
     unittest.main()

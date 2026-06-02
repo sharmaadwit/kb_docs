@@ -101,6 +101,40 @@ def _tokenize(text):
     return tokens
 
 
+_BROAD_QUERY_PATTERNS = (
+    "what can gupshup",
+    "what does gupshup",
+    "what is gupshup",
+    "what all can",
+    "use case",
+    "use-case",
+    "suitable for",
+    "suited for",
+    "good for",
+    "best for",
+    "right for",
+    "which module",
+    "what module",
+    "what modules",
+    "which industr",
+    "getting started",
+    "get started",
+    "new to gupshup",
+    "introduction to",
+    "overview of gupshup",
+    "tell me about gupshup",
+    "pitch",
+)
+
+
+def _is_broad_query(query: str) -> bool:
+    # Discovery / pitch / "what can it do" style asks from new users or sales,
+    # where no single KB page is the answer. Used only as a fallback to surface
+    # a high-level overview video when no specific page-mapped video matched.
+    q = str(query or "").lower()
+    return any(p in q for p in _BROAD_QUERY_PATTERNS)
+
+
 def _safe_int(value, default=0):
     try:
         return int(value)
@@ -293,6 +327,28 @@ def select_video(query: str, intent: str, module: str, ranked_rows, language=Non
             entry = best
             break
 
+        # Broad / discovery questions (e.g. "what can Gupshup do", "which modules
+        # suit retail", a sales pitch) rarely map to one page, so the scan above
+        # finds nothing. For new users and sales, still attach a high-level
+        # overview video flagged `broad_fallback` so the first answer carries one.
+        is_fallback = False
+        if entry is None and _is_broad_query(query):
+            fallback = next(
+                (
+                    e for e in manifest
+                    if isinstance(e, dict)
+                    and e.get("broad_fallback") is True
+                    and e.get("embeddable") is not False
+                    and e.get("video_id")
+                ),
+                None,
+            )
+            if fallback is not None:
+                entry = fallback
+                primary = {"source": fallback.get("source"), "text": ""}
+                heading = ""
+                is_fallback = True
+
         if entry is None or primary is None:
             return None
 
@@ -336,6 +392,7 @@ def select_video(query: str, intent: str, module: str, ranked_rows, language=Non
             "captions_on": cc_on,
             "url": url,
             "source": entry.get("source"),
+            "fallback": is_fallback,
         }
     except Exception:
         logger.exception("Failed selecting video")

@@ -232,6 +232,7 @@
     "title": "Gupshup Console Overview",
     "default_lang": "en",
     "caption_langs": ["en"],
-    "embeddable": true
+    "embeddable": true,
+    "broad_fallback": true
   }
 ]

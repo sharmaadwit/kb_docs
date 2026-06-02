@@ -55,6 +55,7 @@ https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=42&cc_load_policy=1&cc_lang_pref=e
 | `default_lang` | string | ISO 639-1 default caption language for the entry. |
 | `caption_langs` | array of strings | ISO 639-1 codes for caption tracks actually published on the video. |
 | `embeddable` | boolean | Whether embedding is enabled on YouTube (should be `true` before use). |
+| `broad_fallback` | boolean (optional) | Mark **exactly one** entry `true` to make it the overview video shown for broad discovery/pitch questions (e.g. "what can Gupshup do", "which modules suit retail") when no specific page-mapped video matched. Helps new users / sales who don't know the module map. |
 | `intents` | array of strings (optional) | Intent labels that restrict when this video is eligible (e.g. `setup`, `definition`, `overview`). Omit to allow any intent for this `source`. |
 | `chapters` | object (optional) | Maps a KB heading string to `{ "start": int, "end": int }` (seconds) to skip transcript matching when timestamps are pre-known. Keys must match heading text on the `source` page. |
 
@@ -125,6 +126,6 @@ Store one file per video: `video_transcripts/<video_id>.json` (e.g. `video_trans
 4. If `chapters` contains the current heading, use its pre-defined `start` and `end` directly.
 5. Otherwise, score **windows of transcript cues** against the question and select the best contiguous start/end window (capped to about **90 seconds**).
 6. Build the embed URL with whole-second `start` and `end`, plus caption parameters when the language is supported.
-7. If no manifest entry matches (or embedding is disabled), return the text answer only — no video link.
+7. If no specific page matched **and** the question is a broad discovery/pitch ask, fall back to the entry flagged `broad_fallback` (the overview video) so the first answer still carries a video. Otherwise return the text answer only — no video link.
 
 **Answer gate note:** a video is only appended to a **substantive** answer — never to an "I don't know" response. `kb_answer`'s support gate trusts **strong lexical overlap**: if the best evidence page overlaps the query terms by ≥ 0.7 (with a small positive score), it is accepted even when its absolute score is below the usual floors. This recovers clearly on-topic questions that previously refused (and thus lets their mapped video surface) without lowering the global thresholds. Off-topic queries (low overlap) still refuse and get no video.
