@@ -1,0 +1,656 @@
+[
+  {
+    "start": 4.48,
+    "dur": 7.119,
+    "text": "Hi everyone. So yes today we'll cover",
+    "lang": "en"
+  },
+  {
+    "start": 8.24,
+    "dur": 6.0,
+    "text": "what are the goals. So there is goals",
+    "lang": "en"
+  },
+  {
+    "start": 11.599,
+    "dur": 6.161,
+    "text": "section in the bot studio. And what do",
+    "lang": "en"
+  },
+  {
+    "start": 14.24,
+    "dur": 8.08,
+    "text": "we mean by goals? So ideally when we",
+    "lang": "en"
+  },
+  {
+    "start": 17.76,
+    "dur": 7.12,
+    "text": "speak about the uh goals. Now over here",
+    "lang": "en"
+  },
+  {
+    "start": 22.32,
+    "dur": 5.84,
+    "text": "you can create a particular go out over",
+    "lang": "en"
+  },
+  {
+    "start": 24.88,
+    "dur": 5.04,
+    "text": "here to understand the progress of your",
+    "lang": "en"
+  },
+  {
+    "start": 28.16,
+    "dur": 4.72,
+    "text": "end users what they are doing the",
+    "lang": "en"
+  },
+  {
+    "start": 29.92,
+    "dur": 5.12,
+    "text": "indicators and all. So you can have your",
+    "lang": "en"
+  },
+  {
+    "start": 32.88,
+    "dur": 4.24,
+    "text": "particular milestone based goals. So",
+    "lang": "en"
+  },
+  {
+    "start": 35.04,
+    "dur": 4.48,
+    "text": "let's say your lead generation is one of",
+    "lang": "en"
+  },
+  {
+    "start": 37.12,
+    "dur": 4.8,
+    "text": "the milestone that once you have your",
+    "lang": "en"
+  },
+  {
+    "start": 39.52,
+    "dur": 5.039,
+    "text": "particular goal of particular lead",
+    "lang": "en"
+  },
+  {
+    "start": 41.92,
+    "dur": 5.2,
+    "text": "generation over there then you can have",
+    "lang": "en"
+  },
+  {
+    "start": 44.559,
+    "dur": 4.32,
+    "text": "your multiple key trackers. Key trackers",
+    "lang": "en"
+  },
+  {
+    "start": 47.12,
+    "dur": 4.64,
+    "text": "can be let's say for lead lead",
+    "lang": "en"
+  },
+  {
+    "start": 48.879,
+    "dur": 6.241,
+    "text": "generation can be name, mobile number,",
+    "lang": "en"
+  },
+  {
+    "start": 51.76,
+    "dur": 5.84,
+    "text": "something of this sort and yes so I did",
+    "lang": "en"
+  },
+  {
+    "start": 55.12,
+    "dur": 5.119,
+    "text": "you can have all those things also",
+    "lang": "en"
+  },
+  {
+    "start": 57.6,
+    "dur": 4.72,
+    "text": "available out over here. You can have",
+    "lang": "en"
+  },
+  {
+    "start": 60.239,
+    "dur": 3.841,
+    "text": "your own particular description. You can",
+    "lang": "en"
+  },
+  {
+    "start": 62.32,
+    "dur": 3.68,
+    "text": "have your particular default values. You",
+    "lang": "en"
+  },
+  {
+    "start": 64.08,
+    "dur": 4.079,
+    "text": "can have as many as milestones what you",
+    "lang": "en"
+  },
+  {
+    "start": 66.0,
+    "dur": 4.32,
+    "text": "want to keep under one particular goal",
+    "lang": "en"
+  },
+  {
+    "start": 68.159,
+    "dur": 4.64,
+    "text": "and as many as trackers what you want to",
+    "lang": "en"
+  },
+  {
+    "start": 70.32,
+    "dur": 5.2,
+    "text": "have. So you can see the add tracker add",
+    "lang": "en"
+  },
+  {
+    "start": 72.799,
+    "dur": 4.96,
+    "text": "milestone and everything available. Now",
+    "lang": "en"
+  },
+  {
+    "start": 75.52,
+    "dur": 4.32,
+    "text": "how does this help you? Let me show you",
+    "lang": "en"
+  },
+  {
+    "start": 77.759,
+    "dur": 4.801,
+    "text": "in the terms of the analytics. So let me",
+    "lang": "en"
+  },
+  {
+    "start": 79.84,
+    "dur": 4.72,
+    "text": "show you first this. So this is for test",
+    "lang": "en"
+  },
+  {
+    "start": 82.56,
+    "dur": 4.559,
+    "text": "drive booking where we have created a",
+    "lang": "en"
+  },
+  {
+    "start": 84.56,
+    "dur": 4.239,
+    "text": "journey and we want to capture that",
+    "lang": "en"
+  },
+  {
+    "start": 87.119,
+    "dur": 4.081,
+    "text": "what's the language preferred language",
+    "lang": "en"
+  },
+  {
+    "start": 88.799,
+    "dur": 4.561,
+    "text": "of the end users out over here along",
+    "lang": "en"
+  },
+  {
+    "start": 91.2,
+    "dur": 5.52,
+    "text": "with that what was the slot selected by",
+    "lang": "en"
+  },
+  {
+    "start": 93.36,
+    "dur": 5.439,
+    "text": "the end users. So you see that key",
+    "lang": "en"
+  },
+  {
+    "start": 96.72,
+    "dur": 4.8,
+    "text": "trackers are these things. This is the",
+    "lang": "en"
+  },
+  {
+    "start": 98.799,
+    "dur": 4.721,
+    "text": "goal of your particular milestone based",
+    "lang": "en"
+  },
+  {
+    "start": 101.52,
+    "dur": 5.04,
+    "text": "thing for your particular journey what",
+    "lang": "en"
+  },
+  {
+    "start": 103.52,
+    "dur": 4.559,
+    "text": "you have created. And then you your",
+    "lang": "en"
+  },
+  {
+    "start": 106.56,
+    "dur": 4.4,
+    "text": "analytics.",
+    "lang": "en"
+  },
+  {
+    "start": 108.079,
+    "dur": 6.641,
+    "text": "So let me do one thing.",
+    "lang": "en"
+  },
+  {
+    "start": 110.96,
+    "dur": 6.32,
+    "text": "Let me go and check. Okay, let me put",
+    "lang": "en"
+  },
+  {
+    "start": 114.72,
+    "dur": 6.56,
+    "text": "those analytics pieces.",
+    "lang": "en"
+  },
+  {
+    "start": 117.28,
+    "dur": 5.92,
+    "text": "Let me search something out over here.",
+    "lang": "en"
+  },
+  {
+    "start": 121.28,
+    "dur": 5.519,
+    "text": "So let's go ahead and check the date.",
+    "lang": "en"
+  },
+  {
+    "start": 123.2,
+    "dur": 8.839,
+    "text": "Okay, we have this from 4th May.",
+    "lang": "en"
+  },
+  {
+    "start": 126.799,
+    "dur": 5.24,
+    "text": "Let's select 4th May to 18th May.",
+    "lang": "en"
+  },
+  {
+    "start": 134.0,
+    "dur": 8.959,
+    "text": "Okay. Miss two. Click on apply.",
+    "lang": "en"
+  },
+  {
+    "start": 138.72,
+    "dur": 6.4,
+    "text": "Yes. So you see that",
+    "lang": "en"
+  },
+  {
+    "start": 142.959,
+    "dur": 5.441,
+    "text": "what was the",
+    "lang": "en"
+  },
+  {
+    "start": 145.12,
+    "dur": 6.32,
+    "text": "you see that what was the goal achieved.",
+    "lang": "en"
+  },
+  {
+    "start": 148.4,
+    "dur": 4.72,
+    "text": "Okay. How many people have you know had",
+    "lang": "en"
+  },
+  {
+    "start": 151.44,
+    "dur": 4.159,
+    "text": "successfully gone through your entire",
+    "lang": "en"
+  },
+  {
+    "start": 153.12,
+    "dur": 4.8,
+    "text": "milestone what you had created? How many",
+    "lang": "en"
+  },
+  {
+    "start": 155.599,
+    "dur": 4.081,
+    "text": "unique people then you can always have",
+    "lang": "en"
+  },
+  {
+    "start": 157.92,
+    "dur": 3.92,
+    "text": "the number of unique people achieve",
+    "lang": "en"
+  },
+  {
+    "start": 159.68,
+    "dur": 3.919,
+    "text": "trends being here. You also can have",
+    "lang": "en"
+  },
+  {
+    "start": 161.84,
+    "dur": 3.2,
+    "text": "this in the form of a table view. You",
+    "lang": "en"
+  },
+  {
+    "start": 163.599,
+    "dur": 4.321,
+    "text": "can also have this in the form of a",
+    "lang": "en"
+  },
+  {
+    "start": 165.04,
+    "dur": 5.12,
+    "text": "graph view. Then you see that we had",
+    "lang": "en"
+  },
+  {
+    "start": 167.92,
+    "dur": 4.56,
+    "text": "kept two milestones or two things to",
+    "lang": "en"
+  },
+  {
+    "start": 170.16,
+    "dur": 4.32,
+    "text": "capture the language preference as well",
+    "lang": "en"
+  },
+  {
+    "start": 172.48,
+    "dur": 4.399,
+    "text": "as the selected slot. So how many people",
+    "lang": "en"
+  },
+  {
+    "start": 174.48,
+    "dur": 4.72,
+    "text": "have achieved each and every particular",
+    "lang": "en"
+  },
+  {
+    "start": 176.879,
+    "dur": 4.881,
+    "text": "section is also what we understand and",
+    "lang": "en"
+  },
+  {
+    "start": 179.2,
+    "dur": 4.8,
+    "text": "you have your cohort based audience also",
+    "lang": "en"
+  },
+  {
+    "start": 181.76,
+    "dur": 3.92,
+    "text": "getting created out over here. So",
+    "lang": "en"
+  },
+  {
+    "start": 184.0,
+    "dur": 4.08,
+    "text": "assuming let's say there are 50 people",
+    "lang": "en"
+  },
+  {
+    "start": 185.68,
+    "dur": 5.199,
+    "text": "who are coming and 38 reach till stage",
+    "lang": "en"
+  },
+  {
+    "start": 188.08,
+    "dur": 5.439,
+    "text": "one and 30 and out of that only 10 reach",
+    "lang": "en"
+  },
+  {
+    "start": 190.879,
+    "dur": 5.36,
+    "text": "to stage two. You have your entire set",
+    "lang": "en"
+  },
+  {
+    "start": 193.519,
+    "dur": 5.521,
+    "text": "of uh cohorts of end users available",
+    "lang": "en"
+  },
+  {
+    "start": 196.239,
+    "dur": 4.961,
+    "text": "along with their mobile numbers uh along",
+    "lang": "en"
+  },
+  {
+    "start": 199.04,
+    "dur": 3.6,
+    "text": "with the entire details out over there.",
+    "lang": "en"
+  },
+  {
+    "start": 201.2,
+    "dur": 3.52,
+    "text": "So you understand that these are the",
+    "lang": "en"
+  },
+  {
+    "start": 202.64,
+    "dur": 4.72,
+    "text": "people who have reached this section and",
+    "lang": "en"
+  },
+  {
+    "start": 204.72,
+    "dur": 4.72,
+    "text": "you can perform or you can have your uh",
+    "lang": "en"
+  },
+  {
+    "start": 207.36,
+    "dur": 4.239,
+    "text": "certain analytics and things rolling",
+    "lang": "en"
+  },
+  {
+    "start": 209.44,
+    "dur": 4.159,
+    "text": "about. So you can always go click on",
+    "lang": "en"
+  },
+  {
+    "start": 211.599,
+    "dur": 4.161,
+    "text": "export you can export the data in the",
+    "lang": "en"
+  },
+  {
+    "start": 213.599,
+    "dur": 4.72,
+    "text": "form of an excel for you all use that",
+    "lang": "en"
+  },
+  {
+    "start": 215.76,
+    "dur": 5.6,
+    "text": "data however you require and that's how",
+    "lang": "en"
+  },
+  {
+    "start": 218.319,
+    "dur": 5.761,
+    "text": "we have created these things.",
+    "lang": "en"
+  },
+  {
+    "start": 221.36,
+    "dur": 5.76,
+    "text": "So making sure you know where you have",
+    "lang": "en"
+  },
+  {
+    "start": 224.08,
+    "dur": 5.04,
+    "text": "all the things available out over here.",
+    "lang": "en"
+  },
+  {
+    "start": 227.12,
+    "dur": 4.399,
+    "text": "You can always have this particular",
+    "lang": "en"
+  },
+  {
+    "start": 229.12,
+    "dur": 3.759,
+    "text": "things wherein you can export it have",
+    "lang": "en"
+  },
+  {
+    "start": 231.519,
+    "dur": 3.601,
+    "text": "any of the things you can also",
+    "lang": "en"
+  },
+  {
+    "start": 232.879,
+    "dur": 5.041,
+    "text": "understand whether it is organic way or",
+    "lang": "en"
+  },
+  {
+    "start": 235.12,
+    "dur": 5.119,
+    "text": "inorganic way they have gone ahead and",
+    "lang": "en"
+  },
+  {
+    "start": 237.92,
+    "dur": 5.92,
+    "text": "had that particular journey uh being",
+    "lang": "en"
+  },
+  {
+    "start": 240.239,
+    "dur": 6.321,
+    "text": "used for them and so on and so forth. So",
+    "lang": "en"
+  },
+  {
+    "start": 243.84,
+    "dur": 5.2,
+    "text": "this is how goals is you know helping",
+    "lang": "en"
+  },
+  {
+    "start": 246.56,
+    "dur": 4.8,
+    "text": "the end users to understand that how the",
+    "lang": "en"
+  },
+  {
+    "start": 249.04,
+    "dur": 4.32,
+    "text": "particular customers are behaving how",
+    "lang": "en"
+  },
+  {
+    "start": 251.36,
+    "dur": 3.92,
+    "text": "the particular analytics for that also",
+    "lang": "en"
+  },
+  {
+    "start": 253.36,
+    "dur": 4.159,
+    "text": "look like and you can create as many as",
+    "lang": "en"
+  },
+  {
+    "start": 255.28,
+    "dur": 4.239,
+    "text": "goals what you want over here configure",
+    "lang": "en"
+  },
+  {
+    "start": 257.519,
+    "dur": 3.921,
+    "text": "that in the journeys what you have in",
+    "lang": "en"
+  },
+  {
+    "start": 259.519,
+    "dur": 4.24,
+    "text": "the form of a goal node just go invoke",
+    "lang": "en"
+  },
+  {
+    "start": 261.44,
+    "dur": 4.88,
+    "text": "the name of the uh goal what you have",
+    "lang": "en"
+  },
+  {
+    "start": 263.759,
+    "dur": 4.561,
+    "text": "created out over here and that's it so",
+    "lang": "en"
+  },
+  {
+    "start": 266.32,
+    "dur": 5.28,
+    "text": "it is that simple and easy to use and",
+    "lang": "en"
+  },
+  {
+    "start": 268.32,
+    "dur": 5.439,
+    "text": "you can simply have that over here and",
+    "lang": "en"
+  },
+  {
+    "start": 271.6,
+    "dur": 6.24,
+    "text": "yeah so this is what the gold nodes is",
+    "lang": "en"
+  },
+  {
+    "start": 273.759,
+    "dur": 6.16,
+    "text": "all about. So that is what we have for",
+    "lang": "en"
+  },
+  {
+    "start": 277.84,
+    "dur": 6.359,
+    "text": "this video. See you all in the next",
+    "lang": "en"
+  },
+  {
+    "start": 279.919,
+    "dur": 4.28,
+    "text": "video guys. Thank you so much.",
+    "lang": "en"
+  }
+]

@@ -1,0 +1,470 @@
+[
+  {
+    "start": 2.56,
+    "dur": 5.44,
+    "text": "Hi, welcome to a short overview over",
+    "lang": "en"
+  },
+  {
+    "start": 4.96,
+    "dur": 6.0,
+    "text": "agent assist. Now in your chats that you",
+    "lang": "en"
+  },
+  {
+    "start": 8.0,
+    "dur": 4.96,
+    "text": "are building on the cup journey builder,",
+    "lang": "en"
+  },
+  {
+    "start": 10.96,
+    "dur": 4.639,
+    "text": "you are able to actually go ahead and",
+    "lang": "en"
+  },
+  {
+    "start": 12.96,
+    "dur": 4.96,
+    "text": "connect a user to an agent at any point",
+    "lang": "en"
+  },
+  {
+    "start": 15.599,
+    "dur": 4.241,
+    "text": "during the interaction during uh",
+    "lang": "en"
+  },
+  {
+    "start": 17.92,
+    "dur": 4.24,
+    "text": "whichever node that you wish to go ahead",
+    "lang": "en"
+  },
+  {
+    "start": 19.84,
+    "dur": 4.64,
+    "text": "and lead to an agent. You can simply",
+    "lang": "en"
+  },
+  {
+    "start": 22.16,
+    "dur": 4.4,
+    "text": "click the add button, go under actions",
+    "lang": "en"
+  },
+  {
+    "start": 24.48,
+    "dur": 4.4,
+    "text": "and one of the nodes is the agent",
+    "lang": "en"
+  },
+  {
+    "start": 26.56,
+    "dur": 4.799,
+    "text": "transfer node. The same node can be",
+    "lang": "en"
+  },
+  {
+    "start": 28.88,
+    "dur": 5.28,
+    "text": "accessed by menu on the left where you",
+    "lang": "en"
+  },
+  {
+    "start": 31.359,
+    "dur": 4.88,
+    "text": "have the agent transfer node available.",
+    "lang": "en"
+  },
+  {
+    "start": 34.16,
+    "dur": 4.16,
+    "text": "If you want to pass on any parameters,",
+    "lang": "en"
+  },
+  {
+    "start": 36.239,
+    "dur": 6.241,
+    "text": "you will be able to go ahead and provide",
+    "lang": "en"
+  },
+  {
+    "start": 38.32,
+    "dur": 7.6,
+    "text": "tags to help with the uh queuing of the",
+    "lang": "en"
+  },
+  {
+    "start": 42.48,
+    "dur": 5.599,
+    "text": "particular chat to the right team.",
+    "lang": "en"
+  },
+  {
+    "start": 45.92,
+    "dur": 4.319,
+    "text": "Now once we're done with this, we move",
+    "lang": "en"
+  },
+  {
+    "start": 48.079,
+    "dur": 5.201,
+    "text": "on to the agent assist part where under",
+    "lang": "en"
+  },
+  {
+    "start": 50.239,
+    "dur": 5.681,
+    "text": "chats we are able to actually see any",
+    "lang": "en"
+  },
+  {
+    "start": 53.28,
+    "dur": 5.439,
+    "text": "chats that have been assigned to users.",
+    "lang": "en"
+  },
+  {
+    "start": 55.92,
+    "dur": 5.2,
+    "text": "You can create views which will allow",
+    "lang": "en"
+  },
+  {
+    "start": 58.719,
+    "dur": 5.121,
+    "text": "agents to go ahead and filter and see",
+    "lang": "en"
+  },
+  {
+    "start": 61.12,
+    "dur": 5.28,
+    "text": "the relevant chats accordingly. Now if a",
+    "lang": "en"
+  },
+  {
+    "start": 63.84,
+    "dur": 5.12,
+    "text": "chat has ended and the agent does have",
+    "lang": "en"
+  },
+  {
+    "start": 66.4,
+    "dur": 4.88,
+    "text": "the choice to reinitiate a chat by",
+    "lang": "en"
+  },
+  {
+    "start": 68.96,
+    "dur": 4.56,
+    "text": "sending a template, these templates can",
+    "lang": "en"
+  },
+  {
+    "start": 71.28,
+    "dur": 4.4,
+    "text": "be approved as per your requirement.",
+    "lang": "en"
+  },
+  {
+    "start": 73.52,
+    "dur": 4.959,
+    "text": "There are only the relevant ones visible",
+    "lang": "en"
+  },
+  {
+    "start": 75.68,
+    "dur": 5.28,
+    "text": "to the agents to send across. Once I",
+    "lang": "en"
+  },
+  {
+    "start": 78.479,
+    "dur": 6.32,
+    "text": "click on send template, the message",
+    "lang": "en"
+  },
+  {
+    "start": 80.96,
+    "dur": 7.04,
+    "text": "would be sent to the user who once",
+    "lang": "en"
+  },
+  {
+    "start": 84.799,
+    "dur": 6.32,
+    "text": "replies is where the chat would become",
+    "lang": "en"
+  },
+  {
+    "start": 88.0,
+    "dur": 6.079,
+    "text": "active. So here we will just simply have",
+    "lang": "en"
+  },
+  {
+    "start": 91.119,
+    "dur": 5.36,
+    "text": "the user respond uh to the chat and as",
+    "lang": "en"
+  },
+  {
+    "start": 94.079,
+    "dur": 5.441,
+    "text": "you can see over here the user has uh",
+    "lang": "en"
+  },
+  {
+    "start": 96.479,
+    "dur": 4.881,
+    "text": "gone ahead and said hello and the chat",
+    "lang": "en"
+  },
+  {
+    "start": 99.52,
+    "dur": 3.12,
+    "text": "is active.",
+    "lang": "en"
+  },
+  {
+    "start": 101.36,
+    "dur": 3.04,
+    "text": "Now there are a lot of interesting",
+    "lang": "en"
+  },
+  {
+    "start": 102.64,
+    "dur": 3.92,
+    "text": "things you can do in a chat. If you hit",
+    "lang": "en"
+  },
+  {
+    "start": 104.4,
+    "dur": 5.52,
+    "text": "the slash key, you will be able to go",
+    "lang": "en"
+  },
+  {
+    "start": 106.56,
+    "dur": 6.4,
+    "text": "ahead and use the canned responses which",
+    "lang": "en"
+  },
+  {
+    "start": 109.92,
+    "dur": 4.8,
+    "text": "can be uh used to quickly uh get the",
+    "lang": "en"
+  },
+  {
+    "start": 112.96,
+    "dur": 4.4,
+    "text": "message across to the user without the",
+    "lang": "en"
+  },
+  {
+    "start": 114.72,
+    "dur": 6.24,
+    "text": "agent having to type them. The agents",
+    "lang": "en"
+  },
+  {
+    "start": 117.36,
+    "dur": 5.84,
+    "text": "can actually provide attachments to be",
+    "lang": "en"
+  },
+  {
+    "start": 120.96,
+    "dur": 4.64,
+    "text": "sent across. They will be able to add",
+    "lang": "en"
+  },
+  {
+    "start": 123.2,
+    "dur": 6.24,
+    "text": "smileys to the response. And all of",
+    "lang": "en"
+  },
+  {
+    "start": 125.6,
+    "dur": 5.6,
+    "text": "these options are uh optional. Of course",
+    "lang": "en"
+  },
+  {
+    "start": 129.44,
+    "dur": 4.24,
+    "text": "they can do audio notes and they are",
+    "lang": "en"
+  },
+  {
+    "start": 131.2,
+    "dur": 5.759,
+    "text": "able to go ahead and uh send users",
+    "lang": "en"
+  },
+  {
+    "start": 133.68,
+    "dur": 5.68,
+    "text": "across to a board journey as well. Now",
+    "lang": "en"
+  },
+  {
+    "start": 136.959,
+    "dur": 4.481,
+    "text": "apart from that the response itself is",
+    "lang": "en"
+  },
+  {
+    "start": 139.36,
+    "dur": 4.72,
+    "text": "something that the agents can go ahead",
+    "lang": "en"
+  },
+  {
+    "start": 141.44,
+    "dur": 4.799,
+    "text": "and uh you know finesse a little by",
+    "lang": "en"
+  },
+  {
+    "start": 144.08,
+    "dur": 4.72,
+    "text": "either pressing the expand key which",
+    "lang": "en"
+  },
+  {
+    "start": 146.239,
+    "dur": 5.681,
+    "text": "will quickly make the message a bit more",
+    "lang": "en"
+  },
+  {
+    "start": 148.8,
+    "dur": 5.68,
+    "text": "finessed than it was otherwise. There's",
+    "lang": "en"
+  },
+  {
+    "start": 151.92,
+    "dur": 5.28,
+    "text": "also an option to rephrase which can",
+    "lang": "en"
+  },
+  {
+    "start": 154.48,
+    "dur": 6.399,
+    "text": "provide you alternate uh views of how",
+    "lang": "en"
+  },
+  {
+    "start": 157.2,
+    "dur": 5.28,
+    "text": "the message can be written instead. Now",
+    "lang": "en"
+  },
+  {
+    "start": 160.879,
+    "dur": 3.201,
+    "text": "before I actually send the message, I",
+    "lang": "en"
+  },
+  {
+    "start": 162.48,
+    "dur": 3.68,
+    "text": "might want to know what actually was",
+    "lang": "en"
+  },
+  {
+    "start": 164.08,
+    "dur": 4.159,
+    "text": "happening in the previous conversation.",
+    "lang": "en"
+  },
+  {
+    "start": 166.16,
+    "dur": 3.6,
+    "text": "And that's where the chat summary is",
+    "lang": "en"
+  },
+  {
+    "start": 168.239,
+    "dur": 3.441,
+    "text": "something that can help the agent",
+    "lang": "en"
+  },
+  {
+    "start": 169.76,
+    "dur": 3.839,
+    "text": "understand the customer's purpose. If",
+    "lang": "en"
+  },
+  {
+    "start": 171.68,
+    "dur": 4.88,
+    "text": "there were bot responses, it will be",
+    "lang": "en"
+  },
+  {
+    "start": 173.599,
+    "dur": 5.28,
+    "text": "able to um summarize the same and agent",
+    "lang": "en"
+  },
+  {
+    "start": 176.56,
+    "dur": 3.759,
+    "text": "responses as well.",
+    "lang": "en"
+  },
+  {
+    "start": 178.879,
+    "dur": 3.44,
+    "text": "On the right hand side, the agents",
+    "lang": "en"
+  },
+  {
+    "start": 180.319,
+    "dur": 4.321,
+    "text": "should be able to see details about the",
+    "lang": "en"
+  },
+  {
+    "start": 182.319,
+    "dur": 4.56,
+    "text": "user uh including their number, their",
+    "lang": "en"
+  },
+  {
+    "start": 184.64,
+    "dur": 5.519,
+    "text": "email and other details that are",
+    "lang": "en"
+  },
+  {
+    "start": 186.879,
+    "dur": 5.041,
+    "text": "relevant as a part of the account. And",
+    "lang": "en"
+  },
+  {
+    "start": 190.159,
+    "dur": 3.921,
+    "text": "that ladies and gentlemen is the short",
+    "lang": "en"
+  },
+  {
+    "start": 191.92,
+    "dur": 5.16,
+    "text": "and sweet overview of the agent assist",
+    "lang": "en"
+  },
+  {
+    "start": 194.08,
+    "dur": 3.0,
+    "text": "module.",
+    "lang": "en"
+  }
+]

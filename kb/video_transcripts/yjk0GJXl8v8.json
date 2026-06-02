@@ -1,0 +1,764 @@
+[
+  {
+    "start": 2.8,
+    "dur": 4.559,
+    "text": "Hello everyone. In today's session,",
+    "lang": "en"
+  },
+  {
+    "start": 4.64,
+    "dur": 5.36,
+    "text": "we'll be getting a glimpse of the agent",
+    "lang": "en"
+  },
+  {
+    "start": 7.359,
+    "dur": 5.28,
+    "text": "assist settings section. The agent",
+    "lang": "en"
+  },
+  {
+    "start": 10.0,
+    "dur": 5.04,
+    "text": "assist comes with a range of powerful",
+    "lang": "en"
+  },
+  {
+    "start": 12.639,
+    "dur": 5.041,
+    "text": "settings that can help businesses manage",
+    "lang": "en"
+  },
+  {
+    "start": 15.04,
+    "dur": 5.28,
+    "text": "their customer support needs effectively",
+    "lang": "en"
+  },
+  {
+    "start": 17.68,
+    "dur": 7.12,
+    "text": "and efficiently in order to master the",
+    "lang": "en"
+  },
+  {
+    "start": 20.32,
+    "dur": 7.279,
+    "text": "agent assist and utilize the maximum",
+    "lang": "en"
+  },
+  {
+    "start": 24.8,
+    "dur": 5.04,
+    "text": "efficiency of this particular",
+    "lang": "en"
+  },
+  {
+    "start": 27.599,
+    "dur": 4.241,
+    "text": "offering that we have.",
+    "lang": "en"
+  },
+  {
+    "start": 29.84,
+    "dur": 5.12,
+    "text": "There is an overview dashboard that is",
+    "lang": "en"
+  },
+  {
+    "start": 31.84,
+    "dur": 6.08,
+    "text": "provided for project owners and admins",
+    "lang": "en"
+  },
+  {
+    "start": 34.96,
+    "dur": 4.88,
+    "text": "to start off with the basics of agent",
+    "lang": "en"
+  },
+  {
+    "start": 37.92,
+    "dur": 4.24,
+    "text": "assist which includes how to build a",
+    "lang": "en"
+  },
+  {
+    "start": 39.84,
+    "dur": 4.719,
+    "text": "team, how to have a user management",
+    "lang": "en"
+  },
+  {
+    "start": 42.16,
+    "dur": 4.96,
+    "text": "configuration done, how do we navigate",
+    "lang": "en"
+  },
+  {
+    "start": 44.559,
+    "dur": 5.041,
+    "text": "chats in an efficient manner,",
+    "lang": "en"
+  },
+  {
+    "start": 47.12,
+    "dur": 4.56,
+    "text": "what kind of metrics and dashboards do",
+    "lang": "en"
+  },
+  {
+    "start": 49.6,
+    "dur": 4.4,
+    "text": "we provide to the customers and how do",
+    "lang": "en"
+  },
+  {
+    "start": 51.68,
+    "dur": 5.44,
+    "text": "you increase or maintain your team's",
+    "lang": "en"
+  },
+  {
+    "start": 54.0,
+    "dur": 5.039,
+    "text": "performance by analyzing this dashboard",
+    "lang": "en"
+  },
+  {
+    "start": 57.12,
+    "dur": 4.16,
+    "text": "as well as setting up certain router",
+    "lang": "en"
+  },
+  {
+    "start": 59.039,
+    "dur": 5.76,
+    "text": "appliance for increasing the efficiency",
+    "lang": "en"
+  },
+  {
+    "start": 61.28,
+    "dur": 6.32,
+    "text": "of your agents.",
+    "lang": "en"
+  },
+  {
+    "start": 64.799,
+    "dur": 4.801,
+    "text": "There are major configurations that are",
+    "lang": "en"
+  },
+  {
+    "start": 67.6,
+    "dur": 4.24,
+    "text": "also present on an overview. So based on",
+    "lang": "en"
+  },
+  {
+    "start": 69.6,
+    "dur": 5.519,
+    "text": "the business goals and requirements, we",
+    "lang": "en"
+  },
+  {
+    "start": 71.84,
+    "dur": 6.24,
+    "text": "can configure these",
+    "lang": "en"
+  },
+  {
+    "start": 75.119,
+    "dur": 4.881,
+    "text": "as well in a very quick fashion.",
+    "lang": "en"
+  },
+  {
+    "start": 78.08,
+    "dur": 4.719,
+    "text": "Now towards the left hand side we have",
+    "lang": "en"
+  },
+  {
+    "start": 80.0,
+    "dur": 5.119,
+    "text": "the rest of the components which",
+    "lang": "en"
+  },
+  {
+    "start": 82.799,
+    "dur": 5.36,
+    "text": "includes assignment rules, chat rules,",
+    "lang": "en"
+  },
+  {
+    "start": 85.119,
+    "dur": 5.761,
+    "text": "agent status, scan responses, views,",
+    "lang": "en"
+  },
+  {
+    "start": 88.159,
+    "dur": 5.521,
+    "text": "chat fields, feedback forms etc which",
+    "lang": "en"
+  },
+  {
+    "start": 90.88,
+    "dur": 5.279,
+    "text": "are gathered into separate modules over",
+    "lang": "en"
+  },
+  {
+    "start": 93.68,
+    "dur": 4.479,
+    "text": "here for",
+    "lang": "en"
+  },
+  {
+    "start": 96.159,
+    "dur": 5.441,
+    "text": "better understanding and analysis and",
+    "lang": "en"
+  },
+  {
+    "start": 98.159,
+    "dur": 5.28,
+    "text": "setups. Now with the user management",
+    "lang": "en"
+  },
+  {
+    "start": 101.6,
+    "dur": 4.72,
+    "text": "module, we'll be able to invite the",
+    "lang": "en"
+  },
+  {
+    "start": 103.439,
+    "dur": 4.32,
+    "text": "users, edit and delete users, add users,",
+    "lang": "en"
+  },
+  {
+    "start": 106.32,
+    "dur": 3.52,
+    "text": "etc.",
+    "lang": "en"
+  },
+  {
+    "start": 107.759,
+    "dur": 4.72,
+    "text": "based on the new passwords and",
+    "lang": "en"
+  },
+  {
+    "start": 109.84,
+    "dur": 4.4,
+    "text": "everything. So we can add those users",
+    "lang": "en"
+  },
+  {
+    "start": 112.479,
+    "dur": 5.521,
+    "text": "which are created to a particular team",
+    "lang": "en"
+  },
+  {
+    "start": 114.24,
+    "dur": 6.559,
+    "text": "based on a region based on time zones",
+    "lang": "en"
+  },
+  {
+    "start": 118.0,
+    "dur": 5.759,
+    "text": "based on subject matter expertise etc.",
+    "lang": "en"
+  },
+  {
+    "start": 120.799,
+    "dur": 5.92,
+    "text": "any kind of agent status that is",
+    "lang": "en"
+  },
+  {
+    "start": 123.759,
+    "dur": 5.521,
+    "text": "required. For example, if a person is",
+    "lang": "en"
+  },
+  {
+    "start": 126.719,
+    "dur": 4.081,
+    "text": "available right now, unavailable, busy,",
+    "lang": "en"
+  },
+  {
+    "start": 129.28,
+    "dur": 3.76,
+    "text": "etc. can be configured and you can",
+    "lang": "en"
+  },
+  {
+    "start": 130.8,
+    "dur": 4.56,
+    "text": "create these are some of the system",
+    "lang": "en"
+  },
+  {
+    "start": 133.04,
+    "dur": 5.279,
+    "text": "default ones. But you can also create a",
+    "lang": "en"
+  },
+  {
+    "start": 135.36,
+    "dur": 5.44,
+    "text": "new status request according to your",
+    "lang": "en"
+  },
+  {
+    "start": 138.319,
+    "dur": 5.121,
+    "text": "requirements.",
+    "lang": "en"
+  },
+  {
+    "start": 140.8,
+    "dur": 5.92,
+    "text": "Automations work efficiently with",
+    "lang": "en"
+  },
+  {
+    "start": 143.44,
+    "dur": 5.519,
+    "text": "respect to the agent assist environment.",
+    "lang": "en"
+  },
+  {
+    "start": 146.72,
+    "dur": 4.159,
+    "text": "So how does with assignment rules",
+    "lang": "en"
+  },
+  {
+    "start": 148.959,
+    "dur": 4.481,
+    "text": "businesses can specify conditions for",
+    "lang": "en"
+  },
+  {
+    "start": 150.879,
+    "dur": 5.761,
+    "text": "assigning chats to agents",
+    "lang": "en"
+  },
+  {
+    "start": 153.44,
+    "dur": 5.84,
+    "text": "in a in a particular fashion",
+    "lang": "en"
+  },
+  {
+    "start": 156.64,
+    "dur": 5.679,
+    "text": "with chat rules can be used to",
+    "lang": "en"
+  },
+  {
+    "start": 159.28,
+    "dur": 5.44,
+    "text": "prioritize and tag incoming chats. Any",
+    "lang": "en"
+  },
+  {
+    "start": 162.319,
+    "dur": 4.721,
+    "text": "kind of auto replies that needs to be",
+    "lang": "en"
+  },
+  {
+    "start": 164.72,
+    "dur": 4.96,
+    "text": "configured or feedback that needs to be",
+    "lang": "en"
+  },
+  {
+    "start": 167.04,
+    "dur": 5.279,
+    "text": "provided from the customer's side etc",
+    "lang": "en"
+  },
+  {
+    "start": 169.68,
+    "dur": 4.72,
+    "text": "can also be configured directly on the",
+    "lang": "en"
+  },
+  {
+    "start": 172.319,
+    "dur": 3.761,
+    "text": "environment. So there are multiple",
+    "lang": "en"
+  },
+  {
+    "start": 174.4,
+    "dur": 4.72,
+    "text": "different options that are available",
+    "lang": "en"
+  },
+  {
+    "start": 176.08,
+    "dur": 5.6,
+    "text": "which will benefit the",
+    "lang": "en"
+  },
+  {
+    "start": 179.12,
+    "dur": 4.8,
+    "text": "process of how the automation can be",
+    "lang": "en"
+  },
+  {
+    "start": 181.68,
+    "dur": 5.12,
+    "text": "done and how efficiently the tags can be",
+    "lang": "en"
+  },
+  {
+    "start": 183.92,
+    "dur": 6.72,
+    "text": "managed. We've also introduced journey",
+    "lang": "en"
+  },
+  {
+    "start": 186.8,
+    "dur": 5.68,
+    "text": "triggers. So from a particular",
+    "lang": "en"
+  },
+  {
+    "start": 190.64,
+    "dur": 3.76,
+    "text": "agent side we can trigger an entire",
+    "lang": "en"
+  },
+  {
+    "start": 192.48,
+    "dur": 3.759,
+    "text": "journey if that configuration is",
+    "lang": "en"
+  },
+  {
+    "start": 194.4,
+    "dur": 4.96,
+    "text": "available.",
+    "lang": "en"
+  },
+  {
+    "start": 196.239,
+    "dur": 5.201,
+    "text": "Next we have productivity tools wherein",
+    "lang": "en"
+  },
+  {
+    "start": 199.36,
+    "dur": 3.599,
+    "text": "we are able to manage the different view",
+    "lang": "en"
+  },
+  {
+    "start": 201.44,
+    "dur": 3.68,
+    "text": "options that are there which helps",
+    "lang": "en"
+  },
+  {
+    "start": 202.959,
+    "dur": 5.92,
+    "text": "agents to access chats of a specific",
+    "lang": "en"
+  },
+  {
+    "start": 205.12,
+    "dur": 6.72,
+    "text": "category in a dedicated bucket. We also",
+    "lang": "en"
+  },
+  {
+    "start": 208.879,
+    "dur": 4.881,
+    "text": "have chat fields which are configurable",
+    "lang": "en"
+  },
+  {
+    "start": 211.84,
+    "dur": 5.2,
+    "text": "which can be used to store qualitative",
+    "lang": "en"
+  },
+  {
+    "start": 213.76,
+    "dur": 5.28,
+    "text": "data about these chats. It can be with",
+    "lang": "en"
+  },
+  {
+    "start": 217.04,
+    "dur": 3.759,
+    "text": "respect to",
+    "lang": "en"
+  },
+  {
+    "start": 219.04,
+    "dur": 5.119,
+    "text": "information about the customer that can",
+    "lang": "en"
+  },
+  {
+    "start": 220.799,
+    "dur": 6.08,
+    "text": "be useful in providing a resolution in a",
+    "lang": "en"
+  },
+  {
+    "start": 224.159,
+    "dur": 4.561,
+    "text": "faster way. We also have SLAs which are",
+    "lang": "en"
+  },
+  {
+    "start": 226.879,
+    "dur": 5.681,
+    "text": "used to set targets for agents and",
+    "lang": "en"
+  },
+  {
+    "start": 228.72,
+    "dur": 6.159,
+    "text": "improve productivity of the agents where",
+    "lang": "en"
+  },
+  {
+    "start": 232.56,
+    "dur": 5.12,
+    "text": "you can have different combination of",
+    "lang": "en"
+  },
+  {
+    "start": 234.879,
+    "dur": 6.241,
+    "text": "notifications, triggers, metrics etc",
+    "lang": "en"
+  },
+  {
+    "start": 237.68,
+    "dur": 6.4,
+    "text": "that can be configured.",
+    "lang": "en"
+  },
+  {
+    "start": 241.12,
+    "dur": 6.72,
+    "text": "The feedback forms that we have allow",
+    "lang": "en"
+  },
+  {
+    "start": 244.08,
+    "dur": 6.799,
+    "text": "businesses to collect valuable feedback",
+    "lang": "en"
+  },
+  {
+    "start": 247.84,
+    "dur": 4.56,
+    "text": "from the customers. So we have gone",
+    "lang": "en"
+  },
+  {
+    "start": 250.879,
+    "dur": 4.241,
+    "text": "through the entire workflows and",
+    "lang": "en"
+  },
+  {
+    "start": 252.4,
+    "dur": 5.2,
+    "text": "automation part of that. We have",
+    "lang": "en"
+  },
+  {
+    "start": 255.12,
+    "dur": 5.28,
+    "text": "recently introduced the AI management",
+    "lang": "en"
+  },
+  {
+    "start": 257.6,
+    "dur": 5.44,
+    "text": "module where the customer",
+    "lang": "en"
+  },
+  {
+    "start": 260.4,
+    "dur": 4.4,
+    "text": "the agent has an option to rephrase the",
+    "lang": "en"
+  },
+  {
+    "start": 263.04,
+    "dur": 4.08,
+    "text": "text that they have expand and summarize",
+    "lang": "en"
+  },
+  {
+    "start": 264.8,
+    "dur": 4.56,
+    "text": "it according to the requirements and the",
+    "lang": "en"
+  },
+  {
+    "start": 267.12,
+    "dur": 4.079,
+    "text": "co-pilot option also helps in sending",
+    "lang": "en"
+  },
+  {
+    "start": 269.36,
+    "dur": 4.399,
+    "text": "suggested responses and generating",
+    "lang": "en"
+  },
+  {
+    "start": 271.199,
+    "dur": 5.521,
+    "text": "responses etc.",
+    "lang": "en"
+  },
+  {
+    "start": 273.759,
+    "dur": 5.041,
+    "text": "The account manager configurations",
+    "lang": "en"
+  },
+  {
+    "start": 276.72,
+    "dur": 4.64,
+    "text": "ideally helps with creating",
+    "lang": "en"
+  },
+  {
+    "start": 278.8,
+    "dur": 5.76,
+    "text": "authenticated environments if we have to",
+    "lang": "en"
+  },
+  {
+    "start": 281.36,
+    "dur": 5.92,
+    "text": "enable SSO for all our agents or login",
+    "lang": "en"
+  },
+  {
+    "start": 284.56,
+    "dur": 4.72,
+    "text": "ids for two-step authentication etc. Web",
+    "lang": "en"
+  },
+  {
+    "start": 287.28,
+    "dur": 4.16,
+    "text": "hooks for specific events to that can be",
+    "lang": "en"
+  },
+  {
+    "start": 289.28,
+    "dur": 4.08,
+    "text": "triggered where chat can be triggered",
+    "lang": "en"
+  },
+  {
+    "start": 291.44,
+    "dur": 3.759,
+    "text": "any kind of API configurations that",
+    "lang": "en"
+  },
+  {
+    "start": 293.36,
+    "dur": 3.76,
+    "text": "needs to be done to push information to",
+    "lang": "en"
+  },
+  {
+    "start": 295.199,
+    "dur": 3.921,
+    "text": "a particular environment. We have all",
+    "lang": "en"
+  },
+  {
+    "start": 297.12,
+    "dur": 4.72,
+    "text": "the password policies that can be set up",
+    "lang": "en"
+  },
+  {
+    "start": 299.12,
+    "dur": 4.88,
+    "text": "as well. So how do we manage all these",
+    "lang": "en"
+  },
+  {
+    "start": 301.84,
+    "dur": 4.4,
+    "text": "accounts? which channel have been hosted",
+    "lang": "en"
+  },
+  {
+    "start": 304.0,
+    "dur": 4.72,
+    "text": "this on etc can be configured from the",
+    "lang": "en"
+  },
+  {
+    "start": 306.24,
+    "dur": 4.239,
+    "text": "account settings page. So with these",
+    "lang": "en"
+  },
+  {
+    "start": 308.72,
+    "dur": 4.56,
+    "text": "powerful settings businesses can now",
+    "lang": "en"
+  },
+  {
+    "start": 310.479,
+    "dur": 5.761,
+    "text": "streamline their entire process whether",
+    "lang": "en"
+  },
+  {
+    "start": 313.28,
+    "dur": 4.72,
+    "text": "it is customer support sales",
+    "lang": "en"
+  },
+  {
+    "start": 316.24,
+    "dur": 5.519,
+    "text": "etc and provide quick and efficient",
+    "lang": "en"
+  },
+  {
+    "start": 318.0,
+    "dur": 8.199,
+    "text": "support to their customers. Um so that's",
+    "lang": "en"
+  },
+  {
+    "start": 321.759,
+    "dur": 4.44,
+    "text": "for the session. Thank you so much.",
+    "lang": "en"
+  }
+]

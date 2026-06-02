@@ -1,0 +1,237 @@
+[
+  {
+    "source": "kb/bot-studio/message-template.md",
+    "also_sources": [
+      "kb/bot-studio/carousel-and-lto-template.md",
+      "kb/bot-studio/block-templates.md",
+      "kb/agent-assist/sending-marketing-templates-from-agent-assist.md",
+      "kb/agent-assist/sending-templates-after-the-24-hour-window.md"
+    ],
+    "video_id": "p8XsoaMUyd0",
+    "title": "Creating & Publishing Message Templates",
+    "default_lang": "en",
+    "caption_langs": ["en"],
+    "embeddable": true
+  },
+  {
+    "source": "kb/bot-studio/about-bot-studio.md",
+    "also_sources": [
+      "kb/bot-studio/getting-started-with-bot-studio.md",
+      "kb/bot-studio/starting-nodes.md",
+      "kb/bot-studio/how-do-the-elements-of-bot-studio-work-together.md",
+      "kb/bot-studio/controls-on-bot-studio-canvas.md",
+      "kb/bot-studio/faqs-of-bot-studio.md",
+      "kb/bot-studio/nodes.md"
+    ],
+    "video_id": "cO21ibbcZnA",
+    "title": "Bot Studio: Building a Journey",
+    "default_lang": "en",
+    "caption_langs": ["en"],
+    "embeddable": true
+  },
+  {
+    "source": "kb/bot-studio/whatsapp-flows-dynamic.md",
+    "also_sources": [
+      "kb/bot-studio/whatsapp-flows-static-dynamic.md",
+      "kb/bot-studio/how-to-create-whatsapp-static-flows.md"
+    ],
+    "video_id": "wKEhHxkgyD4",
+    "title": "WhatsApp Flows",
+    "default_lang": "en",
+    "caption_langs": ["en"],
+    "embeddable": true
+  },
+  {
+    "source": "kb/bot-studio-analytics/journey-tracking.md",
+    "also_sources": [
+      "kb/bot-studio-analytics/conversational-path.md",
+      "kb/bot-studio-analytics/exit-nodes.md"
+    ],
+    "video_id": "m2JxiZrw4Fw",
+    "title": "Bot Studio Journey Analytics",
+    "default_lang": "en",
+    "caption_langs": ["en"],
+    "embeddable": true
+  },
+  {
+    "source": "kb/ai-admin/ace-and-agentic-llm-overview.md",
+    "also_sources": [
+      "kb/ai-admin/ai-agents-developer-mode.md",
+      "kb/ai-admin/workspace.md",
+      "kb/ai-admin/intent-and-entity.md",
+      "kb/ai-admin/skills-developer-mode.md",
+      "kb/ai-admin/teach.md"
+    ],
+    "video_id": "CugI5w2-PmQ",
+    "title": "AI Admin: Agentic AI Journeys",
+    "default_lang": "en",
+    "caption_langs": ["en"],
+    "embeddable": true
+  },
+  {
+    "source": "kb/goals/goals.md",
+    "also_sources": [
+      "kb/goals/creating-goals.md",
+      "kb/goals/implementing-goals.md",
+      "kb/goals/ways-to-use-goals.md",
+      "kb/goals/goal-analytics.md",
+      "kb/goals/lead-generation.md",
+      "kb/bot-studio/goal-node.md"
+    ],
+    "video_id": "lHgr9TvhHRA",
+    "title": "Goals in Bot Studio",
+    "default_lang": "en",
+    "caption_langs": ["en"],
+    "embeddable": true
+  },
+  {
+    "source": "kb/agent-assist/exploring-insights-and-exporting-raw-data.md",
+    "also_sources": [
+      "kb/agent-assist/insights-agent-summary.md",
+      "kb/agent-assist/insights-team-summary.md",
+      "kb/agent-assist/insights-chat-summary.md",
+      "kb/agent-assist/insights-customer-feedback-dashboard.md",
+      "kb/agent-assist/insights-agent-timesheet.md",
+      "kb/agent-assist/live-monitoring-dashboard-real-time-chat-analytics-and-performance-insights.md",
+      "kb/agent-assist/underlying-raw-data-for-chat-summary.md"
+    ],
+    "video_id": "8JIgkvdCjZk",
+    "title": "Agent Assist Analytics & Reports",
+    "default_lang": "en",
+    "caption_langs": ["en"],
+    "embeddable": true
+  },
+  {
+    "source": "kb/agent-assist/about-agent-assist.md",
+    "also_sources": [
+      "kb/agent-assist/chats.md"
+    ],
+    "video_id": "T35qJ0uTQhc",
+    "title": "Agent Assist Overview",
+    "default_lang": "en",
+    "caption_langs": ["en"],
+    "embeddable": true
+  },
+  {
+    "source": "kb/agent-assist/settings.md",
+    "also_sources": [
+      "kb/agent-assist/chat-management-assignment-rules.md",
+      "kb/agent-assist/chat-management-chat-rules.md",
+      "kb/agent-assist/chat-management-sla.md",
+      "kb/agent-assist/chat-management-auto-closed-time.md",
+      "kb/agent-assist/response-management-auto-replies-and-customer-satisfaction.md",
+      "kb/agent-assist/response-management-customer-satisfaction.md",
+      "kb/agent-assist/user-management-business-hours.md",
+      "kb/agent-assist/user-management-teams.md",
+      "kb/agent-assist/user-management-users.md",
+      "kb/agent-assist/others-canned-responses.md",
+      "kb/agent-assist/others-tags.md",
+      "kb/agent-assist/others-views.md",
+      "kb/agent-assist/others-chat-fields.md",
+      "kb/agent-assist/others-customer-fields.md",
+      "kb/agent-assist/assignment-enhancements-in-console-7-0.md",
+      "kb/agent-assist/what-happens-if-a-chat-doesn-t-match-with-any-assignment-rule.md"
+    ],
+    "video_id": "yjk0GJXl8v8",
+    "title": "Agent Assist Settings",
+    "default_lang": "en",
+    "caption_langs": ["en"],
+    "embeddable": true
+  },
+  {
+    "source": "kb/personalize/about-personalize.md",
+    "also_sources": [
+      "kb/personalize/custom-events-in-personalize.md",
+      "kb/personalize/salient-features.md",
+      "kb/personalize/personalize-enabled-campaign-manager.md"
+    ],
+    "video_id": "y2OvmhV1aYM",
+    "title": "Personalize Module",
+    "default_lang": "en",
+    "caption_langs": ["en"],
+    "embeddable": true
+  },
+  {
+    "source": "kb/ctx/connecting-fb-ad-account-to-gupshup-ads-management.md",
+    "also_sources": [
+      "kb/ctx/connecting-ad-to-bot-in-gupshup-console.md",
+      "kb/ctx/creating-a-chatbot-journey.md",
+      "kb/ctx/creating-a-click-to-whatsapp-ad-on-ttam.md",
+      "kb/ctx/creating-a-ctwa-ad-on-meta-ads-manager.md",
+      "kb/ctx/creating-a-tiktok-specific-bot-journey.md",
+      "kb/ctx/creating-and-analysing-a-click-to-whatsapp-campaign.md",
+      "kb/ctx/ctx-goal-nodes-and-conversions-api-adding-to-the-journey.md",
+      "kb/ctx/insights-and-analytics.md",
+      "kb/ctx/meta-ads-to-whatsapp.md",
+      "kb/ctx/onboarding-tiktok-ads-manager-to-gupshup.md",
+      "kb/ctx/setting-up-retargeting-post-go-live.md",
+      "kb/ctx/testing-and-ctwa-go-live.md",
+      "kb/ctx/tiktok-to-whatsapp.md"
+    ],
+    "video_id": "ohUBNrY1ljI",
+    "title": "Click-to-WhatsApp Ads (CTX) Setup",
+    "default_lang": "en",
+    "caption_langs": ["en"],
+    "embeddable": true
+  },
+  {
+    "source": "kb/bot-studio-analytics/dashboard.md",
+    "also_sources": [
+      "kb/bot-studio-analytics/filters-in-bot-analytics.md",
+      "kb/bot-studio-analytics/inline-analytics.md",
+      "kb/bot-studio-analytics/ai-analytics.md"
+    ],
+    "video_id": "LCxJK8IwzTk",
+    "title": "Analytics Dashboard",
+    "default_lang": "en",
+    "caption_langs": ["en"],
+    "embeddable": true
+  },
+  {
+    "source": "kb/extension/overview-of-extensions.md",
+    "also_sources": [
+      "kb/channels/about-whatsapp.md",
+      "kb/channels/whatsapp-business-api.md"
+    ],
+    "video_id": "nAQEV9hy7kg",
+    "title": "Enterprise WhatsApp Extension",
+    "default_lang": "en",
+    "caption_langs": ["en"],
+    "embeddable": true,
+    "keywords": ["whatsapp", "enterprise whatsapp", "wa"]
+  },
+  {
+    "source": "kb/extension/overview-of-extensions.md",
+    "video_id": "Vi0kRYnbU5E",
+    "title": "Enterprise SMS Extension",
+    "default_lang": "en",
+    "caption_langs": ["en"],
+    "embeddable": true,
+    "keywords": ["sms", "enterprise sms", "text message"]
+  },
+  {
+    "source": "kb/extension/overview-of-extensions.md",
+    "video_id": "RnirllGGZhA",
+    "title": "RCS Extension",
+    "default_lang": "en",
+    "caption_langs": ["en"],
+    "embeddable": true,
+    "keywords": ["rcs", "rich communication", "rich communication services"]
+  },
+  {
+    "source": "kb/overview/welcome-to-gupshup-console.md",
+    "also_sources": [
+      "kb/overview/about-projects.md",
+      "kb/overview/create-projects-on-console.md",
+      "kb/overview/manage-organisation.md",
+      "kb/overview/assign-unassign-projects.md",
+      "kb/overview/add-members.md",
+      "kb/overview/invite-org-admins.md"
+    ],
+    "video_id": "qV43fub35f8",
+    "title": "Gupshup Console Overview",
+    "default_lang": "en",
+    "caption_langs": ["en"],
+    "embeddable": true
+  }
+]

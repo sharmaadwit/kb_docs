@@ -1,0 +1,1238 @@
+[
+  {
+    "start": 3.76,
+    "dur": 7.36,
+    "text": "Hi everyone. So today we'll cover what",
+    "lang": "en"
+  },
+  {
+    "start": 7.12,
+    "dur": 6.559,
+    "text": "is AI admin and how you can create your",
+    "lang": "en"
+  },
+  {
+    "start": 11.12,
+    "dur": 4.559,
+    "text": "agent take AI journeys from this AI",
+    "lang": "en"
+  },
+  {
+    "start": 13.679,
+    "dur": 6.401,
+    "text": "admin portal.",
+    "lang": "en"
+  },
+  {
+    "start": 15.679,
+    "dur": 8.241,
+    "text": "So um it's quite easy and very simple.",
+    "lang": "en"
+  },
+  {
+    "start": 20.08,
+    "dur": 5.52,
+    "text": "So as the name suggest an admin AI admin",
+    "lang": "en"
+  },
+  {
+    "start": 23.92,
+    "dur": 4.32,
+    "text": "so you can create your AI powered",
+    "lang": "en"
+  },
+  {
+    "start": 25.6,
+    "dur": 5.36,
+    "text": "workflows. Now this AI powered workflows",
+    "lang": "en"
+  },
+  {
+    "start": 28.24,
+    "dur": 5.36,
+    "text": "are ideally your agent AI setup wherein",
+    "lang": "en"
+  },
+  {
+    "start": 30.96,
+    "dur": 5.04,
+    "text": "you can have your agent tech AI or",
+    "lang": "en"
+  },
+  {
+    "start": 33.6,
+    "dur": 4.4,
+    "text": "textual agent AI solutions out over here",
+    "lang": "en"
+  },
+  {
+    "start": 36.0,
+    "dur": 4.0,
+    "text": "combined with your structured uh",
+    "lang": "en"
+  },
+  {
+    "start": 38.0,
+    "dur": 5.76,
+    "text": "WhatsApp solutions or however you want",
+    "lang": "en"
+  },
+  {
+    "start": 40.0,
+    "dur": 6.64,
+    "text": "to name it as now you can have your",
+    "lang": "en"
+  },
+  {
+    "start": 43.76,
+    "dur": 6.16,
+    "text": "entire journeys getting created out over",
+    "lang": "en"
+  },
+  {
+    "start": 46.64,
+    "dur": 5.759,
+    "text": "here. from you uh being the admin to",
+    "lang": "en"
+  },
+  {
+    "start": 49.92,
+    "dur": 5.84,
+    "text": "create your agent TKI setup for your",
+    "lang": "en"
+  },
+  {
+    "start": 52.399,
+    "dur": 6.32,
+    "text": "particular um end users.",
+    "lang": "en"
+  },
+  {
+    "start": 55.76,
+    "dur": 5.2,
+    "text": "It's quite simple, quite easy to use.",
+    "lang": "en"
+  },
+  {
+    "start": 58.719,
+    "dur": 6.16,
+    "text": "You you have to create your own",
+    "lang": "en"
+  },
+  {
+    "start": 60.96,
+    "dur": 6.56,
+    "text": "workspace and workspace is ideally where",
+    "lang": "en"
+  },
+  {
+    "start": 64.879,
+    "dur": 5.521,
+    "text": "let's say like this. So you have your",
+    "lang": "en"
+  },
+  {
+    "start": 67.52,
+    "dur": 5.04,
+    "text": "particular way and area wherein you can",
+    "lang": "en"
+  },
+  {
+    "start": 70.4,
+    "dur": 5.36,
+    "text": "create a struct you can create a",
+    "lang": "en"
+  },
+  {
+    "start": 72.56,
+    "dur": 6.0,
+    "text": "customized uh agent API setup for your",
+    "lang": "en"
+  },
+  {
+    "start": 75.76,
+    "dur": 4.56,
+    "text": "end users. So if you see you have your",
+    "lang": "en"
+  },
+  {
+    "start": 78.56,
+    "dur": 3.84,
+    "text": "particular intents what do you want to",
+    "lang": "en"
+  },
+  {
+    "start": 80.32,
+    "dur": 3.439,
+    "text": "capture you what are the entities what",
+    "lang": "en"
+  },
+  {
+    "start": 82.4,
+    "dur": 3.92,
+    "text": "you want to capture during the",
+    "lang": "en"
+  },
+  {
+    "start": 83.759,
+    "dur": 5.761,
+    "text": "conversations the content which can be",
+    "lang": "en"
+  },
+  {
+    "start": 86.32,
+    "dur": 4.96,
+    "text": "your websites PDFs whatever it is you",
+    "lang": "en"
+  },
+  {
+    "start": 89.52,
+    "dur": 5.52,
+    "text": "can just simply go and upload it out",
+    "lang": "en"
+  },
+  {
+    "start": 91.28,
+    "dur": 5.36,
+    "text": "over here or simple textual content also",
+    "lang": "en"
+  },
+  {
+    "start": 95.04,
+    "dur": 4.48,
+    "text": "you can have those particular textual",
+    "lang": "en"
+  },
+  {
+    "start": 96.64,
+    "dur": 5.04,
+    "text": "content also out over here. Now teach is",
+    "lang": "en"
+  },
+  {
+    "start": 99.52,
+    "dur": 4.16,
+    "text": "where you want your specific atterances",
+    "lang": "en"
+  },
+  {
+    "start": 101.68,
+    "dur": 4.479,
+    "text": "to be taught in a way that if this",
+    "lang": "en"
+  },
+  {
+    "start": 103.68,
+    "dur": 6.399,
+    "text": "happens then that is to be done and your",
+    "lang": "en"
+  },
+  {
+    "start": 106.159,
+    "dur": 6.481,
+    "text": "XY X to Y your particular you know",
+    "lang": "en"
+  },
+  {
+    "start": 110.079,
+    "dur": 5.601,
+    "text": "linkage out over there. Then you can",
+    "lang": "en"
+  },
+  {
+    "start": 112.64,
+    "dur": 5.04,
+    "text": "also evaluate have your own Q&A evaluate",
+    "lang": "en"
+  },
+  {
+    "start": 115.68,
+    "dur": 4.32,
+    "text": "how good your agent AKI setup is",
+    "lang": "en"
+  },
+  {
+    "start": 117.68,
+    "dur": 4.079,
+    "text": "working. Have your particular settings",
+    "lang": "en"
+  },
+  {
+    "start": 120.0,
+    "dur": 3.6,
+    "text": "also uh where you can have your",
+    "lang": "en"
+  },
+  {
+    "start": 121.759,
+    "dur": 4.0,
+    "text": "customized particular settings being",
+    "lang": "en"
+  },
+  {
+    "start": 123.6,
+    "dur": 3.44,
+    "text": "done for your workspace that what are",
+    "lang": "en"
+  },
+  {
+    "start": 125.759,
+    "dur": 5.041,
+    "text": "the number of intents you want to",
+    "lang": "en"
+  },
+  {
+    "start": 127.04,
+    "dur": 6.16,
+    "text": "capture multiple things. Now uh you also",
+    "lang": "en"
+  },
+  {
+    "start": 130.8,
+    "dur": 4.079,
+    "text": "have your agent AKI uh settings what you",
+    "lang": "en"
+  },
+  {
+    "start": 133.2,
+    "dur": 4.56,
+    "text": "can have and this is how you build your",
+    "lang": "en"
+  },
+  {
+    "start": 134.879,
+    "dur": 4.321,
+    "text": "agent setup. So let me do one thing. Let",
+    "lang": "en"
+  },
+  {
+    "start": 137.76,
+    "dur": 5.76,
+    "text": "me show you something what we have",
+    "lang": "en"
+  },
+  {
+    "start": 139.2,
+    "dur": 6.399,
+    "text": "already built for uh one of a prospect.",
+    "lang": "en"
+  },
+  {
+    "start": 143.52,
+    "dur": 4.719,
+    "text": "This is how it looks like. So what we",
+    "lang": "en"
+  },
+  {
+    "start": 145.599,
+    "dur": 4.561,
+    "text": "have the intent is that the intent what",
+    "lang": "en"
+  },
+  {
+    "start": 148.239,
+    "dur": 4.241,
+    "text": "we want to capture out of this agent",
+    "lang": "en"
+  },
+  {
+    "start": 150.16,
+    "dur": 5.04,
+    "text": "care setup is that someone who is",
+    "lang": "en"
+  },
+  {
+    "start": 152.48,
+    "dur": 5.44,
+    "text": "looking to buy a shoe and here my agent",
+    "lang": "en"
+  },
+  {
+    "start": 155.2,
+    "dur": 4.72,
+    "text": "care solution goes and helps them out to",
+    "lang": "en"
+  },
+  {
+    "start": 157.92,
+    "dur": 5.039,
+    "text": "um you know to help them to buy that",
+    "lang": "en"
+  },
+  {
+    "start": 159.92,
+    "dur": 5.76,
+    "text": "particular shoe. Now if you see the",
+    "lang": "en"
+  },
+  {
+    "start": 162.959,
+    "dur": 4.481,
+    "text": "intent of this is shoes and what we want",
+    "lang": "en"
+  },
+  {
+    "start": 165.68,
+    "dur": 4.24,
+    "text": "to capture under that intent is that",
+    "lang": "en"
+  },
+  {
+    "start": 167.44,
+    "dur": 4.96,
+    "text": "what is the particular color of the shoe",
+    "lang": "en"
+  },
+  {
+    "start": 169.92,
+    "dur": 5.36,
+    "text": "that the end user are going ahead and",
+    "lang": "en"
+  },
+  {
+    "start": 172.4,
+    "dur": 4.64,
+    "text": "purchasing from. Now we have the entire",
+    "lang": "en"
+  },
+  {
+    "start": 175.28,
+    "dur": 3.2,
+    "text": "data which is trained out over here. So",
+    "lang": "en"
+  },
+  {
+    "start": 177.04,
+    "dur": 3.52,
+    "text": "you see with the website links and",
+    "lang": "en"
+  },
+  {
+    "start": 178.48,
+    "dur": 4.64,
+    "text": "everything is there you can download the",
+    "lang": "en"
+  },
+  {
+    "start": 180.56,
+    "dur": 4.24,
+    "text": "entire trained URL understand that okay",
+    "lang": "en"
+  },
+  {
+    "start": 183.12,
+    "dur": 4.0,
+    "text": "what is the particular thing out over",
+    "lang": "en"
+  },
+  {
+    "start": 184.8,
+    "dur": 4.079,
+    "text": "there you can also have a website. So",
+    "lang": "en"
+  },
+  {
+    "start": 187.12,
+    "dur": 4.96,
+    "text": "let's say you have a dynamic website, it",
+    "lang": "en"
+  },
+  {
+    "start": 188.879,
+    "dur": 4.72,
+    "text": "gets on updating on a frequent basis. So",
+    "lang": "en"
+  },
+  {
+    "start": 192.08,
+    "dur": 4.76,
+    "text": "you can have your particular schedule",
+    "lang": "en"
+  },
+  {
+    "start": 193.599,
+    "dur": 3.241,
+    "text": "out also.",
+    "lang": "en"
+  },
+  {
+    "start": 197.68,
+    "dur": 5.199,
+    "text": "You can make sure that",
+    "lang": "en"
+  },
+  {
+    "start": 200.08,
+    "dur": 5.36,
+    "text": "at a regular instance you have your data",
+    "lang": "en"
+  },
+  {
+    "start": 202.879,
+    "dur": 5.041,
+    "text": "synced to this particular agentic AI",
+    "lang": "en"
+  },
+  {
+    "start": 205.44,
+    "dur": 5.04,
+    "text": "where all the particular",
+    "lang": "en"
+  },
+  {
+    "start": 207.92,
+    "dur": 5.44,
+    "text": "uh you know all the data is in the",
+    "lang": "en"
+  },
+  {
+    "start": 210.48,
+    "dur": 4.479,
+    "text": "particular I would say the updated",
+    "lang": "en"
+  },
+  {
+    "start": 213.36,
+    "dur": 4.159,
+    "text": "period.",
+    "lang": "en"
+  },
+  {
+    "start": 214.959,
+    "dur": 4.801,
+    "text": "Now you always have the particular teach",
+    "lang": "en"
+  },
+  {
+    "start": 217.519,
+    "dur": 5.041,
+    "text": "atrances out over here where you can go",
+    "lang": "en"
+  },
+  {
+    "start": 219.76,
+    "dur": 5.839,
+    "text": "always upload any of your teach ates uh",
+    "lang": "en"
+  },
+  {
+    "start": 222.56,
+    "dur": 6.56,
+    "text": "that uh if this is then that should",
+    "lang": "en"
+  },
+  {
+    "start": 225.599,
+    "dur": 5.761,
+    "text": "happen etc etc you can evaluate you can",
+    "lang": "en"
+  },
+  {
+    "start": 229.12,
+    "dur": 4.24,
+    "text": "add prompt upload questions so you can",
+    "lang": "en"
+  },
+  {
+    "start": 231.36,
+    "dur": 4.32,
+    "text": "do your QA testing everything from over",
+    "lang": "en"
+  },
+  {
+    "start": 233.36,
+    "dur": 4.959,
+    "text": "here and there itself so before you you",
+    "lang": "en"
+  },
+  {
+    "start": 235.68,
+    "dur": 5.04,
+    "text": "know um integrating it somewhere or you",
+    "lang": "en"
+  },
+  {
+    "start": 238.319,
+    "dur": 4.64,
+    "text": "know sending it to your particular uh",
+    "lang": "en"
+  },
+  {
+    "start": 240.72,
+    "dur": 4.0,
+    "text": "like triggering it from your particular",
+    "lang": "en"
+  },
+  {
+    "start": 242.959,
+    "dur": 4.321,
+    "text": "um journey what you have created you",
+    "lang": "en"
+  },
+  {
+    "start": 244.72,
+    "dur": 4.239,
+    "text": "things out over here. Similarly, you can",
+    "lang": "en"
+  },
+  {
+    "start": 247.28,
+    "dur": 3.84,
+    "text": "have your settings. This is the agent",
+    "lang": "en"
+  },
+  {
+    "start": 248.959,
+    "dur": 4.401,
+    "text": "wise settings what you want to have. So,",
+    "lang": "en"
+  },
+  {
+    "start": 251.12,
+    "dur": 4.319,
+    "text": "what is the maximum tokens and each and",
+    "lang": "en"
+  },
+  {
+    "start": 253.36,
+    "dur": 4.719,
+    "text": "everything if in case of a timeout then",
+    "lang": "en"
+  },
+  {
+    "start": 255.439,
+    "dur": 4.64,
+    "text": "what would be the response and here",
+    "lang": "en"
+  },
+  {
+    "start": 258.079,
+    "dur": 4.721,
+    "text": "comes the major part that how you can",
+    "lang": "en"
+  },
+  {
+    "start": 260.079,
+    "dur": 4.56,
+    "text": "create your agent TKI setup. So this is",
+    "lang": "en"
+  },
+  {
+    "start": 262.8,
+    "dur": 4.08,
+    "text": "how the agent AKI setup looks like",
+    "lang": "en"
+  },
+  {
+    "start": 264.639,
+    "dur": 4.961,
+    "text": "wherein you have a name, the behavior,",
+    "lang": "en"
+  },
+  {
+    "start": 266.88,
+    "dur": 4.96,
+    "text": "the language, what what uh the agent",
+    "lang": "en"
+  },
+  {
+    "start": 269.6,
+    "dur": 4.4,
+    "text": "should follow. Then you have your",
+    "lang": "en"
+  },
+  {
+    "start": 271.84,
+    "dur": 4.079,
+    "text": "particular emoticons whether emojis or",
+    "lang": "en"
+  },
+  {
+    "start": 274.0,
+    "dur": 4.88,
+    "text": "something are required or not. Then a",
+    "lang": "en"
+  },
+  {
+    "start": 275.919,
+    "dur": 5.761,
+    "text": "greeting message for the end user. Now",
+    "lang": "en"
+  },
+  {
+    "start": 278.88,
+    "dur": 5.44,
+    "text": "the most important part is the skills.",
+    "lang": "en"
+  },
+  {
+    "start": 281.68,
+    "dur": 6.0,
+    "text": "So skills are ideally the way your agent",
+    "lang": "en"
+  },
+  {
+    "start": 284.32,
+    "dur": 5.76,
+    "text": "AI is set up uh the tools and etc. what",
+    "lang": "en"
+  },
+  {
+    "start": 287.68,
+    "dur": 4.799,
+    "text": "it needs to call, how it should behave,",
+    "lang": "en"
+  },
+  {
+    "start": 290.08,
+    "dur": 3.839,
+    "text": "what are the particular uh uh ways in",
+    "lang": "en"
+  },
+  {
+    "start": 292.479,
+    "dur": 2.961,
+    "text": "which it should engage with the end",
+    "lang": "en"
+  },
+  {
+    "start": 293.919,
+    "dur": 3.441,
+    "text": "audience, what are the set of",
+    "lang": "en"
+  },
+  {
+    "start": 295.44,
+    "dur": 4.24,
+    "text": "instructions it has to follow. So you",
+    "lang": "en"
+  },
+  {
+    "start": 297.36,
+    "dur": 4.32,
+    "text": "can see the customized name you can give",
+    "lang": "en"
+  },
+  {
+    "start": 299.68,
+    "dur": 4.48,
+    "text": "it to it, the description that what is",
+    "lang": "en"
+  },
+  {
+    "start": 301.68,
+    "dur": 4.56,
+    "text": "the role of that entire agent along with",
+    "lang": "en"
+  },
+  {
+    "start": 304.16,
+    "dur": 4.08,
+    "text": "that then what is the particular intent",
+    "lang": "en"
+  },
+  {
+    "start": 306.24,
+    "dur": 4.239,
+    "text": "and then we have a section out over here",
+    "lang": "en"
+  },
+  {
+    "start": 308.24,
+    "dur": 3.92,
+    "text": "which is to generate instructions. So",
+    "lang": "en"
+  },
+  {
+    "start": 310.479,
+    "dur": 3.521,
+    "text": "based on your description out over here",
+    "lang": "en"
+  },
+  {
+    "start": 312.16,
+    "dur": 3.52,
+    "text": "that what the particular role of this",
+    "lang": "en"
+  },
+  {
+    "start": 314.0,
+    "dur": 4.0,
+    "text": "particular agentic setup is you can",
+    "lang": "en"
+  },
+  {
+    "start": 315.68,
+    "dur": 4.48,
+    "text": "create and click on this and the enter",
+    "lang": "en"
+  },
+  {
+    "start": 318.0,
+    "dur": 4.16,
+    "text": "instructions would be created. So these",
+    "lang": "en"
+  },
+  {
+    "start": 320.16,
+    "dur": 4.879,
+    "text": "are the instructions what the agentic AI",
+    "lang": "en"
+  },
+  {
+    "start": 322.16,
+    "dur": 5.44,
+    "text": "will you know follow. Now in case if you",
+    "lang": "en"
+  },
+  {
+    "start": 325.039,
+    "dur": 4.241,
+    "text": "feel that you want to have your self or",
+    "lang": "en"
+  },
+  {
+    "start": 327.6,
+    "dur": 4.08,
+    "text": "your own instructions out over here",
+    "lang": "en"
+  },
+  {
+    "start": 329.28,
+    "dur": 4.16,
+    "text": "self-made instructions you can always",
+    "lang": "en"
+  },
+  {
+    "start": 331.68,
+    "dur": 3.84,
+    "text": "have your particular instructions also",
+    "lang": "en"
+  },
+  {
+    "start": 333.44,
+    "dur": 3.92,
+    "text": "being uh you know uh there out over",
+    "lang": "en"
+  },
+  {
+    "start": 335.52,
+    "dur": 4.16,
+    "text": "here. See here is how you can have your",
+    "lang": "en"
+  },
+  {
+    "start": 337.36,
+    "dur": 5.119,
+    "text": "multiple instructions and you can always",
+    "lang": "en"
+  },
+  {
+    "start": 339.68,
+    "dur": 4.32,
+    "text": "have this option to enhance with AI. So",
+    "lang": "en"
+  },
+  {
+    "start": 342.479,
+    "dur": 5.201,
+    "text": "at the back end we refine these",
+    "lang": "en"
+  },
+  {
+    "start": 344.0,
+    "dur": 6.32,
+    "text": "instructions into a way that your layman",
+    "lang": "en"
+  },
+  {
+    "start": 347.68,
+    "dur": 4.72,
+    "text": "instructions are also having a very very",
+    "lang": "en"
+  },
+  {
+    "start": 350.32,
+    "dur": 4.319,
+    "text": "good way of setting up this instructions",
+    "lang": "en"
+  },
+  {
+    "start": 352.4,
+    "dur": 4.0,
+    "text": "for your agents to perform accordingly.",
+    "lang": "en"
+  },
+  {
+    "start": 354.639,
+    "dur": 3.681,
+    "text": "So better the instructions the better",
+    "lang": "en"
+  },
+  {
+    "start": 356.4,
+    "dur": 4.799,
+    "text": "the performance of the agentic AI",
+    "lang": "en"
+  },
+  {
+    "start": 358.32,
+    "dur": 4.48,
+    "text": "solution. Less of a hallucination and",
+    "lang": "en"
+  },
+  {
+    "start": 361.199,
+    "dur": 3.761,
+    "text": "you see these are the engagement rules",
+    "lang": "en"
+  },
+  {
+    "start": 362.8,
+    "dur": 4.56,
+    "text": "that how the conversation should flow.",
+    "lang": "en"
+  },
+  {
+    "start": 364.96,
+    "dur": 4.56,
+    "text": "the guardrails what the agent AKI has to",
+    "lang": "en"
+  },
+  {
+    "start": 367.36,
+    "dur": 4.32,
+    "text": "set up in mind. Then the tool calls what",
+    "lang": "en"
+  },
+  {
+    "start": 369.52,
+    "dur": 4.56,
+    "text": "is there. So out of the box we have",
+    "lang": "en"
+  },
+  {
+    "start": 371.68,
+    "dur": 3.84,
+    "text": "multiple tool calls what we get it",
+    "lang": "en"
+  },
+  {
+    "start": 374.08,
+    "dur": 4.0,
+    "text": "generated once. So you have your",
+    "lang": "en"
+  },
+  {
+    "start": 375.52,
+    "dur": 4.959,
+    "text": "particular content being there and as",
+    "lang": "en"
+  },
+  {
+    "start": 378.08,
+    "dur": 4.88,
+    "text": "well as the intent being out over there.",
+    "lang": "en"
+  },
+  {
+    "start": 380.479,
+    "dur": 6.72,
+    "text": "So for tools you can have both the ways",
+    "lang": "en"
+  },
+  {
+    "start": 382.96,
+    "dur": 6.32,
+    "text": "once one creating it out of the box. Two",
+    "lang": "en"
+  },
+  {
+    "start": 387.199,
+    "dur": 3.681,
+    "text": "what you want to create or call any",
+    "lang": "en"
+  },
+  {
+    "start": 389.28,
+    "dur": 3.759,
+    "text": "specific kind of a tool. It can be",
+    "lang": "en"
+  },
+  {
+    "start": 390.88,
+    "dur": 4.64,
+    "text": "either of a tool any third party tool or",
+    "lang": "en"
+  },
+  {
+    "start": 393.039,
+    "dur": 4.081,
+    "text": "anything what you want to call and as",
+    "lang": "en"
+  },
+  {
+    "start": 395.52,
+    "dur": 3.119,
+    "text": "simple as that you just name the tool",
+    "lang": "en"
+  },
+  {
+    "start": 397.12,
+    "dur": 3.68,
+    "text": "what is being called and what's the",
+    "lang": "en"
+  },
+  {
+    "start": 398.639,
+    "dur": 3.761,
+    "text": "purpose for the agent AI to understand",
+    "lang": "en"
+  },
+  {
+    "start": 400.8,
+    "dur": 4.239,
+    "text": "these are the tool it needs to look up",
+    "lang": "en"
+  },
+  {
+    "start": 402.4,
+    "dur": 4.32,
+    "text": "to when it is performing certain actions",
+    "lang": "en"
+  },
+  {
+    "start": 405.039,
+    "dur": 4.16,
+    "text": "then you perform a skill completion",
+    "lang": "en"
+  },
+  {
+    "start": 406.72,
+    "dur": 4.479,
+    "text": "criteria where you just define that what",
+    "lang": "en"
+  },
+  {
+    "start": 409.199,
+    "dur": 4.881,
+    "text": "is the success parameter for your",
+    "lang": "en"
+  },
+  {
+    "start": 411.199,
+    "dur": 4.801,
+    "text": "particular agent AKI setup and that's",
+    "lang": "en"
+  },
+  {
+    "start": 414.08,
+    "dur": 4.64,
+    "text": "where your AI agent understands that",
+    "lang": "en"
+  },
+  {
+    "start": 416.0,
+    "dur": 5.12,
+    "text": "this is done the tool or the task is",
+    "lang": "en"
+  },
+  {
+    "start": 418.72,
+    "dur": 5.52,
+    "text": "marked as completed did and then it",
+    "lang": "en"
+  },
+  {
+    "start": 421.12,
+    "dur": 5.68,
+    "text": "moves ahead and does perform the further",
+    "lang": "en"
+  },
+  {
+    "start": 424.24,
+    "dur": 4.56,
+    "text": "actions what it has to.",
+    "lang": "en"
+  },
+  {
+    "start": 426.8,
+    "dur": 4.239,
+    "text": "So now you can always test the agent",
+    "lang": "en"
+  },
+  {
+    "start": 428.8,
+    "dur": 4.399,
+    "text": "from here and there itself. Add as many",
+    "lang": "en"
+  },
+  {
+    "start": 431.039,
+    "dur": 4.72,
+    "text": "as skills what you want that what are",
+    "lang": "en"
+  },
+  {
+    "start": 433.199,
+    "dur": 4.4,
+    "text": "your particular agent going to have can",
+    "lang": "en"
+  },
+  {
+    "start": 435.759,
+    "dur": 4.321,
+    "text": "create multiple agents. So your skills",
+    "lang": "en"
+  },
+  {
+    "start": 437.599,
+    "dur": 4.72,
+    "text": "can be multiple agents also what is",
+    "lang": "en"
+  },
+  {
+    "start": 440.08,
+    "dur": 3.92,
+    "text": "using a multi multiple skills and then",
+    "lang": "en"
+  },
+  {
+    "start": 442.319,
+    "dur": 3.361,
+    "text": "you see these are the system generated",
+    "lang": "en"
+  },
+  {
+    "start": 444.0,
+    "dur": 3.84,
+    "text": "tools. You see the particular part of",
+    "lang": "en"
+  },
+  {
+    "start": 445.68,
+    "dur": 4.48,
+    "text": "system tools being there. what is the",
+    "lang": "en"
+  },
+  {
+    "start": 447.84,
+    "dur": 6.0,
+    "text": "particular role of that tool is what you",
+    "lang": "en"
+  },
+  {
+    "start": 450.16,
+    "dur": 6.56,
+    "text": "can also go and check it out and yeah",
+    "lang": "en"
+  },
+  {
+    "start": 453.84,
+    "dur": 5.359,
+    "text": "you get the status ready once your uh",
+    "lang": "en"
+  },
+  {
+    "start": 456.72,
+    "dur": 5.199,
+    "text": "content is ready where it's uh auto",
+    "lang": "en"
+  },
+  {
+    "start": 459.199,
+    "dur": 5.12,
+    "text": "trained and everything your agent AI is",
+    "lang": "en"
+  },
+  {
+    "start": 461.919,
+    "dur": 5.041,
+    "text": "also set up and then simply you just",
+    "lang": "en"
+  },
+  {
+    "start": 464.319,
+    "dur": 6.32,
+    "text": "need to use it in any of your journeys",
+    "lang": "en"
+  },
+  {
+    "start": 466.96,
+    "dur": 6.799,
+    "text": "and you see out over here that you have",
+    "lang": "en"
+  },
+  {
+    "start": 470.639,
+    "dur": 6.0,
+    "text": "your particular thing ready very very",
+    "lang": "en"
+  },
+  {
+    "start": 473.759,
+    "dur": 4.72,
+    "text": "simple very easy to use you can have",
+    "lang": "en"
+  },
+  {
+    "start": 476.639,
+    "dur": 4.321,
+    "text": "your particular agent API configuration",
+    "lang": "en"
+  },
+  {
+    "start": 478.479,
+    "dur": 4.241,
+    "text": "is being done. So all your unstructured",
+    "lang": "en"
+  },
+  {
+    "start": 480.96,
+    "dur": 3.84,
+    "text": "queries being asked by the end users,",
+    "lang": "en"
+  },
+  {
+    "start": 482.72,
+    "dur": 4.08,
+    "text": "you have a solution for that. So you",
+    "lang": "en"
+  },
+  {
+    "start": 484.8,
+    "dur": 4.799,
+    "text": "have each and everything readily",
+    "lang": "en"
+  },
+  {
+    "start": 486.8,
+    "dur": 4.64,
+    "text": "available under one particular platform.",
+    "lang": "en"
+  },
+  {
+    "start": 489.599,
+    "dur": 6.241,
+    "text": "So that is what we have in terms of an",
+    "lang": "en"
+  },
+  {
+    "start": 491.44,
+    "dur": 5.92,
+    "text": "AI admin. And yeah, so that's it for",
+    "lang": "en"
+  },
+  {
+    "start": 495.84,
+    "dur": 4.52,
+    "text": "this video. See you all in the next",
+    "lang": "en"
+  },
+  {
+    "start": 497.36,
+    "dur": 3.0,
+    "text": "video.",
+    "lang": "en"
+  }
+]

@@ -1,0 +1,770 @@
+[
+  {
+    "start": 4.319,
+    "dur": 7.601,
+    "text": "Hi everyone.",
+    "lang": "en"
+  },
+  {
+    "start": 7.359,
+    "dur": 6.881,
+    "text": "So today we'll cover WhatsApp flows. Now",
+    "lang": "en"
+  },
+  {
+    "start": 11.92,
+    "dur": 4.64,
+    "text": "in bot studio we can also have something",
+    "lang": "en"
+  },
+  {
+    "start": 14.24,
+    "dur": 4.72,
+    "text": "as your flows module. Now what is",
+    "lang": "en"
+  },
+  {
+    "start": 16.56,
+    "dur": 4.879,
+    "text": "WhatsApp flows? So WhatsApp flows is",
+    "lang": "en"
+  },
+  {
+    "start": 18.96,
+    "dur": 5.2,
+    "text": "ideally your forms. You might have",
+    "lang": "en"
+  },
+  {
+    "start": 21.439,
+    "dur": 4.721,
+    "text": "filled Google forms, right? The same way",
+    "lang": "en"
+  },
+  {
+    "start": 24.16,
+    "dur": 3.84,
+    "text": "WhatsApp has created its own form",
+    "lang": "en"
+  },
+  {
+    "start": 26.16,
+    "dur": 4.959,
+    "text": "structure which is there present on",
+    "lang": "en"
+  },
+  {
+    "start": 28.0,
+    "dur": 5.04,
+    "text": "WhatsApp. So instead of you having a",
+    "lang": "en"
+  },
+  {
+    "start": 31.119,
+    "dur": 4.321,
+    "text": "link or something to you know fill",
+    "lang": "en"
+  },
+  {
+    "start": 33.04,
+    "dur": 5.519,
+    "text": "something or be redirected on some other",
+    "lang": "en"
+  },
+  {
+    "start": 35.44,
+    "dur": 5.04,
+    "text": "third party web pages we have WhatsApp",
+    "lang": "en"
+  },
+  {
+    "start": 38.559,
+    "dur": 5.601,
+    "text": "flows wherein it's in the same way what",
+    "lang": "en"
+  },
+  {
+    "start": 40.48,
+    "dur": 5.44,
+    "text": "your Google form works in if you see",
+    "lang": "en"
+  },
+  {
+    "start": 44.16,
+    "dur": 3.76,
+    "text": "this particular video so you can see",
+    "lang": "en"
+  },
+  {
+    "start": 45.92,
+    "dur": 4.479,
+    "text": "that how the book appointment and",
+    "lang": "en"
+  },
+  {
+    "start": 47.92,
+    "dur": 4.72,
+    "text": "everything looks like out over here and",
+    "lang": "en"
+  },
+  {
+    "start": 50.399,
+    "dur": 5.041,
+    "text": "this is how your WhatsApp flows look. So",
+    "lang": "en"
+  },
+  {
+    "start": 52.64,
+    "dur": 4.88,
+    "text": "ideally in a nutshell without you going",
+    "lang": "en"
+  },
+  {
+    "start": 55.44,
+    "dur": 3.599,
+    "text": "outside that particular environment when",
+    "lang": "en"
+  },
+  {
+    "start": 57.52,
+    "dur": 4.08,
+    "text": "you're having that conversation on",
+    "lang": "en"
+  },
+  {
+    "start": 59.039,
+    "dur": 6.321,
+    "text": "WhatsApp and you can go ahead and take",
+    "lang": "en"
+  },
+  {
+    "start": 61.6,
+    "dur": 7.44,
+    "text": "the entire details of your end users",
+    "lang": "en"
+  },
+  {
+    "start": 65.36,
+    "dur": 5.36,
+    "text": "uh over there and there itself. So",
+    "lang": "en"
+  },
+  {
+    "start": 69.04,
+    "dur": 5.28,
+    "text": "that's where you have your particular",
+    "lang": "en"
+  },
+  {
+    "start": 70.72,
+    "dur": 5.759,
+    "text": "WhatsApp flows wherein in a very good I",
+    "lang": "en"
+  },
+  {
+    "start": 74.32,
+    "dur": 4.799,
+    "text": "would say customer experience and UIUX",
+    "lang": "en"
+  },
+  {
+    "start": 76.479,
+    "dur": 4.881,
+    "text": "way where you have multiple slides",
+    "lang": "en"
+  },
+  {
+    "start": 79.119,
+    "dur": 5.04,
+    "text": "multiple sections to pick up the data of",
+    "lang": "en"
+  },
+  {
+    "start": 81.36,
+    "dur": 5.04,
+    "text": "your end users in a very good way",
+    "lang": "en"
+  },
+  {
+    "start": 84.159,
+    "dur": 3.841,
+    "text": "wherein your end users feel of sharing",
+    "lang": "en"
+  },
+  {
+    "start": 86.4,
+    "dur": 4.24,
+    "text": "that particular data you can have your",
+    "lang": "en"
+  },
+  {
+    "start": 88.0,
+    "dur": 4.72,
+    "text": "mandatory data uh everything being",
+    "lang": "en"
+  },
+  {
+    "start": 90.64,
+    "dur": 4.08,
+    "text": "captured out over there and until unless",
+    "lang": "en"
+  },
+  {
+    "start": 92.72,
+    "dur": 4.48,
+    "text": "the end user doesn't fill that mandatory",
+    "lang": "en"
+  },
+  {
+    "start": 94.72,
+    "dur": 4.16,
+    "text": "data they cannot move forward. So that's",
+    "lang": "en"
+  },
+  {
+    "start": 97.2,
+    "dur": 3.68,
+    "text": "how the WhatsApp flows have been",
+    "lang": "en"
+  },
+  {
+    "start": 98.88,
+    "dur": 4.559,
+    "text": "designed and created. Now this is",
+    "lang": "en"
+  },
+  {
+    "start": 100.88,
+    "dur": 5.279,
+    "text": "completely customizable. You can create",
+    "lang": "en"
+  },
+  {
+    "start": 103.439,
+    "dur": 4.32,
+    "text": "as many as WhatsApp journey or WhatsApp",
+    "lang": "en"
+  },
+  {
+    "start": 106.159,
+    "dur": 4.161,
+    "text": "particular sections what you want in",
+    "lang": "en"
+  },
+  {
+    "start": 107.759,
+    "dur": 4.481,
+    "text": "flows and this everything needs to be",
+    "lang": "en"
+  },
+  {
+    "start": 110.32,
+    "dur": 3.759,
+    "text": "built on the Facebook business manager",
+    "lang": "en"
+  },
+  {
+    "start": 112.24,
+    "dur": 4.0,
+    "text": "of WhatsApp.",
+    "lang": "en"
+  },
+  {
+    "start": 114.079,
+    "dur": 4.561,
+    "text": "Now you need to make sure that you have",
+    "lang": "en"
+  },
+  {
+    "start": 116.24,
+    "dur": 4.159,
+    "text": "your Facebook uh business management",
+    "lang": "en"
+  },
+  {
+    "start": 118.64,
+    "dur": 4.079,
+    "text": "credentials. You create something as",
+    "lang": "en"
+  },
+  {
+    "start": 120.399,
+    "dur": 5.04,
+    "text": "WhatsApp flows out over there. And once",
+    "lang": "en"
+  },
+  {
+    "start": 122.719,
+    "dur": 4.72,
+    "text": "you create your WhatsApp flows then you",
+    "lang": "en"
+  },
+  {
+    "start": 125.439,
+    "dur": 3.68,
+    "text": "can have those particular WhatsApp flows",
+    "lang": "en"
+  },
+  {
+    "start": 127.439,
+    "dur": 3.6,
+    "text": "getting",
+    "lang": "en"
+  },
+  {
+    "start": 129.119,
+    "dur": 4.161,
+    "text": "I would say integrated and synced out",
+    "lang": "en"
+  },
+  {
+    "start": 131.039,
+    "dur": 4.241,
+    "text": "over here. Now when you create that",
+    "lang": "en"
+  },
+  {
+    "start": 133.28,
+    "dur": 4.0,
+    "text": "WhatsApp flow on your FBM there is",
+    "lang": "en"
+  },
+  {
+    "start": 135.28,
+    "dur": 5.039,
+    "text": "something as a publish button and once",
+    "lang": "en"
+  },
+  {
+    "start": 137.28,
+    "dur": 4.72,
+    "text": "you click on the publish button then",
+    "lang": "en"
+  },
+  {
+    "start": 140.319,
+    "dur": 4.56,
+    "text": "particular",
+    "lang": "en"
+  },
+  {
+    "start": 142.0,
+    "dur": 5.599,
+    "text": "flow ID which gets created.",
+    "lang": "en"
+  },
+  {
+    "start": 144.879,
+    "dur": 4.321,
+    "text": "Okay. Now if you see out over here you",
+    "lang": "en"
+  },
+  {
+    "start": 147.599,
+    "dur": 3.681,
+    "text": "can see the meta business manager and",
+    "lang": "en"
+  },
+  {
+    "start": 149.2,
+    "dur": 5.84,
+    "text": "you you need to create that flow ID to",
+    "lang": "en"
+  },
+  {
+    "start": 151.28,
+    "dur": 6.4,
+    "text": "map it out over here. Now I have my flow",
+    "lang": "en"
+  },
+  {
+    "start": 155.04,
+    "dur": 4.4,
+    "text": "ID which is ready and I just simply show",
+    "lang": "en"
+  },
+  {
+    "start": 157.68,
+    "dur": 6.16,
+    "text": "you how the mapping part works out over",
+    "lang": "en"
+  },
+  {
+    "start": 159.44,
+    "dur": 7.439,
+    "text": "here. Now if you see my flow ID is out",
+    "lang": "en"
+  },
+  {
+    "start": 163.84,
+    "dur": 4.88,
+    "text": "over here. Now this entire like entire",
+    "lang": "en"
+  },
+  {
+    "start": 166.879,
+    "dur": 4.801,
+    "text": "WhatsApp flows WhatsApp forms what you",
+    "lang": "en"
+  },
+  {
+    "start": 168.72,
+    "dur": 4.879,
+    "text": "have created on the FBM where you have",
+    "lang": "en"
+  },
+  {
+    "start": 171.68,
+    "dur": 5.04,
+    "text": "each and everything which is there out",
+    "lang": "en"
+  },
+  {
+    "start": 173.599,
+    "dur": 4.961,
+    "text": "over here in this particular root node.",
+    "lang": "en"
+  },
+  {
+    "start": 176.72,
+    "dur": 3.76,
+    "text": "So your entire mapping of your",
+    "lang": "en"
+  },
+  {
+    "start": 178.56,
+    "dur": 4.8,
+    "text": "particular WhatsApp flows and this is",
+    "lang": "en"
+  },
+  {
+    "start": 180.48,
+    "dur": 4.88,
+    "text": "linked out over here. Now you get the",
+    "lang": "en"
+  },
+  {
+    "start": 183.36,
+    "dur": 4.159,
+    "text": "multiple functionalities",
+    "lang": "en"
+  },
+  {
+    "start": 185.36,
+    "dur": 3.519,
+    "text": "over here. Now we've not limited",
+    "lang": "en"
+  },
+  {
+    "start": 187.519,
+    "dur": 2.881,
+    "text": "ourselves to only a few of the",
+    "lang": "en"
+  },
+  {
+    "start": 188.879,
+    "dur": 2.961,
+    "text": "functionalities. You can have n number",
+    "lang": "en"
+  },
+  {
+    "start": 190.4,
+    "dur": 3.839,
+    "text": "of functionalities. So there is",
+    "lang": "en"
+  },
+  {
+    "start": 191.84,
+    "dur": 5.2,
+    "text": "something as your particular terminal",
+    "lang": "en"
+  },
+  {
+    "start": 194.239,
+    "dur": 4.481,
+    "text": "notes. So let's say you have your",
+    "lang": "en"
+  },
+  {
+    "start": 197.04,
+    "dur": 4.16,
+    "text": "particular WhatsApp flows and everything",
+    "lang": "en"
+  },
+  {
+    "start": 198.72,
+    "dur": 4.56,
+    "text": "journeys and everything being done. Then",
+    "lang": "en"
+  },
+  {
+    "start": 201.2,
+    "dur": 3.52,
+    "text": "once the end user clicks on submit then",
+    "lang": "en"
+  },
+  {
+    "start": 203.28,
+    "dur": 3.12,
+    "text": "again the WhatsApp journey should",
+    "lang": "en"
+  },
+  {
+    "start": 204.72,
+    "dur": 3.84,
+    "text": "continue and trigger.",
+    "lang": "en"
+  },
+  {
+    "start": 206.4,
+    "dur": 4.08,
+    "text": ">> Now you can go and trigger whatever",
+    "lang": "en"
+  },
+  {
+    "start": 208.56,
+    "dur": 3.679,
+    "text": "WhatsApp journey you wanted to trigger.",
+    "lang": "en"
+  },
+  {
+    "start": 210.48,
+    "dur": 4.0,
+    "text": "Have your particular variable mapping",
+    "lang": "en"
+  },
+  {
+    "start": 212.239,
+    "dur": 4.161,
+    "text": "being done out over there. Just go ahead",
+    "lang": "en"
+  },
+  {
+    "start": 214.48,
+    "dur": 5.44,
+    "text": "out over here. And that's also how you",
+    "lang": "en"
+  },
+  {
+    "start": 216.4,
+    "dur": 6.0,
+    "text": "can simply use it. Similarly, you can",
+    "lang": "en"
+  },
+  {
+    "start": 219.92,
+    "dur": 4.64,
+    "text": "also have a kind of an API call decision",
+    "lang": "en"
+  },
+  {
+    "start": 222.4,
+    "dur": 4.0,
+    "text": "based things that if someone's age is",
+    "lang": "en"
+  },
+  {
+    "start": 224.56,
+    "dur": 4.08,
+    "text": "less than this, then do that something",
+    "lang": "en"
+  },
+  {
+    "start": 226.4,
+    "dur": 4.64,
+    "text": "of that sort. Uh so like this you have",
+    "lang": "en"
+  },
+  {
+    "start": 228.64,
+    "dur": 5.92,
+    "text": "multiple things which are there. But not",
+    "lang": "en"
+  },
+  {
+    "start": 231.04,
+    "dur": 5.6,
+    "text": "only this you still have your entire",
+    "lang": "en"
+  },
+  {
+    "start": 234.56,
+    "dur": 4.0,
+    "text": "variable section also out open over",
+    "lang": "en"
+  },
+  {
+    "start": 236.64,
+    "dur": 3.519,
+    "text": "here. So you can drag and drop also",
+    "lang": "en"
+  },
+  {
+    "start": 238.56,
+    "dur": 3.52,
+    "text": "anything in case if something is",
+    "lang": "en"
+  },
+  {
+    "start": 240.159,
+    "dur": 3.841,
+    "text": "required",
+    "lang": "en"
+  },
+  {
+    "start": 242.08,
+    "dur": 4.079,
+    "text": "have your entire journey getting created",
+    "lang": "en"
+  },
+  {
+    "start": 244.0,
+    "dur": 3.68,
+    "text": "out over here in a nutshell. And that's",
+    "lang": "en"
+  },
+  {
+    "start": 246.159,
+    "dur": 3.041,
+    "text": "how you know your WhatsApp flows look",
+    "lang": "en"
+  },
+  {
+    "start": 247.68,
+    "dur": 3.759,
+    "text": "like.",
+    "lang": "en"
+  },
+  {
+    "start": 249.2,
+    "dur": 4.56,
+    "text": "Give it a name. You can go and have your",
+    "lang": "en"
+  },
+  {
+    "start": 251.439,
+    "dur": 4.481,
+    "text": "customized things out over here. Just",
+    "lang": "en"
+  },
+  {
+    "start": 253.76,
+    "dur": 4.24,
+    "text": "click on save. Okay, I'll just you know",
+    "lang": "en"
+  },
+  {
+    "start": 255.92,
+    "dur": 6.719,
+    "text": "trigger something.",
+    "lang": "en"
+  },
+  {
+    "start": 258.0,
+    "dur": 9.44,
+    "text": "So I'll just trigger to this.",
+    "lang": "en"
+  },
+  {
+    "start": 262.639,
+    "dur": 6.721,
+    "text": "I'll click on save. Save and deploy. And",
+    "lang": "en"
+  },
+  {
+    "start": 267.44,
+    "dur": 3.84,
+    "text": "in my WhatsApp flow section, you have it",
+    "lang": "en"
+  },
+  {
+    "start": 269.36,
+    "dur": 4.32,
+    "text": "out over here.",
+    "lang": "en"
+  },
+  {
+    "start": 271.28,
+    "dur": 5.52,
+    "text": "You can utilize this WhatsApp flows in",
+    "lang": "en"
+  },
+  {
+    "start": 273.68,
+    "dur": 5.44,
+    "text": "any of your journeys. user journeys and",
+    "lang": "en"
+  },
+  {
+    "start": 276.8,
+    "dur": 4.08,
+    "text": "integrate it out over there. So for use",
+    "lang": "en"
+  },
+  {
+    "start": 279.12,
+    "dur": 4.16,
+    "text": "cases like appointment booking, lead",
+    "lang": "en"
+  },
+  {
+    "start": 280.88,
+    "dur": 5.68,
+    "text": "generation and all this is what is one",
+    "lang": "en"
+  },
+  {
+    "start": 283.28,
+    "dur": 5.6,
+    "text": "of the best things out over here.",
+    "lang": "en"
+  },
+  {
+    "start": 286.56,
+    "dur": 4.32,
+    "text": "So this is how your WhatsApp flows can",
+    "lang": "en"
+  },
+  {
+    "start": 288.88,
+    "dur": 5.68,
+    "text": "be created. You can map it to the",
+    "lang": "en"
+  },
+  {
+    "start": 290.88,
+    "dur": 5.12,
+    "text": "portal, use it, play around with it and",
+    "lang": "en"
+  },
+  {
+    "start": 294.56,
+    "dur": 3.28,
+    "text": "that's how you can have your particular",
+    "lang": "en"
+  },
+  {
+    "start": 296.0,
+    "dur": 4.56,
+    "text": "flows also getting configured out over",
+    "lang": "en"
+  },
+  {
+    "start": 297.84,
+    "dur": 6.16,
+    "text": "here.",
+    "lang": "en"
+  },
+  {
+    "start": 300.56,
+    "dur": 8.12,
+    "text": "So, thank you and see you all in the",
+    "lang": "en"
+  },
+  {
+    "start": 304.0,
+    "dur": 4.68,
+    "text": "next video. Bye, guys.",
+    "lang": "en"
+  }
+]

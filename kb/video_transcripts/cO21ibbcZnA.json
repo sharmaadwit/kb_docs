@@ -1,0 +1,1694 @@
+[
+  {
+    "start": 3.04,
+    "dur": 7.2,
+    "text": "Hi everyone. Today we are going to cover",
+    "lang": "en"
+  },
+  {
+    "start": 8.0,
+    "dur": 5.2,
+    "text": "B studio.",
+    "lang": "en"
+  },
+  {
+    "start": 10.24,
+    "dur": 5.519,
+    "text": "So in B studio today primarily we will",
+    "lang": "en"
+  },
+  {
+    "start": 13.2,
+    "dur": 5.28,
+    "text": "be focusing on how to create a journey",
+    "lang": "en"
+  },
+  {
+    "start": 15.759,
+    "dur": 4.641,
+    "text": "in the B studio and I'll take you all",
+    "lang": "en"
+  },
+  {
+    "start": 18.48,
+    "dur": 4.639,
+    "text": "through the journey builder platform",
+    "lang": "en"
+  },
+  {
+    "start": 20.4,
+    "dur": 4.4,
+    "text": "what we have out over here.",
+    "lang": "en"
+  },
+  {
+    "start": 23.119,
+    "dur": 4.641,
+    "text": "Now,",
+    "lang": "en"
+  },
+  {
+    "start": 24.8,
+    "dur": 5.92,
+    "text": "so speaking about journeys, here you can",
+    "lang": "en"
+  },
+  {
+    "start": 27.76,
+    "dur": 5.2,
+    "text": "create your customized journeys uh in a",
+    "lang": "en"
+  },
+  {
+    "start": 30.72,
+    "dur": 4.8,
+    "text": "bot builder and this is something what",
+    "lang": "en"
+  },
+  {
+    "start": 32.96,
+    "dur": 4.48,
+    "text": "we call as a bot builder internally. And",
+    "lang": "en"
+  },
+  {
+    "start": 35.52,
+    "dur": 5.68,
+    "text": "this is where you can have your number",
+    "lang": "en"
+  },
+  {
+    "start": 37.44,
+    "dur": 6.959,
+    "text": "of journeys being created and all. So",
+    "lang": "en"
+  },
+  {
+    "start": 41.2,
+    "dur": 4.879,
+    "text": "you can see your uh types of journeys.",
+    "lang": "en"
+  },
+  {
+    "start": 44.399,
+    "dur": 3.601,
+    "text": "So you can have your campaign based",
+    "lang": "en"
+  },
+  {
+    "start": 46.079,
+    "dur": 3.921,
+    "text": "journey, you can have your ad based",
+    "lang": "en"
+  },
+  {
+    "start": 48.0,
+    "dur": 4.559,
+    "text": "journey, you can have your user",
+    "lang": "en"
+  },
+  {
+    "start": 50.0,
+    "dur": 4.8,
+    "text": "initiated journeys out over here. So",
+    "lang": "en"
+  },
+  {
+    "start": 52.559,
+    "dur": 4.961,
+    "text": "everything can be created from one",
+    "lang": "en"
+  },
+  {
+    "start": 54.8,
+    "dur": 4.64,
+    "text": "single unified platform and one single",
+    "lang": "en"
+  },
+  {
+    "start": 57.52,
+    "dur": 4.08,
+    "text": "unified way of creating your journeys",
+    "lang": "en"
+  },
+  {
+    "start": 59.44,
+    "dur": 4.96,
+    "text": "for whatsoever persona you want to go",
+    "lang": "en"
+  },
+  {
+    "start": 61.6,
+    "dur": 5.28,
+    "text": "ahead and cater to.",
+    "lang": "en"
+  },
+  {
+    "start": 64.4,
+    "dur": 5.2,
+    "text": "Now you also have all the particular",
+    "lang": "en"
+  },
+  {
+    "start": 66.88,
+    "dur": 4.72,
+    "text": "templates out over here. So these",
+    "lang": "en"
+  },
+  {
+    "start": 69.6,
+    "dur": 4.32,
+    "text": "templates are your category based",
+    "lang": "en"
+  },
+  {
+    "start": 71.6,
+    "dur": 5.12,
+    "text": "templates what we have of your each and",
+    "lang": "en"
+  },
+  {
+    "start": 73.92,
+    "dur": 6.32,
+    "text": "every uh particular bot journey which",
+    "lang": "en"
+  },
+  {
+    "start": 76.72,
+    "dur": 5.28,
+    "text": "has been like predefined out over here.",
+    "lang": "en"
+  },
+  {
+    "start": 80.24,
+    "dur": 3.84,
+    "text": "So you can preview any of the journey",
+    "lang": "en"
+  },
+  {
+    "start": 82.0,
+    "dur": 3.92,
+    "text": "that how does it look like. So you can",
+    "lang": "en"
+  },
+  {
+    "start": 84.08,
+    "dur": 4.16,
+    "text": "see these are the template wise journey",
+    "lang": "en"
+  },
+  {
+    "start": 85.92,
+    "dur": 4.16,
+    "text": "what you have wherever and wherever you",
+    "lang": "en"
+  },
+  {
+    "start": 88.24,
+    "dur": 4.8,
+    "text": "feel that you you know you can use this",
+    "lang": "en"
+  },
+  {
+    "start": 90.08,
+    "dur": 4.88,
+    "text": "journey or to just simply replicate it",
+    "lang": "en"
+  },
+  {
+    "start": 93.04,
+    "dur": 3.28,
+    "text": "and change it wherever you feel like you",
+    "lang": "en"
+  },
+  {
+    "start": 94.96,
+    "dur": 4.88,
+    "text": "can just simply go and have your",
+    "lang": "en"
+  },
+  {
+    "start": 96.32,
+    "dur": 6.0,
+    "text": "particular journeys out over there. Now",
+    "lang": "en"
+  },
+  {
+    "start": 99.84,
+    "dur": 5.04,
+    "text": "we also have the functionality to import",
+    "lang": "en"
+  },
+  {
+    "start": 102.32,
+    "dur": 4.72,
+    "text": "any kind of a JSON. Now the JSON has to",
+    "lang": "en"
+  },
+  {
+    "start": 104.88,
+    "dur": 4.239,
+    "text": "be in a format which the platform can",
+    "lang": "en"
+  },
+  {
+    "start": 107.04,
+    "dur": 4.079,
+    "text": "support and create that journey for you.",
+    "lang": "en"
+  },
+  {
+    "start": 109.119,
+    "dur": 5.601,
+    "text": "Similarly, you can also export any of",
+    "lang": "en"
+  },
+  {
+    "start": 111.119,
+    "dur": 6.0,
+    "text": "the journey in the form of a particular",
+    "lang": "en"
+  },
+  {
+    "start": 114.72,
+    "dur": 4.399,
+    "text": "JSON file out over here. Now, you can",
+    "lang": "en"
+  },
+  {
+    "start": 117.119,
+    "dur": 3.841,
+    "text": "use this particular files to understand",
+    "lang": "en"
+  },
+  {
+    "start": 119.119,
+    "dur": 3.6,
+    "text": "that what is a particular mapping which",
+    "lang": "en"
+  },
+  {
+    "start": 120.96,
+    "dur": 3.519,
+    "text": "is done in the platform to create your",
+    "lang": "en"
+  },
+  {
+    "start": 122.719,
+    "dur": 3.44,
+    "text": "own customized journey. If you are a",
+    "lang": "en"
+  },
+  {
+    "start": 124.479,
+    "dur": 4.321,
+    "text": "developer or someone who wants to create",
+    "lang": "en"
+  },
+  {
+    "start": 126.159,
+    "dur": 4.561,
+    "text": "it at your particular console or your",
+    "lang": "en"
+  },
+  {
+    "start": 128.8,
+    "dur": 4.96,
+    "text": "particular environment and then you want",
+    "lang": "en"
+  },
+  {
+    "start": 130.72,
+    "dur": 5.28,
+    "text": "to deploy it on the platform. Similarly,",
+    "lang": "en"
+  },
+  {
+    "start": 133.76,
+    "dur": 3.76,
+    "text": "you also have multiple settings out over",
+    "lang": "en"
+  },
+  {
+    "start": 136.0,
+    "dur": 3.84,
+    "text": "here. If you want to have your",
+    "lang": "en"
+  },
+  {
+    "start": 137.52,
+    "dur": 5.359,
+    "text": "customized workspace settings, you also",
+    "lang": "en"
+  },
+  {
+    "start": 139.84,
+    "dur": 5.84,
+    "text": "have those things available.",
+    "lang": "en"
+  },
+  {
+    "start": 142.879,
+    "dur": 4.481,
+    "text": "So without wasting any time, let me show",
+    "lang": "en"
+  },
+  {
+    "start": 145.68,
+    "dur": 4.16,
+    "text": "you how simple it is to create a",
+    "lang": "en"
+  },
+  {
+    "start": 147.36,
+    "dur": 5.12,
+    "text": "journey. Now you have a button out over",
+    "lang": "en"
+  },
+  {
+    "start": 149.84,
+    "dur": 6.399,
+    "text": "here to create this journey and ideally",
+    "lang": "en"
+  },
+  {
+    "start": 152.48,
+    "dur": 6.08,
+    "text": "you have multiple things. One, it is uh",
+    "lang": "en"
+  },
+  {
+    "start": 156.239,
+    "dur": 4.401,
+    "text": "that you can have your particular",
+    "lang": "en"
+  },
+  {
+    "start": 158.56,
+    "dur": 4.24,
+    "text": "scratchbased journey getting created out",
+    "lang": "en"
+  },
+  {
+    "start": 160.64,
+    "dur": 4.8,
+    "text": "over here or you can use any of the",
+    "lang": "en"
+  },
+  {
+    "start": 162.8,
+    "dur": 6.24,
+    "text": "journeys as we had seen out over here.",
+    "lang": "en"
+  },
+  {
+    "start": 165.44,
+    "dur": 6.799,
+    "text": "So if I just go ahead and click on this",
+    "lang": "en"
+  },
+  {
+    "start": 169.04,
+    "dur": 4.96,
+    "text": "you see your entire journey predefined",
+    "lang": "en"
+  },
+  {
+    "start": 172.239,
+    "dur": 4.321,
+    "text": "journey what has been created according",
+    "lang": "en"
+  },
+  {
+    "start": 174.0,
+    "dur": 4.959,
+    "text": "to the particular industry is readily",
+    "lang": "en"
+  },
+  {
+    "start": 176.56,
+    "dur": 6.16,
+    "text": "available out over here.",
+    "lang": "en"
+  },
+  {
+    "start": 178.959,
+    "dur": 6.401,
+    "text": "Now to explain much more in depth. So",
+    "lang": "en"
+  },
+  {
+    "start": 182.72,
+    "dur": 4.48,
+    "text": "for since it's a user initiated journey",
+    "lang": "en"
+  },
+  {
+    "start": 185.36,
+    "dur": 3.84,
+    "text": "for someone to go ahead and start or",
+    "lang": "en"
+  },
+  {
+    "start": 187.2,
+    "dur": 5.28,
+    "text": "trigger a journey you have multiple",
+    "lang": "en"
+  },
+  {
+    "start": 189.2,
+    "dur": 6.08,
+    "text": "events. Now it can be either it can be a",
+    "lang": "en"
+  },
+  {
+    "start": 192.48,
+    "dur": 5.28,
+    "text": "user input wherein you can have any of",
+    "lang": "en"
+  },
+  {
+    "start": 195.28,
+    "dur": 5.28,
+    "text": "your trigger keyword such as hi or",
+    "lang": "en"
+  },
+  {
+    "start": 197.76,
+    "dur": 4.72,
+    "text": "whatever it is. So whenever the end user",
+    "lang": "en"
+  },
+  {
+    "start": 200.56,
+    "dur": 4.16,
+    "text": "inputs this keyword the entire journey",
+    "lang": "en"
+  },
+  {
+    "start": 202.48,
+    "dur": 4.399,
+    "text": "is triggered for that. Now this can be",
+    "lang": "en"
+  },
+  {
+    "start": 204.72,
+    "dur": 4.0,
+    "text": "anything. So whatever trigger keyword",
+    "lang": "en"
+  },
+  {
+    "start": 206.879,
+    "dur": 4.401,
+    "text": "you want to keep it you can have that",
+    "lang": "en"
+  },
+  {
+    "start": 208.72,
+    "dur": 4.56,
+    "text": "particular thing. Similarly if there is",
+    "lang": "en"
+  },
+  {
+    "start": 211.28,
+    "dur": 3.599,
+    "text": "no event you feel that okay this is a",
+    "lang": "en"
+  },
+  {
+    "start": 213.28,
+    "dur": 3.44,
+    "text": "journey which has to be triggered from",
+    "lang": "en"
+  },
+  {
+    "start": 214.879,
+    "dur": 3.601,
+    "text": "some another part of a journey as a",
+    "lang": "en"
+  },
+  {
+    "start": 216.72,
+    "dur": 3.84,
+    "text": "trigger based thing. You can also have",
+    "lang": "en"
+  },
+  {
+    "start": 218.48,
+    "dur": 4.88,
+    "text": "your new event as a specific trigger to",
+    "lang": "en"
+  },
+  {
+    "start": 220.56,
+    "dur": 4.88,
+    "text": "this journey. Similarly, you can also",
+    "lang": "en"
+  },
+  {
+    "start": 223.36,
+    "dur": 3.92,
+    "text": "have an AI trigger to this. So, ideally,",
+    "lang": "en"
+  },
+  {
+    "start": 225.44,
+    "dur": 4.0,
+    "text": "you can have your particular AI based",
+    "lang": "en"
+  },
+  {
+    "start": 227.28,
+    "dur": 4.4,
+    "text": "event out over here. Any intent of the",
+    "lang": "en"
+  },
+  {
+    "start": 229.44,
+    "dur": 4.719,
+    "text": "end user and from that intent if you",
+    "lang": "en"
+  },
+  {
+    "start": 231.68,
+    "dur": 4.32,
+    "text": "want to trigger any type of a journey.",
+    "lang": "en"
+  },
+  {
+    "start": 234.159,
+    "dur": 3.681,
+    "text": "Similarly, you also have something as",
+    "lang": "en"
+  },
+  {
+    "start": 236.0,
+    "dur": 4.48,
+    "text": "your custom event. If you have something",
+    "lang": "en"
+  },
+  {
+    "start": 237.84,
+    "dur": 4.479,
+    "text": "as your WhatsApp based details where for",
+    "lang": "en"
+  },
+  {
+    "start": 240.48,
+    "dur": 3.679,
+    "text": "specific end users, you want any",
+    "lang": "en"
+  },
+  {
+    "start": 242.319,
+    "dur": 3.441,
+    "text": "specific journeys to be there settled",
+    "lang": "en"
+  },
+  {
+    "start": 244.159,
+    "dur": 4.0,
+    "text": "out over here. You can have all those",
+    "lang": "en"
+  },
+  {
+    "start": 245.76,
+    "dur": 5.039,
+    "text": "also available.",
+    "lang": "en"
+  },
+  {
+    "start": 248.159,
+    "dur": 4.481,
+    "text": "So ideally this is how you can have your",
+    "lang": "en"
+  },
+  {
+    "start": 250.799,
+    "dur": 3.761,
+    "text": "n number of journeys and if you want to",
+    "lang": "en"
+  },
+  {
+    "start": 252.64,
+    "dur": 5.119,
+    "text": "you know add anything out over here we",
+    "lang": "en"
+  },
+  {
+    "start": 254.56,
+    "dur": 5.28,
+    "text": "have created filterbased root nodes. Now",
+    "lang": "en"
+  },
+  {
+    "start": 257.759,
+    "dur": 4.401,
+    "text": "this is a no code low code platform what",
+    "lang": "en"
+  },
+  {
+    "start": 259.84,
+    "dur": 4.16,
+    "text": "we have. So you can just simply select",
+    "lang": "en"
+  },
+  {
+    "start": 262.16,
+    "dur": 4.4,
+    "text": "whatever channel is where you want to",
+    "lang": "en"
+  },
+  {
+    "start": 264.0,
+    "dur": 6.72,
+    "text": "have this journey upon let's say this.",
+    "lang": "en"
+  },
+  {
+    "start": 266.56,
+    "dur": 6.72,
+    "text": "Simply drag drop just close this double",
+    "lang": "en"
+  },
+  {
+    "start": 270.72,
+    "dur": 5.36,
+    "text": "click and you have your entire things",
+    "lang": "en"
+  },
+  {
+    "start": 273.28,
+    "dur": 5.76,
+    "text": "ready available. Just simply give it a",
+    "lang": "en"
+  },
+  {
+    "start": 276.08,
+    "dur": 5.2,
+    "text": "message.",
+    "lang": "en"
+  },
+  {
+    "start": 279.04,
+    "dur": 5.24,
+    "text": ">> Then you can have any kind of a button",
+    "lang": "en"
+  },
+  {
+    "start": 281.28,
+    "dur": 3.0,
+    "text": "title",
+    "lang": "en"
+  },
+  {
+    "start": 284.479,
+    "dur": 5.841,
+    "text": "and that's it. Now you see this journeys",
+    "lang": "en"
+  },
+  {
+    "start": 287.12,
+    "dur": 6.079,
+    "text": "created. Hi, welcome ask a query and and",
+    "lang": "en"
+  },
+  {
+    "start": 290.32,
+    "dur": 4.879,
+    "text": "you can just simply go and just attach",
+    "lang": "en"
+  },
+  {
+    "start": 293.199,
+    "dur": 4.56,
+    "text": "it wherever you want. So you see this",
+    "lang": "en"
+  },
+  {
+    "start": 295.199,
+    "dur": 4.961,
+    "text": "journey is triggered out over here and",
+    "lang": "en"
+  },
+  {
+    "start": 297.759,
+    "dur": 4.481,
+    "text": "then this things happen out. Now in case",
+    "lang": "en"
+  },
+  {
+    "start": 300.16,
+    "dur": 3.84,
+    "text": "if there is a fallback then user doesn't",
+    "lang": "en"
+  },
+  {
+    "start": 302.24,
+    "dur": 4.08,
+    "text": "go. So we also give you something as a",
+    "lang": "en"
+  },
+  {
+    "start": 304.0,
+    "dur": 4.0,
+    "text": "fallback functionality wherein you can",
+    "lang": "en"
+  },
+  {
+    "start": 306.32,
+    "dur": 3.439,
+    "text": "go and trigger this to any of the",
+    "lang": "en"
+  },
+  {
+    "start": 308.0,
+    "dur": 3.36,
+    "text": "particular root nodes. So in case if the",
+    "lang": "en"
+  },
+  {
+    "start": 309.759,
+    "dur": 3.761,
+    "text": "end user goes ahead and does something",
+    "lang": "en"
+  },
+  {
+    "start": 311.36,
+    "dur": 5.119,
+    "text": "else you have that is that also thing",
+    "lang": "en"
+  },
+  {
+    "start": 313.52,
+    "dur": 6.0,
+    "text": "available out over here",
+    "lang": "en"
+  },
+  {
+    "start": 316.479,
+    "dur": 5.921,
+    "text": "in a nutshell you can go create it",
+    "lang": "en"
+  },
+  {
+    "start": 319.52,
+    "dur": 4.8,
+    "text": "delete it copy it each and every node",
+    "lang": "en"
+  },
+  {
+    "start": 322.4,
+    "dur": 3.44,
+    "text": "how you want. So this we have created",
+    "lang": "en"
+  },
+  {
+    "start": 324.32,
+    "dur": 3.599,
+    "text": "like in the form of a waterfall",
+    "lang": "en"
+  },
+  {
+    "start": 325.84,
+    "dur": 4.4,
+    "text": "structure. So after this this comes in",
+    "lang": "en"
+  },
+  {
+    "start": 327.919,
+    "dur": 4.961,
+    "text": "this comes in that comes in and so on",
+    "lang": "en"
+  },
+  {
+    "start": 330.24,
+    "dur": 4.48,
+    "text": "and so forth. You can create the journey",
+    "lang": "en"
+  },
+  {
+    "start": 332.88,
+    "dur": 4.96,
+    "text": "in the way you want to create it",
+    "lang": "en"
+  },
+  {
+    "start": 334.72,
+    "dur": 5.199,
+    "text": "customized for the end users and yeah so",
+    "lang": "en"
+  },
+  {
+    "start": 337.84,
+    "dur": 5.84,
+    "text": "that's how you can have each and",
+    "lang": "en"
+  },
+  {
+    "start": 339.919,
+    "dur": 6.56,
+    "text": "everything out over here.",
+    "lang": "en"
+  },
+  {
+    "start": 343.68,
+    "dur": 5.12,
+    "text": ">> So uh this is how you can have multiple",
+    "lang": "en"
+  },
+  {
+    "start": 346.479,
+    "dur": 4.321,
+    "text": "things over here. So in case let's say",
+    "lang": "en"
+  },
+  {
+    "start": 348.8,
+    "dur": 4.56,
+    "text": "you want to perform any kind of an API",
+    "lang": "en"
+  },
+  {
+    "start": 350.8,
+    "dur": 5.679,
+    "text": "call any kind of an agent transfer to",
+    "lang": "en"
+  },
+  {
+    "start": 353.36,
+    "dur": 5.04,
+    "text": "the particular human agents or any kind",
+    "lang": "en"
+  },
+  {
+    "start": 356.479,
+    "dur": 3.521,
+    "text": "of things where you want to have your",
+    "lang": "en"
+  },
+  {
+    "start": 358.4,
+    "dur": 3.92,
+    "text": "particular things out over here you can",
+    "lang": "en"
+  },
+  {
+    "start": 360.0,
+    "dur": 4.72,
+    "text": "have those as well.",
+    "lang": "en"
+  },
+  {
+    "start": 362.32,
+    "dur": 5.12,
+    "text": "Now let's say you want to copy an entire",
+    "lang": "en"
+  },
+  {
+    "start": 364.72,
+    "dur": 7.039,
+    "text": "block. So you can also click on this",
+    "lang": "en"
+  },
+  {
+    "start": 367.44,
+    "dur": 8.0,
+    "text": "button of block. Just go and select the",
+    "lang": "en"
+  },
+  {
+    "start": 371.759,
+    "dur": 7.361,
+    "text": "particular block what you want to copy.",
+    "lang": "en"
+  },
+  {
+    "start": 375.44,
+    "dur": 7.12,
+    "text": "You see here we can give it a name that",
+    "lang": "en"
+  },
+  {
+    "start": 379.12,
+    "dur": 5.6,
+    "text": "test video. Just click on this and save",
+    "lang": "en"
+  },
+  {
+    "start": 382.56,
+    "dur": 5.52,
+    "text": "as template.",
+    "lang": "en"
+  },
+  {
+    "start": 384.72,
+    "dur": 6.0,
+    "text": ">> Now this entire thing is as a template.",
+    "lang": "en"
+  },
+  {
+    "start": 388.08,
+    "dur": 5.119,
+    "text": "So you see everything is compressed",
+    "lang": "en"
+  },
+  {
+    "start": 390.72,
+    "dur": 4.16,
+    "text": "inside a template out over here and you",
+    "lang": "en"
+  },
+  {
+    "start": 393.199,
+    "dur": 4.56,
+    "text": "can reuse this particular template",
+    "lang": "en"
+  },
+  {
+    "start": 394.88,
+    "dur": 4.64,
+    "text": "wherever you feel. So",
+    "lang": "en"
+  },
+  {
+    "start": 397.759,
+    "dur": 3.841,
+    "text": "again I maximize the template and then",
+    "lang": "en"
+  },
+  {
+    "start": 399.52,
+    "dur": 4.0,
+    "text": "you can go modify veto is required",
+    "lang": "en"
+  },
+  {
+    "start": 401.6,
+    "dur": 4.159,
+    "text": "delete it where if you think that the",
+    "lang": "en"
+  },
+  {
+    "start": 403.52,
+    "dur": 5.2,
+    "text": "entire block should be deleted and see",
+    "lang": "en"
+  },
+  {
+    "start": 405.759,
+    "dur": 6.481,
+    "text": "everything is there in a particular way",
+    "lang": "en"
+  },
+  {
+    "start": 408.72,
+    "dur": 5.199,
+    "text": "where everything is deleted.",
+    "lang": "en"
+  },
+  {
+    "start": 412.24,
+    "dur": 4.399,
+    "text": "You can traverse through the entire",
+    "lang": "en"
+  },
+  {
+    "start": 413.919,
+    "dur": 4.56,
+    "text": "journeys understand out over here. And",
+    "lang": "en"
+  },
+  {
+    "start": 416.639,
+    "dur": 3.601,
+    "text": "then if you want to add anything out",
+    "lang": "en"
+  },
+  {
+    "start": 418.479,
+    "dur": 3.521,
+    "text": "over here, action based thing, you can",
+    "lang": "en"
+  },
+  {
+    "start": 420.24,
+    "dur": 4.239,
+    "text": "also have that such as if you want to go",
+    "lang": "en"
+  },
+  {
+    "start": 422.0,
+    "dur": 5.36,
+    "text": "and trigger any of the journeys, you can",
+    "lang": "en"
+  },
+  {
+    "start": 424.479,
+    "dur": 6.16,
+    "text": "also do that from out over here. Just",
+    "lang": "en"
+  },
+  {
+    "start": 427.36,
+    "dur": 5.52,
+    "text": "click on save, save and deploy and",
+    "lang": "en"
+  },
+  {
+    "start": 430.639,
+    "dur": 4.801,
+    "text": "that's it. Now there is some okay you",
+    "lang": "en"
+  },
+  {
+    "start": 432.88,
+    "dur": 4.319,
+    "text": "see the start node is not there. This is",
+    "lang": "en"
+  },
+  {
+    "start": 435.44,
+    "dur": 4.759,
+    "text": "a compulsory thing what you need to",
+    "lang": "en"
+  },
+  {
+    "start": 437.199,
+    "dur": 3.0,
+    "text": "have.",
+    "lang": "en"
+  },
+  {
+    "start": 442.4,
+    "dur": 4.76,
+    "text": "Now this has got deployed. You can",
+    "lang": "en"
+  },
+  {
+    "start": 448.639,
+    "dur": 4.761,
+    "text": ">> this is how you can also test it from",
+    "lang": "en"
+  },
+  {
+    "start": 450.16,
+    "dur": 3.24,
+    "text": "over here.",
+    "lang": "en"
+  },
+  {
+    "start": 453.52,
+    "dur": 4.959,
+    "text": ">> So this is how you have if I just go",
+    "lang": "en"
+  },
+  {
+    "start": 455.759,
+    "dur": 5.521,
+    "text": "click on this analytics part also I get",
+    "lang": "en"
+  },
+  {
+    "start": 458.479,
+    "dur": 4.72,
+    "text": "get the each and every analytics",
+    "lang": "en"
+  },
+  {
+    "start": 461.28,
+    "dur": 4.479,
+    "text": "that how many people have clicked on",
+    "lang": "en"
+  },
+  {
+    "start": 463.199,
+    "dur": 5.56,
+    "text": "this what was the ratio each and",
+    "lang": "en"
+  },
+  {
+    "start": 465.759,
+    "dur": 3.0,
+    "text": "everything.",
+    "lang": "en"
+  },
+  {
+    "start": 469.599,
+    "dur": 2.72,
+    "text": "Next steps.",
+    "lang": "en"
+  },
+  {
+    "start": 470.72,
+    "dur": 3.68,
+    "text": ">> Uh they will get back to us with a",
+    "lang": "en"
+  },
+  {
+    "start": 472.319,
+    "dur": 4.16,
+    "text": "number of agents. Uh",
+    "lang": "en"
+  },
+  {
+    "start": 474.4,
+    "dur": 4.479,
+    "text": ">> we have this entire settings also there",
+    "lang": "en"
+  },
+  {
+    "start": 476.479,
+    "dur": 5.201,
+    "text": "available out over here.",
+    "lang": "en"
+  },
+  {
+    "start": 478.879,
+    "dur": 5.201,
+    "text": ">> And similarly you can go import any of",
+    "lang": "en"
+  },
+  {
+    "start": 481.68,
+    "dur": 3.84,
+    "text": "the APIs. You can also manage your",
+    "lang": "en"
+  },
+  {
+    "start": 484.08,
+    "dur": 4.88,
+    "text": "variables. So you can have multiple",
+    "lang": "en"
+  },
+  {
+    "start": 485.52,
+    "dur": 4.799,
+    "text": "types of variables local global type",
+    "lang": "en"
+  },
+  {
+    "start": 488.96,
+    "dur": 6.239,
+    "text": "system based variables which are",
+    "lang": "en"
+  },
+  {
+    "start": 490.319,
+    "dur": 7.121,
+    "text": "predefined variables etc.",
+    "lang": "en"
+  },
+  {
+    "start": 495.199,
+    "dur": 4.72,
+    "text": "and so on.",
+    "lang": "en"
+  },
+  {
+    "start": 497.44,
+    "dur": 5.84,
+    "text": ">> So this is what we have specifically the",
+    "lang": "en"
+  },
+  {
+    "start": 499.919,
+    "dur": 5.441,
+    "text": "journey builder and you can you know",
+    "lang": "en"
+  },
+  {
+    "start": 503.28,
+    "dur": 3.599,
+    "text": "play around with this understand how the",
+    "lang": "en"
+  },
+  {
+    "start": 505.36,
+    "dur": 4.16,
+    "text": "things and everything happen out over",
+    "lang": "en"
+  },
+  {
+    "start": 506.879,
+    "dur": 4.481,
+    "text": "here zoom in zoom out whatever is",
+    "lang": "en"
+  },
+  {
+    "start": 509.52,
+    "dur": 5.28,
+    "text": "required you can also have this in a",
+    "lang": "en"
+  },
+  {
+    "start": 511.36,
+    "dur": 5.84,
+    "text": "mode and yes so this is what we have in",
+    "lang": "en"
+  },
+  {
+    "start": 514.8,
+    "dur": 4.32,
+    "text": "the form of your particular journey",
+    "lang": "en"
+  },
+  {
+    "start": 517.2,
+    "dur": 5.759,
+    "text": "build.",
+    "lang": "en"
+  },
+  {
+    "start": 519.12,
+    "dur": 7.08,
+    "text": "See you in the next video guys.",
+    "lang": "en"
+  },
+  {
+    "start": 522.959,
+    "dur": 3.241,
+    "text": "This is not",
+    "lang": "en"
+  },
+  {
+    "start": 541.839,
+    "dur": 3.241,
+    "text": "hi everyone.",
+    "lang": "en"
+  },
+  {
+    "start": 547.44,
+    "dur": 5.36,
+    "text": "So ideally",
+    "lang": "en"
+  },
+  {
+    "start": 549.6,
+    "dur": 5.28,
+    "text": "it's very simple and easy that how we",
+    "lang": "en"
+  },
+  {
+    "start": 552.8,
+    "dur": 3.76,
+    "text": "can you know leverage super agent to",
+    "lang": "en"
+  },
+  {
+    "start": 554.88,
+    "dur": 3.28,
+    "text": "create your journeys on the journey",
+    "lang": "en"
+  },
+  {
+    "start": 556.56,
+    "dur": 3.68,
+    "text": "builder",
+    "lang": "en"
+  },
+  {
+    "start": 558.16,
+    "dur": 4.239,
+    "text": "as simple as where you can you know have",
+    "lang": "en"
+  },
+  {
+    "start": 560.24,
+    "dur": 4.719,
+    "text": "your integration directly with your",
+    "lang": "en"
+  },
+  {
+    "start": 562.399,
+    "dur": 5.921,
+    "text": "console. Okay, your platform level",
+    "lang": "en"
+  },
+  {
+    "start": 564.959,
+    "dur": 5.44,
+    "text": "integration is done out over here. You",
+    "lang": "en"
+  },
+  {
+    "start": 568.32,
+    "dur": 3.92,
+    "text": "once have this particular integration",
+    "lang": "en"
+  },
+  {
+    "start": 570.399,
+    "dur": 4.401,
+    "text": "done, you can simply go and just give it",
+    "lang": "en"
+  },
+  {
+    "start": 572.24,
+    "dur": 4.96,
+    "text": "a prompt as you can see right now.",
+    "lang": "en"
+  },
+  {
+    "start": 574.8,
+    "dur": 6.96,
+    "text": "Create a",
+    "lang": "en"
+  },
+  {
+    "start": 577.2,
+    "dur": 9.6,
+    "text": "static lead generation",
+    "lang": "en"
+  },
+  {
+    "start": 581.76,
+    "dur": 7.68,
+    "text": "journey on console platform.",
+    "lang": "en"
+  },
+  {
+    "start": 586.8,
+    "dur": 4.96,
+    "text": "That's it. As simple as this where I've",
+    "lang": "en"
+  },
+  {
+    "start": 589.44,
+    "dur": 4.48,
+    "text": "just given it this entire prompt that",
+    "lang": "en"
+  },
+  {
+    "start": 591.76,
+    "dur": 5.12,
+    "text": "just create this particular lead",
+    "lang": "en"
+  },
+  {
+    "start": 593.92,
+    "dur": 5.039,
+    "text": "generation journey for me. It goes ahead",
+    "lang": "en"
+  },
+  {
+    "start": 596.88,
+    "dur": 5.04,
+    "text": "and it understands that okay what does",
+    "lang": "en"
+  },
+  {
+    "start": 598.959,
+    "dur": 4.641,
+    "text": "lead generation mean like and it will",
+    "lang": "en"
+  },
+  {
+    "start": 601.92,
+    "dur": 3.76,
+    "text": "create this entire journey on your",
+    "lang": "en"
+  },
+  {
+    "start": 603.6,
+    "dur": 4.08,
+    "text": "console. So instead of you creating your",
+    "lang": "en"
+  },
+  {
+    "start": 605.68,
+    "dur": 5.36,
+    "text": "drag and drop journeys or something of",
+    "lang": "en"
+  },
+  {
+    "start": 607.68,
+    "dur": 5.76,
+    "text": "that sort, a simple way of you know a",
+    "lang": "en"
+  },
+  {
+    "start": 611.04,
+    "dur": 5.44,
+    "text": "layman language of just giving a simple",
+    "lang": "en"
+  },
+  {
+    "start": 613.44,
+    "dur": 5.68,
+    "text": "prompt can convert this entire",
+    "lang": "en"
+  },
+  {
+    "start": 616.48,
+    "dur": 4.799,
+    "text": "um thing on your particular",
+    "lang": "en"
+  },
+  {
+    "start": 619.12,
+    "dur": 4.48,
+    "text": "uh journey builder. So your entire",
+    "lang": "en"
+  },
+  {
+    "start": 621.279,
+    "dur": 4.161,
+    "text": "journey can get created. You can just",
+    "lang": "en"
+  },
+  {
+    "start": 623.6,
+    "dur": 4.72,
+    "text": "simply you know use it how you want to",
+    "lang": "en"
+  },
+  {
+    "start": 625.44,
+    "dur": 6.72,
+    "text": "have it. And that's it. As simple as",
+    "lang": "en"
+  },
+  {
+    "start": 628.32,
+    "dur": 6.0,
+    "text": "this. So you see it says that the uh",
+    "lang": "en"
+  },
+  {
+    "start": 632.16,
+    "dur": 4.32,
+    "text": "static lead generation journey has been",
+    "lang": "en"
+  },
+  {
+    "start": 634.32,
+    "dur": 6.24,
+    "text": "created. What's the trigger word for it",
+    "lang": "en"
+  },
+  {
+    "start": 636.48,
+    "dur": 6.479,
+    "text": "and how does the journey look like.",
+    "lang": "en"
+  },
+  {
+    "start": 640.56,
+    "dur": 5.68,
+    "text": "Now",
+    "lang": "en"
+  },
+  {
+    "start": 642.959,
+    "dur": 6.961,
+    "text": "what we will do is we'll see ideally",
+    "lang": "en"
+  },
+  {
+    "start": 646.24,
+    "dur": 6.48,
+    "text": "that you know how does the thing happen",
+    "lang": "en"
+  },
+  {
+    "start": 649.92,
+    "dur": 5.919,
+    "text": "and if you see my platform if you see my",
+    "lang": "en"
+  },
+  {
+    "start": 652.72,
+    "dur": 5.44,
+    "text": "screen of my console you can see the",
+    "lang": "en"
+  },
+  {
+    "start": 655.839,
+    "dur": 4.961,
+    "text": "static lead generation journey what we",
+    "lang": "en"
+  },
+  {
+    "start": 658.16,
+    "dur": 5.84,
+    "text": "just gave the prompt right now has been",
+    "lang": "en"
+  },
+  {
+    "start": 660.8,
+    "dur": 5.52,
+    "text": "created out over here the same input",
+    "lang": "en"
+  },
+  {
+    "start": 664.0,
+    "dur": 4.0,
+    "text": "each and everything you have it out over",
+    "lang": "en"
+  },
+  {
+    "start": 666.32,
+    "dur": 3.519,
+    "text": "here.",
+    "lang": "en"
+  },
+  {
+    "start": 668.0,
+    "dur": 4.079,
+    "text": "So instead of you know taking the pain",
+    "lang": "en"
+  },
+  {
+    "start": 669.839,
+    "dur": 6.56,
+    "text": "of creating that entire journey we have",
+    "lang": "en"
+  },
+  {
+    "start": 672.079,
+    "dur": 7.44,
+    "text": "those things available out over here and",
+    "lang": "en"
+  },
+  {
+    "start": 676.399,
+    "dur": 6.161,
+    "text": "yes the magic is happening through your",
+    "lang": "en"
+  },
+  {
+    "start": 679.519,
+    "dur": 4.401,
+    "text": "super agents a simple prompt in less",
+    "lang": "en"
+  },
+  {
+    "start": 682.56,
+    "dur": 4.399,
+    "text": "than few minutes you have your journey",
+    "lang": "en"
+  },
+  {
+    "start": 683.92,
+    "dur": 4.96,
+    "text": "ready and you since that's already",
+    "lang": "en"
+  },
+  {
+    "start": 686.959,
+    "dur": 4.721,
+    "text": "linked to your WhatsApp number and with",
+    "lang": "en"
+  },
+  {
+    "start": 688.88,
+    "dur": 4.56,
+    "text": "the root word just save and deploy and",
+    "lang": "en"
+  },
+  {
+    "start": 691.68,
+    "dur": 3.92,
+    "text": "you can you know have your journey being",
+    "lang": "en"
+  },
+  {
+    "start": 693.44,
+    "dur": 4.24,
+    "text": "there for your end users.",
+    "lang": "en"
+  },
+  {
+    "start": 695.6,
+    "dur": 4.88,
+    "text": "So that's the power of super agents out",
+    "lang": "en"
+  },
+  {
+    "start": 697.68,
+    "dur": 5.2,
+    "text": "over here and feel free to use this in",
+    "lang": "en"
+  },
+  {
+    "start": 700.48,
+    "dur": 4.88,
+    "text": "case if you are fed up of you know",
+    "lang": "en"
+  },
+  {
+    "start": 702.88,
+    "dur": 4.639,
+    "text": "dragging drop and creating those uh",
+    "lang": "en"
+  },
+  {
+    "start": 705.36,
+    "dur": 4.4,
+    "text": "journeys. So it saves time, it's",
+    "lang": "en"
+  },
+  {
+    "start": 707.519,
+    "dur": 5.481,
+    "text": "efficient enough and you have everything",
+    "lang": "en"
+  },
+  {
+    "start": 709.76,
+    "dur": 3.24,
+    "text": "over here.",
+    "lang": "en"
+  },
+  {
+    "start": 713.04,
+    "dur": 4.56,
+    "text": "So that's it what we had on the part of",
+    "lang": "en"
+  },
+  {
+    "start": 714.8,
+    "dur": 5.599,
+    "text": "journey builder how you can create your",
+    "lang": "en"
+  },
+  {
+    "start": 717.6,
+    "dur": 5.44,
+    "text": "customized journeys and with the power",
+    "lang": "en"
+  },
+  {
+    "start": 720.399,
+    "dur": 6.081,
+    "text": "of super agents as well.",
+    "lang": "en"
+  },
+  {
+    "start": 723.04,
+    "dur": 3.44,
+    "text": "Thank you so much.",
+    "lang": "en"
+  }
+]

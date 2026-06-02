@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "skill"))
 
 import kb_answer as kb
 
-CHUNKS_PATH = os.path.join(os.path.dirname(__file__), "kb", "kb_chunks.jsonl")
+CHUNKS_PATH = os.path.join(os.path.dirname(__file__), "..", "..", "kb", "kb_chunks.jsonl")
 
 def _local_chunks():
     items = []

@@ -1,0 +1,926 @@
+[
+  {
+    "start": 8.32,
+    "dur": 8.959,
+    "text": "Hi there welcome to the Cups show.  I'll just",
+    "lang": "en"
+  },
+  {
+    "start": 13.2,
+    "dur": 7.6,
+    "text": "today we'll go through Tlets and we'll look",
+    "lang": "en"
+  },
+  {
+    "start": 17.279,
+    "dur": 7.681,
+    "text": "into how the Tlets are created and how you",
+    "lang": "en"
+  },
+  {
+    "start": 20.8,
+    "dur": 6.88,
+    "text": "can publish it.  So in the template module",
+    "lang": "en"
+  },
+  {
+    "start": 24.96,
+    "dur": 6.239,
+    "text": "over here on the left hand side you can see all",
+    "lang": "en"
+  },
+  {
+    "start": 27.68,
+    "dur": 6.8,
+    "text": "the filters options available where if",
+    "lang": "en"
+  },
+  {
+    "start": 31.199,
+    "dur": 6.561,
+    "text": "you click on any particular",
+    "lang": "en"
+  },
+  {
+    "start": 34.48,
+    "dur": 5.759,
+    "text": "button then you will get to see all the templates",
+    "lang": "en"
+  },
+  {
+    "start": 37.76,
+    "dur": 5.2,
+    "text": "falling under the same category so if we",
+    "lang": "en"
+  },
+  {
+    "start": 40.239,
+    "dur": 5.201,
+    "text": "select approved templates you will get to see",
+    "lang": "en"
+  },
+  {
+    "start": 42.96,
+    "dur": 4.56,
+    "text": "all the templates which are already",
+    "lang": "en"
+  },
+  {
+    "start": 45.44,
+    "dur": 5.92,
+    "text": "approved by meta and we can directly",
+    "lang": "en"
+  },
+  {
+    "start": 47.52,
+    "dur": 6.8,
+    "text": "use it similarly if you go on any of this",
+    "lang": "en"
+  },
+  {
+    "start": 51.36,
+    "dur": 5.6,
+    "text": "particular buttons you will be able to see all",
+    "lang": "en"
+  },
+  {
+    "start": 54.32,
+    "dur": 6.879,
+    "text": "of those which are rejected and",
+    "lang": "en"
+  },
+  {
+    "start": 56.96,
+    "dur": 6.64,
+    "text": "submitted please paint anything which falls",
+    "lang": "en"
+  },
+  {
+    "start": 61.199,
+    "dur": 4.801,
+    "text": "under that particular category it will be",
+    "lang": "en"
+  },
+  {
+    "start": 63.6,
+    "dur": 5.76,
+    "text": "reflected over there now if we want to",
+    "lang": "en"
+  },
+  {
+    "start": 66.0,
+    "dur": 6.0,
+    "text": "use any particular",
+    "lang": "en"
+  },
+  {
+    "start": 69.36,
+    "dur": 5.119,
+    "text": "template which is already approved over here you will get",
+    "lang": "en"
+  },
+  {
+    "start": 72.0,
+    "dur": 5.28,
+    "text": "the option to edit the",
+    "lang": "en"
+  },
+  {
+    "start": 74.479,
+    "dur": 4.801,
+    "text": "template copy to the clipboard clone the",
+    "lang": "en"
+  },
+  {
+    "start": 77.28,
+    "dur": 4.8,
+    "text": "template taste the template and delete the",
+    "lang": "en"
+  },
+  {
+    "start": 79.28,
+    "dur": 4.72,
+    "text": "template so let's say we are doing the edit because we are",
+    "lang": "en"
+  },
+  {
+    "start": 82.08,
+    "dur": 5.359,
+    "text": "using  This",
+    "lang": "en"
+  },
+  {
+    "start": 84.0,
+    "dur": 6.64,
+    "text": "particular template here this and there is",
+    "lang": "en"
+  },
+  {
+    "start": 87.439,
+    "dur": 5.921,
+    "text": "another option where in you can just create",
+    "lang": "en"
+  },
+  {
+    "start": 90.64,
+    "dur": 6.08,
+    "text": "a fresh template from these types.  So",
+    "lang": "en"
+  },
+  {
+    "start": 93.36,
+    "dur": 5.92,
+    "text": "similarly both the same thing will happen as you",
+    "lang": "en"
+  },
+  {
+    "start": 96.72,
+    "dur": 6.16,
+    "text": "will land on the page where in you will get",
+    "lang": "en"
+  },
+  {
+    "start": 99.28,
+    "dur": 6.64,
+    "text": "the option to create the template.  Now you will just",
+    "lang": "en"
+  },
+  {
+    "start": 102.88,
+    "dur": 6.16,
+    "text": "write your template name.",
+    "lang": "en"
+  },
+  {
+    "start": 105.92,
+    "dur": 5.6,
+    "text": "It is select the category like we category",
+    "lang": "en"
+  },
+  {
+    "start": 109.04,
+    "dur": 6.96,
+    "text": "it calls under you can select from",
+    "lang": "en"
+  },
+  {
+    "start": 111.52,
+    "dur": 7.599,
+    "text": "marketing and utility and authentication these are",
+    "lang": "en"
+  },
+  {
+    "start": 116.0,
+    "dur": 5.36,
+    "text": "three different categories approved and you are",
+    "lang": "en"
+  },
+  {
+    "start": 119.119,
+    "dur": 4.881,
+    "text": "not suggested by meta which will have a",
+    "lang": "en"
+  },
+  {
+    "start": 121.36,
+    "dur": 5.039,
+    "text": "different pricing for you if we select",
+    "lang": "en"
+  },
+  {
+    "start": 124.0,
+    "dur": 6.479,
+    "text": "marketing this means we are sending you",
+    "lang": "en"
+  },
+  {
+    "start": 126.399,
+    "dur": 7.361,
+    "text": "offers and any product promo new something happening",
+    "lang": "en"
+  },
+  {
+    "start": 130.479,
+    "dur": 6.161,
+    "text": "in the company want to showcase everything like that",
+    "lang": "en"
+  },
+  {
+    "start": 133.76,
+    "dur": 6.72,
+    "text": "in marketing section",
+    "lang": "en"
+  },
+  {
+    "start": 136.64,
+    "dur": 6.48,
+    "text": "if you are choosing utility this will make it like",
+    "lang": "en"
+  },
+  {
+    "start": 140.48,
+    "dur": 4.72,
+    "text": "a utility things all updates and any",
+    "lang": "en"
+  },
+  {
+    "start": 143.12,
+    "dur": 5.839,
+    "text": "important information you want to send to",
+    "lang": "en"
+  },
+  {
+    "start": 145.2,
+    "dur": 6.64,
+    "text": "the client to your user similarly when you go",
+    "lang": "en"
+  },
+  {
+    "start": 148.959,
+    "dur": 6.161,
+    "text": "to authentication this is something which",
+    "lang": "en"
+  },
+  {
+    "start": 151.84,
+    "dur": 5.84,
+    "text": "you are sending it out as a like OTP",
+    "lang": "en"
+  },
+  {
+    "start": 155.12,
+    "dur": 6.96,
+    "text": "verification code and anything which is like",
+    "lang": "en"
+  },
+  {
+    "start": 157.68,
+    "dur": 7.6,
+    "text": "an authentication template for the users.",
+    "lang": "en"
+  },
+  {
+    "start": 162.08,
+    "dur": 5.76,
+    "text": "So now if we go under marketing section there",
+    "lang": "en"
+  },
+  {
+    "start": 165.28,
+    "dur": 5.44,
+    "text": "are multiple options you can see over here there are",
+    "lang": "en"
+  },
+  {
+    "start": 167.84,
+    "dur": 5.92,
+    "text": "product messages there are custom",
+    "lang": "en"
+  },
+  {
+    "start": 170.72,
+    "dur": 5.84,
+    "text": "messages there are crossers and there are",
+    "lang": "en"
+  },
+  {
+    "start": 173.76,
+    "dur": 6.64,
+    "text": "limited types of you can select any one of this",
+    "lang": "en"
+  },
+  {
+    "start": 176.56,
+    "dur": 6.8,
+    "text": "and you can go ahead with this let's say we are",
+    "lang": "en"
+  },
+  {
+    "start": 180.4,
+    "dur": 5.119,
+    "text": "selecting custom message",
+    "lang": "en"
+  },
+  {
+    "start": 183.36,
+    "dur": 5.2,
+    "text": "now you will get to select the language in",
+    "lang": "en"
+  },
+  {
+    "start": 185.519,
+    "dur": 4.961,
+    "text": "which language we want the template to be there will be",
+    "lang": "en"
+  },
+  {
+    "start": 190.48,
+    "dur": 7.2,
+    "text": "select any labels",
+    "lang": "en"
+  },
+  {
+    "start": 193.76,
+    "dur": 7.04,
+    "text": "and then what headers and body and footers are",
+    "lang": "en"
+  },
+  {
+    "start": 197.68,
+    "dur": 6.32,
+    "text": "going to be there in the template.  So",
+    "lang": "en"
+  },
+  {
+    "start": 200.8,
+    "dur": 5.92,
+    "text": "when we select header we can have it as an",
+    "lang": "en"
+  },
+  {
+    "start": 204.0,
+    "dur": 4.64,
+    "text": "image, as a text, as a video, as a",
+    "lang": "en"
+  },
+  {
+    "start": 206.72,
+    "dur": 4.879,
+    "text": "document, anything that you want to be",
+    "lang": "en"
+  },
+  {
+    "start": 208.64,
+    "dur": 6.0,
+    "text": "showcased over in the template as a first.",
+    "lang": "en"
+  },
+  {
+    "start": 211.599,
+    "dur": 5.681,
+    "text": "So, let's keep it text right now and I'll",
+    "lang": "en"
+  },
+  {
+    "start": 214.64,
+    "dur": 6.0,
+    "text": "show you how it's going to look like.",
+    "lang": "en"
+  },
+  {
+    "start": 217.28,
+    "dur": 5.76,
+    "text": "So you see over here you will get to see the",
+    "lang": "en"
+  },
+  {
+    "start": 220.64,
+    "dur": 4.56,
+    "text": "live preview how it is going to look like",
+    "lang": "en"
+  },
+  {
+    "start": 223.04,
+    "dur": 3.759,
+    "text": "the template how the template is going to be",
+    "lang": "en"
+  },
+  {
+    "start": 225.2,
+    "dur": 4.48,
+    "text": "presented now",
+    "lang": "en"
+  },
+  {
+    "start": 226.799,
+    "dur": 5.601,
+    "text": "you can also add variables like the",
+    "lang": "en"
+  },
+  {
+    "start": 229.68,
+    "dur": 5.119,
+    "text": "customer name the email id of them anything which can be",
+    "lang": "en"
+  },
+  {
+    "start": 232.4,
+    "dur": 5.119,
+    "text": "a variable for",
+    "lang": "en"
+  },
+  {
+    "start": 234.799,
+    "dur": 5.681,
+    "text": "every user you can just add in open here that if you are",
+    "lang": "en"
+  },
+  {
+    "start": 237.519,
+    "dur": 5.521,
+    "text": "going to send any a",
+    "lang": "en"
+  },
+  {
+    "start": 240.48,
+    "dur": 5.28,
+    "text": "template to a user there should be a name of",
+    "lang": "en"
+  },
+  {
+    "start": 243.04,
+    "dur": 6.24,
+    "text": "that particular person it is reaching output",
+    "lang": "en"
+  },
+  {
+    "start": 245.76,
+    "dur": 5.759,
+    "text": "so that you can add from here.  Now in the",
+    "lang": "en"
+  },
+  {
+    "start": 249.28,
+    "dur": 4.4,
+    "text": "body section you will add whatever details",
+    "lang": "en"
+  },
+  {
+    "start": 251.519,
+    "dur": 4.0,
+    "text": "you want about the template, about the offer",
+    "lang": "en"
+  },
+  {
+    "start": 253.68,
+    "dur": 5.119,
+    "text": "and anything else you are sending it out to.",
+    "lang": "en"
+  },
+  {
+    "start": 255.519,
+    "dur": 6.24,
+    "text": "This will look like this.",
+    "lang": "en"
+  },
+  {
+    "start": 258.799,
+    "dur": 7.801,
+    "text": "Similar thing you can always add male people",
+    "lang": "en"
+  },
+  {
+    "start": 261.759,
+    "dur": 4.841,
+    "text": "into it and then they foot.",
+    "lang": "en"
+  },
+  {
+    "start": 266.8,
+    "dur": 4.959,
+    "text": "So",
+    "lang": "en"
+  },
+  {
+    "start": 269.12,
+    "dur": 7.84,
+    "text": "over here also we can add whatever you here as a",
+    "lang": "en"
+  },
+  {
+    "start": 271.759,
+    "dur": 7.841,
+    "text": "tate body and.",
+    "lang": "en"
+  },
+  {
+    "start": 276.96,
+    "dur": 5.04,
+    "text": "After this we also get an option of quick",
+    "lang": "en"
+  },
+  {
+    "start": 279.6,
+    "dur": 5.76,
+    "text": "reply and CTA.  Quick reply is something where in",
+    "lang": "en"
+  },
+  {
+    "start": 282.0,
+    "dur": 7.36,
+    "text": "you know the click button will be",
+    "lang": "en"
+  },
+  {
+    "start": 285.36,
+    "dur": 8.0,
+    "text": "available for the user base and it can be of it can be anything like I have",
+    "lang": "en"
+  },
+  {
+    "start": 289.36,
+    "dur": 6.64,
+    "text": "interested",
+    "lang": "en"
+  },
+  {
+    "start": 293.36,
+    "dur": 5.6,
+    "text": "in the particular you know product and what",
+    "lang": "en"
+  },
+  {
+    "start": 296.0,
+    "dur": 6.08,
+    "text": "I am showcasing in the particular template.",
+    "lang": "en"
+  },
+  {
+    "start": 298.96,
+    "dur": 5.76,
+    "text": "So This Can Always Be There.",
+    "lang": "en"
+  },
+  {
+    "start": 302.08,
+    "dur": 4.959,
+    "text": "Now if we add a CTA button this can be of anything like",
+    "lang": "en"
+  },
+  {
+    "start": 304.72,
+    "dur": 5.44,
+    "text": "if you are sending it any",
+    "lang": "en"
+  },
+  {
+    "start": 307.039,
+    "dur": 6.561,
+    "text": "utility message and anything like that which requires",
+    "lang": "en"
+  },
+  {
+    "start": 310.16,
+    "dur": 6.479,
+    "text": "an action button you can add over",
+    "lang": "en"
+  },
+  {
+    "start": 313.6,
+    "dur": 4.879,
+    "text": "here and also you can have a website",
+    "lang": "en"
+  },
+  {
+    "start": 316.639,
+    "dur": 5.601,
+    "text": "URL and anything which can be",
+    "lang": "en"
+  },
+  {
+    "start": 318.479,
+    "dur": 9.56,
+    "text": "redirected to the page you want the user to",
+    "lang": "en"
+  },
+  {
+    "start": 322.24,
+    "dur": 5.799,
+    "text": "and so you can it will look like this after this once",
+    "lang": "en"
+  },
+  {
+    "start": 331.44,
+    "dur": 5.36,
+    "text": "you have all created everything",
+    "lang": "en"
+  },
+  {
+    "start": 333.759,
+    "dur": 4.641,
+    "text": "you can just preview how it is",
+    "lang": "en"
+  },
+  {
+    "start": 336.8,
+    "dur": 3.76,
+    "text": "going to look like what are the things",
+    "lang": "en"
+  },
+  {
+    "start": 338.4,
+    "dur": 4.72,
+    "text": "available in that particular template and",
+    "lang": "en"
+  },
+  {
+    "start": 340.56,
+    "dur": 7.04,
+    "text": "then submit it.  This will be submitted and",
+    "lang": "en"
+  },
+  {
+    "start": 343.12,
+    "dur": 8.639,
+    "text": "sent for the approval process.",
+    "lang": "en"
+  },
+  {
+    "start": 347.6,
+    "dur": 7.52,
+    "text": "So this over here now once you have submitted it will be see over here that I",
+    "lang": "en"
+  },
+  {
+    "start": 351.759,
+    "dur": 5.761,
+    "text": "have submitted",
+    "lang": "en"
+  },
+  {
+    "start": 355.12,
+    "dur": 7.359,
+    "text": "and you know it is pending from the wait for",
+    "lang": "en"
+  },
+  {
+    "start": 357.52,
+    "dur": 8.48,
+    "text": "the approval adding to this we also have one more thing which is",
+    "lang": "en"
+  },
+  {
+    "start": 362.479,
+    "dur": 6.961,
+    "text": "super edging which can",
+    "lang": "en"
+  },
+  {
+    "start": 366.0,
+    "dur": 6.319,
+    "text": "help you with creating any kind of",
+    "lang": "en"
+  },
+  {
+    "start": 369.44,
+    "dur": 5.12,
+    "text": "templates and directly from a pro",
+    "lang": "en"
+  },
+  {
+    "start": 372.319,
+    "dur": 6.16,
+    "text": "you will get everything which I have just show",
+    "lang": "en"
+  },
+  {
+    "start": 374.56,
+    "dur": 7.44,
+    "text": "you all the details will be filled and sent to",
+    "lang": "en"
+  },
+  {
+    "start": 378.479,
+    "dur": 6.56,
+    "text": "the meta for the approval.  I will show you how I just I just",
+    "lang": "en"
+  },
+  {
+    "start": 382.0,
+    "dur": 5.84,
+    "text": "created one if you can see over here we",
+    "lang": "en"
+  },
+  {
+    "start": 385.039,
+    "dur": 4.801,
+    "text": "just give a prompt and create",
+    "lang": "en"
+  },
+  {
+    "start": 387.84,
+    "dur": 5.359,
+    "text": "a WhatsApp lead generation template for a",
+    "lang": "en"
+  },
+  {
+    "start": 389.84,
+    "dur": 5.44,
+    "text": "retail.  Now it will run everything it will give",
+    "lang": "en"
+  },
+  {
+    "start": 393.199,
+    "dur": 4.0,
+    "text": "you all the details of how it is going to look like how what are the",
+    "lang": "en"
+  },
+  {
+    "start": 395.28,
+    "dur": 4.16,
+    "text": "things I am running",
+    "lang": "en"
+  },
+  {
+    "start": 397.199,
+    "dur": 6.241,
+    "text": "and everything every detail about the",
+    "lang": "en"
+  },
+  {
+    "start": 399.44,
+    "dur": 8.16,
+    "text": "template.  Now since we have it connected",
+    "lang": "en"
+  },
+  {
+    "start": 403.44,
+    "dur": 6.96,
+    "text": "with our console any project ID you want it to be",
+    "lang": "en"
+  },
+  {
+    "start": 407.6,
+    "dur": 6.08,
+    "text": "connected with you just",
+    "lang": "en"
+  },
+  {
+    "start": 410.4,
+    "dur": 5.519,
+    "text": "select over here and it is now this will",
+    "lang": "en"
+  },
+  {
+    "start": 413.68,
+    "dur": 4.72,
+    "text": "directly land the template will be",
+    "lang": "en"
+  },
+  {
+    "start": 415.919,
+    "dur": 4.241,
+    "text": "launched in that particular console project",
+    "lang": "en"
+  },
+  {
+    "start": 418.4,
+    "dur": 6.32,
+    "text": "ID.",
+    "lang": "en"
+  },
+  {
+    "start": 420.16,
+    "dur": 8.08,
+    "text": "So this one as we can check this is the name of",
+    "lang": "en"
+  },
+  {
+    "start": 424.72,
+    "dur": 5.84,
+    "text": "the template it has created and this should be",
+    "lang": "en"
+  },
+  {
+    "start": 428.24,
+    "dur": 6.44,
+    "text": "under the pending section because it must be",
+    "lang": "en"
+  },
+  {
+    "start": 430.56,
+    "dur": 4.12,
+    "text": "submitted for the approval.",
+    "lang": "en"
+  },
+  {
+    "start": 434.96,
+    "dur": 5.28,
+    "text": "So or you can see over here this is something which",
+    "lang": "en"
+  },
+  {
+    "start": 437.759,
+    "dur": 5.28,
+    "text": "super agent created and the template",
+    "lang": "en"
+  },
+  {
+    "start": 440.24,
+    "dur": 4.88,
+    "text": "is ready to be ah like ready to be used.",
+    "lang": "en"
+  },
+  {
+    "start": 443.039,
+    "dur": 5.761,
+    "text": "Just waiting for the October.  This is just",
+    "lang": "en"
+  },
+  {
+    "start": 445.12,
+    "dur": 7.96,
+    "text": "from a prot.  You have got this everything",
+    "lang": "en"
+  },
+  {
+    "start": 448.8,
+    "dur": 4.28,
+    "text": "ready and send it for the",
+    "lang": "en"
+  },
+  {
+    "start": 455.039,
+    "dur": 6.081,
+    "text": "so or this is all you can do in the template",
+    "lang": "en"
+  },
+  {
+    "start": 458.72,
+    "dur": 4.319,
+    "text": "where you are creating something we always have",
+    "lang": "en"
+  },
+  {
+    "start": 461.12,
+    "dur": 4.88,
+    "text": "a pre approved templates you can",
+    "lang": "en"
+  },
+  {
+    "start": 463.039,
+    "dur": 6.241,
+    "text": "use and a template library.  So this all is",
+    "lang": "en"
+  },
+  {
+    "start": 466.0,
+    "dur": 5.84,
+    "text": "available to use it if you don't want to go through the",
+    "lang": "en"
+  },
+  {
+    "start": 469.28,
+    "dur": 6.84,
+    "text": "approval process.  You can just use a",
+    "lang": "en"
+  },
+  {
+    "start": 471.84,
+    "dur": 4.28,
+    "text": "pre approved templates over here.",
+    "lang": "en"
+  },
+  {
+    "start": 477.12,
+    "dur": 3.88,
+    "text": "Thank you so much for watching.",
+    "lang": "en"
+  },
+  {
+    "start": 487.84,
+    "dur": 2.88,
+    "text": "So",
+    "lang": "en"
+  }
+]

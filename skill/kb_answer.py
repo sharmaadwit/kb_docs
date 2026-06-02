@@ -2586,6 +2586,13 @@ def _append_case_study_section(answer: str, case_rows: List[Dict]) -> str:
     return "\n".join(lines)
 
 
+def _append_video_section(answer: str, video: Dict) -> str:
+    if not video or not video.get("url"):
+        return answer
+    title = (str(video.get("title") or "")).strip() or "Watch the walkthrough"
+    return "\n".join([answer.rstrip(), "", f"**Watch:** [{title}]({video.get('url')})"])
+
+
 _PAGE_DISPLAY_MAP = [
     ("test-your-bot", "Test your Bot"),
     ("user-management-business-hours", "User Management: Business Hours"),
@@ -3185,13 +3192,19 @@ def _classify_intent(query: str, entities: List[Dict]) -> str:
         if len(entities) >= 2:
             return "compare"
         return "page_lookup"
+    # Specific schema asks (payload / fields to store / statuses) must not be
+    # shadowed by a generic setup token such as "store" or "collect".
+    if is_schema:
+        return "schema"
+    # Broad exploration asks are explicitly multi-page overviews, not a single
+    # entity setup flow (e.g. "how do I use Agent Assist ... getting started").
+    if _is_broad_overview_query(q):
+        return "overview"
     # "what is ... setup / step-by-step" should be treated as setup, not definition.
     if is_setup and not is_definition:
         return "setup"
     if is_setup and is_definition:
         return "setup"
-    if is_schema:
-        return "schema"
     if is_behavior:
         return "behavior"
     if is_definition:
@@ -3751,15 +3764,24 @@ def _has_explicit_support(
         and top_source_mod.lower() == explicit_module.lower()
     )
 
+    top1_overlap = _query_overlap_score(query, top1)
+    # Strong lexical overlap with the best page is itself reliable support even
+    # when the absolute score is modest. This eases over-strict refusals for
+    # clearly on-topic questions without lowering the global score thresholds.
+    strong_overlap = top1_overlap >= 0.7 and top1.get("score", 0.0) >= 0.5
+
     effective_min = 0.8 if module_match else MIN_EVIDENCE_SCORE
-    if top1.get("score", 0.0) < effective_min:
+    if top1.get("score", 0.0) < effective_min and not strong_overlap:
         return False
 
     if not module_match and not _top_evidence_has_entity_boost(evidence, entities or []):
-        if intent != "overview" and top1.get("score", 0.0) < MIN_EVIDENCE_SCORE_UNBOOSTED:
+        if (
+            intent != "overview"
+            and top1.get("score", 0.0) < MIN_EVIDENCE_SCORE_UNBOOSTED
+            and not strong_overlap
+        ):
             return False
 
-    top1_overlap = _query_overlap_score(query, top1)
     joined = "\n".join(lines).lower()
     source_text = " ".join(str(c.get("source") or "").lower() for c in evidence)
     topic_joined = joined + "\n" + source_text
@@ -4725,6 +4747,28 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
     if len(answer) > _MAX_ANSWER_CHARS:
         answer = answer[:_MAX_ANSWER_CHARS] + "…"
 
+    video = None
+    answer_is_substantive = (
+        bool(answer and answer.strip())
+        and "i don't know" not in answer.lower()
+    )
+    if answer_is_substantive:
+        try:
+            import kb_video
+            _lang = None
+            if isinstance(params, dict):
+                _lang = params.get("language") or params.get("lang")
+            _video_rows = list(evidence or [])
+            _video_rows.extend(scored or [])
+            video = kb_video.select_video(
+                query, intent, explicit_module, _video_rows,
+                language=_lang, context=context,
+            )
+        except Exception:
+            video = None
+    if video and video.get("url"):
+        answer = _append_video_section(answer, video)
+
     latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
     langfuse = _send_langfuse(
         "kb_answer", query, answer, evidence, explicit_module,
@@ -4735,6 +4779,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
         "query": _redact_secrets_in_query_echo(query),
         "answer": answer,
         "citations": [],
+        "video": video,
         "langfuse": langfuse,
         "answer_policy": policy_meta,
     }

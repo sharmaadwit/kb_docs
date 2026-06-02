@@ -1625,6 +1625,20 @@ def kb_search(parameters: object = None, context=None, **kwargs) -> dict:
 
     results = scored[:top_k]
     public_results = [_public_search_row(r) for r in results]
+
+    video = None
+    try:
+        import kb_video
+        _lang = None
+        if isinstance(params, dict):
+            _lang = params.get("language") or params.get("lang")
+        video = kb_video.select_video(
+            query, preferred_mode, explicit_module, scored,
+            language=_lang, context=context,
+        )
+    except Exception:
+        video = None
+
     latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
     langfuse = _compact_langfuse(
         "kb_search", query, results, explicit_module, intents, preferred_mode, latency_ms, context, params,
@@ -1635,5 +1649,6 @@ def kb_search(parameters: object = None, context=None, **kwargs) -> dict:
         "top_k": top_k,
         "top_k_effective": top_k,
         "results": public_results,
+        "video": video,
         "langfuse": _kb_search_langfuse_client_view(langfuse),
     }

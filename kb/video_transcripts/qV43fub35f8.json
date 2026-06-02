@@ -1,0 +1,3482 @@
+[
+  {
+    "start": 2.399,
+    "dur": 5.52,
+    "text": "Hi there. Uh this is a quick overview of",
+    "lang": "en"
+  },
+  {
+    "start": 5.44,
+    "dur": 4.0,
+    "text": "the Gupch console and its capabilities.",
+    "lang": "en"
+  },
+  {
+    "start": 7.919,
+    "dur": 4.001,
+    "text": "Gupch is a tool which can help",
+    "lang": "en"
+  },
+  {
+    "start": 9.44,
+    "dur": 4.319,
+    "text": "businesses uh with their operations",
+    "lang": "en"
+  },
+  {
+    "start": 11.92,
+    "dur": 3.759,
+    "text": "throughout the customer life cycle.",
+    "lang": "en"
+  },
+  {
+    "start": 13.759,
+    "dur": 4.161,
+    "text": "Whether it's lead generation, whether",
+    "lang": "en"
+  },
+  {
+    "start": 15.679,
+    "dur": 4.161,
+    "text": "it's a customer in the funnel and you're",
+    "lang": "en"
+  },
+  {
+    "start": 17.92,
+    "dur": 3.519,
+    "text": "trying to assist them to convert them or",
+    "lang": "en"
+  },
+  {
+    "start": 19.84,
+    "dur": 2.96,
+    "text": "whether it's an already existing",
+    "lang": "en"
+  },
+  {
+    "start": 21.439,
+    "dur": 3.441,
+    "text": "customer and you're trying to support",
+    "lang": "en"
+  },
+  {
+    "start": 22.8,
+    "dur": 5.04,
+    "text": "them, Cupshop can help you throughout",
+    "lang": "en"
+  },
+  {
+    "start": 24.88,
+    "dur": 4.719,
+    "text": "the customer life cycle. And we have all",
+    "lang": "en"
+  },
+  {
+    "start": 27.84,
+    "dur": 3.519,
+    "text": "the right tools which are all mentioned",
+    "lang": "en"
+  },
+  {
+    "start": 29.599,
+    "dur": 3.841,
+    "text": "on the left which can be accessed from",
+    "lang": "en"
+  },
+  {
+    "start": 31.359,
+    "dur": 4.401,
+    "text": "this tab which can help you support",
+    "lang": "en"
+  },
+  {
+    "start": 33.44,
+    "dur": 4.16,
+    "text": "these operations. Starting off with the",
+    "lang": "en"
+  },
+  {
+    "start": 35.76,
+    "dur": 3.68,
+    "text": "homepage wherein you can see your",
+    "lang": "en"
+  },
+  {
+    "start": 37.6,
+    "dur": 4.16,
+    "text": "WhatsApp number. You can see the status",
+    "lang": "en"
+  },
+  {
+    "start": 39.44,
+    "dur": 4.32,
+    "text": "whether it's verified and live. You can",
+    "lang": "en"
+  },
+  {
+    "start": 41.76,
+    "dur": 4.24,
+    "text": "also see your ability to send messages.",
+    "lang": "en"
+  },
+  {
+    "start": 43.76,
+    "dur": 4.799,
+    "text": "You can see the messaging limit. You can",
+    "lang": "en"
+  },
+  {
+    "start": 46.0,
+    "dur": 4.16,
+    "text": "see your quality rating which basically",
+    "lang": "en"
+  },
+  {
+    "start": 48.559,
+    "dur": 3.601,
+    "text": "tells about your WhatsApp business",
+    "lang": "en"
+  },
+  {
+    "start": 50.16,
+    "dur": 4.879,
+    "text": "health and how people are engaging with",
+    "lang": "en"
+  },
+  {
+    "start": 52.16,
+    "dur": 4.719,
+    "text": "your messages. can see whether there are",
+    "lang": "en"
+  },
+  {
+    "start": 55.039,
+    "dur": 4.16,
+    "text": "there any template restrictions or not",
+    "lang": "en"
+  },
+  {
+    "start": 56.879,
+    "dur": 4.881,
+    "text": "and how many messages can go out within",
+    "lang": "en"
+  },
+  {
+    "start": 59.199,
+    "dur": 5.761,
+    "text": "a second allowed throughput.",
+    "lang": "en"
+  },
+  {
+    "start": 61.76,
+    "dur": 4.96,
+    "text": "A few numbers related to campaigns and",
+    "lang": "en"
+  },
+  {
+    "start": 64.96,
+    "dur": 3.12,
+    "text": "automated campaigns. How many campaigns",
+    "lang": "en"
+  },
+  {
+    "start": 66.72,
+    "dur": 3.52,
+    "text": "are being done? What is the total number",
+    "lang": "en"
+  },
+  {
+    "start": 68.08,
+    "dur": 5.039,
+    "text": "of messages that that are being sent and",
+    "lang": "en"
+  },
+  {
+    "start": 70.24,
+    "dur": 5.84,
+    "text": "a few and a shortcuts to these modules",
+    "lang": "en"
+  },
+  {
+    "start": 73.119,
+    "dur": 4.961,
+    "text": "as well. Personalize wherein you can see",
+    "lang": "en"
+  },
+  {
+    "start": 76.08,
+    "dur": 3.76,
+    "text": "an overview of your customer data. How",
+    "lang": "en"
+  },
+  {
+    "start": 78.08,
+    "dur": 3.6,
+    "text": "many total profiles are there? how many",
+    "lang": "en"
+  },
+  {
+    "start": 79.84,
+    "dur": 4.639,
+    "text": "total customers are there and how many",
+    "lang": "en"
+  },
+  {
+    "start": 81.68,
+    "dur": 4.479,
+    "text": "of them are active",
+    "lang": "en"
+  },
+  {
+    "start": 84.479,
+    "dur": 3.441,
+    "text": "and you can also see a bird's eye view",
+    "lang": "en"
+  },
+  {
+    "start": 86.159,
+    "dur": 4.721,
+    "text": "of the total number of conversations and",
+    "lang": "en"
+  },
+  {
+    "start": 87.92,
+    "dur": 5.199,
+    "text": "how many messages are being exchanged uh",
+    "lang": "en"
+  },
+  {
+    "start": 90.88,
+    "dur": 4.0,
+    "text": "in these conversations and a few more",
+    "lang": "en"
+  },
+  {
+    "start": 93.119,
+    "dur": 4.0,
+    "text": "shortcuts of all the remaining modules",
+    "lang": "en"
+  },
+  {
+    "start": 94.88,
+    "dur": 4.48,
+    "text": "mentioned on the left. Starting off with",
+    "lang": "en"
+  },
+  {
+    "start": 97.119,
+    "dur": 4.96,
+    "text": "the campaign manager under which there",
+    "lang": "en"
+  },
+  {
+    "start": 99.36,
+    "dur": 4.719,
+    "text": "are two modules broadcast allows you to",
+    "lang": "en"
+  },
+  {
+    "start": 102.079,
+    "dur": 4.241,
+    "text": "reach out to your user base using a",
+    "lang": "en"
+  },
+  {
+    "start": 104.079,
+    "dur": 3.921,
+    "text": "WhatsApp template. So in four simple",
+    "lang": "en"
+  },
+  {
+    "start": 106.32,
+    "dur": 4.24,
+    "text": "steps you can reach out to to an",
+    "lang": "en"
+  },
+  {
+    "start": 108.0,
+    "dur": 4.799,
+    "text": "audience by broadcasting a WhatsApp",
+    "lang": "en"
+  },
+  {
+    "start": 110.56,
+    "dur": 4.559,
+    "text": "message. There are simple four steps",
+    "lang": "en"
+  },
+  {
+    "start": 112.799,
+    "dur": 4.96,
+    "text": "wherein you give the broadcast a name.",
+    "lang": "en"
+  },
+  {
+    "start": 115.119,
+    "dur": 4.801,
+    "text": "You select a list of audience. You",
+    "lang": "en"
+  },
+  {
+    "start": 117.759,
+    "dur": 4.481,
+    "text": "select a pre-approved template and then",
+    "lang": "en"
+  },
+  {
+    "start": 119.92,
+    "dur": 4.879,
+    "text": "you schedule the schedule the message",
+    "lang": "en"
+  },
+  {
+    "start": 122.24,
+    "dur": 4.559,
+    "text": "for a specific time. If at all I click",
+    "lang": "en"
+  },
+  {
+    "start": 124.799,
+    "dur": 3.921,
+    "text": "on new broadcast campaign. We also have",
+    "lang": "en"
+  },
+  {
+    "start": 126.799,
+    "dur": 3.921,
+    "text": "an option for interactive which is like",
+    "lang": "en"
+  },
+  {
+    "start": 128.72,
+    "dur": 4.56,
+    "text": "a step up from your regular way of doing",
+    "lang": "en"
+  },
+  {
+    "start": 130.72,
+    "dur": 5.36,
+    "text": "it which is one way. in the interactive",
+    "lang": "en"
+  },
+  {
+    "start": 133.28,
+    "dur": 5.12,
+    "text": "campaigns uh you can send out a WhatsApp",
+    "lang": "en"
+  },
+  {
+    "start": 136.08,
+    "dur": 5.36,
+    "text": "message and connect it to a conversation",
+    "lang": "en"
+  },
+  {
+    "start": 138.4,
+    "dur": 4.96,
+    "text": "on WhatsApp. So let's say if there's any",
+    "lang": "en"
+  },
+  {
+    "start": 141.44,
+    "dur": 3.519,
+    "text": "uh WhatsApp campaign with a quick reply",
+    "lang": "en"
+  },
+  {
+    "start": 143.36,
+    "dur": 4.32,
+    "text": "button and if a user clicks on that",
+    "lang": "en"
+  },
+  {
+    "start": 144.959,
+    "dur": 5.601,
+    "text": "button instead of just noting that value",
+    "lang": "en"
+  },
+  {
+    "start": 147.68,
+    "dur": 4.88,
+    "text": "you can also trigger a small bot journey",
+    "lang": "en"
+  },
+  {
+    "start": 150.56,
+    "dur": 3.759,
+    "text": "and a person can can click on any reply",
+    "lang": "en"
+  },
+  {
+    "start": 152.56,
+    "dur": 4.72,
+    "text": "button and then start talking to a bot",
+    "lang": "en"
+  },
+  {
+    "start": 154.319,
+    "dur": 5.92,
+    "text": "which can lead to increased engagement.",
+    "lang": "en"
+  },
+  {
+    "start": 157.28,
+    "dur": 6.16,
+    "text": "The idea is to convert a oneway campaign",
+    "lang": "en"
+  },
+  {
+    "start": 160.239,
+    "dur": 6.401,
+    "text": "into a two-way interaction.",
+    "lang": "en"
+  },
+  {
+    "start": 163.44,
+    "dur": 5.519,
+    "text": "Automated campaigns allows you to",
+    "lang": "en"
+  },
+  {
+    "start": 166.64,
+    "dur": 6.239,
+    "text": "control all the messages that need to go",
+    "lang": "en"
+  },
+  {
+    "start": 168.959,
+    "dur": 6.081,
+    "text": "out in an automated manner.",
+    "lang": "en"
+  },
+  {
+    "start": 172.879,
+    "dur": 4.72,
+    "text": "It is majorly used to support use cases",
+    "lang": "en"
+  },
+  {
+    "start": 175.04,
+    "dur": 4.08,
+    "text": "like payment reminders, appointment uh",
+    "lang": "en"
+  },
+  {
+    "start": 177.599,
+    "dur": 4.0,
+    "text": "reminders,",
+    "lang": "en"
+  },
+  {
+    "start": 179.12,
+    "dur": 4.72,
+    "text": "uh payment dues and all of that wherein",
+    "lang": "en"
+  },
+  {
+    "start": 181.599,
+    "dur": 4.481,
+    "text": "you can click on new automated campaign.",
+    "lang": "en"
+  },
+  {
+    "start": 183.84,
+    "dur": 4.56,
+    "text": "You can give it a name. Check the",
+    "lang": "en"
+  },
+  {
+    "start": 186.08,
+    "dur": 4.239,
+    "text": "disclaimer.",
+    "lang": "en"
+  },
+  {
+    "start": 188.4,
+    "dur": 4.8,
+    "text": "And this is wherein you can select it on",
+    "lang": "en"
+  },
+  {
+    "start": 190.319,
+    "dur": 5.361,
+    "text": "the basis of a date property. Simply",
+    "lang": "en"
+  },
+  {
+    "start": 193.2,
+    "dur": 4.48,
+    "text": "select the date and you can define when",
+    "lang": "en"
+  },
+  {
+    "start": 195.68,
+    "dur": 5.199,
+    "text": "should the campaign start. Let's say I",
+    "lang": "en"
+  },
+  {
+    "start": 197.68,
+    "dur": 5.36,
+    "text": "say on the date property at what time",
+    "lang": "en"
+  },
+  {
+    "start": 200.879,
+    "dur": 3.521,
+    "text": "and whether should it repeat or not. So",
+    "lang": "en"
+  },
+  {
+    "start": 203.04,
+    "dur": 3.279,
+    "text": "all the messages that need to be",
+    "lang": "en"
+  },
+  {
+    "start": 204.4,
+    "dur": 5.44,
+    "text": "triggered automatically can be handled",
+    "lang": "en"
+  },
+  {
+    "start": 206.319,
+    "dur": 7.2,
+    "text": "using automated campaigns.",
+    "lang": "en"
+  },
+  {
+    "start": 209.84,
+    "dur": 6.64,
+    "text": "Any message that needs to go out",
+    "lang": "en"
+  },
+  {
+    "start": 213.519,
+    "dur": 5.201,
+    "text": "to a large number of users that temp the",
+    "lang": "en"
+  },
+  {
+    "start": 216.48,
+    "dur": 4.56,
+    "text": "message need to be templatized. This is",
+    "lang": "en"
+  },
+  {
+    "start": 218.72,
+    "dur": 4.159,
+    "text": "a policy by meta. So the template",
+    "lang": "en"
+  },
+  {
+    "start": 221.04,
+    "dur": 3.6,
+    "text": "section is wherein you can build",
+    "lang": "en"
+  },
+  {
+    "start": 222.879,
+    "dur": 3.36,
+    "text": "different types of templates. If at all",
+    "lang": "en"
+  },
+  {
+    "start": 224.64,
+    "dur": 3.36,
+    "text": "I click on create new template, this",
+    "lang": "en"
+  },
+  {
+    "start": 226.239,
+    "dur": 3.841,
+    "text": "window pops up wherein there are three",
+    "lang": "en"
+  },
+  {
+    "start": 228.0,
+    "dur": 4.64,
+    "text": "types of categories. Marketing, utility",
+    "lang": "en"
+  },
+  {
+    "start": 230.08,
+    "dur": 6.239,
+    "text": "and authentication. Authentication is",
+    "lang": "en"
+  },
+  {
+    "start": 232.64,
+    "dur": 5.44,
+    "text": "used to uh cover OTPs. Utilities are",
+    "lang": "en"
+  },
+  {
+    "start": 236.319,
+    "dur": 4.48,
+    "text": "used to send out all the service",
+    "lang": "en"
+  },
+  {
+    "start": 238.08,
+    "dur": 4.719,
+    "text": "implicit messages when you're trying to",
+    "lang": "en"
+  },
+  {
+    "start": 240.799,
+    "dur": 4.08,
+    "text": "give updates regarding a service to a",
+    "lang": "en"
+  },
+  {
+    "start": 242.799,
+    "dur": 3.921,
+    "text": "person like hey your order was delivered",
+    "lang": "en"
+  },
+  {
+    "start": 244.879,
+    "dur": 3.92,
+    "text": "your payment failed your payment was",
+    "lang": "en"
+  },
+  {
+    "start": 246.72,
+    "dur": 3.92,
+    "text": "completed something like that and",
+    "lang": "en"
+  },
+  {
+    "start": 248.799,
+    "dur": 3.681,
+    "text": "marketing messages are the ones wherein",
+    "lang": "en"
+  },
+  {
+    "start": 250.64,
+    "dur": 3.76,
+    "text": "you're trying to promote any product or",
+    "lang": "en"
+  },
+  {
+    "start": 252.48,
+    "dur": 3.44,
+    "text": "any service.",
+    "lang": "en"
+  },
+  {
+    "start": 254.4,
+    "dur": 3.44,
+    "text": "There are different types of marketing",
+    "lang": "en"
+  },
+  {
+    "start": 255.92,
+    "dur": 3.839,
+    "text": "templates as well. You can always send",
+    "lang": "en"
+  },
+  {
+    "start": 257.84,
+    "dur": 4.639,
+    "text": "out a custom message. You can send out",
+    "lang": "en"
+  },
+  {
+    "start": 259.759,
+    "dur": 4.321,
+    "text": "product messages wherein 30 up to 30",
+    "lang": "en"
+  },
+  {
+    "start": 262.479,
+    "dur": 3.041,
+    "text": "products can be listed out in a single",
+    "lang": "en"
+  },
+  {
+    "start": 264.08,
+    "dur": 4.399,
+    "text": "template. And there's an add toart",
+    "lang": "en"
+  },
+  {
+    "start": 265.52,
+    "dur": 4.959,
+    "text": "button as well on the WhatsApp template.",
+    "lang": "en"
+  },
+  {
+    "start": 268.479,
+    "dur": 4.641,
+    "text": "You can also send out carousels wherein",
+    "lang": "en"
+  },
+  {
+    "start": 270.479,
+    "dur": 4.801,
+    "text": "10 different cards can be shown with 10",
+    "lang": "en"
+  },
+  {
+    "start": 273.12,
+    "dur": 4.56,
+    "text": "different descriptions and images and",
+    "lang": "en"
+  },
+  {
+    "start": 275.28,
+    "dur": 5.28,
+    "text": "their own reply buttons. And a limited",
+    "lang": "en"
+  },
+  {
+    "start": 277.68,
+    "dur": 6.72,
+    "text": "time offer template allows you to have a",
+    "lang": "en"
+  },
+  {
+    "start": 280.56,
+    "dur": 7.199,
+    "text": "small countdown timer on your template.",
+    "lang": "en"
+  },
+  {
+    "start": 284.4,
+    "dur": 6.4,
+    "text": "Let's have a look at the examples.",
+    "lang": "en"
+  },
+  {
+    "start": 287.759,
+    "dur": 6.041,
+    "text": "Here's a small example of",
+    "lang": "en"
+  },
+  {
+    "start": 290.8,
+    "dur": 3.0,
+    "text": "carousel.",
+    "lang": "en"
+  },
+  {
+    "start": 299.52,
+    "dur": 4.08,
+    "text": "Here's a small example of a carousel",
+    "lang": "en"
+  },
+  {
+    "start": 301.12,
+    "dur": 4.079,
+    "text": "template.",
+    "lang": "en"
+  },
+  {
+    "start": 303.6,
+    "dur": 4.24,
+    "text": "There are different types of cars that",
+    "lang": "en"
+  },
+  {
+    "start": 305.199,
+    "dur": 4.481,
+    "text": "are being showcased. Each car has its",
+    "lang": "en"
+  },
+  {
+    "start": 307.84,
+    "dur": 3.6,
+    "text": "own description, its own name, and its",
+    "lang": "en"
+  },
+  {
+    "start": 309.68,
+    "dur": 3.2,
+    "text": "own reply buttons. So people can",
+    "lang": "en"
+  },
+  {
+    "start": 311.44,
+    "dur": 4.4,
+    "text": "actually browse your different products",
+    "lang": "en"
+  },
+  {
+    "start": 312.88,
+    "dur": 7.2,
+    "text": "and services from a single template and",
+    "lang": "en"
+  },
+  {
+    "start": 315.84,
+    "dur": 6.56,
+    "text": "click on buttons they are interested in.",
+    "lang": "en"
+  },
+  {
+    "start": 320.08,
+    "dur": 4.32,
+    "text": "After that we have bot studio. Bot",
+    "lang": "en"
+  },
+  {
+    "start": 322.4,
+    "dur": 4.16,
+    "text": "studio has several modules in the",
+    "lang": "en"
+  },
+  {
+    "start": 324.4,
+    "dur": 4.079,
+    "text": "journeys section. This is wherein you",
+    "lang": "en"
+  },
+  {
+    "start": 326.56,
+    "dur": 4.72,
+    "text": "can build two-way interactions. This is",
+    "lang": "en"
+  },
+  {
+    "start": 328.479,
+    "dur": 4.72,
+    "text": "wherein you can define the conversations",
+    "lang": "en"
+  },
+  {
+    "start": 331.28,
+    "dur": 3.359,
+    "text": "add block after block and define the",
+    "lang": "en"
+  },
+  {
+    "start": 333.199,
+    "dur": 4.081,
+    "text": "logic what should happen in the",
+    "lang": "en"
+  },
+  {
+    "start": 334.639,
+    "dur": 4.0,
+    "text": "conversations. If at all I click on this",
+    "lang": "en"
+  },
+  {
+    "start": 337.28,
+    "dur": 3.6,
+    "text": "dropdown there are three types of",
+    "lang": "en"
+  },
+  {
+    "start": 338.639,
+    "dur": 4.961,
+    "text": "journeys. user journey, campaign",
+    "lang": "en"
+  },
+  {
+    "start": 340.88,
+    "dur": 4.4,
+    "text": "journeys and ad journeys. User journeys",
+    "lang": "en"
+  },
+  {
+    "start": 343.6,
+    "dur": 4.4,
+    "text": "wherein a user comes onto the business",
+    "lang": "en"
+  },
+  {
+    "start": 345.28,
+    "dur": 5.359,
+    "text": "number in such a manner they say hi or a",
+    "lang": "en"
+  },
+  {
+    "start": 348.0,
+    "dur": 5.84,
+    "text": "hello and then the bot gets triggered. A",
+    "lang": "en"
+  },
+  {
+    "start": 350.639,
+    "dur": 5.761,
+    "text": "campaign journey is the one wherein",
+    "lang": "en"
+  },
+  {
+    "start": 353.84,
+    "dur": 4.16,
+    "text": "you send out a WhatsApp campaign and you",
+    "lang": "en"
+  },
+  {
+    "start": 356.4,
+    "dur": 3.519,
+    "text": "attach a reply button to it and there's",
+    "lang": "en"
+  },
+  {
+    "start": 358.0,
+    "dur": 3.68,
+    "text": "a bot attached to that which is an",
+    "lang": "en"
+  },
+  {
+    "start": 359.919,
+    "dur": 3.441,
+    "text": "interactive campaign. So that is an",
+    "lang": "en"
+  },
+  {
+    "start": 361.68,
+    "dur": 4.56,
+    "text": "example of a campaign journey wherein a",
+    "lang": "en"
+  },
+  {
+    "start": 363.36,
+    "dur": 6.16,
+    "text": "user enters the bot using a campaign.",
+    "lang": "en"
+  },
+  {
+    "start": 366.24,
+    "dur": 5.84,
+    "text": "And then there are ad journeys in which",
+    "lang": "en"
+  },
+  {
+    "start": 369.52,
+    "dur": 5.84,
+    "text": "a person that comes across a click to",
+    "lang": "en"
+  },
+  {
+    "start": 372.08,
+    "dur": 5.28,
+    "text": "chat ad on meta or Instagram or Google",
+    "lang": "en"
+  },
+  {
+    "start": 375.36,
+    "dur": 4.32,
+    "text": "they can click on that ad and then they",
+    "lang": "en"
+  },
+  {
+    "start": 377.36,
+    "dur": 4.24,
+    "text": "can they can get an option to send out a",
+    "lang": "en"
+  },
+  {
+    "start": 379.68,
+    "dur": 4.079,
+    "text": "WhatsApp message to the business and if",
+    "lang": "en"
+  },
+  {
+    "start": 381.6,
+    "dur": 4.48,
+    "text": "at all there's a bot attached to that",
+    "lang": "en"
+  },
+  {
+    "start": 383.759,
+    "dur": 6.321,
+    "text": "conversation a bot can start talking to",
+    "lang": "en"
+  },
+  {
+    "start": 386.08,
+    "dur": 6.16,
+    "text": "the person on the end.",
+    "lang": "en"
+  },
+  {
+    "start": 390.08,
+    "dur": 4.64,
+    "text": "Ad journeys works in complement with",
+    "lang": "en"
+  },
+  {
+    "start": 392.24,
+    "dur": 4.56,
+    "text": "click to chat ads",
+    "lang": "en"
+  },
+  {
+    "start": 394.72,
+    "dur": 4.56,
+    "text": "wherein all your advertisements can be",
+    "lang": "en"
+  },
+  {
+    "start": 396.8,
+    "dur": 4.64,
+    "text": "managed.",
+    "lang": "en"
+  },
+  {
+    "start": 399.28,
+    "dur": 5.68,
+    "text": "So all the advertisements are usually",
+    "lang": "en"
+  },
+  {
+    "start": 401.44,
+    "dur": 5.599,
+    "text": "built on meta and on the gup console the",
+    "lang": "en"
+  },
+  {
+    "start": 404.96,
+    "dur": 5.12,
+    "text": "journey setup bot journey setup and the",
+    "lang": "en"
+  },
+  {
+    "start": 407.039,
+    "dur": 5.521,
+    "text": "retargeting of messaging can be done. So",
+    "lang": "en"
+  },
+  {
+    "start": 410.08,
+    "dur": 3.76,
+    "text": "let's say a person comes across an ad",
+    "lang": "en"
+  },
+  {
+    "start": 412.56,
+    "dur": 3.44,
+    "text": "they can click on an ad and get",
+    "lang": "en"
+  },
+  {
+    "start": 413.84,
+    "dur": 3.76,
+    "text": "redirected onto WhatsApp. But using this",
+    "lang": "en"
+  },
+  {
+    "start": 416.0,
+    "dur": 3.28,
+    "text": "particular capability, they can click",
+    "lang": "en"
+  },
+  {
+    "start": 417.6,
+    "dur": 4.4,
+    "text": "onto an ad and get redirected onto",
+    "lang": "en"
+  },
+  {
+    "start": 419.28,
+    "dur": 4.24,
+    "text": "WhatsApp and they can talk to a bot that",
+    "lang": "en"
+  },
+  {
+    "start": 422.0,
+    "dur": 3.44,
+    "text": "has been made on the journey builder of",
+    "lang": "en"
+  },
+  {
+    "start": 423.52,
+    "dur": 4.16,
+    "text": "B studio. They can also send out",
+    "lang": "en"
+  },
+  {
+    "start": 425.44,
+    "dur": 4.64,
+    "text": "retargeting messages that can be free",
+    "lang": "en"
+  },
+  {
+    "start": 427.68,
+    "dur": 6.519,
+    "text": "for them up to 72 hours if at all they",
+    "lang": "en"
+  },
+  {
+    "start": 430.08,
+    "dur": 4.119,
+    "text": "go inactive during the conversation.",
+    "lang": "en"
+  },
+  {
+    "start": 435.44,
+    "dur": 5.36,
+    "text": "Here's what the join builder looks like.",
+    "lang": "en"
+  },
+  {
+    "start": 437.36,
+    "dur": 5.6,
+    "text": "There are different types of blocks to",
+    "lang": "en"
+  },
+  {
+    "start": 440.8,
+    "dur": 3.92,
+    "text": "support to make a journey. A journey",
+    "lang": "en"
+  },
+  {
+    "start": 442.96,
+    "dur": 4.239,
+    "text": "always starts with a starting node",
+    "lang": "en"
+  },
+  {
+    "start": 444.72,
+    "dur": 4.64,
+    "text": "wherein it can start on the basis of an",
+    "lang": "en"
+  },
+  {
+    "start": 447.199,
+    "dur": 4.481,
+    "text": "event. Can also be on the basis of AI",
+    "lang": "en"
+  },
+  {
+    "start": 449.36,
+    "dur": 3.92,
+    "text": "trigger wherein the AI can understand",
+    "lang": "en"
+  },
+  {
+    "start": 451.68,
+    "dur": 3.04,
+    "text": "the intent of a customer directly",
+    "lang": "en"
+  },
+  {
+    "start": 453.28,
+    "dur": 3.759,
+    "text": "without saying hi or hello and then",
+    "lang": "en"
+  },
+  {
+    "start": 454.72,
+    "dur": 4.08,
+    "text": "start assisting them. It can also be on",
+    "lang": "en"
+  },
+  {
+    "start": 457.039,
+    "dur": 4.401,
+    "text": "the basis of user input wherein you can",
+    "lang": "en"
+  },
+  {
+    "start": 458.8,
+    "dur": 4.88,
+    "text": "simply enter the keyword hey hi hello",
+    "lang": "en"
+  },
+  {
+    "start": 461.44,
+    "dur": 4.4,
+    "text": "whatever.",
+    "lang": "en"
+  },
+  {
+    "start": 463.68,
+    "dur": 4.32,
+    "text": "After you set up the starting node there",
+    "lang": "en"
+  },
+  {
+    "start": 465.84,
+    "dur": 4.32,
+    "text": "are three types of nodes that are used",
+    "lang": "en"
+  },
+  {
+    "start": 468.0,
+    "dur": 3.68,
+    "text": "to orchestrate the journey. Prompt nodes",
+    "lang": "en"
+  },
+  {
+    "start": 470.16,
+    "dur": 3.84,
+    "text": "are used for asking questions to",
+    "lang": "en"
+  },
+  {
+    "start": 471.68,
+    "dur": 3.84,
+    "text": "customers. Message nodes are used to",
+    "lang": "en"
+  },
+  {
+    "start": 474.0,
+    "dur": 3.36,
+    "text": "send out different types of messages to",
+    "lang": "en"
+  },
+  {
+    "start": 475.52,
+    "dur": 4.88,
+    "text": "the customers. Whether you can try to",
+    "lang": "en"
+  },
+  {
+    "start": 477.36,
+    "dur": 5.6,
+    "text": "send a PDF file, an image, a an audio",
+    "lang": "en"
+  },
+  {
+    "start": 480.4,
+    "dur": 5.68,
+    "text": "file, a button with a a message with",
+    "lang": "en"
+  },
+  {
+    "start": 482.96,
+    "dur": 6.56,
+    "text": "reply buttons, a list menu. In the",
+    "lang": "en"
+  },
+  {
+    "start": 486.08,
+    "dur": 6.0,
+    "text": "actions, you can see different types of",
+    "lang": "en"
+  },
+  {
+    "start": 489.52,
+    "dur": 4.16,
+    "text": "actionable nodes which are used for all",
+    "lang": "en"
+  },
+  {
+    "start": 492.08,
+    "dur": 3.6,
+    "text": "the tech orchestration of the journey.",
+    "lang": "en"
+  },
+  {
+    "start": 493.68,
+    "dur": 3.519,
+    "text": "So whether it's adding delays, adding",
+    "lang": "en"
+  },
+  {
+    "start": 495.68,
+    "dur": 3.919,
+    "text": "conditions,",
+    "lang": "en"
+  },
+  {
+    "start": 497.199,
+    "dur": 3.84,
+    "text": "transferring somebody to an agent,",
+    "lang": "en"
+  },
+  {
+    "start": 499.599,
+    "dur": 3.44,
+    "text": "moving people from one journey to",
+    "lang": "en"
+  },
+  {
+    "start": 501.039,
+    "dur": 4.481,
+    "text": "another journey, all of these things are",
+    "lang": "en"
+  },
+  {
+    "start": 503.039,
+    "dur": 6.16,
+    "text": "possible including API integrations",
+    "lang": "en"
+  },
+  {
+    "start": 505.52,
+    "dur": 6.639,
+    "text": "wherein you can always add, delete,",
+    "lang": "en"
+  },
+  {
+    "start": 509.199,
+    "dur": 5.121,
+    "text": "update or fetch information from any",
+    "lang": "en"
+  },
+  {
+    "start": 512.159,
+    "dur": 5.481,
+    "text": "third party system provided that they",
+    "lang": "en"
+  },
+  {
+    "start": 514.32,
+    "dur": 3.32,
+    "text": "have the APIs.",
+    "lang": "en"
+  },
+  {
+    "start": 518.88,
+    "dur": 5.279,
+    "text": "WhatsApp flows is something which allows",
+    "lang": "en"
+  },
+  {
+    "start": 521.919,
+    "dur": 5.201,
+    "text": "people to",
+    "lang": "en"
+  },
+  {
+    "start": 524.159,
+    "dur": 4.721,
+    "text": "populate a flow a populate a simple form",
+    "lang": "en"
+  },
+  {
+    "start": 527.12,
+    "dur": 5.399,
+    "text": "in the WhatsApp chat which looks",
+    "lang": "en"
+  },
+  {
+    "start": 528.88,
+    "dur": 3.639,
+    "text": "something like this.",
+    "lang": "en"
+  },
+  {
+    "start": 542.32,
+    "dur": 5.519,
+    "text": "After 1 minute, a small form will pop up",
+    "lang": "en"
+  },
+  {
+    "start": 545.92,
+    "dur": 3.68,
+    "text": "in this chat which looks something like",
+    "lang": "en"
+  },
+  {
+    "start": 547.839,
+    "dur": 3.361,
+    "text": "this and the user can start entering",
+    "lang": "en"
+  },
+  {
+    "start": 549.6,
+    "dur": 4.32,
+    "text": "their information. So this is an example",
+    "lang": "en"
+  },
+  {
+    "start": 551.2,
+    "dur": 5.52,
+    "text": "of a WhatsApp flow. Obviously has higher",
+    "lang": "en"
+  },
+  {
+    "start": 553.92,
+    "dur": 5.599,
+    "text": "conversion rates and it also has",
+    "lang": "en"
+  },
+  {
+    "start": 556.72,
+    "dur": 4.559,
+    "text": "capabilities like uh multiplechoice",
+    "lang": "en"
+  },
+  {
+    "start": 559.519,
+    "dur": 5.281,
+    "text": "answers that people can simply select",
+    "lang": "en"
+  },
+  {
+    "start": 561.279,
+    "dur": 5.201,
+    "text": "instead of typing their email",
+    "lang": "en"
+  },
+  {
+    "start": 564.8,
+    "dur": 3.92,
+    "text": "validated as well. They can enter their",
+    "lang": "en"
+  },
+  {
+    "start": 566.48,
+    "dur": 4.88,
+    "text": "phone number and there's also an option",
+    "lang": "en"
+  },
+  {
+    "start": 568.72,
+    "dur": 5.119,
+    "text": "for date picker as well. dropdowns,",
+    "lang": "en"
+  },
+  {
+    "start": 571.36,
+    "dur": 5.599,
+    "text": "multiple choice answer and all of those",
+    "lang": "en"
+  },
+  {
+    "start": 573.839,
+    "dur": 5.601,
+    "text": "functionalities are available in form",
+    "lang": "en"
+  },
+  {
+    "start": 576.959,
+    "dur": 4.401,
+    "text": "and it looks a little engaging as well.",
+    "lang": "en"
+  },
+  {
+    "start": 579.44,
+    "dur": 3.76,
+    "text": "So it is also a capability that can be",
+    "lang": "en"
+  },
+  {
+    "start": 581.36,
+    "dur": 4.4,
+    "text": "accessed using the chef's journey",
+    "lang": "en"
+  },
+  {
+    "start": 583.2,
+    "dur": 5.84,
+    "text": "builder.",
+    "lang": "en"
+  },
+  {
+    "start": 585.76,
+    "dur": 6.56,
+    "text": "We also have AI admin wherein AI bots",
+    "lang": "en"
+  },
+  {
+    "start": 589.04,
+    "dur": 5.919,
+    "text": "are orchestrated. A bot can be trained",
+    "lang": "en"
+  },
+  {
+    "start": 592.32,
+    "dur": 6.16,
+    "text": "on different types of content which",
+    "lang": "en"
+  },
+  {
+    "start": 594.959,
+    "dur": 7.281,
+    "text": "could be a website link,",
+    "lang": "en"
+  },
+  {
+    "start": 598.48,
+    "dur": 5.919,
+    "text": "a PDF, TXT, CSV file or even text input.",
+    "lang": "en"
+  },
+  {
+    "start": 602.24,
+    "dur": 4.719,
+    "text": "Once a website is or uh once the content",
+    "lang": "en"
+  },
+  {
+    "start": 604.399,
+    "dur": 4.56,
+    "text": "is trained, you can start",
+    "lang": "en"
+  },
+  {
+    "start": 606.959,
+    "dur": 3.841,
+    "text": "training the bot using prompts and",
+    "lang": "en"
+  },
+  {
+    "start": 608.959,
+    "dur": 4.88,
+    "text": "define the engagement rules. How is the",
+    "lang": "en"
+  },
+  {
+    "start": 610.8,
+    "dur": 5.76,
+    "text": "bot going to communicate with users? How",
+    "lang": "en"
+  },
+  {
+    "start": 613.839,
+    "dur": 4.56,
+    "text": "is it going to communicate uh in in case",
+    "lang": "en"
+  },
+  {
+    "start": 616.56,
+    "dur": 3.92,
+    "text": "it does not know something? How is it",
+    "lang": "en"
+  },
+  {
+    "start": 618.399,
+    "dur": 4.241,
+    "text": "going to communicate in in case somebody",
+    "lang": "en"
+  },
+  {
+    "start": 620.48,
+    "dur": 3.76,
+    "text": "asks rubbish to the bot which is out of",
+    "lang": "en"
+  },
+  {
+    "start": 622.64,
+    "dur": 5.759,
+    "text": "context or which is not related to the",
+    "lang": "en"
+  },
+  {
+    "start": 624.24,
+    "dur": 6.24,
+    "text": "use case. All those",
+    "lang": "en"
+  },
+  {
+    "start": 628.399,
+    "dur": 4.641,
+    "text": "all those functionalities can be defined",
+    "lang": "en"
+  },
+  {
+    "start": 630.48,
+    "dur": 5.12,
+    "text": "in the AI admin workspace and then the",
+    "lang": "en"
+  },
+  {
+    "start": 633.04,
+    "dur": 6.0,
+    "text": "AI admin workspace can be called into",
+    "lang": "en"
+  },
+  {
+    "start": 635.6,
+    "dur": 6.88,
+    "text": "the journey builder using the AI note.",
+    "lang": "en"
+  },
+  {
+    "start": 639.04,
+    "dur": 5.12,
+    "text": "We also have analytics wherein users can",
+    "lang": "en"
+  },
+  {
+    "start": 642.48,
+    "dur": 3.52,
+    "text": "get a bird's eye view of how many",
+    "lang": "en"
+  },
+  {
+    "start": 644.16,
+    "dur": 4.4,
+    "text": "conversations are happening, how many",
+    "lang": "en"
+  },
+  {
+    "start": 646.0,
+    "dur": 4.24,
+    "text": "people are engaging, how many messages",
+    "lang": "en"
+  },
+  {
+    "start": 648.56,
+    "dur": 3.6,
+    "text": "are being sent by customers, how many",
+    "lang": "en"
+  },
+  {
+    "start": 650.24,
+    "dur": 4.88,
+    "text": "messages are being sent by bots, what is",
+    "lang": "en"
+  },
+  {
+    "start": 652.16,
+    "dur": 7.04,
+    "text": "the total number of messages and similar",
+    "lang": "en"
+  },
+  {
+    "start": 655.12,
+    "dur": 6.56,
+    "text": "information in a graphical manner",
+    "lang": "en"
+  },
+  {
+    "start": 659.2,
+    "dur": 5.36,
+    "text": "and",
+    "lang": "en"
+  },
+  {
+    "start": 661.68,
+    "dur": 4.56,
+    "text": "in the conversation path users can also",
+    "lang": "en"
+  },
+  {
+    "start": 664.56,
+    "dur": 4.32,
+    "text": "access",
+    "lang": "en"
+  },
+  {
+    "start": 666.24,
+    "dur": 4.4,
+    "text": "data for a specific journey. These are",
+    "lang": "en"
+  },
+  {
+    "start": 668.88,
+    "dur": 5.12,
+    "text": "all the journeys selected for now. Let's",
+    "lang": "en"
+  },
+  {
+    "start": 670.64,
+    "dur": 5.12,
+    "text": "say zoom into this one. This is wherein",
+    "lang": "en"
+  },
+  {
+    "start": 674.0,
+    "dur": 3.76,
+    "text": "I can expand this journey and see the",
+    "lang": "en"
+  },
+  {
+    "start": 675.76,
+    "dur": 3.92,
+    "text": "user interaction. So two people entered",
+    "lang": "en"
+  },
+  {
+    "start": 677.76,
+    "dur": 5.28,
+    "text": "this journey. They accessed the list",
+    "lang": "en"
+  },
+  {
+    "start": 679.68,
+    "dur": 5.44,
+    "text": "node. Then they selected different",
+    "lang": "en"
+  },
+  {
+    "start": 683.04,
+    "dur": 3.84,
+    "text": "different options. This is wherein they",
+    "lang": "en"
+  },
+  {
+    "start": 685.12,
+    "dur": 3.44,
+    "text": "got separated.",
+    "lang": "en"
+  },
+  {
+    "start": 686.88,
+    "dur": 4.32,
+    "text": "Two people entered this node. One went",
+    "lang": "en"
+  },
+  {
+    "start": 688.56,
+    "dur": 4.48,
+    "text": "through this. One went through this.",
+    "lang": "en"
+  },
+  {
+    "start": 691.2,
+    "dur": 4.319,
+    "text": "One directly went to the agent transfer",
+    "lang": "en"
+  },
+  {
+    "start": 693.04,
+    "dur": 4.479,
+    "text": "node and one received the text node. And",
+    "lang": "en"
+  },
+  {
+    "start": 695.519,
+    "dur": 3.841,
+    "text": "then they exited.",
+    "lang": "en"
+  },
+  {
+    "start": 697.519,
+    "dur": 3.841,
+    "text": "Exit node is a pictorial repres",
+    "lang": "en"
+  },
+  {
+    "start": 699.36,
+    "dur": 5.76,
+    "text": "representation of where a user drops",
+    "lang": "en"
+  },
+  {
+    "start": 701.36,
+    "dur": 5.36,
+    "text": "off. Using this you can define where you",
+    "lang": "en"
+  },
+  {
+    "start": 705.12,
+    "dur": 3.279,
+    "text": "need to strengthen your journey where",
+    "lang": "en"
+  },
+  {
+    "start": 706.72,
+    "dur": 3.52,
+    "text": "you need to strengthen your engagement",
+    "lang": "en"
+  },
+  {
+    "start": 708.399,
+    "dur": 4.841,
+    "text": "so that the exit mode numbers become",
+    "lang": "en"
+  },
+  {
+    "start": 710.24,
+    "dur": 3.0,
+    "text": "zero.",
+    "lang": "en"
+  },
+  {
+    "start": 717.6,
+    "dur": 3.04,
+    "text": "Then you also have journey tracking",
+    "lang": "en"
+  },
+  {
+    "start": 719.12,
+    "dur": 3.279,
+    "text": "wherein you can see the journey name,",
+    "lang": "en"
+  },
+  {
+    "start": 720.64,
+    "dur": 3.68,
+    "text": "how many total messages are there in the",
+    "lang": "en"
+  },
+  {
+    "start": 722.399,
+    "dur": 3.761,
+    "text": "journey, active conversations, average",
+    "lang": "en"
+  },
+  {
+    "start": 724.32,
+    "dur": 4.88,
+    "text": "messages per conversations and all of",
+    "lang": "en"
+  },
+  {
+    "start": 726.16,
+    "dur": 4.799,
+    "text": "that. Drop off nodes. Similar data that",
+    "lang": "en"
+  },
+  {
+    "start": 729.2,
+    "dur": 4.4,
+    "text": "we saw in the conversational path is",
+    "lang": "en"
+  },
+  {
+    "start": 730.959,
+    "dur": 4.88,
+    "text": "also available in the drop off nodes. In",
+    "lang": "en"
+  },
+  {
+    "start": 733.6,
+    "dur": 4.4,
+    "text": "the EI node, you can see the total",
+    "lang": "en"
+  },
+  {
+    "start": 735.839,
+    "dur": 5.601,
+    "text": "number of utterances. How many of these",
+    "lang": "en"
+  },
+  {
+    "start": 738.0,
+    "dur": 5.839,
+    "text": "are unidentified ates that means how",
+    "lang": "en"
+  },
+  {
+    "start": 741.44,
+    "dur": 6.0,
+    "text": "many of the prompts or how many user",
+    "lang": "en"
+  },
+  {
+    "start": 743.839,
+    "dur": 6.161,
+    "text": "inputs was the bot trained on? Those are",
+    "lang": "en"
+  },
+  {
+    "start": 747.44,
+    "dur": 4.16,
+    "text": "identified ates. And if you told the bot",
+    "lang": "en"
+  },
+  {
+    "start": 750.0,
+    "dur": 4.24,
+    "text": "wasn't trained on them, it could not",
+    "lang": "en"
+  },
+  {
+    "start": 751.6,
+    "dur": 5.679,
+    "text": "identify the goes under unidentified",
+    "lang": "en"
+  },
+  {
+    "start": 754.24,
+    "dur": 4.719,
+    "text": "atrances. total FAQs, how many were",
+    "lang": "en"
+  },
+  {
+    "start": 757.279,
+    "dur": 3.281,
+    "text": "answered, how many were unanswered. We",
+    "lang": "en"
+  },
+  {
+    "start": 758.959,
+    "dur": 3.761,
+    "text": "also have an API through which all the",
+    "lang": "en"
+  },
+  {
+    "start": 760.56,
+    "dur": 4.16,
+    "text": "unanswered FAQs can be accessed and then",
+    "lang": "en"
+  },
+  {
+    "start": 762.72,
+    "dur": 4.0,
+    "text": "the bot can be retrained for improved",
+    "lang": "en"
+  },
+  {
+    "start": 764.72,
+    "dur": 4.96,
+    "text": "accuracy.",
+    "lang": "en"
+  },
+  {
+    "start": 766.72,
+    "dur": 6.32,
+    "text": "Instead of commerce bots, product search",
+    "lang": "en"
+  },
+  {
+    "start": 769.68,
+    "dur": 5.44,
+    "text": "and query trends can also be accessed.",
+    "lang": "en"
+  },
+  {
+    "start": 773.04,
+    "dur": 5.44,
+    "text": "We also have goal nodes which are used",
+    "lang": "en"
+  },
+  {
+    "start": 775.12,
+    "dur": 6.159,
+    "text": "to basically capture the journey",
+    "lang": "en"
+  },
+  {
+    "start": 778.48,
+    "dur": 4.96,
+    "text": "performance and user inputs. So if at",
+    "lang": "en"
+  },
+  {
+    "start": 781.279,
+    "dur": 3.841,
+    "text": "all the requirement is to capture what",
+    "lang": "en"
+  },
+  {
+    "start": 783.44,
+    "dur": 4.079,
+    "text": "kind of users are clicking on what kinds",
+    "lang": "en"
+  },
+  {
+    "start": 785.12,
+    "dur": 5.12,
+    "text": "of buttons in a in a reply button or",
+    "lang": "en"
+  },
+  {
+    "start": 787.519,
+    "dur": 5.041,
+    "text": "what are they answering you can simply",
+    "lang": "en"
+  },
+  {
+    "start": 790.24,
+    "dur": 6.2,
+    "text": "store that data using a code node. If at",
+    "lang": "en"
+  },
+  {
+    "start": 792.56,
+    "dur": 3.88,
+    "text": "all I click on analytics",
+    "lang": "en"
+  },
+  {
+    "start": 806.72,
+    "dur": 3.559,
+    "text": "and click on apply.",
+    "lang": "en"
+  },
+  {
+    "start": 819.279,
+    "dur": 3.521,
+    "text": "This is how you can see how many people",
+    "lang": "en"
+  },
+  {
+    "start": 821.12,
+    "dur": 3.92,
+    "text": "have achieved a goal, how many of them",
+    "lang": "en"
+  },
+  {
+    "start": 822.8,
+    "dur": 6.64,
+    "text": "were unique. And you can also export the",
+    "lang": "en"
+  },
+  {
+    "start": 825.04,
+    "dur": 7.76,
+    "text": "data to see what milestones and trackers",
+    "lang": "en"
+  },
+  {
+    "start": 829.44,
+    "dur": 5.519,
+    "text": "did they move from. So you can see if at",
+    "lang": "en"
+  },
+  {
+    "start": 832.8,
+    "dur": 4.159,
+    "text": "all there was a five node journey. You",
+    "lang": "en"
+  },
+  {
+    "start": 834.959,
+    "dur": 3.68,
+    "text": "can always track at which point of the",
+    "lang": "en"
+  },
+  {
+    "start": 836.959,
+    "dur": 3.841,
+    "text": "journey which phone number is dropping",
+    "lang": "en"
+  },
+  {
+    "start": 838.639,
+    "dur": 4.0,
+    "text": "off. If at all there are list and menus",
+    "lang": "en"
+  },
+  {
+    "start": 840.8,
+    "dur": 3.76,
+    "text": "what are they exactly clicking on all",
+    "lang": "en"
+  },
+  {
+    "start": 842.639,
+    "dur": 5.241,
+    "text": "those responses can be accessed using",
+    "lang": "en"
+  },
+  {
+    "start": 844.56,
+    "dur": 3.32,
+    "text": "gold nodes.",
+    "lang": "en"
+  },
+  {
+    "start": 848.079,
+    "dur": 6.241,
+    "text": "Agent assist is something wherein an",
+    "lang": "en"
+  },
+  {
+    "start": 850.88,
+    "dur": 5.04,
+    "text": "agent if at all any brand has customer",
+    "lang": "en"
+  },
+  {
+    "start": 854.32,
+    "dur": 3.04,
+    "text": "support representatives they can always",
+    "lang": "en"
+  },
+  {
+    "start": 855.92,
+    "dur": 4.64,
+    "text": "come into the picture and help a",
+    "lang": "en"
+  },
+  {
+    "start": 857.36,
+    "dur": 6.08,
+    "text": "customer. How can agent assist be used?",
+    "lang": "en"
+  },
+  {
+    "start": 860.56,
+    "dur": 5.68,
+    "text": "People can click on chat with support",
+    "lang": "en"
+  },
+  {
+    "start": 863.44,
+    "dur": 2.8,
+    "text": "like this.",
+    "lang": "en"
+  },
+  {
+    "start": 867.12,
+    "dur": 5.12,
+    "text": "And now every customer every time a",
+    "lang": "en"
+  },
+  {
+    "start": 869.04,
+    "dur": 5.28,
+    "text": "customer asks for support their message",
+    "lang": "en"
+  },
+  {
+    "start": 872.24,
+    "dur": 6.159,
+    "text": "window is available for exchanging",
+    "lang": "en"
+  },
+  {
+    "start": 874.32,
+    "dur": 5.84,
+    "text": "messages and then customers and agents",
+    "lang": "en"
+  },
+  {
+    "start": 878.399,
+    "dur": 4.761,
+    "text": "can interact with each other in real",
+    "lang": "en"
+  },
+  {
+    "start": 880.16,
+    "dur": 3.0,
+    "text": "time.",
+    "lang": "en"
+  },
+  {
+    "start": 885.839,
+    "dur": 5.761,
+    "text": "Agents can also populate new information",
+    "lang": "en"
+  },
+  {
+    "start": 889.36,
+    "dur": 4.64,
+    "text": "if at all they collected during the",
+    "lang": "en"
+  },
+  {
+    "start": 891.6,
+    "dur": 3.599,
+    "text": "interaction and enter in these fields.",
+    "lang": "en"
+  },
+  {
+    "start": 894.0,
+    "dur": 3.199,
+    "text": "All these fields are totally",
+    "lang": "en"
+  },
+  {
+    "start": 895.199,
+    "dur": 4.721,
+    "text": "customizable. They can be specific to",
+    "lang": "en"
+  },
+  {
+    "start": 897.199,
+    "dur": 4.721,
+    "text": "the brand's information. Agents can also",
+    "lang": "en"
+  },
+  {
+    "start": 899.92,
+    "dur": 6.0,
+    "text": "send out attachments, emojis, voice",
+    "lang": "en"
+  },
+  {
+    "start": 901.92,
+    "dur": 6.0,
+    "text": "notes. They can also access AI",
+    "lang": "en"
+  },
+  {
+    "start": 905.92,
+    "dur": 3.84,
+    "text": "productivity tools wherein they can",
+    "lang": "en"
+  },
+  {
+    "start": 907.92,
+    "dur": 5.2,
+    "text": "write",
+    "lang": "en"
+  },
+  {
+    "start": 909.76,
+    "dur": 6.4,
+    "text": "a small phrase and expanded using the",
+    "lang": "en"
+  },
+  {
+    "start": 913.12,
+    "dur": 6.839,
+    "text": "expansion tool. They can also rephrase",
+    "lang": "en"
+  },
+  {
+    "start": 916.16,
+    "dur": 3.799,
+    "text": "this particular sentence.",
+    "lang": "en"
+  },
+  {
+    "start": 920.16,
+    "dur": 4.64,
+    "text": "They can also have a chat summary of the",
+    "lang": "en"
+  },
+  {
+    "start": 922.48,
+    "dur": 4.0,
+    "text": "entire conversation in case they do not",
+    "lang": "en"
+  },
+  {
+    "start": 924.8,
+    "dur": 4.56,
+    "text": "want to go through the entire chat to",
+    "lang": "en"
+  },
+  {
+    "start": 926.48,
+    "dur": 5.52,
+    "text": "save time. Once the chat is handled,",
+    "lang": "en"
+  },
+  {
+    "start": 929.36,
+    "dur": 4.56,
+    "text": "they can mark the priority of the chat.",
+    "lang": "en"
+  },
+  {
+    "start": 932.0,
+    "dur": 4.24,
+    "text": "If at all it's unresolved, if at all",
+    "lang": "en"
+  },
+  {
+    "start": 933.92,
+    "dur": 3.84,
+    "text": "it's resolved, they can also resolve it",
+    "lang": "en"
+  },
+  {
+    "start": 936.24,
+    "dur": 5.719,
+    "text": "or they can also transfer it to some",
+    "lang": "en"
+  },
+  {
+    "start": 937.76,
+    "dur": 4.199,
+    "text": "other agent as well.",
+    "lang": "en"
+  },
+  {
+    "start": 943.279,
+    "dur": 4.081,
+    "text": "In the settings section, you can define",
+    "lang": "en"
+  },
+  {
+    "start": 945.44,
+    "dur": 4.72,
+    "text": "different types of teams, different add",
+    "lang": "en"
+  },
+  {
+    "start": 947.36,
+    "dur": 6.56,
+    "text": "different people to different teams.",
+    "lang": "en"
+  },
+  {
+    "start": 950.16,
+    "dur": 6.64,
+    "text": "You can also set up logics",
+    "lang": "en"
+  },
+  {
+    "start": 953.92,
+    "dur": 6.56,
+    "text": "to set up assignment rules and route",
+    "lang": "en"
+  },
+  {
+    "start": 956.8,
+    "dur": 5.279,
+    "text": "people to relevant agents as well.",
+    "lang": "en"
+  },
+  {
+    "start": 960.48,
+    "dur": 4.4,
+    "text": "Personalize is something wherein",
+    "lang": "en"
+  },
+  {
+    "start": 962.079,
+    "dur": 4.481,
+    "text": "customer data can be stored. Personalize",
+    "lang": "en"
+  },
+  {
+    "start": 964.88,
+    "dur": 3.92,
+    "text": "allows you to have a bird's eye view of",
+    "lang": "en"
+  },
+  {
+    "start": 966.56,
+    "dur": 5.68,
+    "text": "your complete database.",
+    "lang": "en"
+  },
+  {
+    "start": 968.8,
+    "dur": 5.12,
+    "text": "All your data can be accessed in such a",
+    "lang": "en"
+  },
+  {
+    "start": 972.24,
+    "dur": 3.839,
+    "text": "manner. You can always search for a",
+    "lang": "en"
+  },
+  {
+    "start": 973.92,
+    "dur": 4.8,
+    "text": "person using their phone number. If at",
+    "lang": "en"
+  },
+  {
+    "start": 976.079,
+    "dur": 5.281,
+    "text": "all you click on any of the profiles,",
+    "lang": "en"
+  },
+  {
+    "start": 978.72,
+    "dur": 4.799,
+    "text": "you can see some basic information that",
+    "lang": "en"
+  },
+  {
+    "start": 981.36,
+    "dur": 4.24,
+    "text": "they have already given maybe in the",
+    "lang": "en"
+  },
+  {
+    "start": 983.519,
+    "dur": 3.921,
+    "text": "journey or maybe in the historical data.",
+    "lang": "en"
+  },
+  {
+    "start": 985.6,
+    "dur": 3.52,
+    "text": "Some system generated information when",
+    "lang": "en"
+  },
+  {
+    "start": 987.44,
+    "dur": 4.56,
+    "text": "were the first and last active, when was",
+    "lang": "en"
+  },
+  {
+    "start": 989.12,
+    "dur": 5.68,
+    "text": "the uh profile created and also their",
+    "lang": "en"
+  },
+  {
+    "start": 992.0,
+    "dur": 5.04,
+    "text": "event timeline which tells you how they",
+    "lang": "en"
+  },
+  {
+    "start": 994.8,
+    "dur": 4.479,
+    "text": "are interacting with the with the cup",
+    "lang": "en"
+  },
+  {
+    "start": 997.04,
+    "dur": 4.479,
+    "text": "console. Was a c was any kind of a",
+    "lang": "en"
+  },
+  {
+    "start": 999.279,
+    "dur": 4.081,
+    "text": "campaign sent to them? Did they did they",
+    "lang": "en"
+  },
+  {
+    "start": 1001.519,
+    "dur": 4.161,
+    "text": "receive any did they receive a message",
+    "lang": "en"
+  },
+  {
+    "start": 1003.36,
+    "dur": 3.919,
+    "text": "or did they send a message? Did they",
+    "lang": "en"
+  },
+  {
+    "start": 1005.68,
+    "dur": 4.159,
+    "text": "receive a campaign or did they send a",
+    "lang": "en"
+  },
+  {
+    "start": 1007.279,
+    "dur": 4.721,
+    "text": "campaign? It can also be based on the",
+    "lang": "en"
+  },
+  {
+    "start": 1009.839,
+    "dur": 6.8,
+    "text": "basis of external events as well wherein",
+    "lang": "en"
+  },
+  {
+    "start": 1012.0,
+    "dur": 7.839,
+    "text": "you can always select a custom",
+    "lang": "en"
+  },
+  {
+    "start": 1016.639,
+    "dur": 6.081,
+    "text": "integration and you can also have a look",
+    "lang": "en"
+  },
+  {
+    "start": 1019.839,
+    "dur": 5.041,
+    "text": "at the at the events that are coming",
+    "lang": "en"
+  },
+  {
+    "start": 1022.72,
+    "dur": 4.079,
+    "text": "from a third party which are out coming",
+    "lang": "en"
+  },
+  {
+    "start": 1024.88,
+    "dur": 3.76,
+    "text": "outside of the gap console. It could be",
+    "lang": "en"
+  },
+  {
+    "start": 1026.799,
+    "dur": 4.721,
+    "text": "from engage directly from the website or",
+    "lang": "en"
+  },
+  {
+    "start": 1028.64,
+    "dur": 4.08,
+    "text": "even clever tab.",
+    "lang": "en"
+  },
+  {
+    "start": 1031.52,
+    "dur": 5.64,
+    "text": "This is where you can select the",
+    "lang": "en"
+  },
+  {
+    "start": 1032.72,
+    "dur": 4.44,
+    "text": "integration and you can select the event",
+    "lang": "en"
+  },
+  {
+    "start": 1037.52,
+    "dur": 4.72,
+    "text": "in the list and segments. You can always",
+    "lang": "en"
+  },
+  {
+    "start": 1040.319,
+    "dur": 3.921,
+    "text": "export and import data onto the GUSH",
+    "lang": "en"
+  },
+  {
+    "start": 1042.24,
+    "dur": 3.839,
+    "text": "console by clicking on list. You can",
+    "lang": "en"
+  },
+  {
+    "start": 1044.24,
+    "dur": 5.04,
+    "text": "simply enter the name of the list and",
+    "lang": "en"
+  },
+  {
+    "start": 1046.079,
+    "dur": 5.521,
+    "text": "upload the CSV file and the data can get",
+    "lang": "en"
+  },
+  {
+    "start": 1049.28,
+    "dur": 5.04,
+    "text": "updated on the GUSH console. You can",
+    "lang": "en"
+  },
+  {
+    "start": 1051.6,
+    "dur": 4.4,
+    "text": "always create you can also create a new",
+    "lang": "en"
+  },
+  {
+    "start": 1054.32,
+    "dur": 4.479,
+    "text": "segment",
+    "lang": "en"
+  },
+  {
+    "start": 1056.0,
+    "dur": 4.24,
+    "text": "or a cohort to do targeted marketing as",
+    "lang": "en"
+  },
+  {
+    "start": 1058.799,
+    "dur": 3.921,
+    "text": "well. You can always create a static",
+    "lang": "en"
+  },
+  {
+    "start": 1060.24,
+    "dur": 4.08,
+    "text": "segment. Create a dynamic segment. If at",
+    "lang": "en"
+  },
+  {
+    "start": 1062.72,
+    "dur": 3.6,
+    "text": "all I create a dynamic segment, you can",
+    "lang": "en"
+  },
+  {
+    "start": 1064.32,
+    "dur": 3.359,
+    "text": "always select there some what someone",
+    "lang": "en"
+  },
+  {
+    "start": 1066.32,
+    "dur": 3.2,
+    "text": "has done or not done. What are the",
+    "lang": "en"
+  },
+  {
+    "start": 1067.679,
+    "dur": 4.081,
+    "text": "properties about someone? You can filter",
+    "lang": "en"
+  },
+  {
+    "start": 1069.52,
+    "dur": 4.8,
+    "text": "it on these two basis. What someone has",
+    "lang": "en"
+  },
+  {
+    "start": 1071.76,
+    "dur": 4.88,
+    "text": "done or not done. You can select the",
+    "lang": "en"
+  },
+  {
+    "start": 1074.32,
+    "dur": 3.84,
+    "text": "integration or let's say let's select",
+    "lang": "en"
+  },
+  {
+    "start": 1076.64,
+    "dur": 3.68,
+    "text": "WhatsApp. In this case, you can see",
+    "lang": "en"
+  },
+  {
+    "start": 1078.16,
+    "dur": 5.68,
+    "text": "whether they have read a specific",
+    "lang": "en"
+  },
+  {
+    "start": 1080.32,
+    "dur": 5.76,
+    "text": "message or not. Like this.",
+    "lang": "en"
+  },
+  {
+    "start": 1083.84,
+    "dur": 4.079,
+    "text": "You can add a filter and also have the",
+    "lang": "en"
+  },
+  {
+    "start": 1086.08,
+    "dur": 3.52,
+    "text": "campaign ID, template ID and template",
+    "lang": "en"
+  },
+  {
+    "start": 1087.919,
+    "dur": 4.241,
+    "text": "name. Basis on this you can also have",
+    "lang": "en"
+  },
+  {
+    "start": 1089.6,
+    "dur": 4.8,
+    "text": "the filteration",
+    "lang": "en"
+  },
+  {
+    "start": 1092.16,
+    "dur": 4.399,
+    "text": "and you can simply enter the ID. You can",
+    "lang": "en"
+  },
+  {
+    "start": 1094.4,
+    "dur": 3.84,
+    "text": "also make cohorts on the basis of a",
+    "lang": "en"
+  },
+  {
+    "start": 1096.559,
+    "dur": 3.601,
+    "text": "person's profile property. So it can be",
+    "lang": "en"
+  },
+  {
+    "start": 1098.24,
+    "dur": 4.559,
+    "text": "on the basis of city, gender or whatever",
+    "lang": "en"
+  },
+  {
+    "start": 1100.16,
+    "dur": 5.759,
+    "text": "information that you have.",
+    "lang": "en"
+  },
+  {
+    "start": 1102.799,
+    "dur": 7.681,
+    "text": "Profile properties allows you to allows",
+    "lang": "en"
+  },
+  {
+    "start": 1105.919,
+    "dur": 6.961,
+    "text": "you to create profiles to which are not",
+    "lang": "en"
+  },
+  {
+    "start": 1110.48,
+    "dur": 4.0,
+    "text": "there on the system. So there are two",
+    "lang": "en"
+  },
+  {
+    "start": 1112.88,
+    "dur": 3.52,
+    "text": "types of profiles primary and custom.",
+    "lang": "en"
+  },
+  {
+    "start": 1114.48,
+    "dur": 4.079,
+    "text": "Primary are all system generated",
+    "lang": "en"
+  },
+  {
+    "start": 1116.4,
+    "dur": 3.84,
+    "text": "information.",
+    "lang": "en"
+  },
+  {
+    "start": 1118.559,
+    "dur": 3.441,
+    "text": "And custom profiles are the ones that",
+    "lang": "en"
+  },
+  {
+    "start": 1120.24,
+    "dur": 3.84,
+    "text": "you create by yourself. So you can",
+    "lang": "en"
+  },
+  {
+    "start": 1122.0,
+    "dur": 5.28,
+    "text": "always create your own specific profile",
+    "lang": "en"
+  },
+  {
+    "start": 1124.08,
+    "dur": 4.88,
+    "text": "if at all you have any data extra data.",
+    "lang": "en"
+  },
+  {
+    "start": 1127.28,
+    "dur": 4.0,
+    "text": "You can simply enter the profile",
+    "lang": "en"
+  },
+  {
+    "start": 1128.96,
+    "dur": 3.92,
+    "text": "property name and select the data type.",
+    "lang": "en"
+  },
+  {
+    "start": 1131.28,
+    "dur": 5.759,
+    "text": "And the profile property can then be",
+    "lang": "en"
+  },
+  {
+    "start": 1132.88,
+    "dur": 6.32,
+    "text": "used for storing that specific data.",
+    "lang": "en"
+  },
+  {
+    "start": 1137.039,
+    "dur": 4.401,
+    "text": "Click to chat ads which I covered",
+    "lang": "en"
+  },
+  {
+    "start": 1139.2,
+    "dur": 4.479,
+    "text": "previously is a module which allows you",
+    "lang": "en"
+  },
+  {
+    "start": 1141.44,
+    "dur": 6.32,
+    "text": "to connect advertisements",
+    "lang": "en"
+  },
+  {
+    "start": 1143.679,
+    "dur": 8.321,
+    "text": "with WhatsApp bot journeys.",
+    "lang": "en"
+  },
+  {
+    "start": 1147.76,
+    "dur": 6.08,
+    "text": "Analytics is wherein you can uh have a",
+    "lang": "en"
+  },
+  {
+    "start": 1152.0,
+    "dur": 5.039,
+    "text": "look at the complete dashboard. How many",
+    "lang": "en"
+  },
+  {
+    "start": 1153.84,
+    "dur": 5.52,
+    "text": "messages are being sent? How many are",
+    "lang": "en"
+  },
+  {
+    "start": 1157.039,
+    "dur": 3.681,
+    "text": "being submitted to meta? How many are",
+    "lang": "en"
+  },
+  {
+    "start": 1159.36,
+    "dur": 2.8,
+    "text": "being delivered? How many are being",
+    "lang": "en"
+  },
+  {
+    "start": 1160.72,
+    "dur": 3.12,
+    "text": "read? What is the total number of",
+    "lang": "en"
+  },
+  {
+    "start": 1162.16,
+    "dur": 3.6,
+    "text": "incoming messages? How many people are",
+    "lang": "en"
+  },
+  {
+    "start": 1163.84,
+    "dur": 3.839,
+    "text": "clicking on links and buttons? How many",
+    "lang": "en"
+  },
+  {
+    "start": 1165.76,
+    "dur": 3.36,
+    "text": "messages are failing? All the",
+    "lang": "en"
+  },
+  {
+    "start": 1167.679,
+    "dur": 4.921,
+    "text": "information can be accessed through the",
+    "lang": "en"
+  },
+  {
+    "start": 1169.12,
+    "dur": 3.48,
+    "text": "analytics dashboard.",
+    "lang": "en"
+  },
+  {
+    "start": 1176.88,
+    "dur": 7.36,
+    "text": "Then we also have channels wherein our",
+    "lang": "en"
+  },
+  {
+    "start": 1180.08,
+    "dur": 6.64,
+    "text": "we have integrated our legacy WhatsApp",
+    "lang": "en"
+  },
+  {
+    "start": 1184.24,
+    "dur": 4.96,
+    "text": "uh Gupsh",
+    "lang": "en"
+  },
+  {
+    "start": 1186.72,
+    "dur": 6.64,
+    "text": "uh WhatsApp by Gupch into the channels",
+    "lang": "en"
+  },
+  {
+    "start": 1189.2,
+    "dur": 8.32,
+    "text": "as well wherein you can access your",
+    "lang": "en"
+  },
+  {
+    "start": 1193.36,
+    "dur": 6.0,
+    "text": "oneway WhatsApp account.",
+    "lang": "en"
+  },
+  {
+    "start": 1197.52,
+    "dur": 4.8,
+    "text": "You also have Instagram as a channel",
+    "lang": "en"
+  },
+  {
+    "start": 1199.36,
+    "dur": 4.4,
+    "text": "wherein you can set up autoresponders.",
+    "lang": "en"
+  },
+  {
+    "start": 1202.32,
+    "dur": 3.359,
+    "text": "You can connect your Instagram account",
+    "lang": "en"
+  },
+  {
+    "start": 1203.76,
+    "dur": 4.56,
+    "text": "over here. Make bots on Instagram as",
+    "lang": "en"
+  },
+  {
+    "start": 1205.679,
+    "dur": 5.041,
+    "text": "well using the journey builder. You can",
+    "lang": "en"
+  },
+  {
+    "start": 1208.32,
+    "dur": 8.76,
+    "text": "also access your SMS account. You can",
+    "lang": "en"
+  },
+  {
+    "start": 1210.72,
+    "dur": 6.36,
+    "text": "also uh make bots on website as well.",
+    "lang": "en"
+  },
+  {
+    "start": 1218.64,
+    "dur": 6.0,
+    "text": "Integrations is wherein you can define",
+    "lang": "en"
+  },
+  {
+    "start": 1222.32,
+    "dur": 4.96,
+    "text": "uh",
+    "lang": "en"
+  },
+  {
+    "start": 1224.64,
+    "dur": 5.84,
+    "text": "all the integrations. There are few",
+    "lang": "en"
+  },
+  {
+    "start": 1227.28,
+    "dur": 5.04,
+    "text": "integrations that are built in. We also",
+    "lang": "en"
+  },
+  {
+    "start": 1230.48,
+    "dur": 3.52,
+    "text": "have a custom integration wherein you",
+    "lang": "en"
+  },
+  {
+    "start": 1232.32,
+    "dur": 4.32,
+    "text": "can name the integration something and",
+    "lang": "en"
+  },
+  {
+    "start": 1234.0,
+    "dur": 5.76,
+    "text": "then start sending out events on in that",
+    "lang": "en"
+  },
+  {
+    "start": 1236.64,
+    "dur": 5.039,
+    "text": "integration. So let's say",
+    "lang": "en"
+  },
+  {
+    "start": 1239.76,
+    "dur": 4.799,
+    "text": "this is one of the integrations that we",
+    "lang": "en"
+  },
+  {
+    "start": 1241.679,
+    "dur": 4.561,
+    "text": "have earlier created.",
+    "lang": "en"
+  },
+  {
+    "start": 1244.559,
+    "dur": 3.681,
+    "text": "Once you click on create integration,",
+    "lang": "en"
+  },
+  {
+    "start": 1246.24,
+    "dur": 4.48,
+    "text": "you can see the callback URL, the",
+    "lang": "en"
+  },
+  {
+    "start": 1248.24,
+    "dur": 4.4,
+    "text": "authorization token. You can also have",
+    "lang": "en"
+  },
+  {
+    "start": 1250.72,
+    "dur": 4.16,
+    "text": "an example of the JSON in which the data",
+    "lang": "en"
+  },
+  {
+    "start": 1252.64,
+    "dur": 4.159,
+    "text": "needs to be passed in the event. And",
+    "lang": "en"
+  },
+  {
+    "start": 1254.88,
+    "dur": 6.12,
+    "text": "then you can send out start sending out",
+    "lang": "en"
+  },
+  {
+    "start": 1256.799,
+    "dur": 4.201,
+    "text": "events in a particular integration.",
+    "lang": "en"
+  },
+  {
+    "start": 1265.039,
+    "dur": 5.601,
+    "text": "In the extensions, we have an extension",
+    "lang": "en"
+  },
+  {
+    "start": 1268.0,
+    "dur": 4.64,
+    "text": "of bot analytics, goal analytics. All",
+    "lang": "en"
+  },
+  {
+    "start": 1270.64,
+    "dur": 4.32,
+    "text": "the analytics which are all present in",
+    "lang": "en"
+  },
+  {
+    "start": 1272.64,
+    "dur": 6.48,
+    "text": "these modules can also be accessed",
+    "lang": "en"
+  },
+  {
+    "start": 1274.96,
+    "dur": 6.64,
+    "text": "through the extensions as well.",
+    "lang": "en"
+  },
+  {
+    "start": 1279.12,
+    "dur": 5.36,
+    "text": "We also have an RCS extension in which",
+    "lang": "en"
+  },
+  {
+    "start": 1281.6,
+    "dur": 5.88,
+    "text": "you can do RCS broadcast campaigns as",
+    "lang": "en"
+  },
+  {
+    "start": 1284.48,
+    "dur": 3.0,
+    "text": "well.",
+    "lang": "en"
+  },
+  {
+    "start": 1288.159,
+    "dur": 6.481,
+    "text": "and analyzer and optimizer are the ones",
+    "lang": "en"
+  },
+  {
+    "start": 1291.679,
+    "dur": 6.24,
+    "text": "in which",
+    "lang": "en"
+  },
+  {
+    "start": 1294.64,
+    "dur": 5.44,
+    "text": "you can you can uh basically have all",
+    "lang": "en"
+  },
+  {
+    "start": 1297.919,
+    "dur": 5.361,
+    "text": "the information of the reports uh that",
+    "lang": "en"
+  },
+  {
+    "start": 1300.08,
+    "dur": 5.44,
+    "text": "you receive after doing a campaign.",
+    "lang": "en"
+  },
+  {
+    "start": 1303.28,
+    "dur": 5.68,
+    "text": "Those reports information can be",
+    "lang": "en"
+  },
+  {
+    "start": 1305.52,
+    "dur": 5.2,
+    "text": "dynamically seen in the analyzer.",
+    "lang": "en"
+  },
+  {
+    "start": 1308.96,
+    "dur": 3.839,
+    "text": "So you can see the executive summary,",
+    "lang": "en"
+  },
+  {
+    "start": 1310.72,
+    "dur": 4.4,
+    "text": "what is the overall delivery rate,",
+    "lang": "en"
+  },
+  {
+    "start": 1312.799,
+    "dur": 4.801,
+    "text": "window matrix, template performance,",
+    "lang": "en"
+  },
+  {
+    "start": 1315.12,
+    "dur": 5.84,
+    "text": "areas of concern. So all the numbers",
+    "lang": "en"
+  },
+  {
+    "start": 1317.6,
+    "dur": 5.52,
+    "text": "presented in a more engaging manner and",
+    "lang": "en"
+  },
+  {
+    "start": 1320.96,
+    "dur": 4.24,
+    "text": "then the console also provides few",
+    "lang": "en"
+  },
+  {
+    "start": 1323.12,
+    "dur": 4.24,
+    "text": "recommendations for practices what you",
+    "lang": "en"
+  },
+  {
+    "start": 1325.2,
+    "dur": 5.44,
+    "text": "need to do and what you should not need",
+    "lang": "en"
+  },
+  {
+    "start": 1327.36,
+    "dur": 5.36,
+    "text": "uh should not be doing to maintain your",
+    "lang": "en"
+  },
+  {
+    "start": 1330.64,
+    "dur": 4.0,
+    "text": "campaign numbers.",
+    "lang": "en"
+  },
+  {
+    "start": 1332.72,
+    "dur": 4.319,
+    "text": "You can also see usage analytics wherein",
+    "lang": "en"
+  },
+  {
+    "start": 1334.64,
+    "dur": 4.08,
+    "text": "you can see how many messages are you",
+    "lang": "en"
+  },
+  {
+    "start": 1337.039,
+    "dur": 2.88,
+    "text": "submitting, how many are being sent, how",
+    "lang": "en"
+  },
+  {
+    "start": 1338.72,
+    "dur": 3.92,
+    "text": "many are being delivered, what is the",
+    "lang": "en"
+  },
+  {
+    "start": 1339.919,
+    "dur": 5.281,
+    "text": "delivery rate. So this is your usage",
+    "lang": "en"
+  },
+  {
+    "start": 1342.64,
+    "dur": 4.0,
+    "text": "analytics. Message analytics allows you",
+    "lang": "en"
+  },
+  {
+    "start": 1345.2,
+    "dur": 2.719,
+    "text": "to see total number of submitted",
+    "lang": "en"
+  },
+  {
+    "start": 1346.64,
+    "dur": 3.519,
+    "text": "messages, how many are being sent,",
+    "lang": "en"
+  },
+  {
+    "start": 1347.919,
+    "dur": 3.921,
+    "text": "delivered, read, failed, button, if at",
+    "lang": "en"
+  },
+  {
+    "start": 1350.159,
+    "dur": 4.921,
+    "text": "all template app buttons, how many are",
+    "lang": "en"
+  },
+  {
+    "start": 1351.84,
+    "dur": 3.24,
+    "text": "being clicked.",
+    "lang": "en"
+  },
+  {
+    "start": 1355.2,
+    "dur": 4.56,
+    "text": "Temp similar information based on",
+    "lang": "en"
+  },
+  {
+    "start": 1357.12,
+    "dur": 5.12,
+    "text": "template engagement. If at all messages",
+    "lang": "en"
+  },
+  {
+    "start": 1359.76,
+    "dur": 5.84,
+    "text": "failing, what are the most frequently",
+    "lang": "en"
+  },
+  {
+    "start": 1362.24,
+    "dur": 5.2,
+    "text": "facing error codes that you come across",
+    "lang": "en"
+  },
+  {
+    "start": 1365.6,
+    "dur": 4.64,
+    "text": "and spend analysis, how much money are",
+    "lang": "en"
+  },
+  {
+    "start": 1367.44,
+    "dur": 5.2,
+    "text": "you spending on the on sending out these",
+    "lang": "en"
+  },
+  {
+    "start": 1370.24,
+    "dur": 4.24,
+    "text": "messages",
+    "lang": "en"
+  },
+  {
+    "start": 1372.64,
+    "dur": 5.2,
+    "text": "and window analytics as well wherein you",
+    "lang": "en"
+  },
+  {
+    "start": 1374.48,
+    "dur": 5.36,
+    "text": "can see how many people engaged back",
+    "lang": "en"
+  },
+  {
+    "start": 1377.84,
+    "dur": 5.839,
+    "text": "with a with a campaign and how many",
+    "lang": "en"
+  },
+  {
+    "start": 1379.84,
+    "dur": 7.04,
+    "text": "people's window were open to send them",
+    "lang": "en"
+  },
+  {
+    "start": 1383.679,
+    "dur": 4.641,
+    "text": "uh additional messages. If at all a",
+    "lang": "en"
+  },
+  {
+    "start": 1386.88,
+    "dur": 2.96,
+    "text": "person receives a WhatsApp campaign and",
+    "lang": "en"
+  },
+  {
+    "start": 1388.32,
+    "dur": 4.08,
+    "text": "then they reply back, a window gets",
+    "lang": "en"
+  },
+  {
+    "start": 1389.84,
+    "dur": 5.12,
+    "text": "opened for a free flow conversation and",
+    "lang": "en"
+  },
+  {
+    "start": 1392.4,
+    "dur": 4.48,
+    "text": "additional free messages can be sent out",
+    "lang": "en"
+  },
+  {
+    "start": 1394.96,
+    "dur": 4.959,
+    "text": "to the customer. So window analytics",
+    "lang": "en"
+  },
+  {
+    "start": 1396.88,
+    "dur": 5.52,
+    "text": "allows you to access that information.",
+    "lang": "en"
+  },
+  {
+    "start": 1399.919,
+    "dur": 6.64,
+    "text": "Lastly, we have the manage project",
+    "lang": "en"
+  },
+  {
+    "start": 1402.4,
+    "dur": 6.399,
+    "text": "wherein you can on the general section u",
+    "lang": "en"
+  },
+  {
+    "start": 1406.559,
+    "dur": 6.0,
+    "text": "see some basic information. You can also",
+    "lang": "en"
+  },
+  {
+    "start": 1408.799,
+    "dur": 5.76,
+    "text": "select and start naming your console",
+    "lang": "en"
+  },
+  {
+    "start": 1412.559,
+    "dur": 5.201,
+    "text": "uh whatever you like. Click on the",
+    "lang": "en"
+  },
+  {
+    "start": 1414.559,
+    "dur": 6.081,
+    "text": "pencil icon, edit the name, and you can",
+    "lang": "en"
+  },
+  {
+    "start": 1417.76,
+    "dur": 4.96,
+    "text": "also edit the time zone. Modules allows",
+    "lang": "en"
+  },
+  {
+    "start": 1420.64,
+    "dur": 4.88,
+    "text": "you to see what all modules are active",
+    "lang": "en"
+  },
+  {
+    "start": 1422.72,
+    "dur": 6.079,
+    "text": "on the extension. In the member section,",
+    "lang": "en"
+  },
+  {
+    "start": 1425.52,
+    "dur": 5.519,
+    "text": "you can always invite a new member. And",
+    "lang": "en"
+  },
+  {
+    "start": 1428.799,
+    "dur": 5.12,
+    "text": "then you can also",
+    "lang": "en"
+  },
+  {
+    "start": 1431.039,
+    "dur": 5.361,
+    "text": "control their access. What kind of",
+    "lang": "en"
+  },
+  {
+    "start": 1433.919,
+    "dur": 4.24,
+    "text": "modules should they be using? If at all",
+    "lang": "en"
+  },
+  {
+    "start": 1436.4,
+    "dur": 5.04,
+    "text": "it's somebody from the campaign team,",
+    "lang": "en"
+  },
+  {
+    "start": 1438.159,
+    "dur": 5.681,
+    "text": "they do not need to get access maybe of",
+    "lang": "en"
+  },
+  {
+    "start": 1441.44,
+    "dur": 4.479,
+    "text": "all the analytics. Basically it is used",
+    "lang": "en"
+  },
+  {
+    "start": 1443.84,
+    "dur": 4.24,
+    "text": "for access control. So you can invite",
+    "lang": "en"
+  },
+  {
+    "start": 1445.919,
+    "dur": 4.161,
+    "text": "anybody to use the console and then",
+    "lang": "en"
+  },
+  {
+    "start": 1448.08,
+    "dur": 3.76,
+    "text": "provide them only the model specific",
+    "lang": "en"
+  },
+  {
+    "start": 1450.08,
+    "dur": 5.079,
+    "text": "access",
+    "lang": "en"
+  },
+  {
+    "start": 1451.84,
+    "dur": 3.319,
+    "text": "for privacy.",
+    "lang": "en"
+  },
+  {
+    "start": 1456.48,
+    "dur": 3.48,
+    "text": "Thanks for watching.",
+    "lang": "en"
+  }
+]

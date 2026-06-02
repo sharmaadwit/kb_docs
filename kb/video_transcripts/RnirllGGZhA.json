@@ -1,0 +1,1208 @@
+[
+  {
+    "start": 1.92,
+    "dur": 4.64,
+    "text": "Hello everyone. So today we will be",
+    "lang": "en"
+  },
+  {
+    "start": 4.0,
+    "dur": 6.16,
+    "text": "talking about the RCS extension under",
+    "lang": "en"
+  },
+  {
+    "start": 6.56,
+    "dur": 7.36,
+    "text": "the console panel. So to access the RCS",
+    "lang": "en"
+  },
+  {
+    "start": 10.16,
+    "dur": 5.76,
+    "text": "you can simply go to the extensions part",
+    "lang": "en"
+  },
+  {
+    "start": 13.92,
+    "dur": 4.64,
+    "text": "and over there you can simply find an",
+    "lang": "en"
+  },
+  {
+    "start": 15.92,
+    "dur": 4.8,
+    "text": "RCS extension. By just tapping over",
+    "lang": "en"
+  },
+  {
+    "start": 18.56,
+    "dur": 3.76,
+    "text": "there you can get to the my bots",
+    "lang": "en"
+  },
+  {
+    "start": 20.72,
+    "dur": 5.68,
+    "text": "creation.",
+    "lang": "en"
+  },
+  {
+    "start": 22.32,
+    "dur": 6.879,
+    "text": "So under my bot you need to create the",
+    "lang": "en"
+  },
+  {
+    "start": 26.4,
+    "dur": 5.44,
+    "text": "identification of the brand. So when we",
+    "lang": "en"
+  },
+  {
+    "start": 29.199,
+    "dur": 4.88,
+    "text": "say a bot, so over here we mean that we",
+    "lang": "en"
+  },
+  {
+    "start": 31.84,
+    "dur": 5.12,
+    "text": "are configuring the description about",
+    "lang": "en"
+  },
+  {
+    "start": 34.079,
+    "dur": 4.881,
+    "text": "the brand and that's what exactly is",
+    "lang": "en"
+  },
+  {
+    "start": 36.96,
+    "dur": 4.4,
+    "text": "going to be depicted over the end",
+    "lang": "en"
+  },
+  {
+    "start": 38.96,
+    "dur": 6.0,
+    "text": "customer's UI or the mobile device as an",
+    "lang": "en"
+  },
+  {
+    "start": 41.36,
+    "dur": 6.24,
+    "text": "RCS message. So to create a bot once we",
+    "lang": "en"
+  },
+  {
+    "start": 44.96,
+    "dur": 4.56,
+    "text": "go to the RCS mybot section on the left",
+    "lang": "en"
+  },
+  {
+    "start": 47.6,
+    "dur": 4.4,
+    "text": "hand side you can make the customization",
+    "lang": "en"
+  },
+  {
+    "start": 49.52,
+    "dur": 4.64,
+    "text": "and on the right hand side you can see",
+    "lang": "en"
+  },
+  {
+    "start": 52.0,
+    "dur": 4.64,
+    "text": "the preview which the end customer will",
+    "lang": "en"
+  },
+  {
+    "start": 54.16,
+    "dur": 4.559,
+    "text": "get right.",
+    "lang": "en"
+  },
+  {
+    "start": 56.64,
+    "dur": 4.719,
+    "text": "So over here the first part is to select",
+    "lang": "en"
+  },
+  {
+    "start": 58.719,
+    "dur": 4.401,
+    "text": "the region. So you can select India or",
+    "lang": "en"
+  },
+  {
+    "start": 61.359,
+    "dur": 4.08,
+    "text": "rest of the world. Then we need to",
+    "lang": "en"
+  },
+  {
+    "start": 63.12,
+    "dur": 4.4,
+    "text": "configure the message type. So it can be",
+    "lang": "en"
+  },
+  {
+    "start": 65.439,
+    "dur": 3.761,
+    "text": "either transactional. So under",
+    "lang": "en"
+  },
+  {
+    "start": 67.52,
+    "dur": 3.84,
+    "text": "transactional you might be able to send",
+    "lang": "en"
+  },
+  {
+    "start": 69.2,
+    "dur": 4.64,
+    "text": "out the alerts or notification kind of",
+    "lang": "en"
+  },
+  {
+    "start": 71.36,
+    "dur": 4.48,
+    "text": "messages. Under promotional you can send",
+    "lang": "en"
+  },
+  {
+    "start": 73.84,
+    "dur": 3.599,
+    "text": "out the sales or marketing related",
+    "lang": "en"
+  },
+  {
+    "start": 75.84,
+    "dur": 3.2,
+    "text": "messages you know where you are",
+    "lang": "en"
+  },
+  {
+    "start": 77.439,
+    "dur": 3.841,
+    "text": "promoting any of your product or",
+    "lang": "en"
+  },
+  {
+    "start": 79.04,
+    "dur": 4.399,
+    "text": "services something like that. And under",
+    "lang": "en"
+  },
+  {
+    "start": 81.28,
+    "dur": 5.04,
+    "text": "OTP a one-time password message can be",
+    "lang": "en"
+  },
+  {
+    "start": 83.439,
+    "dur": 5.36,
+    "text": "sent out to the customer. Right? Just",
+    "lang": "en"
+  },
+  {
+    "start": 86.32,
+    "dur": 4.96,
+    "text": "below there is a bot creation mode which",
+    "lang": "en"
+  },
+  {
+    "start": 88.799,
+    "dur": 5.121,
+    "text": "gives us an option of auto and manual.",
+    "lang": "en"
+  },
+  {
+    "start": 91.28,
+    "dur": 5.28,
+    "text": "So let's take an example where you want",
+    "lang": "en"
+  },
+  {
+    "start": 93.92,
+    "dur": 5.6,
+    "text": "you have an active agent and uh you want",
+    "lang": "en"
+  },
+  {
+    "start": 96.56,
+    "dur": 5.44,
+    "text": "to use the platform as a messaging. So",
+    "lang": "en"
+  },
+  {
+    "start": 99.52,
+    "dur": 5.52,
+    "text": "maps we call it messaging as a platform.",
+    "lang": "en"
+  },
+  {
+    "start": 102.0,
+    "dur": 5.68,
+    "text": "So you can simply create it uh as a auto",
+    "lang": "en"
+  },
+  {
+    "start": 105.04,
+    "dur": 4.24,
+    "text": "mode. Otherwise you can select the",
+    "lang": "en"
+  },
+  {
+    "start": 107.68,
+    "dur": 3.6,
+    "text": "manual mode. Right. Right? So on the",
+    "lang": "en"
+  },
+  {
+    "start": 109.28,
+    "dur": 4.32,
+    "text": "basis of the use case we can definitely",
+    "lang": "en"
+  },
+  {
+    "start": 111.28,
+    "dur": 4.0,
+    "text": "define that how it should work. Then",
+    "lang": "en"
+  },
+  {
+    "start": 113.6,
+    "dur": 4.24,
+    "text": "just below there is a billing category",
+    "lang": "en"
+  },
+  {
+    "start": 115.28,
+    "dur": 4.72,
+    "text": "where you can have a billing type like a",
+    "lang": "en"
+  },
+  {
+    "start": 117.84,
+    "dur": 4.0,
+    "text": "conversational or non- conversational by",
+    "lang": "en"
+  },
+  {
+    "start": 120.0,
+    "dur": 3.28,
+    "text": "the name it might be getting a suggest",
+    "lang": "en"
+  },
+  {
+    "start": 121.84,
+    "dur": 3.12,
+    "text": "key conversational when we are",
+    "lang": "en"
+  },
+  {
+    "start": 123.28,
+    "dur": 3.76,
+    "text": "establishing a two-way communication and",
+    "lang": "en"
+  },
+  {
+    "start": 124.96,
+    "dur": 3.76,
+    "text": "two and flow of messages are happening.",
+    "lang": "en"
+  },
+  {
+    "start": 127.04,
+    "dur": 3.279,
+    "text": "So we can put it under conversational",
+    "lang": "en"
+  },
+  {
+    "start": 128.72,
+    "dur": 3.92,
+    "text": "and non conversational where you are",
+    "lang": "en"
+  },
+  {
+    "start": 130.319,
+    "dur": 4.321,
+    "text": "just sending out a simple template.",
+    "lang": "en"
+  },
+  {
+    "start": 132.64,
+    "dur": 4.239,
+    "text": "Right?",
+    "lang": "en"
+  },
+  {
+    "start": 134.64,
+    "dur": 4.4,
+    "text": "Just below you can start giving the bot",
+    "lang": "en"
+  },
+  {
+    "start": 136.879,
+    "dur": 3.681,
+    "text": "description like bot name. So on the",
+    "lang": "en"
+  },
+  {
+    "start": 139.04,
+    "dur": 3.52,
+    "text": "right hand side under preview we can see",
+    "lang": "en"
+  },
+  {
+    "start": 140.56,
+    "dur": 4.48,
+    "text": "where the bot name will be. Then we can",
+    "lang": "en"
+  },
+  {
+    "start": 142.56,
+    "dur": 4.08,
+    "text": "have the brand name right. Then just",
+    "lang": "en"
+  },
+  {
+    "start": 145.04,
+    "dur": 3.76,
+    "text": "below we can have the logo. We can",
+    "lang": "en"
+  },
+  {
+    "start": 146.64,
+    "dur": 5.04,
+    "text": "directly upload it from the system. So",
+    "lang": "en"
+  },
+  {
+    "start": 148.8,
+    "dur": 5.28,
+    "text": "this is how the logo will be. Then we",
+    "lang": "en"
+  },
+  {
+    "start": 151.68,
+    "dur": 4.08,
+    "text": "can have the banner image. Right? Then",
+    "lang": "en"
+  },
+  {
+    "start": 154.08,
+    "dur": 3.439,
+    "text": "we can have the short description around",
+    "lang": "en"
+  },
+  {
+    "start": 155.76,
+    "dur": 5.04,
+    "text": "the brand. We can select the color",
+    "lang": "en"
+  },
+  {
+    "start": 157.519,
+    "dur": 5.521,
+    "text": "palette for the uh you know the text.",
+    "lang": "en"
+  },
+  {
+    "start": 160.8,
+    "dur": 4.24,
+    "text": "Then just below we can add the number so",
+    "lang": "en"
+  },
+  {
+    "start": 163.04,
+    "dur": 4.08,
+    "text": "that the customer can reach us out. We",
+    "lang": "en"
+  },
+  {
+    "start": 165.04,
+    "dur": 4.8,
+    "text": "can add the email id. We can also add",
+    "lang": "en"
+  },
+  {
+    "start": 167.12,
+    "dur": 4.72,
+    "text": "the website URL. And just below there",
+    "lang": "en"
+  },
+  {
+    "start": 169.84,
+    "dur": 4.16,
+    "text": "are terms and conditions. So this is",
+    "lang": "en"
+  },
+  {
+    "start": 171.84,
+    "dur": 4.88,
+    "text": "very much mandatory in the RCS world. We",
+    "lang": "en"
+  },
+  {
+    "start": 174.0,
+    "dur": 4.4,
+    "text": "need to update you know paste the URL of",
+    "lang": "en"
+  },
+  {
+    "start": 176.72,
+    "dur": 4.879,
+    "text": "our terms and conditions and privacy",
+    "lang": "en"
+  },
+  {
+    "start": 178.4,
+    "dur": 5.6,
+    "text": "policies. And just below the API options",
+    "lang": "en"
+  },
+  {
+    "start": 181.599,
+    "dur": 4.801,
+    "text": "is available. So two types of APIs are",
+    "lang": "en"
+  },
+  {
+    "start": 184.0,
+    "dur": 6.08,
+    "text": "being worked. one is the GSMA API and",
+    "lang": "en"
+  },
+  {
+    "start": 186.4,
+    "dur": 7.28,
+    "text": "the other one is the Google uh RBM API.",
+    "lang": "en"
+  },
+  {
+    "start": 190.08,
+    "dur": 5.519,
+    "text": "So as per the development we can decide.",
+    "lang": "en"
+  },
+  {
+    "start": 193.68,
+    "dur": 4.24,
+    "text": "Then we have the web hook like how the",
+    "lang": "en"
+  },
+  {
+    "start": 195.599,
+    "dur": 4.321,
+    "text": "message should be there and then we have",
+    "lang": "en"
+  },
+  {
+    "start": 197.92,
+    "dur": 4.56,
+    "text": "the language supported. So of course",
+    "lang": "en"
+  },
+  {
+    "start": 199.92,
+    "dur": 4.08,
+    "text": "since we are able to send out on a",
+    "lang": "en"
+  },
+  {
+    "start": 202.48,
+    "dur": 4.32,
+    "text": "global level we can select different",
+    "lang": "en"
+  },
+  {
+    "start": 204.0,
+    "dur": 5.12,
+    "text": "languages and once we are satisfied how",
+    "lang": "en"
+  },
+  {
+    "start": 206.8,
+    "dur": 4.88,
+    "text": "the description should be we can simply",
+    "lang": "en"
+  },
+  {
+    "start": 209.12,
+    "dur": 5.759,
+    "text": "submit we can simply agree and submit it",
+    "lang": "en"
+  },
+  {
+    "start": 211.68,
+    "dur": 6.08,
+    "text": "to Google for the verification. So once",
+    "lang": "en"
+  },
+  {
+    "start": 214.879,
+    "dur": 4.961,
+    "text": "the template is verified right once",
+    "lang": "en"
+  },
+  {
+    "start": 217.76,
+    "dur": 5.44,
+    "text": "sorry once the bot is verified it will",
+    "lang": "en"
+  },
+  {
+    "start": 219.84,
+    "dur": 5.2,
+    "text": "be shown over here and the type of bot",
+    "lang": "en"
+  },
+  {
+    "start": 223.2,
+    "dur": 4.399,
+    "text": "which we have created. So I have already",
+    "lang": "en"
+  },
+  {
+    "start": 225.04,
+    "dur": 5.199,
+    "text": "created a promotional one. I'll just use",
+    "lang": "en"
+  },
+  {
+    "start": 227.599,
+    "dur": 4.161,
+    "text": "this. So it will give us the bot",
+    "lang": "en"
+  },
+  {
+    "start": 230.239,
+    "dur": 3.841,
+    "text": "dashboard that how the company",
+    "lang": "en"
+  },
+  {
+    "start": 231.76,
+    "dur": 6.16,
+    "text": "description is like and just below we",
+    "lang": "en"
+  },
+  {
+    "start": 234.08,
+    "dur": 6.32,
+    "text": "have this uh information. Now just to",
+    "lang": "en"
+  },
+  {
+    "start": 237.92,
+    "dur": 4.48,
+    "text": "create a template under it right the",
+    "lang": "en"
+  },
+  {
+    "start": 240.4,
+    "dur": 4.32,
+    "text": "promotional bot we have created. Now we",
+    "lang": "en"
+  },
+  {
+    "start": 242.4,
+    "dur": 4.88,
+    "text": "need to create a template right. So we",
+    "lang": "en"
+  },
+  {
+    "start": 244.72,
+    "dur": 4.32,
+    "text": "can have a template code. You can select",
+    "lang": "en"
+  },
+  {
+    "start": 247.28,
+    "dur": 3.599,
+    "text": "the template type whether it should be a",
+    "lang": "en"
+  },
+  {
+    "start": 249.04,
+    "dur": 4.32,
+    "text": "rich card, standalone, rich card,",
+    "lang": "en"
+  },
+  {
+    "start": 250.879,
+    "dur": 4.0,
+    "text": "carousel, text message or media. Right?",
+    "lang": "en"
+  },
+  {
+    "start": 253.36,
+    "dur": 4.159,
+    "text": "Then we can have the card details that",
+    "lang": "en"
+  },
+  {
+    "start": 254.879,
+    "dur": 5.681,
+    "text": "how it should be vertical or horizontal.",
+    "lang": "en"
+  },
+  {
+    "start": 257.519,
+    "dur": 4.881,
+    "text": "Right? So we can set set how the image",
+    "lang": "en"
+  },
+  {
+    "start": 260.56,
+    "dur": 4.639,
+    "text": "should be showcased. Then we can also",
+    "lang": "en"
+  },
+  {
+    "start": 262.4,
+    "dur": 4.799,
+    "text": "select the height like short or medium.",
+    "lang": "en"
+  },
+  {
+    "start": 265.199,
+    "dur": 4.081,
+    "text": "Just below we have the feasibility to",
+    "lang": "en"
+  },
+  {
+    "start": 267.199,
+    "dur": 5.361,
+    "text": "upload it from the system. Then we can",
+    "lang": "en"
+  },
+  {
+    "start": 269.28,
+    "dur": 6.32,
+    "text": "give the card title. Right? And then we",
+    "lang": "en"
+  },
+  {
+    "start": 272.56,
+    "dur": 5.52,
+    "text": "can give the card description.",
+    "lang": "en"
+  },
+  {
+    "start": 275.6,
+    "dur": 4.64,
+    "text": "Right? And in case we want to make it",
+    "lang": "en"
+  },
+  {
+    "start": 278.08,
+    "dur": 4.48,
+    "text": "personalized, of course, we can have the",
+    "lang": "en"
+  },
+  {
+    "start": 280.24,
+    "dur": 4.959,
+    "text": "integration in place and we we can you",
+    "lang": "en"
+  },
+  {
+    "start": 282.56,
+    "dur": 4.56,
+    "text": "know add the variable and like these",
+    "lang": "en"
+  },
+  {
+    "start": 285.199,
+    "dur": 4.481,
+    "text": "kind of information can automatically be",
+    "lang": "en"
+  },
+  {
+    "start": 287.12,
+    "dur": 5.28,
+    "text": "you know fetched from the system.",
+    "lang": "en"
+  },
+  {
+    "start": 289.68,
+    "dur": 6.079,
+    "text": "Then we again simply by submitting a",
+    "lang": "en"
+  },
+  {
+    "start": 292.4,
+    "dur": 5.28,
+    "text": "approval to Google. Once the template is",
+    "lang": "en"
+  },
+  {
+    "start": 295.759,
+    "dur": 4.321,
+    "text": "uh created it will be added under the",
+    "lang": "en"
+  },
+  {
+    "start": 297.68,
+    "dur": 5.28,
+    "text": "bot and from there we can directly",
+    "lang": "en"
+  },
+  {
+    "start": 300.08,
+    "dur": 5.28,
+    "text": "trigger the campaign. In case you want",
+    "lang": "en"
+  },
+  {
+    "start": 302.96,
+    "dur": 4.4,
+    "text": "to test right, you can have a test",
+    "lang": "en"
+  },
+  {
+    "start": 305.36,
+    "dur": 3.92,
+    "text": "device added over here by simply adding",
+    "lang": "en"
+  },
+  {
+    "start": 307.36,
+    "dur": 4.0,
+    "text": "the number",
+    "lang": "en"
+  },
+  {
+    "start": 309.28,
+    "dur": 6.479,
+    "text": "right and once it is there you can",
+    "lang": "en"
+  },
+  {
+    "start": 311.36,
+    "dur": 7.44,
+    "text": "simply you know send uh single text or",
+    "lang": "en"
+  },
+  {
+    "start": 315.759,
+    "dur": 5.361,
+    "text": "sorry RCS message to the customer right",
+    "lang": "en"
+  },
+  {
+    "start": 318.8,
+    "dur": 4.239,
+    "text": "now if you want to run a campaign. So we",
+    "lang": "en"
+  },
+  {
+    "start": 321.12,
+    "dur": 4.56,
+    "text": "can simply go to the campaign section.",
+    "lang": "en"
+  },
+  {
+    "start": 323.039,
+    "dur": 4.88,
+    "text": "Add new campaign.",
+    "lang": "en"
+  },
+  {
+    "start": 325.68,
+    "dur": 3.44,
+    "text": "You can select the bot whatever you have",
+    "lang": "en"
+  },
+  {
+    "start": 327.919,
+    "dur": 3.28,
+    "text": "created. I'll just select the",
+    "lang": "en"
+  },
+  {
+    "start": 329.12,
+    "dur": 4.24,
+    "text": "promotional and the template under it.",
+    "lang": "en"
+  },
+  {
+    "start": 331.199,
+    "dur": 4.72,
+    "text": "Right. Once you're fine with the bot and",
+    "lang": "en"
+  },
+  {
+    "start": 333.36,
+    "dur": 5.119,
+    "text": "template, we can schedule the campaign.",
+    "lang": "en"
+  },
+  {
+    "start": 335.919,
+    "dur": 4.321,
+    "text": "Right now it gives us a liberty and",
+    "lang": "en"
+  },
+  {
+    "start": 338.479,
+    "dur": 5.121,
+    "text": "flexibility to select between different",
+    "lang": "en"
+  },
+  {
+    "start": 340.24,
+    "dur": 6.32,
+    "text": "time zones and select with the exact",
+    "lang": "en"
+  },
+  {
+    "start": 343.6,
+    "dur": 4.8,
+    "text": "timeline. If we select run later, it",
+    "lang": "en"
+  },
+  {
+    "start": 346.56,
+    "dur": 5.359,
+    "text": "gives us to you know option to select",
+    "lang": "en"
+  },
+  {
+    "start": 348.4,
+    "dur": 6.079,
+    "text": "the date, the camping hours, seconds,",
+    "lang": "en"
+  },
+  {
+    "start": 351.919,
+    "dur": 4.321,
+    "text": "minutes, A.M. and P.M. So we can",
+    "lang": "en"
+  },
+  {
+    "start": 354.479,
+    "dur": 4.321,
+    "text": "customize this and once we click on",
+    "lang": "en"
+  },
+  {
+    "start": 356.24,
+    "dur": 6.239,
+    "text": "submit, the campaign will be scheduled.",
+    "lang": "en"
+  },
+  {
+    "start": 358.8,
+    "dur": 5.28,
+    "text": "Right? So once the campaign has been",
+    "lang": "en"
+  },
+  {
+    "start": 362.479,
+    "dur": 3.681,
+    "text": "scheduled, there's another option of",
+    "lang": "en"
+  },
+  {
+    "start": 364.08,
+    "dur": 4.64,
+    "text": "analytics. Now here you will provide an",
+    "lang": "en"
+  },
+  {
+    "start": 366.16,
+    "dur": 7.0,
+    "text": "complete in-depth analytics around uh",
+    "lang": "en"
+  },
+  {
+    "start": 368.72,
+    "dur": 4.44,
+    "text": "whatever has happened in the dashboard.",
+    "lang": "en"
+  },
+  {
+    "start": 373.36,
+    "dur": 4.959,
+    "text": "So,",
+    "lang": "en"
+  },
+  {
+    "start": 375.199,
+    "dur": 4.881,
+    "text": "so over here you can uh set the",
+    "lang": "en"
+  },
+  {
+    "start": 378.319,
+    "dur": 3.361,
+    "text": "analytics timeline like from which",
+    "lang": "en"
+  },
+  {
+    "start": 380.08,
+    "dur": 3.52,
+    "text": "particular timeline you want the",
+    "lang": "en"
+  },
+  {
+    "start": 381.68,
+    "dur": 3.2,
+    "text": "information to be extracted. Then there",
+    "lang": "en"
+  },
+  {
+    "start": 383.6,
+    "dur": 4.08,
+    "text": "are certain filters around the",
+    "lang": "en"
+  },
+  {
+    "start": 384.88,
+    "dur": 5.039,
+    "text": "countries, carriers, carriers uh like",
+    "lang": "en"
+  },
+  {
+    "start": 387.68,
+    "dur": 4.639,
+    "text": "T-Mo and different zones are there or",
+    "lang": "en"
+  },
+  {
+    "start": 389.919,
+    "dur": 4.481,
+    "text": "any other window right then there are",
+    "lang": "en"
+  },
+  {
+    "start": 392.319,
+    "dur": 3.761,
+    "text": "bots the bot types. So all these filters",
+    "lang": "en"
+  },
+  {
+    "start": 394.4,
+    "dur": 3.2,
+    "text": "will be there once you click on search.",
+    "lang": "en"
+  },
+  {
+    "start": 396.08,
+    "dur": 4.32,
+    "text": "It will give you a summary around the",
+    "lang": "en"
+  },
+  {
+    "start": 397.6,
+    "dur": 5.92,
+    "text": "basic messages application to peer",
+    "lang": "en"
+  },
+  {
+    "start": 400.4,
+    "dur": 5.28,
+    "text": "single message application to peer",
+    "lang": "en"
+  },
+  {
+    "start": 403.52,
+    "dur": 3.92,
+    "text": "conversation and peer-to- application",
+    "lang": "en"
+  },
+  {
+    "start": 405.68,
+    "dur": 4.48,
+    "text": "conversation. So all this kind of uh",
+    "lang": "en"
+  },
+  {
+    "start": 407.44,
+    "dur": 4.56,
+    "text": "analytics will be there and just uh",
+    "lang": "en"
+  },
+  {
+    "start": 410.16,
+    "dur": 3.599,
+    "text": "below that you will get also an idea",
+    "lang": "en"
+  },
+  {
+    "start": 412.0,
+    "dur": 4.24,
+    "text": "around the brand name, transaction type,",
+    "lang": "en"
+  },
+  {
+    "start": 413.759,
+    "dur": 4.88,
+    "text": "basic message. These will be the numbers",
+    "lang": "en"
+  },
+  {
+    "start": 416.24,
+    "dur": 4.239,
+    "text": "A2P single message A2P conversation. So",
+    "lang": "en"
+  },
+  {
+    "start": 418.639,
+    "dur": 3.601,
+    "text": "again these numbers will be there for",
+    "lang": "en"
+  },
+  {
+    "start": 420.479,
+    "dur": 3.84,
+    "text": "you. Then you can also have a traffic",
+    "lang": "en"
+  },
+  {
+    "start": 422.24,
+    "dur": 4.32,
+    "text": "dashboard. Again certain filters are",
+    "lang": "en"
+  },
+  {
+    "start": 424.319,
+    "dur": 4.481,
+    "text": "there for your reference and just below",
+    "lang": "en"
+  },
+  {
+    "start": 426.56,
+    "dur": 4.639,
+    "text": "you can find the details around like",
+    "lang": "en"
+  },
+  {
+    "start": 428.8,
+    "dur": 4.399,
+    "text": "what is the time message submitted",
+    "lang": "en"
+  },
+  {
+    "start": 431.199,
+    "dur": 4.881,
+    "text": "message sent message delivered message",
+    "lang": "en"
+  },
+  {
+    "start": 433.199,
+    "dur": 5.681,
+    "text": "read message failed message revoked",
+    "lang": "en"
+  },
+  {
+    "start": 436.08,
+    "dur": 6.0,
+    "text": "expired delivery rate read rate P2A",
+    "lang": "en"
+  },
+  {
+    "start": 438.88,
+    "dur": 4.96,
+    "text": "response P2A response rate P2A message",
+    "lang": "en"
+  },
+  {
+    "start": 442.08,
+    "dur": 3.28,
+    "text": "so such kind of information you can",
+    "lang": "en"
+  },
+  {
+    "start": 443.84,
+    "dur": 4.16,
+    "text": "extract from here in case you want to",
+    "lang": "en"
+  },
+  {
+    "start": 445.36,
+    "dur": 6.16,
+    "text": "export in a CSV you can directly export",
+    "lang": "en"
+  },
+  {
+    "start": 448.0,
+    "dur": 6.16,
+    "text": "it out then you have the detailed",
+    "lang": "en"
+  },
+  {
+    "start": 451.52,
+    "dur": 5.2,
+    "text": "reports Right. So this is uh nothing",
+    "lang": "en"
+  },
+  {
+    "start": 454.16,
+    "dur": 4.24,
+    "text": "like uh whatever thing has happened.",
+    "lang": "en"
+  },
+  {
+    "start": 456.72,
+    "dur": 3.84,
+    "text": "Right. So these are something which we",
+    "lang": "en"
+  },
+  {
+    "start": 458.4,
+    "dur": 4.639,
+    "text": "have customized. But over here you get a",
+    "lang": "en"
+  },
+  {
+    "start": 460.56,
+    "dur": 4.96,
+    "text": "two and flow or like uh complete end",
+    "lang": "en"
+  },
+  {
+    "start": 463.039,
+    "dur": 4.16,
+    "text": "toend uh analytics around the messaging",
+    "lang": "en"
+  },
+  {
+    "start": 465.52,
+    "dur": 4.32,
+    "text": "part. So you can simply make a download",
+    "lang": "en"
+  },
+  {
+    "start": 467.199,
+    "dur": 4.0,
+    "text": "in a CSV format and it will be there.",
+    "lang": "en"
+  },
+  {
+    "start": 469.84,
+    "dur": 3.359,
+    "text": "Then again you can play around with your",
+    "lang": "en"
+  },
+  {
+    "start": 471.199,
+    "dur": 5.56,
+    "text": "own filters and extract the information",
+    "lang": "en"
+  },
+  {
+    "start": 473.199,
+    "dur": 3.56,
+    "text": "relevant to you.",
+    "lang": "en"
+  }
+]

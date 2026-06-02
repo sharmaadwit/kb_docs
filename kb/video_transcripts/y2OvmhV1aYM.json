@@ -1,0 +1,1586 @@
+[
+  {
+    "start": 3.12,
+    "dur": 7.2,
+    "text": "Hello yeses the side here to explain the",
+    "lang": "en"
+  },
+  {
+    "start": 6.4,
+    "dur": 7.119,
+    "text": "personalize module for you all. Um so",
+    "lang": "en"
+  },
+  {
+    "start": 10.32,
+    "dur": 7.039,
+    "text": "personalize is gshop console's customer",
+    "lang": "en"
+  },
+  {
+    "start": 13.519,
+    "dur": 6.881,
+    "text": "engagement layer for turning data into",
+    "lang": "en"
+  },
+  {
+    "start": 17.359,
+    "dur": 7.121,
+    "text": "relevant and timely conversations at",
+    "lang": "en"
+  },
+  {
+    "start": 20.4,
+    "dur": 8.0,
+    "text": "scale. Right? So uh basically personaliz",
+    "lang": "en"
+  },
+  {
+    "start": 24.48,
+    "dur": 8.32,
+    "text": "helps brands to integrate and unify",
+    "lang": "en"
+  },
+  {
+    "start": 28.4,
+    "dur": 6.72,
+    "text": "customer data uh build segments based on",
+    "lang": "en"
+  },
+  {
+    "start": 32.8,
+    "dur": 5.36,
+    "text": "this particular customer profiles and",
+    "lang": "en"
+  },
+  {
+    "start": 35.12,
+    "dur": 5.36,
+    "text": "then trigger personalized communication",
+    "lang": "en"
+  },
+  {
+    "start": 38.16,
+    "dur": 6.32,
+    "text": "uh journeys across channels like",
+    "lang": "en"
+  },
+  {
+    "start": 40.48,
+    "dur": 6.8,
+    "text": "WhatsApp and RCS. Right? So uh you can",
+    "lang": "en"
+  },
+  {
+    "start": 44.48,
+    "dur": 6.079,
+    "text": "understand personalized as a module",
+    "lang": "en"
+  },
+  {
+    "start": 47.28,
+    "dur": 6.32,
+    "text": "which helps brands uh instead of sending",
+    "lang": "en"
+  },
+  {
+    "start": 50.559,
+    "dur": 5.52,
+    "text": "the same message to everyone or the or",
+    "lang": "en"
+  },
+  {
+    "start": 53.6,
+    "dur": 5.279,
+    "text": "the same campaign to everyone. Uh",
+    "lang": "en"
+  },
+  {
+    "start": 56.079,
+    "dur": 6.0,
+    "text": "personaliz lets you tailor who gets",
+    "lang": "en"
+  },
+  {
+    "start": 58.879,
+    "dur": 6.481,
+    "text": "contacted, when they get contacted and",
+    "lang": "en"
+  },
+  {
+    "start": 62.079,
+    "dur": 6.001,
+    "text": "what they received uh based on user",
+    "lang": "en"
+  },
+  {
+    "start": 65.36,
+    "dur": 8.079,
+    "text": "attributes, behavior and life cycle",
+    "lang": "en"
+  },
+  {
+    "start": 68.08,
+    "dur": 8.96,
+    "text": "stages. Okay. Uh when it comes to the uh",
+    "lang": "en"
+  },
+  {
+    "start": 73.439,
+    "dur": 6.161,
+    "text": "personalized layer right so um in",
+    "lang": "en"
+  },
+  {
+    "start": 77.04,
+    "dur": 5.52,
+    "text": "console you can access the personalized",
+    "lang": "en"
+  },
+  {
+    "start": 79.6,
+    "dur": 5.12,
+    "text": "module over here going forward uh you",
+    "lang": "en"
+  },
+  {
+    "start": 82.56,
+    "dur": 4.239,
+    "text": "can see the total number of profiles a",
+    "lang": "en"
+  },
+  {
+    "start": 84.72,
+    "dur": 5.2,
+    "text": "few metrics regarding that you can see",
+    "lang": "en"
+  },
+  {
+    "start": 86.799,
+    "dur": 5.761,
+    "text": "the uh total monthly active profiles and",
+    "lang": "en"
+  },
+  {
+    "start": 89.92,
+    "dur": 5.199,
+    "text": "the num mobile numbers associated with",
+    "lang": "en"
+  },
+  {
+    "start": 92.56,
+    "dur": 5.12,
+    "text": "the total profiles over here right and",
+    "lang": "en"
+  },
+  {
+    "start": 95.119,
+    "dur": 4.881,
+    "text": "you can see a graphical uh",
+    "lang": "en"
+  },
+  {
+    "start": 97.68,
+    "dur": 4.88,
+    "text": "representation of the active profile",
+    "lang": "en"
+  },
+  {
+    "start": 100.0,
+    "dur": 4.96,
+    "text": "profiles over here for the last 7 days",
+    "lang": "en"
+  },
+  {
+    "start": 102.56,
+    "dur": 4.32,
+    "text": "and again you can see a comparison",
+    "lang": "en"
+  },
+  {
+    "start": 104.96,
+    "dur": 4.799,
+    "text": "between the total profiles and the",
+    "lang": "en"
+  },
+  {
+    "start": 106.88,
+    "dur": 7.12,
+    "text": "active profiles for the last 3 months",
+    "lang": "en"
+  },
+  {
+    "start": 109.759,
+    "dur": 7.281,
+    "text": "right so uh going forward you can add",
+    "lang": "en"
+  },
+  {
+    "start": 114.0,
+    "dur": 5.52,
+    "text": "different profiles into",
+    "lang": "en"
+  },
+  {
+    "start": 117.04,
+    "dur": 5.679,
+    "text": "the personalized module directly okay",
+    "lang": "en"
+  },
+  {
+    "start": 119.52,
+    "dur": 6.72,
+    "text": "I'll I'll quickly go to Nicl Sharma's uh",
+    "lang": "en"
+  },
+  {
+    "start": 122.719,
+    "dur": 6.081,
+    "text": "user profile over here where uh his",
+    "lang": "en"
+  },
+  {
+    "start": 126.24,
+    "dur": 4.719,
+    "text": "WhatsApp number has been automatically",
+    "lang": "en"
+  },
+  {
+    "start": 128.8,
+    "dur": 6.159,
+    "text": "stored and And then you can see the",
+    "lang": "en"
+  },
+  {
+    "start": 130.959,
+    "dur": 7.92,
+    "text": "transa sorry the transactional data uh",
+    "lang": "en"
+  },
+  {
+    "start": 134.959,
+    "dur": 6.801,
+    "text": "of Nikl Sharma with a bot with of of his",
+    "lang": "en"
+  },
+  {
+    "start": 138.879,
+    "dur": 4.961,
+    "text": "incoming user message or an outgoing",
+    "lang": "en"
+  },
+  {
+    "start": 141.76,
+    "dur": 4.479,
+    "text": "message which is basically again a bot",
+    "lang": "en"
+  },
+  {
+    "start": 143.84,
+    "dur": 5.119,
+    "text": "message. Okay. And you can always see",
+    "lang": "en"
+  },
+  {
+    "start": 146.239,
+    "dur": 5.281,
+    "text": "the different sources he has interacted",
+    "lang": "en"
+  },
+  {
+    "start": 148.959,
+    "dur": 5.521,
+    "text": "with basically right it can be with",
+    "lang": "en"
+  },
+  {
+    "start": 151.52,
+    "dur": 5.439,
+    "text": "WhatsApp for now uh it can be for",
+    "lang": "en"
+  },
+  {
+    "start": 154.48,
+    "dur": 6.56,
+    "text": "WhatsApp it can be with another channel",
+    "lang": "en"
+  },
+  {
+    "start": 156.959,
+    "dur": 6.961,
+    "text": "where it's RCS or SMS or again uh you",
+    "lang": "en"
+  },
+  {
+    "start": 161.04,
+    "dur": 5.6,
+    "text": "can always see his transactions with",
+    "lang": "en"
+  },
+  {
+    "start": 163.92,
+    "dur": 5.92,
+    "text": "different sources again right based on",
+    "lang": "en"
+  },
+  {
+    "start": 166.64,
+    "dur": 6.64,
+    "text": "certain events okay so I can categorize",
+    "lang": "en"
+  },
+  {
+    "start": 169.84,
+    "dur": 5.84,
+    "text": "it further filter it out again from uh",
+    "lang": "en"
+  },
+  {
+    "start": 173.28,
+    "dur": 5.039,
+    "text": "the point of view of a bot message being",
+    "lang": "en"
+  },
+  {
+    "start": 175.68,
+    "dur": 5.199,
+    "text": "sent of the campaigns being campaign",
+    "lang": "en"
+  },
+  {
+    "start": 178.319,
+    "dur": 4.961,
+    "text": "messages being sent delivered read or",
+    "lang": "en"
+  },
+  {
+    "start": 180.879,
+    "dur": 5.921,
+    "text": "failed or I can see the incoming user",
+    "lang": "en"
+  },
+  {
+    "start": 183.28,
+    "dur": 5.599,
+    "text": "messages as well right so as you can see",
+    "lang": "en"
+  },
+  {
+    "start": 186.8,
+    "dur": 5.04,
+    "text": "I can see the",
+    "lang": "en"
+  },
+  {
+    "start": 188.879,
+    "dur": 7.201,
+    "text": "bot message being sent to Nichl Sharma's",
+    "lang": "en"
+  },
+  {
+    "start": 191.84,
+    "dur": 7.2,
+    "text": "mobile number or I believe yes this this",
+    "lang": "en"
+  },
+  {
+    "start": 196.08,
+    "dur": 5.6,
+    "text": "is basically the Waba number again and",
+    "lang": "en"
+  },
+  {
+    "start": 199.04,
+    "dur": 5.76,
+    "text": "this is the bot message being sent out",
+    "lang": "en"
+  },
+  {
+    "start": 201.68,
+    "dur": 5.36,
+    "text": "okay so the entire transactional history",
+    "lang": "en"
+  },
+  {
+    "start": 204.8,
+    "dur": 4.88,
+    "text": "can be accessed over here as you can",
+    "lang": "en"
+  },
+  {
+    "start": 207.04,
+    "dur": 5.279,
+    "text": "see. And then going forward, you can see",
+    "lang": "en"
+  },
+  {
+    "start": 209.68,
+    "dur": 5.76,
+    "text": "uh a few metrics regarding the uh",
+    "lang": "en"
+  },
+  {
+    "start": 212.319,
+    "dur": 6.0,
+    "text": "transactions of Nicl Sharma's",
+    "lang": "en"
+  },
+  {
+    "start": 215.44,
+    "dur": 5.6,
+    "text": "conversation. So uh you can see the",
+    "lang": "en"
+  },
+  {
+    "start": 218.319,
+    "dur": 5.441,
+    "text": "total campaign messages being sent out,",
+    "lang": "en"
+  },
+  {
+    "start": 221.04,
+    "dur": 5.36,
+    "text": "the campaign messages being delivered,",
+    "lang": "en"
+  },
+  {
+    "start": 223.76,
+    "dur": 4.8,
+    "text": "read, the total number of bot messages",
+    "lang": "en"
+  },
+  {
+    "start": 226.4,
+    "dur": 5.28,
+    "text": "sent, incoming user messages for the",
+    "lang": "en"
+  },
+  {
+    "start": 228.56,
+    "dur": 5.599,
+    "text": "last 30 days or all time as well. Right?",
+    "lang": "en"
+  },
+  {
+    "start": 231.68,
+    "dur": 4.88,
+    "text": "If suppose nickel Sharma has been uh",
+    "lang": "en"
+  },
+  {
+    "start": 234.159,
+    "dur": 5.44,
+    "text": "categorized into certain lists or",
+    "lang": "en"
+  },
+  {
+    "start": 236.56,
+    "dur": 4.72,
+    "text": "segments, the the information about the",
+    "lang": "en"
+  },
+  {
+    "start": 239.599,
+    "dur": 3.601,
+    "text": "listen segments will be appearing over",
+    "lang": "en"
+  },
+  {
+    "start": 241.28,
+    "dur": 5.28,
+    "text": "here. Right? I will be quickly",
+    "lang": "en"
+  },
+  {
+    "start": 243.2,
+    "dur": 6.399,
+    "text": "explaining listen segments very shortly.",
+    "lang": "en"
+  },
+  {
+    "start": 246.56,
+    "dur": 5.759,
+    "text": "And uh if I would like to add a certain",
+    "lang": "en"
+  },
+  {
+    "start": 249.599,
+    "dur": 5.92,
+    "text": "property for Nikl Sharma only based on",
+    "lang": "en"
+  },
+  {
+    "start": 252.319,
+    "dur": 6.32,
+    "text": "which he his user profile has to be um",
+    "lang": "en"
+  },
+  {
+    "start": 255.519,
+    "dur": 5.68,
+    "text": "segmented, I can add certain properties",
+    "lang": "en"
+  },
+  {
+    "start": 258.639,
+    "dur": 4.0,
+    "text": "over here. Right? So there is another",
+    "lang": "en"
+  },
+  {
+    "start": 261.199,
+    "dur": 3.121,
+    "text": "section where I can define the",
+    "lang": "en"
+  },
+  {
+    "start": 262.639,
+    "dur": 3.761,
+    "text": "properties. But then again if I would",
+    "lang": "en"
+  },
+  {
+    "start": 264.32,
+    "dur": 5.76,
+    "text": "like to categorize",
+    "lang": "en"
+  },
+  {
+    "start": 266.4,
+    "dur": 6.56,
+    "text": "let's say for example NL Sharma's uh",
+    "lang": "en"
+  },
+  {
+    "start": 270.08,
+    "dur": 4.8,
+    "text": "salary into a certain value right I can",
+    "lang": "en"
+  },
+  {
+    "start": 272.96,
+    "dur": 4.64,
+    "text": "just go ahead and add a property over",
+    "lang": "en"
+  },
+  {
+    "start": 274.88,
+    "dur": 4.56,
+    "text": "here and uh Nicl Sharma's uh user",
+    "lang": "en"
+  },
+  {
+    "start": 277.6,
+    "dur": 5.84,
+    "text": "profile will be stored under this",
+    "lang": "en"
+  },
+  {
+    "start": 279.44,
+    "dur": 7.6,
+    "text": "particular uh property directly. Okay.",
+    "lang": "en"
+  },
+  {
+    "start": 283.44,
+    "dur": 6.56,
+    "text": "Uh if you notice the um profile",
+    "lang": "en"
+  },
+  {
+    "start": 287.04,
+    "dur": 5.36,
+    "text": "properties section over here. So like I",
+    "lang": "en"
+  },
+  {
+    "start": 290.0,
+    "dur": 5.04,
+    "text": "just mentioned to you uh there are",
+    "lang": "en"
+  },
+  {
+    "start": 292.4,
+    "dur": 5.2,
+    "text": "various properties based on which you",
+    "lang": "en"
+  },
+  {
+    "start": 295.04,
+    "dur": 6.4,
+    "text": "can filter out the user profiles in a",
+    "lang": "en"
+  },
+  {
+    "start": 297.6,
+    "dur": 6.319,
+    "text": "segment. Okay. So uh let's just say",
+    "lang": "en"
+  },
+  {
+    "start": 301.44,
+    "dur": 4.56,
+    "text": "there are certain user profiles from a",
+    "lang": "en"
+  },
+  {
+    "start": 303.919,
+    "dur": 5.441,
+    "text": "specific city and I would like to",
+    "lang": "en"
+  },
+  {
+    "start": 306.0,
+    "dur": 5.84,
+    "text": "distinguish these user profiles under uh",
+    "lang": "en"
+  },
+  {
+    "start": 309.36,
+    "dur": 4.88,
+    "text": "that particular city only. Right? I can",
+    "lang": "en"
+  },
+  {
+    "start": 311.84,
+    "dur": 6.0,
+    "text": "have a property which says city and then",
+    "lang": "en"
+  },
+  {
+    "start": 314.24,
+    "dur": 7.04,
+    "text": "I can choose a filter which says uh city",
+    "lang": "en"
+  },
+  {
+    "start": 317.84,
+    "dur": 7.44,
+    "text": "is equal to a certain value Mumbai,",
+    "lang": "en"
+  },
+  {
+    "start": 321.28,
+    "dur": 6.88,
+    "text": "Bengaluru and so on. Okay.",
+    "lang": "en"
+  },
+  {
+    "start": 325.28,
+    "dur": 7.28,
+    "text": "Or I can always add a new property uh as",
+    "lang": "en"
+  },
+  {
+    "start": 328.16,
+    "dur": 8.16,
+    "text": "per my requirement wherein let's say um",
+    "lang": "en"
+  },
+  {
+    "start": 332.56,
+    "dur": 7.359,
+    "text": "total bot messages sent bought messages.",
+    "lang": "en"
+  },
+  {
+    "start": 336.32,
+    "dur": 7.52,
+    "text": "Okay. And the data uh data type is equal",
+    "lang": "en"
+  },
+  {
+    "start": 339.919,
+    "dur": 7.041,
+    "text": "to a number. Okay. So this property is",
+    "lang": "en"
+  },
+  {
+    "start": 343.84,
+    "dur": 6.96,
+    "text": "basically to distinguish um user",
+    "lang": "en"
+  },
+  {
+    "start": 346.96,
+    "dur": 7.28,
+    "text": "profiles whose u who have had a",
+    "lang": "en"
+  },
+  {
+    "start": 350.8,
+    "dur": 6.8,
+    "text": "conversation with a bot and the number",
+    "lang": "en"
+  },
+  {
+    "start": 354.24,
+    "dur": 7.36,
+    "text": "of bot messages being sent to the user",
+    "lang": "en"
+  },
+  {
+    "start": 357.6,
+    "dur": 6.64,
+    "text": "have crossed a certain threshold. Okay.",
+    "lang": "en"
+  },
+  {
+    "start": 361.6,
+    "dur": 6.08,
+    "text": "So um yeah so I'm just giving you an",
+    "lang": "en"
+  },
+  {
+    "start": 364.24,
+    "dur": 6.399,
+    "text": "example and then going forward uh there",
+    "lang": "en"
+  },
+  {
+    "start": 367.68,
+    "dur": 6.32,
+    "text": "is the listen segment which truly",
+    "lang": "en"
+  },
+  {
+    "start": 370.639,
+    "dur": 7.761,
+    "text": "defines the actual purpose of personaliz",
+    "lang": "en"
+  },
+  {
+    "start": 374.0,
+    "dur": 7.84,
+    "text": "right uh when it comes to a list.",
+    "lang": "en"
+  },
+  {
+    "start": 378.4,
+    "dur": 7.84,
+    "text": "uh I this the reason behind this is to",
+    "lang": "en"
+  },
+  {
+    "start": 381.84,
+    "dur": 7.76,
+    "text": "um create a list manually by uploading a",
+    "lang": "en"
+  },
+  {
+    "start": 386.24,
+    "dur": 5.28,
+    "text": "certain um a certain file in in a",
+    "lang": "en"
+  },
+  {
+    "start": 389.6,
+    "dur": 5.68,
+    "text": "specific format which can be downloaded",
+    "lang": "en"
+  },
+  {
+    "start": 391.52,
+    "dur": 7.2,
+    "text": "over here. So if suppose any plant has a",
+    "lang": "en"
+  },
+  {
+    "start": 395.28,
+    "dur": 6.4,
+    "text": "a certain uh list of all of their user",
+    "lang": "en"
+  },
+  {
+    "start": 398.72,
+    "dur": 5.759,
+    "text": "profiles stored in a particular file",
+    "lang": "en"
+  },
+  {
+    "start": 401.68,
+    "dur": 5.28,
+    "text": "that can be edited into the right format",
+    "lang": "en"
+  },
+  {
+    "start": 404.479,
+    "dur": 4.481,
+    "text": "which can be downloaded again uh and",
+    "lang": "en"
+  },
+  {
+    "start": 406.96,
+    "dur": 3.76,
+    "text": "then uploaded over here. The system will",
+    "lang": "en"
+  },
+  {
+    "start": 408.96,
+    "dur": 4.16,
+    "text": "be automatically detecting these user",
+    "lang": "en"
+  },
+  {
+    "start": 410.72,
+    "dur": 6.0,
+    "text": "profiles and then the right campaigns",
+    "lang": "en"
+  },
+  {
+    "start": 413.12,
+    "dur": 8.96,
+    "text": "can be targeted again. Okay. uh but then",
+    "lang": "en"
+  },
+  {
+    "start": 416.72,
+    "dur": 7.919,
+    "text": "again the real value or the real power",
+    "lang": "en"
+  },
+  {
+    "start": 422.08,
+    "dur": 4.8,
+    "text": "lies in the dynamic segments over here.",
+    "lang": "en"
+  },
+  {
+    "start": 424.639,
+    "dur": 5.28,
+    "text": "So uh I'll quickly give an overview",
+    "lang": "en"
+  },
+  {
+    "start": 426.88,
+    "dur": 5.92,
+    "text": "about what segments are. So a segment is",
+    "lang": "en"
+  },
+  {
+    "start": 429.919,
+    "dur": 5.68,
+    "text": "basically uh distinguishing user",
+    "lang": "en"
+  },
+  {
+    "start": 432.8,
+    "dur": 6.48,
+    "text": "profiles under",
+    "lang": "en"
+  },
+  {
+    "start": 435.599,
+    "dur": 9.281,
+    "text": "uh under a particular category right. So",
+    "lang": "en"
+  },
+  {
+    "start": 439.28,
+    "dur": 9.039,
+    "text": "for example um let's say for the BFSI",
+    "lang": "en"
+  },
+  {
+    "start": 444.88,
+    "dur": 6.48,
+    "text": "brand uh they would like to target",
+    "lang": "en"
+  },
+  {
+    "start": 448.319,
+    "dur": 5.841,
+    "text": "certain uh certain set of customers.",
+    "lang": "en"
+  },
+  {
+    "start": 451.36,
+    "dur": 5.2,
+    "text": "Okay. So they do a blast of campaigns to",
+    "lang": "en"
+  },
+  {
+    "start": 454.16,
+    "dur": 4.72,
+    "text": "all of their customers. And in this",
+    "lang": "en"
+  },
+  {
+    "start": 456.56,
+    "dur": 5.84,
+    "text": "particular campaign there is a marketing",
+    "lang": "en"
+  },
+  {
+    "start": 458.88,
+    "dur": 6.879,
+    "text": "template where it has",
+    "lang": "en"
+  },
+  {
+    "start": 462.4,
+    "dur": 6.079,
+    "text": "three um where it has three quick reply",
+    "lang": "en"
+  },
+  {
+    "start": 465.759,
+    "dur": 5.361,
+    "text": "buttons. Okay. The first button it uh it",
+    "lang": "en"
+  },
+  {
+    "start": 468.479,
+    "dur": 5.521,
+    "text": "consists of the value uh I would like to",
+    "lang": "en"
+  },
+  {
+    "start": 471.12,
+    "dur": 5.519,
+    "text": "apply for the bank account. Okay. The",
+    "lang": "en"
+  },
+  {
+    "start": 474.0,
+    "dur": 4.8,
+    "text": "second value contains I would like to uh",
+    "lang": "en"
+  },
+  {
+    "start": 476.639,
+    "dur": 4.641,
+    "text": "apply for a credit card. Right. The",
+    "lang": "en"
+  },
+  {
+    "start": 478.8,
+    "dur": 5.6,
+    "text": "third one it can be for a support use",
+    "lang": "en"
+  },
+  {
+    "start": 481.28,
+    "dur": 5.44,
+    "text": "case or anything like that. Okay.",
+    "lang": "en"
+  },
+  {
+    "start": 484.4,
+    "dur": 5.359,
+    "text": "Now the BFSI brand would like to",
+    "lang": "en"
+  },
+  {
+    "start": 486.72,
+    "dur": 4.8,
+    "text": "categorize the customers who clicked on",
+    "lang": "en"
+  },
+  {
+    "start": 489.759,
+    "dur": 4.88,
+    "text": "uh the first option and the second",
+    "lang": "en"
+  },
+  {
+    "start": 491.52,
+    "dur": 5.04,
+    "text": "option separately. Right. So whoever",
+    "lang": "en"
+  },
+  {
+    "start": 494.639,
+    "dur": 3.921,
+    "text": "clicked on the first option which is to",
+    "lang": "en"
+  },
+  {
+    "start": 496.56,
+    "dur": 4.639,
+    "text": "create a bank account they will be",
+    "lang": "en"
+  },
+  {
+    "start": 498.56,
+    "dur": 4.479,
+    "text": "categorized into a separate segment.",
+    "lang": "en"
+  },
+  {
+    "start": 501.199,
+    "dur": 4.481,
+    "text": "Right? It can be a static segment or a",
+    "lang": "en"
+  },
+  {
+    "start": 503.039,
+    "dur": 4.88,
+    "text": "dynamic segment. this uh and uh",
+    "lang": "en"
+  },
+  {
+    "start": 505.68,
+    "dur": 3.919,
+    "text": "similarly the the set of people who",
+    "lang": "en"
+  },
+  {
+    "start": 507.919,
+    "dur": 4.0,
+    "text": "click on the second option will be",
+    "lang": "en"
+  },
+  {
+    "start": 509.599,
+    "dur": 5.44,
+    "text": "categorized into a into a different",
+    "lang": "en"
+  },
+  {
+    "start": 511.919,
+    "dur": 6.401,
+    "text": "segment. Okay. The difference between a",
+    "lang": "en"
+  },
+  {
+    "start": 515.039,
+    "dur": 6.721,
+    "text": "static and a dynamic segment is",
+    "lang": "en"
+  },
+  {
+    "start": 518.32,
+    "dur": 5.839,
+    "text": "uh a static segment it consists of the",
+    "lang": "en"
+  },
+  {
+    "start": 521.76,
+    "dur": 6.4,
+    "text": "user profiles who are who are already",
+    "lang": "en"
+  },
+  {
+    "start": 524.159,
+    "dur": 6.961,
+    "text": "existing. Right? A dynamic segment is a",
+    "lang": "en"
+  },
+  {
+    "start": 528.16,
+    "dur": 5.28,
+    "text": "segment which contains user profiles",
+    "lang": "en"
+  },
+  {
+    "start": 531.12,
+    "dur": 4.8,
+    "text": "sorry existing user profiles and if",
+    "lang": "en"
+  },
+  {
+    "start": 533.44,
+    "dur": 5.12,
+    "text": "there are new customers coming in they",
+    "lang": "en"
+  },
+  {
+    "start": 535.92,
+    "dur": 5.039,
+    "text": "will be automatically addited added to a",
+    "lang": "en"
+  },
+  {
+    "start": 538.56,
+    "dur": 6.08,
+    "text": "dynamic segment. Okay, let's quickly",
+    "lang": "en"
+  },
+  {
+    "start": 540.959,
+    "dur": 8.241,
+    "text": "create a dynamic segment now.",
+    "lang": "en"
+  },
+  {
+    "start": 544.64,
+    "dur": 8.639,
+    "text": "So, uh I create a segment. So, the I can",
+    "lang": "en"
+  },
+  {
+    "start": 549.2,
+    "dur": 7.52,
+    "text": "define the trigger where for like I just",
+    "lang": "en"
+  },
+  {
+    "start": 553.279,
+    "dur": 7.041,
+    "text": "mentioned to you about the BFSI example",
+    "lang": "en"
+  },
+  {
+    "start": 556.72,
+    "dur": 6.16,
+    "text": "uh when someone has done or not done.",
+    "lang": "en"
+  },
+  {
+    "start": 560.32,
+    "dur": 5.76,
+    "text": "So, this is basically defining an action",
+    "lang": "en"
+  },
+  {
+    "start": 562.88,
+    "dur": 6.079,
+    "text": "where um they have clicked on a certain",
+    "lang": "en"
+  },
+  {
+    "start": 566.08,
+    "dur": 5.28,
+    "text": "button. Okay, for now for example",
+    "lang": "en"
+  },
+  {
+    "start": 568.959,
+    "dur": 6.681,
+    "text": "purposes, for demo purposes, let's go",
+    "lang": "en"
+  },
+  {
+    "start": 571.36,
+    "dur": 4.28,
+    "text": "with another example where",
+    "lang": "en"
+  },
+  {
+    "start": 577.44,
+    "dur": 8.959,
+    "text": "let's go with another example where uh",
+    "lang": "en"
+  },
+  {
+    "start": 583.12,
+    "dur": 6.64,
+    "text": "the WhatsApp uh when there's a WhatsApp",
+    "lang": "en"
+  },
+  {
+    "start": 586.399,
+    "dur": 6.721,
+    "text": "um conversation going on with a certain",
+    "lang": "en"
+  },
+  {
+    "start": 589.76,
+    "dur": 6.24,
+    "text": "user. Okay. uh there is a conversation",
+    "lang": "en"
+  },
+  {
+    "start": 593.12,
+    "dur": 6.24,
+    "text": "going on and I would like to count the",
+    "lang": "en"
+  },
+  {
+    "start": 596.0,
+    "dur": 5.76,
+    "text": "number of bot messages a certain brand",
+    "lang": "en"
+  },
+  {
+    "start": 599.36,
+    "dur": 5.28,
+    "text": "has been uh interacting with the",
+    "lang": "en"
+  },
+  {
+    "start": 601.76,
+    "dur": 4.56,
+    "text": "customer. Okay. Let's say uh I myself",
+    "lang": "en"
+  },
+  {
+    "start": 604.64,
+    "dur": 6.56,
+    "text": "I'm the customer. I'm interacting with",
+    "lang": "en"
+  },
+  {
+    "start": 606.32,
+    "dur": 7.44,
+    "text": "the bot. Okay. And uh when the number of",
+    "lang": "en"
+  },
+  {
+    "start": 611.2,
+    "dur": 6.8,
+    "text": "bot messages",
+    "lang": "en"
+  },
+  {
+    "start": 613.76,
+    "dur": 7.04,
+    "text": "crosses the threshold of uh 10. Okay. So",
+    "lang": "en"
+  },
+  {
+    "start": 618.0,
+    "dur": 5.04,
+    "text": "I I give it a I give it a condition",
+    "lang": "en"
+  },
+  {
+    "start": 620.8,
+    "dur": 5.84,
+    "text": "where the number of bot messages on",
+    "lang": "en"
+  },
+  {
+    "start": 623.04,
+    "dur": 6.32,
+    "text": "WhatsApp is greater than 10 over all",
+    "lang": "en"
+  },
+  {
+    "start": 626.64,
+    "dur": 5.28,
+    "text": "time. I can choose another schedule",
+    "lang": "en"
+  },
+  {
+    "start": 629.36,
+    "dur": 5.36,
+    "text": "timer as well or I can uh I'm going with",
+    "lang": "en"
+  },
+  {
+    "start": 631.92,
+    "dur": 6.08,
+    "text": "over all time. Okay. Then I add a filter",
+    "lang": "en"
+  },
+  {
+    "start": 634.72,
+    "dur": 6.16,
+    "text": "based on a certain property. Okay. So",
+    "lang": "en"
+  },
+  {
+    "start": 638.0,
+    "dur": 5.6,
+    "text": "this particular property can be uh can",
+    "lang": "en"
+  },
+  {
+    "start": 640.88,
+    "dur": 5.68,
+    "text": "be defined again. But then over here in",
+    "lang": "en"
+  },
+  {
+    "start": 643.6,
+    "dur": 6.239,
+    "text": "this condition uh I choose for the",
+    "lang": "en"
+  },
+  {
+    "start": 646.56,
+    "dur": 6.16,
+    "text": "certain uh campaign template name. Okay.",
+    "lang": "en"
+  },
+  {
+    "start": 649.839,
+    "dur": 5.44,
+    "text": "And then I uh give it a certain name",
+    "lang": "en"
+  },
+  {
+    "start": 652.72,
+    "dur": 4.559,
+    "text": "over here. Okay. Equal to a certain",
+    "lang": "en"
+  },
+  {
+    "start": 655.279,
+    "dur": 3.441,
+    "text": "value. Okay. I just give a test or",
+    "lang": "en"
+  },
+  {
+    "start": 657.279,
+    "dur": 3.281,
+    "text": "something like that in the preview",
+    "lang": "en"
+  },
+  {
+    "start": 658.72,
+    "dur": 5.76,
+    "text": "segment.",
+    "lang": "en"
+  },
+  {
+    "start": 660.56,
+    "dur": 7.2,
+    "text": "Okay. Uh there are no uh there is no",
+    "lang": "en"
+  },
+  {
+    "start": 664.48,
+    "dur": 6.16,
+    "text": "message template as test for now. Okay.",
+    "lang": "en"
+  },
+  {
+    "start": 667.76,
+    "dur": 5.36,
+    "text": "I'll just remove this particular uh",
+    "lang": "en"
+  },
+  {
+    "start": 670.64,
+    "dur": 4.879,
+    "text": "filter. I just wanted to show you how it",
+    "lang": "en"
+  },
+  {
+    "start": 673.12,
+    "dur": 4.959,
+    "text": "works. I'll remove this filter and then",
+    "lang": "en"
+  },
+  {
+    "start": 675.519,
+    "dur": 6.401,
+    "text": "I preview the segment. So as you can see",
+    "lang": "en"
+  },
+  {
+    "start": 678.079,
+    "dur": 6.401,
+    "text": "I can see uh out of 234 total profiles",
+    "lang": "en"
+  },
+  {
+    "start": 681.92,
+    "dur": 5.2,
+    "text": "in this account there are 69 profiles in",
+    "lang": "en"
+  },
+  {
+    "start": 684.48,
+    "dur": 4.799,
+    "text": "this segment where they have interacted",
+    "lang": "en"
+  },
+  {
+    "start": 687.12,
+    "dur": 6.399,
+    "text": "with the bot and the bot messages have",
+    "lang": "en"
+  },
+  {
+    "start": 689.279,
+    "dur": 7.921,
+    "text": "crossed uh have crossed number 10. Okay.",
+    "lang": "en"
+  },
+  {
+    "start": 693.519,
+    "dur": 5.681,
+    "text": "And then I create the segment. Right. So",
+    "lang": "en"
+  },
+  {
+    "start": 697.2,
+    "dur": 4.4,
+    "text": "uh on your screen you can see all of the",
+    "lang": "en"
+  },
+  {
+    "start": 699.2,
+    "dur": 4.72,
+    "text": "profiles who have interacted with this",
+    "lang": "en"
+  },
+  {
+    "start": 701.6,
+    "dur": 3.919,
+    "text": "particular bot for more than 10 messages",
+    "lang": "en"
+  },
+  {
+    "start": 703.92,
+    "dur": 5.28,
+    "text": "and you can always export this",
+    "lang": "en"
+  },
+  {
+    "start": 705.519,
+    "dur": 6.241,
+    "text": "particular data. You can uh redefine the",
+    "lang": "en"
+  },
+  {
+    "start": 709.2,
+    "dur": 5.6,
+    "text": "uh the segmentation criteria as well if",
+    "lang": "en"
+  },
+  {
+    "start": 711.76,
+    "dur": 5.519,
+    "text": "required. Um yeah you can see the",
+    "lang": "en"
+  },
+  {
+    "start": 714.8,
+    "dur": 4.159,
+    "text": "created date and a few other metrics for",
+    "lang": "en"
+  },
+  {
+    "start": 717.279,
+    "dur": 4.081,
+    "text": "the same as well. If required you can",
+    "lang": "en"
+  },
+  {
+    "start": 718.959,
+    "dur": 4.641,
+    "text": "pause it as well since this is a dynamic",
+    "lang": "en"
+  },
+  {
+    "start": 721.36,
+    "dur": 4.56,
+    "text": "segment right. So as you can see this",
+    "lang": "en"
+  },
+  {
+    "start": 723.6,
+    "dur": 5.2,
+    "text": "particular segment is live. Then going",
+    "lang": "en"
+  },
+  {
+    "start": 725.92,
+    "dur": 6.159,
+    "text": "forward if there are any other user",
+    "lang": "en"
+  },
+  {
+    "start": 728.8,
+    "dur": 7.36,
+    "text": "profiles who interact with a specific",
+    "lang": "en"
+  },
+  {
+    "start": 732.079,
+    "dur": 7.44,
+    "text": "bot for more than 10 uh messages right",
+    "lang": "en"
+  },
+  {
+    "start": 736.16,
+    "dur": 6.64,
+    "text": "so at that given time they will be again",
+    "lang": "en"
+  },
+  {
+    "start": 739.519,
+    "dur": 4.88,
+    "text": "added into this uh segment automatically",
+    "lang": "en"
+  },
+  {
+    "start": 742.8,
+    "dur": 4.08,
+    "text": "right",
+    "lang": "en"
+  },
+  {
+    "start": 744.399,
+    "dur": 5.361,
+    "text": "so uh this was an overview of the",
+    "lang": "en"
+  },
+  {
+    "start": 746.88,
+    "dur": 5.12,
+    "text": "personaliz module right it it is very",
+    "lang": "en"
+  },
+  {
+    "start": 749.76,
+    "dur": 5.92,
+    "text": "handy when brands would like to uh",
+    "lang": "en"
+  },
+  {
+    "start": 752.0,
+    "dur": 7.04,
+    "text": "target or retarget their customers",
+    "lang": "en"
+  },
+  {
+    "start": 755.68,
+    "dur": 7.04,
+    "text": "uh in a specific manner with a specific",
+    "lang": "en"
+  },
+  {
+    "start": 759.04,
+    "dur": 5.84,
+    "text": "template over here as well. Okay. Um I",
+    "lang": "en"
+  },
+  {
+    "start": 762.72,
+    "dur": 4.4,
+    "text": "would like to conclude my uh",
+    "lang": "en"
+  },
+  {
+    "start": 764.88,
+    "dur": 5.68,
+    "text": "demonstration with this particular",
+    "lang": "en"
+  },
+  {
+    "start": 767.12,
+    "dur": 5.68,
+    "text": "statement and uh yeah I hope I was of",
+    "lang": "en"
+  },
+  {
+    "start": 770.56,
+    "dur": 5.76,
+    "text": "great help to you all. Thank you so much",
+    "lang": "en"
+  },
+  {
+    "start": 772.8,
+    "dur": 6.32,
+    "text": "for uh for going through the entire",
+    "lang": "en"
+  },
+  {
+    "start": 776.32,
+    "dur": 6.04,
+    "text": "demonstration and have a very good day.",
+    "lang": "en"
+  },
+  {
+    "start": 779.12,
+    "dur": 3.24,
+    "text": "Thank you.",
+    "lang": "en"
+  }
+]

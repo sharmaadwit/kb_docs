@@ -1,0 +1,1088 @@
+[
+  {
+    "start": 5.92,
+    "dur": 6.16,
+    "text": "Hello is the side here to explain the",
+    "lang": "en"
+  },
+  {
+    "start": 9.44,
+    "dur": 4.96,
+    "text": "analytics module of the cups console",
+    "lang": "en"
+  },
+  {
+    "start": 12.08,
+    "dur": 4.72,
+    "text": "platform. So as you can see on the",
+    "lang": "en"
+  },
+  {
+    "start": 14.4,
+    "dur": 4.959,
+    "text": "screen I'm navigating to the dashboard",
+    "lang": "en"
+  },
+  {
+    "start": 16.8,
+    "dur": 5.28,
+    "text": "of the analytics module. Starting off",
+    "lang": "en"
+  },
+  {
+    "start": 19.359,
+    "dur": 4.801,
+    "text": "with the WhatsApp analytics. Uh there",
+    "lang": "en"
+  },
+  {
+    "start": 22.08,
+    "dur": 5.039,
+    "text": "are two filters actually three filters",
+    "lang": "en"
+  },
+  {
+    "start": 24.16,
+    "dur": 6.4,
+    "text": "over here. Uh the first one would be the",
+    "lang": "en"
+  },
+  {
+    "start": 27.119,
+    "dur": 6.161,
+    "text": "date range you would like to see uh the",
+    "lang": "en"
+  },
+  {
+    "start": 30.56,
+    "dur": 5.44,
+    "text": "metrics on. So it's marked for the last",
+    "lang": "en"
+  },
+  {
+    "start": 33.28,
+    "dur": 5.2,
+    "text": "25 days for this particular month which",
+    "lang": "en"
+  },
+  {
+    "start": 36.0,
+    "dur": 5.36,
+    "text": "is May 2026. And then you would choose",
+    "lang": "en"
+  },
+  {
+    "start": 38.48,
+    "dur": 5.68,
+    "text": "the account number uh which you're",
+    "lang": "en"
+  },
+  {
+    "start": 41.36,
+    "dur": 5.92,
+    "text": "onboarded on. And then going forward if",
+    "lang": "en"
+  },
+  {
+    "start": 44.16,
+    "dur": 4.64,
+    "text": "you would like to see uh",
+    "lang": "en"
+  },
+  {
+    "start": 47.28,
+    "dur": 3.759,
+    "text": "if you'd like to see the detailed",
+    "lang": "en"
+  },
+  {
+    "start": 48.8,
+    "dur": 4.8,
+    "text": "metrics of each template you're running",
+    "lang": "en"
+  },
+  {
+    "start": 51.039,
+    "dur": 4.641,
+    "text": "out you just uh add the right templates",
+    "lang": "en"
+  },
+  {
+    "start": 53.6,
+    "dur": 6.56,
+    "text": "name. Click on enter and then I the",
+    "lang": "en"
+  },
+  {
+    "start": 55.68,
+    "dur": 7.679,
+    "text": "filter and then uh by default the",
+    "lang": "en"
+  },
+  {
+    "start": 60.16,
+    "dur": 5.999,
+    "text": "metrics are being shown on a",
+    "lang": "en"
+  },
+  {
+    "start": 63.359,
+    "dur": 6.001,
+    "text": "consolidated view wherein uh there is no",
+    "lang": "en"
+  },
+  {
+    "start": 66.159,
+    "dur": 6.081,
+    "text": "specific template chosen. It's uh it's",
+    "lang": "en"
+  },
+  {
+    "start": 69.36,
+    "dur": 4.64,
+    "text": "shown for all the templates. Right? This",
+    "lang": "en"
+  },
+  {
+    "start": 72.24,
+    "dur": 4.72,
+    "text": "is a test account. There are various",
+    "lang": "en"
+  },
+  {
+    "start": 74.0,
+    "dur": 6.24,
+    "text": "templates and for all of the templates",
+    "lang": "en"
+  },
+  {
+    "start": 76.96,
+    "dur": 5.839,
+    "text": "you can see um the total number of",
+    "lang": "en"
+  },
+  {
+    "start": 80.24,
+    "dur": 5.68,
+    "text": "requested messages, submitted messages,",
+    "lang": "en"
+  },
+  {
+    "start": 82.799,
+    "dur": 5.521,
+    "text": "messages sent, delivered, messages read,",
+    "lang": "en"
+  },
+  {
+    "start": 85.92,
+    "dur": 4.4,
+    "text": "the number of messages failed, not sent",
+    "lang": "en"
+  },
+  {
+    "start": 88.32,
+    "dur": 4.96,
+    "text": "messages, total number of click link",
+    "lang": "en"
+  },
+  {
+    "start": 90.32,
+    "dur": 5.92,
+    "text": "clicks if en uh link tracking has been",
+    "lang": "en"
+  },
+  {
+    "start": 93.28,
+    "dur": 5.04,
+    "text": "enabled and you can always see the total",
+    "lang": "en"
+  },
+  {
+    "start": 96.24,
+    "dur": 4.8,
+    "text": "number of incoming messages as well.",
+    "lang": "en"
+  },
+  {
+    "start": 98.32,
+    "dur": 4.799,
+    "text": "Right? Going forward uh there is okay",
+    "lang": "en"
+  },
+  {
+    "start": 101.04,
+    "dur": 6.16,
+    "text": "there is a full screen view as well if",
+    "lang": "en"
+  },
+  {
+    "start": 103.119,
+    "dur": 7.68,
+    "text": "you would like to see a broader view um",
+    "lang": "en"
+  },
+  {
+    "start": 107.2,
+    "dur": 6.959,
+    "text": "you can see the graphical representation",
+    "lang": "en"
+  },
+  {
+    "start": 110.799,
+    "dur": 6.481,
+    "text": "of the me count of all of the messages.",
+    "lang": "en"
+  },
+  {
+    "start": 114.159,
+    "dur": 6.161,
+    "text": "So there are various uh colors for each",
+    "lang": "en"
+  },
+  {
+    "start": 117.28,
+    "dur": 5.6,
+    "text": "type of messages as you can see for",
+    "lang": "en"
+  },
+  {
+    "start": 120.32,
+    "dur": 6.88,
+    "text": "comparison purposes. Going forward you",
+    "lang": "en"
+  },
+  {
+    "start": 122.88,
+    "dur": 6.56,
+    "text": "can see the per message pricing for",
+    "lang": "en"
+  },
+  {
+    "start": 127.2,
+    "dur": 4.64,
+    "text": "so yeah you can see the per message",
+    "lang": "en"
+  },
+  {
+    "start": 129.44,
+    "dur": 3.84,
+    "text": "pricing for each message category. So",
+    "lang": "en"
+  },
+  {
+    "start": 131.84,
+    "dur": 4.32,
+    "text": "there are two types of categories",
+    "lang": "en"
+  },
+  {
+    "start": 133.28,
+    "dur": 5.36,
+    "text": "service and okay this is a test account",
+    "lang": "en"
+  },
+  {
+    "start": 136.16,
+    "dur": 5.04,
+    "text": "this is just a test category. So you can",
+    "lang": "en"
+  },
+  {
+    "start": 138.64,
+    "dur": 4.56,
+    "text": "see for each message category the number",
+    "lang": "en"
+  },
+  {
+    "start": 141.2,
+    "dur": 4.16,
+    "text": "of requested, submitted, sent,",
+    "lang": "en"
+  },
+  {
+    "start": 143.2,
+    "dur": 3.759,
+    "text": "delivered, write and failed messages.",
+    "lang": "en"
+  },
+  {
+    "start": 145.36,
+    "dur": 4.64,
+    "text": "Right? Going forward if you would like",
+    "lang": "en"
+  },
+  {
+    "start": 146.959,
+    "dur": 5.441,
+    "text": "to see uh the dropship's pricing wherein",
+    "lang": "en"
+  },
+  {
+    "start": 150.0,
+    "dur": 4.64,
+    "text": "there are two types of uh messaging",
+    "lang": "en"
+  },
+  {
+    "start": 152.4,
+    "dur": 4.479,
+    "text": "which is sorry two types of messages",
+    "lang": "en"
+  },
+  {
+    "start": 154.64,
+    "dur": 4.48,
+    "text": "which is basically advanced and AI",
+    "lang": "en"
+  },
+  {
+    "start": 156.879,
+    "dur": 5.521,
+    "text": "messages. So advanced message is",
+    "lang": "en"
+  },
+  {
+    "start": 159.12,
+    "dur": 6.0,
+    "text": "basically a a message sent by a",
+    "lang": "en"
+  },
+  {
+    "start": 162.4,
+    "dur": 5.6,
+    "text": "structured bot or by a human agent via",
+    "lang": "en"
+  },
+  {
+    "start": 165.12,
+    "dur": 5.44,
+    "text": "agent assist. Right? when it's an AI",
+    "lang": "en"
+  },
+  {
+    "start": 168.0,
+    "dur": 5.28,
+    "text": "message and uh there's an AI agent",
+    "lang": "en"
+  },
+  {
+    "start": 170.56,
+    "dur": 6.56,
+    "text": "integrated into a chatbot and any",
+    "lang": "en"
+  },
+  {
+    "start": 173.28,
+    "dur": 6.72,
+    "text": "message sent by uh the AI agent",
+    "lang": "en"
+  },
+  {
+    "start": 177.12,
+    "dur": 5.759,
+    "text": "basically is considered an AI message",
+    "lang": "en"
+  },
+  {
+    "start": 180.0,
+    "dur": 5.76,
+    "text": "right so uh in this particular account",
+    "lang": "en"
+  },
+  {
+    "start": 182.879,
+    "dur": 6.08,
+    "text": "there are no AI agents integrated so",
+    "lang": "en"
+  },
+  {
+    "start": 185.76,
+    "dur": 6.72,
+    "text": "it's listed only for advanced messages",
+    "lang": "en"
+  },
+  {
+    "start": 188.959,
+    "dur": 5.841,
+    "text": "and like like I mentioned so any human",
+    "lang": "en"
+  },
+  {
+    "start": 192.48,
+    "dur": 5.92,
+    "text": "agent sending out any messages is",
+    "lang": "en"
+  },
+  {
+    "start": 194.8,
+    "dur": 6.799,
+    "text": "considered also as an as an advanced",
+    "lang": "en"
+  },
+  {
+    "start": 198.4,
+    "dur": 4.8,
+    "text": "message and a structured journey and",
+    "lang": "en"
+  },
+  {
+    "start": 201.599,
+    "dur": 3.92,
+    "text": "messages from a structured journey is",
+    "lang": "en"
+  },
+  {
+    "start": 203.2,
+    "dur": 6.08,
+    "text": "also considered an advanced message.",
+    "lang": "en"
+  },
+  {
+    "start": 205.519,
+    "dur": 5.761,
+    "text": "Right? So, uh another",
+    "lang": "en"
+  },
+  {
+    "start": 209.28,
+    "dur": 3.84,
+    "text": "tabular column showing the number of",
+    "lang": "en"
+  },
+  {
+    "start": 211.28,
+    "dur": 4.64,
+    "text": "advanced messages and like I mentioned",
+    "lang": "en"
+  },
+  {
+    "start": 213.12,
+    "dur": 6.399,
+    "text": "there are no AI agents integrated into",
+    "lang": "en"
+  },
+  {
+    "start": 215.92,
+    "dur": 6.0,
+    "text": "this account. So no AI messages",
+    "lang": "en"
+  },
+  {
+    "start": 219.519,
+    "dur": 6.321,
+    "text": "and uh yeah you can see a graphical",
+    "lang": "en"
+  },
+  {
+    "start": 221.92,
+    "dur": 5.679,
+    "text": "representation of the same again um",
+    "lang": "en"
+  },
+  {
+    "start": 225.84,
+    "dur": 4.16,
+    "text": "where you can see the message delivery",
+    "lang": "en"
+  },
+  {
+    "start": 227.599,
+    "dur": 4.72,
+    "text": "breakdown the total number of advanced",
+    "lang": "en"
+  },
+  {
+    "start": 230.0,
+    "dur": 6.799,
+    "text": "messages is 801",
+    "lang": "en"
+  },
+  {
+    "start": 232.319,
+    "dur": 7.521,
+    "text": "and uh comparatively in uh sorry",
+    "lang": "en"
+  },
+  {
+    "start": 236.799,
+    "dur": 5.681,
+    "text": "comparing the uh structured journeys and",
+    "lang": "en"
+  },
+  {
+    "start": 239.84,
+    "dur": 5.2,
+    "text": "the number of messages sent by a human",
+    "lang": "en"
+  },
+  {
+    "start": 242.48,
+    "dur": 5.28,
+    "text": "agent you can see there's 99 since",
+    "lang": "en"
+  },
+  {
+    "start": 245.04,
+    "dur": 5.279,
+    "text": "there's only one uh agent one message",
+    "lang": "en"
+  },
+  {
+    "start": 247.76,
+    "dur": 5.119,
+    "text": "sent by human agent the percentage of",
+    "lang": "en"
+  },
+  {
+    "start": 250.319,
+    "dur": 4.721,
+    "text": "the same is very low.",
+    "lang": "en"
+  },
+  {
+    "start": 252.879,
+    "dur": 5.04,
+    "text": "You can have a template level summary as",
+    "lang": "en"
+  },
+  {
+    "start": 255.04,
+    "dur": 5.36,
+    "text": "well. Uh then going forward you can see",
+    "lang": "en"
+  },
+  {
+    "start": 257.919,
+    "dur": 5.921,
+    "text": "the message failure summary if there are",
+    "lang": "en"
+  },
+  {
+    "start": 260.4,
+    "dur": 6.32,
+    "text": "any uh failed uh messages to be",
+    "lang": "en"
+  },
+  {
+    "start": 263.84,
+    "dur": 4.799,
+    "text": "delivered. You can see the op operator",
+    "lang": "en"
+  },
+  {
+    "start": 266.72,
+    "dur": 4.32,
+    "text": "error code and the failure reason as",
+    "lang": "en"
+  },
+  {
+    "start": 268.639,
+    "dur": 6.481,
+    "text": "well once listed down. Right. going",
+    "lang": "en"
+  },
+  {
+    "start": 271.04,
+    "dur": 7.28,
+    "text": "forward you can see uh the best hour in",
+    "lang": "en"
+  },
+  {
+    "start": 275.12,
+    "dur": 6.079,
+    "text": "which the messages being sent out are",
+    "lang": "en"
+  },
+  {
+    "start": 278.32,
+    "dur": 5.84,
+    "text": "read by the users on WhatsApp right so",
+    "lang": "en"
+  },
+  {
+    "start": 281.199,
+    "dur": 8.0,
+    "text": "you can see the best hour of the day at",
+    "lang": "en"
+  },
+  {
+    "start": 284.16,
+    "dur": 8.08,
+    "text": "which uh I believe it is 12 p.m. for",
+    "lang": "en"
+  },
+  {
+    "start": 289.199,
+    "dur": 6.72,
+    "text": "this particular account and then yeah",
+    "lang": "en"
+  },
+  {
+    "start": 292.24,
+    "dur": 5.84,
+    "text": "and then 3:00 3 p.m.",
+    "lang": "en"
+  },
+  {
+    "start": 295.919,
+    "dur": 5.921,
+    "text": "And then uh you can always see the",
+    "lang": "en"
+  },
+  {
+    "start": 298.08,
+    "dur": 6.559,
+    "text": "messages delivered by region as well.",
+    "lang": "en"
+  },
+  {
+    "start": 301.84,
+    "dur": 4.56,
+    "text": "The the India and UAE are the two",
+    "lang": "en"
+  },
+  {
+    "start": 304.639,
+    "dur": 4.481,
+    "text": "regions targeted from this particular",
+    "lang": "en"
+  },
+  {
+    "start": 306.4,
+    "dur": 5.04,
+    "text": "account. And then going forward you can",
+    "lang": "en"
+  },
+  {
+    "start": 309.12,
+    "dur": 5.76,
+    "text": "see the messages read by day of the",
+    "lang": "en"
+  },
+  {
+    "start": 311.44,
+    "dur": 6.56,
+    "text": "week. So on Sunday the total read count",
+    "lang": "en"
+  },
+  {
+    "start": 314.88,
+    "dur": 5.039,
+    "text": "was 66 on Monday it was 31. And you can",
+    "lang": "en"
+  },
+  {
+    "start": 318.0,
+    "dur": 5.6,
+    "text": "see for the rest of the days of the week",
+    "lang": "en"
+  },
+  {
+    "start": 319.919,
+    "dur": 6.321,
+    "text": "as well over here itself right uh you",
+    "lang": "en"
+  },
+  {
+    "start": 323.6,
+    "dur": 5.28,
+    "text": "can see the total uh conversation based",
+    "lang": "en"
+  },
+  {
+    "start": 326.24,
+    "dur": 6.32,
+    "text": "pricing as well if you would like to see",
+    "lang": "en"
+  },
+  {
+    "start": 328.88,
+    "dur": 6.0,
+    "text": "a consolidated pricing view for uh the",
+    "lang": "en"
+  },
+  {
+    "start": 332.56,
+    "dur": 4.56,
+    "text": "total number of submitted conversations",
+    "lang": "en"
+  },
+  {
+    "start": 334.88,
+    "dur": 5.44,
+    "text": "send conversations and the delivered",
+    "lang": "en"
+  },
+  {
+    "start": 337.12,
+    "dur": 5.12,
+    "text": "conversations too. Right. Uh moving",
+    "lang": "en"
+  },
+  {
+    "start": 340.32,
+    "dur": 4.4,
+    "text": "forward.",
+    "lang": "en"
+  },
+  {
+    "start": 342.24,
+    "dur": 4.88,
+    "text": "Yeah. Moving forward. Uh if you notice",
+    "lang": "en"
+  },
+  {
+    "start": 344.72,
+    "dur": 5.919,
+    "text": "the report section, you can always",
+    "lang": "en"
+  },
+  {
+    "start": 347.12,
+    "dur": 6.799,
+    "text": "generate a report for the delivery part",
+    "lang": "en"
+  },
+  {
+    "start": 350.639,
+    "dur": 5.601,
+    "text": "wherein you choose the uh threshold or",
+    "lang": "en"
+  },
+  {
+    "start": 353.919,
+    "dur": 4.641,
+    "text": "the date range you would like to uh",
+    "lang": "en"
+  },
+  {
+    "start": 356.24,
+    "dur": 4.32,
+    "text": "download the report.",
+    "lang": "en"
+  },
+  {
+    "start": 358.56,
+    "dur": 4.96,
+    "text": "Uh click on apply and then generate the",
+    "lang": "en"
+  },
+  {
+    "start": 360.56,
+    "dur": 5.6,
+    "text": "report. Once generated there will be the",
+    "lang": "en"
+  },
+  {
+    "start": 363.52,
+    "dur": 4.72,
+    "text": "report uh appearing right here and then",
+    "lang": "en"
+  },
+  {
+    "start": 366.16,
+    "dur": 5.039,
+    "text": "you can go ahead and download the report",
+    "lang": "en"
+  },
+  {
+    "start": 368.24,
+    "dur": 6.32,
+    "text": "as usual. Okay. And going forward you",
+    "lang": "en"
+  },
+  {
+    "start": 371.199,
+    "dur": 5.84,
+    "text": "can have a campaigns you can have a",
+    "lang": "en"
+  },
+  {
+    "start": 374.56,
+    "dur": 4.56,
+    "text": "report generated for the campaigns as",
+    "lang": "en"
+  },
+  {
+    "start": 377.039,
+    "dur": 5.041,
+    "text": "well wherein you can have an aggregated",
+    "lang": "en"
+  },
+  {
+    "start": 379.12,
+    "dur": 5.04,
+    "text": "campaign report consisting of the total",
+    "lang": "en"
+  },
+  {
+    "start": 382.08,
+    "dur": 4.559,
+    "text": "number of clicks unique clicks",
+    "lang": "en"
+  },
+  {
+    "start": 384.16,
+    "dur": 4.4,
+    "text": "clickthrough rate uh the read rate and",
+    "lang": "en"
+  },
+  {
+    "start": 386.639,
+    "dur": 4.721,
+    "text": "the delivery rate of the campaigns",
+    "lang": "en"
+  },
+  {
+    "start": 388.56,
+    "dur": 7.479,
+    "text": "you're running. Just have to choose the",
+    "lang": "en"
+  },
+  {
+    "start": 391.36,
+    "dur": 4.679,
+    "text": "uh the date range again.",
+    "lang": "en"
+  },
+  {
+    "start": 396.24,
+    "dur": 3.44,
+    "text": "Click on apply and then generate the",
+    "lang": "en"
+  },
+  {
+    "start": 397.84,
+    "dur": 3.84,
+    "text": "file. Once generated, it will be",
+    "lang": "en"
+  },
+  {
+    "start": 399.68,
+    "dur": 4.48,
+    "text": "appearing over here as you can see on",
+    "lang": "en"
+  },
+  {
+    "start": 401.68,
+    "dur": 4.48,
+    "text": "the screen and go ahead and download the",
+    "lang": "en"
+  },
+  {
+    "start": 404.16,
+    "dur": 5.36,
+    "text": "zip file. All right, the zip file will",
+    "lang": "en"
+  },
+  {
+    "start": 406.16,
+    "dur": 6.08,
+    "text": "have an excel or a CSV file stored in",
+    "lang": "en"
+  },
+  {
+    "start": 409.52,
+    "dur": 6.399,
+    "text": "it. Now, moving forward, you can always",
+    "lang": "en"
+  },
+  {
+    "start": 412.24,
+    "dur": 5.679,
+    "text": "download the metrics for uh any links",
+    "lang": "en"
+  },
+  {
+    "start": 415.919,
+    "dur": 4.641,
+    "text": "you're uh you're attaching in the",
+    "lang": "en"
+  },
+  {
+    "start": 417.919,
+    "dur": 5.201,
+    "text": "campaigns. So you can uh see the click",
+    "lang": "en"
+  },
+  {
+    "start": 420.56,
+    "dur": 6.16,
+    "text": "timestamp, the original URL, the",
+    "lang": "en"
+  },
+  {
+    "start": 423.12,
+    "dur": 6.32,
+    "text": "dropshop URL, uh the device while the",
+    "lang": "en"
+  },
+  {
+    "start": 426.72,
+    "dur": 5.199,
+    "text": "user from which the user uh click the",
+    "lang": "en"
+  },
+  {
+    "start": 429.44,
+    "dur": 5.599,
+    "text": "URL on or if the browser on which the",
+    "lang": "en"
+  },
+  {
+    "start": 431.919,
+    "dur": 4.56,
+    "text": "URL is viewed by the user, right? And",
+    "lang": "en"
+  },
+  {
+    "start": 435.039,
+    "dur": 2.961,
+    "text": "then similarly, you just have to choose",
+    "lang": "en"
+  },
+  {
+    "start": 436.479,
+    "dur": 5.201,
+    "text": "the date range and then generate the",
+    "lang": "en"
+  },
+  {
+    "start": 438.0,
+    "dur": 5.919,
+    "text": "file. And similarly for how a link uh",
+    "lang": "en"
+  },
+  {
+    "start": 441.68,
+    "dur": 4.32,
+    "text": "click sorry for how a report is",
+    "lang": "en"
+  },
+  {
+    "start": 443.919,
+    "dur": 4.321,
+    "text": "generated for link clicks you can always",
+    "lang": "en"
+  },
+  {
+    "start": 446.0,
+    "dur": 4.479,
+    "text": "generate a report for button clicks as",
+    "lang": "en"
+  },
+  {
+    "start": 448.24,
+    "dur": 3.92,
+    "text": "well where you can see the the text on",
+    "lang": "en"
+  },
+  {
+    "start": 450.479,
+    "dur": 4.481,
+    "text": "the button that mention that the",
+    "lang": "en"
+  },
+  {
+    "start": 452.16,
+    "dur": 4.64,
+    "text": "mentioned phone number click then you",
+    "lang": "en"
+  },
+  {
+    "start": 454.96,
+    "dur": 4.959,
+    "text": "can see the button click timestamp as",
+    "lang": "en"
+  },
+  {
+    "start": 456.8,
+    "dur": 4.959,
+    "text": "well right so uh yeah similarly again",
+    "lang": "en"
+  },
+  {
+    "start": 459.919,
+    "dur": 5.441,
+    "text": "you choose the date range and then go",
+    "lang": "en"
+  },
+  {
+    "start": 461.759,
+    "dur": 6.0,
+    "text": "ahead and gen generate the file. So uh",
+    "lang": "en"
+  },
+  {
+    "start": 465.36,
+    "dur": 5.52,
+    "text": "this is the analytics module. This is on",
+    "lang": "en"
+  },
+  {
+    "start": 467.759,
+    "dur": 6.16,
+    "text": "a surface level. Then uh if at all any",
+    "lang": "en"
+  },
+  {
+    "start": 470.88,
+    "dur": 6.56,
+    "text": "custom requirements are as required for",
+    "lang": "en"
+  },
+  {
+    "start": 473.919,
+    "dur": 6.321,
+    "text": "any of the requirements, it's always uh",
+    "lang": "en"
+  },
+  {
+    "start": 477.44,
+    "dur": 4.72,
+    "text": "so gshop always supports uh custom",
+    "lang": "en"
+  },
+  {
+    "start": 480.24,
+    "dur": 5.6,
+    "text": "analytics",
+    "lang": "en"
+  },
+  {
+    "start": 482.16,
+    "dur": 6.96,
+    "text": "uh and so gub always supports custom",
+    "lang": "en"
+  },
+  {
+    "start": 485.84,
+    "dur": 5.6,
+    "text": "analytics in order to uh support your",
+    "lang": "en"
+  },
+  {
+    "start": 489.12,
+    "dur": 4.24,
+    "text": "the client's requirements and so on.",
+    "lang": "en"
+  },
+  {
+    "start": 491.44,
+    "dur": 4.319,
+    "text": "Right? Thank you so much for viewing",
+    "lang": "en"
+  },
+  {
+    "start": 493.36,
+    "dur": 5.399,
+    "text": "this and I hope you have a good day.",
+    "lang": "en"
+  },
+  {
+    "start": 495.759,
+    "dur": 3.0,
+    "text": "Bye-bye.",
+    "lang": "en"
+  }
+]

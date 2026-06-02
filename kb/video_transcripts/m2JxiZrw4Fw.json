@@ -1,0 +1,1010 @@
+[
+  {
+    "start": 3.919,
+    "dur": 5.521,
+    "text": "Hi everyone.",
+    "lang": "en"
+  },
+  {
+    "start": 6.16,
+    "dur": 6.0,
+    "text": "So today we'll see that how does the",
+    "lang": "en"
+  },
+  {
+    "start": 9.44,
+    "dur": 6.319,
+    "text": "analytics look like for the particular",
+    "lang": "en"
+  },
+  {
+    "start": 12.16,
+    "dur": 6.959,
+    "text": "bot studio what we have. So mainly this",
+    "lang": "en"
+  },
+  {
+    "start": 15.759,
+    "dur": 6.161,
+    "text": "analytics has your entire analysis of",
+    "lang": "en"
+  },
+  {
+    "start": 19.119,
+    "dur": 4.561,
+    "text": "your end users particular journeys the",
+    "lang": "en"
+  },
+  {
+    "start": 21.92,
+    "dur": 3.599,
+    "text": "way your end users are responding to",
+    "lang": "en"
+  },
+  {
+    "start": 23.68,
+    "dur": 5.04,
+    "text": "your particular user journey what you",
+    "lang": "en"
+  },
+  {
+    "start": 25.519,
+    "dur": 5.84,
+    "text": "have created each and everything.",
+    "lang": "en"
+  },
+  {
+    "start": 28.72,
+    "dur": 5.04,
+    "text": "So we have much more of an in-depth",
+    "lang": "en"
+  },
+  {
+    "start": 31.359,
+    "dur": 4.321,
+    "text": "analytics out over here. So starting",
+    "lang": "en"
+  },
+  {
+    "start": 33.76,
+    "dur": 4.4,
+    "text": "with the particular dashboard you can",
+    "lang": "en"
+  },
+  {
+    "start": 35.68,
+    "dur": 5.84,
+    "text": "see the number of active users what are",
+    "lang": "en"
+  },
+  {
+    "start": 38.16,
+    "dur": 5.52,
+    "text": "there. So it's a real time uh you know",
+    "lang": "en"
+  },
+  {
+    "start": 41.52,
+    "dur": 4.719,
+    "text": "tracking mechanism where you see that",
+    "lang": "en"
+  },
+  {
+    "start": 43.68,
+    "dur": 4.719,
+    "text": "how many new users were there and how",
+    "lang": "en"
+  },
+  {
+    "start": 46.239,
+    "dur": 3.84,
+    "text": "many active users are there at the live",
+    "lang": "en"
+  },
+  {
+    "start": 48.399,
+    "dur": 4.8,
+    "text": "instance",
+    "lang": "en"
+  },
+  {
+    "start": 50.079,
+    "dur": 5.441,
+    "text": "etc. You can also see this entire",
+    "lang": "en"
+  },
+  {
+    "start": 53.199,
+    "dur": 4.0,
+    "text": "history that what has been your",
+    "lang": "en"
+  },
+  {
+    "start": 55.52,
+    "dur": 3.519,
+    "text": "particular peak time at which the",
+    "lang": "en"
+  },
+  {
+    "start": 57.199,
+    "dur": 4.561,
+    "text": "particular conversations were happening.",
+    "lang": "en"
+  },
+  {
+    "start": 59.039,
+    "dur": 5.681,
+    "text": "The number of messages, number of users",
+    "lang": "en"
+  },
+  {
+    "start": 61.76,
+    "dur": 4.88,
+    "text": "on the basis of you know date on date or",
+    "lang": "en"
+  },
+  {
+    "start": 64.72,
+    "dur": 3.84,
+    "text": "last particular two hours history each",
+    "lang": "en"
+  },
+  {
+    "start": 66.64,
+    "dur": 3.839,
+    "text": "and everything is there available out",
+    "lang": "en"
+  },
+  {
+    "start": 68.56,
+    "dur": 3.68,
+    "text": "over here.",
+    "lang": "en"
+  },
+  {
+    "start": 70.479,
+    "dur": 4.241,
+    "text": "Now you can see the total number of",
+    "lang": "en"
+  },
+  {
+    "start": 72.24,
+    "dur": 5.12,
+    "text": "messages that were flown in between this",
+    "lang": "en"
+  },
+  {
+    "start": 74.72,
+    "dur": 4.96,
+    "text": "particular interval and then you also",
+    "lang": "en"
+  },
+  {
+    "start": 77.36,
+    "dur": 4.32,
+    "text": "have your particular message insights.",
+    "lang": "en"
+  },
+  {
+    "start": 79.68,
+    "dur": 4.16,
+    "text": "So this is what the message insights",
+    "lang": "en"
+  },
+  {
+    "start": 81.68,
+    "dur": 5.36,
+    "text": "look like. What are the trends? What are",
+    "lang": "en"
+  },
+  {
+    "start": 83.84,
+    "dur": 5.12,
+    "text": "the entire things out over here? So this",
+    "lang": "en"
+  },
+  {
+    "start": 87.04,
+    "dur": 3.759,
+    "text": "is also what we have that the what is",
+    "lang": "en"
+  },
+  {
+    "start": 88.96,
+    "dur": 4.799,
+    "text": "the total messages, how many messages",
+    "lang": "en"
+  },
+  {
+    "start": 90.799,
+    "dur": 5.041,
+    "text": "were sent by the bot and overall this is",
+    "lang": "en"
+  },
+  {
+    "start": 93.759,
+    "dur": 4.881,
+    "text": "what we have in the term of dashboard.",
+    "lang": "en"
+  },
+  {
+    "start": 95.84,
+    "dur": 4.8,
+    "text": "Now we have this as a weekly filter what",
+    "lang": "en"
+  },
+  {
+    "start": 98.64,
+    "dur": 4.72,
+    "text": "I have kept it and these are my channels",
+    "lang": "en"
+  },
+  {
+    "start": 100.64,
+    "dur": 4.479,
+    "text": "WhatsApp website and I can export this.",
+    "lang": "en"
+  },
+  {
+    "start": 103.36,
+    "dur": 3.52,
+    "text": "So you have your entire thing getting",
+    "lang": "en"
+  },
+  {
+    "start": 105.119,
+    "dur": 3.521,
+    "text": "exported to you. So in case if you want",
+    "lang": "en"
+  },
+  {
+    "start": 106.88,
+    "dur": 4.239,
+    "text": "to go ahead and store it in your DB or",
+    "lang": "en"
+  },
+  {
+    "start": 108.64,
+    "dur": 4.72,
+    "text": "something, you have that also available.",
+    "lang": "en"
+  },
+  {
+    "start": 111.119,
+    "dur": 4.081,
+    "text": "Now you have something as your entire",
+    "lang": "en"
+  },
+  {
+    "start": 113.36,
+    "dur": 5.039,
+    "text": "total message conversations. So you can",
+    "lang": "en"
+  },
+  {
+    "start": 115.2,
+    "dur": 5.199,
+    "text": "see the bot messages, customer messages,",
+    "lang": "en"
+  },
+  {
+    "start": 118.399,
+    "dur": 4.241,
+    "text": "total number of messages what are there.",
+    "lang": "en"
+  },
+  {
+    "start": 120.399,
+    "dur": 4.561,
+    "text": "You can also compare this. You see the",
+    "lang": "en"
+  },
+  {
+    "start": 122.64,
+    "dur": 5.119,
+    "text": "comparison benchmark that I have taken a",
+    "lang": "en"
+  },
+  {
+    "start": 124.96,
+    "dur": 4.48,
+    "text": "date. Okay. So date on date how does it",
+    "lang": "en"
+  },
+  {
+    "start": 127.759,
+    "dur": 3.2,
+    "text": "look like and you have each and",
+    "lang": "en"
+  },
+  {
+    "start": 129.44,
+    "dur": 4.799,
+    "text": "everything you know triggered out over",
+    "lang": "en"
+  },
+  {
+    "start": 130.959,
+    "dur": 5.601,
+    "text": "here. So these were my past messages,",
+    "lang": "en"
+  },
+  {
+    "start": 134.239,
+    "dur": 3.921,
+    "text": "total messages and how does the trend",
+    "lang": "en"
+  },
+  {
+    "start": 136.56,
+    "dur": 3.759,
+    "text": "and everything look like. So you also",
+    "lang": "en"
+  },
+  {
+    "start": 138.16,
+    "dur": 4.4,
+    "text": "have in that particular POV and",
+    "lang": "en"
+  },
+  {
+    "start": 140.319,
+    "dur": 4.081,
+    "text": "everything there. Now you have the",
+    "lang": "en"
+  },
+  {
+    "start": 142.56,
+    "dur": 3.759,
+    "text": "conversations that what is the active",
+    "lang": "en"
+  },
+  {
+    "start": 144.4,
+    "dur": 4.4,
+    "text": "conversations which are happening new",
+    "lang": "en"
+  },
+  {
+    "start": 146.319,
+    "dur": 5.441,
+    "text": "conversations and how many have been",
+    "lang": "en"
+  },
+  {
+    "start": 148.8,
+    "dur": 5.76,
+    "text": "transferred to a human agent and so on",
+    "lang": "en"
+  },
+  {
+    "start": 151.76,
+    "dur": 4.64,
+    "text": "and so forth. So these are also what we",
+    "lang": "en"
+  },
+  {
+    "start": 154.56,
+    "dur": 4.24,
+    "text": "have and along with that you also have",
+    "lang": "en"
+  },
+  {
+    "start": 156.4,
+    "dur": 4.4,
+    "text": "the conversation strength. So wherein",
+    "lang": "en"
+  },
+  {
+    "start": 158.8,
+    "dur": 4.32,
+    "text": "you can again compare with the past for",
+    "lang": "en"
+  },
+  {
+    "start": 160.8,
+    "dur": 4.64,
+    "text": "a better clarity and to understand that",
+    "lang": "en"
+  },
+  {
+    "start": 163.12,
+    "dur": 3.759,
+    "text": "how does the conversations look like. So",
+    "lang": "en"
+  },
+  {
+    "start": 165.44,
+    "dur": 4.24,
+    "text": "let's say you have run a marketing",
+    "lang": "en"
+  },
+  {
+    "start": 166.879,
+    "dur": 4.881,
+    "text": "campaign and from a marketing campaign",
+    "lang": "en"
+  },
+  {
+    "start": 169.68,
+    "dur": 4.559,
+    "text": "how many end users came through that",
+    "lang": "en"
+  },
+  {
+    "start": 171.76,
+    "dur": 5.92,
+    "text": "particular conversation way and how many",
+    "lang": "en"
+  },
+  {
+    "start": 174.239,
+    "dur": 5.36,
+    "text": "end users are having a particular new",
+    "lang": "en"
+  },
+  {
+    "start": 177.68,
+    "dur": 4.559,
+    "text": "conversations out over here active",
+    "lang": "en"
+  },
+  {
+    "start": 179.599,
+    "dur": 4.961,
+    "text": "conversations everything is there.",
+    "lang": "en"
+  },
+  {
+    "start": 182.239,
+    "dur": 4.64,
+    "text": "You see a split of the organic and",
+    "lang": "en"
+  },
+  {
+    "start": 184.56,
+    "dur": 4.319,
+    "text": "inorganic traffic also coming in and",
+    "lang": "en"
+  },
+  {
+    "start": 186.879,
+    "dur": 3.761,
+    "text": "along with that you also get the user",
+    "lang": "en"
+  },
+  {
+    "start": 188.879,
+    "dur": 3.761,
+    "text": "insights.",
+    "lang": "en"
+  },
+  {
+    "start": 190.64,
+    "dur": 4.72,
+    "text": ">> What are the active set of users, new",
+    "lang": "en"
+  },
+  {
+    "start": 192.64,
+    "dur": 5.28,
+    "text": "users, returning users each and",
+    "lang": "en"
+  },
+  {
+    "start": 195.36,
+    "dur": 4.959,
+    "text": "everything and again a trend for that as",
+    "lang": "en"
+  },
+  {
+    "start": 197.92,
+    "dur": 4.72,
+    "text": "well. So we have kept each and every",
+    "lang": "en"
+  },
+  {
+    "start": 200.319,
+    "dur": 4.0,
+    "text": "data available over here. So whosoever",
+    "lang": "en"
+  },
+  {
+    "start": 202.64,
+    "dur": 3.76,
+    "text": "wants to you know however use the data",
+    "lang": "en"
+  },
+  {
+    "start": 204.319,
+    "dur": 5.28,
+    "text": "that is there.",
+    "lang": "en"
+  },
+  {
+    "start": 206.4,
+    "dur": 7.199,
+    "text": "Now seeing that what has been the most",
+    "lang": "en"
+  },
+  {
+    "start": 209.599,
+    "dur": 5.761,
+    "text": "triggered conversational path for us. So",
+    "lang": "en"
+  },
+  {
+    "start": 213.599,
+    "dur": 3.521,
+    "text": "over here we can understand each and",
+    "lang": "en"
+  },
+  {
+    "start": 215.36,
+    "dur": 4.4,
+    "text": "everything",
+    "lang": "en"
+  },
+  {
+    "start": 217.12,
+    "dur": 5.36,
+    "text": ">> that how your end users have been going",
+    "lang": "en"
+  },
+  {
+    "start": 219.76,
+    "dur": 4.479,
+    "text": "and traversing through multiple journeys",
+    "lang": "en"
+  },
+  {
+    "start": 222.48,
+    "dur": 4.56,
+    "text": "what you have created what is your hero",
+    "lang": "en"
+  },
+  {
+    "start": 224.239,
+    "dur": 5.041,
+    "text": "journey etc. Now you see these are the",
+    "lang": "en"
+  },
+  {
+    "start": 227.04,
+    "dur": 5.44,
+    "text": "inactivity nudges these are your cyclic",
+    "lang": "en"
+  },
+  {
+    "start": 229.28,
+    "dur": 4.56,
+    "text": "nudges and your eggit nodes each and",
+    "lang": "en"
+  },
+  {
+    "start": 232.48,
+    "dur": 2.96,
+    "text": "everything is there. Again this is",
+    "lang": "en"
+  },
+  {
+    "start": 233.84,
+    "dur": 4.64,
+    "text": "completely available on a filter to",
+    "lang": "en"
+  },
+  {
+    "start": 235.44,
+    "dur": 4.879,
+    "text": "filter basis. So anyone you know wants",
+    "lang": "en"
+  },
+  {
+    "start": 238.48,
+    "dur": 5.119,
+    "text": "to understand from a filter wise PUB",
+    "lang": "en"
+  },
+  {
+    "start": 240.319,
+    "dur": 5.12,
+    "text": "that is also there.",
+    "lang": "en"
+  },
+  {
+    "start": 243.599,
+    "dur": 4.161,
+    "text": "Now the same way you had your",
+    "lang": "en"
+  },
+  {
+    "start": 245.439,
+    "dur": 4.88,
+    "text": "conversational path you have the journey",
+    "lang": "en"
+  },
+  {
+    "start": 247.76,
+    "dur": 4.88,
+    "text": "by journey tracker also available. This",
+    "lang": "en"
+  },
+  {
+    "start": 250.319,
+    "dur": 4.401,
+    "text": "is a journey what we had created how",
+    "lang": "en"
+  },
+  {
+    "start": 252.64,
+    "dur": 4.24,
+    "text": "many active users are there to total",
+    "lang": "en"
+  },
+  {
+    "start": 254.72,
+    "dur": 3.919,
+    "text": "number of conversation what it happened.",
+    "lang": "en"
+  },
+  {
+    "start": 256.88,
+    "dur": 3.759,
+    "text": "Again this is on a filtered basis what",
+    "lang": "en"
+  },
+  {
+    "start": 258.639,
+    "dur": 4.961,
+    "text": "I'm showing you. So you can always have",
+    "lang": "en"
+  },
+  {
+    "start": 260.639,
+    "dur": 7.441,
+    "text": "your filter based things out over here.",
+    "lang": "en"
+  },
+  {
+    "start": 263.6,
+    "dur": 6.879,
+    "text": "Now let me show this to you.",
+    "lang": "en"
+  },
+  {
+    "start": 268.08,
+    "dur": 6.76,
+    "text": "Okay. So you have this, you have this. I",
+    "lang": "en"
+  },
+  {
+    "start": 270.479,
+    "dur": 4.361,
+    "text": "click on apply out over here.",
+    "lang": "en"
+  },
+  {
+    "start": 275.759,
+    "dur": 5.121,
+    "text": ">> Okay. So we don't we are not able to",
+    "lang": "en"
+  },
+  {
+    "start": 277.28,
+    "dur": 5.52,
+    "text": "pull the data as of now. But yeah uh in",
+    "lang": "en"
+  },
+  {
+    "start": 280.88,
+    "dur": 4.56,
+    "text": "a nutshell if you understand what this",
+    "lang": "en"
+  },
+  {
+    "start": 282.8,
+    "dur": 4.24,
+    "text": "is all about. You get the entire drop",
+    "lang": "en"
+  },
+  {
+    "start": 285.44,
+    "dur": 4.72,
+    "text": "off nodes where your end users are",
+    "lang": "en"
+  },
+  {
+    "start": 287.04,
+    "dur": 5.2,
+    "text": "dropping off. So if you see this",
+    "lang": "en"
+  },
+  {
+    "start": 290.16,
+    "dur": 3.92,
+    "text": "particular thing that this is the node",
+    "lang": "en"
+  },
+  {
+    "start": 292.24,
+    "dur": 4.08,
+    "text": "where the end users were dropping off",
+    "lang": "en"
+  },
+  {
+    "start": 294.08,
+    "dur": 4.559,
+    "text": "this is the journey and how many set of",
+    "lang": "en"
+  },
+  {
+    "start": 296.32,
+    "dur": 4.4,
+    "text": "cohort of people have dropped off from",
+    "lang": "en"
+  },
+  {
+    "start": 298.639,
+    "dur": 4.321,
+    "text": "this particular",
+    "lang": "en"
+  },
+  {
+    "start": 300.72,
+    "dur": 4.08,
+    "text": "structured path. So you get this",
+    "lang": "en"
+  },
+  {
+    "start": 302.96,
+    "dur": 3.44,
+    "text": "insights out over here that you know",
+    "lang": "en"
+  },
+  {
+    "start": 304.8,
+    "dur": 3.92,
+    "text": "what are the particular drop off nodes",
+    "lang": "en"
+  },
+  {
+    "start": 306.4,
+    "dur": 4.079,
+    "text": "and everything looking like and what's",
+    "lang": "en"
+  },
+  {
+    "start": 308.72,
+    "dur": 3.199,
+    "text": "the reason and etc is also what you",
+    "lang": "en"
+  },
+  {
+    "start": 310.479,
+    "dur": 3.601,
+    "text": "understand that this is the instance",
+    "lang": "en"
+  },
+  {
+    "start": 311.919,
+    "dur": 4.56,
+    "text": "which are dropping off. Now coming to",
+    "lang": "en"
+  },
+  {
+    "start": 314.08,
+    "dur": 5.36,
+    "text": "the part of AI.",
+    "lang": "en"
+  },
+  {
+    "start": 316.479,
+    "dur": 5.28,
+    "text": "Now what we have done is again let me",
+    "lang": "en"
+  },
+  {
+    "start": 319.44,
+    "dur": 5.199,
+    "text": "show on a wider basis how does this look",
+    "lang": "en"
+  },
+  {
+    "start": 321.759,
+    "dur": 5.121,
+    "text": "like. I'll just select apply. So here we",
+    "lang": "en"
+  },
+  {
+    "start": 324.639,
+    "dur": 5.441,
+    "text": "understand from an AI capability",
+    "lang": "en"
+  },
+  {
+    "start": 326.88,
+    "dur": 6.159,
+    "text": "perspective that how many intents have",
+    "lang": "en"
+  },
+  {
+    "start": 330.08,
+    "dur": 6.399,
+    "text": "been captured, what are the unidentified",
+    "lang": "en"
+  },
+  {
+    "start": 333.039,
+    "dur": 6.401,
+    "text": "uh utterances, identified utterances",
+    "lang": "en"
+  },
+  {
+    "start": 336.479,
+    "dur": 6.16,
+    "text": "and what is the uh maximum intent of an",
+    "lang": "en"
+  },
+  {
+    "start": 339.44,
+    "dur": 5.199,
+    "text": "end user out over here and on top of it",
+    "lang": "en"
+  },
+  {
+    "start": 342.639,
+    "dur": 3.361,
+    "text": "how many times the entire journey or",
+    "lang": "en"
+  },
+  {
+    "start": 344.639,
+    "dur": 3.361,
+    "text": "something has been triggered for them",
+    "lang": "en"
+  },
+  {
+    "start": 346.0,
+    "dur": 3.919,
+    "text": "when this particular root node has been",
+    "lang": "en"
+  },
+  {
+    "start": 348.0,
+    "dur": 4.4,
+    "text": "you know initiated or something where we",
+    "lang": "en"
+  },
+  {
+    "start": 349.919,
+    "dur": 4.641,
+    "text": "have identified the intent. Then you",
+    "lang": "en"
+  },
+  {
+    "start": 352.4,
+    "dur": 5.12,
+    "text": "have your FAQ based intent also where",
+    "lang": "en"
+  },
+  {
+    "start": 354.56,
+    "dur": 6.32,
+    "text": "you have a structured way of someone",
+    "lang": "en"
+  },
+  {
+    "start": 357.52,
+    "dur": 5.519,
+    "text": "asking X then you trigger Y. So like",
+    "lang": "en"
+  },
+  {
+    "start": 360.88,
+    "dur": 4.08,
+    "text": "this what we have done is we have",
+    "lang": "en"
+  },
+  {
+    "start": 363.039,
+    "dur": 4.72,
+    "text": "created each and everything under one",
+    "lang": "en"
+  },
+  {
+    "start": 364.96,
+    "dur": 4.799,
+    "text": "particular panel which is analytics a",
+    "lang": "en"
+  },
+  {
+    "start": 367.759,
+    "dur": 3.761,
+    "text": "single console out over here helping you",
+    "lang": "en"
+  },
+  {
+    "start": 369.759,
+    "dur": 3.921,
+    "text": "with each and everything each and every",
+    "lang": "en"
+  },
+  {
+    "start": 371.52,
+    "dur": 3.84,
+    "text": "data for you to understand that who and",
+    "lang": "en"
+  },
+  {
+    "start": 373.68,
+    "dur": 3.519,
+    "text": "how your end user is performing and",
+    "lang": "en"
+  },
+  {
+    "start": 375.36,
+    "dur": 4.0,
+    "text": "behaving. So you have everything",
+    "lang": "en"
+  },
+  {
+    "start": 377.199,
+    "dur": 4.641,
+    "text": "available out over here in a nutshell",
+    "lang": "en"
+  },
+  {
+    "start": 379.36,
+    "dur": 4.72,
+    "text": "for you. So whether it's your marketing",
+    "lang": "en"
+  },
+  {
+    "start": 381.84,
+    "dur": 4.72,
+    "text": "team or you want to understand that how",
+    "lang": "en"
+  },
+  {
+    "start": 384.08,
+    "dur": 5.92,
+    "text": "does the uh you know the solution look",
+    "lang": "en"
+  },
+  {
+    "start": 386.56,
+    "dur": 5.12,
+    "text": "like for your uh internal evaluation as",
+    "lang": "en"
+  },
+  {
+    "start": 390.0,
+    "dur": 4.639,
+    "text": "well. So this is what we have in terms",
+    "lang": "en"
+  },
+  {
+    "start": 391.68,
+    "dur": 5.359,
+    "text": "of that.",
+    "lang": "en"
+  },
+  {
+    "start": 394.639,
+    "dur": 5.441,
+    "text": "So yeah this is what we have in terms of",
+    "lang": "en"
+  },
+  {
+    "start": 397.039,
+    "dur": 7.801,
+    "text": "analytics and thank you so much everyone",
+    "lang": "en"
+  },
+  {
+    "start": 400.08,
+    "dur": 4.76,
+    "text": "and see you all in the next video. Bye.",
+    "lang": "en"
+  }
+]

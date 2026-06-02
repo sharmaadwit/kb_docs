@@ -1,0 +1,1274 @@
+[
+  {
+    "start": 0.16,
+    "dur": 6.4,
+    "text": "Welcome to this",
+    "lang": "en"
+  },
+  {
+    "start": 2.8,
+    "dur": 6.719,
+    "text": "tutorial about extensions",
+    "lang": "en"
+  },
+  {
+    "start": 6.56,
+    "dur": 6.72,
+    "text": "and talking more about the enterprise",
+    "lang": "en"
+  },
+  {
+    "start": 9.519,
+    "dur": 8.241,
+    "text": "SMS channel that you can use it directly",
+    "lang": "en"
+  },
+  {
+    "start": 13.28,
+    "dur": 9.999,
+    "text": "in the duct console. So here you have",
+    "lang": "en"
+  },
+  {
+    "start": 17.76,
+    "dur": 8.24,
+    "text": "the main screen of the console.",
+    "lang": "en"
+  },
+  {
+    "start": 23.279,
+    "dur": 5.441,
+    "text": "Here in the left corner, you're going to",
+    "lang": "en"
+  },
+  {
+    "start": 26.0,
+    "dur": 6.16,
+    "text": "have it here, the extensions",
+    "lang": "en"
+  },
+  {
+    "start": 28.72,
+    "dur": 7.519,
+    "text": "tab where you can find the enterprise",
+    "lang": "en"
+  },
+  {
+    "start": 32.16,
+    "dur": 6.719,
+    "text": "SMS extension. That is the main",
+    "lang": "en"
+  },
+  {
+    "start": 36.239,
+    "dur": 4.64,
+    "text": "objective of this of this tutorial.",
+    "lang": "en"
+  },
+  {
+    "start": 38.879,
+    "dur": 4.881,
+    "text": "Okay. So, I'm going to click here",
+    "lang": "en"
+  },
+  {
+    "start": 40.879,
+    "dur": 7.121,
+    "text": "enterprise SMS. I need to select the",
+    "lang": "en"
+  },
+  {
+    "start": 43.76,
+    "dur": 6.88,
+    "text": "services or in another words which SMS",
+    "lang": "en"
+  },
+  {
+    "start": 48.0,
+    "dur": 5.76,
+    "text": "number I want to send to my customer. I",
+    "lang": "en"
+  },
+  {
+    "start": 50.64,
+    "dur": 6.96,
+    "text": "will choose this one here. SMS",
+    "lang": "en"
+  },
+  {
+    "start": 53.76,
+    "dur": 7.279,
+    "text": "And after I choose the SMS, I will have",
+    "lang": "en"
+  },
+  {
+    "start": 57.6,
+    "dur": 6.559,
+    "text": "here five tabs where I can have more",
+    "lang": "en"
+  },
+  {
+    "start": 61.039,
+    "dur": 5.44,
+    "text": "informations about this channel. So",
+    "lang": "en"
+  },
+  {
+    "start": 64.159,
+    "dur": 4.081,
+    "text": "talking about the dashboard, we're going",
+    "lang": "en"
+  },
+  {
+    "start": 66.479,
+    "dur": 4.561,
+    "text": "to have here the dashboard where we can",
+    "lang": "en"
+  },
+  {
+    "start": 68.24,
+    "dur": 4.4,
+    "text": "have it the delivery summary of the SMS",
+    "lang": "en"
+  },
+  {
+    "start": 71.04,
+    "dur": 4.16,
+    "text": "channel.",
+    "lang": "en"
+  },
+  {
+    "start": 72.64,
+    "dur": 5.839,
+    "text": "You can select this the start date that",
+    "lang": "en"
+  },
+  {
+    "start": 75.2,
+    "dur": 6.559,
+    "text": "you want to get more information about",
+    "lang": "en"
+  },
+  {
+    "start": 78.479,
+    "dur": 7.121,
+    "text": "the SMS that I send it through the the",
+    "lang": "en"
+  },
+  {
+    "start": 81.759,
+    "dur": 7.04,
+    "text": "console. I can put it in a graph one or",
+    "lang": "en"
+  },
+  {
+    "start": 85.6,
+    "dur": 8.24,
+    "text": "in a data. So you can choose whenever",
+    "lang": "en"
+  },
+  {
+    "start": 88.799,
+    "dur": 7.521,
+    "text": "you are more comfortable to use it or",
+    "lang": "en"
+  },
+  {
+    "start": 93.84,
+    "dur": 5.84,
+    "text": "not not only that but also you have here",
+    "lang": "en"
+  },
+  {
+    "start": 96.32,
+    "dur": 7.2,
+    "text": "the statistics message usage the same",
+    "lang": "en"
+  },
+  {
+    "start": 99.68,
+    "dur": 6.479,
+    "text": "one you can put it in ref one you need",
+    "lang": "en"
+  },
+  {
+    "start": 103.52,
+    "dur": 4.48,
+    "text": "just to select date for each one of",
+    "lang": "en"
+  },
+  {
+    "start": 106.159,
+    "dur": 4.801,
+    "text": "those dashboards",
+    "lang": "en"
+  },
+  {
+    "start": 108.0,
+    "dur": 6.079,
+    "text": "and here you have like information about",
+    "lang": "en"
+  },
+  {
+    "start": 110.96,
+    "dur": 5.92,
+    "text": "the notifications about an SMS that you",
+    "lang": "en"
+  },
+  {
+    "start": 114.079,
+    "dur": 6.881,
+    "text": "send it through the console you have",
+    "lang": "en"
+  },
+  {
+    "start": 116.88,
+    "dur": 6.72,
+    "text": "recent activities and also the account",
+    "lang": "en"
+  },
+  {
+    "start": 120.96,
+    "dur": 4.88,
+    "text": "informations where you can have more",
+    "lang": "en"
+  },
+  {
+    "start": 123.6,
+    "dur": 5.279,
+    "text": "information about how many credits you",
+    "lang": "en"
+  },
+  {
+    "start": 125.84,
+    "dur": 6.72,
+    "text": "have it to send SMS to your customers.",
+    "lang": "en"
+  },
+  {
+    "start": 128.879,
+    "dur": 7.121,
+    "text": "Um if you need any help you have it here",
+    "lang": "en"
+  },
+  {
+    "start": 132.56,
+    "dur": 6.48,
+    "text": "like the customer support number and who",
+    "lang": "en"
+  },
+  {
+    "start": 136.0,
+    "dur": 4.72,
+    "text": "is your relationship manager. So you",
+    "lang": "en"
+  },
+  {
+    "start": 139.04,
+    "dur": 3.6,
+    "text": "have all this information here in the",
+    "lang": "en"
+  },
+  {
+    "start": 140.72,
+    "dur": 4.879,
+    "text": "dashboard. If you want to know more",
+    "lang": "en"
+  },
+  {
+    "start": 142.64,
+    "dur": 5.52,
+    "text": "about what is new in the SMS channel,",
+    "lang": "en"
+  },
+  {
+    "start": 145.599,
+    "dur": 4.64,
+    "text": "you can click here and click here to",
+    "lang": "en"
+  },
+  {
+    "start": 148.16,
+    "dur": 4.96,
+    "text": "know the late latest features on",
+    "lang": "en"
+  },
+  {
+    "start": 150.239,
+    "dur": 6.0,
+    "text": "enterprise or if you want to send",
+    "lang": "en"
+  },
+  {
+    "start": 153.12,
+    "dur": 5.68,
+    "text": "feedbacks, you can choose this one here",
+    "lang": "en"
+  },
+  {
+    "start": 156.239,
+    "dur": 5.921,
+    "text": "and you will be redirected to send a",
+    "lang": "en"
+  },
+  {
+    "start": 158.8,
+    "dur": 5.6,
+    "text": "feedback about the channel. Okay. So",
+    "lang": "en"
+  },
+  {
+    "start": 162.16,
+    "dur": 5.6,
+    "text": "here you have the dashboard. You have",
+    "lang": "en"
+  },
+  {
+    "start": 164.4,
+    "dur": 5.68,
+    "text": "this second tab that is the message one.",
+    "lang": "en"
+  },
+  {
+    "start": 167.76,
+    "dur": 4.32,
+    "text": "So in the message one you have three",
+    "lang": "en"
+  },
+  {
+    "start": 170.08,
+    "dur": 4.799,
+    "text": "types of messages that you can send to",
+    "lang": "en"
+  },
+  {
+    "start": 172.08,
+    "dur": 4.96,
+    "text": "your customer. So the first one is a",
+    "lang": "en"
+  },
+  {
+    "start": 174.879,
+    "dur": 4.561,
+    "text": "simple message. So you just need to put",
+    "lang": "en"
+  },
+  {
+    "start": 177.04,
+    "dur": 4.4,
+    "text": "it here the numbers that you want to",
+    "lang": "en"
+  },
+  {
+    "start": 179.44,
+    "dur": 6.879,
+    "text": "send this information to send this this",
+    "lang": "en"
+  },
+  {
+    "start": 181.44,
+    "dur": 7.36,
+    "text": "channel this SMS um message and here you",
+    "lang": "en"
+  },
+  {
+    "start": 186.319,
+    "dur": 7.28,
+    "text": "can put it all the message that you want",
+    "lang": "en"
+  },
+  {
+    "start": 188.8,
+    "dur": 6.32,
+    "text": "to send. So here you have like the",
+    "lang": "en"
+  },
+  {
+    "start": 193.599,
+    "dur": 3.201,
+    "text": "characters",
+    "lang": "en"
+  },
+  {
+    "start": 195.12,
+    "dur": 4.399,
+    "text": "counting",
+    "lang": "en"
+  },
+  {
+    "start": 196.8,
+    "dur": 6.32,
+    "text": "um how many SMS you're going to send to",
+    "lang": "en"
+  },
+  {
+    "start": 199.519,
+    "dur": 5.841,
+    "text": "your customers. And if you've set up or",
+    "lang": "en"
+  },
+  {
+    "start": 203.12,
+    "dur": 4.64,
+    "text": "if you have created here in the console",
+    "lang": "en"
+  },
+  {
+    "start": 205.36,
+    "dur": 4.959,
+    "text": "a template for this SMS, you can choose",
+    "lang": "en"
+  },
+  {
+    "start": 207.76,
+    "dur": 5.759,
+    "text": "it here. And you're going to have this",
+    "lang": "en"
+  },
+  {
+    "start": 210.319,
+    "dur": 5.28,
+    "text": "information to use uh and send to your",
+    "lang": "en"
+  },
+  {
+    "start": 213.519,
+    "dur": 3.841,
+    "text": "customers. Okay. Here in the right",
+    "lang": "en"
+  },
+  {
+    "start": 215.599,
+    "dur": 5.28,
+    "text": "corner, you're going to have like a",
+    "lang": "en"
+  },
+  {
+    "start": 217.36,
+    "dur": 8.32,
+    "text": "daily report if you want to to choose",
+    "lang": "en"
+  },
+  {
+    "start": 220.879,
+    "dur": 7.601,
+    "text": "and to download a report for every SMS",
+    "lang": "en"
+  },
+  {
+    "start": 225.68,
+    "dur": 5.52,
+    "text": "channel that you",
+    "lang": "en"
+  },
+  {
+    "start": 228.48,
+    "dur": 4.8,
+    "text": "send it to your customers. So here you",
+    "lang": "en"
+  },
+  {
+    "start": 231.2,
+    "dur": 4.319,
+    "text": "have the delivery summary, you have here",
+    "lang": "en"
+  },
+  {
+    "start": 233.28,
+    "dur": 3.76,
+    "text": "the account status, how many messages",
+    "lang": "en"
+  },
+  {
+    "start": 235.519,
+    "dur": 4.0,
+    "text": "and if you want to recharge your",
+    "lang": "en"
+  },
+  {
+    "start": 237.04,
+    "dur": 6.96,
+    "text": "account, you just need to click it here",
+    "lang": "en"
+  },
+  {
+    "start": 239.519,
+    "dur": 6.881,
+    "text": "and you can start um recharging your SMS",
+    "lang": "en"
+  },
+  {
+    "start": 244.0,
+    "dur": 4.959,
+    "text": "account. Okay. So here you have the",
+    "lang": "en"
+  },
+  {
+    "start": 246.4,
+    "dur": 5.759,
+    "text": "simple message that you can send it. You",
+    "lang": "en"
+  },
+  {
+    "start": 248.959,
+    "dur": 6.48,
+    "text": "have here the group messages. So you can",
+    "lang": "en"
+  },
+  {
+    "start": 252.159,
+    "dur": 6.001,
+    "text": "create a group to send this message. You",
+    "lang": "en"
+  },
+  {
+    "start": 255.439,
+    "dur": 5.92,
+    "text": "can post those me like send this message",
+    "lang": "en"
+  },
+  {
+    "start": 258.16,
+    "dur": 5.28,
+    "text": "to this group, this specific group.",
+    "lang": "en"
+  },
+  {
+    "start": 261.359,
+    "dur": 5.921,
+    "text": "You can disable or you can delete it",
+    "lang": "en"
+  },
+  {
+    "start": 263.44,
+    "dur": 6.4,
+    "text": "this group. And here you have like all",
+    "lang": "en"
+  },
+  {
+    "start": 267.28,
+    "dur": 6.479,
+    "text": "the groups that you already have set up",
+    "lang": "en"
+  },
+  {
+    "start": 269.84,
+    "dur": 6.16,
+    "text": "in the console. Okay, so it's",
+    "lang": "en"
+  },
+  {
+    "start": 273.759,
+    "dur": 4.0,
+    "text": "really simple this part. You can create",
+    "lang": "en"
+  },
+  {
+    "start": 276.0,
+    "dur": 4.32,
+    "text": "groups",
+    "lang": "en"
+  },
+  {
+    "start": 277.759,
+    "dur": 5.201,
+    "text": "and you can use these groups, those",
+    "lang": "en"
+  },
+  {
+    "start": 280.32,
+    "dur": 5.439,
+    "text": "groups to send those messages. And you",
+    "lang": "en"
+  },
+  {
+    "start": 282.96,
+    "dur": 5.92,
+    "text": "have the bulk",
+    "lang": "en"
+  },
+  {
+    "start": 285.759,
+    "dur": 4.801,
+    "text": "session where you can put it here the",
+    "lang": "en"
+  },
+  {
+    "start": 288.88,
+    "dur": 4.72,
+    "text": "message that you want to send it to your",
+    "lang": "en"
+  },
+  {
+    "start": 290.56,
+    "dur": 7.68,
+    "text": "customers and you can upload a list of",
+    "lang": "en"
+  },
+  {
+    "start": 293.6,
+    "dur": 6.72,
+    "text": "phone numbers in those formats and then",
+    "lang": "en"
+  },
+  {
+    "start": 298.24,
+    "dur": 4.16,
+    "text": "you can send those informations to your",
+    "lang": "en"
+  },
+  {
+    "start": 300.32,
+    "dur": 4.24,
+    "text": "customers and can send this message that",
+    "lang": "en"
+  },
+  {
+    "start": 302.4,
+    "dur": 4.56,
+    "text": "you're going to okay this a test",
+    "lang": "en"
+  },
+  {
+    "start": 304.56,
+    "dur": 5.84,
+    "text": "message. So you just need to type your",
+    "lang": "en"
+  },
+  {
+    "start": 306.96,
+    "dur": 6.56,
+    "text": "message here, upload the file and then",
+    "lang": "en"
+  },
+  {
+    "start": 310.4,
+    "dur": 4.72,
+    "text": "you can click here in upload and post",
+    "lang": "en"
+  },
+  {
+    "start": 313.52,
+    "dur": 3.6,
+    "text": "those informations to send this",
+    "lang": "en"
+  },
+  {
+    "start": 315.12,
+    "dur": 4.56,
+    "text": "information to your customer. Okay. So",
+    "lang": "en"
+  },
+  {
+    "start": 317.12,
+    "dur": 5.44,
+    "text": "you have here a history where you can",
+    "lang": "en"
+  },
+  {
+    "start": 319.68,
+    "dur": 4.959,
+    "text": "have more information about the files",
+    "lang": "en"
+  },
+  {
+    "start": 322.56,
+    "dur": 5.84,
+    "text": "that that you already uploaded here in",
+    "lang": "en"
+  },
+  {
+    "start": 324.639,
+    "dur": 8.0,
+    "text": "the console and have track of those",
+    "lang": "en"
+  },
+  {
+    "start": 328.4,
+    "dur": 6.96,
+    "text": "informations as well. So the same window",
+    "lang": "en"
+  },
+  {
+    "start": 332.639,
+    "dur": 4.721,
+    "text": "that you have it in group or you have it",
+    "lang": "en"
+  },
+  {
+    "start": 335.36,
+    "dur": 4.96,
+    "text": "here in the simple you have here in the",
+    "lang": "en"
+  },
+  {
+    "start": 337.36,
+    "dur": 5.36,
+    "text": "book as as well where you can download",
+    "lang": "en"
+  },
+  {
+    "start": 340.32,
+    "dur": 6.159,
+    "text": "the daily report you're going to have it",
+    "lang": "en"
+  },
+  {
+    "start": 342.72,
+    "dur": 6.8,
+    "text": "here uh resumed information about",
+    "lang": "en"
+  },
+  {
+    "start": 346.479,
+    "dur": 8.081,
+    "text": "message requests in the account status",
+    "lang": "en"
+  },
+  {
+    "start": 349.52,
+    "dur": 7.6,
+    "text": "of this SMS enterprise in the console",
+    "lang": "en"
+  },
+  {
+    "start": 354.56,
+    "dur": 5.199,
+    "text": "you have here the analytics you have it",
+    "lang": "en"
+  },
+  {
+    "start": 357.12,
+    "dur": 4.88,
+    "text": "here the DT templates templates where",
+    "lang": "en"
+  },
+  {
+    "start": 359.759,
+    "dur": 4.0,
+    "text": "you can register all the templates like",
+    "lang": "en"
+  },
+  {
+    "start": 362.0,
+    "dur": 4.08,
+    "text": "the SMS templates that you want to send",
+    "lang": "en"
+  },
+  {
+    "start": 363.759,
+    "dur": 5.601,
+    "text": "to your customers. So you can create a",
+    "lang": "en"
+  },
+  {
+    "start": 366.08,
+    "dur": 5.52,
+    "text": "single template or you can upload a",
+    "lang": "en"
+  },
+  {
+    "start": 369.36,
+    "dur": 6.0,
+    "text": "template list that you can have it in",
+    "lang": "en"
+  },
+  {
+    "start": 371.6,
+    "dur": 6.64,
+    "text": "your Excel file or a CSV or text uh",
+    "lang": "en"
+  },
+  {
+    "start": 375.36,
+    "dur": 5.6,
+    "text": "formatting to send like to send those",
+    "lang": "en"
+  },
+  {
+    "start": 378.24,
+    "dur": 5.679,
+    "text": "templates to the console. So just for",
+    "lang": "en"
+  },
+  {
+    "start": 380.96,
+    "dur": 6.0,
+    "text": "example, so you can put it here template",
+    "lang": "en"
+  },
+  {
+    "start": 383.919,
+    "dur": 6.081,
+    "text": "name. So this is a test template. You",
+    "lang": "en"
+  },
+  {
+    "start": 386.96,
+    "dur": 6.799,
+    "text": "can put in here the ID of this template.",
+    "lang": "en"
+  },
+  {
+    "start": 390.0,
+    "dur": 5.759,
+    "text": "Um the message type if it's a",
+    "lang": "en"
+  },
+  {
+    "start": 393.759,
+    "dur": 5.201,
+    "text": "transactional is a promotional or",
+    "lang": "en"
+  },
+  {
+    "start": 395.759,
+    "dur": 6.72,
+    "text": "service implicit or explicit a message",
+    "lang": "en"
+  },
+  {
+    "start": 398.96,
+    "dur": 5.28,
+    "text": "type. So if it's a text uh type or a uni",
+    "lang": "en"
+  },
+  {
+    "start": 402.479,
+    "dur": 3.761,
+    "text": "code",
+    "lang": "en"
+  },
+  {
+    "start": 404.24,
+    "dur": 5.6,
+    "text": "if you have any category of this",
+    "lang": "en"
+  },
+  {
+    "start": 406.24,
+    "dur": 6.799,
+    "text": "business if you want to mask this SMS.",
+    "lang": "en"
+  },
+  {
+    "start": 409.84,
+    "dur": 7.359,
+    "text": "And here you have the template where you",
+    "lang": "en"
+  },
+  {
+    "start": 413.039,
+    "dur": 8.16,
+    "text": "can put it like hello",
+    "lang": "en"
+  },
+  {
+    "start": 417.199,
+    "dur": 7.601,
+    "text": "Thank you for joining",
+    "lang": "en"
+  },
+  {
+    "start": 421.199,
+    "dur": 5.28,
+    "text": "this section. So you can put it here the",
+    "lang": "en"
+  },
+  {
+    "start": 424.8,
+    "dur": 4.0,
+    "text": "template that you want to send to your",
+    "lang": "en"
+  },
+  {
+    "start": 426.479,
+    "dur": 4.481,
+    "text": "customer and you can download the",
+    "lang": "en"
+  },
+  {
+    "start": 428.8,
+    "dur": 4.16,
+    "text": "appropriate templates or you can click",
+    "lang": "en"
+  },
+  {
+    "start": 430.96,
+    "dur": 4.48,
+    "text": "here to download templates failure",
+    "lang": "en"
+  },
+  {
+    "start": 432.96,
+    "dur": 6.4,
+    "text": "report or you can have more information",
+    "lang": "en"
+  },
+  {
+    "start": 435.44,
+    "dur": 6.479,
+    "text": "about why this template was not properly",
+    "lang": "en"
+  },
+  {
+    "start": 439.36,
+    "dur": 4.32,
+    "text": "approved or why you cannot use this",
+    "lang": "en"
+  },
+  {
+    "start": 441.919,
+    "dur": 4.56,
+    "text": "template. So you're going to have here",
+    "lang": "en"
+  },
+  {
+    "start": 443.68,
+    "dur": 6.239,
+    "text": "required about those templates as well.",
+    "lang": "en"
+  },
+  {
+    "start": 446.479,
+    "dur": 5.44,
+    "text": "Okay. And the last but not least, you",
+    "lang": "en"
+  },
+  {
+    "start": 449.919,
+    "dur": 6.0,
+    "text": "have here the keywords. And what is a",
+    "lang": "en"
+  },
+  {
+    "start": 451.919,
+    "dur": 7.28,
+    "text": "keyword? So, if you want to send to your",
+    "lang": "en"
+  },
+  {
+    "start": 455.919,
+    "dur": 6.4,
+    "text": "customer a message like if you want to",
+    "lang": "en"
+  },
+  {
+    "start": 459.199,
+    "dur": 6.241,
+    "text": "participate in a promotion or if you",
+    "lang": "en"
+  },
+  {
+    "start": 462.319,
+    "dur": 6.641,
+    "text": "want to get a special coupons for only",
+    "lang": "en"
+  },
+  {
+    "start": 465.44,
+    "dur": 6.0,
+    "text": "customers of this brand, please type",
+    "lang": "en"
+  },
+  {
+    "start": 468.96,
+    "dur": 5.359,
+    "text": "this keyword and you will be able to",
+    "lang": "en"
+  },
+  {
+    "start": 471.44,
+    "dur": 6.56,
+    "text": "join this this club or you can join in",
+    "lang": "en"
+  },
+  {
+    "start": 474.319,
+    "dur": 6.241,
+    "text": "this group of customers that is a VIP",
+    "lang": "en"
+  },
+  {
+    "start": 478.0,
+    "dur": 6.319,
+    "text": "group. You can get more discounts or",
+    "lang": "en"
+  },
+  {
+    "start": 480.56,
+    "dur": 8.639,
+    "text": "etc. So basically the keywords you can",
+    "lang": "en"
+  },
+  {
+    "start": 484.319,
+    "dur": 10.0,
+    "text": "use it to set up a specific uh group to",
+    "lang": "en"
+  },
+  {
+    "start": 489.199,
+    "dur": 7.12,
+    "text": "enter in a specific um I don't know like",
+    "lang": "en"
+  },
+  {
+    "start": 494.319,
+    "dur": 5.841,
+    "text": "you can send message to these specific",
+    "lang": "en"
+  },
+  {
+    "start": 496.319,
+    "dur": 6.88,
+    "text": "groups and create this keywords for only",
+    "lang": "en"
+  },
+  {
+    "start": 500.16,
+    "dur": 6.64,
+    "text": "uh those that type this keyword can",
+    "lang": "en"
+  },
+  {
+    "start": 503.199,
+    "dur": 7.201,
+    "text": "receive those messages from you. Okay.",
+    "lang": "en"
+  },
+  {
+    "start": 506.8,
+    "dur": 5.84,
+    "text": "So here you can create a keyword group.",
+    "lang": "en"
+  },
+  {
+    "start": 510.4,
+    "dur": 6.079,
+    "text": "So what is the name of this group? This",
+    "lang": "en"
+  },
+  {
+    "start": 512.64,
+    "dur": 7.36,
+    "text": "keyword group um the type of response.",
+    "lang": "en"
+  },
+  {
+    "start": 516.479,
+    "dur": 5.281,
+    "text": "So is a response URL or default response",
+    "lang": "en"
+  },
+  {
+    "start": 520.0,
+    "dur": 4.32,
+    "text": "when you want to activate this this",
+    "lang": "en"
+  },
+  {
+    "start": 521.76,
+    "dur": 4.079,
+    "text": "keyword. So basically you have here like",
+    "lang": "en"
+  },
+  {
+    "start": 524.32,
+    "dur": 5.44,
+    "text": "activated",
+    "lang": "en"
+  },
+  {
+    "start": 525.839,
+    "dur": 7.281,
+    "text": "from this day to I don't know like",
+    "lang": "en"
+  },
+  {
+    "start": 529.76,
+    "dur": 6.32,
+    "text": "tomorrow what is the keyword and here I",
+    "lang": "en"
+  },
+  {
+    "start": 533.12,
+    "dur": 5.2,
+    "text": "can click here for confirm and confirm",
+    "lang": "en"
+  },
+  {
+    "start": 536.08,
+    "dur": 6.56,
+    "text": "this keyword as well. So you have here",
+    "lang": "en"
+  },
+  {
+    "start": 538.32,
+    "dur": 6.72,
+    "text": "the waiting approval um like after you",
+    "lang": "en"
+  },
+  {
+    "start": 542.64,
+    "dur": 4.72,
+    "text": "create this keyword you need to wait for",
+    "lang": "en"
+  },
+  {
+    "start": 545.04,
+    "dur": 4.88,
+    "text": "this approval or you can have more",
+    "lang": "en"
+  },
+  {
+    "start": 547.36,
+    "dur": 5.919,
+    "text": "information about expired keyword groups",
+    "lang": "en"
+  },
+  {
+    "start": 549.92,
+    "dur": 5.12,
+    "text": "here in the console as well. Okay,",
+    "lang": "en"
+  },
+  {
+    "start": 553.279,
+    "dur": 4.161,
+    "text": "if you have any questions regarding the",
+    "lang": "en"
+  },
+  {
+    "start": 555.04,
+    "dur": 5.359,
+    "text": "keywords here you have like some",
+    "lang": "en"
+  },
+  {
+    "start": 557.44,
+    "dur": 5.2,
+    "text": "examples what is a keyword how can I",
+    "lang": "en"
+  },
+  {
+    "start": 560.399,
+    "dur": 5.12,
+    "text": "collect response to the keywords and you",
+    "lang": "en"
+  },
+  {
+    "start": 562.64,
+    "dur": 5.36,
+    "text": "can have more information about that. So",
+    "lang": "en"
+  },
+  {
+    "start": 565.519,
+    "dur": 5.521,
+    "text": "as I said before here you have an",
+    "lang": "en"
+  },
+  {
+    "start": 568.0,
+    "dur": 7.2,
+    "text": "example. So to get a good discount SMS",
+    "lang": "en"
+  },
+  {
+    "start": 571.04,
+    "dur": 7.919,
+    "text": "pizza to this number please type this",
+    "lang": "en"
+  },
+  {
+    "start": 575.2,
+    "dur": 7.36,
+    "text": "keyword pizza to this number and you can",
+    "lang": "en"
+  },
+  {
+    "start": 578.959,
+    "dur": 6.32,
+    "text": "get this discounts. So the users send",
+    "lang": "en"
+  },
+  {
+    "start": 582.56,
+    "dur": 4.959,
+    "text": "pizza to this specific number and will",
+    "lang": "en"
+  },
+  {
+    "start": 585.279,
+    "dur": 5.201,
+    "text": "become a part of your customer base. So",
+    "lang": "en"
+  },
+  {
+    "start": 587.519,
+    "dur": 6.801,
+    "text": "basically this is one of the use case",
+    "lang": "en"
+  },
+  {
+    "start": 590.48,
+    "dur": 7.84,
+    "text": "that you can use for keywords and start",
+    "lang": "en"
+  },
+  {
+    "start": 594.32,
+    "dur": 7.44,
+    "text": "using as well for getting more leads",
+    "lang": "en"
+  },
+  {
+    "start": 598.32,
+    "dur": 7.68,
+    "text": "getting us customers in a specific group",
+    "lang": "en"
+  },
+  {
+    "start": 601.76,
+    "dur": 8.0,
+    "text": "or specific promotions as well. Okay. So",
+    "lang": "en"
+  },
+  {
+    "start": 606.0,
+    "dur": 7.2,
+    "text": "this is uh more about the features more",
+    "lang": "en"
+  },
+  {
+    "start": 609.76,
+    "dur": 5.36,
+    "text": "about the enterprise SMS console. If you",
+    "lang": "en"
+  },
+  {
+    "start": 613.2,
+    "dur": 6.0,
+    "text": "have any questions, please just let us",
+    "lang": "en"
+  },
+  {
+    "start": 615.12,
+    "dur": 6.64,
+    "text": "know and we will be very glad and very h",
+    "lang": "en"
+  },
+  {
+    "start": 619.2,
+    "dur": 5.68,
+    "text": "happy to help you with any questions.",
+    "lang": "en"
+  },
+  {
+    "start": 621.76,
+    "dur": 3.12,
+    "text": "Okay, thank you so",
+    "lang": "en"
+  }
+]

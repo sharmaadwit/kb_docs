@@ -1,0 +1,524 @@
+[
+  {
+    "start": 4.24,
+    "dur": 4.48,
+    "text": "Hi, welcome to a short overview about",
+    "lang": "en"
+  },
+  {
+    "start": 6.24,
+    "dur": 4.16,
+    "text": "agent assist analytics. The analytics",
+    "lang": "en"
+  },
+  {
+    "start": 8.72,
+    "dur": 3.919,
+    "text": "section is available on the left hand",
+    "lang": "en"
+  },
+  {
+    "start": 10.4,
+    "dur": 5.04,
+    "text": "side under the agent assist menu where",
+    "lang": "en"
+  },
+  {
+    "start": 12.639,
+    "dur": 5.201,
+    "text": "once you go there will be three key",
+    "lang": "en"
+  },
+  {
+    "start": 15.44,
+    "dur": 5.12,
+    "text": "views dashboards insight and export",
+    "lang": "en"
+  },
+  {
+    "start": 17.84,
+    "dur": 5.199,
+    "text": "data. The first one will give you a live",
+    "lang": "en"
+  },
+  {
+    "start": 20.56,
+    "dur": 5.68,
+    "text": "monitoring over what is currently",
+    "lang": "en"
+  },
+  {
+    "start": 23.039,
+    "dur": 5.201,
+    "text": "happening within the uh environment. So",
+    "lang": "en"
+  },
+  {
+    "start": 26.24,
+    "dur": 4.24,
+    "text": "how many ongoing chats? How many bot",
+    "lang": "en"
+  },
+  {
+    "start": 28.24,
+    "dur": 3.839,
+    "text": "chats? How many open chats? You know,",
+    "lang": "en"
+  },
+  {
+    "start": 30.48,
+    "dur": 3.28,
+    "text": "were there any chats did not match a",
+    "lang": "en"
+  },
+  {
+    "start": 32.079,
+    "dur": 4.401,
+    "text": "rule? Are there still any that are",
+    "lang": "en"
+  },
+  {
+    "start": 33.76,
+    "dur": 4.799,
+    "text": "waiting for assignment? What is uh the",
+    "lang": "en"
+  },
+  {
+    "start": 36.48,
+    "dur": 4.079,
+    "text": "pending chats which uh which are in",
+    "lang": "en"
+  },
+  {
+    "start": 38.559,
+    "dur": 5.361,
+    "text": "pending status or ones which are",
+    "lang": "en"
+  },
+  {
+    "start": 40.559,
+    "dur": 4.961,
+    "text": "awaiting response on the customer's end.",
+    "lang": "en"
+  },
+  {
+    "start": 43.92,
+    "dur": 3.84,
+    "text": "You will be able to see how many agents",
+    "lang": "en"
+  },
+  {
+    "start": 45.52,
+    "dur": 5.359,
+    "text": "are logged in, how many busy, how many",
+    "lang": "en"
+  },
+  {
+    "start": 47.76,
+    "dur": 6.0,
+    "text": "offline. uh we will also be able to go",
+    "lang": "en"
+  },
+  {
+    "start": 50.879,
+    "dur": 5.281,
+    "text": "ahead and give an average weight time or",
+    "lang": "en"
+  },
+  {
+    "start": 53.76,
+    "dur": 4.16,
+    "text": "max rate time that is currently there.",
+    "lang": "en"
+  },
+  {
+    "start": 56.16,
+    "dur": 3.76,
+    "text": "Time taken to assign the chats for the",
+    "lang": "en"
+  },
+  {
+    "start": 57.92,
+    "dur": 4.639,
+    "text": "current day will also be displayed over",
+    "lang": "en"
+  },
+  {
+    "start": 59.92,
+    "dur": 4.72,
+    "text": "here. That's created by uh for the",
+    "lang": "en"
+  },
+  {
+    "start": 62.559,
+    "dur": 4.481,
+    "text": "current day again would be visible and",
+    "lang": "en"
+  },
+  {
+    "start": 64.64,
+    "dur": 4.799,
+    "text": "then we will be able to also see our",
+    "lang": "en"
+  },
+  {
+    "start": 67.04,
+    "dur": 4.64,
+    "text": "average performance metrics in terms of",
+    "lang": "en"
+  },
+  {
+    "start": 69.439,
+    "dur": 5.601,
+    "text": "what was our first response time what's",
+    "lang": "en"
+  },
+  {
+    "start": 71.68,
+    "dur": 5.439,
+    "text": "the average what is the maximum in both",
+    "lang": "en"
+  },
+  {
+    "start": 75.04,
+    "dur": 4.48,
+    "text": "response time and resolution time as",
+    "lang": "en"
+  },
+  {
+    "start": 77.119,
+    "dur": 5.281,
+    "text": "well. Further along, we can see",
+    "lang": "en"
+  },
+  {
+    "start": 79.52,
+    "dur": 4.8,
+    "text": "summaries by agent or team level where",
+    "lang": "en"
+  },
+  {
+    "start": 82.4,
+    "dur": 4.079,
+    "text": "you will be able to see how people are",
+    "lang": "en"
+  },
+  {
+    "start": 84.32,
+    "dur": 3.6,
+    "text": "performing across the board. And last",
+    "lang": "en"
+  },
+  {
+    "start": 86.479,
+    "dur": 3.361,
+    "text": "but not the least, if you have enabled",
+    "lang": "en"
+  },
+  {
+    "start": 87.92,
+    "dur": 3.76,
+    "text": "feedback, you should be able to see how",
+    "lang": "en"
+  },
+  {
+    "start": 89.84,
+    "dur": 5.36,
+    "text": "the feedback ratings have been going as",
+    "lang": "en"
+  },
+  {
+    "start": 91.68,
+    "dur": 5.84,
+    "text": "well. The next part would be to get into",
+    "lang": "en"
+  },
+  {
+    "start": 95.2,
+    "dur": 4.32,
+    "text": "insights. Now this is where you have",
+    "lang": "en"
+  },
+  {
+    "start": 97.52,
+    "dur": 4.239,
+    "text": "more detailed reports including chart",
+    "lang": "en"
+  },
+  {
+    "start": 99.52,
+    "dur": 5.68,
+    "text": "level metrics where you should be able",
+    "lang": "en"
+  },
+  {
+    "start": 101.759,
+    "dur": 6.0,
+    "text": "to go ahead and see more uh more details",
+    "lang": "en"
+  },
+  {
+    "start": 105.2,
+    "dur": 5.52,
+    "text": "including overall summaries trends",
+    "lang": "en"
+  },
+  {
+    "start": 107.759,
+    "dur": 5.601,
+    "text": "priorities FRD summaries resolution",
+    "lang": "en"
+  },
+  {
+    "start": 110.72,
+    "dur": 4.24,
+    "text": "summaries and response time as well. You",
+    "lang": "en"
+  },
+  {
+    "start": 113.36,
+    "dur": 4.079,
+    "text": "can see over here that we can show",
+    "lang": "en"
+  },
+  {
+    "start": 114.96,
+    "dur": 4.799,
+    "text": "overall metrics first response time",
+    "lang": "en"
+  },
+  {
+    "start": 117.439,
+    "dur": 5.36,
+    "text": "average response time. Again a bit more",
+    "lang": "en"
+  },
+  {
+    "start": 119.759,
+    "dur": 5.601,
+    "text": "visual and graphical for you to be able",
+    "lang": "en"
+  },
+  {
+    "start": 122.799,
+    "dur": 4.721,
+    "text": "to take the uh data in. You can also",
+    "lang": "en"
+  },
+  {
+    "start": 125.36,
+    "dur": 4.399,
+    "text": "look at chats created within business",
+    "lang": "en"
+  },
+  {
+    "start": 127.52,
+    "dur": 4.48,
+    "text": "hours versus chats created in non-b",
+    "lang": "en"
+  },
+  {
+    "start": 129.759,
+    "dur": 4.881,
+    "text": "businessiness hours. Similarly, there",
+    "lang": "en"
+  },
+  {
+    "start": 132.0,
+    "dur": 4.64,
+    "text": "are other reports which uh include uh",
+    "lang": "en"
+  },
+  {
+    "start": 134.64,
+    "dur": 3.52,
+    "text": "the agent login logout time. So you'll",
+    "lang": "en"
+  },
+  {
+    "start": 136.64,
+    "dur": 3.44,
+    "text": "be able to see how the teams are",
+    "lang": "en"
+  },
+  {
+    "start": 138.16,
+    "dur": 4.88,
+    "text": "performing. You know what are the login",
+    "lang": "en"
+  },
+  {
+    "start": 140.08,
+    "dur": 5.6,
+    "text": "times, dates and so on. You further can",
+    "lang": "en"
+  },
+  {
+    "start": 143.04,
+    "dur": 4.48,
+    "text": "also dig into the agent chart summary.",
+    "lang": "en"
+  },
+  {
+    "start": 145.68,
+    "dur": 4.0,
+    "text": "How many fresh chats were assigned? How",
+    "lang": "en"
+  },
+  {
+    "start": 147.52,
+    "dur": 4.16,
+    "text": "many chats worked upon by the agent?",
+    "lang": "en"
+  },
+  {
+    "start": 149.68,
+    "dur": 5.12,
+    "text": "What's the total chats completed? All",
+    "lang": "en"
+  },
+  {
+    "start": 151.68,
+    "dur": 5.44,
+    "text": "that data would be at your fingertips.",
+    "lang": "en"
+  },
+  {
+    "start": 154.8,
+    "dur": 5.04,
+    "text": "We can also go back into the dashboard",
+    "lang": "en"
+  },
+  {
+    "start": 157.12,
+    "dur": 5.04,
+    "text": "and if we are looking for some specific",
+    "lang": "en"
+  },
+  {
+    "start": 159.84,
+    "dur": 5.2,
+    "text": "uh charts then in the chart dashboard",
+    "lang": "en"
+  },
+  {
+    "start": 162.16,
+    "dur": 5.28,
+    "text": "itself you can search for a keyword. So",
+    "lang": "en"
+  },
+  {
+    "start": 165.04,
+    "dur": 5.52,
+    "text": "we will go ahead and uh search for a",
+    "lang": "en"
+  },
+  {
+    "start": 167.44,
+    "dur": 6.879,
+    "text": "keyword here. Now in this case uh and if",
+    "lang": "en"
+  },
+  {
+    "start": 170.56,
+    "dur": 6.08,
+    "text": "we update the filter uh we we you can",
+    "lang": "en"
+  },
+  {
+    "start": 174.319,
+    "dur": 4.241,
+    "text": "see that I can look at certain time",
+    "lang": "en"
+  },
+  {
+    "start": 176.64,
+    "dur": 3.92,
+    "text": "range and we can say okay I'm looking",
+    "lang": "en"
+  },
+  {
+    "start": 178.56,
+    "dur": 3.759,
+    "text": "for data from any time. There are",
+    "lang": "en"
+  },
+  {
+    "start": 180.56,
+    "dur": 4.08,
+    "text": "actually two charts. If I wish to",
+    "lang": "en"
+  },
+  {
+    "start": 182.319,
+    "dur": 5.92,
+    "text": "download this, I will be able to select",
+    "lang": "en"
+  },
+  {
+    "start": 184.64,
+    "dur": 6.08,
+    "text": "a file name, you know, uh, chats with",
+    "lang": "en"
+  },
+  {
+    "start": 188.239,
+    "dur": 4.241,
+    "text": "pubshop and we'll be able to go ahead",
+    "lang": "en"
+  },
+  {
+    "start": 190.72,
+    "dur": 4.48,
+    "text": "and decide what all parameters do we",
+    "lang": "en"
+  },
+  {
+    "start": 192.48,
+    "dur": 5.839,
+    "text": "wish to export uh, accordingly. Once you",
+    "lang": "en"
+  },
+  {
+    "start": 195.2,
+    "dur": 6.16,
+    "text": "do click on export, this data would go",
+    "lang": "en"
+  },
+  {
+    "start": 198.319,
+    "dur": 5.041,
+    "text": "into the export uh, option and then we",
+    "lang": "en"
+  },
+  {
+    "start": 201.36,
+    "dur": 3.68,
+    "text": "will be able to go ahead and download",
+    "lang": "en"
+  },
+  {
+    "start": 203.36,
+    "dur": 4.48,
+    "text": "it. So here you can see under export",
+    "lang": "en"
+  },
+  {
+    "start": 205.04,
+    "dur": 5.68,
+    "text": "data the the report is now ready and we",
+    "lang": "en"
+  },
+  {
+    "start": 207.84,
+    "dur": 6.119,
+    "text": "can press the download button.",
+    "lang": "en"
+  },
+  {
+    "start": 210.72,
+    "dur": 3.239,
+    "text": "Thank you.",
+    "lang": "en"
+  }
+]

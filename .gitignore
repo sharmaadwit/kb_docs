@@ -37,3 +37,13 @@ kb_answer_runtime.py
 Regression Scripts/
 patch instructions/
 tools/
+
+# YouTube auth + transcript build intermediates (never commit; secrets/raw)
+cookies.txt
+**/cookies.txt
+local/raw/probe_dir/
+local/raw/ytsub/
+local/raw/*.json3
+local/raw/*.srt
+local/raw/*.vtt
+local/raw/video_meta.json

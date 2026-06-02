@@ -6,17 +6,26 @@ Videos are registered in a `video_manifest.json` that maps KB pages to YouTube v
 
 ## 2. YouTube link mechanics (constraints)
 
+The skill appends a **clickable link** that opens as a normal (top-level) YouTube page, so it MUST use the `watch` URL form. `/embed/` URLs only play inside an `<iframe>` and fail with **"Error 153 — Video player configuration error"** when opened directly as a link.
+
 | Topic | Behavior |
 |-------|----------|
-| Start + end time | Only the **embed** URL form honors both: `https://www.youtube.com/embed/VIDEO_ID?start=S&end=E` where `S` and `E` are whole seconds from the start of the video. A normal `watch?v=...&t=` link supports **start only**, not end. |
-| Captions | Controllable by URL: append `cc_load_policy=1&cc_lang_pref=<lang>&hl=<lang>` where `<lang>` is an ISO 639-1 code (e.g. `en`, `hi`). |
-| Audio track | **Not** controllable by URL (no parameter exists). For multi-audio videos, YouTube picks the track from the viewer's account preference. This is accepted — audio is left to YouTube. |
-| Embedding | The video must allow embedding or the embed link will not play. |
+| Start time | `https://www.youtube.com/watch?v=VIDEO_ID&t=S` opens the video at second `S`. This is what the skill emits. |
+| End / stop time | **Not possible on a clickable link.** Only an embedded `<iframe>` player honors `end=`. The skill still computes the relevant window and stores `end` for metadata, but a watch link cannot auto-stop. If a true auto-stop is required, the rendering surface must embed an iframe (see below). |
+| Captions | Append `cc_load_policy=1&cc_lang_pref=<lang>&hl=<lang>` (`<lang>` = ISO 639-1, e.g. `en`, `hi`). |
+| Audio track | **Not** controllable by URL. For multi-audio videos YouTube picks the track from the viewer's account preference. Accepted — audio is left to YouTube. |
+| Embedding | Still enable "Allow embedding" so the iframe option remains available; not required for the watch link. |
 
-**Example embed URL** (start 42s, end 120s, Hindi captions):
+**Example watch URL the skill emits** (start 42s, English captions):
 
 ```
-https://www.youtube.com/embed/dQw4w9WgXcQ?start=42&end=120&cc_load_policy=1&cc_lang_pref=hi&hl=hi
+https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=42&cc_load_policy=1&cc_lang_pref=en&hl=en
+```
+
+**Optional — iframe form** (only if the surface can render inline HTML; honors start **and** end):
+
+```
+<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?start=42&end=120&cc_load_policy=1&cc_lang_pref=en&hl=en"></iframe>
 ```
 
 ## 3. One-time-per-video YouTube operations (step by step)
@@ -39,7 +48,8 @@ https://www.youtube.com/embed/dQw4w9WgXcQ?start=42&end=120&cc_load_policy=1&cc_l
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `source` | string | KB page path this video covers (e.g. `kb/bot-studio/agent-transfer-node.md`). |
+| `source` | string | Canonical KB page path this video covers (e.g. `kb/bot-studio/agent-transfer-node.md`). Used as the displayed `source` for the chosen video. |
+| `also_sources` | array of strings (optional) | Additional **neighbor** KB pages that should surface the same video (e.g. sibling pages in the same topic cluster). The video is selected if the retriever's top row matches `source` **or** any path in `also_sources`. Keep these **disjoint across entries** — a given page must map to at most one video (the canonical `source` always wins). |
 | `video_id` | string | YouTube video ID (from `watch?v=`). |
 | `title` | string | Human-readable label for the clickable link shown after the answer. |
 | `default_lang` | string | ISO 639-1 default caption language for the entry. |
@@ -109,9 +119,12 @@ Store one file per video: `video_transcripts/<video_id>.json` (e.g. `video_trans
 ## 7. How the skill picks a video and timestamp (summary)
 
 1. Reuse the answer pipeline's existing **intent** and **ranked evidence**.
-2. Take the **top-ranked KB page** (`source` path).
-3. Look up manifest entries for that `source`, optionally filtering by matching `intents` and/or the active KB heading (for `chapters`).
+2. Scan the **top ranked KB pages** (up to 8) for the first whose path matches a manifest entry's `source` **or** `also_sources`.
+3. Look up manifest entries for that page, optionally filtering by matching `intents` and/or the active KB heading (for `chapters`). When several videos map to the same page, the one whose title/keywords best overlap the query wins.
+   - **Relevance guard:** the matched page must share at least one distinctive token with the query (via its source path / heading / video title / keywords). This matters for `kb_search`, which has no "I don't know" gate — without it an off-topic query (e.g. "refund policy") could attach the nearest result's video. If the top mapped row fails the guard, the scan continues to the next ranked row, and if none qualify no video is shown.
 4. If `chapters` contains the current heading, use its pre-defined `start` and `end` directly.
 5. Otherwise, score **windows of transcript cues** against the question and select the best contiguous start/end window (capped to about **90 seconds**).
 6. Build the embed URL with whole-second `start` and `end`, plus caption parameters when the language is supported.
 7. If no manifest entry matches (or embedding is disabled), return the text answer only — no video link.
+
+**Answer gate note:** a video is only appended to a **substantive** answer — never to an "I don't know" response. `kb_answer`'s support gate trusts **strong lexical overlap**: if the best evidence page overlaps the query terms by ≥ 0.7 (with a small positive score), it is accepted even when its absolute score is below the usual floors. This recovers clearly on-topic questions that previously refused (and thus lets their mapped video surface) without lowering the global thresholds. Off-topic queries (low overlap) still refuse and get no video.
