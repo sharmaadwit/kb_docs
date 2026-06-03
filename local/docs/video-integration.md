@@ -129,3 +129,28 @@ Store one file per video: `video_transcripts/<video_id>.json` (e.g. `video_trans
 7. If no specific page matched **and** the question is a broad discovery/pitch ask, fall back to the entry flagged `broad_fallback` (the overview video) so the first answer still carries a video. Otherwise return the text answer only — no video link.
 
 **Answer gate note:** a video is only appended to a **substantive** answer — never to an "I don't know" response. `kb_answer`'s support gate trusts **strong lexical overlap**: if the best evidence page overlaps the query terms by ≥ 0.7 (with a small positive score), it is accepted even when its absolute score is below the usual floors. This recovers clearly on-topic questions that previously refused (and thus lets their mapped video surface) without lowering the global thresholds. Off-topic queries (low overlap) still refuse and get no video.
+
+## 8. Video consumption telemetry
+
+The skill tracks **delivery** (a video was selected and returned), not YouTube play time. Two sinks:
+
+| Sink | What is recorded |
+|------|------------------|
+| **Langfuse** (`kb_answer` only, when `LANGFUSE_*` secrets are set) | Flat metadata on each trace: `video_attached`, `video_id`, `video_title`, `video_start`, `video_source`, `video_channel` (`kb_answer` / `kb_search`), `video_fallback`, `video_lang`, `video_captions_on`, and for answers `video_appended_to_answer` (Watch line in answer text). Filter traces where `video_attached = true`. |
+| **NDJSON** (`kb_analytics`, when GitHub secrets are set) | Event `video.delivered` appended to `kb/analytics/kb_usage.ndjson` and the daily file. Payload: `channel`, `video_id`, `title`, `start`, `source`, `fallback`, `lang`, `query_preview`, plus `intent` / `module`. |
+
+**Click / watch consumption** is not visible to the skill when the user opens YouTube in a new tab. Have the Gupshup agent (or UI) call `kb_analytics` when the user clicks **Watch**:
+
+```python
+kb_analytics(
+    event="video.clicked",
+    payload={
+        "video_id": "<from tool result>",
+        "channel": "agent_ui",
+        "query_preview": "<user question>",
+    },
+    context=context,
+)
+```
+
+Compare `video.delivered` vs `video.clicked` in NDJSON to measure attach-to-click conversion. YouTube Studio remains the source of truth for watch time.

@@ -301,6 +301,52 @@ class TestKbVideo(unittest.TestCase):
         finally:
             kb_video.kb_storage.read_json = original
 
+    def test_video_telemetry_metadata_attached(self):
+        video = {
+            "video_id": "abc",
+            "title": "CTX Setup",
+            "start": 10,
+            "end": 90,
+            "source": "kb/ctx/foo.md",
+            "fallback": True,
+            "lang": "en",
+            "captions_on": True,
+        }
+        meta = kb_video.video_telemetry_metadata(video, "kb_answer", appended_to_answer=True)
+        self.assertTrue(meta["video_attached"])
+        self.assertEqual(meta["video_id"], "abc")
+        self.assertEqual(meta["video_channel"], "kb_answer")
+        self.assertTrue(meta["video_fallback"])
+        self.assertTrue(meta["video_appended_to_answer"])
+
+    def test_video_telemetry_metadata_none(self):
+        meta = kb_video.video_telemetry_metadata(None, "kb_search")
+        self.assertFalse(meta["video_attached"])
+
+    def test_record_video_delivery_calls_kb_analytics(self):
+        calls = []
+        video = {"video_id": "x1", "title": "T", "start": 0, "source": "kb/a.md"}
+
+        class Ctx:
+            def get_secret(self, name):
+                return None
+
+        def fake_analytics(event="", payload=None, context=None):
+            calls.append((event, payload))
+            return {"ok": True}
+
+        import kb_analytics
+        orig = kb_analytics.kb_analytics
+        try:
+            kb_analytics.kb_analytics = fake_analytics
+            kb_video.record_video_delivery(video, "kb_answer", "how to setup ctx", Ctx())
+        finally:
+            kb_analytics.kb_analytics = orig
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(calls[0][0], "video.delivered")
+        self.assertEqual(calls[0][1]["video_id"], "x1")
+        self.assertEqual(calls[0][1]["channel"], "kb_answer")
+
 
 if __name__ == "__main__":
     unittest.main()

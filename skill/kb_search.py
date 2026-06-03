@@ -1470,6 +1470,7 @@ def _compact_langfuse(
     trace_name: str, query: str, results: List[Dict],
     explicit_module: str, intents: List[str], preferred_mode: str,
     latency_ms: int, context, params: Dict = None,
+    video_meta: Dict = None,
 ) -> Dict:
     params = params or {}
 
@@ -1519,7 +1520,7 @@ def _compact_langfuse(
     user = _langfuse_user_context_search(context, params)
     trace_user_id = user.get("trace_user_id")
 
-    return {
+    out = {
         "ok": True,
         "trace_id": trace_id,
         "trace_userId": trace_user_id,
@@ -1558,6 +1559,9 @@ def _compact_langfuse(
             "accuracy_source": None,
         },
     }
+    if isinstance(video_meta, dict) and video_meta:
+        out["metadata"].update(video_meta)
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -1627,6 +1631,7 @@ def kb_search(parameters: object = None, context=None, **kwargs) -> dict:
     public_results = [_public_search_row(r) for r in results]
 
     video = None
+    video_meta = {"video_attached": False, "video_channel": "kb_search"}
     try:
         import kb_video
         _lang = None
@@ -1636,12 +1641,19 @@ def kb_search(parameters: object = None, context=None, **kwargs) -> dict:
             query, preferred_mode, explicit_module, scored,
             language=_lang, context=context,
         )
+        video_meta = kb_video.video_telemetry_metadata(video, "kb_search")
+        if video and video.get("video_id"):
+            kb_video.record_video_delivery(
+                video, "kb_search", query, context,
+                extra={"intent": preferred_mode, "module": explicit_module},
+            )
     except Exception:
         video = None
 
     latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
     langfuse = _compact_langfuse(
         "kb_search", query, results, explicit_module, intents, preferred_mode, latency_ms, context, params,
+        video_meta=video_meta,
     )
     return {
         "ok": True,

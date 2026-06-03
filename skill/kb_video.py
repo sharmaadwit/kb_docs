@@ -397,3 +397,65 @@ def select_video(query: str, intent: str, module: str, ranked_rows, language=Non
     except Exception:
         logger.exception("Failed selecting video")
         return None
+
+
+def video_telemetry_metadata(
+    video,
+    channel: str,
+    *,
+    appended_to_answer: bool = None,
+) -> dict:
+    """Flat fields for Langfuse trace metadata (filterable in dashboards)."""
+    channel = str(channel or "").strip() or "unknown"
+    if not video or not video.get("video_id"):
+        return {"video_attached": False, "video_channel": channel}
+    meta = {
+        "video_attached": True,
+        "video_channel": channel,
+        "video_id": video.get("video_id"),
+        "video_title": video.get("title") or "",
+        "video_start": video.get("start"),
+        "video_end": video.get("end"),
+        "video_source": video.get("source"),
+        "video_fallback": bool(video.get("fallback")),
+        "video_lang": video.get("lang"),
+        "video_captions_on": bool(video.get("captions_on")),
+    }
+    if appended_to_answer is not None:
+        meta["video_appended_to_answer"] = bool(appended_to_answer)
+    return meta
+
+
+def record_video_delivery(video, channel: str, query: str, context=None, extra: dict = None) -> None:
+    """Append a durable NDJSON event (kb/analytics/*.ndjson) when a video is offered.
+
+    Failures are swallowed so answer/search latency is unaffected. True click/play
+    consumption must be reported separately via kb_analytics(event=\"video.clicked\", …)
+    from the agent UI when the user opens the Watch link.
+    """
+    if not video or not video.get("video_id") or context is None:
+        return
+    try:
+        import kb_analytics
+    except Exception:
+        return
+    payload = {
+        "channel": str(channel or "").strip() or "unknown",
+        "video_id": video.get("video_id"),
+        "title": video.get("title"),
+        "start": video.get("start"),
+        "end": video.get("end"),
+        "source": video.get("source"),
+        "fallback": bool(video.get("fallback")),
+        "lang": video.get("lang"),
+        "captions_on": bool(video.get("captions_on")),
+    }
+    if isinstance(extra, dict):
+        payload.update(extra)
+    q = str(query or "").strip()
+    if q:
+        payload["query_preview"] = q if len(q) <= 400 else q[:400] + "…"
+    try:
+        kb_analytics.kb_analytics(event="video.delivered", payload=payload, context=context)
+    except Exception:
+        logger.debug("video.delivered analytics append skipped", exc_info=True)

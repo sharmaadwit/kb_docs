@@ -4508,6 +4508,7 @@ def _send_langfuse(
     latency_ms: int,
     context,
     params: Optional[Dict[str, Any]] = None,
+    video_meta: Optional[Dict[str, Any]] = None,
 ) -> Dict:
     trace_id = f"kb-{trace_name}-{uuid.uuid4().hex[:16]}"
     top_source = results[0].get("source") if results else None
@@ -4565,6 +4566,8 @@ def _send_langfuse(
         "accuracy_score": None,
         "accuracy_source": None,
     }
+    if isinstance(video_meta, dict) and video_meta:
+        metadata.update(video_meta)
     body = _build_langfuse_request(
         trace_name, trace_id, query, answer, metadata, trace_user_id=trace_user_id,
     )
@@ -4748,6 +4751,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
         answer = answer[:_MAX_ANSWER_CHARS] + "…"
 
     video = None
+    video_meta = {"video_attached": False, "video_channel": "kb_answer"}
     answer_is_substantive = (
         bool(answer and answer.strip())
         and "i don't know" not in answer.lower()
@@ -4766,13 +4770,28 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
             )
         except Exception:
             video = None
+    video_appended = False
     if video and video.get("url"):
         answer = _append_video_section(answer, video)
+        video_appended = True
+    try:
+        import kb_video
+        video_meta = kb_video.video_telemetry_metadata(
+            video, "kb_answer", appended_to_answer=video_appended,
+        )
+        if video and video.get("video_id"):
+            kb_video.record_video_delivery(
+                video, "kb_answer", query, context,
+                extra={"intent": intent, "module": explicit_module},
+            )
+    except Exception:
+        pass
 
     latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
     langfuse = _send_langfuse(
         "kb_answer", query, answer, evidence, explicit_module,
         intents_list, intent, False, latency_ms, context, params,
+        video_meta=video_meta,
     )
     return {
         "ok": True,
