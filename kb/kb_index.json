@@ -1,14 +1,14 @@
 {
   "ok": true,
-  "created_at": "2026-05-27T08:39:24.437608+00:00",
+  "created_at": "2026-06-04T09:56:09.035228+00:00",
   "repo": "sharmaadwit/kb_docs",
   "branch": "main",
   "docs_path": "kb",
   "excluded": [
     "kb/analytics"
   ],
-  "md_files": 358,
-  "chunks": 5987,
+  "md_files": 377,
+  "chunks": 6179,
   "docs": [
     {
       "path": "kb/agent-assist/about-agent-assist.md",
@@ -1419,8 +1419,84 @@
       "chunks": 20
     },
     {
+      "path": "kb/superagent/concepts/agents.md",
+      "chunks": 17
+    },
+    {
+      "path": "kb/superagent/concepts/browser-control.md",
+      "chunks": 9
+    },
+    {
+      "path": "kb/superagent/concepts/integrations.md",
+      "chunks": 8
+    },
+    {
+      "path": "kb/superagent/concepts/recipes.md",
+      "chunks": 8
+    },
+    {
+      "path": "kb/superagent/concepts/scheduled-tasks.md",
+      "chunks": 9
+    },
+    {
+      "path": "kb/superagent/concepts/skills.md",
+      "chunks": 7
+    },
+    {
       "path": "kb/superagent/enabling-superagent-for-internal-use-cases.md",
       "chunks": 21
+    },
+    {
+      "path": "kb/superagent/faq.md",
+      "chunks": 5
+    },
+    {
+      "path": "kb/superagent/getting-started.md",
+      "chunks": 7
+    },
+    {
+      "path": "kb/superagent/guides/connect-integration.md",
+      "chunks": 12
+    },
+    {
+      "path": "kb/superagent/guides/create-agent.md",
+      "chunks": 14
+    },
+    {
+      "path": "kb/superagent/guides/embed-agent.md",
+      "chunks": 14
+    },
+    {
+      "path": "kb/superagent/guides/enable-browser-agent.md",
+      "chunks": 14
+    },
+    {
+      "path": "kb/superagent/guides/manage-skills.md",
+      "chunks": 14
+    },
+    {
+      "path": "kb/superagent/guides/personalize.md",
+      "chunks": 10
+    },
+    {
+      "path": "kb/superagent/guides/schedule-task.md",
+      "chunks": 10
+    },
+    {
+      "path": "kb/superagent/guides/submit-feedback.md",
+      "chunks": 11
+    },
+    {
+      "path": "kb/superagent/guides/use-channels.md",
+      "chunks": 11
+    },
+    {
+      "path": "kb/superagent/troubleshooting.md",
+      "chunks": 7
+    },
+    {
+      "path": "kb/superagent/welcome.md",
+      "chunks": 5
     },
     {
       "path": "kb/wallet/wallet-overview.md",
