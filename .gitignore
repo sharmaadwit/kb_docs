@@ -10,6 +10,8 @@ kb/.DS_Store
 # Agent-generated (do not commit; Cursor / local agent may create these)
 SKILL.md
 **/SKILL.md
+# ...except the deployed skill manifest, mirrored here for parity
+!skill/SKILL.md
 
 # Local-only docs / scratch (optional)
 UX_rule.md
