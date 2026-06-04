@@ -1,3 +1,0 @@
-{"ts": "2026-04-13T04:39:35.681024+00:00", "event": "test_secret_redaction", "payload": {"api_key": "[REDACTED]", "user_question": "hi"}}
-{"ts": "2026-04-13T05:07:54.663616+00:00", "event": "test_secret_redaction", "payload": {"api_key": "[REDACTED]", "user_question": "hi"}}
-{"ts": "2026-04-13T08:56:09.501363+00:00", "event": "smoke_test", "payload": {"skill": "product_introduction_kb", "query": "What is API Node in Journey Builder?", "source": "superagent_manual_smoke"}}

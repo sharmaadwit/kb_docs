@@ -21,11 +21,16 @@ se_evaluation_framework.md
 PLAN_*.md
 *-export-*.json
 
-# Secrets
+# Secrets + local Langfuse credentials (never commit)
 .cursor/
 .env
 .env.*
-!.env.example
+.env.example
+
+# Usage telemetry + analytics tooling (local only — do not push)
+kb/analytics/
+local/scripts/usage_analytics.py
+analyze_kb_analytics.py
 
 # Success story source PDFs (local only — markdown lives in kb/case-studies/)
 Success Story Library*.pdf
@@ -34,7 +39,6 @@ API+DOCUMENTATION.pdf
 Enterprise Messaging APIs for WhatsApp Business.pdf
 
 github_kb_*.py
-analyze_kb_analytics.py
 kb_answer_runtime.py
 Regression Scripts/
 patch instructions/
