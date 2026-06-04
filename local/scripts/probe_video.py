@@ -27,18 +27,15 @@ kb_video.record_video_delivery = lambda *a, **k: None
 ctx=C()
 
 qs = [
-  "what is superagent",
-  "superagent overview",
-  "tell me about superagent",
-  "superagent for retail",
-  "give me an overview of gupshup for retail",
-  "what can gupshup do for retail",
-  "pitch gupshup for retail",
-  "set up projects and access modules",
-  "gupshup console overview",
+  "i am a retail/FMCG company, what can superagent do and what are gupshup features that have helped other clients, if you have videos, would love to see",
+  "what can superagent do for retail",
+  "what can superagent do",
+  "superagent features",
+  "show me videos for superagent",
 ]
 for q in qs:
     res = kb_answer.kb_answer({"query": q}, context=ctx)
     v = res.get("video")
+    idk = "i don't know" in (res.get("answer","" ).lower())
     vid = f'{v["video_id"]} "{v["title"]}" fallback={v.get("fallback")} src={v.get("source")}' if v else "(none)"
-    print(f"{q!r:55} -> {vid}")
+    print(f"idk={idk}  video={vid}\n  Q: {q[:90]}")
