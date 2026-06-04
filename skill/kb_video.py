@@ -251,6 +251,97 @@ def pick_language(requested_lang, query_text: str, entry: dict):
     return None, False
 
 
+def _score_candidate(entry, row_heading, intent, query_tokens):
+    intents = entry.get("intents")
+    chapters = entry.get("chapters") if isinstance(entry.get("chapters"), dict) else {}
+    intent_match = int(isinstance(intents, list) and intent in intents)
+    chapter_match = int(bool(row_heading) and row_heading in chapters)
+    # Tie-break when several videos map to the same KB page: prefer the
+    # one whose title/keywords overlap the query the most.
+    kw_text = " ".join(
+        [str(entry.get("title") or "")]
+        + [str(k) for k in (entry.get("keywords") or [])]
+    )
+    kw_overlap = len(query_tokens.intersection(set(_tokenize(kw_text))))
+    return (intent_match, chapter_match, kw_overlap)
+
+
+def _row_is_relevant(row, row_heading, chosen, query_tokens):
+    # Guard against attaching a video to a barely-related top result.
+    # kb_search has no "I don't know" gate, so without this an off-topic
+    # query (e.g. "refund policy") could still surface the nearest page's
+    # video. Require at least one distinctive token shared between the
+    # query and the matched page / video entry.
+    ref_tokens = set(_tokenize(row.get("source", "")))
+    ref_tokens |= set(_tokenize(row_heading))
+    ref_tokens |= set(_tokenize(chosen.get("title") or ""))
+    for kw in (chosen.get("keywords") or []):
+        ref_tokens |= set(_tokenize(kw))
+    return bool(query_tokens & ref_tokens)
+
+
+def _candidates_for_source(manifest, source):
+    return [
+        e for e in manifest
+        if isinstance(e, dict)
+        and e.get("embeddable") is not False
+        and (
+            e.get("source") == source
+            or (
+                isinstance(e.get("also_sources"), list)
+                and source in e.get("also_sources")
+            )
+        )
+    ]
+
+
+def _finalize_video(entry, heading, primary, query, language, transcript_dir, context, is_fallback=False):
+    """Build the public video dict (start/end window, captions, URL) for an entry."""
+    lang, cc_on = pick_language(language, query, entry)
+
+    start = 0
+    end = None
+    chapters = entry.get("chapters")
+    chapter = None
+    if isinstance(chapters, dict) and heading:
+        chapter = chapters.get(heading)
+    if isinstance(chapter, dict) and "start" in chapter and "end" in chapter:
+        start = _safe_int(chapter.get("start"), 0)
+        end = _safe_int(chapter.get("end"), start)
+    else:
+        transcript = None
+        video_id = entry.get("video_id")
+        if video_id:
+            transcript_path = f"{transcript_dir}/{video_id}.json"
+            try:
+                transcript = kb_storage.read_json(transcript_path, context)
+            except Exception:
+                transcript = None
+        if isinstance(transcript, list) and transcript:
+            primary_text = primary.get("text", "") if isinstance(primary, dict) else ""
+            combined_query = f"{query or ''} {primary_text}".strip()
+            start, end = derive_window(transcript, combined_query)
+        else:
+            start, end = 0, None
+
+    video_id = entry.get("video_id")
+    if not video_id:
+        return None
+
+    url = build_video_url(video_id, start, end, lang if cc_on else None)
+    return {
+        "video_id": video_id,
+        "title": entry.get("title", ""),
+        "start": start,
+        "end": end,
+        "lang": lang,
+        "captions_on": cc_on,
+        "url": url,
+        "source": entry.get("source"),
+        "fallback": is_fallback,
+    }
+
+
 def select_video(query: str, intent: str, module: str, ranked_rows, language=None, context=None):
     del module
     try:
@@ -265,33 +356,6 @@ def select_video(query: str, intent: str, module: str, ranked_rows, language=Non
 
         query_tokens = set(_tokenize(query))
 
-        def score_candidate(entry, row_heading):
-            intents = entry.get("intents")
-            chapters = entry.get("chapters") if isinstance(entry.get("chapters"), dict) else {}
-            intent_match = int(isinstance(intents, list) and intent in intents)
-            chapter_match = int(bool(row_heading) and row_heading in chapters)
-            # Tie-break when several videos map to the same KB page: prefer the
-            # one whose title/keywords overlap the query the most.
-            kw_text = " ".join(
-                [str(entry.get("title") or "")]
-                + [str(k) for k in (entry.get("keywords") or [])]
-            )
-            kw_overlap = len(query_tokens.intersection(set(_tokenize(kw_text))))
-            return (intent_match, chapter_match, kw_overlap)
-
-        def row_is_relevant(row, row_heading, chosen):
-            # Guard against attaching a video to a barely-related top result.
-            # kb_search has no "I don't know" gate, so without this an off-topic
-            # query (e.g. "refund policy") could still surface the nearest page's
-            # video. Require at least one distinctive token shared between the
-            # query and the matched page / video entry.
-            ref_tokens = set(_tokenize(row.get("source", "")))
-            ref_tokens |= set(_tokenize(row_heading))
-            ref_tokens |= set(_tokenize(chosen.get("title") or ""))
-            for kw in (chosen.get("keywords") or []):
-                ref_tokens |= set(_tokenize(kw))
-            return bool(query_tokens & ref_tokens)
-
         # Scan the top ranked rows for the first one that maps to a manifest
         # entry, so a relevant video is not missed just because the single best
         # evidence row happens to be an unmapped page.
@@ -304,23 +368,12 @@ def select_video(query: str, intent: str, module: str, ranked_rows, language=Non
             source = row.get("source")
             if not source:
                 continue
-            candidates = [
-                e for e in manifest
-                if isinstance(e, dict)
-                and e.get("embeddable") is not False
-                and (
-                    e.get("source") == source
-                    or (
-                        isinstance(e.get("also_sources"), list)
-                        and source in e.get("also_sources")
-                    )
-                )
-            ]
+            candidates = _candidates_for_source(manifest, source)
             if not candidates:
                 continue
             row_heading = row.get("heading") or ""
-            best = max(candidates, key=lambda e: score_candidate(e, row_heading))
-            if not row_is_relevant(row, row_heading, best):
+            best = max(candidates, key=lambda e: _score_candidate(e, row_heading, intent, query_tokens))
+            if not _row_is_relevant(row, row_heading, best, query_tokens):
                 continue
             primary = row
             heading = row_heading
@@ -352,51 +405,143 @@ def select_video(query: str, intent: str, module: str, ranked_rows, language=Non
         if entry is None or primary is None:
             return None
 
-        lang, cc_on = pick_language(language, query, entry)
-
-        start = 0
-        end = None
-        chapters = entry.get("chapters")
-        chapter = None
-        if isinstance(chapters, dict) and heading:
-            chapter = chapters.get(heading)
-        if isinstance(chapter, dict) and "start" in chapter and "end" in chapter:
-            start = _safe_int(chapter.get("start"), 0)
-            end = _safe_int(chapter.get("end"), start)
-        else:
-            transcript = None
-            video_id = entry.get("video_id")
-            if video_id:
-                transcript_path = f"{transcript_dir}/{video_id}.json"
-                try:
-                    transcript = kb_storage.read_json(transcript_path, context)
-                except Exception:
-                    transcript = None
-            if isinstance(transcript, list) and transcript:
-                combined_query = f"{query or ''} {primary.get('text', '')}".strip()
-                start, end = derive_window(transcript, combined_query)
-            else:
-                start, end = 0, None
-
-        video_id = entry.get("video_id")
-        if not video_id:
-            return None
-
-        url = build_video_url(video_id, start, end, lang if cc_on else None)
-        return {
-            "video_id": video_id,
-            "title": entry.get("title", ""),
-            "start": start,
-            "end": end,
-            "lang": lang,
-            "captions_on": cc_on,
-            "url": url,
-            "source": entry.get("source"),
-            "fallback": is_fallback,
-        }
+        return _finalize_video(
+            entry, heading, primary, query, language, transcript_dir, context,
+            is_fallback=is_fallback,
+        )
     except Exception:
         logger.exception("Failed selecting video")
         return None
+
+
+def catalog_videos(query: str, language=None, context=None, max_videos: int = 10):
+    """Return the curated platform-tour videos (manifest entries flagged ``pitch``).
+
+    A broad platform-wide ask ("what can Gupshup do", "show me demos") cannot be
+    answered from a single page's evidence, so the retriever only surfaces one
+    module. For sales / new-user pitches we instead return the hand-picked set of
+    module walkthroughs, ordered by ``pitch_order``, so every key module's video
+    is offered up front.
+    """
+    try:
+        manifest_path = _get_secret(context, "KB_VIDEO_MANIFEST_PATH") or "kb/video_manifest.json"
+        transcript_dir = _get_secret(context, "KB_VIDEO_TRANSCRIPT_DIR") or "kb/video_transcripts"
+        manifest = kb_storage.read_json(manifest_path, context)
+        if not manifest or not isinstance(manifest, list):
+            return []
+        pitched = [
+            e for e in manifest
+            if isinstance(e, dict)
+            and e.get("pitch") is True
+            and e.get("embeddable") is not False
+            and e.get("video_id")
+        ]
+        pitched.sort(key=lambda e: _safe_int(e.get("pitch_order"), 999))
+        results = []
+        seen_videos = set()
+        for entry in pitched:
+            if len(results) >= max(1, int(max_videos or 10)):
+                break
+            vid = entry.get("video_id")
+            if not vid or vid in seen_videos:
+                continue
+            built = _finalize_video(
+                entry, "", {"source": entry.get("source"), "text": ""},
+                query, language, transcript_dir, context, is_fallback=False,
+            )
+            if built and built.get("url"):
+                seen_videos.add(vid)
+                results.append(built)
+        return results
+    except Exception:
+        logger.exception("Failed building video catalog")
+        return []
+
+
+def select_videos(query: str, intent: str, module: str, ranked_rows, language=None, context=None, max_videos: int = 6, require_query_overlap: bool = True):
+    """Return up to ``max_videos`` distinct, relevant videos for a broad answer.
+
+    Unlike :func:`select_video` (single best match), this collects one video per
+    distinct mapped module/page found across the top ranked rows, deduplicated by
+    ``video_id`` and ordered by rank. Used for broad / overview answers that span
+    several modules so the response can surface every relevant walkthrough.
+
+    ``require_query_overlap`` keeps the per-row relevance guard (a query token must
+    overlap the matched page/video). For a genuine overview answer that spans
+    modules the user never named, set it ``False`` so the retriever's own ranking
+    decides relevance and every covered module's walkthrough is surfaced.
+    """
+    del module
+    try:
+        manifest_path = _get_secret(context, "KB_VIDEO_MANIFEST_PATH") or "kb/video_manifest.json"
+        transcript_dir = _get_secret(context, "KB_VIDEO_TRANSCRIPT_DIR") or "kb/video_transcripts"
+
+        manifest = kb_storage.read_json(manifest_path, context)
+        if not ranked_rows or not manifest or not isinstance(ranked_rows, list):
+            return []
+
+        try:
+            max_videos = max(1, int(max_videos))
+        except Exception:
+            max_videos = 6
+
+        query_tokens = set(_tokenize(query))
+        results = []
+        seen_videos = set()
+
+        # Scan deeper than select_video so a multi-module answer can collect a
+        # video for each distinct module that actually appears in the evidence.
+        for row in ranked_rows[: max(24, max_videos * 6)]:
+            if len(results) >= max_videos:
+                break
+            if not isinstance(row, dict):
+                continue
+            source = row.get("source")
+            if not source:
+                continue
+            candidates = _candidates_for_source(manifest, source)
+            if not candidates:
+                continue
+            row_heading = row.get("heading") or ""
+            best = max(candidates, key=lambda e: _score_candidate(e, row_heading, intent, query_tokens))
+            video_id = best.get("video_id")
+            if not video_id or video_id in seen_videos:
+                continue
+            if require_query_overlap and not _row_is_relevant(row, row_heading, best, query_tokens):
+                continue
+            built = _finalize_video(
+                best, row_heading, row, query, language, transcript_dir, context,
+                is_fallback=False,
+            )
+            if built and built.get("url"):
+                seen_videos.add(video_id)
+                results.append(built)
+
+        # If nothing matched but this is a broad/discovery ask, fall back to the
+        # high-level overview video so the answer still carries one.
+        if not results and _is_broad_query(query):
+            fallback = next(
+                (
+                    e for e in manifest
+                    if isinstance(e, dict)
+                    and e.get("broad_fallback") is True
+                    and e.get("embeddable") is not False
+                    and e.get("video_id")
+                ),
+                None,
+            )
+            if fallback is not None:
+                built = _finalize_video(
+                    fallback, "", {"source": fallback.get("source"), "text": ""},
+                    query, language, transcript_dir, context, is_fallback=True,
+                )
+                if built and built.get("url"):
+                    results.append(built)
+
+        return results
+    except Exception:
+        logger.exception("Failed selecting videos")
+        return []
 
 
 def video_telemetry_metadata(

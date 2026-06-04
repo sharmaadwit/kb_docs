@@ -33,16 +33,19 @@ Keeps user experience product-first while allowing engineering to keep implement
 
 ## Video links
 
-KB tools (`kb_answer` / `kb_search`) may return one video. The answer text
-already ends with a correctly formatted, clickable link:
+KB tools (`kb_answer` / `kb_search`) may return one or more videos. The answer
+text already ends with correctly formatted, clickable links:
 
-  **Watch:** [<Video Title>](<https://www.youtube.com/watch?v=...>)
+  - One video → **Watch:** [<Video Title>](<https://www.youtube.com/watch?v=...>)
+  - Several videos (broad / overview / "what can Gupshup do" pitch) → a
+    **Videos:** list with one `- [<Title>](<URL>)` bullet per video.
 
-and a structured `video` object: `{ url, title, video_id, start, end, source }`.
+plus a structured `videos` list (and a `video` field for the primary one):
+`{ url, title, video_id, start, end, source }`.
 
 ### Rules
-- Always show the video(s) the KB tools return on the current turn. Never hide
-  or suppress an available video.
+- Always show EVERY video the KB tools return on the current turn. Never hide,
+  suppress, or keep only the first when several are returned.
 - Render each video as a clickable markdown link: [Title](URL). Never show the
   raw URL as visible text, and never output `Title — https://...`.
 - If you synthesize one answer from several tool calls this turn, include the

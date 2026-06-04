@@ -129,6 +129,30 @@ class TestVideoIntegration(unittest.TestCase):
         else:
             self.assertNotIn("**Watch:**", res["answer"])
 
+    def test_platform_pitch_appends_all_module_videos(self):
+        # A whole-platform pitch should surface the full catalog of module
+        # walkthroughs (not just one) under a **Videos:** list.
+        res = kb_answer.kb_answer({"query": "what can gupshup do"}, context=self.ctx)
+        self.assertTrue(res.get("ok"))
+        videos = res.get("videos") or []
+        self.assertGreater(len(videos), 1, "platform pitch should return multiple videos")
+        self.assertIn("**Videos:**", res["answer"])
+        # Every returned video must be a valid, distinct watch link present in the text.
+        ids = [v["video_id"] for v in videos]
+        self.assertEqual(len(ids), len(set(ids)), "videos must be de-duplicated")
+        for v in videos:
+            self.assertIn("/watch?v=", v["url"])
+            self.assertIn(v["url"], res["answer"])
+
+    def test_specific_question_returns_single_video(self):
+        # A specific, single-module question must NOT fan out to the full catalog.
+        res = kb_answer.kb_answer({"query": "how do agent assist reports work"}, context=self.ctx)
+        self.assertTrue(res.get("ok"))
+        videos = res.get("videos") or []
+        self.assertEqual(len(videos), 1, "specific question should return exactly one video")
+        self.assertIn("**Watch:**", res["answer"])
+        self.assertNotIn("**Videos:**", res["answer"])
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

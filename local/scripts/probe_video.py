@@ -26,19 +26,24 @@ import kb_video
 kb_video.record_video_delivery = lambda *a, **k: None
 ctx=C()
 
-industries = [
-  "retail/FMCG", "healthcare", "banking and finance", "edtech", "logistics",
-  "ecommerce", "insurance", "real estate", "travel and hospitality",
-  "automotive", "telecom", "manufacturing", "D2C",
+qs = [
+  "give me more details about gupshup features",
+  "give me more details about gupshup features in full detail",
+  "tell me about gupshup",
+  "what are gupshup's features",
+  "what can the gupshup platform do",
+  "what can gupshup do",
+  "gupshup features overview",
+  "overview of projects",                      # console-specific, NOT a platform pitch
+  "how do i create an agent in superagent",    # specific -> single
+  "how do agent assist reports work",          # specific -> single
+  "what can superagent do",                    # module overview -> superagent only
 ]
-tmpl = "i am a {ind} company, what can superagent do and what are gupshup features that have helped other clients, show me a demo with videos"
-fails = 0
-for ind in industries:
-    q = tmpl.format(ind=ind)
+for q in qs:
     res = kb_answer.kb_answer({"query": q}, context=ctx)
-    v = res.get("video")
+    intent = kb_answer._classify_intent(q, kb_answer._extract_entities(q))
+    vids = res.get("videos") or []
     idk = "i don't know" in res.get("answer","").lower()
-    ok = (not idk) and v and v.get("video_id") == "bGCS4rp84EM"
-    if not ok: fails += 1
-    print(f"[{'OK ' if ok else 'BAD'}] {ind:24} idk={idk} video={v['video_id'] if v else None}")
-print(f"\n{len(industries)-fails}/{len(industries)} industries OK")
+    ids = ", ".join(f'{v["title"]}' for v in vids)
+    print(f"intent={intent:9} idk={str(idk):5} n_videos={len(vids)}  [{ids}]")
+    print(f"   Q: {q[:80]}")

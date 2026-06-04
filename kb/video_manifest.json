@@ -11,7 +11,9 @@
     "title": "Creating & Publishing Message Templates",
     "default_lang": "en",
     "caption_langs": ["en"],
-    "embeddable": true
+    "embeddable": true,
+    "pitch": true,
+    "pitch_order": 2
   },
   {
     "source": "kb/bot-studio/about-bot-studio.md",
@@ -27,7 +29,9 @@
     "title": "Bot Studio: Building a Journey",
     "default_lang": "en",
     "caption_langs": ["en"],
-    "embeddable": true
+    "embeddable": true,
+    "pitch": true,
+    "pitch_order": 4
   },
   {
     "source": "kb/bot-studio/whatsapp-flows-dynamic.md",
@@ -110,7 +114,9 @@
     "title": "Agent Assist Overview",
     "default_lang": "en",
     "caption_langs": ["en"],
-    "embeddable": true
+    "embeddable": true,
+    "pitch": true,
+    "pitch_order": 5
   },
   {
     "source": "kb/agent-assist/settings.md",
@@ -149,7 +155,9 @@
     "title": "Personalize Module",
     "default_lang": "en",
     "caption_langs": ["en"],
-    "embeddable": true
+    "embeddable": true,
+    "pitch": true,
+    "pitch_order": 7
   },
   {
     "source": "kb/ctx/connecting-fb-ad-account-to-gupshup-ads-management.md",
@@ -172,7 +180,9 @@
     "title": "Click-to-WhatsApp Ads (CTX) Setup",
     "default_lang": "en",
     "caption_langs": ["en"],
-    "embeddable": true
+    "embeddable": true,
+    "pitch": true,
+    "pitch_order": 6
   },
   {
     "source": "kb/bot-studio-analytics/dashboard.md",
@@ -185,7 +195,9 @@
     "title": "Analytics Dashboard",
     "default_lang": "en",
     "caption_langs": ["en"],
-    "embeddable": true
+    "embeddable": true,
+    "pitch": true,
+    "pitch_order": 8
   },
   {
     "source": "kb/extension/overview-of-extensions.md",
@@ -233,7 +245,9 @@
     "default_lang": "en",
     "caption_langs": ["en"],
     "embeddable": true,
-    "broad_fallback": true
+    "broad_fallback": true,
+    "pitch": true,
+    "pitch_order": 1
   },
   {
     "source": "kb/campaign-manager/about-campaign-manager.md",
@@ -252,7 +266,9 @@
     "default_lang": "en",
     "caption_langs": ["en"],
     "embeddable": true,
-    "keywords": ["campaign", "campaigns", "campaign manager", "broadcast campaign", "automated campaign"]
+    "keywords": ["campaign", "campaigns", "campaign manager", "broadcast campaign", "automated campaign"],
+    "pitch": true,
+    "pitch_order": 3
   },
   {
     "source": "kb/superagent/welcome.md",
@@ -282,6 +298,8 @@
     "default_lang": "en",
     "caption_langs": ["en"],
     "embeddable": true,
-    "keywords": ["super agent", "superagent", "super-agent", "ai agent", "agents", "skills", "recipes", "integrations", "scheduled tasks", "browser control", "build agent", "create agent"]
+    "keywords": ["super agent", "superagent", "super-agent", "ai agent", "agents", "skills", "recipes", "integrations", "scheduled tasks", "browser control", "build agent", "create agent"],
+    "pitch": true,
+    "pitch_order": 9
   }
 ]

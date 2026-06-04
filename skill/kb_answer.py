@@ -2598,6 +2598,21 @@ def _append_video_section(answer: str, video: Dict) -> str:
     return "\n".join([answer.rstrip(), "", f"**Watch:** [{title}]({video.get('url')})"])
 
 
+def _append_videos_section(answer: str, videos: List[Dict]) -> str:
+    """Append one or more walkthrough links. A single video uses the compact
+    `**Watch:**` line; multiple videos are listed under a `**Videos:**` heading."""
+    valid = [v for v in (videos or []) if v and v.get("url")]
+    if not valid:
+        return answer
+    if len(valid) == 1:
+        return _append_video_section(answer, valid[0])
+    lines = [answer.rstrip(), "", "**Videos:**"]
+    for v in valid:
+        title = (str(v.get("title") or "")).strip() or "Watch the walkthrough"
+        lines.append(f"- [{title}]({v.get('url')})")
+    return "\n".join(lines)
+
+
 _PAGE_DISPLAY_MAP = [
     ("test-your-bot", "Test your Bot"),
     ("user-management-business-hours", "User Management: Business Hours"),
@@ -2810,6 +2825,10 @@ def _is_module_capability_query(q: str) -> bool:
     `setup` gate, get diluted by off-topic tokens (retail, demo, videos, ...),
     and wrongly resolve to "I don't know" with no overview video attached.
     """
+    # Only fires when a specific product module is named ("SuperAgent features",
+    # "what can Agent Assist do"). Platform-wide pitches that merely mention
+    # "gupshup" are handled separately by _is_platform_pitch_query so a specific
+    # question ("how do SR panels work in Gupshup") is not swept up here.
     if _detect_module(q) == "General":
         return False
     # A troubleshooting phrasing ("what can I do if ...", "not seeing ...") must
@@ -2817,6 +2836,42 @@ def _is_module_capability_query(q: str) -> bool:
     if any(x in q for x in _TROUBLESHOOT_SIGNALS):
         return False
     return any(p in q for p in _MODULE_CAPABILITY_SIGNALS)
+
+
+# Tight phrases where Gupshup / the platform itself is the subject of a broad
+# capability ask. Kept narrow so a specific question that merely says "in Gupshup"
+# (e.g. "how do SR panels work in Gupshup") is NOT treated as a platform pitch.
+_PLATFORM_PITCH_PHRASES = (
+    "what can gupshup", "what does gupshup", "what all can gupshup",
+    "what can the gupshup", "what can the platform", "what can your platform",
+    "gupshup features", "features of gupshup", "gupshup's features",
+    "gupshup capabilit", "capabilities of gupshup", "gupshup do for",
+    "tell me about gupshup", "overview of gupshup", "more about gupshup",
+    "more details about gupshup", "details about gupshup features",
+    "what are gupshup", "what is gupshup",
+    "what can you do", "what can you offer", "what you can do",
+    "everything gupshup", "all gupshup features",
+)
+
+
+def _is_platform_pitch_query(q: str) -> bool:
+    """A whole-platform sales / new-user ask where Gupshup itself is the subject.
+
+    e.g. "what can Gupshup do", "give me more details about Gupshup features",
+    "tell me about Gupshup". These can't be assembled from one page's evidence,
+    so they get a high-level capability summary plus the full catalog of module
+    walkthrough videos.
+    """
+    q = _normalize_query_for_match(q)
+    if any(x in q for x in _TROUBLESHOOT_SIGNALS):
+        return False
+    return any(p in q for p in _PLATFORM_PITCH_PHRASES)
+
+
+def _is_platform_pitch(query: str, module: str) -> bool:
+    if module not in ("General", "Overview"):
+        return False
+    return _is_platform_pitch_query(query)
 
 
 def _is_broad_overview_query(q: str) -> bool:
@@ -3230,6 +3285,10 @@ def _classify_intent(query: str, entities: List[Dict]) -> str:
     # shadowed by a generic setup token such as "store" or "collect".
     if is_schema:
         return "schema"
+    # Whole-platform pitches ("what can Gupshup do", "tell me about Gupshup")
+    # are multi-module overviews, not a single setup flow.
+    if _is_platform_pitch_query(q):
+        return "overview"
     # Broad exploration asks are explicitly multi-page overviews, not a single
     # entity setup flow (e.g. "how do I use Agent Assist ... getting started").
     if _is_broad_overview_query(q):
@@ -3273,7 +3332,7 @@ def _detect_intents(query: str) -> List[str]:
         intents.append("troubleshooting")
     if any(x in q for x in _SCHEMA_SIGNALS):
         intents.append("schema")
-    if any(x in q for x in _OVERVIEW_SIGNALS) or _is_broad_overview_query(q):
+    if any(x in q for x in _OVERVIEW_SIGNALS) or _is_broad_overview_query(q) or _is_platform_pitch_query(q):
         intents.append("overview")
     if not intents:
         intents.append("setup")
@@ -3943,6 +4002,22 @@ def _is_demographic_capture_query(query: str) -> bool:
     return has_demographic and has_capture_intent
 
 
+# Kept to 8 bullets to fit the overview answer policy's bullet cap so no module
+# is silently trimmed; mirror any catalog/module changes here.
+PLATFORM_OVERVIEW_ANSWER = (
+    "Here's a high-level view of what Gupshup can help you do:\n"
+    "- WhatsApp onboarding & channels: set up and manage WhatsApp Business, plus Enterprise WhatsApp, SMS, and RCS extensions.\n"
+    "- Message templates: create, submit, and manage approved templates for OTPs, alerts, order updates, and promotions.\n"
+    "- Campaign Manager: run broadcast and automated campaigns with scheduling, audience targeting, and analytics.\n"
+    "- Bot Studio: build automated customer journeys and WhatsApp Flows (welcome, cart recovery, order updates, support handoff).\n"
+    "- Agent Assist: unified live-agent support — route chats, manage teams and business hours, and track performance.\n"
+    "- Click-to-WhatsApp Ads (CTX): connect Meta/TikTok ads to WhatsApp journeys for lead capture and product discovery.\n"
+    "- Personalize & Analytics: tailor messaging by behavior and profile data, and track delivery, reads, and funnel trends.\n"
+    "- SuperAgent: build AI agents with skills, recipes, integrations, scheduled tasks, and browser control.\n"
+    "Tell me which area you'd like to go deeper on and I can walk you through it."
+)
+
+
 def _compose_answer(
     query: str,
     intent: str,
@@ -3984,7 +4059,12 @@ def _compose_answer(
         return _compose_from_evidence(query, intent, evidence, lines, entities, explicit_module)
 
     if intent == "overview":
-        return _compose_from_evidence(query, intent, evidence, lines, entities, explicit_module)
+        ans = _compose_from_evidence(query, intent, evidence, lines, entities, explicit_module)
+        # A whole-platform pitch ("what can Gupshup do") rarely has page evidence,
+        # so fall back to a high-level capability summary rather than "I don't know".
+        if (not ans or "i don't know" in ans.lower()) and _is_platform_pitch(query, explicit_module):
+            return PLATFORM_OVERVIEW_ANSWER
+        return ans
 
     if _is_agent_assist_api_inventory_query(q):
         return _compose_from_evidence(query, intent, evidence, lines, entities, explicit_module)
@@ -4796,6 +4876,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
         answer = answer[:_MAX_ANSWER_CHARS] + "…"
 
     video = None
+    videos: List[Dict] = []
     video_meta = {"video_attached": False, "video_channel": "kb_answer"}
     answer_is_substantive = (
         bool(answer and answer.strip())
@@ -4809,26 +4890,53 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
                 _lang = params.get("language") or params.get("lang")
             _video_rows = list(evidence or [])
             _video_rows.extend(scored or [])
-            video = kb_video.select_video(
-                query, intent, explicit_module, _video_rows,
-                language=_lang, context=context,
-            )
+            # Broad / overview answers span several modules, so surface every
+            # relevant walkthrough. Specific answers keep the single best match.
+            if intent == "overview":
+                # A platform-wide pitch ("what can Gupshup do", "show me demos")
+                # can't be assembled from one page's evidence, so the retriever
+                # only surfaces a single module. For these sales / new-user asks,
+                # return the curated catalog of module walkthroughs instead.
+                _platform = _is_platform_pitch(query, explicit_module)
+                if _platform:
+                    videos = kb_video.catalog_videos(
+                        query, language=_lang, context=context,
+                    ) or []
+                # Module-scoped overview (or empty catalog): let the retriever's
+                # ranking decide and surface every covered module's walkthrough.
+                if not videos:
+                    videos = kb_video.select_videos(
+                        query, intent, explicit_module, _video_rows,
+                        language=_lang, context=context, require_query_overlap=False,
+                    ) or []
+            else:
+                _single = kb_video.select_video(
+                    query, intent, explicit_module, _video_rows,
+                    language=_lang, context=context,
+                )
+                videos = [_single] if _single else []
         except Exception:
-            video = None
+            videos = []
+    videos = [v for v in videos if v and v.get("url")]
+    video = videos[0] if videos else None
     video_appended = False
-    if video and video.get("url"):
-        answer = _append_video_section(answer, video)
+    if videos:
+        answer = _append_videos_section(answer, videos)
         video_appended = True
     try:
         import kb_video
         video_meta = kb_video.video_telemetry_metadata(
             video, "kb_answer", appended_to_answer=video_appended,
         )
-        if video and video.get("video_id"):
-            kb_video.record_video_delivery(
-                video, "kb_answer", query, context,
-                extra={"intent": intent, "module": explicit_module},
-            )
+        if len(videos) > 1:
+            video_meta["video_count"] = len(videos)
+            video_meta["video_ids"] = [v.get("video_id") for v in videos]
+        for _v in videos:
+            if _v and _v.get("video_id"):
+                kb_video.record_video_delivery(
+                    _v, "kb_answer", query, context,
+                    extra={"intent": intent, "module": explicit_module},
+                )
     except Exception:
         pass
 
@@ -4844,6 +4952,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
         "answer": answer,
         "citations": [],
         "video": video,
+        "videos": videos,
         "langfuse": langfuse,
         "answer_policy": policy_meta,
     }
