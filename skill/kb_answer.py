@@ -2874,6 +2874,32 @@ def _is_platform_pitch(query: str, module: str) -> bool:
     return _is_platform_pitch_query(query)
 
 
+# Explicit "give me everything" video asks. STRONG phrases return the full
+# catalog even when a specific module is named (e.g. "all videos for all
+# features and SuperAgent"). WEAK phrases ("all features") only return the
+# catalog when no single module is the subject, so "all features of Agent
+# Assist" stays scoped to that module.
+_FULL_CATALOG_STRONG = (
+    "all videos", "all the videos", "all walkthroughs", "all the walkthroughs",
+    "videos for all", "video for all", "all modules", "all the modules",
+    "every module", "everything you offer", "everything gupshup",
+)
+_FULL_CATALOG_WEAK = (
+    "all features", "all the features", "every feature", "all your features",
+)
+
+
+def _wants_full_catalog(q: str, module: str = "General") -> bool:
+    q = _normalize_query_for_match(q)
+    if any(x in q for x in _TROUBLESHOOT_SIGNALS):
+        return False
+    if any(p in q for p in _FULL_CATALOG_STRONG):
+        return True
+    if module in ("General", "Overview") and any(p in q for p in _FULL_CATALOG_WEAK):
+        return True
+    return False
+
+
 def _is_broad_overview_query(q: str) -> bool:
     """Broad exploration queries: use multi-page evidence, not one entity setup template."""
     if "how do i use" in q and "agent assist" in q:
@@ -3286,8 +3312,9 @@ def _classify_intent(query: str, entities: List[Dict]) -> str:
     if is_schema:
         return "schema"
     # Whole-platform pitches ("what can Gupshup do", "tell me about Gupshup")
-    # are multi-module overviews, not a single setup flow.
-    if _is_platform_pitch_query(q):
+    # and explicit "show me all videos / all features" asks are multi-module
+    # overviews, not a single setup flow.
+    if _is_platform_pitch_query(q) or _wants_full_catalog(q, _detect_module(q)):
         return "overview"
     # Broad exploration asks are explicitly multi-page overviews, not a single
     # entity setup flow (e.g. "how do I use Agent Assist ... getting started").
@@ -3332,7 +3359,7 @@ def _detect_intents(query: str) -> List[str]:
         intents.append("troubleshooting")
     if any(x in q for x in _SCHEMA_SIGNALS):
         intents.append("schema")
-    if any(x in q for x in _OVERVIEW_SIGNALS) or _is_broad_overview_query(q) or _is_platform_pitch_query(q):
+    if any(x in q for x in _OVERVIEW_SIGNALS) or _is_broad_overview_query(q) or _is_platform_pitch_query(q) or _wants_full_catalog(q, _detect_module(q)):
         intents.append("overview")
     if not intents:
         intents.append("setup")
@@ -4060,10 +4087,12 @@ def _compose_answer(
 
     if intent == "overview":
         ans = _compose_from_evidence(query, intent, evidence, lines, entities, explicit_module)
-        # A whole-platform pitch ("what can Gupshup do") rarely has page evidence,
-        # so fall back to a high-level capability summary rather than "I don't know".
-        if (not ans or "i don't know" in ans.lower()) and _is_platform_pitch(query, explicit_module):
-            return PLATFORM_OVERVIEW_ANSWER
+        # A whole-platform pitch ("what can Gupshup do") or a broad "all features"
+        # ask rarely has page evidence, so fall back to a high-level capability
+        # summary rather than "I don't know".
+        if not ans or "i don't know" in ans.lower():
+            if _is_platform_pitch(query, explicit_module) or _wants_full_catalog(query, explicit_module):
+                return PLATFORM_OVERVIEW_ANSWER
         return ans
 
     if _is_agent_assist_api_inventory_query(q):
@@ -4897,7 +4926,10 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
                 # can't be assembled from one page's evidence, so the retriever
                 # only surfaces a single module. For these sales / new-user asks,
                 # return the curated catalog of module walkthroughs instead.
-                _platform = _is_platform_pitch(query, explicit_module)
+                # Platform pitch, OR an explicit "show me all videos / all
+                # features" ask (which returns the full catalog even when a
+                # module like SuperAgent is also named).
+                _platform = _is_platform_pitch(query, explicit_module) or _wants_full_catalog(query, explicit_module)
                 if _platform:
                     videos = kb_video.catalog_videos(
                         query, language=_lang, context=context,

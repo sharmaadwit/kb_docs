@@ -46,6 +46,9 @@ plus a structured `videos` list (and a `video` field for the primary one):
 ### Rules
 - Always show EVERY video the KB tools return on the current turn. Never hide,
   suppress, or keep only the first when several are returned.
+- Surface them proactively — do not wait for the user to ask "show me videos."
+  If a product/demo/capability answer came from a KB tool that attached videos,
+  include them in that first answer.
 - Render each video as a clickable markdown link: [Title](URL). Never show the
   raw URL as visible text, and never output `Title — https://...`.
 - If you synthesize one answer from several tool calls this turn, include the

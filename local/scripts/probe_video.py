@@ -27,17 +27,14 @@ kb_video.record_video_delivery = lambda *a, **k: None
 ctx=C()
 
 qs = [
-  "give me more details about gupshup features",
-  "give me more details about gupshup features in full detail",
-  "tell me about gupshup",
-  "what are gupshup's features",
-  "what can the gupshup platform do",
-  "what can gupshup do",
-  "gupshup features overview",
-  "overview of projects",                      # console-specific, NOT a platform pitch
+  "show me all videos for all features and superagent",
+  "show me videos for all features that are relevant for banking",
+  "i am a bank, what can superagent do and what are gupshup features that have helped other clients, show me end to end demo",
+  "show me videos",
+  "what can superagent do",                    # module overview -> superagent only
   "how do i create an agent in superagent",    # specific -> single
   "how do agent assist reports work",          # specific -> single
-  "what can superagent do",                    # module overview -> superagent only
+  "show me all features of agent assist",      # edge: names a module + 'all features'
 ]
 for q in qs:
     res = kb_answer.kb_answer({"query": q}, context=ctx)
