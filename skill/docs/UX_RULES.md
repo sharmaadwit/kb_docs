@@ -41,7 +41,7 @@ and a structured `video` object: `{ url, title, video_id, start, end, source }`.
 ### Rules
 - Always show the video(s) the KB tools return on the current turn. Never hide
   or suppress an available video.
-- Render each video as a clickable markdown link: `[Title](URL)`. Never show the
+- Render each video as a clickable markdown link: [Title](URL). Never show the
   raw URL as visible text, and never output `Title — https://...`.
 - If you synthesize one answer from several tool calls this turn, include the
   relevant video link(s) those calls returned (deduplicated), placed at the end.
@@ -49,8 +49,7 @@ and a structured `video` object: `{ url, title, video_id, start, end, source }`.
 - If no tool returned a video this turn, simply omit any video section. Do NOT
   say "I don't have videos" or narrate the absence — just give the answer.
 - Do not alter the URL. Keep all query params exactly as returned
-  (`t=`, `cc_load_policy`, `cc_lang_pref`, `hl`) — they set the start time and
-  captions.
+  (`t=`, `cc_load_policy`, `cc_lang_pref`, `hl`).
 
 ### Note
 On WhatsApp, anchor-text links are not supported — the raw URL always shows and
