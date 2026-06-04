@@ -34,11 +34,11 @@ EXPLICIT_MODULES = {
     "workflows": "Workflows",
     "wallet": "Wallet",
     "personalize": "Personalize",
-    "overview": "Overview",
-    "extension": "Extension",
     "superagent": "SuperAgent",
     "super agent": "SuperAgent",
     "super-agent": "SuperAgent",
+    "overview": "Overview",
+    "extension": "Extension",
 }
 
 _OVERVIEW_DEPRIORITY_PATTERNS = [
