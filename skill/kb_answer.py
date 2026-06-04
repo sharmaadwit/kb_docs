@@ -36,6 +36,9 @@ EXPLICIT_MODULES = {
     "personalize": "Personalize",
     "overview": "Overview",
     "extension": "Extension",
+    "superagent": "SuperAgent",
+    "super agent": "SuperAgent",
+    "super-agent": "SuperAgent",
 }
 
 _OVERVIEW_DEPRIORITY_PATTERNS = [
@@ -2373,6 +2376,8 @@ def _module_from_source(source: str) -> str:
         return "Wallet"
     if "/personalize/" in s:
         return "Personalize"
+    if "/superagent/" in s:
+        return "SuperAgent"
     if "/overview/" in s:
         return "Overview"
     if "/analytics/" in s:
@@ -3275,6 +3280,17 @@ def _score_chunk(
 
     if explicit_module != "General" and explicit_module.lower() in _module_from_source(source).lower():
         score += 0.35
+
+    # When the user explicitly names SuperAgent, keep results inside the module.
+    # SuperAgent shares generic vocabulary ("agent", "skills", "schedule", "task")
+    # with AI Admin / Agent Assist pages that carry large entity boosts, so without
+    # this, on-topic SuperAgent pages get buried. Guarded by the explicit-module
+    # signal, which only fires when the query literally mentions SuperAgent.
+    if explicit_module == "SuperAgent":
+        if _module_from_source(source) == "SuperAgent":
+            score += 5.0
+        else:
+            score -= 4.0
 
     has_entity_boost = False
     for entity in entities:

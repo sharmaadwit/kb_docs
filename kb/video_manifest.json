@@ -255,12 +255,33 @@
     "keywords": ["campaign", "campaigns", "campaign manager", "broadcast campaign", "automated campaign"]
   },
   {
-    "source": "kb/superagent/enabling-superagent-for-internal-use-cases.md",
+    "source": "kb/superagent/welcome.md",
+    "also_sources": [
+      "kb/superagent/getting-started.md",
+      "kb/superagent/faq.md",
+      "kb/superagent/troubleshooting.md",
+      "kb/superagent/enabling-superagent-for-internal-use-cases.md",
+      "kb/superagent/concepts/agents.md",
+      "kb/superagent/concepts/skills.md",
+      "kb/superagent/concepts/recipes.md",
+      "kb/superagent/concepts/integrations.md",
+      "kb/superagent/concepts/scheduled-tasks.md",
+      "kb/superagent/concepts/browser-control.md",
+      "kb/superagent/guides/create-agent.md",
+      "kb/superagent/guides/connect-integration.md",
+      "kb/superagent/guides/embed-agent.md",
+      "kb/superagent/guides/enable-browser-agent.md",
+      "kb/superagent/guides/manage-skills.md",
+      "kb/superagent/guides/personalize.md",
+      "kb/superagent/guides/schedule-task.md",
+      "kb/superagent/guides/submit-feedback.md",
+      "kb/superagent/guides/use-channels.md"
+    ],
     "video_id": "bGCS4rp84EM",
     "title": "SuperAgent Overview",
     "default_lang": "en",
     "caption_langs": ["en"],
     "embeddable": true,
-    "keywords": ["super agent", "superagent", "super-agent"]
+    "keywords": ["super agent", "superagent", "super-agent", "ai agent", "agents", "skills", "recipes", "integrations", "scheduled tasks", "browser control", "build agent", "create agent"]
   }
 ]
