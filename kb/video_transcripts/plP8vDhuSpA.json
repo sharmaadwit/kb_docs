@@ -1,0 +1,1322 @@
+[
+  {
+    "start": 14.24,
+    "dur": 6.959,
+    "text": "Hi there welcome to the video today we are",
+    "lang": "en"
+  },
+  {
+    "start": 17.279,
+    "dur": 6.401,
+    "text": "going to talk about campaigns and",
+    "lang": "en"
+  },
+  {
+    "start": 21.199,
+    "dur": 5.521,
+    "text": "the two types of campaigns we have and how we",
+    "lang": "en"
+  },
+  {
+    "start": 23.68,
+    "dur": 5.28,
+    "text": "can create it and run it with our users",
+    "lang": "en"
+  },
+  {
+    "start": 26.72,
+    "dur": 5.12,
+    "text": "over here on the left hand side panel you will see all",
+    "lang": "en"
+  },
+  {
+    "start": 28.96,
+    "dur": 4.96,
+    "text": "the details about all the",
+    "lang": "en"
+  },
+  {
+    "start": 31.84,
+    "dur": 4.32,
+    "text": "modules we have of the console.  We're going to just",
+    "lang": "en"
+  },
+  {
+    "start": 33.92,
+    "dur": 5.2,
+    "text": "select the campaign and you can see this",
+    "lang": "en"
+  },
+  {
+    "start": 36.16,
+    "dur": 5.6,
+    "text": "dropdown giving the option for both",
+    "lang": "en"
+  },
+  {
+    "start": 39.12,
+    "dur": 4.64,
+    "text": "kinds of campaigns.  So we'll start with",
+    "lang": "en"
+  },
+  {
+    "start": 41.76,
+    "dur": 4.72,
+    "text": "the broadcast campaign and then we'll talk about the",
+    "lang": "en"
+  },
+  {
+    "start": 43.76,
+    "dur": 5.52,
+    "text": "automated campaign.",
+    "lang": "en"
+  },
+  {
+    "start": 46.48,
+    "dur": 5.759,
+    "text": "Here in on the screen you can see all of the",
+    "lang": "en"
+  },
+  {
+    "start": 49.28,
+    "dur": 6.08,
+    "text": "details about the campaign.  Ah the name of the",
+    "lang": "en"
+  },
+  {
+    "start": 52.239,
+    "dur": 5.84,
+    "text": "campaign template and you can see the taste.",
+    "lang": "en"
+  },
+  {
+    "start": 55.36,
+    "dur": 4.879,
+    "text": "These are of the test campaign.  The channel where in",
+    "lang": "en"
+  },
+  {
+    "start": 58.079,
+    "dur": 4.241,
+    "text": "we are running the campaign and what kind",
+    "lang": "en"
+  },
+  {
+    "start": 60.239,
+    "dur": 4.88,
+    "text": "of journey it is is it a one way or",
+    "lang": "en"
+  },
+  {
+    "start": 62.32,
+    "dur": 5.119,
+    "text": "interruptive journey what is the status and if",
+    "lang": "en"
+  },
+  {
+    "start": 65.119,
+    "dur": 4.721,
+    "text": "you want to see a lot more performance you can just",
+    "lang": "en"
+  },
+  {
+    "start": 67.439,
+    "dur": 5.36,
+    "text": "select from this filter that I want",
+    "lang": "en"
+  },
+  {
+    "start": 69.84,
+    "dur": 5.92,
+    "text": "to see how the campaigns are forming so",
+    "lang": "en"
+  },
+  {
+    "start": 72.799,
+    "dur": 5.121,
+    "text": "you will go and select the status and",
+    "lang": "en"
+  },
+  {
+    "start": 75.76,
+    "dur": 5.44,
+    "text": "you will get to see all of those details also",
+    "lang": "en"
+  },
+  {
+    "start": 77.92,
+    "dur": 5.92,
+    "text": "over here now if you want to create a new",
+    "lang": "en"
+  },
+  {
+    "start": 81.2,
+    "dur": 4.64,
+    "text": "campaign you just click on this new",
+    "lang": "en"
+  },
+  {
+    "start": 83.84,
+    "dur": 2.959,
+    "text": "broadcast campaign and you will get to",
+    "lang": "en"
+  },
+  {
+    "start": 85.84,
+    "dur": 4.0,
+    "text": "options",
+    "lang": "en"
+  },
+  {
+    "start": 86.799,
+    "dur": 5.921,
+    "text": "one is one way and another is interactive.  So one way",
+    "lang": "en"
+  },
+  {
+    "start": 89.84,
+    "dur": 7.36,
+    "text": "as the name suggests this is just one way from",
+    "lang": "en"
+  },
+  {
+    "start": 92.72,
+    "dur": 7.6,
+    "text": "the company side like from",
+    "lang": "en"
+  },
+  {
+    "start": 97.2,
+    "dur": 5.12,
+    "text": "any promotional ad and any offers and any new thing which is coming",
+    "lang": "en"
+  },
+  {
+    "start": 100.32,
+    "dur": 4.08,
+    "text": "up you are just giving",
+    "lang": "en"
+  },
+  {
+    "start": 102.32,
+    "dur": 3.68,
+    "text": "the information to the user base they can not",
+    "lang": "en"
+  },
+  {
+    "start": 104.4,
+    "dur": 3.92,
+    "text": "interact with it.  They can't send a",
+    "lang": "en"
+  },
+  {
+    "start": 106.0,
+    "dur": 4.159,
+    "text": "reply to it and even if they don't say anything they won't get a",
+    "lang": "en"
+  },
+  {
+    "start": 108.32,
+    "dur": 4.24,
+    "text": "reply because it's",
+    "lang": "en"
+  },
+  {
+    "start": 110.159,
+    "dur": 5.92,
+    "text": "a one-way conversation.  The Conversation Is Done Once",
+    "lang": "en"
+  },
+  {
+    "start": 112.56,
+    "dur": 5.76,
+    "text": "the Campaign Is Sentient of It.  Now when we",
+    "lang": "en"
+  },
+  {
+    "start": 116.079,
+    "dur": 4.961,
+    "text": "talk about interactive campaigns this",
+    "lang": "en"
+  },
+  {
+    "start": 118.32,
+    "dur": 5.439,
+    "text": "is something which is more you know interesting",
+    "lang": "en"
+  },
+  {
+    "start": 121.04,
+    "dur": 4.96,
+    "text": "and may be you can expect more results",
+    "lang": "en"
+  },
+  {
+    "start": 123.759,
+    "dur": 4.64,
+    "text": "from this more",
+    "lang": "en"
+  },
+  {
+    "start": 126.0,
+    "dur": 5.12,
+    "text": "obviously highly engaging because once you have",
+    "lang": "en"
+  },
+  {
+    "start": 128.399,
+    "dur": 5.281,
+    "text": "sent out any kind of campaign in this",
+    "lang": "en"
+  },
+  {
+    "start": 131.12,
+    "dur": 5.68,
+    "text": "particular thing the users get to reply",
+    "lang": "en"
+  },
+  {
+    "start": 133.68,
+    "dur": 4.96,
+    "text": "to it and actually talk with it and may be you know if you are",
+    "lang": "en"
+  },
+  {
+    "start": 136.8,
+    "dur": 4.4,
+    "text": "sending out for a new",
+    "lang": "en"
+  },
+  {
+    "start": 138.64,
+    "dur": 5.2,
+    "text": "product offer they will reply and may be they will end up",
+    "lang": "en"
+  },
+  {
+    "start": 141.2,
+    "dur": 5.28,
+    "text": "buying that thing so obviously the",
+    "lang": "en"
+  },
+  {
+    "start": 143.84,
+    "dur": 6.0,
+    "text": "return and everywhere the engagement is ah much",
+    "lang": "en"
+  },
+  {
+    "start": 146.48,
+    "dur": 6.16,
+    "text": "higher in the interactive campaign.",
+    "lang": "en"
+  },
+  {
+    "start": 149.84,
+    "dur": 5.6,
+    "text": "So, let's select interact cap.  Ok?  And",
+    "lang": "en"
+  },
+  {
+    "start": 152.64,
+    "dur": 4.56,
+    "text": "then we're going to so all of these steps",
+    "lang": "en"
+  },
+  {
+    "start": 155.44,
+    "dur": 4.56,
+    "text": "which is here over here is going to be",
+    "lang": "en"
+  },
+  {
+    "start": 157.2,
+    "dur": 5.119,
+    "text": "similar to board to campaign because we have to you",
+    "lang": "en"
+  },
+  {
+    "start": 160.0,
+    "dur": 5.68,
+    "text": "put in the name and every detail",
+    "lang": "en"
+  },
+  {
+    "start": 162.319,
+    "dur": 5.441,
+    "text": "campaign no matter if it is.  Broadcasted or",
+    "lang": "en"
+  },
+  {
+    "start": 165.68,
+    "dur": 5.04,
+    "text": "automated.  So we are going to select the",
+    "lang": "en"
+  },
+  {
+    "start": 167.76,
+    "dur": 5.04,
+    "text": "audits.  So this is something ah which you see as a",
+    "lang": "en"
+  },
+  {
+    "start": 170.72,
+    "dur": 5.84,
+    "text": "first option.  This is saved list",
+    "lang": "en"
+  },
+  {
+    "start": 172.8,
+    "dur": 6.719,
+    "text": "and segments.  These are basically useful",
+    "lang": "en"
+  },
+  {
+    "start": 176.56,
+    "dur": 6.8,
+    "text": "in our personalize module also you get to see all",
+    "lang": "en"
+  },
+  {
+    "start": 179.519,
+    "dur": 6.961,
+    "text": "of those profiles and the",
+    "lang": "en"
+  },
+  {
+    "start": 183.36,
+    "dur": 6.08,
+    "text": "users details which is already you know there from may be",
+    "lang": "en"
+  },
+  {
+    "start": 186.48,
+    "dur": 5.679,
+    "text": "the odd journey or loaded it so any",
+    "lang": "en"
+  },
+  {
+    "start": 189.44,
+    "dur": 5.12,
+    "text": "kind of those users are already there",
+    "lang": "en"
+  },
+  {
+    "start": 192.159,
+    "dur": 5.041,
+    "text": "and these are something where you divide the",
+    "lang": "en"
+  },
+  {
+    "start": 194.56,
+    "dur": 4.8,
+    "text": "users and segregate them into a segments",
+    "lang": "en"
+  },
+  {
+    "start": 197.2,
+    "dur": 5.36,
+    "text": "in a list.  So let's say if we are focusing",
+    "lang": "en"
+  },
+  {
+    "start": 199.36,
+    "dur": 6.239,
+    "text": "on any particular region then that Delhi region has something which",
+    "lang": "en"
+  },
+  {
+    "start": 202.56,
+    "dur": 4.8,
+    "text": "is coming up for them.  So",
+    "lang": "en"
+  },
+  {
+    "start": 205.599,
+    "dur": 3.681,
+    "text": "you just select segments and you will just",
+    "lang": "en"
+  },
+  {
+    "start": 207.36,
+    "dur": 5.2,
+    "text": "select the particular segment where",
+    "lang": "en"
+  },
+  {
+    "start": 209.28,
+    "dur": 6.72,
+    "text": "only the Delhi people are there.  So you can",
+    "lang": "en"
+  },
+  {
+    "start": 212.56,
+    "dur": 6.64,
+    "text": "target this to a very niche audience and",
+    "lang": "en"
+  },
+  {
+    "start": 216.0,
+    "dur": 5.36,
+    "text": "you can always have a greater impact when",
+    "lang": "en"
+  },
+  {
+    "start": 219.2,
+    "dur": 5.679,
+    "text": "you are sending the right campaign to the right",
+    "lang": "en"
+  },
+  {
+    "start": 221.36,
+    "dur": 6.48,
+    "text": "user.  And else there is another option of",
+    "lang": "en"
+  },
+  {
+    "start": 224.879,
+    "dur": 5.601,
+    "text": "doing upload list.  This is basically where",
+    "lang": "en"
+  },
+  {
+    "start": 227.84,
+    "dur": 4.64,
+    "text": "you get the template from over here you",
+    "lang": "en"
+  },
+  {
+    "start": 230.48,
+    "dur": 4.16,
+    "text": "will download it and whatever column is the",
+    "lang": "en"
+  },
+  {
+    "start": 232.48,
+    "dur": 3.679,
+    "text": "mandatory on like let's say phone number we",
+    "lang": "en"
+  },
+  {
+    "start": 234.64,
+    "dur": 4.4,
+    "text": "require phone number to send out the",
+    "lang": "en"
+  },
+  {
+    "start": 236.159,
+    "dur": 4.961,
+    "text": "WhatsApp campaign.  So anything like that, any",
+    "lang": "en"
+  },
+  {
+    "start": 239.04,
+    "dur": 3.759,
+    "text": "mandatory names and everything.  You will just",
+    "lang": "en"
+  },
+  {
+    "start": 241.12,
+    "dur": 3.6,
+    "text": "select over there and you will just",
+    "lang": "en"
+  },
+  {
+    "start": 242.799,
+    "dur": 4.321,
+    "text": "put in all the details and you will choose the",
+    "lang": "en"
+  },
+  {
+    "start": 244.72,
+    "dur": 4.4,
+    "text": "file and upload the file.  Or else you can simply",
+    "lang": "en"
+  },
+  {
+    "start": 247.12,
+    "dur": 4.8,
+    "text": "go with the all users.  So every",
+    "lang": "en"
+  },
+  {
+    "start": 249.12,
+    "dur": 5.92,
+    "text": "single user which is there on the platform",
+    "lang": "en"
+  },
+  {
+    "start": 251.92,
+    "dur": 6.159,
+    "text": "you will get to, they will get the particular",
+    "lang": "en"
+  },
+  {
+    "start": 255.04,
+    "dur": 5.919,
+    "text": "campaign in there and",
+    "lang": "en"
+  },
+  {
+    "start": 258.079,
+    "dur": 5.041,
+    "text": "let's go ahead with lists and segments so",
+    "lang": "en"
+  },
+  {
+    "start": 260.959,
+    "dur": 4.881,
+    "text": "let's just select anything which is",
+    "lang": "en"
+  },
+  {
+    "start": 263.12,
+    "dur": 5.6,
+    "text": "already made let's get targeting stage",
+    "lang": "en"
+  },
+  {
+    "start": 265.84,
+    "dur": 5.919,
+    "text": "people",
+    "lang": "en"
+  },
+  {
+    "start": 268.72,
+    "dur": 5.199,
+    "text": "and we move ahead.  Now you will get to see all of",
+    "lang": "en"
+  },
+  {
+    "start": 271.759,
+    "dur": 5.361,
+    "text": "those templates which you can use",
+    "lang": "en"
+  },
+  {
+    "start": 273.919,
+    "dur": 5.041,
+    "text": "for this particular broadcast campaign.  And",
+    "lang": "en"
+  },
+  {
+    "start": 277.12,
+    "dur": 4.96,
+    "text": "over here you will also get to select",
+    "lang": "en"
+  },
+  {
+    "start": 278.96,
+    "dur": 6.4,
+    "text": "what kind of template you know visually to",
+    "lang": "en"
+  },
+  {
+    "start": 282.08,
+    "dur": 6.399,
+    "text": "send it out.  So let's make it more visual.",
+    "lang": "en"
+  },
+  {
+    "start": 285.36,
+    "dur": 6.88,
+    "text": "So we will select the image based.",
+    "lang": "en"
+  },
+  {
+    "start": 288.479,
+    "dur": 6.16,
+    "text": "Let's go with this one.  Select this.  Now you'll get",
+    "lang": "en"
+  },
+  {
+    "start": 292.24,
+    "dur": 3.92,
+    "text": "to see a preview of how the campaign",
+    "lang": "en"
+  },
+  {
+    "start": 294.639,
+    "dur": 4.161,
+    "text": "is going to be looking like.  So any",
+    "lang": "en"
+  },
+  {
+    "start": 296.16,
+    "dur": 4.479,
+    "text": "changes you make over here.  You will get the",
+    "lang": "en"
+  },
+  {
+    "start": 298.8,
+    "dur": 4.0,
+    "text": "live preview of how it is going to be",
+    "lang": "en"
+  },
+  {
+    "start": 300.639,
+    "dur": 5.12,
+    "text": "looking like for the users.  A you know",
+    "lang": "en"
+  },
+  {
+    "start": 302.8,
+    "dur": 6.88,
+    "text": "systems or mobiles.  So just select",
+    "lang": "en"
+  },
+  {
+    "start": 305.759,
+    "dur": 6.801,
+    "text": "any rank you know the campaign which you want",
+    "lang": "en"
+  },
+  {
+    "start": 309.68,
+    "dur": 5.519,
+    "text": "the picture to be shown and then we will",
+    "lang": "en"
+  },
+  {
+    "start": 312.56,
+    "dur": 5.359,
+    "text": "select a variable.  So variables are something which can you know as it can be",
+    "lang": "en"
+  },
+  {
+    "start": 317.919,
+    "dur": 4.881,
+    "text": "different for all the users it will be like let's say",
+    "lang": "en"
+  },
+  {
+    "start": 320.56,
+    "dur": 5.52,
+    "text": "first name.  So every user",
+    "lang": "en"
+  },
+  {
+    "start": 322.8,
+    "dur": 5.839,
+    "text": "will have a unique name for there and then you",
+    "lang": "en"
+  },
+  {
+    "start": 326.08,
+    "dur": 4.72,
+    "text": "can select that.  Don't have a static you",
+    "lang": "en"
+  },
+  {
+    "start": 328.639,
+    "dur": 4.881,
+    "text": "know make it more personalized and you will have a",
+    "lang": "en"
+  },
+  {
+    "start": 330.8,
+    "dur": 6.08,
+    "text": "variable added that address them with their",
+    "lang": "en"
+  },
+  {
+    "start": 333.52,
+    "dur": 5.36,
+    "text": "name.  If in case the user doesn't have their name",
+    "lang": "en"
+  },
+  {
+    "start": 336.88,
+    "dur": 4.24,
+    "text": "on the WhatsApp and anything like that you can always have",
+    "lang": "en"
+  },
+  {
+    "start": 338.88,
+    "dur": 5.44,
+    "text": "a static call back that if the name",
+    "lang": "en"
+  },
+  {
+    "start": 341.12,
+    "dur": 6.799,
+    "text": "is not available you will just say hi user",
+    "lang": "en"
+  },
+  {
+    "start": 344.32,
+    "dur": 6.159,
+    "text": "any static text you want to be here now comes",
+    "lang": "en"
+  },
+  {
+    "start": 350.479,
+    "dur": 5.201,
+    "text": "the interactive part.  So this is",
+    "lang": "en"
+  },
+  {
+    "start": 352.8,
+    "dur": 4.64,
+    "text": "basically the journey of that particular campaign, how it is",
+    "lang": "en"
+  },
+  {
+    "start": 355.68,
+    "dur": 4.079,
+    "text": "going to be looking like, what",
+    "lang": "en"
+  },
+  {
+    "start": 357.44,
+    "dur": 5.44,
+    "text": "template it is going to be, she said, and how",
+    "lang": "en"
+  },
+  {
+    "start": 359.759,
+    "dur": 6.56,
+    "text": "you know waiting for the user's message.  So over here",
+    "lang": "en"
+  },
+  {
+    "start": 362.88,
+    "dur": 5.439,
+    "text": "you can even add let's say we're talking about the",
+    "lang": "en"
+  },
+  {
+    "start": 366.319,
+    "dur": 6.16,
+    "text": "AI",
+    "lang": "en"
+  },
+  {
+    "start": 368.319,
+    "dur": 6.32,
+    "text": "and so once the user has interacted and you know ask something about that",
+    "lang": "en"
+  },
+  {
+    "start": 372.479,
+    "dur": 6.641,
+    "text": "particular campaign",
+    "lang": "en"
+  },
+  {
+    "start": 374.639,
+    "dur": 9.12,
+    "text": "you can have a let say any particular AI",
+    "lang": "en"
+  },
+  {
+    "start": 379.12,
+    "dur": 7.28,
+    "text": "admin AI bot added to it and then it can",
+    "lang": "en"
+  },
+  {
+    "start": 383.759,
+    "dur": 5.681,
+    "text": "start",
+    "lang": "en"
+  },
+  {
+    "start": 386.4,
+    "dur": 5.519,
+    "text": "you know sending the message to the users so once",
+    "lang": "en"
+  },
+  {
+    "start": 389.44,
+    "dur": 5.44,
+    "text": "you have selected all of these details and and",
+    "lang": "en"
+  },
+  {
+    "start": 391.919,
+    "dur": 4.881,
+    "text": "you click on review.  You Will Get See How It Is",
+    "lang": "en"
+  },
+  {
+    "start": 394.88,
+    "dur": 4.0,
+    "text": "Going To Be Looking Like.  And now the",
+    "lang": "en"
+  },
+  {
+    "start": 396.8,
+    "dur": 4.959,
+    "text": "journey is also associated with that",
+    "lang": "en"
+  },
+  {
+    "start": 398.88,
+    "dur": 5.2,
+    "text": "particular campaign.  So once it's running and the",
+    "lang": "en"
+  },
+  {
+    "start": 401.759,
+    "dur": 4.961,
+    "text": "user replies anything or asks questions to the",
+    "lang": "en"
+  },
+  {
+    "start": 404.08,
+    "dur": 7.559,
+    "text": "AI ​​admin, the AI ​​box will be able to",
+    "lang": "en"
+  },
+  {
+    "start": 406.72,
+    "dur": 4.919,
+    "text": "reply to that to all of those questions.",
+    "lang": "en"
+  },
+  {
+    "start": 412.16,
+    "dur": 5.52,
+    "text": "Now over here you see all of those details.",
+    "lang": "en"
+  },
+  {
+    "start": 414.72,
+    "dur": 4.56,
+    "text": "Like what is the channel?",
+    "lang": "en"
+  },
+  {
+    "start": 417.68,
+    "dur": 3.84,
+    "text": "What is the name of the account you are sending",
+    "lang": "en"
+  },
+  {
+    "start": 419.28,
+    "dur": 4.56,
+    "text": "?  How many audiences are there?",
+    "lang": "en"
+  },
+  {
+    "start": 421.52,
+    "dur": 5.2,
+    "text": "What is the template name?  What Kind of",
+    "lang": "en"
+  },
+  {
+    "start": 423.84,
+    "dur": 6.4,
+    "text": "Campaign Is This?  And everything.  Now you can",
+    "lang": "en"
+  },
+  {
+    "start": 426.72,
+    "dur": 6.08,
+    "text": "decide whether you want to send it out right now.",
+    "lang": "en"
+  },
+  {
+    "start": 430.24,
+    "dur": 5.04,
+    "text": "Or you can also send a test campaign where",
+    "lang": "en"
+  },
+  {
+    "start": 432.8,
+    "dur": 4.239,
+    "text": "you just may be putting in your number and",
+    "lang": "en"
+  },
+  {
+    "start": 435.28,
+    "dur": 4.0,
+    "text": "test it how it is looking like and how it is coming.",
+    "lang": "en"
+  },
+  {
+    "start": 439.28,
+    "dur": 4.479,
+    "text": "And you can set all of these options like",
+    "lang": "en"
+  },
+  {
+    "start": 441.759,
+    "dur": 4.481,
+    "text": "recurring.  You want it to be recorded like every",
+    "lang": "en"
+  },
+  {
+    "start": 443.759,
+    "dur": 4.72,
+    "text": "three months or something like that.  Or",
+    "lang": "en"
+  },
+  {
+    "start": 446.24,
+    "dur": 4.32,
+    "text": "you want to be scheduled for later like at",
+    "lang": "en"
+  },
+  {
+    "start": 448.479,
+    "dur": 4.481,
+    "text": "a peak timing.  We want and you want to send it now.",
+    "lang": "en"
+  },
+  {
+    "start": 450.56,
+    "dur": 5.68,
+    "text": "Once you convert this will be",
+    "lang": "en"
+  },
+  {
+    "start": 452.96,
+    "dur": 5.28,
+    "text": "sent out.",
+    "lang": "en"
+  },
+  {
+    "start": 456.24,
+    "dur": 4.0,
+    "text": "Now we're going to talk about automated",
+    "lang": "en"
+  },
+  {
+    "start": 458.24,
+    "dur": 4.399,
+    "text": "campaigns.",
+    "lang": "en"
+  },
+  {
+    "start": 460.24,
+    "dur": 5.679,
+    "text": "As the name suggests, this is something which is",
+    "lang": "en"
+  },
+  {
+    "start": 462.639,
+    "dur": 6.241,
+    "text": "automatically sent out to the users once we have",
+    "lang": "en"
+  },
+  {
+    "start": 465.919,
+    "dur": 5.28,
+    "text": "configured all the you know criteria for how",
+    "lang": "en"
+  },
+  {
+    "start": 468.88,
+    "dur": 5.439,
+    "text": "you want to be sent out.  Like let's say",
+    "lang": "en"
+  },
+  {
+    "start": 471.199,
+    "dur": 5.361,
+    "text": "the essentials which are you know usually",
+    "lang": "en"
+  },
+  {
+    "start": 474.319,
+    "dur": 5.921,
+    "text": "preordered as an automated campaign which are like",
+    "lang": "en"
+  },
+  {
+    "start": 476.56,
+    "dur": 7.12,
+    "text": "birthday wishes and any click collection",
+    "lang": "en"
+  },
+  {
+    "start": 480.24,
+    "dur": 5.6,
+    "text": "feedback forms and surveys after the may be the",
+    "lang": "en"
+  },
+  {
+    "start": 483.68,
+    "dur": 4.4,
+    "text": "custom event we have set in that once the",
+    "lang": "en"
+  },
+  {
+    "start": 485.84,
+    "dur": 6.72,
+    "text": "order is placed I want to create a",
+    "lang": "en"
+  },
+  {
+    "start": 488.08,
+    "dur": 7.04,
+    "text": "survey and the basic one the date based that ah you know",
+    "lang": "en"
+  },
+  {
+    "start": 492.56,
+    "dur": 4.639,
+    "text": "the birthday wishes appointment reminder subscription",
+    "lang": "en"
+  },
+  {
+    "start": 495.12,
+    "dur": 4.799,
+    "text": "reminder anything like that which is",
+    "lang": "en"
+  },
+  {
+    "start": 497.199,
+    "dur": 5.201,
+    "text": "you just put in the date and it will be",
+    "lang": "en"
+  },
+  {
+    "start": 499.919,
+    "dur": 6.161,
+    "text": "you know on that date it will be triggered how",
+    "lang": "en"
+  },
+  {
+    "start": 502.4,
+    "dur": 7.359,
+    "text": "you want to be triggered similar similar",
+    "lang": "en"
+  },
+  {
+    "start": 506.08,
+    "dur": 7.199,
+    "text": "steps will be followed we will be",
+    "lang": "en"
+  },
+  {
+    "start": 509.759,
+    "dur": 8.001,
+    "text": "giving all the information about the campaign",
+    "lang": "en"
+  },
+  {
+    "start": 513.279,
+    "dur": 8.24,
+    "text": "similarly over here we will just select that okay this is",
+    "lang": "en"
+  },
+  {
+    "start": 517.76,
+    "dur": 7.719,
+    "text": "the template I want to use let's",
+    "lang": "en"
+  },
+  {
+    "start": 521.519,
+    "dur": 3.96,
+    "text": "use the same one",
+    "lang": "en"
+  },
+  {
+    "start": 525.6,
+    "dur": 5.6,
+    "text": "go ahead select the image which you want to be there",
+    "lang": "en"
+  },
+  {
+    "start": 531.2,
+    "dur": 3.24,
+    "text": "and then let's keep it",
+    "lang": "en"
+  },
+  {
+    "start": 535.279,
+    "dur": 6.201,
+    "text": "similar what we can there let's go",
+    "lang": "en"
+  },
+  {
+    "start": 568.88,
+    "dur": 4.32,
+    "text": "sorry we are",
+    "lang": "en"
+  },
+  {
+    "start": 570.64,
+    "dur": 6.96,
+    "text": "going to",
+    "lang": "en"
+  },
+  {
+    "start": 573.2,
+    "dur": 6.4,
+    "text": "Select What We're Talking About Here.",
+    "lang": "en"
+  },
+  {
+    "start": 577.6,
+    "dur": 5.84,
+    "text": "So this is something where you are triggering",
+    "lang": "en"
+  },
+  {
+    "start": 579.6,
+    "dur": 6.88,
+    "text": "the event basically that ah once user has done something",
+    "lang": "en"
+  },
+  {
+    "start": 583.44,
+    "dur": 5.2,
+    "text": "and may not have done something.  So lately, like we talked about",
+    "lang": "en"
+  },
+  {
+    "start": 586.48,
+    "dur": 4.56,
+    "text": "like the user has placed",
+    "lang": "en"
+  },
+  {
+    "start": 588.64,
+    "dur": 4.96,
+    "text": "some order and wants to trigger the journey now that",
+    "lang": "en"
+  },
+  {
+    "start": 591.04,
+    "dur": 5.04,
+    "text": "the survey wants to be taken by the user",
+    "lang": "en"
+  },
+  {
+    "start": 593.6,
+    "dur": 4.64,
+    "text": "or you can always have it a date based on that you know",
+    "lang": "en"
+  },
+  {
+    "start": 596.08,
+    "dur": 4.96,
+    "text": "birthday wishes an appointment reminder",
+    "lang": "en"
+  },
+  {
+    "start": 598.24,
+    "dur": 7.2,
+    "text": "based on the date so yeah this is something you have",
+    "lang": "en"
+  },
+  {
+    "start": 601.04,
+    "dur": 6.96,
+    "text": "to set it.  Now we have decided everything.",
+    "lang": "en"
+  },
+  {
+    "start": 605.44,
+    "dur": 5.92,
+    "text": "Now you will get to see all of the",
+    "lang": "en"
+  },
+  {
+    "start": 608.0,
+    "dur": 7.12,
+    "text": "details about the scheduled automated campaign",
+    "lang": "en"
+  },
+  {
+    "start": 611.36,
+    "dur": 6.32,
+    "text": "and you will get to select the started",
+    "lang": "en"
+  },
+  {
+    "start": 615.12,
+    "dur": 4.719,
+    "text": "and ended.  So you want it how when to be",
+    "lang": "en"
+  },
+  {
+    "start": 617.68,
+    "dur": 4.56,
+    "text": "started and when to be and this",
+    "lang": "en"
+  },
+  {
+    "start": 619.839,
+    "dur": 5.601,
+    "text": "particular campaign and once you click on",
+    "lang": "en"
+  },
+  {
+    "start": 622.24,
+    "dur": 6.4,
+    "text": "publish this will be published.  And You Will See Over Here That This Is",
+    "lang": "en"
+  },
+  {
+    "start": 625.44,
+    "dur": 5.76,
+    "text": "Published.",
+    "lang": "en"
+  },
+  {
+    "start": 628.64,
+    "dur": 5.6,
+    "text": "We also have settings for this campaign and",
+    "lang": "en"
+  },
+  {
+    "start": 631.2,
+    "dur": 5.52,
+    "text": "we have a guide.  So the guide is basically everything about the",
+    "lang": "en"
+  },
+  {
+    "start": 634.24,
+    "dur": 4.719,
+    "text": "campaign, all the videos,",
+    "lang": "en"
+  },
+  {
+    "start": 636.72,
+    "dur": 4.799,
+    "text": "all the details.  So If You Are Ever Stuck In",
+    "lang": "en"
+  },
+  {
+    "start": 638.959,
+    "dur": 6.641,
+    "text": "Anywhere You Can Always Refer To The Guide And You",
+    "lang": "en"
+  },
+  {
+    "start": 641.519,
+    "dur": 6.88,
+    "text": "Will Get A Very Detailed You Know",
+    "lang": "en"
+  },
+  {
+    "start": 645.6,
+    "dur": 6.2,
+    "text": "Like The Journey The Walk Through How You Are Going",
+    "lang": "en"
+  },
+  {
+    "start": 648.399,
+    "dur": 3.401,
+    "text": "To Create Everything.",
+    "lang": "en"
+  },
+  {
+    "start": 652.88,
+    "dur": 7.88,
+    "text": "So or this is all about campaign hope this was",
+    "lang": "en"
+  },
+  {
+    "start": 656.16,
+    "dur": 4.6,
+    "text": "useful.  Thank you so much for watching.",
+    "lang": "en"
+  }
+]

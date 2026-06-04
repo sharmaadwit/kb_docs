@@ -234,5 +234,33 @@
     "caption_langs": ["en"],
     "embeddable": true,
     "broad_fallback": true
+  },
+  {
+    "source": "kb/campaign-manager/about-campaign-manager.md",
+    "also_sources": [
+      "kb/campaign-manager/how-to-access-campaign-manager.md",
+      "kb/campaign-manager/creating-a-new-campaign.md",
+      "kb/campaign-manager/automated-campaign.md",
+      "kb/campaign-manager/sending-an-automated-campaign.md",
+      "kb/campaign-manager/campaign-listing-page.md",
+      "kb/campaign-manager/campaign-analytics.md",
+      "kb/campaign-manager/automated-campaign-analytics.md",
+      "kb/campaign-manager/how-to-measure-click-through-rates.md"
+    ],
+    "video_id": "plP8vDhuSpA",
+    "title": "Campaign Manager: Broadcast & Automated Campaigns",
+    "default_lang": "en",
+    "caption_langs": ["en"],
+    "embeddable": true,
+    "keywords": ["campaign", "campaigns", "campaign manager", "broadcast campaign", "automated campaign"]
+  },
+  {
+    "source": "kb/superagent/enabling-superagent-for-internal-use-cases.md",
+    "video_id": "bGCS4rp84EM",
+    "title": "SuperAgent Overview",
+    "default_lang": "en",
+    "caption_langs": ["en"],
+    "embeddable": true,
+    "keywords": ["super agent", "superagent", "super-agent"]
   }
 ]

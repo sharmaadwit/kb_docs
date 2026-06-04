@@ -1,0 +1,2720 @@
+[
+  {
+    "start": 3.919,
+    "dur": 5.521,
+    "text": "So hi everyone um in today's session we",
+    "lang": "en"
+  },
+  {
+    "start": 6.879,
+    "dur": 5.201,
+    "text": "are going to cover about super agent",
+    "lang": "en"
+  },
+  {
+    "start": 9.44,
+    "dur": 5.04,
+    "text": "right before deep diving into the super",
+    "lang": "en"
+  },
+  {
+    "start": 12.08,
+    "dur": 5.92,
+    "text": "agent what it can do I just want to",
+    "lang": "en"
+  },
+  {
+    "start": 14.48,
+    "dur": 5.92,
+    "text": "quickly cover up why super agent right",
+    "lang": "en"
+  },
+  {
+    "start": 18.0,
+    "dur": 5.039,
+    "text": "so as we know that capture holds a very",
+    "lang": "en"
+  },
+  {
+    "start": 20.4,
+    "dur": 6.32,
+    "text": "big stack as we are a cass giant we have",
+    "lang": "en"
+  },
+  {
+    "start": 23.039,
+    "dur": 8.08,
+    "text": "different layers of voice C uh WhatsApp",
+    "lang": "en"
+  },
+  {
+    "start": 26.72,
+    "dur": 6.64,
+    "text": "RCS SMS bots and all of that stuff. So",
+    "lang": "en"
+  },
+  {
+    "start": 31.119,
+    "dur": 4.481,
+    "text": "it comes out to be quite complicated for",
+    "lang": "en"
+  },
+  {
+    "start": 33.36,
+    "dur": 4.0,
+    "text": "our end users to actually learn and",
+    "lang": "en"
+  },
+  {
+    "start": 35.6,
+    "dur": 4.72,
+    "text": "adapt to the technology which we are",
+    "lang": "en"
+  },
+  {
+    "start": 37.36,
+    "dur": 5.76,
+    "text": "offering right that's where super agent",
+    "lang": "en"
+  },
+  {
+    "start": 40.32,
+    "dur": 5.12,
+    "text": "comes in. So you can say it's an AI",
+    "lang": "en"
+  },
+  {
+    "start": 43.12,
+    "dur": 4.959,
+    "text": "which has been trained on the top of the",
+    "lang": "en"
+  },
+  {
+    "start": 45.44,
+    "dur": 5.2,
+    "text": "layers which cupshop is providing and it",
+    "lang": "en"
+  },
+  {
+    "start": 48.079,
+    "dur": 4.881,
+    "text": "is also trained on the experience which",
+    "lang": "en"
+  },
+  {
+    "start": 50.64,
+    "dur": 4.8,
+    "text": "Cupshop holds like we have an decade of",
+    "lang": "en"
+  },
+  {
+    "start": 52.96,
+    "dur": 4.96,
+    "text": "experience into customer engagement and",
+    "lang": "en"
+  },
+  {
+    "start": 55.44,
+    "dur": 4.32,
+    "text": "the messaging part. So those experiences",
+    "lang": "en"
+  },
+  {
+    "start": 57.92,
+    "dur": 4.319,
+    "text": "we are bringing in through the super",
+    "lang": "en"
+  },
+  {
+    "start": 59.76,
+    "dur": 4.56,
+    "text": "agent. So let's quickly start with it.",
+    "lang": "en"
+  },
+  {
+    "start": 62.239,
+    "dur": 4.24,
+    "text": "Under the profile section there is a",
+    "lang": "en"
+  },
+  {
+    "start": 64.32,
+    "dur": 4.72,
+    "text": "settings option which you can navigate",
+    "lang": "en"
+  },
+  {
+    "start": 66.479,
+    "dur": 4.96,
+    "text": "and custom your profile. So you can let",
+    "lang": "en"
+  },
+  {
+    "start": 69.04,
+    "dur": 4.399,
+    "text": "super agent know about your profile like",
+    "lang": "en"
+  },
+  {
+    "start": 71.439,
+    "dur": 4.401,
+    "text": "you can let him know that okay I'm the",
+    "lang": "en"
+  },
+  {
+    "start": 73.439,
+    "dur": 5.04,
+    "text": "marketing head of this particular XYZ",
+    "lang": "en"
+  },
+  {
+    "start": 75.84,
+    "dur": 5.279,
+    "text": "organization and I majorly work around",
+    "lang": "en"
+  },
+  {
+    "start": 78.479,
+    "dur": 4.32,
+    "text": "these kind of KAS and KPIs and that's",
+    "lang": "en"
+  },
+  {
+    "start": 81.119,
+    "dur": 5.201,
+    "text": "what the super agent is going to assist",
+    "lang": "en"
+  },
+  {
+    "start": 82.799,
+    "dur": 6.32,
+    "text": "me with. Just below you can also enter",
+    "lang": "en"
+  },
+  {
+    "start": 86.32,
+    "dur": 4.479,
+    "text": "that how the AI should respond. For me",
+    "lang": "en"
+  },
+  {
+    "start": 89.119,
+    "dur": 3.441,
+    "text": "particularly I don't like the long",
+    "lang": "en"
+  },
+  {
+    "start": 90.799,
+    "dur": 3.521,
+    "text": "paragraph. I like it to be in the",
+    "lang": "en"
+  },
+  {
+    "start": 92.56,
+    "dur": 4.08,
+    "text": "bulletin points. So similar way you can",
+    "lang": "en"
+  },
+  {
+    "start": 94.32,
+    "dur": 4.159,
+    "text": "give such simple prompts and the super",
+    "lang": "en"
+  },
+  {
+    "start": 96.64,
+    "dur": 3.839,
+    "text": "agent will adapt and try to give you the",
+    "lang": "en"
+  },
+  {
+    "start": 98.479,
+    "dur": 5.121,
+    "text": "answers in that particular format",
+    "lang": "en"
+  },
+  {
+    "start": 100.479,
+    "dur": 5.121,
+    "text": "itself. Right. Just below we have the",
+    "lang": "en"
+  },
+  {
+    "start": 103.6,
+    "dur": 4.24,
+    "text": "channels option. So basically what you",
+    "lang": "en"
+  },
+  {
+    "start": 105.6,
+    "dur": 4.96,
+    "text": "can do is you can sync your WhatsApp and",
+    "lang": "en"
+  },
+  {
+    "start": 107.84,
+    "dur": 5.04,
+    "text": "telegram and from that UI itself of",
+    "lang": "en"
+  },
+  {
+    "start": 110.56,
+    "dur": 4.0,
+    "text": "WhatsApp and telegram you can actually",
+    "lang": "en"
+  },
+  {
+    "start": 112.88,
+    "dur": 4.08,
+    "text": "guide the super agent or give the",
+    "lang": "en"
+  },
+  {
+    "start": 114.56,
+    "dur": 4.159,
+    "text": "instruction what it needs to do right",
+    "lang": "en"
+  },
+  {
+    "start": 116.96,
+    "dur": 3.839,
+    "text": "you can be on a vacation you can be out",
+    "lang": "en"
+  },
+  {
+    "start": 118.719,
+    "dur": 3.921,
+    "text": "of time if you need to have a major",
+    "lang": "en"
+  },
+  {
+    "start": 120.799,
+    "dur": 4.32,
+    "text": "report if you are facing any support",
+    "lang": "en"
+  },
+  {
+    "start": 122.64,
+    "dur": 4.0,
+    "text": "crisis or you want to run a campaign you",
+    "lang": "en"
+  },
+  {
+    "start": 125.119,
+    "dur": 4.64,
+    "text": "can simply give a prompt on your",
+    "lang": "en"
+  },
+  {
+    "start": 126.64,
+    "dur": 5.28,
+    "text": "WhatsApp UI and super agent will do it",
+    "lang": "en"
+  },
+  {
+    "start": 129.759,
+    "dur": 3.921,
+    "text": "then there is a schedule task option so",
+    "lang": "en"
+  },
+  {
+    "start": 131.92,
+    "dur": 3.92,
+    "text": "basically what you can do is you can",
+    "lang": "en"
+  },
+  {
+    "start": 133.68,
+    "dur": 4.8,
+    "text": "schedule your task. When I say task, so",
+    "lang": "en"
+  },
+  {
+    "start": 135.84,
+    "dur": 4.96,
+    "text": "it can be any uh kind of task like",
+    "lang": "en"
+  },
+  {
+    "start": 138.48,
+    "dur": 4.56,
+    "text": "reports. If you like if you are a",
+    "lang": "en"
+  },
+  {
+    "start": 140.8,
+    "dur": 4.799,
+    "text": "marketing a of course you want a monthly",
+    "lang": "en"
+  },
+  {
+    "start": 143.04,
+    "dur": 4.4,
+    "text": "or quarterly analysis. So you can",
+    "lang": "en"
+  },
+  {
+    "start": 145.599,
+    "dur": 3.841,
+    "text": "schedule those task and it will fetch",
+    "lang": "en"
+  },
+  {
+    "start": 147.44,
+    "dur": 3.92,
+    "text": "the type of information or the report",
+    "lang": "en"
+  },
+  {
+    "start": 149.44,
+    "dur": 3.92,
+    "text": "you want to have and it will send it to",
+    "lang": "en"
+  },
+  {
+    "start": 151.36,
+    "dur": 5.04,
+    "text": "you over mail all the other aspects",
+    "lang": "en"
+  },
+  {
+    "start": 153.36,
+    "dur": 4.959,
+    "text": "which you have configured. Right? Then",
+    "lang": "en"
+  },
+  {
+    "start": 156.4,
+    "dur": 3.76,
+    "text": "these are the connectors. As you can see",
+    "lang": "en"
+  },
+  {
+    "start": 158.319,
+    "dur": 3.92,
+    "text": "I have right now connected with all",
+    "lang": "en"
+  },
+  {
+    "start": 160.16,
+    "dur": 4.88,
+    "text": "these kind of different connectors like",
+    "lang": "en"
+  },
+  {
+    "start": 162.239,
+    "dur": 5.201,
+    "text": "G, Gmail, Google sheet, calendar drive,",
+    "lang": "en"
+  },
+  {
+    "start": 165.04,
+    "dur": 4.16,
+    "text": "Jira, Google Drive and Salesforce. In",
+    "lang": "en"
+  },
+  {
+    "start": 167.44,
+    "dur": 3.76,
+    "text": "case you have any other connector like",
+    "lang": "en"
+  },
+  {
+    "start": 169.2,
+    "dur": 4.08,
+    "text": "Slack or any other channel, you can",
+    "lang": "en"
+  },
+  {
+    "start": 171.2,
+    "dur": 5.84,
+    "text": "definitely have it over here right we",
+    "lang": "en"
+  },
+  {
+    "start": 173.28,
+    "dur": 6.08,
+    "text": "will do that. So this is the where you",
+    "lang": "en"
+  },
+  {
+    "start": 177.04,
+    "dur": 4.559,
+    "text": "can actually give the command right and",
+    "lang": "en"
+  },
+  {
+    "start": 179.36,
+    "dur": 4.48,
+    "text": "this is the place where you can see how",
+    "lang": "en"
+  },
+  {
+    "start": 181.599,
+    "dur": 4.481,
+    "text": "many skills are there in case you want",
+    "lang": "en"
+  },
+  {
+    "start": 183.84,
+    "dur": 4.0,
+    "text": "to have in case you want to have more",
+    "lang": "en"
+  },
+  {
+    "start": 186.08,
+    "dur": 3.84,
+    "text": "skills you can simply go to the build",
+    "lang": "en"
+  },
+  {
+    "start": 187.84,
+    "dur": 4.16,
+    "text": "skill in recipes from here the skill",
+    "lang": "en"
+  },
+  {
+    "start": 189.92,
+    "dur": 4.16,
+    "text": "section you can manage the skills and",
+    "lang": "en"
+  },
+  {
+    "start": 192.0,
+    "dur": 6.319,
+    "text": "see what all skills are enabled and what",
+    "lang": "en"
+  },
+  {
+    "start": 194.08,
+    "dur": 5.92,
+    "text": "they do right now let's say if you are a",
+    "lang": "en"
+  },
+  {
+    "start": 198.319,
+    "dur": 3.521,
+    "text": "very beginner you are just starting up",
+    "lang": "en"
+  },
+  {
+    "start": 200.0,
+    "dur": 3.84,
+    "text": "on kicking off with the super agent you",
+    "lang": "en"
+  },
+  {
+    "start": 201.84,
+    "dur": 4.8,
+    "text": "can go to the explore section it can let",
+    "lang": "en"
+  },
+  {
+    "start": 203.84,
+    "dur": 4.96,
+    "text": "you know that what exactly it can do. So",
+    "lang": "en"
+  },
+  {
+    "start": 206.64,
+    "dur": 3.679,
+    "text": "these are some of the basic use cases.",
+    "lang": "en"
+  },
+  {
+    "start": 208.8,
+    "dur": 3.68,
+    "text": "If you are starting it for the first",
+    "lang": "en"
+  },
+  {
+    "start": 210.319,
+    "dur": 4.961,
+    "text": "time definitely it's going to help you",
+    "lang": "en"
+  },
+  {
+    "start": 212.48,
+    "dur": 4.72,
+    "text": "out right so like check if my WhatsApp",
+    "lang": "en"
+  },
+  {
+    "start": 215.28,
+    "dur": 4.319,
+    "text": "number is ready to send get started on",
+    "lang": "en"
+  },
+  {
+    "start": 217.2,
+    "dur": 3.84,
+    "text": "WhatsApp business API all that kind of",
+    "lang": "en"
+  },
+  {
+    "start": 219.599,
+    "dur": 3.841,
+    "text": "you can just simply go over here and",
+    "lang": "en"
+  },
+  {
+    "start": 221.04,
+    "dur": 5.36,
+    "text": "explore in case you have a specific",
+    "lang": "en"
+  },
+  {
+    "start": 223.44,
+    "dur": 4.96,
+    "text": "query in related to WhatsApp templates",
+    "lang": "en"
+  },
+  {
+    "start": 226.4,
+    "dur": 3.36,
+    "text": "campaigns journeys so we have",
+    "lang": "en"
+  },
+  {
+    "start": 228.4,
+    "dur": 3.839,
+    "text": "categorized all these kind of",
+    "lang": "en"
+  },
+  {
+    "start": 229.76,
+    "dur": 4.88,
+    "text": "information or the templates under them",
+    "lang": "en"
+  },
+  {
+    "start": 232.239,
+    "dur": 5.36,
+    "text": "right so just for the quick view I'll",
+    "lang": "en"
+  },
+  {
+    "start": 234.64,
+    "dur": 6.56,
+    "text": "just cover up all the predefined",
+    "lang": "en"
+  },
+  {
+    "start": 237.599,
+    "dur": 6.56,
+    "text": "templates which we Huh? Right.",
+    "lang": "en"
+  },
+  {
+    "start": 241.2,
+    "dur": 6.0,
+    "text": "Then we have the micro aents. Now what",
+    "lang": "en"
+  },
+  {
+    "start": 244.159,
+    "dur": 5.201,
+    "text": "are microaggents over here? So basically",
+    "lang": "en"
+  },
+  {
+    "start": 247.2,
+    "dur": 4.0,
+    "text": "let's take a very basic example. Let's",
+    "lang": "en"
+  },
+  {
+    "start": 249.36,
+    "dur": 4.239,
+    "text": "say if you want to customize a report,",
+    "lang": "en"
+  },
+  {
+    "start": 251.2,
+    "dur": 4.56,
+    "text": "you might be scrapping up the analytics",
+    "lang": "en"
+  },
+  {
+    "start": 253.599,
+    "dur": 4.081,
+    "text": "from different points. It might be agent",
+    "lang": "en"
+  },
+  {
+    "start": 255.76,
+    "dur": 4.4,
+    "text": "assist analytics. It might be bot studio",
+    "lang": "en"
+  },
+  {
+    "start": 257.68,
+    "dur": 5.2,
+    "text": "analytics. So over here you can have",
+    "lang": "en"
+  },
+  {
+    "start": 260.16,
+    "dur": 4.24,
+    "text": "your own agents. So now for that report",
+    "lang": "en"
+  },
+  {
+    "start": 262.88,
+    "dur": 3.599,
+    "text": "you might be having three to four",
+    "lang": "en"
+  },
+  {
+    "start": 264.4,
+    "dur": 5.12,
+    "text": "different filters and then compiling up",
+    "lang": "en"
+  },
+  {
+    "start": 266.479,
+    "dur": 5.28,
+    "text": "with the final report. you can let the",
+    "lang": "en"
+  },
+  {
+    "start": 269.52,
+    "dur": 4.64,
+    "text": "let train the micro agent in that",
+    "lang": "en"
+  },
+  {
+    "start": 271.759,
+    "dur": 5.041,
+    "text": "particular way that it will do all the",
+    "lang": "en"
+  },
+  {
+    "start": 274.16,
+    "dur": 5.039,
+    "text": "tasks which you do before creating that",
+    "lang": "en"
+  },
+  {
+    "start": 276.8,
+    "dur": 4.64,
+    "text": "final report. So as you can see to have",
+    "lang": "en"
+  },
+  {
+    "start": 279.199,
+    "dur": 4.641,
+    "text": "that micro agent you can assign multiple",
+    "lang": "en"
+  },
+  {
+    "start": 281.44,
+    "dur": 5.52,
+    "text": "skills under it. On top of it you can",
+    "lang": "en"
+  },
+  {
+    "start": 283.84,
+    "dur": 5.28,
+    "text": "also give the recipe like if you want to",
+    "lang": "en"
+  },
+  {
+    "start": 286.96,
+    "dur": 3.84,
+    "text": "have that report what are the steps how",
+    "lang": "en"
+  },
+  {
+    "start": 289.12,
+    "dur": 3.76,
+    "text": "they need to be performed in an order",
+    "lang": "en"
+  },
+  {
+    "start": 290.8,
+    "dur": 3.76,
+    "text": "and a systematic way all these kind of",
+    "lang": "en"
+  },
+  {
+    "start": 292.88,
+    "dur": 4.56,
+    "text": "configuration you can do and create a",
+    "lang": "en"
+  },
+  {
+    "start": 294.56,
+    "dur": 6.0,
+    "text": "micro agent for yourself right just",
+    "lang": "en"
+  },
+  {
+    "start": 297.44,
+    "dur": 5.12,
+    "text": "below there is a recipe. So of course to",
+    "lang": "en"
+  },
+  {
+    "start": 300.56,
+    "dur": 4.56,
+    "text": "complete a task right how it should be",
+    "lang": "en"
+  },
+  {
+    "start": 302.56,
+    "dur": 4.4,
+    "text": "done right. So you can also create those",
+    "lang": "en"
+  },
+  {
+    "start": 305.12,
+    "dur": 4.32,
+    "text": "recipe by simply clicking on the new",
+    "lang": "en"
+  },
+  {
+    "start": 306.96,
+    "dur": 4.4,
+    "text": "recipe. It gives you what exactly it",
+    "lang": "en"
+  },
+  {
+    "start": 309.44,
+    "dur": 3.599,
+    "text": "needs the information about like the",
+    "lang": "en"
+  },
+  {
+    "start": 311.36,
+    "dur": 3.279,
+    "text": "name, the description, the use case you",
+    "lang": "en"
+  },
+  {
+    "start": 313.039,
+    "dur": 4.561,
+    "text": "are covering up and you can create the",
+    "lang": "en"
+  },
+  {
+    "start": 314.639,
+    "dur": 6.0,
+    "text": "recipe. So just to put it on more layman",
+    "lang": "en"
+  },
+  {
+    "start": 317.6,
+    "dur": 6.08,
+    "text": "recipe you can say that uh it's a recipe",
+    "lang": "en"
+  },
+  {
+    "start": 320.639,
+    "dur": 6.161,
+    "text": "to create a dish and micro agent you can",
+    "lang": "en"
+  },
+  {
+    "start": 323.68,
+    "dur": 5.44,
+    "text": "consider it as a chef who specializes in",
+    "lang": "en"
+  },
+  {
+    "start": 326.8,
+    "dur": 5.04,
+    "text": "creating a dish. So that's how you can",
+    "lang": "en"
+  },
+  {
+    "start": 329.12,
+    "dur": 4.56,
+    "text": "have a brief about it. Then we have the",
+    "lang": "en"
+  },
+  {
+    "start": 331.84,
+    "dur": 3.76,
+    "text": "skill section. Of course you can also",
+    "lang": "en"
+  },
+  {
+    "start": 333.68,
+    "dur": 3.76,
+    "text": "create your skills but as I mentioned",
+    "lang": "en"
+  },
+  {
+    "start": 335.6,
+    "dur": 3.76,
+    "text": "that these skills will help you to",
+    "lang": "en"
+  },
+  {
+    "start": 337.44,
+    "dur": 3.84,
+    "text": "complete your task and whenever you give",
+    "lang": "en"
+  },
+  {
+    "start": 339.36,
+    "dur": 4.88,
+    "text": "a prompt you can have an understanding",
+    "lang": "en"
+  },
+  {
+    "start": 341.28,
+    "dur": 5.359,
+    "text": "that which particular skill the super",
+    "lang": "en"
+  },
+  {
+    "start": 344.24,
+    "dur": 5.36,
+    "text": "agent is calling up right so there's",
+    "lang": "en"
+  },
+  {
+    "start": 346.639,
+    "dur": 5.681,
+    "text": "different uh skills are already enabled",
+    "lang": "en"
+  },
+  {
+    "start": 349.6,
+    "dur": 4.319,
+    "text": "for me right for you as well you can",
+    "lang": "en"
+  },
+  {
+    "start": 352.32,
+    "dur": 5.439,
+    "text": "create the skills and get it enabled",
+    "lang": "en"
+  },
+  {
+    "start": 353.919,
+    "dur": 7.201,
+    "text": "from the cup team right now let's get",
+    "lang": "en"
+  },
+  {
+    "start": 357.759,
+    "dur": 6.401,
+    "text": "started with the super agent so let's",
+    "lang": "en"
+  },
+  {
+    "start": 361.12,
+    "dur": 8.72,
+    "text": "take a very basic one right uh let's say",
+    "lang": "en"
+  },
+  {
+    "start": 364.16,
+    "dur": 10.8,
+    "text": "I want to have a report of last 3 months",
+    "lang": "en"
+  },
+  {
+    "start": 369.84,
+    "dur": 8.24,
+    "text": "campaign and tell me the health of my",
+    "lang": "en"
+  },
+  {
+    "start": 374.96,
+    "dur": 5.44,
+    "text": "WhatsApp account right so you can see",
+    "lang": "en"
+  },
+  {
+    "start": 378.08,
+    "dur": 4.239,
+    "text": "that below are the accounts which I have",
+    "lang": "en"
+  },
+  {
+    "start": 380.4,
+    "dur": 4.0,
+    "text": "already synced I have multiple accounts",
+    "lang": "en"
+  },
+  {
+    "start": 382.319,
+    "dur": 3.761,
+    "text": "over here right so I can toggle for",
+    "lang": "en"
+  },
+  {
+    "start": 384.4,
+    "dur": 3.519,
+    "text": "which particular account I need to talk",
+    "lang": "en"
+  },
+  {
+    "start": 386.08,
+    "dur": 5.119,
+    "text": "about so for this particular session",
+    "lang": "en"
+  },
+  {
+    "start": 387.919,
+    "dur": 5.28,
+    "text": "I'll just select the pre-sales CX2 now I",
+    "lang": "en"
+  },
+  {
+    "start": 391.199,
+    "dur": 5.681,
+    "text": "have already given on a prompt I'll just",
+    "lang": "en"
+  },
+  {
+    "start": 393.199,
+    "dur": 6.641,
+    "text": "quickly enter it and it starts thinking",
+    "lang": "en"
+  },
+  {
+    "start": 396.88,
+    "dur": 5.439,
+    "text": "now on top of it the super agent is also",
+    "lang": "en"
+  },
+  {
+    "start": 399.84,
+    "dur": 4.639,
+    "text": "smart enough right so it's not giving",
+    "lang": "en"
+  },
+  {
+    "start": 402.319,
+    "dur": 5.121,
+    "text": "you okay okay I'm extracting this and",
+    "lang": "en"
+  },
+  {
+    "start": 404.479,
+    "dur": 5.601,
+    "text": "that instead it divides the task which",
+    "lang": "en"
+  },
+  {
+    "start": 407.44,
+    "dur": 4.56,
+    "text": "it needs to perform in a to-do list so",
+    "lang": "en"
+  },
+  {
+    "start": 410.08,
+    "dur": 3.52,
+    "text": "over here again it has given me a to-do",
+    "lang": "en"
+  },
+  {
+    "start": 412.0,
+    "dur": 3.199,
+    "text": "like gathering campaign performance for",
+    "lang": "en"
+  },
+  {
+    "start": 413.6,
+    "dur": 3.52,
+    "text": "last three months and checking WhatsApp",
+    "lang": "en"
+  },
+  {
+    "start": 415.199,
+    "dur": 3.761,
+    "text": "count hill fetch last three months",
+    "lang": "en"
+  },
+  {
+    "start": 417.12,
+    "dur": 4.24,
+    "text": "campaign analysis check WhatsApp account",
+    "lang": "en"
+  },
+  {
+    "start": 418.96,
+    "dur": 4.32,
+    "text": "health summarize findings into a port.",
+    "lang": "en"
+  },
+  {
+    "start": 421.36,
+    "dur": 3.839,
+    "text": "So you can check on the live basis on",
+    "lang": "en"
+  },
+  {
+    "start": 423.28,
+    "dur": 4.639,
+    "text": "which particular part the super agent is",
+    "lang": "en"
+  },
+  {
+    "start": 425.199,
+    "dur": 4.4,
+    "text": "working on and over here it will also",
+    "lang": "en"
+  },
+  {
+    "start": 427.919,
+    "dur": 3.761,
+    "text": "show you as I mentioned that which",
+    "lang": "en"
+  },
+  {
+    "start": 429.599,
+    "dur": 4.081,
+    "text": "particular skill it is working on and",
+    "lang": "en"
+  },
+  {
+    "start": 431.68,
+    "dur": 4.72,
+    "text": "which part relevant skill it is calling",
+    "lang": "en"
+  },
+  {
+    "start": 433.68,
+    "dur": 5.04,
+    "text": "to fetch all those information. So now",
+    "lang": "en"
+  },
+  {
+    "start": 436.4,
+    "dur": 4.32,
+    "text": "it says okay I have identified the right",
+    "lang": "en"
+  },
+  {
+    "start": 438.72,
+    "dur": 3.52,
+    "text": "actions now I'm fetching the last three",
+    "lang": "en"
+  },
+  {
+    "start": 440.72,
+    "dur": 3.68,
+    "text": "months analytics for your WhatsApp",
+    "lang": "en"
+  },
+  {
+    "start": 442.24,
+    "dur": 4.0,
+    "text": "account in parallel the H check is",
+    "lang": "en"
+  },
+  {
+    "start": 444.4,
+    "dur": 3.919,
+    "text": "succeeded the camp analytics call time",
+    "lang": "en"
+  },
+  {
+    "start": 446.24,
+    "dur": 4.64,
+    "text": "out once so I'm retrying with a narrower",
+    "lang": "en"
+  },
+  {
+    "start": 448.319,
+    "dur": 4.641,
+    "text": "request path to complete the report in",
+    "lang": "en"
+  },
+  {
+    "start": 450.88,
+    "dur": 4.8,
+    "text": "case it gets blocked because of any",
+    "lang": "en"
+  },
+  {
+    "start": 452.96,
+    "dur": 5.359,
+    "text": "reason it tries to find an alternative",
+    "lang": "en"
+  },
+  {
+    "start": 455.68,
+    "dur": 4.72,
+    "text": "or otherwise it tells you back okay",
+    "lang": "en"
+  },
+  {
+    "start": 458.319,
+    "dur": 4.32,
+    "text": "that's the blocker which you man might",
+    "lang": "en"
+  },
+  {
+    "start": 460.4,
+    "dur": 4.16,
+    "text": "need to fix manually then only I will go",
+    "lang": "en"
+  },
+  {
+    "start": 462.639,
+    "dur": 4.161,
+    "text": "but otherwise it tries to find an",
+    "lang": "en"
+  },
+  {
+    "start": 464.56,
+    "dur": 4.16,
+    "text": "alternative by itself self it will also",
+    "lang": "en"
+  },
+  {
+    "start": 466.8,
+    "dur": 4.959,
+    "text": "give you a complete understanding around",
+    "lang": "en"
+  },
+  {
+    "start": 468.72,
+    "dur": 5.36,
+    "text": "that as well. So that's the super agent",
+    "lang": "en"
+  },
+  {
+    "start": 471.759,
+    "dur": 4.481,
+    "text": "actually right it's not giving you the",
+    "lang": "en"
+  },
+  {
+    "start": 474.08,
+    "dur": 4.48,
+    "text": "direct answers as well it will also help",
+    "lang": "en"
+  },
+  {
+    "start": 476.24,
+    "dur": 4.48,
+    "text": "you in consulting right in case you have",
+    "lang": "en"
+  },
+  {
+    "start": 478.56,
+    "dur": 4.88,
+    "text": "any particular thing right if you want",
+    "lang": "en"
+  },
+  {
+    "start": 480.72,
+    "dur": 6.56,
+    "text": "to have a campaign or xyz it will help",
+    "lang": "en"
+  },
+  {
+    "start": 483.44,
+    "dur": 5.84,
+    "text": "you in actually making that so now it's",
+    "lang": "en"
+  },
+  {
+    "start": 487.28,
+    "dur": 4.4,
+    "text": "here so we can see account status",
+    "lang": "en"
+  },
+  {
+    "start": 489.28,
+    "dur": 5.759,
+    "text": "messaging connected phone number phone",
+    "lang": "en"
+  },
+  {
+    "start": 491.68,
+    "dur": 6.88,
+    "text": "quality the tr I'm in verification",
+    "lang": "en"
+  },
+  {
+    "start": 495.039,
+    "dur": 5.6,
+    "text": "verified name va hill so now it says",
+    "lang": "en"
+  },
+  {
+    "start": 498.56,
+    "dur": 4.56,
+    "text": "your health is connected and active. The",
+    "lang": "en"
+  },
+  {
+    "start": 500.639,
+    "dur": 4.801,
+    "text": "main health constraint is limited and we",
+    "lang": "en"
+  },
+  {
+    "start": 503.12,
+    "dur": 4.639,
+    "text": "are in tier last three month campaign",
+    "lang": "en"
+  },
+  {
+    "start": 505.44,
+    "dur": 4.879,
+    "text": "report full campaign analytics because",
+    "lang": "en"
+  },
+  {
+    "start": 507.759,
+    "dur": 4.0,
+    "text": "the summary back time out twice I was",
+    "lang": "en"
+  },
+  {
+    "start": 510.319,
+    "dur": 3.121,
+    "text": "still able to retrieve the error",
+    "lang": "en"
+  },
+  {
+    "start": 511.759,
+    "dur": 4.16,
+    "text": "breakdown for the last 3 months. So",
+    "lang": "en"
+  },
+  {
+    "start": 513.44,
+    "dur": 5.519,
+    "text": "again it did its job right campaign",
+    "lang": "en"
+  },
+  {
+    "start": 515.919,
+    "dur": 5.68,
+    "text": "error breakdown right so why it got",
+    "lang": "en"
+  },
+  {
+    "start": 518.959,
+    "dur": 4.801,
+    "text": "breakdown not sent to an operator it's",
+    "lang": "en"
+  },
+  {
+    "start": 521.599,
+    "dur": 3.841,
+    "text": "telling me that what this means the",
+    "lang": "en"
+  },
+  {
+    "start": 523.76,
+    "dur": 3.199,
+    "text": "account itself is usable but the growth",
+    "lang": "en"
+  },
+  {
+    "start": 525.44,
+    "dur": 3.36,
+    "text": "and scale are being held back by",
+    "lang": "en"
+  },
+  {
+    "start": 526.959,
+    "dur": 3.841,
+    "text": "verification display name approval",
+    "lang": "en"
+  },
+  {
+    "start": 528.8,
+    "dur": 3.92,
+    "text": "status so of course yeah this is my",
+    "lang": "en"
+  },
+  {
+    "start": 530.8,
+    "dur": 3.92,
+    "text": "testing account of course it's not going",
+    "lang": "en"
+  },
+  {
+    "start": 532.72,
+    "dur": 3.679,
+    "text": "to be the way an actual brand account",
+    "lang": "en"
+  },
+  {
+    "start": 534.72,
+    "dur": 4.0,
+    "text": "operates of course we use it for the",
+    "lang": "en"
+  },
+  {
+    "start": 536.399,
+    "dur": 5.041,
+    "text": "testing that's why it's giving me those",
+    "lang": "en"
+  },
+  {
+    "start": 538.72,
+    "dur": 5.44,
+    "text": "kind of red flags but ultimately it deep",
+    "lang": "en"
+  },
+  {
+    "start": 541.44,
+    "dur": 5.12,
+    "text": "dived into it tried to understand and",
+    "lang": "en"
+  },
+  {
+    "start": 544.16,
+    "dur": 4.239,
+    "text": "then only it is giving me a verdict. Now",
+    "lang": "en"
+  },
+  {
+    "start": 546.56,
+    "dur": 3.92,
+    "text": "it is also recommending me about the",
+    "lang": "en"
+  },
+  {
+    "start": 548.399,
+    "dur": 3.761,
+    "text": "next step. So it's saying me complete",
+    "lang": "en"
+  },
+  {
+    "start": 550.48,
+    "dur": 4.0,
+    "text": "business verification that's an",
+    "lang": "en"
+  },
+  {
+    "start": 552.16,
+    "dur": 4.32,
+    "text": "important aspect for anyone right and",
+    "lang": "en"
+  },
+  {
+    "start": 554.48,
+    "dur": 3.84,
+    "text": "get the display name approved review",
+    "lang": "en"
+  },
+  {
+    "start": 556.48,
+    "dur": 6.08,
+    "text": "campaign targeting message quality to",
+    "lang": "en"
+  },
+  {
+    "start": 558.32,
+    "dur": 6.639,
+    "text": "reduce one one lakh 31,049 failures",
+    "lang": "en"
+  },
+  {
+    "start": 562.56,
+    "dur": 5.279,
+    "text": "right clean audio data and deliverable",
+    "lang": "en"
+  },
+  {
+    "start": 564.959,
+    "dur": 5.601,
+    "text": "failures retry campaign so now let's",
+    "lang": "en"
+  },
+  {
+    "start": 567.839,
+    "dur": 9.44,
+    "text": "move out to a more complex use case I'll",
+    "lang": "en"
+  },
+  {
+    "start": 570.56,
+    "dur": 9.44,
+    "text": "say I create a template for",
+    "lang": "en"
+  },
+  {
+    "start": 577.279,
+    "dur": 6.081,
+    "text": "for my",
+    "lang": "en"
+  },
+  {
+    "start": 580.0,
+    "dur": 4.959,
+    "text": "ABC nutrition",
+    "lang": "en"
+  },
+  {
+    "start": 583.36,
+    "dur": 6.8,
+    "text": "brand",
+    "lang": "en"
+  },
+  {
+    "start": 584.959,
+    "dur": 10.201,
+    "text": "right and I say nutrition brand some are",
+    "lang": "en"
+  },
+  {
+    "start": 590.16,
+    "dur": 5.0,
+    "text": "save 25% discount",
+    "lang": "en"
+  },
+  {
+    "start": 595.519,
+    "dur": 5.841,
+    "text": "right",
+    "lang": "en"
+  },
+  {
+    "start": 597.68,
+    "dur": 7.92,
+    "text": "so some say 25% discount",
+    "lang": "en"
+  },
+  {
+    "start": 601.36,
+    "dur": 6.64,
+    "text": "create a lead genen journey",
+    "lang": "en"
+  },
+  {
+    "start": 605.6,
+    "dur": 5.679,
+    "text": "and deploy",
+    "lang": "en"
+  },
+  {
+    "start": 608.0,
+    "dur": 6.0,
+    "text": "over the number line. So you can see",
+    "lang": "en"
+  },
+  {
+    "start": 611.279,
+    "dur": 5.041,
+    "text": "it's a very lab very straightforward",
+    "lang": "en"
+  },
+  {
+    "start": 614.0,
+    "dur": 5.2,
+    "text": "right prompt where I haven't even given",
+    "lang": "en"
+  },
+  {
+    "start": 616.32,
+    "dur": 5.12,
+    "text": "the exact kind of information which is",
+    "lang": "en"
+  },
+  {
+    "start": 619.2,
+    "dur": 4.079,
+    "text": "very much necessary. Like if I'm said",
+    "lang": "en"
+  },
+  {
+    "start": 621.44,
+    "dur": 4.399,
+    "text": "key okay I want to have a template what",
+    "lang": "en"
+  },
+  {
+    "start": 623.279,
+    "dur": 4.401,
+    "text": "all click to actions can should I give",
+    "lang": "en"
+  },
+  {
+    "start": 625.839,
+    "dur": 4.0,
+    "text": "what kind of body language it should",
+    "lang": "en"
+  },
+  {
+    "start": 627.68,
+    "dur": 4.719,
+    "text": "contain all of that information is",
+    "lang": "en"
+  },
+  {
+    "start": 629.839,
+    "dur": 4.401,
+    "text": "missing right and even in the journey I",
+    "lang": "en"
+  },
+  {
+    "start": 632.399,
+    "dur": 5.281,
+    "text": "just said that it's going to be a lead",
+    "lang": "en"
+  },
+  {
+    "start": 634.24,
+    "dur": 6.56,
+    "text": "gener right so now let's see that how",
+    "lang": "en"
+  },
+  {
+    "start": 637.68,
+    "dur": 5.68,
+    "text": "smart super agent is right to give me",
+    "lang": "en"
+  },
+  {
+    "start": 640.8,
+    "dur": 4.8,
+    "text": "what all things it should be there if we",
+    "lang": "en"
+  },
+  {
+    "start": 643.36,
+    "dur": 5.28,
+    "text": "talk about a nutrition brand and a",
+    "lang": "en"
+  },
+  {
+    "start": 645.6,
+    "dur": 6.08,
+    "text": "summer sale 25% discount right so again",
+    "lang": "en"
+  },
+  {
+    "start": 648.64,
+    "dur": 4.879,
+    "text": "it has divided into task bringing into",
+    "lang": "en"
+  },
+  {
+    "start": 651.68,
+    "dur": 3.52,
+    "text": "template creation, journey setup and",
+    "lang": "en"
+  },
+  {
+    "start": 653.519,
+    "dur": 3.601,
+    "text": "deployment so we can validate each",
+    "lang": "en"
+  },
+  {
+    "start": 655.2,
+    "dur": 4.0,
+    "text": "dependency in order collect and prepare",
+    "lang": "en"
+  },
+  {
+    "start": 657.12,
+    "dur": 4.48,
+    "text": "WhatsApp template details create lead",
+    "lang": "en"
+  },
+  {
+    "start": 659.2,
+    "dur": 4.879,
+    "text": "gen journey JSON save and deploy the",
+    "lang": "en"
+  },
+  {
+    "start": 661.6,
+    "dur": 5.04,
+    "text": "journey to the WhatsApp number right so",
+    "lang": "en"
+  },
+  {
+    "start": 664.079,
+    "dur": 4.88,
+    "text": "now it's working on it and like on top",
+    "lang": "en"
+  },
+  {
+    "start": 666.64,
+    "dur": 4.319,
+    "text": "of it it's not only about creating of",
+    "lang": "en"
+  },
+  {
+    "start": 668.959,
+    "dur": 5.681,
+    "text": "anything it's not only about creation of",
+    "lang": "en"
+  },
+  {
+    "start": 670.959,
+    "dur": 6.401,
+    "text": "template journeys reports XYZ it's more",
+    "lang": "en"
+  },
+  {
+    "start": 674.64,
+    "dur": 5.199,
+    "text": "about it's also more about the support",
+    "lang": "en"
+  },
+  {
+    "start": 677.36,
+    "dur": 4.4,
+    "text": "part right in service based industry We",
+    "lang": "en"
+  },
+  {
+    "start": 679.839,
+    "dur": 4.24,
+    "text": "have seen for a minimal bug also",
+    "lang": "en"
+  },
+  {
+    "start": 681.76,
+    "dur": 4.4,
+    "text": "sometimes we need to wait hours or days",
+    "lang": "en"
+  },
+  {
+    "start": 684.079,
+    "dur": 5.121,
+    "text": "right for to get a quick resolution but",
+    "lang": "en"
+  },
+  {
+    "start": 686.16,
+    "dur": 5.2,
+    "text": "over here super agent knows it from very",
+    "lang": "en"
+  },
+  {
+    "start": 689.2,
+    "dur": 4.56,
+    "text": "scratch till the very end. So you don't",
+    "lang": "en"
+  },
+  {
+    "start": 691.36,
+    "dur": 4.64,
+    "text": "need to actually be dependent on gupshop",
+    "lang": "en"
+  },
+  {
+    "start": 693.76,
+    "dur": 4.319,
+    "text": "as your provider to help you in you know",
+    "lang": "en"
+  },
+  {
+    "start": 696.0,
+    "dur": 4.24,
+    "text": "debugging things or resolving your",
+    "lang": "en"
+  },
+  {
+    "start": 698.079,
+    "dur": 4.081,
+    "text": "issues. You can just simply let super",
+    "lang": "en"
+  },
+  {
+    "start": 700.24,
+    "dur": 4.48,
+    "text": "agent know okay my template has been",
+    "lang": "en"
+  },
+  {
+    "start": 702.16,
+    "dur": 4.48,
+    "text": "marked into utility or sorry my template",
+    "lang": "en"
+  },
+  {
+    "start": 704.72,
+    "dur": 4.559,
+    "text": "has been marked to marketing from",
+    "lang": "en"
+  },
+  {
+    "start": 706.64,
+    "dur": 4.4,
+    "text": "utility. Can you resend it to for meta",
+    "lang": "en"
+  },
+  {
+    "start": 709.279,
+    "dur": 4.0,
+    "text": "for approval? Right? Or can you please",
+    "lang": "en"
+  },
+  {
+    "start": 711.04,
+    "dur": 4.56,
+    "text": "check what are the places why it has got",
+    "lang": "en"
+  },
+  {
+    "start": 713.279,
+    "dur": 4.56,
+    "text": "into the marketing tag? Right? So these",
+    "lang": "en"
+  },
+  {
+    "start": 715.6,
+    "dur": 3.84,
+    "text": "are the simple you know support queries",
+    "lang": "en"
+  },
+  {
+    "start": 717.839,
+    "dur": 3.761,
+    "text": "but of course you can come up with the",
+    "lang": "en"
+  },
+  {
+    "start": 719.44,
+    "dur": 4.639,
+    "text": "complex use case complex queries like",
+    "lang": "en"
+  },
+  {
+    "start": 721.6,
+    "dur": 4.32,
+    "text": "the integration in the journeys all that",
+    "lang": "en"
+  },
+  {
+    "start": 724.079,
+    "dur": 4.32,
+    "text": "stuff which you can think of doing with",
+    "lang": "en"
+  },
+  {
+    "start": 725.92,
+    "dur": 4.4,
+    "text": "gupshop you can do it with super agent.",
+    "lang": "en"
+  },
+  {
+    "start": 728.399,
+    "dur": 3.361,
+    "text": "So in short you don't need a salesperson",
+    "lang": "en"
+  },
+  {
+    "start": 730.32,
+    "dur": 3.68,
+    "text": "you don't need a pre-sales you don't",
+    "lang": "en"
+  },
+  {
+    "start": 731.76,
+    "dur": 4.56,
+    "text": "need a CSM you can have super agent",
+    "lang": "en"
+  },
+  {
+    "start": 734.0,
+    "dur": 4.48,
+    "text": "doing all that heavy lifting for you",
+    "lang": "en"
+  },
+  {
+    "start": 736.32,
+    "dur": 3.92,
+    "text": "right. So now let's see since it's a",
+    "lang": "en"
+  },
+  {
+    "start": 738.48,
+    "dur": 4.0,
+    "text": "heavy prompt the creation of template",
+    "lang": "en"
+  },
+  {
+    "start": 740.24,
+    "dur": 4.159,
+    "text": "and the journey deployment of course it",
+    "lang": "en"
+  },
+  {
+    "start": 742.48,
+    "dur": 4.0,
+    "text": "will take some time to assess it but",
+    "lang": "en"
+  },
+  {
+    "start": 744.399,
+    "dur": 4.321,
+    "text": "otherwise yeah it will do the job. So",
+    "lang": "en"
+  },
+  {
+    "start": 746.48,
+    "dur": 4.4,
+    "text": "now let's see where it has reached. I'm",
+    "lang": "en"
+  },
+  {
+    "start": 748.72,
+    "dur": 4.64,
+    "text": "opening the template intake docs right",
+    "lang": "en"
+  },
+  {
+    "start": 750.88,
+    "dur": 4.639,
+    "text": "flow creation of the template again it's",
+    "lang": "en"
+  },
+  {
+    "start": 753.36,
+    "dur": 4.0,
+    "text": "doing the template part. I have",
+    "lang": "en"
+  },
+  {
+    "start": 755.519,
+    "dur": 4.241,
+    "text": "confirmed the intake flow reading",
+    "lang": "en"
+  },
+  {
+    "start": 757.36,
+    "dur": 4.4,
+    "text": "specific action. I'm turning your brief",
+    "lang": "en"
+  },
+  {
+    "start": 759.76,
+    "dur": 3.6,
+    "text": "into a draft template request. Now I can",
+    "lang": "en"
+  },
+  {
+    "start": 761.76,
+    "dur": 3.44,
+    "text": "see exactly what details are missing",
+    "lang": "en"
+  },
+  {
+    "start": 763.36,
+    "dur": 4.24,
+    "text": "before submission. know it has",
+    "lang": "en"
+  },
+  {
+    "start": 765.2,
+    "dur": 4.319,
+    "text": "understand that okay the there are more",
+    "lang": "en"
+  },
+  {
+    "start": 767.6,
+    "dur": 3.28,
+    "text": "points which are missing the draft is",
+    "lang": "en"
+  },
+  {
+    "start": 769.519,
+    "dur": 3.12,
+    "text": "valid now I'm reading the template",
+    "lang": "en"
+  },
+  {
+    "start": 770.88,
+    "dur": 3.6,
+    "text": "submission skill the template has been",
+    "lang": "en"
+  },
+  {
+    "start": 772.639,
+    "dur": 5.121,
+    "text": "created but this flow requires your",
+    "lang": "en"
+  },
+  {
+    "start": 774.48,
+    "dur": 4.96,
+    "text": "explicit confirmation so as I said that",
+    "lang": "en"
+  },
+  {
+    "start": 777.76,
+    "dur": 3.759,
+    "text": "it's going to consult you it's going to",
+    "lang": "en"
+  },
+  {
+    "start": 779.44,
+    "dur": 4.72,
+    "text": "guide you in the right direction if it's",
+    "lang": "en"
+  },
+  {
+    "start": 781.519,
+    "dur": 4.721,
+    "text": "confused it will ask you first right so",
+    "lang": "en"
+  },
+  {
+    "start": 784.16,
+    "dur": 4.0,
+    "text": "before submission he's giving me okay",
+    "lang": "en"
+  },
+  {
+    "start": 786.24,
+    "dur": 4.48,
+    "text": "this is what I have come up with it has",
+    "lang": "en"
+  },
+  {
+    "start": 788.16,
+    "dur": 4.88,
+    "text": "given its name the type the category the",
+    "lang": "en"
+  },
+  {
+    "start": 790.72,
+    "dur": 4.4,
+    "text": "language it has given me a body language",
+    "lang": "en"
+  },
+  {
+    "start": 793.04,
+    "dur": 4.88,
+    "text": "high abc Nutrition is offering a sale",
+    "lang": "en"
+  },
+  {
+    "start": 795.12,
+    "dur": 4.88,
+    "text": "with 25% discount. Reply yes to no more.",
+    "lang": "en"
+  },
+  {
+    "start": 797.92,
+    "dur": 4.88,
+    "text": "It has given a button yes which is a",
+    "lang": "en"
+  },
+  {
+    "start": 800.0,
+    "dur": 4.56,
+    "text": "quick reply. I also need one detail for",
+    "lang": "en"
+  },
+  {
+    "start": 802.8,
+    "dur": 3.839,
+    "text": "the journey deployment. Which WhatsApp",
+    "lang": "en"
+  },
+  {
+    "start": 804.56,
+    "dur": 3.6,
+    "text": "number should it deploy it on? So of",
+    "lang": "en"
+  },
+  {
+    "start": 806.639,
+    "dur": 3.121,
+    "text": "course I have multiple projects,",
+    "lang": "en"
+  },
+  {
+    "start": 808.16,
+    "dur": 3.919,
+    "text": "multiple numbers with me. So that's why",
+    "lang": "en"
+  },
+  {
+    "start": 809.76,
+    "dur": 4.4,
+    "text": "it needs that confirmation.",
+    "lang": "en"
+  },
+  {
+    "start": 812.079,
+    "dur": 4.241,
+    "text": "So it's also asking me confirm if I",
+    "lang": "en"
+  },
+  {
+    "start": 814.16,
+    "dur": 3.76,
+    "text": "could share uh if should I create this",
+    "lang": "en"
+  },
+  {
+    "start": 816.32,
+    "dur": 3.84,
+    "text": "template as waiting on your confirmation",
+    "lang": "en"
+  },
+  {
+    "start": 817.92,
+    "dur": 4.32,
+    "text": "and target number. Please reply with the",
+    "lang": "en"
+  },
+  {
+    "start": 820.16,
+    "dur": 4.4,
+    "text": "WhatsApp number and confirm. I should",
+    "lang": "en"
+  },
+  {
+    "start": 822.24,
+    "dur": 4.08,
+    "text": "create. So now this has drafted it. It",
+    "lang": "en"
+  },
+  {
+    "start": 824.56,
+    "dur": 3.76,
+    "text": "is also giving me a quick option to",
+    "lang": "en"
+  },
+  {
+    "start": 826.32,
+    "dur": 8.72,
+    "text": "select what I need to do. So I'll just",
+    "lang": "en"
+  },
+  {
+    "start": 828.32,
+    "dur": 8.879,
+    "text": "say just deploy it on any number",
+    "lang": "en"
+  },
+  {
+    "start": 835.04,
+    "dur": 4.08,
+    "text": "available. Since I don't know which",
+    "lang": "en"
+  },
+  {
+    "start": 837.199,
+    "dur": 4.721,
+    "text": "particular number I need to manually go",
+    "lang": "en"
+  },
+  {
+    "start": 839.12,
+    "dur": 5.6,
+    "text": "and check the number, right? So I'll",
+    "lang": "en"
+  },
+  {
+    "start": 841.92,
+    "dur": 5.359,
+    "text": "just say just deploy it on any number.",
+    "lang": "en"
+  },
+  {
+    "start": 844.72,
+    "dur": 5.28,
+    "text": "Now since it has the confirmation,",
+    "lang": "en"
+  },
+  {
+    "start": 847.279,
+    "dur": 4.481,
+    "text": "right? So now it's again letting me know",
+    "lang": "en"
+  },
+  {
+    "start": 850.0,
+    "dur": 3.44,
+    "text": "I can't safely guess a target number for",
+    "lang": "en"
+  },
+  {
+    "start": 851.76,
+    "dur": 3.199,
+    "text": "deployment. I'll check what WhatsApp",
+    "lang": "en"
+  },
+  {
+    "start": 853.44,
+    "dur": 3.519,
+    "text": "sips numbers are available in this",
+    "lang": "en"
+  },
+  {
+    "start": 854.959,
+    "dur": 4.0,
+    "text": "workspace. So you can pick one then I",
+    "lang": "en"
+  },
+  {
+    "start": 856.959,
+    "dur": 3.601,
+    "text": "can proceed. Now it's doing the hard",
+    "lang": "en"
+  },
+  {
+    "start": 858.959,
+    "dur": 3.201,
+    "text": "work for me. It's saying okay I will",
+    "lang": "en"
+  },
+  {
+    "start": 860.56,
+    "dur": 4.16,
+    "text": "give you the options. Okay these numbers",
+    "lang": "en"
+  },
+  {
+    "start": 862.16,
+    "dur": 4.16,
+    "text": "are there. You just let me know right. I",
+    "lang": "en"
+  },
+  {
+    "start": 864.72,
+    "dur": 4.0,
+    "text": "found the relevant skill the WhatsApp",
+    "lang": "en"
+  },
+  {
+    "start": 866.32,
+    "dur": 8.16,
+    "text": "number to use or no please send one of",
+    "lang": "en"
+  },
+  {
+    "start": 868.72,
+    "dur": 10.72,
+    "text": "these. Uh I'll say use CX2 WhatsApp",
+    "lang": "en"
+  },
+  {
+    "start": 874.48,
+    "dur": 7.599,
+    "text": "number. Right. the project app name",
+    "lang": "en"
+  },
+  {
+    "start": 879.44,
+    "dur": 8.079,
+    "text": "uh",
+    "lang": "en"
+  },
+  {
+    "start": 882.079,
+    "dur": 7.2,
+    "text": "any name right and deploy right",
+    "lang": "en"
+  },
+  {
+    "start": 887.519,
+    "dur": 3.76,
+    "text": "I just wanted to complete it of course",
+    "lang": "en"
+  },
+  {
+    "start": 889.279,
+    "dur": 5.521,
+    "text": "we have designed it in a make that it",
+    "lang": "en"
+  },
+  {
+    "start": 891.279,
+    "dur": 5.92,
+    "text": "consults you before doing anything big",
+    "lang": "en"
+  },
+  {
+    "start": 894.8,
+    "dur": 4.32,
+    "text": "because right now for us it's it might",
+    "lang": "en"
+  },
+  {
+    "start": 897.199,
+    "dur": 3.921,
+    "text": "be simple prompts of oneliner or",
+    "lang": "en"
+  },
+  {
+    "start": 899.12,
+    "dur": 4.959,
+    "text": "twoliner but ultimately in the back end",
+    "lang": "en"
+  },
+  {
+    "start": 901.12,
+    "dur": 5.04,
+    "text": "it making a lot of changes right like",
+    "lang": "en"
+  },
+  {
+    "start": 904.079,
+    "dur": 3.841,
+    "text": "the people who have been doing this they",
+    "lang": "en"
+  },
+  {
+    "start": 906.16,
+    "dur": 3.76,
+    "text": "can relate more that how much time does",
+    "lang": "en"
+  },
+  {
+    "start": 907.92,
+    "dur": 4.479,
+    "text": "it take for them to create the template",
+    "lang": "en"
+  },
+  {
+    "start": 909.92,
+    "dur": 5.52,
+    "text": "to get it verified and then to deploy a",
+    "lang": "en"
+  },
+  {
+    "start": 912.399,
+    "dur": 4.481,
+    "text": "journey right so but over here like in",
+    "lang": "en"
+  },
+  {
+    "start": 915.44,
+    "dur": 3.92,
+    "text": "simple prompts you can see it's been",
+    "lang": "en"
+  },
+  {
+    "start": 916.88,
+    "dur": 5.44,
+    "text": "done in fraction of seconds and minutes",
+    "lang": "en"
+  },
+  {
+    "start": 919.36,
+    "dur": 5.52,
+    "text": "right generate lead gen journey for CX2",
+    "lang": "en"
+  },
+  {
+    "start": 922.32,
+    "dur": 4.56,
+    "text": "WhatsApp now it's taken the CX2 WhatsApp",
+    "lang": "en"
+  },
+  {
+    "start": 924.88,
+    "dur": 5.0,
+    "text": "environment only",
+    "lang": "en"
+  },
+  {
+    "start": 926.88,
+    "dur": 3.0,
+    "text": "right",
+    "lang": "en"
+  },
+  {
+    "start": 930.16,
+    "dur": 5.039,
+    "text": "now what I need I'm generating a simple",
+    "lang": "en"
+  },
+  {
+    "start": 932.399,
+    "dur": 4.88,
+    "text": "keyword triggered lead gen journey for",
+    "lang": "en"
+  },
+  {
+    "start": 935.199,
+    "dur": 3.841,
+    "text": "the CX X2 WhatsApp setup. Now the",
+    "lang": "en"
+  },
+  {
+    "start": 937.279,
+    "dur": 3.841,
+    "text": "journey JSON is ready. I'm saving it",
+    "lang": "en"
+  },
+  {
+    "start": 939.04,
+    "dur": 6.68,
+    "text": "into the journey button now. Then I'll",
+    "lang": "en"
+  },
+  {
+    "start": 941.12,
+    "dur": 4.6,
+    "text": "deploy it. Right.",
+    "lang": "en"
+  },
+  {
+    "start": 948.959,
+    "dur": 3.44,
+    "text": "So it's doing that. Of course this",
+    "lang": "en"
+  },
+  {
+    "start": 950.72,
+    "dur": 4.08,
+    "text": "journey the JSON which it might be",
+    "lang": "en"
+  },
+  {
+    "start": 952.399,
+    "dur": 4.24,
+    "text": "writing in the back end it's quite big.",
+    "lang": "en"
+  },
+  {
+    "start": 954.8,
+    "dur": 3.599,
+    "text": "And yeah if you want the JSON to be",
+    "lang": "en"
+  },
+  {
+    "start": 956.639,
+    "dur": 4.0,
+    "text": "there you can simply ask okay give me",
+    "lang": "en"
+  },
+  {
+    "start": 958.399,
+    "dur": 5.721,
+    "text": "the JSON for this journey. I'll just",
+    "lang": "en"
+  },
+  {
+    "start": 960.639,
+    "dur": 3.481,
+    "text": "write this prompt.",
+    "lang": "en"
+  },
+  {
+    "start": 971.12,
+    "dur": 4.079,
+    "text": "I'll just give this prompt and let's see",
+    "lang": "en"
+  },
+  {
+    "start": 972.72,
+    "dur": 7.32,
+    "text": "what it has done. So it has created the",
+    "lang": "en"
+  },
+  {
+    "start": 975.199,
+    "dur": 4.841,
+    "text": "template by this name, right?",
+    "lang": "en"
+  },
+  {
+    "start": 980.72,
+    "dur": 5.2,
+    "text": "Pending a rootful, right? Create and",
+    "lang": "en"
+  },
+  {
+    "start": 982.959,
+    "dur": 6.081,
+    "text": "deploy journey. Journey name is this",
+    "lang": "en"
+  },
+  {
+    "start": 985.92,
+    "dur": 6.159,
+    "text": "journey ID. Deployment is successful.",
+    "lang": "en"
+  },
+  {
+    "start": 989.04,
+    "dur": 5.12,
+    "text": "Target setup, right? Genflow summer",
+    "lang": "en"
+  },
+  {
+    "start": 992.079,
+    "dur": 4.241,
+    "text": "sale. What it's doing? Collecting the",
+    "lang": "en"
+  },
+  {
+    "start": 994.16,
+    "dur": 3.679,
+    "text": "full name, number, and email. Send",
+    "lang": "en"
+  },
+  {
+    "start": 996.32,
+    "dur": 2.959,
+    "text": "confirmation message. One note the",
+    "lang": "en"
+  },
+  {
+    "start": 997.839,
+    "dur": 3.521,
+    "text": "journey is live, but the template is",
+    "lang": "en"
+  },
+  {
+    "start": 999.279,
+    "dur": 3.521,
+    "text": "still pending for approval. Now you can",
+    "lang": "en"
+  },
+  {
+    "start": 1001.36,
+    "dur": 3.44,
+    "text": "see it's letting you know about the",
+    "lang": "en"
+  },
+  {
+    "start": 1002.8,
+    "dur": 3.68,
+    "text": "update. Connect this journey to a",
+    "lang": "en"
+  },
+  {
+    "start": 1004.8,
+    "dur": 3.839,
+    "text": "campaign send flow. Change the trigger",
+    "lang": "en"
+  },
+  {
+    "start": 1006.48,
+    "dur": 3.68,
+    "text": "keyword. Add Google Sheets API lead",
+    "lang": "en"
+  },
+  {
+    "start": 1008.639,
+    "dur": 3.361,
+    "text": "capture. So all these things are",
+    "lang": "en"
+  },
+  {
+    "start": 1010.16,
+    "dur": 3.76,
+    "text": "definitely there. Right now since I",
+    "lang": "en"
+  },
+  {
+    "start": 1012.0,
+    "dur": 4.56,
+    "text": "asked about the JSON, it's giving me the",
+    "lang": "en"
+  },
+  {
+    "start": 1013.92,
+    "dur": 4.88,
+    "text": "JSON as well. So you can make a direct",
+    "lang": "en"
+  },
+  {
+    "start": 1016.56,
+    "dur": 4.8,
+    "text": "download of this JSON. You can see how",
+    "lang": "en"
+  },
+  {
+    "start": 1018.8,
+    "dur": 5.84,
+    "text": "long the JSON is, right? You can",
+    "lang": "en"
+  },
+  {
+    "start": 1021.36,
+    "dur": 7.199,
+    "text": "directly download it as well from here",
+    "lang": "en"
+  },
+  {
+    "start": 1024.64,
+    "dur": 6.72,
+    "text": "only and you know deploy it manually",
+    "lang": "en"
+  },
+  {
+    "start": 1028.559,
+    "dur": 4.961,
+    "text": "right and just for the quick context",
+    "lang": "en"
+  },
+  {
+    "start": 1031.36,
+    "dur": 5.04,
+    "text": "let's do one thing let's also have a",
+    "lang": "en"
+  },
+  {
+    "start": 1033.52,
+    "dur": 6.0,
+    "text": "look of the type of template and journey",
+    "lang": "en"
+  },
+  {
+    "start": 1036.4,
+    "dur": 6.12,
+    "text": "it has created on my journey builder",
+    "lang": "en"
+  },
+  {
+    "start": 1039.52,
+    "dur": 3.0,
+    "text": "account",
+    "lang": "en"
+  },
+  {
+    "start": 1042.959,
+    "dur": 6.521,
+    "text": "so I'll just",
+    "lang": "en"
+  },
+  {
+    "start": 1045.199,
+    "dur": 4.281,
+    "text": "quickly switch to that screen",
+    "lang": "en"
+  },
+  {
+    "start": 1049.679,
+    "dur": 7.88,
+    "text": "Right. So it says the journey name is",
+    "lang": "en"
+  },
+  {
+    "start": 1053.76,
+    "dur": 3.799,
+    "text": "ABC nutrition.",
+    "lang": "en"
+  },
+  {
+    "start": 1061.76,
+    "dur": 5.68,
+    "text": "Okay, I'll just move to the right",
+    "lang": "en"
+  },
+  {
+    "start": 1064.559,
+    "dur": 5.761,
+    "text": "project which is CX2. I'll go to the bot",
+    "lang": "en"
+  },
+  {
+    "start": 1067.44,
+    "dur": 6.239,
+    "text": "studio the journeys.",
+    "lang": "en"
+  },
+  {
+    "start": 1070.32,
+    "dur": 5.2,
+    "text": "So you can see ABC nutrition summer",
+    "lang": "en"
+  },
+  {
+    "start": 1073.679,
+    "dur": 3.921,
+    "text": "sale.",
+    "lang": "en"
+  },
+  {
+    "start": 1075.52,
+    "dur": 4.48,
+    "text": "It has taken all the nodes. You can see",
+    "lang": "en"
+  },
+  {
+    "start": 1077.6,
+    "dur": 4.4,
+    "text": "that as per the information given it has",
+    "lang": "en"
+  },
+  {
+    "start": 1080.0,
+    "dur": 4.72,
+    "text": "given a force text the delay node the",
+    "lang": "en"
+  },
+  {
+    "start": 1082.0,
+    "dur": 4.64,
+    "text": "text inputs and everything it's deployed",
+    "lang": "en"
+  },
+  {
+    "start": 1084.72,
+    "dur": 3.6,
+    "text": "right we gave a very simple prompt",
+    "lang": "en"
+  },
+  {
+    "start": 1086.64,
+    "dur": 4.32,
+    "text": "that's why it's coming out to be like",
+    "lang": "en"
+  },
+  {
+    "start": 1088.32,
+    "dur": 4.64,
+    "text": "this but the integration and every kind",
+    "lang": "en"
+  },
+  {
+    "start": 1090.96,
+    "dur": 3.76,
+    "text": "of work can be done if you want to have",
+    "lang": "en"
+  },
+  {
+    "start": 1092.96,
+    "dur": 4.4,
+    "text": "an integration you can simply share the",
+    "lang": "en"
+  },
+  {
+    "start": 1094.72,
+    "dur": 5.12,
+    "text": "API endpoints over here in the chat box",
+    "lang": "en"
+  },
+  {
+    "start": 1097.36,
+    "dur": 6.88,
+    "text": "in the prompt section and you know it",
+    "lang": "en"
+  },
+  {
+    "start": 1099.84,
+    "dur": 7.68,
+    "text": "will do the work so this is something",
+    "lang": "en"
+  },
+  {
+    "start": 1104.24,
+    "dur": 5.04,
+    "text": "about the super agent Right. Thank you",
+    "lang": "en"
+  },
+  {
+    "start": 1107.52,
+    "dur": 5.0,
+    "text": "so much for the session. Have a great",
+    "lang": "en"
+  },
+  {
+    "start": 1109.28,
+    "dur": 3.24,
+    "text": "day, guys.",
+    "lang": "en"
+  }
+]
