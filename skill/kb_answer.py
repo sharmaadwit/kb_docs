@@ -2792,6 +2792,33 @@ _OVERVIEW_SIGNALS = [
 ]
 
 
+_MODULE_CAPABILITY_SIGNALS = (
+    "what can", "what does", "what all", "what are",
+    "capabilit", "features", "feature set", "help with",
+    "use case", "use-case", "use cases", "demo", "show me",
+    "tell me about", "overview", "get started", "getting started",
+    "new to", "walk me through",
+)
+
+
+def _is_module_capability_query(q: str) -> bool:
+    """Broad capability/discovery ask that explicitly names a product module.
+
+    Sales and new-user questions like "what can SuperAgent do", "show me a demo
+    of SuperAgent", or "SuperAgent features for retail" are multi-page overviews,
+    not single-entity setup flows. Without this they fall through to the strict
+    `setup` gate, get diluted by off-topic tokens (retail, demo, videos, ...),
+    and wrongly resolve to "I don't know" with no overview video attached.
+    """
+    if _detect_module(q) == "General":
+        return False
+    # A troubleshooting phrasing ("what can I do if ...", "not seeing ...") must
+    # stay troubleshooting even though it names a module and contains "what can".
+    if any(x in q for x in _TROUBLESHOOT_SIGNALS):
+        return False
+    return any(p in q for p in _MODULE_CAPABILITY_SIGNALS)
+
+
 def _is_broad_overview_query(q: str) -> bool:
     """Broad exploration queries: use multi-page evidence, not one entity setup template."""
     if "how do i use" in q and "agent assist" in q:
@@ -2805,6 +2832,8 @@ def _is_broad_overview_query(q: str) -> bool:
     if "creating and publishing" in q and "campaign" in q:
         return True
     if "campaign" in q and "publish" in q and "flow" in q:
+        return True
+    if _is_module_capability_query(q):
         return True
     return False
 

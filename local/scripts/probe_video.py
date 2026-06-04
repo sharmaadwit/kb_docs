@@ -27,15 +27,20 @@ kb_video.record_video_delivery = lambda *a, **k: None
 ctx=C()
 
 qs = [
-  "i am a retail/FMCG company, what can superagent do and what are gupshup features that have helped other clients, if you have videos, would love to see",
-  "what can superagent do for retail",
-  "what can superagent do",
-  "superagent features",
-  "show me videos for superagent",
+  "i am a retail/FMCG company, what can superagent do and what are gupshup features that have helped other clients, show me a demo with videos",
+  "what can superagent do for retail and show me a demo with videos",
 ]
 for q in qs:
+    explicit_module = kb_answer._detect_module(q)
+    entities = kb_answer._extract_entities(q)
+    intent = kb_answer._classify_intent(q, entities)
     res = kb_answer.kb_answer({"query": q}, context=ctx)
     v = res.get("video")
-    idk = "i don't know" in (res.get("answer","" ).lower())
-    vid = f'{v["video_id"]} "{v["title"]}" fallback={v.get("fallback")} src={v.get("source")}' if v else "(none)"
-    print(f"idk={idk}  video={vid}\n  Q: {q[:90]}")
+    ans = res.get("answer","")
+    idk = "i don't know" in ans.lower()
+    vid = f'{v["video_id"]} "{v["title"]}" src={v.get("source")}' if v else "(none)"
+    print("="*90)
+    print(f"Q: {q}")
+    print(f"  module={explicit_module} intent={intent} idk={idk}")
+    print(f"  video={vid}")
+    print(f"  answer[:200]: {ans[:200]!r}")
