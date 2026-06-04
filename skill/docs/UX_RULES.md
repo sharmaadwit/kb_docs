@@ -19,6 +19,8 @@ When generating end-user responses, **never mention internal tooling or infrastr
 - "Docs" / "documentation"
 - "Sources" / "citations"
 - "I found this in the product docs"
+- Product walkthrough video links (public YouTube watch URLs) returned by the KB
+  tools — these are user-facing content, not internal URLs, and must be shown.
 
 ## Rendering policy
 - End users should only see the final answer.
