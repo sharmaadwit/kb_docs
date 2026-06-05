@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "created_at": "2026-06-04T09:56:21.459544+00:00",
+  "created_at": "2026-06-05T07:19:14.249604+00:00",
   "repo": "sharmaadwit/kb_docs",
   "branch": "main",
   "docs_path": "kb",
@@ -8,7 +8,7 @@
     "kb/analytics"
   ],
   "md_files": 377,
-  "chunks": 6179,
+  "chunks": 6184,
   "docs": [
     {
       "path": "kb/agent-assist/about-agent-assist.md",
@@ -136,7 +136,7 @@
     },
     {
       "path": "kb/agent-assist/sending-templates-after-the-24-hour-window.md",
-      "chunks": 14
+      "chunks": 15
     },
     {
       "path": "kb/agent-assist/settings.md",
@@ -440,7 +440,7 @@
     },
     {
       "path": "kb/bot-studio/customer-360-node.md",
-      "chunks": 20
+      "chunks": 21
     },
     {
       "path": "kb/bot-studio/date-node.md",
@@ -1168,7 +1168,7 @@
     },
     {
       "path": "kb/channels/inbound-messages-and-events.md",
-      "chunks": 29
+      "chunks": 30
     },
     {
       "path": "kb/channels/ios-native.md",
@@ -1192,7 +1192,7 @@
     },
     {
       "path": "kb/channels/retain-customer-chat-history.md",
-      "chunks": 7
+      "chunks": 8
     },
     {
       "path": "kb/channels/security.md",
@@ -1388,7 +1388,7 @@
     },
     {
       "path": "kb/overview/manage-organisation.md",
-      "chunks": 5
+      "chunks": 6
     },
     {
       "path": "kb/overview/remove-members-from-a-project.md",
