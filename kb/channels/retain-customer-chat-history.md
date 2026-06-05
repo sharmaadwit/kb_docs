@@ -5,6 +5,9 @@ source_url: https://console-docs.gupshup.io/docs/web-retain-customer-chat-histor
 
 **Module**: Channels
 
+## What is retained customer chat history
+Retained customer chat history shows messages from a returning web widget user's previous conversations in the Web chat widget, on repeat visits from the same browser and device. When enabled, up to 255 latest messages are shown on a First In, First Out (FIFO) basis and are stored encrypted using AES-GCM. By default the toggle is disabled and customer chat history is not retained.
+
 ## Definition
 This feature shows messages from a user's previous conversations in the Web chat widget for repeat visits from the same browser and device.
 

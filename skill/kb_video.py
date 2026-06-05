@@ -277,7 +277,19 @@ def _row_is_relevant(row, row_heading, chosen, query_tokens):
     ref_tokens |= set(_tokenize(chosen.get("title") or ""))
     for kw in (chosen.get("keywords") or []):
         ref_tokens |= set(_tokenize(kw))
-    return bool(query_tokens & ref_tokens)
+    if query_tokens & ref_tokens:
+        return True
+    # Relaxation: the matched page is already among the top retrieval results,
+    # so high query/page token overlap (>= 0.4) is itself enough — even without
+    # one shared distinctive source/title token. This lets answers that just
+    # flipped to "answered" still attach their module walkthrough.
+    page_tokens = set(_tokenize(row.get("source", "")))
+    page_tokens |= set(_tokenize(row_heading))
+    page_tokens |= set(_tokenize(row.get("text", "")))
+    if query_tokens and page_tokens:
+        if len(query_tokens & page_tokens) / len(query_tokens) >= 0.4:
+            return True
+    return False
 
 
 def _candidates_for_source(manifest, source):

@@ -23,7 +23,8 @@
       "kb/bot-studio/how-do-the-elements-of-bot-studio-work-together.md",
       "kb/bot-studio/controls-on-bot-studio-canvas.md",
       "kb/bot-studio/faqs-of-bot-studio.md",
-      "kb/bot-studio/nodes.md"
+      "kb/bot-studio/nodes.md",
+      "kb/bot-studio/customer-360-node.md"
     ],
     "video_id": "cO21ibbcZnA",
     "title": "Bot Studio: Building a Journey",
@@ -203,7 +204,9 @@
     "source": "kb/extension/overview-of-extensions.md",
     "also_sources": [
       "kb/channels/about-whatsapp.md",
-      "kb/channels/whatsapp-business-api.md"
+      "kb/channels/whatsapp-business-api.md",
+      "kb/channels/retain-customer-chat-history.md",
+      "kb/integrations/webhooks.md"
     ],
     "video_id": "nAQEV9hy7kg",
     "title": "Enterprise WhatsApp Extension",

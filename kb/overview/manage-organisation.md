@@ -5,6 +5,9 @@ source_url: https://console-docs.gupshup.io/docs/manage-organisation
 
 **Module**: Overview
 
+## Console roles (Org Owner, Org Admin)
+Go to **Overview → Manage Organisation** in the Gupshup Console to manage the organisation roles. The Gupshup Console has two organisation roles — Org Owner and Org Admin. The first user onboarded by the Gupshup team is designated as the Org Owner and is given login credentials to access the account. The Org Owner can add more Org Admins from their company to help manage the account. Both the Org Owner and Org Admins have the same capabilities, including inviting and removing members, creating and assigning projects, and assigning or unassigning services and projects to members. The Org Owner cannot be deleted from the Organisation.
+
 ## Definition
 You may be wondering about the account setup process and what capabilities you'll have as an organisation. Here is an overview of what you can expect when you onboard with Gupshup, including the roles of the Org Owner and Org Admins. When you sign up for the Gupshup console, you'll be provided with an Organisation account that can have one or more projects and services under it. The first user onboarded by the Gupshup team will be designated as the Org Owner, and this person will be provided with login credentials to access the account. The Org Owner will have the ability to add more Org Admins from their company to help manage the account. Both the Org Owner and Org Admins will have the same capabilities, including:
 

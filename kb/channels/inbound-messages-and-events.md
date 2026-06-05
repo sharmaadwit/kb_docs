@@ -5,6 +5,9 @@ source_url: https://console-docs.gupshup.io/docs/inbound-messages-and-events
 
 **Module**: Channels
 
+## Verify message status and conversation logs
+Configure your callback URL under **Channels → Inbound Messages and Events** to receive inbound message status events. The platform sends Message Events for each WhatsApp message — Sent, Delivered, Read, Enqueued, and Failed — so you can verify whether a message was sent, delivered, and read. Inbound messages also include user replies: the context object is included when a customer replies to one of your messages, so you can review message history and the conversation logs of inbound messages on your callback URL.
+
 ## Definition
 As a console user, if you configure a secondary URL on your WhatsApp self-serve application, you will receive inbound events including message status events and inbound messages. Here are some details:
 

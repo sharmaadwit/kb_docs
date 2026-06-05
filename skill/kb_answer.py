@@ -54,7 +54,8 @@ _COMMON_LONG_PRODUCT_WORDS = frozenset({
     "configuration", "configuring", "orchestration", "multichannel",
     "omnichannel", "documentation", "troubleshooting", "implementation",
     "recommendations", "representative", "subscriptions", "personalization",
-    "notifications", "authentication", "authorization",
+    "notifications", "authentication", "authorization", "functionality",
+    "requirements", "requirement",
 })
 
 # Tokens that appear broadly across the KB — they don't identify a specific
@@ -203,6 +204,7 @@ MIN_TEMPLATE_SCORE = 2.5
 MIN_EVIDENCE_SCORE = 1.2
 MIN_CHUNK_SCORE = 0.3
 MIN_EVIDENCE_SCORE_UNBOOSTED = 4.0
+MIN_EVIDENCE_SCORE_UNBOOSTED_MULTI = 2.5  # when len(evidence) >= 2 and top1_overlap >= 0.25
 
 # ---------------------------------------------------------------------------
 # Section 3 — Concept Registry
@@ -1969,6 +1971,78 @@ CONCEPT_REGISTRY: List[Dict] = [
         "compare_blurb": "AI Agents are generative assistants powered by ACE Agentic LLM for multi-turn conversations.",
         "related": ["ai_admin_workspace", "ai_admin_training"],
     },
+    # ---- IDK-fix routing concepts (boost the correct EXISTING page) ----
+    {
+        "id": "console_roles",
+        "aliases": [
+            "console roles", "console role", "roles in gupshup console",
+            "roles in the console", "user roles in console", "org admin",
+            "org owner", "organisation admin", "organization admin",
+        ],
+        "keywords": ["roles", "org", "owner", "admin"],
+        "source_boosts": {
+            "overview/manage-organisation": 6.0,
+            "overview/invite-org-admins": 4.0,
+        },
+        "display": "Console roles",
+        "module": "Overview",
+    },
+    {
+        "id": "customer_360",
+        "aliases": ["customer 360", "customer360"],
+        "keywords": ["customer"],
+        "source_boosts": {"bot-studio/customer-360-node": 6.0},
+        "display": "Customer 360",
+        "module": "Bot Studio",
+    },
+    {
+        "id": "retained_chat_history",
+        "aliases": [
+            "retained chat history", "retained customer chat",
+            "returning web widget", "retain customer chat history",
+            "chat history",
+        ],
+        "keywords": ["retained", "history", "widget"],
+        "source_boosts": {"channels/retain-customer-chat-history": 6.0},
+        "display": "Retained customer chat history",
+        "module": "Channels",
+    },
+    {
+        "id": "delivery_status_logs",
+        "aliases": [
+            "delivered status", "message status", "conversation logs",
+            "delivery logs", "message history", "track message history",
+        ],
+        "keywords": ["delivered", "status", "logs"],
+        "source_boosts": {
+            "channels/inbound-messages-and-events": 5.0,
+            "campaign-manager/campaign-analytics": 3.0,
+        },
+        "display": "Delivery status and logs",
+        "module": "Channels",
+    },
+    {
+        "id": "analytics_overview",
+        "aliases": [
+            "analytics overview", "bot analytics", "journey analytics",
+            "analytics in gupshup", "overview of analytics",
+        ],
+        "keywords": ["analytics", "dashboard"],
+        "source_boosts": {
+            "bot-studio-analytics/dashboard": 5.0,
+            "bot-studio-analytics/journey-tracking": 3.0,
+        },
+        "display": "Analytics overview",
+        "module": "Analytics",
+    },
+    {
+        "id": "ai_admin_tools",
+        "aliases": ["ai admin tool", "ai admin tools"],
+        "keywords": ["tools"],
+        "source_boosts": {"ai-admin/tools-developer-mode": 5.0},
+        "display": "AI Admin tools",
+        "module": "AI Admin",
+    },
 ]
 
 # Pre-build lookup by id
@@ -2145,6 +2219,29 @@ def _guardrail_answer(query: str) -> str:
         return "I don't know based on the documentation provided. Ask me about a documented Gupshup Console capability and I'll help with that."
     if category == "offtopic":
         return "I can help only with documented Gupshup Console and KB topics. Ask me a product-related question instead."
+    return ""
+
+
+# Products/topics with no KB coverage. Decline cleanly instead of guessing a
+# nearby page. Keys are normalized-query substrings; value is the display name.
+UNDOCUMENTED_TOPICS = {
+    "cc express": "CC Express",
+    "ccexpress": "CC Express",
+    "leadsquared": "LeadSquared",
+    "lead squared": "LeadSquared",
+}
+
+
+def _undocumented_topic_decline(query: str) -> str:
+    qn = _normalize_query_for_match(query)
+    for needle, display in UNDOCUMENTED_TOPICS.items():
+        if needle in qn:
+            return (
+                f"I don't have documentation on {display}, so I can't help with that "
+                f"specific question. I can help with documented Gupshup Console topics "
+                f"like Bot Studio, Agent Assist, Campaign Manager, Channels, AI Admin, "
+                f"CTX, and Integrations."
+            )
     return ""
 
 
@@ -2356,6 +2453,8 @@ def _module_from_source(source: str) -> str:
     s = "/" + (source or "").lower().replace("\\", "/")
     if "/agent-assist/" in s:
         return "Agent Assist"
+    if "/bot-studio-analytics/" in s:
+        return "Analytics"
     if "/bot-studio/" in s:
         return "Bot Studio"
     if "/campaign-manager/" in s:
@@ -2854,18 +2953,40 @@ _PLATFORM_PITCH_PHRASES = (
 )
 
 
+# Demo / pitch asks ("show me a demo of Gupshup features for a retail client").
+# A demo verb plus a breadth noun => whole-platform pitch, not a single setup
+# flow. Kept tight so specific how-to questions aren't swept in.
+_PITCH_DEMO_VERBS = (
+    "show me a demo", "demo of", "give me a demo", "see a demo",
+    "product demo", "walk me through gupshup", "demo of gupshup",
+)
+_PITCH_BREADTH = (
+    "features", "modules", "capabilit", "what gupshup", "gupshup console",
+    "platform", "use cases",
+)
+
+
+def _is_pitch_demo_query(q: str) -> bool:
+    q = _normalize_query_for_match(q)
+    if any(x in q for x in _TROUBLESHOOT_SIGNALS):
+        return False
+    return any(v in q for v in _PITCH_DEMO_VERBS) and any(b in q for b in _PITCH_BREADTH)
+
+
 def _is_platform_pitch_query(q: str) -> bool:
     """A whole-platform sales / new-user ask where Gupshup itself is the subject.
 
     e.g. "what can Gupshup do", "give me more details about Gupshup features",
-    "tell me about Gupshup". These can't be assembled from one page's evidence,
-    so they get a high-level capability summary plus the full catalog of module
-    walkthrough videos.
+    "tell me about Gupshup", "show me a demo of Gupshup features". These can't be
+    assembled from one page's evidence, so they get a high-level capability
+    summary plus the full catalog of module walkthrough videos.
     """
     q = _normalize_query_for_match(q)
     if any(x in q for x in _TROUBLESHOOT_SIGNALS):
         return False
-    return any(p in q for p in _PLATFORM_PITCH_PHRASES)
+    if any(p in q for p in _PLATFORM_PITCH_PHRASES):
+        return True
+    return _is_pitch_demo_query(q)
 
 
 def _is_platform_pitch(query: str, module: str) -> bool:
@@ -3521,6 +3642,18 @@ def _query_source_penalty_adjustment(q: str, source: str) -> float:
             adj -= 15.0
         if "platform-upgrade" in s and "node-deprecation" in s:
             adj -= 12.0
+    # SLA asks: the only SLA page is Agent Assist chat-management SLA. A bare
+    # "Gupshup SLA" or a webhook/platform latency SLA question is NOT that page,
+    # so keep those undocumented asks as IDK instead of borrowing the chat SLA.
+    if re.search(r"\bsla\b", q):
+        aa_sla_context = any(
+            t in q for t in (
+                "agent assist", "chat management", "first response",
+                "response time", "resolution time", "assignment", "agent response",
+            )
+        )
+        if not aa_sla_context and "chat-management-sla" in s:
+            adj -= 12.0
     return adj
 
 
@@ -3590,6 +3723,16 @@ def _query_topic_not_in_evidence(query: str, joined: str) -> bool:
     if "sr panel" in qn or "sr panels" in qn:
         if "sr panel" not in j:
             return True
+    # SLA / latency: must be backed by an SLA page. Otherwise the nearest
+    # non-SLA page must not answer (undocumented platform/webhook SLA -> IDK).
+    if re.search(r"\bsla\b", qn) and "sla" not in j and "service level" not in j:
+        return True
+    if "latency" in qn and "latency" not in j:
+        return True
+    # Catalog message API is not documented; don't answer from a generic WhatsApp
+    # API page that merely shares the word "message"/"api".
+    if "catalog" in qn and "catalog" not in j:
+        return True
     return False
 
 
@@ -3647,6 +3790,27 @@ def _setup_evidence_missing_required_terms(query: str, joined: str) -> bool:
     return False
 
 
+# Instruction / framing words users add to a question ("explain ...", "summarize
+# the documented capabilities", "in simple terms"). They never appear in product
+# docs, so counting them in topic-coverage unfairly buries clearly on-topic asks.
+# They are NOT product topics, so excluding them cannot make an undocumented
+# (defer) question look covered — those still miss their real product tokens.
+_QUERY_META_TOKENS = frozenset({
+    "explain", "explained", "summarize", "summarise", "summary",
+    "documented", "documentation", "purpose", "capability", "capabilities",
+    "concise", "practical", "simple", "terms", "term", "main", "please",
+    "functionality", "relevant", "available", "guidance", "product", "products",
+    "including", "include", "includes", "requirement", "requirements",
+    "note", "notes", "anything", "using", "only", "what", "does",
+    "uses", "use", "give", "tell", "keep", "thing", "things", "want",
+    # Generic setup vocabulary — common to most "how do I set up X" asks; does
+    # not identify a specific topic on its own.
+    "required", "specific", "server", "endpoint", "endpoints", "connect",
+    "connecting", "configuration", "module", "modules",
+    "authentication", "authenticate", "auth",
+})
+
+
 def _query_distinctive_tokens(query: str) -> List[str]:
     """Tokens that identify the specific topic of the query, excluding common
     KB vocabulary that appears across many docs."""
@@ -3656,6 +3820,14 @@ def _query_distinctive_tokens(query: str) -> List[str]:
         if len(t) >= 4
         and t not in SCORING_STOP_WORDS
         and t not in _GENERIC_KB_TOKENS
+        and t not in _QUERY_META_TOKENS
+    ]
+
+
+def _query_head_tokens(query: str) -> List[str]:
+    return [
+        t for t in re.findall(r"[a-z0-9]+", _normalize_query_for_match(query))
+        if len(t) >= 4 and t not in SCORING_STOP_WORDS
     ]
 
 
@@ -3901,15 +4073,26 @@ def _has_explicit_support(
     # clearly on-topic questions without lowering the global score thresholds.
     strong_overlap = top1_overlap >= 0.7 and top1.get("score", 0.0) >= 0.5
 
+    # Clearly on-topic but modest absolute score -> allow a hedged answer
+    # instead of refusing. Composer should phrase as "The documentation indicates...".
+    hedged_ok = (
+        (top1_overlap >= 0.7 and top1.get("score", 0.0) >= 0.5)      # high overlap
+        or (top1_overlap >= 0.5 and top1.get("score", 0.0) >= 0.85)  # moderate both
+    )
+
     effective_min = 0.8 if module_match else MIN_EVIDENCE_SCORE
-    if top1.get("score", 0.0) < effective_min and not strong_overlap:
+    if top1.get("score", 0.0) < effective_min and not strong_overlap and not hedged_ok:
         return False
 
     if not module_match and not _top_evidence_has_entity_boost(evidence, entities or []):
+        unboosted_floor = MIN_EVIDENCE_SCORE_UNBOOSTED
+        if len(evidence) >= 2 and top1_overlap >= 0.25:
+            unboosted_floor = MIN_EVIDENCE_SCORE_UNBOOSTED_MULTI
         if (
             intent != "overview"
-            and top1.get("score", 0.0) < MIN_EVIDENCE_SCORE_UNBOOSTED
+            and top1.get("score", 0.0) < unboosted_floor
             and not strong_overlap
+            and not hedged_ok
         ):
             return False
 
@@ -3941,6 +4124,9 @@ def _has_explicit_support(
     if intent == "definition":
         if _query_topic_not_in_evidence(query, joined):
             return False
+        src_head = (str(top1.get("source") or "") + " " + str(top1.get("heading") or "")).lower()
+        if top1_overlap >= 0.45 and any(t in src_head for t in _query_head_tokens(query)):
+            return True
         return top1_overlap >= 0.2 and any(
             term in joined for term in [
                 "means", "represents", "is the number of", "includes",
@@ -3968,6 +4154,13 @@ def _has_explicit_support(
         if _query_topic_not_in_evidence(query, joined):
             return False
         has_action = any(_is_action_oriented(line) for line in lines[:6])
+        # A numbered Steps/Procedure block is itself action-oriented evidence even
+        # when the surfaced lines aren't verb-led (e.g. webhook/MO callback setup).
+        has_steps_block = any(
+            ("steps" in (c.get("heading") or "").lower()
+             or "procedure" in (c.get("heading") or "").lower())
+            for c in evidence
+        )
         # Guard against generic "open console/go to X" snippets being accepted
         # for specific setup questions (e.g., Goal/Personalize/Trigger Event).
         core_tokens = [
@@ -3982,7 +4175,7 @@ def _has_explicit_support(
         core_hits = sum(1 for t in set(core_tokens) if t in joined)
         if core_tokens and core_hits == 0 and top1_overlap < 0.45:
             return False
-        return (has_action and top1_overlap >= 0.2) or top1_overlap >= 0.45
+        return ((has_action or has_steps_block) and top1_overlap >= 0.2) or top1_overlap >= 0.45
 
     if intent == "troubleshooting":
         qn = _normalize_query_for_match(query)
@@ -4001,6 +4194,12 @@ def _has_explicit_support(
                 "ensure", "confirm", "review", "debug",
             ]
         )
+
+    if intent == "schema":
+        if _query_topic_not_in_evidence(query, joined):
+            return False
+        if any(t in joined for t in ("payload", "fields", "parameter", "event", "json", "key")):
+            return top1_overlap >= 0.2
 
     if intent == "compare":
         sources = set(str(c.get("source") or "") for c in evidence)
@@ -4800,6 +4999,21 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
             "ok": True,
             "query": _visible_kb_answer_query_field(query, gr_cat),
             "answer": guardrail,
+            "citations": [],
+            "langfuse": langfuse,
+        }
+
+    undocumented = _undocumented_topic_decline(query)
+    if undocumented:
+        latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
+        langfuse = _send_langfuse(
+            "kb_answer", query, undocumented, [], "General",
+            ["unsupported"], "refusal", False, latency_ms, context, params,
+        )
+        return {
+            "ok": True,
+            "query": _redact_secrets_in_query_echo(query),
+            "answer": undocumented,
             "citations": [],
             "langfuse": langfuse,
         }

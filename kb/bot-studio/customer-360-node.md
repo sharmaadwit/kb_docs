@@ -5,6 +5,9 @@ source_url: https://console-docs.gupshup.io/docs/cdp-goal-node-beta
 
 **Module**: Bot Studio
 
+## What is Customer 360
+Customer 360 is a module in the Gupshup Console where businesses can view customer interactions captured while a customer chats with a Bot. While customers interact with a Bot, businesses can view these interactions on the Customer 360 module in the console. Businesses can also see if a customer completes a Goal by providing information while interacting with the Bot (using the CDP Goal Node in Bot Studio), and that information can then be viewed in the Customer 360 module.
+
 ## Definition
 While customers interact with a Bot, businesses can view these interactions on the Customer 360 module in the console.
 
