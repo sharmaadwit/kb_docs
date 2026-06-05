@@ -1,0 +1,947 @@
+{
+  "items": [
+    {
+      "query": "In CC Express, what roles are there?",
+      "trace_top_source": "kb/agent-assist/efficient-chat-navigation-for-different-user-roles-through-views.md",
+      "intent": "setup",
+      "module": "General",
+      "retrieval_top": "kb/agent-assist/efficient-chat-navigation-for-different-user-roles-through-views.md",
+      "top_score": 0.55,
+      "overlap": 0.25,
+      "support": false,
+      "idk": true,
+      "fix_class": "score_floor_or_concept_boost",
+      "missing_tokens": [
+        "express"
+      ],
+      "better_sources": [],
+      "top_heading": "Efficient Chat Navigation for Different User Roles Through Views"
+    },
+    {
+      "query": "What are the console roles in Gupshup Console?",
+      "trace_top_source": "kb/ctx/connecting-ad-to-bot-in-gupshup-console.md",
+      "intent": "setup",
+      "module": "General",
+      "retrieval_top": "kb/ctx/connecting-ad-to-bot-in-gupshup-console.md",
+      "top_score": 1.4,
+      "overlap": 0.5,
+      "support": false,
+      "idk": true,
+      "fix_class": "support_gate_or_wrong_page",
+      "missing_tokens": [
+        "roles"
+      ],
+      "better_sources": [
+        [
+          4,
+          "kb/agent-assist/efficient-chat-navigation-for-different-user-roles-through-views.md",
+          "Exact UI path"
+        ],
+        [
+          4,
+          "kb/agent-assist/efficient-chat-navigation-for-different-user-roles-through-views.md",
+          "Setup path"
+        ],
+        [
+          4,
+          "kb/overview/manage-organisation.md",
+          "Step-by-step configuration"
+        ]
+      ],
+      "top_heading": "Connecting ad to bot in Gupshup Console"
+    },
+    {
+      "query": "Show me a demo of Gupshup Console features for a retail client, including relevant modules, retail examples, and videos.",
+      "trace_top_source": "kb/ctx/connecting-ad-to-bot-in-gupshup-console.md",
+      "intent": "setup",
+      "module": "General",
+      "retrieval_top": "kb/ctx/connecting-ad-to-bot-in-gupshup-console.md",
+      "top_score": 1.1,
+      "overlap": 0.167,
+      "support": false,
+      "idk": true,
+      "fix_class": "score_floor_or_concept_boost",
+      "missing_tokens": [
+        "show",
+        "demo",
+        "features",
+        "retail",
+        "client",
+        "including",
+        "relevant",
+        "modules"
+      ],
+      "better_sources": [
+        [
+          4,
+          "kb/channels/react-native.md",
+          "Using the SDK Features"
+        ],
+        [
+          3,
+          "kb/ai-admin/skills-developer-mode.md",
+          "Note: AI Agent is available in developer mode through our Gupshup\u2019s internal Bot Solutions Team. To access the latest AI Agent modules in Bot Studio please contact Gupshup support or your respective Sales representative."
+        ],
+        [
+          3,
+          "kb/bot-studio/about-bot-studio.md",
+          "Starting with Console 16.0, Gupshup has deprecated or replaced several legacy and dev-only nodes in Bot Studio to improve platform stability, performance, and user experience."
+        ]
+      ],
+      "top_heading": "Connecting ad to bot in Gupshup Console"
+    },
+    {
+      "query": "For a WhatsApp chatbot journey, once I have saved and deployed the new journey and the agents are created, do I need to do anything with the Meta Business Manager ID, or is everything already good? Focus on whether any post-deployment step with Meta Business Manager ID is require",
+      "trace_top_source": "kb/channels/whatsapp-business-api.md",
+      "intent": "setup",
+      "module": "General",
+      "retrieval_top": "kb/ctx/meta-ads-to-whatsapp.md",
+      "top_score": 1.85,
+      "overlap": 0.25,
+      "support": false,
+      "idk": true,
+      "fix_class": "support_gate_or_wrong_page",
+      "missing_tokens": [
+        "chatbot",
+        "journey",
+        "once",
+        "saved",
+        "deployed",
+        "journey",
+        "agents",
+        "created"
+      ],
+      "better_sources": [
+        [
+          5,
+          "kb/bot-studio/nodes.md",
+          "Starting Node :"
+        ],
+        [
+          4,
+          "kb/bot-studio/faqs-of-bot-studio.md",
+          "Step-by-step configuration"
+        ],
+        [
+          4,
+          "kb/bot-studio/how-to-create-whatsapp-static-flows.md",
+          "Step 3: Parse the Flow Response"
+        ]
+      ],
+      "top_heading": "Connect Meta Ads Manager to Gupshup Console"
+    },
+    {
+      "query": "In Gupshup Console, what is the documented end-to-end process to create a WhatsApp bot journey such that an approved outbound WhatsApp template message is sent first, and when the customer replies with anything, the WhatsApp AI bot/agent that is already created gets triggered? In",
+      "trace_top_source": "kb/channels/whatsapp-business-api.md",
+      "intent": "definition",
+      "module": "General",
+      "retrieval_top": "kb/bot-studio/whatsapp-carousel-message-using-the-send-message-node.md",
+      "top_score": 2.4,
+      "overlap": 0.115,
+      "support": false,
+      "idk": true,
+      "fix_class": "support_gate_or_wrong_page",
+      "missing_tokens": [
+        "console",
+        "documented",
+        "process",
+        "create",
+        "approved",
+        "outbound",
+        "template"
+      ],
+      "better_sources": [
+        [
+          5,
+          "kb/channels/about-whatsapp.md",
+          "Step-by-step configuration"
+        ],
+        [
+          5,
+          "kb/ctx/creating-a-ctwa-ad-on-meta-ads-manager.md",
+          "Step-by-step configuration"
+        ],
+        [
+          4,
+          "kb/bot-studio/getting-started-with-bot-studio.md",
+          "Steps"
+        ]
+      ],
+      "top_heading": "WhatsApp Carousel Message Using the Send Message Node"
+    },
+    {
+      "query": "Catalog message API",
+      "trace_top_source": "kb/channels/whatsapp-business-api.md",
+      "intent": "setup",
+      "module": "General",
+      "retrieval_top": "kb/channels/whatsapp-business-api.md",
+      "top_score": 0.85,
+      "overlap": 0.5,
+      "support": false,
+      "idk": true,
+      "fix_class": "score_floor_or_concept_boost",
+      "missing_tokens": [
+        "catalog"
+      ],
+      "better_sources": [
+        [
+          2,
+          "kb/bot-studio/image-node.md",
+          "\ud83d\udca1 When to Use"
+        ],
+        [
+          1,
+          "kb/agent-assist/ai-management-alpha.md",
+          "When to use"
+        ],
+        [
+          1,
+          "kb/agent-assist/ai-management-alpha.md",
+          "Details"
+        ]
+      ],
+      "top_heading": "Send message API"
+    },
+    {
+      "query": "In Gupshup Console / Journey Builder / Bot Studio, what is a Flow ID in the console? Explain in simple terms using only documented product guidance if available.",
+      "trace_top_source": "kb/bot-studio/whatsapp-flows-static-dynamic.md",
+      "intent": "definition",
+      "module": "Bot Studio",
+      "retrieval_top": "kb/bot-studio/whatsapp-flows-static-dynamic.md",
+      "top_score": 5.55,
+      "overlap": 0.312,
+      "support": false,
+      "idk": true,
+      "fix_class": "support_gate_definition_setup",
+      "missing_tokens": [
+        "console",
+        "builder",
+        "console",
+        "explain",
+        "simple",
+        "terms",
+        "documented",
+        "product"
+      ],
+      "better_sources": [
+        [
+          6,
+          "kb/bot-studio/gupshup-journey-builder-legacy-vs-v2-vs-pro.md",
+          "1. Overview"
+        ],
+        [
+          6,
+          "kb/bot-studio/gupshup-journey-builder-legacy-vs-v2-vs-pro.md",
+          "3.2 JB V2"
+        ],
+        [
+          6,
+          "kb/bot-studio/how-to-create-whatsapp-static-flows.md",
+          "Steps"
+        ]
+      ],
+      "top_heading": "2. WhatsApp Flows Journey:"
+    },
+    {
+      "query": "In Gupshup Journey Builder / WhatsApp journeys, can a custom event be triggered when a journey is completed, and can that be used to send an email notification to the journey owner? Please explain the documented approach, relevant nodes/modules, and any limitations.",
+      "trace_top_source": "kb/bot-studio/whatsapp-flows-static-dynamic.md",
+      "intent": "setup",
+      "module": "Bot Studio",
+      "retrieval_top": "kb/bot-studio/whatsapp-flows-static-dynamic.md",
+      "top_score": 5.2,
+      "overlap": 0.25,
+      "support": false,
+      "idk": true,
+      "fix_class": "support_gate_definition_setup",
+      "missing_tokens": [
+        "gupshup",
+        "journeys",
+        "custom",
+        "event",
+        "triggered",
+        "completed",
+        "used"
+      ],
+      "better_sources": [
+        [
+          5,
+          "kb/bot-studio/about-bot-studio.md",
+          "What is Bot Studio"
+        ],
+        [
+          5,
+          "kb/bot-studio/getting-started-with-bot-studio.md",
+          "Key Sections on the Landing Page"
+        ],
+        [
+          5,
+          "kb/bot-studio/journey-builder-platform-upgrade-and-node-deprecation.md",
+          "\ud83d\udcd8 Need Help?"
+        ]
+      ],
+      "top_heading": "1. WhatsApp Flow Message Node:"
+    },
+    {
+      "query": "Gupshup SLA",
+      "trace_top_source": "kb/bot-studio/clear-context-node-gupshup-dev-access-only.md",
+      "intent": "setup",
+      "module": "General",
+      "retrieval_top": "kb/agent-assist/chat-management-sla.md",
+      "top_score": 6.3,
+      "overlap": 0.0,
+      "support": false,
+      "idk": false,
+      "fix_class": "support_gate_definition_setup",
+      "missing_tokens": [
+        "gupshup"
+      ],
+      "better_sources": [
+        [
+          1,
+          "kb/agent-assist/about-agent-assist.md",
+          "Where to work next (breadcrumbs)"
+        ],
+        [
+          1,
+          "kb/agent-assist/ai-management-alpha.md",
+          "Exact UI path"
+        ],
+        [
+          1,
+          "kb/agent-assist/ai-management-alpha.md",
+          "Setup path"
+        ]
+      ],
+      "top_heading": "Fields to configure"
+    },
+    {
+      "query": "How can I import contacts in Gupshup?",
+      "trace_top_source": "kb/bot-studio/clear-context-node-gupshup-dev-access-only.md",
+      "intent": "setup",
+      "module": "General",
+      "retrieval_top": "kb/bot-studio/clear-context-node-gupshup-dev-access-only.md",
+      "top_score": 0.55,
+      "overlap": 0.333,
+      "support": false,
+      "idk": true,
+      "fix_class": "score_floor_or_concept_boost",
+      "missing_tokens": [
+        "import",
+        "contacts"
+      ],
+      "better_sources": [
+        [
+          2,
+          "kb/bot-studio/getting-started-with-bot-studio.md",
+          "Key Sections on the Landing Page"
+        ],
+        [
+          2,
+          "kb/channels/react-native.md",
+          "Platform-specific Configuration"
+        ],
+        [
+          2,
+          "kb/channels/react-native.md",
+          "Platform-specific Configuration"
+        ]
+      ],
+      "top_heading": "Clear Context Node (Gupshup Dev Access Only)"
+    },
+    {
+      "query": "\u0645\u0627 \u0647\u064a \u0645\u0646\u0635\u0629 CC Express \u0645\u0646 Gupshup\u061f",
+      "trace_top_source": "kb/bot-studio/clear-context-node-gupshup-dev-access-only.md",
+      "intent": "setup",
+      "module": "General",
+      "retrieval_top": "kb/bot-studio/clear-context-node-gupshup-dev-access-only.md",
+      "top_score": 0.55,
+      "overlap": 0.5,
+      "support": false,
+      "idk": true,
+      "fix_class": "score_floor_or_concept_boost",
+      "missing_tokens": [],
+      "better_sources": [
+        [
+          2,
+          "kb/ai-admin/agent-personality-developer-mode.md",
+          "Note: AI Agent is available in developer mode through our Gupshup\u2019s internal Bot Solutions Team. To access the latest AI Agent modules in Bot Studio please contact Gupshup support or your respective Sales representative."
+        ],
+        [
+          2,
+          "kb/bot-studio/about-bot-studio.md",
+          "1. Journey Builder (V2)"
+        ],
+        [
+          2,
+          "kb/bot-studio/expression-library-in-journey-builder-canvas.md",
+          "Exact UI path"
+        ]
+      ],
+      "top_heading": "Clear Context Node (Gupshup Dev Access Only)"
+    },
+    {
+      "query": "What is Customer 360 as a Gupshup product? Explain what it does, its purpose, main capabilities, and who uses it.",
+      "trace_top_source": "kb/ai-admin/ai-agents-developer-mode.md",
+      "intent": "definition",
+      "module": "General",
+      "retrieval_top": "kb/ai-admin/ai-agents-developer-mode.md",
+      "top_score": 0.7,
+      "overlap": 0.5,
+      "support": false,
+      "idk": true,
+      "fix_class": "score_floor_or_concept_boost",
+      "missing_tokens": [
+        "explain",
+        "purpose",
+        "uses"
+      ],
+      "better_sources": [
+        [
+          4,
+          "kb/channels/about-whatsapp.md",
+          "Step-by-step configuration"
+        ],
+        [
+          3,
+          "kb/agent-assist/ai-management-alpha.md",
+          "Details"
+        ],
+        [
+          3,
+          "kb/agent-assist/insights-agent-timesheet.md",
+          "Details"
+        ]
+      ],
+      "top_heading": "Elevating Customer Experience: The Gupshup Agentic Framework Advantage"
+    },
+    {
+      "query": "For an in-app customer support experience using Gupshup, what does the documentation say about API Node, backend API calls, JSON Handler, Trigger Event Node, and Agent Transfer Node? Summarize the documented capabilities only.",
+      "trace_top_source": "kb/bot-studio/json-handler-instead-of-code-node.md",
+      "intent": "definition",
+      "module": "General",
+      "retrieval_top": "kb/bot-studio/json-handler-instead-of-code-node.md",
+      "top_score": 10.05,
+      "overlap": 0.182,
+      "support": false,
+      "idk": true,
+      "fix_class": "support_gate_definition_setup",
+      "missing_tokens": [
+        "customer",
+        "support",
+        "experience",
+        "gupshup",
+        "documentation",
+        "backend",
+        "calls",
+        "trigger"
+      ],
+      "better_sources": [
+        [
+          5,
+          "kb/bot-studio/about-bot-studio.md",
+          "What is Bot Studio"
+        ],
+        [
+          5,
+          "kb/case-studies/retail-d2c-19.md",
+          "What they did"
+        ],
+        [
+          4,
+          "kb/ai-admin/ace-and-agentic-llm-overview.md",
+          "Definition"
+        ]
+      ],
+      "top_heading": "Parsing Using New JSON Handler Node (No-Code)"
+    },
+    {
+      "query": "What does the documentation say about Webhooks, webhook fields to store, delivery/read events, and retained customer chat history? Summarize the documented behavior only.",
+      "trace_top_source": "kb/integrations/webhooks.md",
+      "intent": "schema",
+      "module": "General",
+      "retrieval_top": "kb/integrations/webhooks.md",
+      "top_score": 6.25,
+      "overlap": 0.368,
+      "support": false,
+      "idk": true,
+      "fix_class": "support_gate_definition_setup",
+      "missing_tokens": [
+        "documentation",
+        "fields",
+        "store",
+        "retained",
+        "customer",
+        "chat",
+        "history"
+      ],
+      "better_sources": [
+        [
+          3,
+          "kb/agent-assist/others-webhooks.md",
+          "Fields to configure"
+        ],
+        [
+          3,
+          "kb/agent-assist/others-webhooks.md",
+          "Troubleshooting"
+        ],
+        [
+          3,
+          "kb/campaign-manager/automated-campaign-analytics.md",
+          "Module disambiguation docs"
+        ]
+      ],
+      "top_heading": "Delivery Events"
+    },
+    {
+      "query": "How can we connect the server and what are the required setup steps/configuration for Gupshup Console integration? Include server/webhook setup, endpoint requirements, authentication, and any module-specific notes if documented.",
+      "trace_top_source": "kb/integrations/webhooks.md",
+      "intent": "setup",
+      "module": "General",
+      "retrieval_top": "kb/integrations/webhooks.md",
+      "top_score": 9.75,
+      "overlap": 0.316,
+      "support": false,
+      "idk": true,
+      "fix_class": "support_gate_definition_setup",
+      "missing_tokens": [
+        "connect",
+        "server",
+        "required",
+        "setup",
+        "steps",
+        "configuration",
+        "include",
+        "server"
+      ],
+      "better_sources": [
+        [
+          4,
+          "kb/integrations/clevertap-integration.md",
+          "Step-by-step configuration"
+        ],
+        [
+          4,
+          "kb/superagent/troubleshooting.md",
+          "Skill Issues"
+        ],
+        [
+          3,
+          "kb/agent-assist/ai-management-alpha.md",
+          "Details"
+        ]
+      ],
+      "top_heading": "How To Configure"
+    },
+    {
+      "query": "For Gupshup WhatsApp V3 inbound webhooks, how are webhook modes TEMPLATE, ACCOUNT, BILLING, and PAYMENTS mapped to Meta webhook event references? Confirm whether TEMPLATE includes message_template_components_update, message_template_quality_update, message_template_status_update,",
+      "trace_top_source": "kb/integrations/webhooks.md",
+      "intent": "setup",
+      "module": "General",
+      "retrieval_top": "kb/integrations/webhooks.md",
+      "top_score": 6.1,
+      "overlap": 0.318,
+      "support": false,
+      "idk": true,
+      "fix_class": "support_gate_definition_setup",
+      "missing_tokens": [
+        "inbound",
+        "modes",
+        "billing",
+        "payments",
+        "mapped",
+        "meta"
+      ],
+      "better_sources": [
+        [
+          4,
+          "kb/bot-studio/clear-context-node-gupshup-dev-access-only.md",
+          "Cross-module workflow docs"
+        ],
+        [
+          4,
+          "kb/bot-studio/gupshup-journey-builder-legacy-vs-v2-vs-pro.md",
+          "Cross-module workflow docs"
+        ],
+        [
+          4,
+          "kb/channels/about-whatsapp.md",
+          "Steps"
+        ]
+      ],
+      "top_heading": "How To Configure"
+    },
+    {
+      "query": "What does the documentation say about retained customer chat history for returning web widget users?",
+      "trace_top_source": "kb/bot-studio/test-bot-widget-on-jb-canvas.md",
+      "intent": "definition",
+      "module": "General",
+      "retrieval_top": "kb/bot-studio/test-bot-widget-on-jb-canvas.md",
+      "top_score": 1.55,
+      "overlap": 0.455,
+      "support": false,
+      "idk": true,
+      "fix_class": "support_gate_or_wrong_page",
+      "missing_tokens": [
+        "documentation",
+        "returning",
+        "users"
+      ],
+      "better_sources": [
+        [
+          4,
+          "kb/channels/retain-customer-chat-history.md",
+          "Behavior"
+        ],
+        [
+          4,
+          "kb/channels/retain-customer-chat-history.md",
+          "Anonymous User Behavior"
+        ],
+        [
+          3,
+          "kb/agent-assist/agent-assist-api-documentation.md",
+          "GET"
+        ]
+      ],
+      "top_heading": "If Customer Chat History Retention is enabled, message logs will not be retained for messages from previous conversations."
+    },
+    {
+      "query": "How can users verify WhatsApp message sent/delivered status, view user replies, and track message history or conversation logs in Gupshup WhatsApp Business API / Console?",
+      "trace_top_source": "kb/bot-studio/test-bot-widget-on-jb-canvas.md",
+      "intent": "setup",
+      "module": "General",
+      "retrieval_top": "kb/bot-studio/test-bot-widget-on-jb-canvas.md",
+      "top_score": 1.55,
+      "overlap": 0.294,
+      "support": false,
+      "idk": true,
+      "fix_class": "support_gate_or_wrong_page",
+      "missing_tokens": [
+        "users",
+        "verify",
+        "whatsapp",
+        "delivered",
+        "status",
+        "view",
+        "user",
+        "replies"
+      ],
+      "better_sources": [
+        [
+          5,
+          "kb/campaign-manager/sending-an-automated-campaign.md",
+          "Step-by-step configuration"
+        ],
+        [
+          4,
+          "kb/bot-studio/inactivity-nudge-for-location-request-node.md",
+          "How to Use"
+        ],
+        [
+          4,
+          "kb/bot-studio/message-nodes.md",
+          "What is a Node?"
+        ]
+      ],
+      "top_heading": "If Customer Chat History Retention is enabled, message logs will not be retained for messages from previous conversations."
+    },
+    {
+      "query": "UserNotFoundException errorCode 4006 \"User Not Found By UserId\" while connecting conversation cloud account onboarding. What causes this and how to fix it?",
+      "trace_top_source": "kb/ctx/connecting-fb-ad-account-to-gupshup-ads-management.md",
+      "intent": "setup",
+      "module": "General",
+      "retrieval_top": "kb/ctx/connecting-fb-ad-account-to-gupshup-ads-management.md",
+      "top_score": 0.65,
+      "overlap": 0.2,
+      "support": false,
+      "idk": true,
+      "fix_class": "score_floor_or_concept_boost",
+      "missing_tokens": [
+        "usernotfoundexception",
+        "errorcode",
+        "4006",
+        "user",
+        "found",
+        "userid",
+        "while",
+        "conversation"
+      ],
+      "better_sources": [
+        [
+          3,
+          "kb/channels/react-native.md",
+          "iOS Native Setup"
+        ],
+        [
+          2,
+          "kb/agent-assist/others-webhooks.md",
+          "Details"
+        ],
+        [
+          2,
+          "kb/agent-assist/others-webhooks.md",
+          "Details"
+        ]
+      ],
+      "top_heading": "Steps"
+    },
+    {
+      "query": "How to set a call back for MO for GG accounts",
+      "trace_top_source": "kb/bot-studio/callback-url-event-on-starting-node.md",
+      "intent": "setup",
+      "module": "General",
+      "retrieval_top": "kb/bot-studio/callback-url-event-on-starting-node.md",
+      "top_score": 1.1,
+      "overlap": 0.667,
+      "support": false,
+      "idk": true,
+      "fix_class": "score_floor_or_concept_boost",
+      "missing_tokens": [
+        "accounts"
+      ],
+      "better_sources": [
+        [
+          2,
+          "kb/agent-assist/assignment-enhancements-in-console-7-0.md",
+          "Details"
+        ],
+        [
+          2,
+          "kb/agent-assist/assignment-enhancements-in-console-7-0.md",
+          "Details"
+        ],
+        [
+          2,
+          "kb/agent-assist/assignment-enhancements-in-console-7-0.md",
+          "Details"
+        ]
+      ],
+      "top_heading": "How to trigger BIC Template using Callback Events:"
+    },
+    {
+      "query": "Explique o passo a passo documentado para receber evento externo no Console via Integrations Custom Integrations e depois usar esse evento em Journey Builder. Quero um fluxo pr\u00e1tico: criar evento, configurar identificador \u00fanico do evento, callback URL/token, e consumir esse event",
+      "trace_top_source": "kb/bot-studio/callback-url-event-on-starting-node.md",
+      "intent": "setup",
+      "module": "Bot Studio",
+      "retrieval_top": "kb/bot-studio/trigger-event-node.md",
+      "top_score": 6.55,
+      "overlap": 0.154,
+      "support": false,
+      "idk": true,
+      "fix_class": "support_gate_definition_setup",
+      "missing_tokens": [
+        "explique",
+        "passo",
+        "passo",
+        "documentado",
+        "para",
+        "receber",
+        "evento",
+        "externo"
+      ],
+      "better_sources": [
+        [
+          1,
+          "kb/agent-assist/agent-assist-api-documentation.md",
+          "GET transcript"
+        ],
+        [
+          1,
+          "kb/agent-assist/agent-assist-api-documentation.md",
+          "POST"
+        ],
+        [
+          1,
+          "kb/agent-assist/agent-assist-api-documentation.md",
+          "Check in business hour"
+        ]
+      ],
+      "top_heading": "Step 2: Configure Trigger Event Node in Journey Builder"
+    },
+    {
+      "query": "What is the SLA/latency for delivering inbound WhatsApp webhooks to a client's endpoint?",
+      "trace_top_source": "kb/integrations/whatsapp-voice-sip-inbound-calls.md",
+      "intent": "definition",
+      "module": "General",
+      "retrieval_top": "kb/agent-assist/chat-management-sla.md",
+      "top_score": 6.3,
+      "overlap": 0.125,
+      "support": false,
+      "idk": false,
+      "fix_class": "support_gate_definition_setup",
+      "missing_tokens": [
+        "latency",
+        "delivering",
+        "inbound",
+        "whatsapp",
+        "webhooks",
+        "client",
+        "endpoint"
+      ],
+      "better_sources": [
+        [
+          3,
+          "kb/channels/about-whatsapp.md",
+          "Step-by-step configuration"
+        ],
+        [
+          3,
+          "kb/channels/whatsapp-business-api.md",
+          "API Response"
+        ],
+        [
+          3,
+          "kb/channels/whatsapp-business-api.md",
+          "API Response"
+        ]
+      ],
+      "top_heading": "What this feature does"
+    },
+    {
+      "query": "What are the details required for Gupshup WhatsApp integration with LeadSquared?",
+      "trace_top_source": "kb/integrations/whatsapp-voice-sip-inbound-calls.md",
+      "intent": "setup",
+      "module": "General",
+      "retrieval_top": "kb/integrations/whatsapp-voice-sip-inbound-calls.md",
+      "top_score": 0.9,
+      "overlap": 0.625,
+      "support": false,
+      "idk": true,
+      "fix_class": "score_floor_or_concept_boost",
+      "missing_tokens": [
+        "details",
+        "required",
+        "leadsquared"
+      ],
+      "better_sources": [
+        [
+          5,
+          "kb/integrations/whatsapp-voice-sip-outbound-calls.md",
+          "TLS, SRTP, and recording"
+        ],
+        [
+          4,
+          "kb/integrations/clevertap-integration.md",
+          "Step-by-step configuration"
+        ],
+        [
+          4,
+          "kb/integrations/whatsapp-voice-sip-overview.md",
+          "Prerequisites"
+        ]
+      ],
+      "top_heading": "Example \u2014 UIC INVITE (Gupshup \u2192 dialer)"
+    },
+    {
+      "query": "Explain AI Admin tool functionality",
+      "trace_top_source": "kb/ai-admin/tools-developer-mode.md",
+      "intent": "setup",
+      "module": "AI Admin",
+      "retrieval_top": "kb/ai-admin/tools-developer-mode.md",
+      "top_score": 0.95,
+      "overlap": 0.5,
+      "support": false,
+      "idk": true,
+      "fix_class": "score_floor_or_concept_boost",
+      "missing_tokens": [
+        "explain",
+        "functionality"
+      ],
+      "better_sources": [
+        [
+          2,
+          "kb/ai-admin/agent-personality-developer-mode.md",
+          "Note: AI Agent is available in developer mode through our Gupshup\u2019s internal Bot Solutions Team. To access the latest AI Agent modules in Bot Studio please contact Gupshup support or your respective Sales representative."
+        ],
+        [
+          2,
+          "kb/ai-admin/agent-personality-developer-mode.md",
+          "Note: AI Agent is available in developer mode through our Gupshup\u2019s internal Bot Solutions Team. To access the latest AI Agent modules in Bot Studio please contact Gupshup support or your respective Sales representative."
+        ],
+        [
+          2,
+          "kb/ai-admin/ai-agents-developer-mode.md",
+          "Elevating Customer Experience: The Gupshup Agentic Framework Advantage"
+        ]
+      ],
+      "top_heading": "Steps"
+    },
+    {
+      "query": "What are the operational guidelines for sending WhatsApp templates?",
+      "trace_top_source": "kb/agent-assist/sending-templates-after-the-24-hour-window.md",
+      "intent": "setup",
+      "module": "General",
+      "retrieval_top": "kb/agent-assist/sending-templates-after-the-24-hour-window.md",
+      "top_score": 0.7,
+      "overlap": 0.833,
+      "support": false,
+      "idk": true,
+      "fix_class": "score_floor_or_concept_boost",
+      "missing_tokens": [
+        "operational"
+      ],
+      "better_sources": [
+        [
+          3,
+          "kb/agent-assist/sending-marketing-templates-from-agent-assist.md",
+          "What this feature does"
+        ],
+        [
+          3,
+          "kb/agent-assist/sending-marketing-templates-from-agent-assist.md",
+          "Details"
+        ],
+        [
+          3,
+          "kb/campaign-manager/creating-a-new-campaign.md",
+          "Step-by-step configuration"
+        ]
+      ],
+      "top_heading": "Details"
+    },
+    {
+      "query": "Give me a concise overview of Analytics in Gupshup with its main capabilities and what teams use it for. Keep it practical.",
+      "trace_top_source": "kb/overview/about-projects.md",
+      "intent": "overview",
+      "module": "Analytics",
+      "retrieval_top": "kb/overview/about-projects.md",
+      "top_score": 0.55,
+      "overlap": 0.25,
+      "support": false,
+      "idk": true,
+      "fix_class": "score_floor_or_concept_boost",
+      "missing_tokens": [
+        "give",
+        "concise",
+        "analytics",
+        "main",
+        "capabilities",
+        "practical"
+      ],
+      "better_sources": [
+        [
+          3,
+          "kb/bot-studio/goal-node.md",
+          "How to use"
+        ],
+        [
+          3,
+          "kb/bot-studio/gupshup-journey-builder-legacy-vs-v2-vs-pro.md",
+          "1. Overview"
+        ],
+        [
+          3,
+          "kb/campaign-manager/campaign-listing-page.md",
+          "Overview"
+        ]
+      ],
+      "top_heading": "Overview"
+    }
+  ],
+  "by_fix": {
+    "score_floor_or_concept_boost": 12,
+    "support_gate_or_wrong_page": 5,
+    "support_gate_definition_setup": 9
+  }
+}
