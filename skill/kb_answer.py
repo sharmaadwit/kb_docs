@@ -2522,6 +2522,149 @@ _INDUSTRY_QUERY_HINTS: Dict[str, str] = {
 }
 
 
+def _is_case_study_query(query: str) -> bool:
+    """
+    Detect if query is asking for demos, success stories, case studies, or customer examples.
+    Returns True if query should be routed to case-studies folder instead of regular KB search.
+    """
+    case_study_keywords = [
+        "demo", "walkthrough", "customer story", "success story", "case study",
+        "customer example", "customer win", "customer reference", "show me",
+        "what can.*do for", "how has.*helped", "customer use case",
+        "customer success", "client example", "brand example", "customer reference",
+        "customer examples", "use cases", "real world", "in production"
+    ]
+
+    query_lower = query.lower()
+
+    # Check for case study keywords
+    keyword_match = any(re.search(kw, query_lower) for kw in case_study_keywords)
+
+    return keyword_match
+
+
+def _detect_industry_from_query(query: str) -> Optional[str]:
+    """
+    Extract industry keyword from query.
+    Maps query text to case study industries.
+    """
+    industry_map = {
+        r"retail|e-?commerce|fashion|d2c|store": "Retail & D2C",
+        r"cpg|consumer goods|fmcg": "CPG",
+        r"finance|bank|financial|insurance": "Financial Services",
+        r"travel|hotel|hospitality|restaurant": "Travel & Hospitality",
+        r"education|edtech|school|university": "Education",
+        r"healthcare|hospital|medical": "Healthcare",
+        r"auto|automotive|car|vehicle": "Automotive",
+        r"telecom|mobile|network": "Telecom",
+        r"ride|ride-?hailing|uber|taxi": "Ride Hailing",
+        r"government|public sector": "Government",
+        r"entertainment|sports|media": "Entertainment",
+        r"food|restaurant|qsr": "Food & Restaurant",
+        r"real estate|property": "Real Estate",
+    }
+
+    query_lower = query.lower()
+    for pattern, industry in industry_map.items():
+        if re.search(pattern, query_lower):
+            return industry
+
+    return None
+
+
+def _score_case_study_manifest_entry(query: str, entry: Dict, detected_industry: Optional[str]) -> float:
+    """
+    Score a case study manifest entry by relevance to query.
+    """
+    score = 0.0
+    query_lower = query.lower()
+    company = (entry.get("company") or "").lower()
+    headline = (entry.get("headline") or "").lower()
+    industry = (entry.get("industry") or "").lower()
+
+    # Industry match: strong boost if query asks for specific industry and manifest matches
+    if detected_industry and industry == detected_industry.lower():
+        score += 3.0
+
+    # Headline relevance: keyword matching
+    query_words = set(query_lower.split())
+    for word in query_words:
+        if len(word) > 3 and word not in ("demo", "show", "case", "study", "example", "for", "with"):
+            if word in headline:
+                score += 0.5
+            if word in company:
+                score += 0.3
+
+    # Boost for confidential flag (non-confidential is preferred)
+    if not entry.get("confidential", False):
+        score += 0.5
+
+    return score
+
+
+def _answer_from_case_study_chunks(query: str, case_chunks: List[Dict]) -> Optional[dict]:
+    """
+    Search case studies directly from loaded chunks when query is case-study focused.
+    Returns structured answer if matches found, None otherwise.
+    """
+    if not case_chunks:
+        return None
+
+    detected_industry = _detect_industry_from_query(query)
+
+    # Score all case study chunks
+    scored_chunks = []
+    for chunk in case_chunks:
+        score = _score_case_study_chunk(query, chunk, detected_industry or "General")
+        if score >= MIN_CASE_STUDY_SCORE:
+            scored_chunks.append((score, chunk))
+
+    if not scored_chunks:
+        return None
+
+    # Sort by score and take top 5 unique companies
+    scored_chunks.sort(key=lambda x: x[0], reverse=True)
+
+    seen_sources: set = set()
+    top_matches: List[Dict] = []
+    scored_top_matches: List[Dict] = []
+
+    for score, chunk in scored_chunks:
+        source = str(chunk.get("source") or "")
+        if source not in seen_sources:
+            seen_sources.add(source)
+            # Add score to chunk for langfuse capture
+            chunk_with_score = dict(chunk)
+            chunk_with_score["_case_score"] = score
+            top_matches.append(chunk_with_score)
+            scored_top_matches.append(chunk_with_score)
+            if len(top_matches) >= 5:
+                break
+
+    if not top_matches:
+        return None
+
+    # Build answer using existing formatter
+    answer_lines = ["Here are relevant customer success stories:\n"]
+    for chunk in top_matches:
+        entry_line = _format_case_study_entry(chunk)
+        answer_lines.append(entry_line)
+
+    answer_lines.append("")
+    answer_lines.append("_Up to 5 relevant examples. Some stories are anonymized for confidential clients._")
+
+    answer = "\n".join(answer_lines)
+    sources = [chunk.get("source") for chunk in top_matches if chunk.get("source")]
+
+    return {
+        "answered": True,
+        "answer": answer,
+        "sources": sources,
+        "_chunks": scored_top_matches,  # Include chunks for langfuse metadata
+        "confidence": 8.0
+    }
+
+
 def _is_case_study_source(source: str) -> bool:
     return "/case-studies/" in (source or "").lower().replace("\\", "/")
 
@@ -5085,6 +5228,34 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
     entities = _extract_entities(query)
     intent = _classify_intent(query, entities)
     intents_list = _detect_intents(query)
+
+    # NEW: Early detection of case study queries
+    # If query is explicitly asking for demos/success stories/case studies,
+    # try to answer directly from case study chunks before regular KB search
+    if _is_case_study_query(query) and case_chunks:
+        case_answer = _answer_from_case_study_chunks(query, case_chunks)
+        if case_answer and case_answer.get("answered"):
+            # Found good case study matches, return them
+            answer = case_answer.get("answer", "")
+            # Format evidence for langfuse capture (must include score and source)
+            evidence = []
+            for chunk in case_answer.get("_chunks", [])[:3]:
+                evidence.append({
+                    "source": chunk.get("source"),
+                    "score": chunk.get("_case_score", 0.0)
+                })
+            latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
+            langfuse = _send_langfuse(
+                "kb_answer", query, answer, evidence, "General",
+                ["case_study"], "overview", False, latency_ms, context, params,
+            )
+            return {
+                "ok": True,
+                "query": _redact_secrets_in_query_echo(query),
+                "answer": answer,
+                "citations": [],
+                "langfuse": langfuse,
+            }
 
     scored = []
     for c in product_chunks:
