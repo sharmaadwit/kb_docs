@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>KB Usage Analytics Dashboard - 3-Day Report</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --card: #1a2332;
+      --text: #e7ecf3;
+      --muted: #8b9cb3;
+      --accent: #3d8bfd;
+      --high: #ff6b6b;
+      --medium: #ffb347;
+      --info: #6bcbff;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 1.5rem; line-height: 1.5; }
+    h1 { font-size: 1.6rem; margin: 0 0 0.25rem; }
+    h2 { font-size: 1.15rem; margin: 2rem 0 0.75rem; border-bottom: 1px solid #2a3548; padding-bottom: 0.35rem; }
+    h3 { font-size: 0.95rem; margin: 1.5rem 0 0.5rem; }
+    .meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    nav { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
+    nav a { color: var(--accent); text-decoration: none; font-size: 0.85rem; padding: 0.25rem 0.5rem; background: var(--card); border-radius: 4px; }
+    .card { background: var(--card); border-radius: 8px; padding: 1rem 1.25rem; margin: 1rem 0; }
+    .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; }
+    .kpi { background: #243044; padding: 0.75rem; border-radius: 6px; }
+    .kpi strong { display: block; font-size: 1.4rem; }
+    .kpi span { color: var(--muted); font-size: 0.8rem; }
+    ul.insights { list-style: none; padding: 0; margin: 0; }
+    ul.insights li { padding: 0.6rem 0.75rem; margin: 0.4rem 0; border-radius: 6px; background: #243044; }
+    li.insight.high { border-left: 4px solid var(--high); }
+    li.insight.medium { border-left: 4px solid var(--medium); }
+    li.insight.info { border-left: 4px solid var(--info); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    th, td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid #2a3548; }
+    th { color: var(--muted); font-weight: 600; }
+    .muted { color: var(--muted); }
+    .chart-container { position: relative; height: 300px; margin: 1.5rem 0; }
+    pre { background: #243044; padding: 0.75rem; overflow: auto; font-size: 0.75rem; border-radius: 6px; }
+    .comparison { background: #243044; padding: 0.75rem; border-left: 4px solid var(--accent); margin: 0.5rem 0; border-radius: 4px; }
+    .spike-high { color: var(--high); font-weight: 600; }
+    .spike-up { color: var(--medium); }
+    .spike-down { color: #00dd88; }
+  </style>
+</head>
+<body>
+  <h1>KB Usage Analytics — 3-Day Report</h1>
+  <p class="meta">Generated 2026-06-07T14:52:55.960348 · Window: 2026-06-04 to 2026-06-06 (3 days) · Sources: Langfuse API</p>
+  
+  <nav>
+    <a href="#executive">Executive</a>
+    <a href="#daily">Daily trend</a>
+    <a href="#popularity">Popularity</a>
+    <a href="#quality">Quality</a>
+    <a href="#video">Video</a>
+    <a href="#users">Users</a>
+    <a href="#comparison">vs 30-day</a>
+    <a href="#ops">Ops</a>
+  </nav>
+
+  <section id="executive" class="card">
+    <h2>Executive Summary (3-day snapshot)</h2>
+    <ul class="insights">
+      <li class='insight high'>Query volume surge: 48 queries/day (vs 10/day baseline) — 4x increase in engagement.</li>
+<li class='insight info'>IDK rate is 29.9% — improved by 1.7pp from 30-day baseline (31.6%).</li>
+<li class='insight high'>Video attach rate nearly doubled to 38.2% (was 18.5%) — excellent improvement.</li>
+<li class='insight high'>CRITICAL: Channels module 100% IDK rate (4 queries) — all unanswered. Needs investigation.</li>
+<li class='insight high'>CRITICAL: Analytics module 83% IDK rate (5/6 unanswered) — possible intent routing issue.</li>
+<li class='insight medium'>AI Admin module 43% IDK (3/7) — spike from 29% baseline. Check concept registry.</li>
+<li class='insight info'>Bot Studio improving: 22% IDK (was 35% baseline) — 13pp improvement.</li>
+    </ul>
+    <div class="kpis">
+      <div class="kpi"><strong>144</strong><span>Total Queries (3d)</span></div>
+      <div class="kpi"><strong>101</strong><span>Answered (70.1%)
+</span></div>
+      <div class="kpi"><strong>43</strong><span>IDK (29.9%)
+</span></div>
+      <div class="kpi"><strong>38.2%</strong><span>Video Attach</span></div>
+    </div>
+  </section>
+
+  <section id="daily" class="card">
+    <h2>Daily Query Trend (3d)</h2>
+    <div class="chart-container">
+      <canvas id="dailyChart"></canvas>
+    </div>
+    <p class="muted">Queries by date. June 4-6 represents normal production usage.</p>
+  </section>
+
+  <section id="popularity" class="card">
+    <h2>Module Popularity (3d)</h2>
+    <table>
+      <thead><tr><th>Module</th><th>Queries</th><th>Share</th><th>Answered</th><th>IDK Rate</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Bot Studio</td>
+          <td>51</td>
+          <td>35.4%</td>
+          <td>40/51 (78.4%)</td>
+          <td>21.6%</td>
+        </tr>
+        <tr>
+          <td>Agent Assist</td>
+          <td>30</td>
+          <td>20.8%</td>
+          <td>24/30 (80.0%)</td>
+          <td>20.0%</td>
+        </tr>
+        <tr>
+          <td>Overview</td>
+          <td>13</td>
+          <td>9.0%</td>
+          <td>8/13 (61.5%)</td>
+          <td>38.5%</td>
+        </tr>
+        <tr>
+          <td>SuperAgent</td>
+          <td>10</td>
+          <td>6.9%</td>
+          <td>7/10 (70.0%)</td>
+          <td>30.0%</td>
+        </tr>
+        <tr>
+          <td>Campaign Manager</td>
+          <td>9</td>
+          <td>6.2%</td>
+          <td>8/9 (88.9%)</td>
+          <td>11.1%</td>
+        </tr>
+        <tr>
+          <td>AI Admin</td>
+          <td>7</td>
+          <td>4.9%</td>
+          <td>4/7 (57.1%)</td>
+          <td>42.9%</td>
+        </tr>
+        <tr>
+          <td>Analytics</td>
+          <td>6</td>
+          <td>4.2%</td>
+          <td>1/6 (16.7%)</td>
+          <td>83.3%</td>
+        </tr>
+        <tr>
+          <td>CTX</td>
+          <td>5</td>
+          <td>3.5%</td>
+          <td>2/5 (40.0%)</td>
+          <td>60.0%</td>
+        </tr>
+        <tr>
+          <td>Goals</td>
+          <td>5</td>
+          <td>3.5%</td>
+          <td>5/5 (100.0%)</td>
+          <td>0.0%</td>
+        </tr>
+        <tr>
+          <td>Channels</td>
+          <td>4</td>
+          <td>2.8%</td>
+          <td>0/4 (0.0%)</td>
+          <td>100.0%</td>
+        </tr>
+        <tr>
+          <td>Integrations</td>
+          <td>3</td>
+          <td>2.1%</td>
+          <td>1/3 (33.3%)</td>
+          <td>66.7%</td>
+        </tr>
+        <tr>
+          <td>Personalize</td>
+          <td>1</td>
+          <td>0.7%</td>
+          <td>1/1 (100.0%)</td>
+          <td>0.0%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Top Pages by Traffic (3d)</h2>
+    <table>
+      <thead><tr><th>Page</th><th>Queries</th><th>Share</th></tr></thead>
+      <tbody>
+        <tr><td>about-agent-assist.md</td><td>12</td><td>8.3%</td></tr>
+        <tr><td>about-bot-studio.md</td><td>10</td><td>6.9%</td></tr>
+        <tr><td>api-node-http-status-code-branching.md</td><td>8</td><td>5.6%</td></tr>
+        <tr><td>about-projects.md</td><td>7</td><td>4.9%</td></tr>
+        <tr><td>about-campaign-manager.md</td><td>6</td><td>4.2%</td></tr>
+        <tr><td>welcome-to-gupshup-console.md</td><td>5</td><td>3.5%</td></tr>
+        <tr><td>goal-node.md</td><td>5</td><td>3.5%</td></tr>
+        <tr><td>chat-management-assignment-rules.md</td><td>4</td><td>2.8%</td></tr>
+        <tr><td>response-management-auto-replies-and-customer-satisfaction.md</td><td>4</td><td>2.8%</td></tr>
+        <tr><td>enabling-superagent-for-internal-use-cases.md</td><td>4</td><td>2.8%</td></tr>
+        <tr><td>ai-node.md</td><td>3</td><td>2.1%</td></tr>
+        <tr><td>whatsapp-business-api.md</td><td>3</td><td>2.1%</td></tr>
+        <tr><td>automated-campaign-analytics.md</td><td>3</td><td>2.1%</td></tr>
+        <tr><td>live-monitoring-dashboard-real-time-chat-analytics-and-performance-insights.md</td><td>3</td><td>2.1%</td></tr>
+        <tr><td>faq.md</td><td>3</td><td>2.1%</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Intent Distribution (3d)</h2>
+    <table>
+      <thead><tr><th>Intent</th><th>Count</th><th>Share</th></tr></thead>
+      <tbody>
+        <tr><td>setup</td><td>87</td><td>60.4%</td></tr>
+        <tr><td>overview</td><td>42</td><td>29.2%</td></tr>
+        <tr><td>definition</td><td>25</td><td>17.4%</td></tr>
+        <tr><td>compare</td><td>6</td><td>4.2%</td></tr>
+        <tr><td>page_lookup</td><td>5</td><td>3.5%</td></tr>
+        <tr><td>schema</td><td>2</td><td>1.4%</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Mode Distribution (3d)</h2>
+    <table>
+      <thead><tr><th>Mode</th><th>Count</th><th>Share</th></tr></thead>
+      <tbody>
+        <tr><td>setup</td><td>76</td><td>52.8%</td></tr>
+        <tr><td>overview</td><td>40</td><td>27.8%</td></tr>
+        <tr><td>compare</td><td>14</td><td>9.7%</td></tr>
+        <tr><td>definition</td><td>9</td><td>6.2%</td></tr>
+        <tr><td>page_lookup</td><td>4</td><td>2.8%</td></tr>
+        <tr><td>schema</td><td>1</td><td>0.7%</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="quality" class="card">
+    <h2>Quality Metrics (3d)</h2>
+    <table>
+      <thead><tr><th>Module</th><th>Queries</th><th>Answered</th><th>IDK %</th></tr></thead>
+      <tbody>
+        <tr><td>Bot Studio</td><td>51</td><td>40</td><td>21.6%</td></tr>
+        <tr><td>Agent Assist</td><td>30</td><td>24</td><td>20.0%</td></tr>
+        <tr><td>Overview</td><td>13</td><td>8</td><td>38.5%</td></tr>
+        <tr><td>SuperAgent</td><td>10</td><td>7</td><td>30.0%</td></tr>
+        <tr><td>Campaign Manager</td><td>9</td><td>8</td><td>11.1%</td></tr>
+        <tr><td>AI Admin</td><td>7</td><td>4</td><td>42.9%</td></tr>
+        <tr><td>Analytics</td><td>6</td><td>1</td><td>83.3%</td></tr>
+        <tr><td>CTX</td><td>5</td><td>2</td><td>60.0%</td></tr>
+        <tr><td>Goals</td><td>5</td><td>5</td><td>0.0%</td></tr>
+        <tr><td>Channels</td><td>4</td><td>0</td><td>100.0%</td></tr>
+        <tr><td>Integrations</td><td>3</td><td>1</td><td>66.7%</td></tr>
+        <tr><td>Personalize</td><td>1</td><td>1</td><td>0.0%</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="video" class="card">
+    <h2>Video Attach Rate (3d)</h2>
+    <pre>{
+  "total_langfuse_answers": 101,
+  "video_attached": 55,
+  "attach_rate": "38.2%"
+}</pre>
+    <h2>Video by Module (among answered queries)</h2>
+    <table>
+      <thead><tr><th>Module</th><th>Videos</th><th>Answered</th><th>Rate</th></tr></thead>
+      <tbody>
+        <tr><td>Agent Assist</td><td>16</td><td>24</td><td>66.7%</td></tr>
+        <tr><td>Bot Studio</td><td>13</td><td>40</td><td>32.5%</td></tr>
+        <tr><td>Overview</td><td>8</td><td>8</td><td>100.0%</td></tr>
+        <tr><td>SuperAgent</td><td>6</td><td>7</td><td>85.7%</td></tr>
+        <tr><td>Campaign Manager</td><td>4</td><td>8</td><td>50.0%</td></tr>
+        <tr><td>CTX</td><td>2</td><td>2</td><td>100.0%</td></tr>
+        <tr><td>Goals</td><td>2</td><td>5</td><td>40.0%</td></tr>
+        <tr><td>Integrations</td><td>1</td><td>1</td><td>100.0%</td></tr>
+        <tr><td>Analytics</td><td>1</td><td>1</td><td>100.0%</td></tr>
+        <tr><td>Personalize</td><td>1</td><td>1</td><td>100.0%</td></tr>
+        <tr><td>AI Admin</td><td>1</td><td>4</td><td>25.0%</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="users" class="card">
+    <h2>Top Users (3d, by queries)</h2>
+    <table>
+      <thead><tr><th>User</th><th>Queries</th><th>Share</th></tr></thead>
+      <tbody>
+        <tr><td>adwit.sharma@gupshup.io</td><td>83</td><td>57.6%</td></tr>
+        <tr><td>brendon.castelino@gupshup.io</td><td>9</td><td>6.2%</td></tr>
+        <tr><td>digital2@keyaseth.in</td><td>8</td><td>5.6%</td></tr>
+        <tr><td>siddharth.barwal@gupshup.io</td><td>7</td><td>4.9%</td></tr>
+        <tr><td>hemanth.swamy@gupshup.io</td><td>5</td><td>3.5%</td></tr>
+        <tr><td>deepak.upadhyay@gupshup.io</td><td>4</td><td>2.8%</td></tr>
+        <tr><td>ankit.kohli@gupshup.io</td><td>3</td><td>2.1%</td></tr>
+        <tr><td>anomitro.das@gupshup.io</td><td>3</td><td>2.1%</td></tr>
+        <tr><td>ketan.thakur@gupshup.io</td><td>3</td><td>2.1%</td></tr>
+        <tr><td>puru.chauhan@knowlarity.com</td><td>3</td><td>2.1%</td></tr>
+        <tr><td>admin@reworks.in</td><td>2</td><td>1.4%</td></tr>
+        <tr><td>bernardo.silva@gupshup.io</td><td>2</td><td>1.4%</td></tr>
+        <tr><td>roshan.agarwal@gupshup.io</td><td>2</td><td>1.4%</td></tr>
+        <tr><td>neeraj.yadav@gupshup.io</td><td>2</td><td>1.4%</td></tr>
+        <tr><td>roger.guimaraes@gupshup.io</td><td>1</td><td>0.7%</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="comparison" class="card">
+    <h2>Comparison: 3d vs 30d Baseline</h2>
+    <p class="muted">How this 3-day window compares to the 30-day baseline (May 6 – Jun 4).</p>
+    <table>
+      <thead><tr><th>Module</th><th>3d IDK %</th><th>30d IDK %</th><th>Delta</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Bot Studio</td><td>21.6%</td><td>34.9%</td><td class='spike-down'>-13.3</td><td>🟢 IMPROVING</td></tr>
+        <tr><td>Agent Assist</td><td>20.0%</td><td>17.9%</td><td class=''>+2.1</td><td>→ STABLE</td></tr>
+        <tr><td>Overview</td><td>38.5%</td><td>38.1%</td><td class=''>+0.4</td><td>→ STABLE</td></tr>
+        <tr><td>SuperAgent</td><td>30.0%</td><td>30.0%</td><td class=''>+0.0</td><td>→ STABLE</td></tr>
+        <tr><td>Campaign Manager</td><td>11.1%</td><td>7.7%</td><td class=''>+3.4</td><td>→ STABLE</td></tr>
+        <tr><td>AI Admin</td><td>42.9%</td><td>29.4%</td><td class='spike-high'>+13.5</td><td>🔴 SPIKE</td></tr>
+        <tr><td>Analytics</td><td>83.3%</td><td>71.4%</td><td class='spike-high'>+11.9</td><td>🔴 SPIKE</td></tr>
+        <tr><td>CTX</td><td>60.0%</td><td>66.7%</td><td class='spike-down'>-6.7</td><td>🟢 IMPROVING</td></tr>
+        <tr><td>Goals</td><td>0.0%</td><td>0.0%</td><td class=''>+0.0</td><td>→ STABLE</td></tr>
+        <tr><td>Channels</td><td>100.0%</td><td>44.4%</td><td class='spike-high'>+55.6</td><td>🔴 SPIKE</td></tr>
+        <tr><td>Integrations</td><td>66.7%</td><td>75.0%</td><td class='spike-down'>-8.3</td><td>🟢 IMPROVING</td></tr>
+      </tbody>
+    </table>
+    <div class="comparison">
+      <strong>Key Insight:</strong> Three modules show quality degradation: 
+      <span class="spike-high">Channels (+55.6pp, 100% IDK)</span>, 
+      <span class="spike-high">Analytics (+11.9pp, 83% IDK)</span>, 
+      <span class="spike-high">AI Admin (+13.5pp, 43% IDK)</span>. 
+      Recommend skill agent investigation. Positive: Bot Studio improved by 13.3pp.
+    </div>
+  </section>
+
+  <section id="ops" class="card">
+    <h2>Operations (3d)</h2>
+    <h3>Latency</h3>
+    <pre>{
+  "p50_ms": 863,
+  "p95_ms": 5733,
+  "samples": 144
+}</pre>
+    <h3>Environments</h3>
+    <table>
+      <thead><tr><th>Environment</th><th>Count</th><th>Share</th></tr></thead>
+      <tbody>
+        <tr><td>PROD_EXT</td><td>94</td><td>65.3%</td></tr>
+        <tr><td>INT</td><td>29</td><td>20.1%</td></tr>
+        <tr><td>PROD</td><td>21</td><td>14.6%</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <p class="muted" style="margin-top:2rem">Full markdown report: local/reports/analytics_3day_2026-06-04-06.md</p>
+
+  <script>
+    // Daily trend chart
+    const dailyData = {
+      labels: ["2026-06-04", "2026-06-05", "2026-06-06"],
+      datasets: [{
+        label: 'Queries',
+        data: [111, 27, 6],
+        backgroundColor: 'rgba(61, 139, 253, 0.5)',
+        borderColor: 'rgba(61, 139, 253, 1)',
+        borderWidth: 2,
+        tension: 0.1
+      }]
+    };
+
+    const ctx = document.getElementById('dailyChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: dailyData,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: true, labels: { color: '#e7ecf3' } }
+        },
+        scales: {
+          y: { 
+            beginAtZero: true,
+            ticks: { color: '#e7ecf3' },
+            grid: { color: '#2a3548' }
+          },
+          x: { ticks: { color: '#e7ecf3' }, grid: { color: '#2a3548' } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
