@@ -2669,6 +2669,26 @@ def _is_case_study_source(source: str) -> bool:
     return "/case-studies/" in (source or "").lower().replace("\\", "/")
 
 
+def _detect_channel_type(source: str) -> Optional[str]:
+    """Detect specific channel type from KB source path for telemetry tagging.
+
+    Returns channel type (rcs, whatsapp, instagram, web, etc.) or None if not a channel doc.
+    Enables Langfuse filtering of RCS queries separate from other channel queries.
+    """
+    s = "/" + (source or "").lower().replace("\\", "/")
+    if "/channels/rcs-" in s or "/channels/rcs_" in s:
+        return "rcs"
+    if "/channels/" in s and "whatsapp" in s:
+        return "whatsapp"
+    if "/channels/" in s and "instagram" in s:
+        return "instagram"
+    if "/channels/" in s and "web" in s:
+        return "web"
+    if "/channels/" in s:
+        return "channels_other"
+    return None
+
+
 def _case_study_field(text: str, field: str) -> str:
     m = re.search(rf"\*\*{re.escape(field)}\*\*:\s*(.+)", text, re.I)
     return (m.group(1).strip() if m else "")
@@ -5052,6 +5072,7 @@ def _send_langfuse(
         "unanswered": unanswered,
         "top_score": results[0].get("score") if results else None,
         "top_source": top_source,
+        "channel_type": _detect_channel_type(top_source) if top_source else None,
         "source_count": len(results),
         "latency_ms": latency_ms,
         "intent_labels": intents,
