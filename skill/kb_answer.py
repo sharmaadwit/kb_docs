@@ -1147,6 +1147,48 @@ CONCEPT_REGISTRY: List[Dict] = [
         "compare_blurb": "You need web-widget chat history retention for returning users.",
         "related": [],
     },
+    {
+        "id": "rcs",
+        "aliases": [
+            "rcs", "rich communication services",
+            "rcs agent", "rcs setup", "rcs authentication",
+            "rcs messaging", "rcs templates", "rcs webhooks",
+            "rcs api", "send rcs messages", "rcs agent setup",
+            "how to set up rcs", "rcs vs sms", "rcs channel",
+            "rcs business messaging", "dotgo", "rbm hub",
+            "rcs message delivery", "rcs rich cards",
+            "rcs template approval", "rcs client credentials",
+            "rcs oauth2", "rcs callback", "rcs webhook setup",
+        ],
+        "keywords": ['rcs', 'rich', 'communication', 'services', 'dotgo', 'rbm', 'messaging'],
+        "module_context": ["channels", "messaging"],
+        "source_boosts": {
+            "kb/channels/rcs-overview.md": 5.0,
+            "kb/channels/rcs-quickstart.md": 4.5,
+            "kb/channels/rcs-faq.md": 4.0,
+            "kb/channels/rcs-agent-setup.md": 4.5,
+            "kb/channels/rcs-authentication.md": 4.0,
+            "kb/channels/rcs-messaging-api.md": 3.5,
+            "kb/channels/rcs-templates.md": 3.5,
+            "kb/channels/rcs-webhooks-and-callbacks.md": 3.0,
+            "kb/channels/rcs-api-reference.md": 2.5,
+        },
+        "source_penalties": {
+            "whatsapp-business-api": -2.0,
+            "instagram": -2.0,
+            "web": -2.0,
+        },
+        "display": "RCS (Rich Communication Services)",
+        "page_display": "RCS (Rich Communication Services)",
+        "module": "Channels",
+        "templates": {
+            "page_lookup": "Exact pages\n- RCS Overview\n- RCS Quickstart\n- RCS FAQ\nRelevant details\n- RCS is a rich messaging channel for brands to send interactive messages with media, templates, and webhooks.",
+            "definition": "RCS (Rich Communication Services) is a modern messaging channel that enables brands to send rich, interactive messages to users on RCS-capable devices. It provides higher engagement than SMS with media support, interactive buttons, and delivery tracking.",
+            "setup": "To set up RCS:\n1. Register as an RCS Agent with Dotgo RBM Hub\n2. Create and approve message templates\n3. Configure OAuth2 authentication with client credentials\n4. Implement message sending API calls\n5. Set up webhooks for incoming messages and callbacks",
+        },
+        "compare_blurb": "You need rich messaging with templates, media, and webhooks for global reach.",
+        "related": ["whatsapp_business_api", "instagram", "webhooks"],
+    },
 
     # ---- Integrations ----
     {
