@@ -1,0 +1,53 @@
+{
+  "summary": {
+    "total_traces": 3,
+    "answered": 1,
+    "unanswered": 2,
+    "answer_rate_pct": 33.3,
+    "video_attach_rate_pct": 0.0,
+    "avg_confidence": 1.37
+  },
+  "latency": {
+    "p50_ms": 351,
+    "p95_ms": 694,
+    "p99_ms": null,
+    "avg_ms": 433.0
+  },
+  "by_module": {
+    "Channels": 3
+  },
+  "by_mode": {
+    "setup": 3
+  },
+  "by_intent": {
+    "setup": 3
+  },
+  "by_status": {
+    "unanswered": 2,
+    "answered": 1
+  },
+  "top_queries": [
+    {
+      "query": "RCS Agent Setup & Onboarding steps to register an RCS agent",
+      "answered": true,
+      "module": "Channels",
+      "confidence": 2.05,
+      "mode": "setup"
+    },
+    {
+      "query": "RCS Authentication & Credentials authentication flow register RCS agent client id client secret bot ",
+      "answered": false,
+      "module": "Channels",
+      "confidence": 1.4500000000000002,
+      "mode": "setup"
+    },
+    {
+      "query": "How to enable RCS on a project",
+      "answered": false,
+      "module": "Channels",
+      "confidence": 0.6000000000000001,
+      "mode": "setup"
+    }
+  ],
+  "trace_count": 3
+}
