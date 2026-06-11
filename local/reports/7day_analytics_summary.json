@@ -1,0 +1,16 @@
+{
+  "date_range": "2026-06-04 to 2026-06-11",
+  "total_events": 190,
+  "total_kb_queries": 0,
+  "total_videos": 190,
+  "video_attach_rate_pct": 0,
+  "answer_rate_pct": 0,
+  "idk_rate_pct": 100,
+  "by_module": {},
+  "top_intents": {
+    "overview": 92,
+    "setup": 82,
+    "compare": 12,
+    "definition": 4
+  }
+}
