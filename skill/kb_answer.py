@@ -2714,11 +2714,12 @@ def _is_case_study_source(source: str) -> bool:
 def _detect_channel_from_query(query: str) -> Optional[str]:
     """Detect what channel the user is asking about from query text.
 
-    Returns channel type (rcs, whatsapp, instagram, web, sms, etc.) or None if not channel-specific.
+    Returns channel type (rcs, whatsapp, instagram, web, sms, etc.).
+    Defaults to whatsapp for queries without explicit channel keywords.
     Enables accurate Langfuse tagging of user intent by channel.
     """
     if not query:
-        return None
+        return "whatsapp"  # Default to primary channel
     q_lower = query.lower()
 
     # RCS keywords
@@ -2741,7 +2742,8 @@ def _detect_channel_from_query(query: str) -> Optional[str]:
     if "sms" in q_lower or "short message" in q_lower:
         return "sms"
 
-    return None
+    # Default untagged queries to whatsapp (primary channel)
+    return "whatsapp"
 
 
 def _detect_channel_type(source: str) -> Optional[str]:
