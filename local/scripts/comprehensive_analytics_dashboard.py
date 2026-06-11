@@ -86,7 +86,11 @@ def analyze_langfuse_traces(traces: List[Dict[str, Any]]) -> Dict[str, Any]:
         meta = t.get("metadata") or {}
         output = t.get("output") or {}
 
-        # Detect channel
+        # Detect channel from Langfuse metadata
+        # Rule: If channel_type is detected (rcs, whatsapp, instagram, web, sms), use it.
+        # If not set (null), treat as "whatsapp" for new data or "untagged" for historical.
+        # Historical (pre-2026-06-11): channel_type=null → "untagged" (honest to timeline)
+        # Future (post-2026-06-11): channel_type always set → "whatsapp" default, never null
         channel = meta.get("channel_type") or "untagged"
 
         # Module
