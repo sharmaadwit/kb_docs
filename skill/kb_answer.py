@@ -2714,8 +2714,9 @@ def _is_case_study_source(source: str) -> bool:
 def _detect_channel_type(source: str) -> Optional[str]:
     """Detect specific channel type from KB source path for telemetry tagging.
 
-    Returns channel type (rcs, whatsapp, instagram, web, etc.) or None if not a channel doc.
-    Enables Langfuse filtering of RCS queries separate from other channel queries.
+    Returns channel type (rcs, whatsapp, instagram, web, etc.).
+    Defaults to whatsapp for untagged queries (primary channel assumption).
+    Enables Langfuse filtering of queries by messaging channel.
     """
     s = "/" + (source or "").lower().replace("\\", "/")
     if "/channels/rcs-" in s or "/channels/rcs_" in s:
@@ -2728,7 +2729,8 @@ def _detect_channel_type(source: str) -> Optional[str]:
         return "web"
     if "/channels/" in s:
         return "channels_other"
-    return None
+    # Default untagged queries to whatsapp (primary channel)
+    return "whatsapp"
 
 
 def _case_study_field(text: str, field: str) -> str:
