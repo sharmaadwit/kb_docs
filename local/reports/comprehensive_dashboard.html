@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Comprehensive KB Analytics Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            color: #333;
+        }
+        .container { max-width: 1600px; margin: 0 auto; }
+        .header { color: white; margin-bottom: 30px; }
+        .header h1 { font-size: 2.8em; margin-bottom: 10px; }
+        .header p { font-size: 1.1em; opacity: 0.9; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-5px); }
+
+        .metric { margin-bottom: 20px; }
+        .metric-label { font-size: 0.8em; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .metric-value { font-size: 2.2em; font-weight: bold; color: #333; }
+        .metric-unit { font-size: 0.45em; color: #999; margin-left: 5px; }
+
+        .status-good { color: #2ecc71; }
+        .status-warning { color: #f39c12; }
+        .status-critical { color: #e74c3c; }
+
+        .section { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .section h2 { font-size: 1.6em; margin-bottom: 20px; color: #333; border-bottom: 3px solid #667eea; padding-bottom: 10px; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th {
+            background: #f8f9fa;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #555;
+            border-bottom: 2px solid #ddd;
+            font-size: 0.9em;
+        }
+        td { padding: 12px; border-bottom: 1px solid #eee; font-size: 0.95em; }
+        tr:hover { background: #f8f9fa; }
+
+        .footer { text-align: center; color: white; margin-top: 40px; font-size: 0.9em; opacity: 0.8; }
+        .data-source { background: rgba(255,255,255,0.1); padding: 12px; border-radius: 6px; margin-top: 10px; }
+
+        .health-indicator {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        .health-good { background: #d4edda; color: #155724; }
+        .health-warning { background: #fff3cd; color: #856404; }
+        .health-critical { background: #f8d7da; color: #721c24; }
+
+        .chart-bar {
+            display: inline-block;
+            height: 20px;
+            background: #667eea;
+            border-radius: 3px;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Comprehensive KB Analytics Dashboard</h1>
+            <p>All channels • 7-day rolling window • Real-time Langfuse + Local analytics</p>
+        </div>
+
+        <!-- Global Metrics -->
+        <div class="grid">
+            <div class="card">
+                <div class="metric">
+                    <div class="metric-label">Total Queries</div>
+                    <div class="metric-value">200</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="metric">
+                    <div class="metric-label">Overall Answer Rate</div>
+                    <div class="metric-value status-warning">
+                        65.0%
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="metric">
+                    <div class="metric-label">Video Attachment Rate</div>
+                    <div class="metric-value status-good">
+                        56.2%
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="metric">
+                    <div class="metric-label">Avg Confidence</div>
+                    <div class="metric-value">1.37</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="metric">
+                    <div class="metric-label">P50 Latency</div>
+                    <div class="metric-value">837<span class="metric-unit">ms</span></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="metric">
+                    <div class="metric-label">P95 Latency</div>
+                    <div class="metric-value status-critical">
+                        10585<span class="metric-unit">ms</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="metric">
+                    <div class="metric-label">Video Events</div>
+                    <div class="metric-value">190</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="metric">
+                    <div class="metric-label">Channels Active</div>
+                    <div class="metric-value">2</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Channel Breakdown -->
+        <div class="section">
+            <h2>📡 Performance by Channel</h2>
+            <div class="data-source">
+                <strong>Source:</strong> Langfuse traces with channel_type metadata (RCS, WhatsApp, Instagram, Web, SMS, etc.)
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Channel</th>
+                        <th>Queries</th>
+                        <th>Answer Rate</th>
+                        <th>Video Attach %</th>
+                        <th>Avg Confidence</th>
+                        <th>P50 Latency</th>
+                        <th>Top Module</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+            <td>untagged</td>
+            <td align='right'>197</td>
+            <td align='right'>65.5%</td>
+            <td align='right'>56.6%</td>
+            <td align='right'>3.73</td>
+            <td align='right'>847ms</td>
+            <td>Bot Studio</td>
+        </tr>
+<tr>
+            <td>rcs</td>
+            <td align='right'>3</td>
+            <td align='right'>33.3%</td>
+            <td align='right'>0.0%</td>
+            <td align='right'>1.37</td>
+            <td align='right'>351ms</td>
+            <td>Channels</td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Module Breakdown -->
+        <div class="section">
+            <h2>📦 Performance by Module</h2>
+            <div class="data-source">
+                <strong>Source:</strong> Langfuse module_label metadata
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Module</th>
+                        <th>Queries</th>
+                        <th>Answer Rate</th>
+                        <th>Video Attach %</th>
+                        <th>Primary Channel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+            <td>Bot Studio</td>
+            <td align='right'>68</td>
+            <td align='right'>73.5%</td>
+            <td align='right'>32.0%</td>
+            <td>untagged</td>
+        </tr>
+<tr>
+            <td>Agent Assist</td>
+            <td align='right'>34</td>
+            <td align='right'>79.4%</td>
+            <td align='right'>70.4%</td>
+            <td>untagged</td>
+        </tr>
+<tr>
+            <td>Overview</td>
+            <td align='right'>16</td>
+            <td align='right'>62.5%</td>
+            <td align='right'>100.0%</td>
+            <td>untagged</td>
+        </tr>
+<tr>
+            <td>CTX</td>
+            <td align='right'>14</td>
+            <td align='right'>28.6%</td>
+            <td align='right'>100.0%</td>
+            <td>untagged</td>
+        </tr>
+<tr>
+            <td>SuperAgent</td>
+            <td align='right'>13</td>
+            <td align='right'>69.2%</td>
+            <td align='right'>88.9%</td>
+            <td>untagged</td>
+        </tr>
+<tr>
+            <td>Campaign Manager</td>
+            <td align='right'>10</td>
+            <td align='right'>80.0%</td>
+            <td align='right'>62.5%</td>
+            <td>untagged</td>
+        </tr>
+<tr>
+            <td>AI Admin</td>
+            <td align='right'>10</td>
+            <td align='right'>50.0%</td>
+            <td align='right'>40.0%</td>
+            <td>untagged</td>
+        </tr>
+<tr>
+            <td>Channels</td>
+            <td align='right'>9</td>
+            <td align='right'>11.1%</td>
+            <td align='right'>0.0%</td>
+            <td>untagged</td>
+        </tr>
+<tr>
+            <td>Goals</td>
+            <td align='right'>8</td>
+            <td align='right'>100.0%</td>
+            <td align='right'>62.5%</td>
+            <td>untagged</td>
+        </tr>
+<tr>
+            <td>Analytics</td>
+            <td align='right'>7</td>
+            <td align='right'>14.3%</td>
+            <td align='right'>100.0%</td>
+            <td>untagged</td>
+        </tr>
+<tr>
+            <td>Integrations</td>
+            <td align='right'>5</td>
+            <td align='right'>40.0%</td>
+            <td align='right'>50.0%</td>
+            <td>untagged</td>
+        </tr>
+<tr>
+            <td>General</td>
+            <td align='right'>4</td>
+            <td align='right'>75.0%</td>
+            <td align='right'>0.0%</td>
+            <td>untagged</td>
+        </tr>
+<tr>
+            <td>Personalize</td>
+            <td align='right'>2</td>
+            <td align='right'>100.0%</td>
+            <td align='right'>100.0%</td>
+            <td>untagged</td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Intent Breakdown -->
+        <div class="section">
+            <h2>🎯 Query Intent Analysis</h2>
+            <div class="data-source">
+                <strong>Source:</strong> Langfuse intent_labels (setup, definition, overview, etc.)
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Intent</th>
+                        <th>Count</th>
+                        <th>Answer Rate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr><td>setup</td><td align='right'>126</td><td align='right'>53.2%</td></tr>
+<tr><td>overview</td><td align='right'>55</td><td align='right'>94.5%</td></tr>
+<tr><td>definition</td><td align='right'>29</td><td align='right'>75.9%</td></tr>
+<tr><td>page_lookup</td><td align='right'>9</td><td align='right'>44.4%</td></tr>
+<tr><td>compare</td><td align='right'>6</td><td align='right'>100.0%</td></tr>
+<tr><td>schema</td><td align='right'>3</td><td align='right'>33.3%</td></tr>
+<tr><td>case_study</td><td align='right'>3</td><td align='right'>100.0%</td></tr>
+<tr><td>troubleshooting</td><td align='right'>1</td><td align='right'>0.0%</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Health Dashboard -->
+        <div class="section">
+            <h2>🏥 System Health</h2>
+            <div style="margin: 20px 0;">
+                <div class="health-indicator health-warning">
+                    Answer Rate: 65.0% ⚠️
+                </div>
+                <div class="health-indicator health-good">
+                    Video Attachment: 56.2% ✓
+                </div>
+                <div class="health-indicator health-critical">
+                    P95 Latency: 10585ms ✗
+                </div>
+                <div class="health-indicator health-warning">
+                    Confidence: 1.37 ⚠️
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Sources -->
+        <div class="section">
+            <h2>📊 Data Sources & Coverage</h2>
+            <table style="font-size: 0.9em;">
+                <thead>
+                    <tr>
+                        <th>Source</th>
+                        <th>Events</th>
+                        <th>Type</th>
+                        <th>Coverage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Langfuse</strong></td>
+                        <td>200</td>
+                        <td>KB answer traces</td>
+                        <td>Answer quality, confidence, latency, video attachment by query</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Local NDJSON</strong></td>
+                        <td>190</td>
+                        <td>Video delivery events</td>
+                        <td>Video manifest accuracy, module/intent distribution</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Combined</strong></td>
+                        <td>—</td>
+                        <td>Correlation</td>
+                        <td>Answer rate + video attachment by channel/module</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p>Generated: 2026-06-11 06:16:50 UTC</p>
+            <p>Data sources: Langfuse API (real-time KB traces) + Local NDJSON files (video events)</p>
+            <p>Dashboard auto-updates every run. Use this for trend tracking, performance monitoring, and multi-channel analysis.</p>
+        </div>
+    </div>
+</body>
+</html>

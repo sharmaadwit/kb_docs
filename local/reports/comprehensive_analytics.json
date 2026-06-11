@@ -1,0 +1,244 @@
+{
+  "timestamp": "2026-06-11T06:16:50.068032+00:00",
+  "period": "7-day rolling",
+  "langfuse": {
+    "trace_count": 200,
+    "answered": 130,
+    "unanswered": 70,
+    "answer_rate_pct": 65.0,
+    "video_attach_rate_pct": 56.2,
+    "avg_confidence": 1.37,
+    "latency_p50_ms": 837,
+    "latency_p95_ms": 10585,
+    "latency_avg_ms": 2998.0,
+    "by_channel": {
+      "untagged": {
+        "count": 197,
+        "answered": 129,
+        "unanswered": 68,
+        "answer_rate_pct": 65.5,
+        "video_attach_rate_pct": 56.6,
+        "avg_confidence": 3.73,
+        "latency_p50_ms": 847,
+        "top_module": "Bot Studio",
+        "top_queries": [
+          {
+            "query": "How do I call an external API from Journey Builder? Explain the documented API N",
+            "answered": true,
+            "module": "Bot Studio",
+            "confidence": 17
+          },
+          {
+            "query": "How do I set up API Node in Journey Builder, use HTTP status code branching, and",
+            "answered": true,
+            "module": "Bot Studio",
+            "confidence": 16.9
+          },
+          {
+            "query": "A customer has their own app with a third-party chat widget and a third-party AI",
+            "answered": true,
+            "module": "Agent Assist",
+            "confidence": 11.25
+          },
+          {
+            "query": "How can I train an AI Admin workspace using website URLs, documents, or text for",
+            "answered": true,
+            "module": "AI Admin",
+            "confidence": 11
+          },
+          {
+            "query": "How do I set up Goal Node in Journey Builder to track conversion milestones? Giv",
+            "answered": true,
+            "module": "Bot Studio",
+            "confidence": 10.9
+          }
+        ]
+      },
+      "rcs": {
+        "count": 3,
+        "answered": 1,
+        "unanswered": 2,
+        "answer_rate_pct": 33.3,
+        "video_attach_rate_pct": 0.0,
+        "avg_confidence": 1.37,
+        "latency_p50_ms": 351,
+        "top_module": "Channels",
+        "top_queries": [
+          {
+            "query": "RCS Agent Setup & Onboarding steps to register an RCS agent",
+            "answered": true,
+            "module": "Channels",
+            "confidence": 2.05
+          },
+          {
+            "query": "RCS Authentication & Credentials authentication flow register RCS agent client i",
+            "answered": false,
+            "module": "Channels",
+            "confidence": 1.4500000000000002
+          },
+          {
+            "query": "How to enable RCS on a project",
+            "answered": false,
+            "module": "Channels",
+            "confidence": 0.6000000000000001
+          }
+        ]
+      }
+    },
+    "by_module": {
+      "CTX": {
+        "count": 14,
+        "answered": 4,
+        "unanswered": 10,
+        "answer_rate_pct": 28.6,
+        "video_attach_rate_pct": 100.0,
+        "top_channel": "untagged"
+      },
+      "Agent Assist": {
+        "count": 34,
+        "answered": 27,
+        "unanswered": 7,
+        "answer_rate_pct": 79.4,
+        "video_attach_rate_pct": 70.4,
+        "top_channel": "untagged"
+      },
+      "Campaign Manager": {
+        "count": 10,
+        "answered": 8,
+        "unanswered": 2,
+        "answer_rate_pct": 80.0,
+        "video_attach_rate_pct": 62.5,
+        "top_channel": "untagged"
+      },
+      "Bot Studio": {
+        "count": 68,
+        "answered": 50,
+        "unanswered": 18,
+        "answer_rate_pct": 73.5,
+        "video_attach_rate_pct": 32.0,
+        "top_channel": "untagged"
+      },
+      "Analytics": {
+        "count": 7,
+        "answered": 1,
+        "unanswered": 6,
+        "answer_rate_pct": 14.3,
+        "video_attach_rate_pct": 100.0,
+        "top_channel": "untagged"
+      },
+      "Integrations": {
+        "count": 5,
+        "answered": 2,
+        "unanswered": 3,
+        "answer_rate_pct": 40.0,
+        "video_attach_rate_pct": 50.0,
+        "top_channel": "untagged"
+      },
+      "Overview": {
+        "count": 16,
+        "answered": 10,
+        "unanswered": 6,
+        "answer_rate_pct": 62.5,
+        "video_attach_rate_pct": 100.0,
+        "top_channel": "untagged"
+      },
+      "Goals": {
+        "count": 8,
+        "answered": 8,
+        "unanswered": 0,
+        "answer_rate_pct": 100.0,
+        "video_attach_rate_pct": 62.5,
+        "top_channel": "untagged"
+      },
+      "General": {
+        "count": 4,
+        "answered": 3,
+        "unanswered": 1,
+        "answer_rate_pct": 75.0,
+        "video_attach_rate_pct": 0.0,
+        "top_channel": "untagged"
+      },
+      "Channels": {
+        "count": 9,
+        "answered": 1,
+        "unanswered": 8,
+        "answer_rate_pct": 11.1,
+        "video_attach_rate_pct": 0.0,
+        "top_channel": "untagged"
+      },
+      "SuperAgent": {
+        "count": 13,
+        "answered": 9,
+        "unanswered": 4,
+        "answer_rate_pct": 69.2,
+        "video_attach_rate_pct": 88.9,
+        "top_channel": "untagged"
+      },
+      "AI Admin": {
+        "count": 10,
+        "answered": 5,
+        "unanswered": 5,
+        "answer_rate_pct": 50.0,
+        "video_attach_rate_pct": 40.0,
+        "top_channel": "untagged"
+      },
+      "Personalize": {
+        "count": 2,
+        "answered": 2,
+        "unanswered": 0,
+        "answer_rate_pct": 100.0,
+        "video_attach_rate_pct": 100.0,
+        "top_channel": "untagged"
+      }
+    },
+    "by_intent": {
+      "setup": {
+        "count": 126,
+        "answer_rate_pct": 53.2
+      },
+      "overview": {
+        "count": 55,
+        "answer_rate_pct": 94.5
+      },
+      "page_lookup": {
+        "count": 9,
+        "answer_rate_pct": 44.4
+      },
+      "troubleshooting": {
+        "count": 1,
+        "answer_rate_pct": 0.0
+      },
+      "schema": {
+        "count": 3,
+        "answer_rate_pct": 33.3
+      },
+      "definition": {
+        "count": 29,
+        "answer_rate_pct": 75.9
+      },
+      "case_study": {
+        "count": 3,
+        "answer_rate_pct": 100.0
+      },
+      "compare": {
+        "count": 6,
+        "answer_rate_pct": 100.0
+      }
+    }
+  },
+  "local_analytics": {
+    "total_video_events": 190,
+    "by_module": {
+      "General": 92,
+      "Bot Studio": 23,
+      "Agent Assist": 38,
+      "Analytics": 6,
+      "Personalize": 4,
+      "AI Admin": 2,
+      "Overview": 12,
+      "SuperAgent": 6,
+      "Goals": 6,
+      "Campaign Manager": 1
+    }
+  }
+}
