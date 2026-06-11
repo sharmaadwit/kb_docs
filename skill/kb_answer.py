@@ -5116,7 +5116,7 @@ def _send_langfuse(
         "unanswered": unanswered,
         "top_score": results[0].get("score") if results else None,
         "top_source": top_source,
-        "channel_type": _detect_channel_type(top_source) if top_source else None,
+        "channel_type": _detect_channel_type(top_source or ""),
         "source_count": len(results),
         "latency_ms": latency_ms,
         "intent_labels": intents,
