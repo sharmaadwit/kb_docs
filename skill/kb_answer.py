@@ -2711,11 +2711,43 @@ def _is_case_study_source(source: str) -> bool:
     return "/case-studies/" in (source or "").lower().replace("\\", "/")
 
 
+def _detect_channel_from_query(query: str) -> Optional[str]:
+    """Detect what channel the user is asking about from query text.
+
+    Returns channel type (rcs, whatsapp, instagram, web, sms, etc.) or None if not channel-specific.
+    Enables accurate Langfuse tagging of user intent by channel.
+    """
+    if not query:
+        return None
+    q_lower = query.lower()
+
+    # RCS keywords
+    if any(kw in q_lower for kw in ["rcs", "rich communication", "dotgo", "rbm", "rbm hub"]):
+        return "rcs"
+
+    # WhatsApp keywords (be conservative to avoid false positives)
+    if any(kw in q_lower for kw in ["whatsapp", "whatsapp business", "whatsapp flow"]):
+        return "whatsapp"
+
+    # Instagram keywords
+    if any(kw in q_lower for kw in ["instagram", "ig shopping", "instagram business"]):
+        return "instagram"
+
+    # Web keywords
+    if "web chat" in q_lower or "web widget" in q_lower or "web messaging" in q_lower:
+        return "web"
+
+    # SMS keywords
+    if "sms" in q_lower or "short message" in q_lower:
+        return "sms"
+
+    return None
+
+
 def _detect_channel_type(source: str) -> Optional[str]:
     """Detect specific channel type from KB source path for telemetry tagging.
 
     Returns channel type (rcs, whatsapp, instagram, web, etc.).
-    Defaults to whatsapp for untagged queries (primary channel assumption).
     Enables Langfuse filtering of queries by messaging channel.
     """
     s = "/" + (source or "").lower().replace("\\", "/")
@@ -2729,8 +2761,7 @@ def _detect_channel_type(source: str) -> Optional[str]:
         return "web"
     if "/channels/" in s:
         return "channels_other"
-    # Default untagged queries to whatsapp (primary channel)
-    return "whatsapp"
+    return None
 
 
 def _case_study_field(text: str, field: str) -> str:
@@ -5069,6 +5100,7 @@ def _send_langfuse(
     context,
     params: Optional[Dict[str, Any]] = None,
     video_meta: Optional[Dict[str, Any]] = None,
+    channel_type: Optional[str] = None,
 ) -> Dict:
     trace_id = f"kb-{trace_name}-{uuid.uuid4().hex[:16]}"
     top_source = results[0].get("source") if results else None
@@ -5116,7 +5148,7 @@ def _send_langfuse(
         "unanswered": unanswered,
         "top_score": results[0].get("score") if results else None,
         "top_source": top_source,
-        "channel_type": _detect_channel_type(top_source or ""),
+        "channel_type": channel_type,
         "source_count": len(results),
         "latency_ms": latency_ms,
         "intent_labels": intents,
@@ -5193,6 +5225,9 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
     if not query:
         raise ValueError("query is required")
 
+    # Detect what channel the user is asking about from query text
+    detected_channel = _detect_channel_from_query(query)
+
     started = datetime.now(timezone.utc)
 
     guardrail = _guardrail_answer(query)
@@ -5202,6 +5237,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
         langfuse = _send_langfuse(
             "kb_answer", query, guardrail, [], "General",
             ["refusal"], "refusal", False, latency_ms, context, params,
+            channel_type=detected_channel,
         )
         return {
             "ok": True,
@@ -5217,6 +5253,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
         langfuse = _send_langfuse(
             "kb_answer", query, undocumented, [], "General",
             ["unsupported"], "refusal", False, latency_ms, context, params,
+            channel_type=detected_channel,
         )
         return {
             "ok": True,
@@ -5232,6 +5269,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
         langfuse = _send_langfuse(
             "kb_answer", query, external_gap, [], "General",
             ["setup"], "setup", False, latency_ms, context, params,
+            channel_type=detected_channel,
         )
         return {
             "ok": True,
@@ -5247,6 +5285,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
         langfuse = _send_langfuse(
             "kb_answer", query, rate_gap, [], "General",
             ["setup"], "setup", False, latency_ms, context, params,
+            channel_type=detected_channel,
         )
         return {
             "ok": True,
@@ -5262,6 +5301,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
         langfuse = _send_langfuse(
             "kb_answer", query, secret_guidance, [], "General",
             ["refusal"], "refusal", False, latency_ms, context, params,
+            channel_type=detected_channel,
         )
         return {
             "ok": True,
@@ -5279,6 +5319,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
         langfuse = _send_langfuse(
             "kb_answer", query, msg, [], "General",
             ["kb_error"], "refusal", False, latency_ms, context, params,
+            channel_type=detected_channel,
         )
         return {
             "ok": False,
@@ -5313,6 +5354,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
             langfuse = _send_langfuse(
                 "kb_answer", query, answer, evidence, "General",
                 ["case_study"], "overview", False, latency_ms, context, params,
+                channel_type=detected_channel,
             )
             return {
                 "ok": True,
@@ -5427,6 +5469,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
         "kb_answer", query, answer, evidence, explicit_module,
         intents_list, intent, False, latency_ms, context, params,
         video_meta=video_meta,
+        channel_type=detected_channel,
     )
     return {
         "ok": True,
