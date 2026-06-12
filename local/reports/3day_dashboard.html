@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>KB Analytics - 3-Day Dashboard</title>
+<style>
+body { font-family: system-ui, sans-serif; margin: 20px; background: #f5f5f5; }
+.header { margin-bottom: 30px; }
+.header h1 { margin: 0; color: #333; }
+.header p { margin: 5px 0 0 0; color: #666; font-size: 14px; }
+.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 30px; }
+.metric { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.metric-value { font-size: 32px; font-weight: bold; color: #0066cc; }
+.metric-label { color: #666; font-size: 14px; margin-top: 5px; }
+.section { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+th { background: #f9f9f9; padding: 10px; text-align: left; font-weight: 600; border-bottom: 1px solid #ddd; }
+td { padding: 10px; border-bottom: 1px solid #eee; }
+tr:hover { background: #fafafa; }
+.good { color: #28a745; font-weight: 600; }
+.warn { color: #ffc107; font-weight: 600; }
+.bad { color: #dc3545; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="header">
+<h1>📊 KB Analytics Dashboard</h1>
+<p>3-Day Rolling Window (Last 72 hours)</p>
+</div>
+
+<div class="metrics">
+<div class="metric">
+<div class="metric-value">59</div>
+<div class="metric-label">Total Queries</div>
+</div>
+<div class="metric">
+<div class="metric-value" style="color: #28a745;">54.2%</div>
+<div class="metric-label">Answer Rate</div>
+</div>
+<div class="metric">
+<div class="metric-value" style="color: #0099ff;">27.1%</div>
+<div class="metric-label">Video Attachment</div>
+</div>
+<div class="metric">
+<div class="metric-value">3.09/10</div>
+<div class="metric-label">Avg Confidence</div>
+</div>
+</div>
+
+<div class="section">
+<h2>⚡ Performance</h2>
+<table>
+<tr><th>Metric</th><th>Value</th></tr>
+<tr><td>P50 Latency</td><td>647ms</td></tr>
+<tr><td>P95 Latency</td><td>33333ms</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>📱 By Channel</h2>
+<table>
+<tr><th>Channel</th><th>Queries</th><th>Answer Rate</th><th>Video Rate</th><th>Avg Score</th></tr>
+<tr><td>untagged</td><td>34</td><td class="warn">55.9%</td><td>29.4%</td><td>3.13/10</td></tr><tr><td>whatsapp</td><td>19</td><td class="warn">52.6%</td><td>31.6%</td><td>3.15/10</td></tr><tr><td>rcs</td><td>6</td><td class="warn">50.0%</td><td>0.0%</td><td>2.69/10</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>🎯 By Module</h2>
+<table>
+<tr><th>Module</th><th>Queries</th><th>Answer Rate</th><th>Primary Channels</th></tr>
+<tr><td>Bot Studio</td><td>19</td><td class="warn">57.9%</td><td>untagged(12), whatsapp(7)</td></tr><tr><td>Channels</td><td>8</td><td class="warn">50.0%</td><td>rcs(6), whatsapp(2)</td></tr><tr><td>CTX</td><td>7</td><td class="bad">28.6%</td><td>untagged(7)</td></tr><tr><td>Agent Assist</td><td>5</td><td class="bad">40.0%</td><td>whatsapp(4), untagged(1)</td></tr><tr><td>AI Admin</td><td>5</td><td class="good">80.0%</td><td>whatsapp(3), untagged(2)</td></tr><tr><td>General</td><td>5</td><td class="good">100.0%</td><td>untagged(3), whatsapp(2)</td></tr><tr><td>Overview</td><td>3</td><td class="bad">33.3%</td><td>untagged(2), whatsapp(1)</td></tr><tr><td>Integrations</td><td>2</td><td class="warn">50.0%</td><td>untagged(2)</td></tr><tr><td>Goals</td><td>2</td><td class="good">100.0%</td><td>untagged(2)</td></tr><tr><td>Campaign Manager</td><td>1</td><td class="bad">0.0%</td><td>untagged(1)</td></tr><tr><td>Analytics</td><td>1</td><td class="bad">0.0%</td><td>untagged(1)</td></tr><tr><td>SuperAgent</td><td>1</td><td class="bad">0.0%</td><td>untagged(1)</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>🎬 Video Delivery Events</h2>
+<p><strong>0</strong> video delivery events in last 3 days</p>
+</div>
+</body>
+</html>

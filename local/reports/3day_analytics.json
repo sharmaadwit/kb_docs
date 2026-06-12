@@ -1,0 +1,82 @@
+{
+  "generated_at": "2026-06-12T05:49:26.788898+00:00",
+  "window_days": 3,
+  "summary": {
+    "trace_count": 59,
+    "answer_rate": 54.2,
+    "video_attachment_rate": 27.1,
+    "avg_confidence": 3.09,
+    "p50_latency_ms": 647,
+    "p95_latency_ms": 33333
+  },
+  "channels": {
+    "whatsapp": {
+      "count": 19,
+      "answer_rate": 52.6,
+      "video_attachment_rate": 31.6,
+      "avg_confidence": 3.15
+    },
+    "rcs": {
+      "count": 6,
+      "answer_rate": 50.0,
+      "video_attachment_rate": 0.0,
+      "avg_confidence": 2.69
+    },
+    "untagged": {
+      "count": 34,
+      "answer_rate": 55.9,
+      "video_attachment_rate": 29.4,
+      "avg_confidence": 3.13
+    }
+  },
+  "modules": {
+    "Channels": {
+      "count": 8,
+      "answer_rate": 50.0
+    },
+    "Agent Assist": {
+      "count": 5,
+      "answer_rate": 40.0
+    },
+    "Bot Studio": {
+      "count": 19,
+      "answer_rate": 57.9
+    },
+    "AI Admin": {
+      "count": 5,
+      "answer_rate": 80.0
+    },
+    "Overview": {
+      "count": 3,
+      "answer_rate": 33.3
+    },
+    "General": {
+      "count": 5,
+      "answer_rate": 100.0
+    },
+    "CTX": {
+      "count": 7,
+      "answer_rate": 28.6
+    },
+    "Campaign Manager": {
+      "count": 1,
+      "answer_rate": 0.0
+    },
+    "Analytics": {
+      "count": 1,
+      "answer_rate": 0.0
+    },
+    "Integrations": {
+      "count": 2,
+      "answer_rate": 50.0
+    },
+    "Goals": {
+      "count": 2,
+      "answer_rate": 100.0
+    },
+    "SuperAgent": {
+      "count": 1,
+      "answer_rate": 0.0
+    }
+  }
+}
