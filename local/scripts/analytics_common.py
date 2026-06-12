@@ -200,6 +200,31 @@ def load_all_ndjson_lines() -> List[Dict[str, Any]]:
     return rows
 
 
+def load_ndjson_since(since: datetime) -> List[Dict[str, Any]]:
+    """Load NDJSON video delivery events since a given datetime.
+
+    Handles the 'ts' field correctly (not 'timestamp').
+    Use this to avoid the bug where video events weren't being loaded.
+    """
+    rows: List[Dict[str, Any]] = []
+    if not ANALYTICS_DIR.is_dir():
+        return rows
+    for path in sorted(ANALYTICS_DIR.glob("*.ndjson")):
+        with path.open(encoding="utf-8") as fh:
+            for line in fh:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    row = json.loads(line)
+                    ts = parse_iso(str(row.get("ts") or ""))
+                    if ts and ts >= since:
+                        rows.append(row)
+                except json.JSONDecodeError:
+                    continue
+    return rows
+
+
 def fetch_langfuse_traces(since: datetime, limit: int = 5000, trace_name: str = "kb_answer") -> List[Dict[str, Any]]:
     if not os.environ.get("LANGFUSE_PUBLIC_KEY") or not os.environ.get("LANGFUSE_SECRET_KEY"):
         return []
