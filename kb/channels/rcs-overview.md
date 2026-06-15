@@ -87,7 +87,7 @@ Detailed field specifications are documented in API reference sections for each 
 ## Cross-module workflow docs
 
 - **Channels**: RCS agent registration and bot setup
-- **Campaign Manager**: Use RCS as a channel for multi-channel campaigns
+- **Campaign Manager**: [Use RCS as a channel for multi-channel campaigns](../../campaign-manager/rcs-campaigns.md)
 - **Bot Studio**: Route RCS messages via connected bots
 - **Analytics**: Track RCS message metrics and delivery rates
 

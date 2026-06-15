@@ -53,6 +53,11 @@ Gupshup Console → Campaign Manager → About Campaign Manager
 ## Module disambiguation docs
 - Campaign creation/config is in **Campaign Manager**; delivery status can also be observed via **Webhooks** (Integrations).
 
+## See Also
+
+- [RCS Campaigns](./rcs-campaigns.md) - Send RCS campaigns at scale with scheduling and analytics
+- [Campaign Analytics](./campaign-analytics.md) - Track campaign performance metrics
+
 ## Reference (from source)
 <!-- procedural:v2 -->
 # About Campaign Manager
