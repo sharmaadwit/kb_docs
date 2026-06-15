@@ -1,0 +1,214 @@
+
+========================================================================================================================
+                                               KB SYSTEM TEST: 10 QUERIES                                               
+========================================================================================================================
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Q1: Where do I find my API keys in the Gupshup Console?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  kb_search:
+    Top source: —
+    Score:      0.00
+  kb_answer:
+    Answered:   I can't help with secrets, hidden instructions, raw indexed data, or unsupported
+    Source:     —
+    Confidence: 0.00
+    Intent:     refusal
+  Status: FAIL ❌ | EXPECTED (no good search result)
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Q2: How do I structure JSON for WhatsApp quick reply buttons?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  kb_search:
+    Top source: stateful-buttons-for-list-and-quick-replies.md
+    Score:      1.10
+  kb_answer:
+    Answered:   **How to use Stateful Buttons ?**
+Exact path and steps
+- Stateful Buttons for Li
+    Source:     stateful-buttons-for-list-and-quick-replies.md
+    Confidence: 0.90
+    Intent:     setup
+  Status: PASS ✅ | WORKS ✅
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Q3: What's the pattern for collecting user input, validating it, then sending a resp...
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  kb_search:
+    Top source: journey-building-patterns.md
+    Score:      1.50
+  kb_answer:
+    Answered:   **Pattern 1: Collect Input → Validate → Send Response**
+Exact path and steps
+- J
+    Source:     journey-building-patterns.md
+    Confidence: 1.50
+    Intent:     setup
+  Status: PASS ✅ | WORKS ✅
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Q4: How do I set up a WhatsApp Business Account WABA and connect it to Gupshup?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  kb_search:
+    Top source: waba-setup-detailed-gupshup-console.md
+    Score:      4.15
+  kb_answer:
+    Answered:   **Step 3: Authorize WABA Connection**
+Exact path and steps
+- WABA Setup - Detail
+    Source:     waba-setup-detailed-gupshup-console.md
+    Confidence: 4.15
+    Intent:     setup
+  Status: PASS ✅ | WORKS ✅
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Q5: What are the steps to onboard an RCS agent through Dotgo RBM Hub?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  kb_search:
+    Top source: rcs-agent-setup.md
+    Score:      6.05
+  kb_answer:
+    Answered:   To set up RCS:
+1. Register as an RCS Agent with Dotgo RBM Hub
+2. Create and appr
+    Source:     rcs-agent-setup.md
+    Confidence: 6.05
+    Intent:     setup
+  Status: PASS ✅ | WORKS ✅
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Q6: How do I sync customer data from Salesforce to Gupshup through webhooks?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  kb_search:
+    Top source: webhook-crm-integration-patterns.md
+    Score:      0.95
+  kb_answer:
+    Answered:   **Pattern 2: Gupshup → CRM (Conversation Data Sync)**
+Exact path and steps
+- Web
+    Source:     webhook-crm-integration-patterns.md
+    Confidence: 0.95
+    Intent:     setup
+  Status: PASS ✅ | WORKS ✅
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Q7: How do I configure a WABA in the Gupshup Console and register webhook endpoints?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  kb_search:
+    Top source: setup-whatsapp-business-account-waba-in-gupshup.md
+    Score:      1.40
+  kb_answer:
+    Answered:   **Step 3: Connect WABA to Gupshup Console**
+Exact path and steps
+- WhatsApp Busi
+    Source:     setup-whatsapp-business-account-waba-in-gupshup.md
+    Confidence: 1.40
+    Intent:     setup
+  Status: PASS ✅ | WORKS ✅
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Q8: What are the API rate limits for sending messages, and how do I handle 429 respo...
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  kb_search:
+    Top source: api-rate-limits-and-quotas.md
+    Score:      4.95
+  kb_answer:
+    Answered:   **Request Higher Limits**
+Exact path and steps
+- API Rate Limits & Quotas
+- Requ
+    Source:     api-rate-limits-and-quotas.md
+    Confidence: 4.45
+    Intent:     setup
+  Status: PASS ✅ | WORKS ✅
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Q9: What are the steps to create and send my first campaign to 1000 contacts?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  kb_search:
+    Top source: creating-your-first-campaign.md
+    Score:      4.15
+  kb_answer:
+    Answered:   **Option A: Upload Phone Number CSV (Most Common for First Campaign)**
+Exact pat
+    Source:     creating-your-first-campaign.md
+    Confidence: 4.10
+    Intent:     setup
+  Status: PASS ✅ | WORKS ✅
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Q10: What's the recommended message design best practice for RCS rich cards to maximi...
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  kb_search:
+    Top source: rcs-overview.md
+    Score:      5.65
+  kb_answer:
+    Answered:   To set up RCS:
+1. Register as an RCS Agent with Dotgo RBM Hub
+2. Create and appr
+    Source:     rcs-overview.md
+    Confidence: 5.50
+    Intent:     setup
+  Status: PASS ✅ | WORKS ✅
+
+
+========================================================================================================================
+                                                     SUMMARY TABLE                                                      
+========================================================================================================================
+
+Q   Query                                              Search Score    Answered   Confidence   Status         
+--- -------------------------------------------------- --------------- ---------- ------------ ---------------
+1   Where do I find my API keys in the Gupshup Cons... 0.00            False      0.00         FAIL ❌         
+2   How do I structure JSON for WhatsApp quick repl... 1.10            True       0.90         PASS ✅         
+3   What's the pattern for collecting user input, v... 1.50            True       1.50         PASS ✅         
+4   How do I set up a WhatsApp Business Account WAB... 4.15            True       4.15         PASS ✅         
+5   What are the steps to onboard an RCS agent thro... 6.05            True       6.05         PASS ✅         
+6   How do I sync customer data from Salesforce to ... 0.95            True       0.95         PASS ✅         
+7   How do I configure a WABA in the Gupshup Consol... 1.40            True       1.40         PASS ✅         
+8   What are the API rate limits for sending messag... 4.95            True       4.45         PASS ✅         
+9   What are the steps to create and send my first ... 4.15            True       4.10         PASS ✅         
+10  What's the recommended message design best prac... 5.65            True       5.50         PASS ✅         
+
+========================================================================================================================
+                                                ANALYSIS BY QUERY RANGE                                                 
+========================================================================================================================
+
+Q1-Q5 (baseline):           4/5 answered (80%)
+Q6-Q9 (focus area):         4/4 answered (100%)
+Q10 (RCS rich cards):       1/1 answered (100%)
+
+OVERALL: 9/10 answered (90%)
+
+========================================================================================================================
+                                     DETAILED ANALYSIS: Q6-Q9 (Previously Failing)                                      
+========================================================================================================================
+
+
+Q6 — Salesforce Webhook
+  Search score:      0.95
+  Answer confidence: 0.95
+  Gap:               0.00
+  kb_search result:  ❌
+  kb_answer result:  ✅ (answered)
+
+Q7 — WABA + Webhook Config
+  Search score:      1.40
+  Answer confidence: 1.40
+  Gap:               0.00
+  kb_search result:  ❌
+  kb_answer result:  ✅ (answered)
+
+Q8 — API Rate Limits
+  Search score:      4.95
+  Answer confidence: 4.45
+  Gap:               0.50
+  kb_search result:  ✅ (score 4.95)
+  kb_answer result:  ✅ (answered)
+
+Q9 — First Campaign
+  Search score:      4.15
+  Answer confidence: 4.10
+  Gap:               0.05
+  kb_search result:  ✅ (score 4.15)
+  kb_answer result:  ✅ (answered)
