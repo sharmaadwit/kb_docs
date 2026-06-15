@@ -95,6 +95,16 @@ Detailed field specifications are documented in API reference sections for each 
 
 RCS is a messaging channel managed at the Channels level. Message logic and routing rules are configured separately in Bot Studio or Campaign Manager based on your use case.
 
+## Best Practices
+
+For strategies to optimize RCS campaigns for engagement and compliance, see [RCS Best Practices & Optimization Guide](rcs-best-practices.md).
+
+## See Also
+
+- [RCS Quickstart Guide](rcs-quickstart.md)
+- [RCS Authentication](rcs-authentication.md)
+- [RCS API Reference](rcs-api-reference.md)
+
 ## Reference (from source)
 
 <!-- procedural:v2 -->

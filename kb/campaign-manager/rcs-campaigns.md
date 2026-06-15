@@ -153,6 +153,10 @@ Ensure CSV column names match template variable names.
 - [Campaign Manager Guide](./about-campaign-manager.md)
 - [Campaign Analytics](./campaign-analytics.md)
 
+## See Also
+
+- [Creating Your First Campaign](./creating-your-first-campaign.md) — Step-by-step guide for creating your first campaign with any channel.
+
 ## Reference (from source)
 
 <!-- procedural:v2 -->
