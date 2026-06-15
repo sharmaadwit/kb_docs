@@ -72,6 +72,50 @@ SCORING_STOP_WORDS = {
 
 CONCEPT_REGISTRY: List[Dict] = [
     {
+        "id": "salesforce_webhook",
+        "aliases": [
+            "salesforce webhook", "crm webhook", "salesforce crm",
+            "webhook salesforce", "salesforce integration",
+            "connect to salesforce", "webhook to salesforce",
+        ],
+        "keywords": ["salesforce", "crm", "webhook"],
+        "source_boosts": {"integrations/webhooks": 4.0},
+        "source_penalties": {},
+    },
+    {
+        "id": "waba_setup",
+        "aliases": [
+            "waba setup", "whatsapp business account setup",
+            "waba onboarding", "set up waba",
+            "business account setup", "configure waba",
+        ],
+        "keywords": ["waba", "business", "account"],
+        "source_boosts": {"channels": 4.0},
+        "source_penalties": {"whatsapp-flows": -3.0, "whatsapp-flow": -3.0},
+    },
+    {
+        "id": "api_rate_limits",
+        "aliases": [
+            "api rate limits", "rate limit", "rate limiting",
+            "429 error", "429", "too many requests",
+            "api quota", "rate limit exceeded",
+        ],
+        "keywords": ["rate", "limit", "429", "quota"],
+        "source_boosts": {"api-node": 3.0},
+        "source_penalties": {"api-node-branching": -4.0},
+    },
+    {
+        "id": "rcs_setup",
+        "aliases": [
+            "rcs setup", "rcs onboarding", "rcs configuration",
+            "rich communication services", "set up rcs",
+            "configure rcs", "rcs integration",
+        ],
+        "keywords": ["rcs", "communication"],
+        "source_boosts": {"rcs-docs": 5.0, "channels/rcs": 4.0},
+        "source_penalties": {},
+    },
+    {
         "id": "api_node",
         "aliases": [
             "api node", "external api", "backend api",
@@ -109,6 +153,7 @@ CONCEPT_REGISTRY: List[Dict] = [
         "source_penalties": {
             "how-to-create-whatsapp-static-flows": -8.0,
             "flow-trigger": -4.0, "whatsapp-flow": -4.0,
+            "api-rate-limits.md": -4.0,
         },
     },
     {
@@ -280,6 +325,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "whatsapp-carousel": -5.0, "send-message-node": -5.0,
             "journey-builder-platform-upgrade-and-node-deprecation": -5.0,
             "ctx-goal-nodes-and-conversions-api": -5.0,
+            "regex-validation-in-prompt-nodes.md": -4.0,
         },
     },
     {
@@ -439,7 +485,10 @@ CONCEPT_REGISTRY: List[Dict] = [
         ],
         "keywords": ["campaign", "clicks", "dropped"],
         "source_boosts": {"campaign-analytics": 5.0, "how-to-measure-click-through-rates": 2.0},
-        "source_penalties": {"campaign-and-ctx-ad-preview": -3.0, "dashboard": -3.0},
+        "source_penalties": {
+            "campaign-and-ctx-ad-preview": -3.0, "dashboard": -3.0,
+            "campaign-flow-setup.md": -3.0,
+        },
     },
     {
         "id": "ctwa_to_goals",
