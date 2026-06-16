@@ -1,0 +1,304 @@
+================================================================================
+                    KB TEST PLAN DOCUMENT INDEX
+================================================================================
+
+COMPREHENSIVE TEST PLAN CREATED: 2026-06-16
+TARGET: Reduce IDK rate from 42.5% to 20-25% (3 phases)
+STATUS: Ready for deployment
+
+================================================================================
+                         DOCUMENTATION FILES
+================================================================================
+
+START HERE:
+  📄 README_TEST_PLAN.md (11 KB)
+     - Overview of all documents
+     - Quick start guide
+     - Learning paths (new/familiar/just-run)
+     - File references
+     → Read this first (10 minutes)
+
+MAIN DOCUMENTS:
+  📘 COMPREHENSIVE_TEST_PLAN.md (18 KB)
+     - Complete 3-phase test plan
+     - Phase 1: Confidence thresholds (42.5% → 35-38%)
+     - Phase 2: Coverage & scoring (35-38% → 25-30%)
+     - Phase 3: Advanced optimization (25-30% → 20-25%)
+     - 69 test queries (10 + 51 + 8)
+     - Success metrics per phase
+     - Deployment process with rollback
+     → Read for complete understanding (30 minutes)
+
+  📊 TEST_QUICK_REFERENCE.md (7 KB)
+     - One-page cheat sheet
+     - Phase-by-phase test commands
+     - Success checklists
+     - Red flags to watch
+     - Common patterns
+     - Time estimates
+     → Print & keep handy during testing (5 minutes)
+
+  🔍 TEST_MEASUREMENT_GUIDE.md (14 KB)
+     - How to measure improvements
+     - 4 measurement methods:
+       a) Query test runner (local, < 1 min)
+       b) Regression suite (102 tests, 2-5 min)
+       c) Langfuse analysis (real data, 5-10 min)
+       d) Visual dashboard (trending, 2-3 min)
+     - Baseline snapshot procedures
+     - Troubleshooting guide
+     → Use this when you need to validate progress (10 minutes)
+
+  📋 TEST_QUERY_SETS.md (12 KB)
+     - Complete test query catalog
+     - Q1-Q10: Baseline queries
+     - IDK1-IDK51: Real production failures
+     - HS1-HS8: High-score failures
+     - Query characteristics by intent/module/difficulty
+     → Reference when adding/modifying test queries (as needed)
+
+================================================================================
+                         EXECUTABLE FILES
+================================================================================
+
+TEST RUNNERS:
+  python3 local/test_10_queries.py
+  └─ Baseline test (Q1-Q10)
+  └─ Time: < 1 minute
+  └─ Output: 10 test results, summary table
+  └─ Use: Phase 1 validation
+
+  python3 local/tests/test_regression.py
+  └─ Regression suite (102 tests)
+  └─ Time: 2-5 minutes
+  └─ Output: Pass/fail by category
+  └─ Use: All phases (regression detection)
+
+  python3 local/run_comprehensive_test.py
+  └─ All-in-one test runner
+  └─ Options: --phase 1|2|3|all, --quick, --full, --verbose
+  └─ Time: 5-10 minutes (full)
+  └─ Output: JSON + summary
+  └─ Use: All phases (complete validation)
+
+ANALYSIS SCRIPTS:
+  python3 local/scripts/fetch_recent_idk.py
+  └─ Fetch IDK traces from Langfuse
+  └─ Output: JSON file with recent failures
+
+  python3 local/scripts/analyze_all_recent.py
+  └─ Analyze Langfuse data (last 24h/7d)
+  └─ Output: IDK rate, answer rate, module breakdown
+  └─ Use: Validate real IDK improvement (truth metric)
+
+  python3 local/scripts/comprehensive_analytics_dashboard.py
+  └─ Generate interactive HTML dashboard
+  └─ Output: local/reports/comprehensive_dashboard.html
+  └─ Use: Visual trending of improvements
+
+================================================================================
+                           DATA FILES
+================================================================================
+
+TEST DATA:
+  local/reports/idk_regression_baseline.json (51 queries)
+  └─ Real IDK queries from Langfuse
+  └─ Phase 2 test set
+  └─ Includes: ID, query, topic, expected, score, source, issue
+
+  kb/kb_chunks.jsonl
+  └─ KB documents (JSONL format)
+  └─ Loaded by all test runners
+  └─ ~3000+ chunks indexed for search
+
+RESULTS:
+  local/reports/phase1_results.json (auto-generated)
+  └─ Phase 1 test results
+
+  local/reports/phase2_results.json (auto-generated)
+  └─ Phase 2 test results
+
+  local/reports/phase3_results.json (auto-generated)
+  └─ Phase 3 test results
+
+  local/reports/comprehensive_dashboard.html (auto-generated)
+  └─ Interactive dashboard with charts
+
+================================================================================
+                      SOURCE CODE TO MODIFY
+================================================================================
+
+PRIMARY:
+  skill/kb_answer.py
+  └─ Main KB answer algorithm
+  └─ Edit for Phase 1 fixes:
+  ├─ Lines 204-209: Confidence thresholds
+  ├─ Lines 2088-2132: Concept registry boosts
+  ├─ Lines 4295-4306: Evidence selection logic
+  └─ Lines 4403-4408: Coverage thresholds
+  └─ Phase 2-3: Additional improvements TBD
+
+================================================================================
+                        QUICK COMMAND REFERENCE
+================================================================================
+
+PHASE 1 (Confidence Thresholds):
+  # Test
+  python3 local/test_10_queries.py
+  # Expected: 9/10 passed
+
+  # Validate
+  python3 local/tests/test_regression.py
+  # Expected: >95% passed
+
+  # Measure real impact
+  python3 local/scripts/analyze_all_recent.py
+  # Expected: IDK 35-38%
+
+PHASE 2 (Coverage & Scoring):
+  # Test IDK queries
+  python3 local/run_comprehensive_test.py --phase 2
+  # Expected: 45+/51 passed (88%+)
+
+  # Measure
+  python3 local/scripts/analyze_all_recent.py
+  # Expected: IDK 25-30%
+
+PHASE 3 (Advanced Optimization):
+  # Test high-score queries
+  python3 local/run_comprehensive_test.py --phase 3
+  # Expected: 7+/8 passed (88%+)
+
+  # Final measure
+  python3 local/scripts/analyze_all_recent.py
+  # Expected: IDK 20-25%
+
+ALL TESTS:
+  # Run everything
+  python3 local/run_comprehensive_test.py --full
+  # Expected: 61+/69 passed (88%+)
+
+  # With dashboard
+  python3 local/scripts/comprehensive_analytics_dashboard.py
+  open local/reports/comprehensive_dashboard.html
+
+================================================================================
+                         SUCCESS METRICS
+================================================================================
+
+PHASE 1: Confidence Thresholds
+  ✅ Q1-Q10 test: 9/10 passed
+  ✅ Regression suite: >95% passed
+  ✅ Q6-Q9 all answered
+  ✅ IDK rate: 42.5% → 35-38%
+
+PHASE 2: Coverage & Scoring
+  ✅ IDK queries fixed: 45+/51
+  ✅ IDK rate: 35-38% → 25-30%
+  ✅ Module rates: All >75%
+  ✅ Avg confidence: >3.0
+
+PHASE 3: Advanced Optimization
+  ✅ High-score queries fixed: 7+/8
+  ✅ IDK rate: 25-30% → 20-25%
+  ✅ Overall answer rate: 75-80%
+  ✅ Avg confidence: >4.0
+
+================================================================================
+                         TIMELINE
+================================================================================
+
+DAY 1:
+  → Read: README_TEST_PLAN.md + TEST_QUICK_REFERENCE.md
+  → Run baseline: python3 local/test_10_queries.py (record results)
+  → Implement Phase 1: Edit skill/kb_answer.py
+  → Test Phase 1: python3 local/test_10_queries.py
+  → Validate: python3 local/tests/test_regression.py
+  → Begin monitoring: Dashboard generation
+
+DAYS 2-7:
+  → Monitor Phase 1: Daily dashboard checks
+  → Analyze Phase 1 results: Review Langfuse data
+  → Design Phase 2: Strategy based on 51 IDK queries
+  → Implement Phase 2: Registry + entity improvements
+  → Test Phase 2: python3 local/run_comprehensive_test.py --phase 2
+  → Begin Phase 2 monitoring
+
+WEEK 2+:
+  → Finalize Phase 2: Monitor stability
+  → Design Phase 3: High-score failure analysis
+  → Implement Phase 3: Composition + fallback improvements
+  → Test Phase 3: python3 local/run_comprehensive_test.py --phase 3
+  → Final validation: All 69 queries should pass
+
+================================================================================
+                         READING ORDER
+================================================================================
+
+FOR NEWCOMERS:
+  1. README_TEST_PLAN.md (10 min)
+  2. TEST_QUICK_REFERENCE.md (5 min)
+  3. COMPREHENSIVE_TEST_PLAN.md (30 min)
+  4. TEST_MEASUREMENT_GUIDE.md (10 min)
+  5. TEST_QUERY_SETS.md (as reference)
+
+FOR FAMILIAR DEVELOPERS:
+  1. TEST_QUICK_REFERENCE.md (5 min)
+  2. Relevant Phase section in COMPREHENSIVE_TEST_PLAN.md (10 min)
+  3. TEST_MEASUREMENT_GUIDE.md (5 min)
+  4. Execute tests
+
+FOR QUICK TESTING:
+  1. skim TEST_QUICK_REFERENCE.md (2 min)
+  2. Run: python3 local/test_10_queries.py
+  3. Run: python3 local/scripts/analyze_all_recent.py
+  4. Check: local/reports/comprehensive_dashboard.html
+
+================================================================================
+                      TROUBLESHOOTING
+================================================================================
+
+"Tests failing?" → TEST_QUICK_REFERENCE.md Red Flags section
+"How to measure?" → TEST_MEASUREMENT_GUIDE.md 4 methods
+"Which query?" → TEST_QUERY_SETS.md complete catalog
+"Detailed plan?" → COMPREHENSIVE_TEST_PLAN.md
+"Understand all docs?" → README_TEST_PLAN.md learning paths
+
+================================================================================
+                      DOCUMENT SIZES
+================================================================================
+
+README_TEST_PLAN.md:           11 KB (overview, learning paths)
+COMPREHENSIVE_TEST_PLAN.md:    18 KB (complete detailed plan)
+TEST_QUICK_REFERENCE.md:        7 KB (one-page cheat sheet)
+TEST_MEASUREMENT_GUIDE.md:     14 KB (how to measure)
+TEST_QUERY_SETS.md:            12 KB (test query catalog)
+run_comprehensive_test.py:     13 KB (test runner script)
+
+TOTAL DOCUMENTATION: ~62 KB (easily printable)
+
+================================================================================
+                      VERSION HISTORY
+================================================================================
+
+v1.0 — 2026-06-16
+  ✓ Created comprehensive 5-document plan
+  ✓ 3-phase progression (42.5% → 20-25%)
+  ✓ 69 test queries (10 + 51 + 8)
+  ✓ 4 measurement methods
+  ✓ Complete test runner
+  ✓ Success metrics & checklists
+  ✓ Deployment & rollback strategies
+  Status: Ready for Phase 1
+
+================================================================================
+
+LOCATION: /Users/adwit.sharma/kb_docs/
+
+To start: Open README_TEST_PLAN.md
+
+Questions? Check the Quick Reference (TEST_QUICK_REFERENCE.md)
+
+Ready? Run: python3 local/test_10_queries.py
+
+================================================================================
