@@ -291,14 +291,14 @@ def generate_html(analysis: Dict[str, Any]) -> str:
 
         <!-- Global Metrics -->
         <div class="grid">
-            <div class="card">
+            <div class="card" style="border-left: 5px solid #667eea;">
                 <div class="metric">
                     <div class="metric-label">Total Queries</div>
                     <div class="metric-value">{analysis['total_queries']}</div>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" style="border-left: 5px solid #2ecc71;">
                 <div class="metric">
                     <div class="metric-label">Answer Rate</div>
                     <div class="metric-value status-good">{analysis['answer_rate']}%</div>
@@ -306,7 +306,7 @@ def generate_html(analysis: Dict[str, Any]) -> str:
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" style="border-left: 5px solid #e74c3c;">
                 <div class="metric">
                     <div class="metric-label">IDK Rate</div>
                     <div class="metric-value {idk_color}">{analysis['idk_rate']}%</div>
@@ -314,7 +314,7 @@ def generate_html(analysis: Dict[str, Any]) -> str:
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" style="border-left: 5px solid #2ecc71;">
                 <div class="metric">
                     <div class="metric-label">Avg Confidence</div>
                     <div class="metric-value status-good">{analysis['avg_confidence']}</div>
@@ -322,7 +322,7 @@ def generate_html(analysis: Dict[str, Any]) -> str:
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" style="border-left: 5px solid #f39c12;">
                 <div class="metric">
                     <div class="metric-label">Video Attach Rate</div>
                     <div class="metric-value status-warning">{analysis['video_rate']}%</div>
@@ -330,7 +330,7 @@ def generate_html(analysis: Dict[str, Any]) -> str:
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" style="border-left: 5px solid #aaa;">
                 <div class="metric">
                     <div class="metric-label">P50 Latency</div>
                     <div class="metric-value">847ms</div>
@@ -356,10 +356,11 @@ def generate_html(analysis: Dict[str, Any]) -> str:
 
     for module, data in modules_sorted:
         pct = (data["count"] / analysis["total_queries"] * 100) if analysis["total_queries"] > 0 else 0
+        pct_bar = f"background: linear-gradient(to right, rgba(102,126,234,0.13) {pct:.1f}%, transparent {pct:.1f}%)"
         html += f"""                    <tr>
                         <td>{module}</td>
                         <td class="numeric">{data['count']}</td>
-                        <td class="numeric">{pct:.1f}%</td>
+                        <td class="numeric" style="{pct_bar}">{pct:.1f}%</td>
                         <td class="numeric">{data['avg_confidence']}</td>
                     </tr>
 """
@@ -386,11 +387,13 @@ def generate_html(analysis: Dict[str, Any]) -> str:
     for intent, data in intents_sorted:
         pct = (data["count"] / analysis["total_queries"] * 100) if analysis["total_queries"] > 0 else 0
         answer_status = "status-good" if data["answer_rate"] >= 80 else ("status-warning" if data["answer_rate"] >= 50 else "status-critical")
+        bar_rgba = "rgba(46,204,113,0.13)" if data["answer_rate"] >= 80 else ("rgba(243,156,18,0.13)" if data["answer_rate"] >= 50 else "rgba(231,76,60,0.13)")
+        ans_bar = f"background: linear-gradient(to right, {bar_rgba} {data['answer_rate']:.1f}%, transparent {data['answer_rate']:.1f}%)"
         html += f"""                    <tr>
                         <td>{intent}</td>
                         <td class="numeric">{data['count']}</td>
                         <td class="numeric">{pct:.1f}%</td>
-                        <td class="numeric"><span class="{answer_status}">{data['answer_rate']:.1f}%</span></td>
+                        <td class="numeric" style="{ans_bar}"><span class="{answer_status}">{data['answer_rate']:.1f}%</span></td>
                     </tr>
 """
 
@@ -416,12 +419,15 @@ def generate_html(analysis: Dict[str, Any]) -> str:
 
     for user, data in users_int_sorted[:10]:
         answer_status = "status-good" if data["answer_rate"] >= 80 else ("status-warning" if data["answer_rate"] >= 50 else "status-critical")
+        bar_rgba = "rgba(46,204,113,0.13)" if data["answer_rate"] >= 80 else ("rgba(243,156,18,0.13)" if data["answer_rate"] >= 50 else "rgba(231,76,60,0.13)")
+        ans_bar = f"background: linear-gradient(to right, {bar_rgba} {data['answer_rate']:.1f}%, transparent {data['answer_rate']:.1f}%)"
+        vid_bar = f"background: linear-gradient(to right, rgba(102,126,234,0.13) {data['video_pct']:.1f}%, transparent {data['video_pct']:.1f}%)"
         html += f"""                    <tr>
                         <td>{user}</td>
                         <td class="numeric">{data['count']}</td>
-                        <td class="numeric"><span class="{answer_status}">{data['answer_rate']:.1f}%</span></td>
+                        <td class="numeric" style="{ans_bar}"><span class="{answer_status}">{data['answer_rate']:.1f}%</span></td>
                         <td class="numeric">{data['avg_confidence']}</td>
-                        <td class="numeric">{data['video_pct']:.1f}%</td>
+                        <td class="numeric" style="{vid_bar}">{data['video_pct']:.1f}%</td>
                     </tr>
 """
 
@@ -448,13 +454,16 @@ def generate_html(analysis: Dict[str, Any]) -> str:
 
     for user, data in users_ext_sorted:
         answer_status = "status-good" if data["answer_rate"] >= 80 else ("status-warning" if data["answer_rate"] >= 50 else "status-critical")
+        bar_rgba = "rgba(46,204,113,0.13)" if data["answer_rate"] >= 80 else ("rgba(243,156,18,0.13)" if data["answer_rate"] >= 50 else "rgba(231,76,60,0.13)")
+        ans_bar = f"background: linear-gradient(to right, {bar_rgba} {data['answer_rate']:.1f}%, transparent {data['answer_rate']:.1f}%)"
+        vid_bar = f"background: linear-gradient(to right, rgba(102,126,234,0.13) {data['video_pct']:.1f}%, transparent {data['video_pct']:.1f}%)"
         html += f"""                    <tr>
                         <td>{user}</td>
-                        <td class="numeric">{data['domain']}</td>
+                        <td>{data['domain']}</td>
                         <td class="numeric">{data['count']}</td>
-                        <td class="numeric"><span class="{answer_status}">{data['answer_rate']:.1f}%</span></td>
+                        <td class="numeric" style="{ans_bar}"><span class="{answer_status}">{data['answer_rate']:.1f}%</span></td>
                         <td class="numeric">{data['avg_confidence']}</td>
-                        <td class="numeric">{data['video_pct']:.1f}%</td>
+                        <td class="numeric" style="{vid_bar}">{data['video_pct']:.1f}%</td>
                     </tr>
 """
 
@@ -531,10 +540,11 @@ def generate_html(analysis: Dict[str, Any]) -> str:
 """
 
     for intent, data in intent_video_sorted:
+        vid_bar = f"background: linear-gradient(to right, rgba(102,126,234,0.13) {data['video_pct']:.1f}%, transparent {data['video_pct']:.1f}%)"
         html += f"""                    <tr>
                         <td>{intent}</td>
                         <td class="numeric">{data['count']}</td>
-                        <td class="numeric">{data['video_pct']:.1f}%</td>
+                        <td class="numeric" style="{vid_bar}">{data['video_pct']:.1f}%</td>
                     </tr>
 """
 
@@ -558,10 +568,19 @@ def generate_html(analysis: Dict[str, Any]) -> str:
 
     for idk in analysis["idk_samples"]:
         score = float(idk.get('score', 0.0) or 0.0)
-        html += f"""                    <tr>
+        if score > 5:
+            row_style = ' style="background: rgba(46,204,113,0.07);"'
+            score_style = ' style="color: #2ecc71; font-weight: 600;"'
+        elif score < 1:
+            row_style = ' style="background: rgba(231,76,60,0.07);"'
+            score_style = ' style="color: #e74c3c;"'
+        else:
+            row_style = ''
+            score_style = ''
+        html += f"""                    <tr{row_style}>
                         <td>{idk['query']}</td>
                         <td>{idk['module']}</td>
-                        <td class="numeric">{score:.2f}</td>
+                        <td class="numeric"{score_style}>{score:.2f}</td>
                     </tr>
 """
 
