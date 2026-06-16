@@ -4561,6 +4561,10 @@ def _has_explicit_support(
             ]
         )
 
+    # Simple high-confidence bypass: strong search signal → trust it
+    if top1.get("score", 0.0) >= 3.0:
+        return True
+
     if intent == "setup":
         if _long_distinctive_terms_missing_from_evidence(query, joined):
             return False
