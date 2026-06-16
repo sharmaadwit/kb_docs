@@ -2180,6 +2180,72 @@ CONCEPT_REGISTRY: List[Dict] = [
         "page_display": "Sticky Chat / Assignment Enhancement",
         "module": "Agent Assist",
     },
+    {
+        "id": "waba_setup",
+        "aliases": [
+            "waba setup", "whatsapp business account", "whatsapp account setup",
+            "waba activation", "whatsapp account activation"
+        ],
+        "keywords": ["waba", "whatsapp business account", "account setup", "activation"],
+        "source_boosts": {
+            "whatsapp-onboarding-and-setup.md": 3.5,
+            "ctxa-waba-setup.md": 3.0,
+            "meta-waba-activation.md": 3.0,
+        },
+        "source_penalties": {},
+        "display": "WhatsApp Business Account Setup",
+        "page_display": "WhatsApp Business Account Setup",
+        "module": "WhatsApp",
+    },
+    {
+        "id": "whatsapp_onboarding",
+        "aliases": [
+            "whatsapp onboarding", "whatsapp channel onboarding", "whatsapp setup",
+            "whatsapp channel setup", "onboard whatsapp"
+        ],
+        "keywords": ["whatsapp", "onboarding", "channel", "setup", "activate"],
+        "source_boosts": {
+            "whatsapp-onboarding-and-setup.md": 4.0,
+        },
+        "source_penalties": {},
+        "display": "WhatsApp Channel Onboarding",
+        "page_display": "WhatsApp Channel Onboarding",
+        "module": "WhatsApp",
+    },
+    {
+        "id": "journey_builder_nodes",
+        "aliases": [
+            "journey builder nodes", "node types", "journey nodes", "builder nodes",
+            "script node", "text node", "journey node setup"
+        ],
+        "keywords": ["journey builder", "nodes", "node types", "script", "text node"],
+        "source_boosts": {
+            "journey-builder-nodes-overview.md": 4.0,
+            "script-node-setup.md": 3.5,
+            "text-node-configuration.md": 3.5,
+        },
+        "source_penalties": {},
+        "display": "Journey Builder Node Types",
+        "page_display": "Journey Builder Node Types",
+        "module": "Journey Builder",
+    },
+    {
+        "id": "custom_integrations",
+        "aliases": [
+            "custom integrations", "webhooks", "webhook setup", "custom integration",
+            "integration setup", "webhook testing", "peoplestrong integration"
+        ],
+        "keywords": ["custom", "integrations", "webhooks", "webhook", "integration"],
+        "source_boosts": {
+            "custom-integrations.md": 4.5,
+            "webhook-setup-and-testing.md": 3.5,
+            "peoplestrong-integration.md": 3.0,
+        },
+        "source_penalties": {},
+        "display": "Custom Integrations & Webhooks",
+        "page_display": "Custom Integrations & Webhooks",
+        "module": "Integrations",
+    },
 ]
 
 # Pre-build lookup by id
