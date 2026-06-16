@@ -1,4 +1,5 @@
 import json
+import math
 import re
 import uuid
 import base64
@@ -205,6 +206,43 @@ MIN_EVIDENCE_SCORE = 0.8  # Lowered from 1.2 to allow answers for queries with m
 MIN_CHUNK_SCORE = 0.3
 MIN_EVIDENCE_SCORE_UNBOOSTED = 1.0  # Lowered from 4.0 to allow more answers for non-entity-boosted queries
 MIN_EVIDENCE_SCORE_UNBOOSTED_MULTI = 0.8  # Lowered from 2.5 to allow fallback answers when len(evidence) >= 2
+
+
+def _compute_min_evidence_threshold(query: str, num_entities: int) -> float:
+    """
+    Compute dynamic confidence threshold based on query structure.
+    - Longer, specific queries can accept lower scores (disambiguated)
+    - Short, generic queries need higher scores (ambiguous)
+    - Entity-matched queries lower baseline
+    """
+    q = _normalize_query_for_match(query)
+    tokens = [t for t in re.findall(r"[a-z0-9]+", q)
+              if len(t) >= 3 and t not in SCORING_STOP_WORDS]
+
+    num_tokens = len(tokens)
+    has_entity_boost = num_entities > 0
+
+    # Base threshold logic:
+    if has_entity_boost:
+        # Entity-boosted: can be lower
+        if num_tokens >= 4:
+            return 0.5   # Specific + boosted: very permissive
+        elif num_tokens == 3:
+            return 0.6
+        elif num_tokens == 2:
+            return 0.7
+        else:
+            return 0.8
+    else:
+        # No entity boost: need higher confidence
+        if num_tokens >= 4:
+            return 1.0   # Very specific, no boost: still reasonable
+        elif num_tokens == 3:
+            return 1.15  # Moderate, no boost
+        elif num_tokens == 2:
+            return 1.3   # Generic two-word
+        else:
+            return 1.5   # Single word: very ambiguous
 
 # ---------------------------------------------------------------------------
 # Section 3 — Concept Registry
@@ -4490,14 +4528,20 @@ def _has_explicit_support(
         or (top1_overlap >= 0.5 and top1.get("score", 0.0) >= 0.85)  # moderate both
     )
 
-    effective_min = 0.8 if module_match else MIN_EVIDENCE_SCORE
-    if top1.get("score", 0.0) < effective_min and not strong_overlap and not hedged_ok:
+    # Compute dynamic threshold based on query specificity and entity boosts
+    threshold = _compute_min_evidence_threshold(query, len(entities or []))
+    if module_match:
+        # Module-matched queries can use slightly lower threshold (0.8 baseline)
+        threshold = min(threshold, 0.8)
+
+    if top1.get("score", 0.0) < threshold and not strong_overlap and not hedged_ok:
         return False
 
     if not module_match and not _top_evidence_has_entity_boost(evidence, entities or []):
-        unboosted_floor = MIN_EVIDENCE_SCORE_UNBOOSTED
+        unboosted_floor = _compute_min_evidence_threshold(query, 0)  # Recompute without entity boost
         if len(evidence) >= 2 and top1_overlap >= 0.25:
-            unboosted_floor = MIN_EVIDENCE_SCORE_UNBOOSTED_MULTI
+            # Multi-evidence allows slight relaxation
+            unboosted_floor = min(unboosted_floor, MIN_EVIDENCE_SCORE_UNBOOSTED_MULTI)
         if (
             intent != "overview"
             and top1.get("score", 0.0) < unboosted_floor

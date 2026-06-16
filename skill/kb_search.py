@@ -1,4 +1,5 @@
 import json
+import math
 import re
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
@@ -1327,15 +1328,21 @@ def _score_chunk(
 
     length_divisor = max(1.0, len(text) / 1500.0)
 
+    token_counts = {}
     for token in re.findall(r"[a-z0-9&+-]+", q):
         if len(token) < 3 or token in SCORING_STOP_WORDS:
             continue
+        token_counts[token] = token_counts.get(token, 0) + 1
+
+    for token, count in token_counts.items():
+        tf_boost = math.log(1 + count)  # Sublinear: log(2)=0.693, log(3)=1.099
+
         if token in heading:
-            score += 0.25
+            score += 0.25 * tf_boost
         if token in source:
-            score += 0.25
+            score += 0.25 * tf_boost
         if token in text:
-            score += 0.05 / length_divisor
+            score += (0.05 / length_divisor) * tf_boost
 
     if explicit_module != "General" and explicit_module.lower() in _module_from_source(source).lower():
         score += 0.35
