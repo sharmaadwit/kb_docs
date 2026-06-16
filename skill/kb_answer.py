@@ -2289,6 +2289,69 @@ CONCEPT_REGISTRY: List[Dict] = [
 # Pre-build lookup by id
 _CONCEPT_INDEX: Dict[str, Dict] = {c["id"]: c for c in CONCEPT_REGISTRY}
 
+# IDF (Inverse Document Frequency) index for concept boosts
+# Built lazily on first access to boost rare/specific terms over common ones
+_CONCEPT_IDF_CACHE = None
+
+
+def _build_concept_idf_index(chunks: List[Dict]) -> Dict[str, float]:
+    """
+    Build IDF (Inverse Document Frequency) multiplier for each concept.
+    Concepts with fewer matching documents get higher boost multipliers.
+
+    Returns: {concept_id: idf_multiplier}
+    Example: {"journey_builder": 1.5, "whatsapp": 1.1}
+
+    IDF formula: log(total_docs / matching_count)
+    - Rare terms (few matching docs) → high IDF multiplier (1.2-1.5)
+    - Common terms (many matching docs) → low IDF multiplier (0.8-1.1)
+    """
+    if not CONCEPT_REGISTRY or not chunks:
+        return {}
+
+    total_docs = len(chunks)
+    concept_idf = {}
+
+    for concept in CONCEPT_REGISTRY:
+        concept_id = concept.get("id")
+        if not concept_id:
+            continue
+
+        # Count how many chunks match this concept's source_boosts
+        matching_sources = concept.get("source_boosts", {}).keys()
+        matching_count = sum(
+            1 for chunk in chunks
+            if any(src in str(chunk.get("source", "")).lower() for src in matching_sources)
+        )
+
+        # Avoid division by zero; if no sources are boosted, use neutral multiplier
+        if matching_count == 0:
+            concept_idf[concept_id] = 1.0
+            continue
+
+        # IDF formula: log(total_docs / matching_count)
+        # log(100 / 5) = 2.996 ≈ 3.0 (rare term)
+        # log(100 / 20) = 1.609 ≈ 1.6 (common term)
+        idf = math.log(max(1, total_docs / matching_count))
+
+        # Clamp to reasonable range [0.8, 1.5] to avoid extreme boosting
+        # that would override careful penalty tuning
+        concept_idf[concept_id] = max(0.8, min(1.5, idf))
+
+    return concept_idf
+
+
+def _get_concept_idf(chunks: List[Dict]) -> Dict[str, float]:
+    """
+    Lazy-load IDF index on first access.
+    Since chunks are only available within kb_answer(), we build on first call.
+    """
+    global _CONCEPT_IDF_CACHE
+    if _CONCEPT_IDF_CACHE is None:
+        _CONCEPT_IDF_CACHE = _build_concept_idf_index(chunks)
+    return _CONCEPT_IDF_CACHE
+
+
 # ---------------------------------------------------------------------------
 # Section 4 — Compare overrides for known multi-concept pairs
 # ---------------------------------------------------------------------------
@@ -3932,6 +3995,7 @@ def _detect_intents(query: str) -> List[str]:
 
 def _score_chunk(
     query: str, chunk: Dict, entities: List[Dict], explicit_module: str,
+    chunks_for_idf: Optional[List[Dict]] = None,
 ) -> float:
     q = _normalize_query_for_match(query)
     source = str(chunk.get("source") or chunk.get("path") or "").lower()
@@ -3968,10 +4032,17 @@ def _score_chunk(
             score -= 4.0
 
     has_entity_boost = False
+    # Get IDF multipliers for this scoring pass (lazy-loaded)
+    concept_idf = _get_concept_idf(chunks_for_idf) if chunks_for_idf else {}
+
     for entity in entities:
+        entity_id = entity.get("id")
+        idf_mult = concept_idf.get(entity_id, 1.0) if entity_id else 1.0
+
         for slug, boost in entity.get("source_boosts", {}).items():
             if slug in source:
-                score += boost
+                # Apply IDF-weighted boost: high IDF (rare term) = stronger boost
+                score += boost * idf_mult
                 has_entity_boost = True
         for slug, penalty in entity.get("source_penalties", {}).items():
             if slug in source:
@@ -5592,7 +5663,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
 
     scored = []
     for c in product_chunks:
-        s = _score_chunk(query, c, entities, explicit_module)
+        s = _score_chunk(query, c, entities, explicit_module, chunks_for_idf=chunks)
         if s >= MIN_CHUNK_SCORE:
             row = dict(c)
             row["score"] = s
