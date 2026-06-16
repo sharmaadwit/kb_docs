@@ -4468,6 +4468,13 @@ def _has_explicit_support(
     query: str, intent: str, evidence: List[Dict], lines: List[str],
     entities: List[Dict] = None, explicit_module: str = "General",
 ) -> bool:
+    # HIGH-SCORE BYPASS: must be first — before evidence-empty check, score floors,
+    # and all intent-specific logic. _select_evidence may reorder chunks (e.g. for
+    # setup intent it prefers action-oriented rows), so evidence[0].score may not
+    # reflect the top search score. Check ALL evidence items.
+    if evidence and any(e.get("score", 0.0) >= 3.0 for e in evidence):
+        return True
+
     if not evidence:
         return False
     top1 = evidence[0]
@@ -4513,11 +4520,6 @@ def _has_explicit_support(
 
     if _is_agent_assist_api_inventory_query(qn):
         return _evidence_mentions_agent_assist_api_surface(joined)
-
-    # HIGH-SCORE BYPASS: before intent-specific checks so setup/behavior/definition
-    # validation cannot reject high-confidence search results
-    if top1.get("score", 0.0) >= 3.0:
-        return True
 
     if intent != "overview":
         # Lowered coverage thresholds to allow answers for chunked content that may be missing some key terms
