@@ -49,6 +49,7 @@
             border-bottom: 2px solid #ddd;
             font-size: 0.9em;
         }
+        th.numeric { text-align: right; }
         td { padding: 12px; border-bottom: 1px solid #eee; font-size: 0.95em; }
         td.numeric { text-align: right; }
         tr:hover { background: #f8f9fa; }
@@ -61,7 +62,7 @@
     <div class="container">
         <div class="header">
             <h1>📊 Comprehensive KB Analytics Dashboard</h1>
-            <p>Live Langfuse Telemetry • Last Updated: 2026-06-16 14:10:40 UTC</p>
+            <p>Live Langfuse Telemetry • Last Updated: 2026-06-16 14:13:52 UTC</p>
         </div>
 
         <!-- Global Metrics -->
@@ -121,9 +122,9 @@
                 <thead>
                     <tr>
                         <th>Module</th>
-                        <th>Query Count</th>
-                        <th>% of Total</th>
-                        <th>Avg Confidence</th>
+                        <th class="numeric">Query Count</th>
+                        <th class="numeric">% of Total</th>
+                        <th class="numeric">Avg Confidence</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -204,9 +205,9 @@
                 <thead>
                     <tr>
                         <th>Intent</th>
-                        <th>Queries</th>
-                        <th>% of Total</th>
-                        <th>Answered</th>
+                        <th class="numeric">Queries</th>
+                        <th class="numeric">% of Total</th>
+                        <th class="numeric">Answered</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -276,15 +277,15 @@
 
         <!-- User Segmentation -->
         <div class="section">
-            <h2>👥 User Segmentation (Internal Domains)</h2>
+            <h2>👥 User Segmentation (Top 10 Internal)</h2>
             <table>
                 <thead>
                     <tr>
                         <th>User</th>
-                        <th>Queries</th>
-                        <th>Answer Rate</th>
-                        <th>Avg Confidence</th>
-                        <th>Video Attached %</th>
+                        <th class="numeric">Queries</th>
+                        <th class="numeric">Answer Rate</th>
+                        <th class="numeric">Avg Confidence</th>
+                        <th class="numeric">Video Attached %</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -344,28 +345,42 @@
                         <td class="numeric">0.53</td>
                         <td class="numeric">0.0%</td>
                     </tr>
+                    <tr>
+                        <td>ananya.a@gupshup.io</td>
+                        <td class="numeric">6</td>
+                        <td class="numeric"><span class="status-critical">33.3%</span></td>
+                        <td class="numeric">0.27</td>
+                        <td class="numeric">0.0%</td>
+                    </tr>
+                    <tr>
+                        <td>eduardo.avila@gupshup.io</td>
+                        <td class="numeric">5</td>
+                        <td class="numeric"><span class="status-good">100.0%</span></td>
+                        <td class="numeric">7.67</td>
+                        <td class="numeric">0.0%</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
 
         <!-- External Domain Users -->
         <div class="section">
-            <h2>🌐 External Domain Users</h2>
+            <h2>🌐 External Users</h2>
             <table>
                 <thead>
                     <tr>
                         <th>User Email</th>
                         <th>Domain</th>
-                        <th>Queries</th>
-                        <th>Answer Rate</th>
-                        <th>Avg Confidence</th>
-                        <th>Video Attached %</th>
+                        <th class="numeric">Queries</th>
+                        <th class="numeric">Answer Rate</th>
+                        <th class="numeric">Avg Confidence</th>
+                        <th class="numeric">Video Attached %</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>nishchal.motwani@ampdlocal.com</td>
-                        <td>ampdlocal.com</td>
+                        <td class="numeric">ampdlocal.com</td>
                         <td class="numeric">14</td>
                         <td class="numeric"><span class="status-critical">28.6%</span></td>
                         <td class="numeric">1.78</td>
@@ -373,7 +388,7 @@
                     </tr>
                     <tr>
                         <td>devendra@apporbits.com</td>
-                        <td>apporbits.com</td>
+                        <td class="numeric">apporbits.com</td>
                         <td class="numeric">4</td>
                         <td class="numeric"><span class="status-warning">50.0%</span></td>
                         <td class="numeric">2.89</td>
@@ -381,7 +396,7 @@
                     </tr>
                     <tr>
                         <td>admin@bloomerce.ai</td>
-                        <td>bloomerce.ai</td>
+                        <td class="numeric">bloomerce.ai</td>
                         <td class="numeric">3</td>
                         <td class="numeric"><span class="status-good">100.0%</span></td>
                         <td class="numeric">0.0</td>
@@ -389,7 +404,7 @@
                     </tr>
                     <tr>
                         <td>adityagupta318@gmail.com</td>
-                        <td>gmail.com</td>
+                        <td class="numeric">gmail.com</td>
                         <td class="numeric">2</td>
                         <td class="numeric"><span class="status-critical">0.0%</span></td>
                         <td class="numeric">0.2</td>
@@ -397,7 +412,7 @@
                     </tr>
                     <tr>
                         <td>sales@indiatradersagra.com</td>
-                        <td>indiatradersagra.com</td>
+                        <td class="numeric">indiatradersagra.com</td>
                         <td class="numeric">1</td>
                         <td class="numeric"><span class="status-good">100.0%</span></td>
                         <td class="numeric">0.85</td>
@@ -414,7 +429,7 @@
                 <thead>
                     <tr>
                         <th>Metric</th>
-                        <th>Value</th>
+                        <th class="numeric">Value</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -441,8 +456,8 @@
                 <thead>
                     <tr>
                         <th>Intent Count</th>
-                        <th>Queries</th>
-                        <th>Answer Rate</th>
+                        <th class="numeric">Queries</th>
+                        <th class="numeric">Answer Rate</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -467,8 +482,8 @@
                 <thead>
                     <tr>
                         <th>Intent</th>
-                        <th>Queries</th>
-                        <th>Video Attached %</th>
+                        <th class="numeric">Queries</th>
+                        <th class="numeric">Video Attached %</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -526,11 +541,127 @@
             </table>
         </div>
 
+        <!-- Sample of Remaining IDK Queries -->
+        <div class="section">
+            <h2>❌ Sample of Remaining IDK Queries (Top 20)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Query</th>
+                        <th>Module</th>
+                        <th>Top Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>In Channels > WhatsApp, I only see Edit. How do I disconnect the WhatsApp channel connection?</td>
+                        <td>Channels</td>
+                        <td class="numeric">1.55</td>
+                    </tr>
+                    <tr>
+                        <td>How to disconnect or remove a current WhatsApp Business Account / WhatsApp channel connection in Gup</td>
+                        <td>General</td>
+                        <td class="numeric">3.90</td>
+                    </tr>
+                    <tr>
+                        <td>How do I disconnect my WhatsApp Business Account (WABA) or channel connection from Gupshup Console? </td>
+                        <td>General</td>
+                        <td class="numeric">4.20</td>
+                    </tr>
+                    <tr>
+                        <td>User cannot find Disconnect option to disconnect WhatsApp channel/WABA from Console. Where else is d</td>
+                        <td>General</td>
+                        <td class="numeric">3.95</td>
+                    </tr>
+                    <tr>
+                        <td>How do I disconnect my whatsapp?</td>
+                        <td>Bot Studio</td>
+                        <td class="numeric">0.55</td>
+                    </tr>
+                    <tr>
+                        <td>How do I create an AI Admin FAQ bot from a website URL and connect it to a journey?</td>
+                        <td>AI Admin</td>
+                        <td class="numeric">11.65</td>
+                    </tr>
+                    <tr>
+                        <td>Does Gupshup support WhatsApp Communities?</td>
+                        <td>General</td>
+                        <td class="numeric">0.85</td>
+                    </tr>
+                    <tr>
+                        <td>What is sticky chat in Agent Assist?</td>
+                        <td>Agent Assist</td>
+                        <td class="numeric">1.45</td>
+                    </tr>
+                    <tr>
+                        <td>How to download leads from Gupshup Console</td>
+                        <td>General</td>
+                        <td class="numeric">0.85</td>
+                    </tr>
+                    <tr>
+                        <td>What is an Enterprise WhatsApp account / Enterprise account in Gupshup onboarding?</td>
+                        <td>General</td>
+                        <td class="numeric">3.80</td>
+                    </tr>
+                    <tr>
+                        <td>What is Partner portal in Gupshup for onboarding WhatsApp?</td>
+                        <td>CTX</td>
+                        <td class="numeric">1.10</td>
+                    </tr>
+                    <tr>
+                        <td>Explain the 'All agents' section in SuperAgent: what it lists, filters, actions (create, manage), pe</td>
+                        <td>SuperAgent</td>
+                        <td class="numeric">6.25</td>
+                    </tr>
+                    <tr>
+                        <td>In Gupshup Console WhatsApp onboarding, how does a customer generate the API key to start using What</td>
+                        <td>Bot Studio</td>
+                        <td class="numeric">1.70</td>
+                    </tr>
+                    <tr>
+                        <td>What short domain should be whitelisted as CTA on DLT for Gupshup? Which short domains are used for </td>
+                        <td>Bot Studio</td>
+                        <td class="numeric">1.10</td>
+                    </tr>
+                    <tr>
+                        <td>Does Journey Builder support a native Google Sheets integration to re-check a spreadsheet row before</td>
+                        <td>General</td>
+                        <td class="numeric">0.00</td>
+                    </tr>
+                    <tr>
+                        <td>Campaign Manager or Journey Builder support for triggered WhatsApp messages based on customer profil</td>
+                        <td>Bot Studio</td>
+                        <td class="numeric">5.55</td>
+                    </tr>
+                    <tr>
+                        <td>PeopleStrong API REST webhook custom integration can be used with Gupshup external system sends even</td>
+                        <td>Bot Studio</td>
+                        <td class="numeric">8.05</td>
+                    </tr>
+                    <tr>
+                        <td>What is Custom Integrations / custom connector in Gupshup Console, and how does it work with events </td>
+                        <td>Bot Studio</td>
+                        <td class="numeric">1.75</td>
+                    </tr>
+                    <tr>
+                        <td>In Gupshup Console, if I broadcast a campaign is it possible to stop or pause it?</td>
+                        <td>Overview</td>
+                        <td class="numeric">1.15</td>
+                    </tr>
+                    <tr>
+                        <td>On Gupshup, where do I see client id and secret</td>
+                        <td>Channels</td>
+                        <td class="numeric">0.40</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <div class="footer">
             <div class="data-source">
                 <strong>Data Source:</strong> Live Langfuse API (Real-time telemetry)
                 <br>
-                <strong>Dashboard Generated:</strong> 2026-06-16 14:10:40 UTC
+                <strong>Dashboard Generated:</strong> 2026-06-16 14:13:52 UTC
                 <br>
                 <strong>Coverage:</strong> Last 7 days of production queries
             </div>

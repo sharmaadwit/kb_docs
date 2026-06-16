@@ -82,6 +82,7 @@ def analyze_traces(traces: List[Dict]) -> Dict[str, Any]:
     intent_multi = defaultdict(lambda: {"count": 0, "answered": 0})
     intent_video = defaultdict(lambda: {"count": 0, "video": 0})
     daily_metrics = defaultdict(lambda: {"total": 0, "answered": 0, "idk": 0})
+    idk_samples = []
 
     for trace in traces:
         meta = trace.get("metadata") or {}
@@ -94,6 +95,13 @@ def analyze_traces(traces: List[Dict]) -> Dict[str, Any]:
             answered += 1
         else:
             idk_count += 1
+            query = meta.get("query", "").strip()
+            if query:
+                idk_samples.append({
+                    "query": query[:100],
+                    "module": meta.get("module_label", "Unknown"),
+                    "score": meta.get("top_score") or 0.0,
+                })
 
         # Module tracking
         module = meta.get("module_label", "Unknown")
@@ -197,6 +205,7 @@ def analyze_traces(traces: List[Dict]) -> Dict[str, Any]:
             "video_pct": round(v["video"] / v["count"] * 100, 1) if v["count"] > 0 else 0,
         } for k, v in intent_video.items()},
         "daily": dict(daily_metrics),
+        "idk_samples": idk_samples[:20],
     }
 
 def generate_html(analysis: Dict[str, Any]) -> str:
@@ -264,6 +273,7 @@ def generate_html(analysis: Dict[str, Any]) -> str:
             border-bottom: 2px solid #ddd;
             font-size: 0.9em;
         }}
+        th.numeric {{ text-align: right; }}
         td {{ padding: 12px; border-bottom: 1px solid #eee; font-size: 0.95em; }}
         td.numeric {{ text-align: right; }}
         tr:hover {{ background: #f8f9fa; }}
@@ -336,9 +346,9 @@ def generate_html(analysis: Dict[str, Any]) -> str:
                 <thead>
                     <tr>
                         <th>Module</th>
-                        <th>Query Count</th>
-                        <th>% of Total</th>
-                        <th>Avg Confidence</th>
+                        <th class="numeric">Query Count</th>
+                        <th class="numeric">% of Total</th>
+                        <th class="numeric">Avg Confidence</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -365,9 +375,9 @@ def generate_html(analysis: Dict[str, Any]) -> str:
                 <thead>
                     <tr>
                         <th>Intent</th>
-                        <th>Queries</th>
-                        <th>% of Total</th>
-                        <th>Answered</th>
+                        <th class="numeric">Queries</th>
+                        <th class="numeric">% of Total</th>
+                        <th class="numeric">Answered</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -390,21 +400,21 @@ def generate_html(analysis: Dict[str, Any]) -> str:
 
         <!-- User Segmentation -->
         <div class="section">
-            <h2>👥 User Segmentation (Internal Domains)</h2>
+            <h2>👥 User Segmentation (Top 10 Internal)</h2>
             <table>
                 <thead>
                     <tr>
                         <th>User</th>
-                        <th>Queries</th>
-                        <th>Answer Rate</th>
-                        <th>Avg Confidence</th>
-                        <th>Video Attached %</th>
+                        <th class="numeric">Queries</th>
+                        <th class="numeric">Answer Rate</th>
+                        <th class="numeric">Avg Confidence</th>
+                        <th class="numeric">Video Attached %</th>
                     </tr>
                 </thead>
                 <tbody>
 """
 
-    for user, data in users_int_sorted[:8]:
+    for user, data in users_int_sorted[:10]:
         answer_status = "status-good" if data["answer_rate"] >= 80 else ("status-warning" if data["answer_rate"] >= 50 else "status-critical")
         html += f"""                    <tr>
                         <td>{user}</td>
@@ -421,16 +431,16 @@ def generate_html(analysis: Dict[str, Any]) -> str:
 
         <!-- External Domain Users -->
         <div class="section">
-            <h2>🌐 External Domain Users</h2>
+            <h2>🌐 External Users</h2>
             <table>
                 <thead>
                     <tr>
                         <th>User Email</th>
                         <th>Domain</th>
-                        <th>Queries</th>
-                        <th>Answer Rate</th>
-                        <th>Avg Confidence</th>
-                        <th>Video Attached %</th>
+                        <th class="numeric">Queries</th>
+                        <th class="numeric">Answer Rate</th>
+                        <th class="numeric">Avg Confidence</th>
+                        <th class="numeric">Video Attached %</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -440,7 +450,7 @@ def generate_html(analysis: Dict[str, Any]) -> str:
         answer_status = "status-good" if data["answer_rate"] >= 80 else ("status-warning" if data["answer_rate"] >= 50 else "status-critical")
         html += f"""                    <tr>
                         <td>{user}</td>
-                        <td>{data['domain']}</td>
+                        <td class="numeric">{data['domain']}</td>
                         <td class="numeric">{data['count']}</td>
                         <td class="numeric"><span class="{answer_status}">{data['answer_rate']:.1f}%</span></td>
                         <td class="numeric">{data['avg_confidence']}</td>
@@ -459,7 +469,7 @@ def generate_html(analysis: Dict[str, Any]) -> str:
                 <thead>
                     <tr>
                         <th>Metric</th>
-                        <th>Value</th>
+                        <th class="numeric">Value</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -486,8 +496,8 @@ def generate_html(analysis: Dict[str, Any]) -> str:
                 <thead>
                     <tr>
                         <th>Intent Count</th>
-                        <th>Queries</th>
-                        <th>Answer Rate</th>
+                        <th class="numeric">Queries</th>
+                        <th class="numeric">Answer Rate</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -513,8 +523,8 @@ def generate_html(analysis: Dict[str, Any]) -> str:
                 <thead>
                     <tr>
                         <th>Intent</th>
-                        <th>Queries</th>
-                        <th>Video Attached %</th>
+                        <th class="numeric">Queries</th>
+                        <th class="numeric">Video Attached %</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -525,6 +535,33 @@ def generate_html(analysis: Dict[str, Any]) -> str:
                         <td>{intent}</td>
                         <td class="numeric">{data['count']}</td>
                         <td class="numeric">{data['video_pct']:.1f}%</td>
+                    </tr>
+"""
+
+    html += f"""                </tbody>
+            </table>
+        </div>
+
+        <!-- Sample of Remaining IDK Queries -->
+        <div class="section">
+            <h2>❌ Sample of Remaining IDK Queries (Top 20)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Query</th>
+                        <th>Module</th>
+                        <th>Top Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+"""
+
+    for idk in analysis["idk_samples"]:
+        score = float(idk.get('score', 0.0) or 0.0)
+        html += f"""                    <tr>
+                        <td>{idk['query']}</td>
+                        <td>{idk['module']}</td>
+                        <td class="numeric">{score:.2f}</td>
                     </tr>
 """
 

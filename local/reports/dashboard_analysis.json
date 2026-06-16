@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-16T14:10:40.877558",
+  "timestamp": "2026-06-16T14:13:52.156084",
   "total_queries": 106,
   "answered": 50,
   "idk": 56,
@@ -505,5 +505,107 @@
       "answered": 4,
       "idk": 8
     }
-  }
+  },
+  "idk_samples": [
+    {
+      "query": "In Channels > WhatsApp, I only see Edit. How do I disconnect the WhatsApp channel connection?",
+      "module": "Channels",
+      "score": 1.5500000000000003
+    },
+    {
+      "query": "How to disconnect or remove a current WhatsApp Business Account / WhatsApp channel connection in Gup",
+      "module": "General",
+      "score": 3.9000000000000004
+    },
+    {
+      "query": "How do I disconnect my WhatsApp Business Account (WABA) or channel connection from Gupshup Console? ",
+      "module": "General",
+      "score": 4.2
+    },
+    {
+      "query": "User cannot find Disconnect option to disconnect WhatsApp channel/WABA from Console. Where else is d",
+      "module": "General",
+      "score": 3.95
+    },
+    {
+      "query": "How do I disconnect my whatsapp?",
+      "module": "Bot Studio",
+      "score": 0.55
+    },
+    {
+      "query": "How do I create an AI Admin FAQ bot from a website URL and connect it to a journey?",
+      "module": "AI Admin",
+      "score": 11.65
+    },
+    {
+      "query": "Does Gupshup support WhatsApp Communities?",
+      "module": "General",
+      "score": 0.8500000000000001
+    },
+    {
+      "query": "What is sticky chat in Agent Assist?",
+      "module": "Agent Assist",
+      "score": 1.4500000000000002
+    },
+    {
+      "query": "How to download leads from Gupshup Console",
+      "module": "General",
+      "score": 0.8500000000000001
+    },
+    {
+      "query": "What is an Enterprise WhatsApp account / Enterprise account in Gupshup onboarding?",
+      "module": "General",
+      "score": 3.8
+    },
+    {
+      "query": "What is Partner portal in Gupshup for onboarding WhatsApp?",
+      "module": "CTX",
+      "score": 1.1
+    },
+    {
+      "query": "Explain the 'All agents' section in SuperAgent: what it lists, filters, actions (create, manage), pe",
+      "module": "SuperAgent",
+      "score": 6.25
+    },
+    {
+      "query": "In Gupshup Console WhatsApp onboarding, how does a customer generate the API key to start using What",
+      "module": "Bot Studio",
+      "score": 1.7000000000000002
+    },
+    {
+      "query": "What short domain should be whitelisted as CTA on DLT for Gupshup? Which short domains are used for ",
+      "module": "Bot Studio",
+      "score": 1.1
+    },
+    {
+      "query": "Does Journey Builder support a native Google Sheets integration to re-check a spreadsheet row before",
+      "module": "General",
+      "score": 0.0
+    },
+    {
+      "query": "Campaign Manager or Journey Builder support for triggered WhatsApp messages based on customer profil",
+      "module": "Bot Studio",
+      "score": 5.550000000000001
+    },
+    {
+      "query": "PeopleStrong API REST webhook custom integration can be used with Gupshup external system sends even",
+      "module": "Bot Studio",
+      "score": 8.05
+    },
+    {
+      "query": "What is Custom Integrations / custom connector in Gupshup Console, and how does it work with events ",
+      "module": "Bot Studio",
+      "score": 1.75
+    },
+    {
+      "query": "In Gupshup Console, if I broadcast a campaign is it possible to stop or pause it?",
+      "module": "Overview",
+      "score": 1.1500000000000001
+    },
+    {
+      "query": "On Gupshup, where do I see client id and secret",
+      "module": "Channels",
+      "score": 0.39999999999999997
+    }
+  ]
 }
