@@ -1,5 +1,4 @@
 import json
-import math
 import re
 import uuid
 import base64
@@ -206,43 +205,6 @@ MIN_EVIDENCE_SCORE = 0.8  # Lowered from 1.2 to allow answers for queries with m
 MIN_CHUNK_SCORE = 0.3
 MIN_EVIDENCE_SCORE_UNBOOSTED = 1.0  # Lowered from 4.0 to allow more answers for non-entity-boosted queries
 MIN_EVIDENCE_SCORE_UNBOOSTED_MULTI = 0.8  # Lowered from 2.5 to allow fallback answers when len(evidence) >= 2
-
-
-def _compute_min_evidence_threshold(query: str, num_entities: int) -> float:
-    """
-    Compute dynamic confidence threshold based on query structure.
-    - Longer, specific queries can accept lower scores (disambiguated)
-    - Short, generic queries need higher scores (ambiguous)
-    - Entity-matched queries lower baseline
-    """
-    q = _normalize_query_for_match(query)
-    tokens = [t for t in re.findall(r"[a-z0-9]+", q)
-              if len(t) >= 3 and t not in SCORING_STOP_WORDS]
-
-    num_tokens = len(tokens)
-    has_entity_boost = num_entities > 0
-
-    # Base threshold logic:
-    if has_entity_boost:
-        # Entity-boosted: can be lower
-        if num_tokens >= 4:
-            return 0.5   # Specific + boosted: very permissive
-        elif num_tokens == 3:
-            return 0.6
-        elif num_tokens == 2:
-            return 0.7
-        else:
-            return 0.8
-    else:
-        # No entity boost: need higher confidence
-        if num_tokens >= 4:
-            return 1.0   # Very specific, no boost: still reasonable
-        elif num_tokens == 3:
-            return 1.15  # Moderate, no boost
-        elif num_tokens == 2:
-            return 1.3   # Generic two-word
-        else:
-            return 1.5   # Single word: very ambiguous
 
 # ---------------------------------------------------------------------------
 # Section 3 — Concept Registry
@@ -2289,69 +2251,6 @@ CONCEPT_REGISTRY: List[Dict] = [
 # Pre-build lookup by id
 _CONCEPT_INDEX: Dict[str, Dict] = {c["id"]: c for c in CONCEPT_REGISTRY}
 
-# IDF (Inverse Document Frequency) index for concept boosts
-# Built lazily on first access to boost rare/specific terms over common ones
-_CONCEPT_IDF_CACHE = None
-
-
-def _build_concept_idf_index(chunks: List[Dict]) -> Dict[str, float]:
-    """
-    Build IDF (Inverse Document Frequency) multiplier for each concept.
-    Concepts with fewer matching documents get higher boost multipliers.
-
-    Returns: {concept_id: idf_multiplier}
-    Example: {"journey_builder": 1.5, "whatsapp": 1.1}
-
-    IDF formula: log(total_docs / matching_count)
-    - Rare terms (few matching docs) → high IDF multiplier (1.2-1.5)
-    - Common terms (many matching docs) → low IDF multiplier (0.8-1.1)
-    """
-    if not CONCEPT_REGISTRY or not chunks:
-        return {}
-
-    total_docs = len(chunks)
-    concept_idf = {}
-
-    for concept in CONCEPT_REGISTRY:
-        concept_id = concept.get("id")
-        if not concept_id:
-            continue
-
-        # Count how many chunks match this concept's source_boosts
-        matching_sources = concept.get("source_boosts", {}).keys()
-        matching_count = sum(
-            1 for chunk in chunks
-            if any(src in str(chunk.get("source", "")).lower() for src in matching_sources)
-        )
-
-        # Avoid division by zero; if no sources are boosted, use neutral multiplier
-        if matching_count == 0:
-            concept_idf[concept_id] = 1.0
-            continue
-
-        # IDF formula: log(total_docs / matching_count)
-        # log(100 / 5) = 2.996 ≈ 3.0 (rare term)
-        # log(100 / 20) = 1.609 ≈ 1.6 (common term)
-        idf = math.log(max(1, total_docs / matching_count))
-
-        # Clamp to reasonable range [0.8, 1.5] to avoid extreme boosting
-        # that would override careful penalty tuning
-        concept_idf[concept_id] = max(0.8, min(1.5, idf))
-
-    return concept_idf
-
-
-def _get_concept_idf(chunks: List[Dict]) -> Dict[str, float]:
-    """
-    Lazy-load IDF index on first access.
-    Since chunks are only available within kb_answer(), we build on first call.
-    """
-    global _CONCEPT_IDF_CACHE
-    if _CONCEPT_IDF_CACHE is None:
-        _CONCEPT_IDF_CACHE = _build_concept_idf_index(chunks)
-    return _CONCEPT_IDF_CACHE
-
-
 # ---------------------------------------------------------------------------
 # Section 4 — Compare overrides for known multi-concept pairs
 # ---------------------------------------------------------------------------
@@ -3995,7 +3894,6 @@ def _detect_intents(query: str) -> List[str]:
 
 def _score_chunk(
     query: str, chunk: Dict, entities: List[Dict], explicit_module: str,
-    chunks_for_idf: Optional[List[Dict]] = None,
 ) -> float:
     q = _normalize_query_for_match(query)
     source = str(chunk.get("source") or chunk.get("path") or "").lower()
@@ -4032,17 +3930,10 @@ def _score_chunk(
             score -= 4.0
 
     has_entity_boost = False
-    # Get IDF multipliers for this scoring pass (lazy-loaded)
-    concept_idf = _get_concept_idf(chunks_for_idf) if chunks_for_idf else {}
-
     for entity in entities:
-        entity_id = entity.get("id")
-        idf_mult = concept_idf.get(entity_id, 1.0) if entity_id else 1.0
-
         for slug, boost in entity.get("source_boosts", {}).items():
             if slug in source:
-                # Apply IDF-weighted boost: high IDF (rare term) = stronger boost
-                score += boost * idf_mult
+                score += boost
                 has_entity_boost = True
         for slug, penalty in entity.get("source_penalties", {}).items():
             if slug in source:
@@ -4599,20 +4490,14 @@ def _has_explicit_support(
         or (top1_overlap >= 0.5 and top1.get("score", 0.0) >= 0.85)  # moderate both
     )
 
-    # Compute dynamic threshold based on query specificity and entity boosts
-    threshold = _compute_min_evidence_threshold(query, len(entities or []))
-    if module_match:
-        # Module-matched queries can use slightly lower threshold (0.8 baseline)
-        threshold = min(threshold, 0.8)
-
-    if top1.get("score", 0.0) < threshold and not strong_overlap and not hedged_ok:
+    effective_min = 0.8 if module_match else MIN_EVIDENCE_SCORE
+    if top1.get("score", 0.0) < effective_min and not strong_overlap and not hedged_ok:
         return False
 
     if not module_match and not _top_evidence_has_entity_boost(evidence, entities or []):
-        unboosted_floor = _compute_min_evidence_threshold(query, 0)  # Recompute without entity boost
+        unboosted_floor = MIN_EVIDENCE_SCORE_UNBOOSTED
         if len(evidence) >= 2 and top1_overlap >= 0.25:
-            # Multi-evidence allows slight relaxation
-            unboosted_floor = min(unboosted_floor, MIN_EVIDENCE_SCORE_UNBOOSTED_MULTI)
+            unboosted_floor = MIN_EVIDENCE_SCORE_UNBOOSTED_MULTI
         if (
             intent != "overview"
             and top1.get("score", 0.0) < unboosted_floor
@@ -4740,10 +4625,6 @@ def _has_explicit_support(
 
     if intent == "overview":
         return bool(evidence)
-
-    # High-score bypass: Accept high-confidence results even if they fail other checks
-    if top1.get("score", 0.0) >= 5.0 and top1_overlap >= 0.35:
-        return True
 
     return bool(lines)
 
@@ -5663,7 +5544,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
 
     scored = []
     for c in product_chunks:
-        s = _score_chunk(query, c, entities, explicit_module, chunks_for_idf=chunks)
+        s = _score_chunk(query, c, entities, explicit_module)
         if s >= MIN_CHUNK_SCORE:
             row = dict(c)
             row["score"] = s
