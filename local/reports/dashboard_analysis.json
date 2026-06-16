@@ -1,11 +1,12 @@
 {
-  "timestamp": "2026-06-16T14:08:30.435486",
+  "timestamp": "2026-06-16T14:10:40.877558",
   "total_queries": 106,
   "answered": 50,
   "idk": 56,
   "idk_rate": 52.8,
   "answer_rate": 47.2,
   "avg_confidence": 3.15,
+  "video_rate": 50.0,
   "modules": {
     "Channels": {
       "count": 12,
@@ -136,302 +137,336 @@
       "answer_rate": 50.0
     }
   },
-  "users": {
-    "nishchal.motwani@ampdlocal.com": {
-      "count": 9,
-      "answered": 4,
-      "idk": 5,
-      "answer_rate": 44.4,
-      "avg_confidence": 2.76,
-      "video_attached_pct": 22.2
-    },
+  "users_internal": {
     "mark.kreuiter@gupshup.io": {
-      "count": 2,
+      "count": 3,
       "answered": 1,
-      "idk": 1,
-      "answer_rate": 50.0,
-      "avg_confidence": 9.45,
-      "video_attached_pct": 0.0
+      "answer_rate": 33.3,
+      "avg_confidence": 6.3,
+      "video_pct": 0.0
     },
     "ankit.kanwara@gupshup.io": {
-      "count": 12,
+      "count": 18,
       "answered": 6,
-      "idk": 6,
-      "answer_rate": 50.0,
-      "avg_confidence": 5.2,
-      "video_attached_pct": 8.3
-    },
-    "sales@indiatradersagra.com": {
-      "count": 1,
-      "answered": 1,
-      "idk": 0,
-      "answer_rate": 100.0,
-      "avg_confidence": 0.85,
-      "video_attached_pct": 100.0
+      "answer_rate": 33.3,
+      "avg_confidence": 3.46,
+      "video_pct": 5.6
     },
     "prem.kishan@gupshup.io": {
-      "count": 2,
+      "count": 4,
       "answered": 0,
-      "idk": 2,
       "answer_rate": 0.0,
-      "avg_confidence": 0.88,
-      "video_attached_pct": 0.0
+      "avg_confidence": 0.44,
+      "video_pct": 0.0
     },
     "sanchit.aggarwal@gupshup.io": {
-      "count": 6,
-      "answered": 4,
-      "idk": 2,
-      "answer_rate": 66.7,
-      "avg_confidence": 1.9,
-      "video_attached_pct": 33.3
-    },
-    "brendon.castelino@gupshup.io": {
-      "count": 3,
-      "answered": 0,
-      "idk": 3,
-      "answer_rate": 0.0,
-      "avg_confidence": 1.06,
-      "video_attached_pct": 0.0
-    },
-    "mayank.singh@gupshup.io": {
-      "count": 1,
-      "answered": 0,
-      "idk": 1,
-      "answer_rate": 0.0,
-      "avg_confidence": 1.1,
-      "video_attached_pct": 0.0
-    },
-    "arunkumar.m@gupshup.io": {
-      "count": 2,
-      "answered": 1,
-      "idk": 1,
-      "answer_rate": 50.0,
-      "avg_confidence": 3.45,
-      "video_attached_pct": 50.0
-    },
-    "yashas.reddy@gupshup.io": {
       "count": 8,
       "answered": 4,
-      "idk": 4,
       "answer_rate": 50.0,
-      "avg_confidence": 4.81,
-      "video_attached_pct": 25.0
+      "avg_confidence": 1.43,
+      "video_pct": 25.0
+    },
+    "brendon.castelino@gupshup.io": {
+      "count": 6,
+      "answered": 0,
+      "answer_rate": 0.0,
+      "avg_confidence": 0.53,
+      "video_pct": 0.0
+    },
+    "mayank.singh@gupshup.io": {
+      "count": 2,
+      "answered": 0,
+      "answer_rate": 0.0,
+      "avg_confidence": 0.55,
+      "video_pct": 0.0
+    },
+    "arunkumar.m@gupshup.io": {
+      "count": 3,
+      "answered": 1,
+      "answer_rate": 33.3,
+      "avg_confidence": 2.3,
+      "video_pct": 33.3
+    },
+    "yashas.reddy@gupshup.io": {
+      "count": 12,
+      "answered": 4,
+      "answer_rate": 33.3,
+      "avg_confidence": 3.21,
+      "video_pct": 16.7
     },
     "navneet.mangalasseri@gupshup.io": {
-      "count": 1,
+      "count": 2,
       "answered": 0,
-      "idk": 1,
       "answer_rate": 0.0,
-      "avg_confidence": 1.15,
-      "video_attached_pct": 0.0
-    },
-    "adityagupta318@gmail.com": {
-      "count": 1,
-      "answered": 0,
-      "idk": 1,
-      "answer_rate": 0.0,
-      "avg_confidence": 0.4,
-      "video_attached_pct": 0.0
+      "avg_confidence": 0.58,
+      "video_pct": 0.0
     },
     "dibakar.nath@gupshup.io": {
-      "count": 2,
+      "count": 3,
       "answered": 1,
-      "idk": 1,
-      "answer_rate": 50.0,
-      "avg_confidence": 2.99,
-      "video_attached_pct": 0.0
+      "answer_rate": 33.3,
+      "avg_confidence": 1.99,
+      "video_pct": 0.0
     },
     "willian.trevisan@gupshup.io": {
-      "count": 2,
-      "answered": 1,
-      "idk": 1,
-      "answer_rate": 50.0,
-      "avg_confidence": 0.52,
-      "video_attached_pct": 50.0
-    },
-    "admin@bloomerce.ai": {
       "count": 3,
-      "answered": 3,
-      "idk": 0,
-      "answer_rate": 100.0,
-      "avg_confidence": 0.0,
-      "video_attached_pct": 0.0
+      "answered": 1,
+      "answer_rate": 33.3,
+      "avg_confidence": 0.35,
+      "video_pct": 33.3
     },
     "omkar.patil@gupshup.io": {
-      "count": 1,
+      "count": 2,
       "answered": 0,
-      "idk": 1,
       "answer_rate": 0.0,
-      "avg_confidence": 5.0,
-      "video_attached_pct": 0.0
+      "avg_confidence": 2.5,
+      "video_pct": 0.0
     },
     "sherwin.misquitta@gupshup.io": {
-      "count": 1,
+      "count": 2,
       "answered": 0,
-      "idk": 1,
       "answer_rate": 0.0,
-      "avg_confidence": 1.34,
-      "video_attached_pct": 0.0
+      "avg_confidence": 0.67,
+      "video_pct": 0.0
     },
     "sarvesh.jhalani@knowlarity.com": {
-      "count": 2,
-      "answered": 1,
-      "idk": 1,
-      "answer_rate": 50.0,
-      "avg_confidence": 3.15,
-      "video_attached_pct": 50.0
-    },
-    "devendra@apporbits.com": {
       "count": 3,
-      "answered": 2,
-      "idk": 1,
-      "answer_rate": 66.7,
-      "avg_confidence": 3.86,
-      "video_attached_pct": 66.7
+      "answered": 1,
+      "answer_rate": 33.3,
+      "avg_confidence": 2.1,
+      "video_pct": 33.3
     },
     "ananya.a@gupshup.io": {
-      "count": 4,
+      "count": 6,
       "answered": 2,
-      "idk": 2,
-      "answer_rate": 50.0,
-      "avg_confidence": 0.41,
-      "video_attached_pct": 0.0
+      "answer_rate": 33.3,
+      "avg_confidence": 0.27,
+      "video_pct": 0.0
     },
     "vishal.sharma@gupshup.io": {
       "count": 1,
       "answered": 1,
-      "idk": 0,
       "answer_rate": 100.0,
       "avg_confidence": 8.54,
-      "video_attached_pct": 100.0
+      "video_pct": 100.0
     },
     "mridul.kumawat@gupshup.io": {
-      "count": 1,
+      "count": 2,
       "answered": 0,
-      "idk": 1,
       "answer_rate": 0.0,
-      "avg_confidence": 0.85,
-      "video_attached_pct": 0.0
+      "avg_confidence": 0.43,
+      "video_pct": 0.0
     },
     "naveen.verma@knowlarity.com": {
-      "count": 5,
+      "count": 8,
       "answered": 2,
-      "idk": 3,
-      "answer_rate": 40.0,
-      "avg_confidence": 1.94,
-      "video_attached_pct": 40.0
+      "answer_rate": 25.0,
+      "avg_confidence": 1.21,
+      "video_pct": 25.0
     },
     "eduardo.avila@gupshup.io": {
       "count": 5,
       "answered": 5,
-      "idk": 0,
       "answer_rate": 100.0,
       "avg_confidence": 7.67,
-      "video_attached_pct": 0.0
+      "video_pct": 0.0
     },
     "abraham.aigbe@gupshup.io": {
-      "count": 2,
+      "count": 3,
       "answered": 1,
-      "idk": 1,
-      "answer_rate": 50.0,
-      "avg_confidence": 0.45,
-      "video_attached_pct": 50.0
+      "answer_rate": 33.3,
+      "avg_confidence": 0.3,
+      "video_pct": 33.3
     },
     "pavankalyan.killari@gupshup.io": {
-      "count": 1,
+      "count": 2,
       "answered": 0,
-      "idk": 1,
       "answer_rate": 0.0,
-      "avg_confidence": 8.8,
-      "video_attached_pct": 0.0
+      "avg_confidence": 4.4,
+      "video_pct": 0.0
     },
     "renu.singh@knowlarity.com": {
       "count": 2,
       "answered": 2,
-      "idk": 0,
       "answer_rate": 100.0,
       "avg_confidence": 6.46,
-      "video_attached_pct": 100.0
+      "video_pct": 100.0
     },
     "rahul.panchal@gupshup.io": {
-      "count": 2,
+      "count": 3,
       "answered": 1,
-      "idk": 1,
-      "answer_rate": 50.0,
-      "avg_confidence": 2.88,
-      "video_attached_pct": 50.0
+      "answer_rate": 33.3,
+      "avg_confidence": 1.92,
+      "video_pct": 33.3
     },
     "saikrishna.ramagiri@knowlarity.com": {
-      "count": 1,
+      "count": 2,
       "answered": 0,
-      "idk": 1,
       "answer_rate": 0.0,
-      "avg_confidence": 0.75,
-      "video_attached_pct": 0.0
+      "avg_confidence": 0.38,
+      "video_pct": 0.0
     },
     "avinash.kumar@knowlarity.com": {
-      "count": 5,
+      "count": 8,
       "answered": 2,
-      "idk": 3,
-      "answer_rate": 40.0,
-      "avg_confidence": 2.84,
-      "video_attached_pct": 20.0
+      "answer_rate": 25.0,
+      "avg_confidence": 1.78,
+      "video_pct": 12.5
     },
     "hemanth.swamy@gupshup.io": {
-      "count": 1,
+      "count": 2,
       "answered": 0,
-      "idk": 1,
       "answer_rate": 0.0,
-      "avg_confidence": 0.55,
-      "video_attached_pct": 0.0
+      "avg_confidence": 0.28,
+      "video_pct": 0.0
     },
     "chijioke.ugwuh@gupshup.io": {
       "count": 1,
       "answered": 1,
-      "idk": 0,
       "answer_rate": 100.0,
       "avg_confidence": 1.25,
-      "video_attached_pct": 100.0
+      "video_pct": 100.0
     },
     "ketan.thakur@gupshup.io": {
-      "count": 2,
+      "count": 4,
       "answered": 0,
-      "idk": 2,
       "answer_rate": 0.0,
-      "avg_confidence": 6.17,
-      "video_attached_pct": 0.0
+      "avg_confidence": 3.09,
+      "video_pct": 0.0
     },
     "roger.guimaraes@gupshup.io": {
-      "count": 4,
+      "count": 7,
       "answered": 1,
-      "idk": 3,
-      "answer_rate": 25.0,
-      "avg_confidence": 1.39,
-      "video_attached_pct": 0.0
+      "answer_rate": 14.3,
+      "avg_confidence": 0.79,
+      "video_pct": 0.0
     },
     "shubham.matwandkar@gupshup.io": {
-      "count": 4,
+      "count": 7,
       "answered": 1,
-      "idk": 3,
-      "answer_rate": 25.0,
-      "avg_confidence": 1.84,
-      "video_attached_pct": 25.0
+      "answer_rate": 14.3,
+      "avg_confidence": 1.05,
+      "video_pct": 14.3
     },
     "mohyeldein.elbaroudy@gupshup.io": {
       "count": 2,
       "answered": 2,
-      "idk": 0,
       "answer_rate": 100.0,
       "avg_confidence": 0.68,
-      "video_attached_pct": 100.0
+      "video_pct": 100.0
     },
     "varun.singh@knowlarity.com": {
-      "count": 1,
+      "count": 2,
       "answered": 0,
-      "idk": 1,
       "answer_rate": 0.0,
-      "avg_confidence": 0.7,
-      "video_attached_pct": 0.0
+      "avg_confidence": 0.35,
+      "video_pct": 0.0
+    }
+  },
+  "users_external": {
+    "nishchal.motwani@ampdlocal.com": {
+      "domain": "ampdlocal.com",
+      "count": 14,
+      "answered": 4,
+      "answer_rate": 28.6,
+      "avg_confidence": 1.78,
+      "video_pct": 14.3
+    },
+    "sales@indiatradersagra.com": {
+      "domain": "indiatradersagra.com",
+      "count": 1,
+      "answered": 1,
+      "answer_rate": 100.0,
+      "avg_confidence": 0.85,
+      "video_pct": 100.0
+    },
+    "adityagupta318@gmail.com": {
+      "domain": "gmail.com",
+      "count": 2,
+      "answered": 0,
+      "answer_rate": 0.0,
+      "avg_confidence": 0.2,
+      "video_pct": 0.0
+    },
+    "admin@bloomerce.ai": {
+      "domain": "bloomerce.ai",
+      "count": 3,
+      "answered": 3,
+      "answer_rate": 100.0,
+      "avg_confidence": 0.0,
+      "video_pct": 0.0
+    },
+    "devendra@apporbits.com": {
+      "domain": "apporbits.com",
+      "count": 4,
+      "answered": 2,
+      "answer_rate": 50.0,
+      "avg_confidence": 2.89,
+      "video_pct": 50.0
+    }
+  },
+  "intent_multi": {
+    "1": {
+      "count": 92,
+      "answered": 40,
+      "answer_rate": 43.5
+    },
+    "2": {
+      "count": 14,
+      "answered": 10,
+      "answer_rate": 71.4
+    }
+  },
+  "intent_video": {
+    "setup": {
+      "count": 76,
+      "video": 13,
+      "video_pct": 17.1
+    },
+    "page_lookup": {
+      "count": 7,
+      "video": 1,
+      "video_pct": 14.3
+    },
+    "troubleshooting": {
+      "count": 2,
+      "video": 0,
+      "video_pct": 0.0
+    },
+    "definition": {
+      "count": 15,
+      "video": 7,
+      "video_pct": 46.7
+    },
+    "unsupported": {
+      "count": 1,
+      "video": 0,
+      "video_pct": 0.0
+    },
+    "overview": {
+      "count": 9,
+      "video": 7,
+      "video_pct": 77.8
+    },
+    "behavior": {
+      "count": 2,
+      "video": 2,
+      "video_pct": 100.0
+    },
+    "compare": {
+      "count": 1,
+      "video": 0,
+      "video_pct": 0.0
+    },
+    "refusal": {
+      "count": 5,
+      "video": 0,
+      "video_pct": 0.0
+    },
+    "schema": {
+      "count": 2,
+      "video": 1,
+      "video_pct": 50.0
     }
   },
   "daily": {
@@ -470,107 +505,5 @@
       "answered": 4,
       "idk": 8
     }
-  },
-  "idk_samples": [
-    {
-      "query": "In Channels > WhatsApp, I only see Edit. How do I disconnect the WhatsApp channel connection?",
-      "module": "Channels",
-      "score": 1.5500000000000003
-    },
-    {
-      "query": "How to disconnect or remove a current WhatsApp Business Account / WhatsApp channel connection in Gup",
-      "module": "General",
-      "score": 3.9000000000000004
-    },
-    {
-      "query": "How do I disconnect my WhatsApp Business Account (WABA) or channel connection from Gupshup Console? ",
-      "module": "General",
-      "score": 4.2
-    },
-    {
-      "query": "User cannot find Disconnect option to disconnect WhatsApp channel/WABA from Console. Where else is d",
-      "module": "General",
-      "score": 3.95
-    },
-    {
-      "query": "How do I disconnect my whatsapp?",
-      "module": "Bot Studio",
-      "score": 0.55
-    },
-    {
-      "query": "How do I create an AI Admin FAQ bot from a website URL and connect it to a journey?",
-      "module": "AI Admin",
-      "score": 11.65
-    },
-    {
-      "query": "Does Gupshup support WhatsApp Communities?",
-      "module": "General",
-      "score": 0.8500000000000001
-    },
-    {
-      "query": "What is sticky chat in Agent Assist?",
-      "module": "Agent Assist",
-      "score": 1.4500000000000002
-    },
-    {
-      "query": "How to download leads from Gupshup Console",
-      "module": "General",
-      "score": 0.8500000000000001
-    },
-    {
-      "query": "What is an Enterprise WhatsApp account / Enterprise account in Gupshup onboarding?",
-      "module": "General",
-      "score": 3.8
-    },
-    {
-      "query": "What is Partner portal in Gupshup for onboarding WhatsApp?",
-      "module": "CTX",
-      "score": 1.1
-    },
-    {
-      "query": "Explain the 'All agents' section in SuperAgent: what it lists, filters, actions (create, manage), pe",
-      "module": "SuperAgent",
-      "score": 6.25
-    },
-    {
-      "query": "In Gupshup Console WhatsApp onboarding, how does a customer generate the API key to start using What",
-      "module": "Bot Studio",
-      "score": 1.7000000000000002
-    },
-    {
-      "query": "What short domain should be whitelisted as CTA on DLT for Gupshup? Which short domains are used for ",
-      "module": "Bot Studio",
-      "score": 1.1
-    },
-    {
-      "query": "Does Journey Builder support a native Google Sheets integration to re-check a spreadsheet row before",
-      "module": "General",
-      "score": null
-    },
-    {
-      "query": "Campaign Manager or Journey Builder support for triggered WhatsApp messages based on customer profil",
-      "module": "Bot Studio",
-      "score": 5.550000000000001
-    },
-    {
-      "query": "PeopleStrong API REST webhook custom integration can be used with Gupshup external system sends even",
-      "module": "Bot Studio",
-      "score": 8.05
-    },
-    {
-      "query": "What is Custom Integrations / custom connector in Gupshup Console, and how does it work with events ",
-      "module": "Bot Studio",
-      "score": 1.75
-    },
-    {
-      "query": "In Gupshup Console, if I broadcast a campaign is it possible to stop or pause it?",
-      "module": "Overview",
-      "score": 1.1500000000000001
-    },
-    {
-      "query": "On Gupshup, where do I see client id and secret",
-      "module": "Channels",
-      "score": 0.39999999999999997
-    }
-  ]
+  }
 }
