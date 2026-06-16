@@ -4626,6 +4626,10 @@ def _has_explicit_support(
     if intent == "overview":
         return bool(evidence)
 
+    # High-score bypass: Accept high-confidence results even if they fail other checks
+    if top1.get("score", 0.0) >= 5.0 and top1_overlap >= 0.35:
+        return True
+
     return bool(lines)
 
 
