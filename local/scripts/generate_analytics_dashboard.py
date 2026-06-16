@@ -397,7 +397,7 @@ def generate_html(analysis: Dict[str, Any]) -> str:
 
     for module, data in modules_sorted:
         pct = (data["count"] / analysis["total_queries"] * 100) if analysis["total_queries"] > 0 else 0
-        pct_bar = f"background: linear-gradient(to right, rgba(102,126,234,0.13) {pct:.1f}%, transparent {pct:.1f}%)"
+        pct_bar = f"background: linear-gradient(to right, rgba(102,126,234,0.35) {pct:.1f}%, transparent {pct:.1f}%)"
         html += f"""                    <tr>
                         <td>{module}</td>
                         <td class="numeric">{data['count']}</td>
@@ -428,7 +428,7 @@ def generate_html(analysis: Dict[str, Any]) -> str:
     for intent, data in intents_sorted:
         pct = (data["count"] / analysis["total_queries"] * 100) if analysis["total_queries"] > 0 else 0
         answer_status = "status-good" if data["answer_rate"] >= 80 else ("status-warning" if data["answer_rate"] >= 50 else "status-critical")
-        bar_rgba = "rgba(46,204,113,0.13)" if data["answer_rate"] >= 80 else ("rgba(243,156,18,0.13)" if data["answer_rate"] >= 50 else "rgba(231,76,60,0.13)")
+        bar_rgba = "rgba(46,204,113,0.35)" if data["answer_rate"] >= 80 else ("rgba(243,156,18,0.35)" if data["answer_rate"] >= 50 else "rgba(231,76,60,0.35)")
         ans_bar = f"background: linear-gradient(to right, {bar_rgba} {data['answer_rate']:.1f}%, transparent {data['answer_rate']:.1f}%)"
         html += f"""                    <tr>
                         <td>{intent}</td>
@@ -460,9 +460,9 @@ def generate_html(analysis: Dict[str, Any]) -> str:
 
     for user, data in users_int_sorted[:10]:
         answer_status = "status-good" if data["answer_rate"] >= 80 else ("status-warning" if data["answer_rate"] >= 50 else "status-critical")
-        bar_rgba = "rgba(46,204,113,0.13)" if data["answer_rate"] >= 80 else ("rgba(243,156,18,0.13)" if data["answer_rate"] >= 50 else "rgba(231,76,60,0.13)")
+        bar_rgba = "rgba(46,204,113,0.35)" if data["answer_rate"] >= 80 else ("rgba(243,156,18,0.35)" if data["answer_rate"] >= 50 else "rgba(231,76,60,0.35)")
         ans_bar = f"background: linear-gradient(to right, {bar_rgba} {data['answer_rate']:.1f}%, transparent {data['answer_rate']:.1f}%)"
-        vid_bar = f"background: linear-gradient(to right, rgba(102,126,234,0.13) {data['video_pct']:.1f}%, transparent {data['video_pct']:.1f}%)"
+        vid_bar = f"background: linear-gradient(to right, rgba(102,126,234,0.35) {data['video_pct']:.1f}%, transparent {data['video_pct']:.1f}%)"
         html += f"""                    <tr>
                         <td>{user}</td>
                         <td class="numeric">{data['count']}</td>
@@ -495,9 +495,9 @@ def generate_html(analysis: Dict[str, Any]) -> str:
 
     for user, data in users_ext_sorted:
         answer_status = "status-good" if data["answer_rate"] >= 80 else ("status-warning" if data["answer_rate"] >= 50 else "status-critical")
-        bar_rgba = "rgba(46,204,113,0.13)" if data["answer_rate"] >= 80 else ("rgba(243,156,18,0.13)" if data["answer_rate"] >= 50 else "rgba(231,76,60,0.13)")
+        bar_rgba = "rgba(46,204,113,0.35)" if data["answer_rate"] >= 80 else ("rgba(243,156,18,0.35)" if data["answer_rate"] >= 50 else "rgba(231,76,60,0.35)")
         ans_bar = f"background: linear-gradient(to right, {bar_rgba} {data['answer_rate']:.1f}%, transparent {data['answer_rate']:.1f}%)"
-        vid_bar = f"background: linear-gradient(to right, rgba(102,126,234,0.13) {data['video_pct']:.1f}%, transparent {data['video_pct']:.1f}%)"
+        vid_bar = f"background: linear-gradient(to right, rgba(102,126,234,0.35) {data['video_pct']:.1f}%, transparent {data['video_pct']:.1f}%)"
         html += f"""                    <tr>
                         <td>{user}</td>
                         <td>{data['domain']}</td>
@@ -581,7 +581,7 @@ def generate_html(analysis: Dict[str, Any]) -> str:
 """
 
     for intent, data in intent_video_sorted:
-        vid_bar = f"background: linear-gradient(to right, rgba(102,126,234,0.13) {data['video_pct']:.1f}%, transparent {data['video_pct']:.1f}%)"
+        vid_bar = f"background: linear-gradient(to right, rgba(102,126,234,0.35) {data['video_pct']:.1f}%, transparent {data['video_pct']:.1f}%)"
         html += f"""                    <tr>
                         <td>{intent}</td>
                         <td class="numeric">{data['count']}</td>
