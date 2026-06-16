@@ -4514,6 +4514,11 @@ def _has_explicit_support(
     if _is_agent_assist_api_inventory_query(qn):
         return _evidence_mentions_agent_assist_api_surface(joined)
 
+    # HIGH-SCORE BYPASS: before intent-specific checks so setup/behavior/definition
+    # validation cannot reject high-confidence search results
+    if top1.get("score", 0.0) >= 3.0:
+        return True
+
     if intent != "overview":
         # Lowered coverage thresholds to allow answers for chunked content that may be missing some key terms
         # Setup intent is especially important; allow 30% coverage (vs 40%) for non-module-matched evidence
@@ -4560,10 +4565,6 @@ def _has_explicit_support(
                 "active", "inactive", "triggers", "happens",
             ]
         )
-
-    # Simple high-confidence bypass: strong search signal → trust it
-    if top1.get("score", 0.0) >= 3.0:
-        return True
 
     if intent == "setup":
         if _long_distinctive_terms_missing_from_evidence(query, joined):
