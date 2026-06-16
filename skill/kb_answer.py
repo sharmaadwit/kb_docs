@@ -2025,6 +2025,8 @@ CONCEPT_REGISTRY: List[Dict] = [
         "source_boosts": {
             "overview/manage-organisation": 6.0,
             "overview/invite-org-admins": 4.0,
+            "agent-assist/efficient-chat-navigation-for-different-user-roles-through-views": 5.0,
+            "agent-assist/user-management-users": 4.0,
         },
         "display": "Console roles",
         "module": "Overview",
@@ -2073,6 +2075,8 @@ CONCEPT_REGISTRY: List[Dict] = [
         "source_boosts": {
             "bot-studio-analytics/dashboard": 5.0,
             "bot-studio-analytics/journey-tracking": 3.0,
+            "bot-studio-analytics/ai-analytics": 3.5,
+            "bot-studio-analytics/inline-analytics": 3.5,
         },
         "display": "Analytics overview",
         "module": "Analytics",
@@ -2245,6 +2249,103 @@ CONCEPT_REGISTRY: List[Dict] = [
         "display": "Custom Integrations & Webhooks",
         "page_display": "Custom Integrations & Webhooks",
         "module": "Integrations",
+    },
+    {
+        "id": "chat_history",
+        "aliases": [
+            "chat history", "retain chat history", "customer chat history",
+            "conversation history", "retain customer chat", "retained chat"
+        ],
+        "keywords": ["chat history", "retain", "conversation history"],
+        "source_boosts": {
+            "retain-customer-chat-history.md": 4.5,
+        },
+        "source_penalties": {},
+        "display": "Retain Customer Chat History",
+        "page_display": "Retain Customer Chat History",
+        "module": "General",
+    },
+    {
+        "id": "message_delivery_status",
+        "aliases": [
+            "message delivery status", "message sent delivered", "whatsapp message status",
+            "delivery status", "message status check", "sent delivered status",
+            "check message status", "delivery receipt"
+        ],
+        "keywords": ["delivery", "status", "sent", "delivered", "message status"],
+        "source_boosts": {
+            "webhooks-to-delivery-analytics.md": 4.0,
+            "sending-an-automated-campaign.md": 3.0,
+        },
+        "source_penalties": {},
+        "display": "WhatsApp Message Delivery Status",
+        "page_display": "WhatsApp Message Delivery Status",
+        "module": "General",
+    },
+    {
+        "id": "bot_deployment",
+        "aliases": [
+            "deploy bot", "deploy journey", "publish journey", "bot deployment",
+            "how to trigger journey", "activate journey", "bot go live",
+            "launch journey", "go live bot"
+        ],
+        "keywords": ["deploy", "publish", "trigger", "journey", "go live", "activate"],
+        "source_boosts": {
+            "how-to-trigger-a-user-journey.md": 4.5,
+            "about-bot-studio.md": 3.0,
+        },
+        "source_penalties": {},
+        "display": "Bot / Journey Deployment",
+        "page_display": "How to Deploy and Trigger a Journey",
+        "module": "Bot Studio",
+    },
+    {
+        "id": "whatsapp_process",
+        "aliases": [
+            "whatsapp end to end", "whatsapp onboarding process", "complete whatsapp setup",
+            "whatsapp integration process", "whatsapp setup process", "end to end whatsapp"
+        ],
+        "keywords": ["whatsapp", "end to end", "process", "complete", "integration"],
+        "source_boosts": {
+            "about-whatsapp.md": 4.5,
+        },
+        "source_penalties": {},
+        "display": "WhatsApp End-to-End Process",
+        "page_display": "WhatsApp Channel Overview & Setup",
+        "module": "WhatsApp",
+    },
+    {
+        "id": "ai_admin_overview",
+        "aliases": [
+            "ai admin", "ai admin functionality", "ai admin tool", "explain ai admin",
+            "what is ai admin", "ai admin features", "ai admin overview",
+            "ai admin capabilities"
+        ],
+        "keywords": ["ai admin", "functionality", "tool", "features", "overview"],
+        "source_boosts": {
+            "ace-and-agentic-llm-overview.md": 4.5,
+            "creating-a-workspace.md": 4.0,
+            "content-training.md": 3.5,
+        },
+        "source_penalties": {},
+        "display": "AI Admin Tool Overview",
+        "page_display": "AI Admin Tool Overview & Features",
+        "module": "AI Admin",
+    },
+    {
+        "id": "catalog_message",
+        "aliases": [
+            "catalog message", "catalog api", "whatsapp catalog", "catalog message api",
+            "product catalog", "catalog training", "catalog setup"
+        ],
+        "keywords": ["catalog", "catalog message", "catalog api"],
+        "source_boosts": {
+            "catalog-training.md": 4.5,
+        },
+        "source_penalties": {},
+        "display": "WhatsApp Catalog Message",
+        "page_display": "Catalog Message & Training",
+        "module": "AI Admin",
     },
 ]
 

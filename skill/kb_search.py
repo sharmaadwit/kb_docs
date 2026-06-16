@@ -1,4 +1,5 @@
 import json
+import math
 import re
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
@@ -1325,7 +1326,7 @@ def _score_chunk(
     section_type = str(chunk.get("section_type") or "").lower()
     score = 0.0
 
-    length_divisor = max(1.0, len(text) / 1500.0)
+    length_divisor = max(1.0, math.sqrt(len(text) / 1500.0))
 
     for token in re.findall(r"[a-z0-9&+-]+", q):
         if len(token) < 3 or token in SCORING_STOP_WORDS:
