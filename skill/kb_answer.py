@@ -2131,6 +2131,55 @@ CONCEPT_REGISTRY: List[Dict] = [
         "page_display": "Creating Your First Campaign",
         "module": "Campaign Manager",
     },
+    {
+        "id": "leads_export",
+        "aliases": [
+            "download leads", "export leads", "lead download",
+            "lead export", "download customer leads", "export customer data",
+            "leads data", "customer data export", "leads export"
+        ],
+        "keywords": ["leads", "download", "export", "data", "csv"],
+        "source_boosts": {
+            "exploring-insights-and-exporting-raw-data.md": 4.0,
+            "downloading-chat-transcripts-for-customer-conversations.md": 2.5,
+        },
+        "source_penalties": {},
+        "display": "Downloading and Exporting Leads/Customer Data",
+        "page_display": "Downloading and Exporting Leads/Customer Data",
+        "module": "Agent Assist",
+    },
+    {
+        "id": "custom_integrations",
+        "aliases": [
+            "custom integrations", "custom connector", "custom integration setup",
+            "create custom integration", "webhook integration", "external integration"
+        ],
+        "keywords": ["custom", "integrations", "connector", "webhook", "external"],
+        "source_boosts": {
+            "custom-integrations.md": 4.5,
+            "manage-api.md": 2.0,
+        },
+        "source_penalties": {},
+        "display": "Custom Integrations & Webhooks",
+        "page_display": "Custom Integrations & Webhooks",
+        "module": "Integrations",
+    },
+    {
+        "id": "sticky_assignment",
+        "aliases": [
+            "sticky chat", "sticky assignment", "sticky conversation",
+            "persistent assignment", "chat assignment", "persistent chat",
+            "reassign sticky", "sticky team assignment"
+        ],
+        "keywords": ["sticky", "assignment", "chat", "persistent", "assignment rules"],
+        "source_boosts": {
+            "assignment-enhancements-in-console-7-0.md": 4.0,
+        },
+        "source_penalties": {},
+        "display": "Sticky Chat / Assignment Enhancement",
+        "page_display": "Sticky Chat / Assignment Enhancement",
+        "module": "Agent Assist",
+    },
 ]
 
 # Pre-build lookup by id
