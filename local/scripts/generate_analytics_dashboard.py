@@ -12,22 +12,63 @@ from datetime import datetime, timedelta
 from collections import defaultdict
 from typing import Optional, Dict, List, Any
 
+def _load_env():
+    """Load .env file from kb_docs root into os.environ."""
+    env_path = Path(__file__).parent.parent.parent / ".env"
+    if not env_path.exists():
+        return
+    with open(env_path) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, _, val = line.partition("=")
+            os.environ.setdefault(key.strip(), val.strip())
+
 def fetch_langfuse_traces(days: int = 7) -> Optional[List[Dict]]:
     """Fetch real traces from Langfuse API."""
     print(f"🔄 Fetching Langfuse data for last {days} days...")
 
-    # Method 1: Try Langfuse Python SDK
+    _load_env()
+
+    # Method 1: Langfuse REST API (v2 traces endpoint)
     try:
-        from langfuse import Langfuse
-        lf = Langfuse()
-        traces = lf.fetch_traces(limit=1000, first=1000)
-        if traces and hasattr(traces, '__iter__'):
-            traces_list = list(traces)
-            if traces_list:
-                print(f"✅ Fetched {len(traces_list)} traces via Langfuse SDK")
-                return traces_list
+        import urllib.request, urllib.parse, base64
+        host   = os.environ.get("LANGFUSE_HOST", "https://cloud.langfuse.com").rstrip("/")
+        pub    = os.environ.get("LANGFUSE_PUBLIC_KEY", "")
+        sec    = os.environ.get("LANGFUSE_SECRET_KEY", "")
+
+        if pub and sec:
+            creds  = base64.b64encode(f"{pub}:{sec}".encode()).decode()
+            headers = {"Authorization": f"Basic {creds}", "Content-Type": "application/json"}
+
+            from_date = (datetime.utcnow() - timedelta(days=days)).strftime("%Y-%m-%dT00:00:00Z")
+            all_traces = []
+            page = 1
+
+            while True:
+                params = urllib.parse.urlencode({"page": page, "limit": 100, "fromTimestamp": from_date})
+                url = f"{host}/api/public/traces?{params}"
+                req = urllib.request.Request(url, headers=headers)
+                with urllib.request.urlopen(req, timeout=30) as resp:
+                    body = json.loads(resp.read())
+
+                batch = body.get("data", [])
+                all_traces.extend(batch)
+                meta  = body.get("meta", {})
+                total = meta.get("totalItems", meta.get("total", len(all_traces)))
+
+                if not batch or len(all_traces) >= total:
+                    break
+                page += 1
+
+            if all_traces:
+                print(f"✅ Fetched {len(all_traces)} traces via Langfuse REST API")
+                return all_traces
+        else:
+            print("⚠️  Langfuse credentials missing from env")
     except Exception as e:
-        print(f"⚠️  SDK fetch failed: {e}")
+        print(f"⚠️  REST API fetch failed: {e}")
 
     # Method 2: Try Langfuse CLI
     try:

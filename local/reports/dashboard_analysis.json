@@ -1,18 +1,24 @@
 {
-  "timestamp": "2026-06-16T14:20:49.008620",
-  "total_queries": 106,
-  "answered": 50,
-  "idk": 56,
-  "idk_rate": 52.8,
-  "answer_rate": 47.2,
-  "avg_confidence": 3.15,
+  "timestamp": "2026-06-16T14:22:51.162129",
+  "total_queries": 111,
+  "answered": 54,
+  "idk": 57,
+  "idk_rate": 51.4,
+  "answer_rate": 48.6,
+  "avg_confidence": 3.2,
   "video_rate": 50.0,
   "modules": {
+    "Bot Studio": {
+      "count": 31,
+      "answered": 16,
+      "idk": 15,
+      "avg_confidence": 4.94
+    },
     "Channels": {
-      "count": 12,
+      "count": 13,
       "answered": 6,
-      "idk": 6,
-      "avg_confidence": 2.57
+      "idk": 7,
+      "avg_confidence": 2.49
     },
     "General": {
       "count": 18,
@@ -25,12 +31,6 @@
       "answered": 2,
       "idk": 2,
       "avg_confidence": 3.84
-    },
-    "Bot Studio": {
-      "count": 27,
-      "answered": 12,
-      "idk": 15,
-      "avg_confidence": 4.93
     },
     "AI Admin": {
       "count": 8,
@@ -77,10 +77,28 @@
   },
   "intents": {
     "setup": {
-      "count": 76,
-      "answered": 32,
-      "idk": 44,
-      "answer_rate": 42.1
+      "count": 80,
+      "answered": 35,
+      "idk": 45,
+      "answer_rate": 43.8
+    },
+    "overview": {
+      "count": 10,
+      "answered": 8,
+      "idk": 2,
+      "answer_rate": 80.0
+    },
+    "definition": {
+      "count": 17,
+      "answered": 11,
+      "idk": 6,
+      "answer_rate": 64.7
+    },
+    "schema": {
+      "count": 3,
+      "answered": 2,
+      "idk": 1,
+      "answer_rate": 66.7
     },
     "page_lookup": {
       "count": 7,
@@ -94,23 +112,11 @@
       "idk": 2,
       "answer_rate": 0.0
     },
-    "definition": {
-      "count": 15,
-      "answered": 9,
-      "idk": 6,
-      "answer_rate": 60.0
-    },
     "unsupported": {
       "count": 1,
       "answered": 1,
       "idk": 0,
       "answer_rate": 100.0
-    },
-    "overview": {
-      "count": 9,
-      "answered": 7,
-      "idk": 2,
-      "answer_rate": 77.8
     },
     "behavior": {
       "count": 2,
@@ -129,15 +135,30 @@
       "answered": 5,
       "idk": 0,
       "answer_rate": 100.0
-    },
-    "schema": {
-      "count": 2,
-      "answered": 1,
-      "idk": 1,
-      "answer_rate": 50.0
     }
   },
   "users_internal": {
+    "nidhi.shridhar@gupshup.io": {
+      "count": 1,
+      "answered": 1,
+      "answer_rate": 100.0,
+      "avg_confidence": 6.55,
+      "video_pct": 100.0
+    },
+    "omkar.patil@gupshup.io": {
+      "count": 5,
+      "answered": 3,
+      "answer_rate": 60.0,
+      "avg_confidence": 3.68,
+      "video_pct": 20.0
+    },
+    "deepak.upadhyay@gupshup.io": {
+      "count": 2,
+      "answered": 0,
+      "answer_rate": 0.0,
+      "avg_confidence": 0.78,
+      "video_pct": 0.0
+    },
     "mark.kreuiter@gupshup.io": {
       "count": 3,
       "answered": 1,
@@ -214,13 +235,6 @@
       "answer_rate": 33.3,
       "avg_confidence": 0.35,
       "video_pct": 33.3
-    },
-    "omkar.patil@gupshup.io": {
-      "count": 2,
-      "answered": 0,
-      "answer_rate": 0.0,
-      "avg_confidence": 2.5,
-      "video_pct": 0.0
     },
     "sherwin.misquitta@gupshup.io": {
       "count": 2,
@@ -407,21 +421,41 @@
   },
   "intent_multi": {
     "1": {
-      "count": 92,
-      "answered": 40,
-      "answer_rate": 43.5
+      "count": 95,
+      "answered": 42,
+      "answer_rate": 44.2
     },
     "2": {
-      "count": 14,
-      "answered": 10,
-      "answer_rate": 71.4
+      "count": 15,
+      "answered": 11,
+      "answer_rate": 73.3
+    },
+    "3": {
+      "count": 1,
+      "answered": 1,
+      "answer_rate": 100.0
     }
   },
   "intent_video": {
     "setup": {
-      "count": 76,
-      "video": 13,
-      "video_pct": 17.1
+      "count": 80,
+      "video": 14,
+      "video_pct": 17.5
+    },
+    "overview": {
+      "count": 10,
+      "video": 8,
+      "video_pct": 80.0
+    },
+    "definition": {
+      "count": 17,
+      "video": 7,
+      "video_pct": 41.2
+    },
+    "schema": {
+      "count": 3,
+      "video": 1,
+      "video_pct": 33.3
     },
     "page_lookup": {
       "count": 7,
@@ -433,20 +467,10 @@
       "video": 0,
       "video_pct": 0.0
     },
-    "definition": {
-      "count": 15,
-      "video": 7,
-      "video_pct": 46.7
-    },
     "unsupported": {
       "count": 1,
       "video": 0,
       "video_pct": 0.0
-    },
-    "overview": {
-      "count": 9,
-      "video": 7,
-      "video_pct": 77.8
     },
     "behavior": {
       "count": 2,
@@ -462,18 +486,13 @@
       "count": 5,
       "video": 0,
       "video_pct": 0.0
-    },
-    "schema": {
-      "count": 2,
-      "video": 1,
-      "video_pct": 50.0
     }
   },
   "daily": {
     "2026-06-16": {
-      "total": 25,
-      "answered": 11,
-      "idk": 14
+      "total": 30,
+      "answered": 15,
+      "idk": 15
     },
     "2026-06-15": {
       "total": 12,
@@ -507,6 +526,11 @@
     }
   },
   "idk_samples": [
+    {
+      "query": "Graph API delete WhatsApp template message_templates hsm_id delete template API documentation",
+      "module": "Channels",
+      "score": 1.5500000000000003
+    },
     {
       "query": "In Channels > WhatsApp, I only see Edit. How do I disconnect the WhatsApp channel connection?",
       "module": "Channels",
@@ -601,11 +625,6 @@
       "query": "In Gupshup Console, if I broadcast a campaign is it possible to stop or pause it?",
       "module": "Overview",
       "score": 1.1500000000000001
-    },
-    {
-      "query": "On Gupshup, where do I see client id and secret",
-      "module": "Channels",
-      "score": 0.39999999999999997
     }
   ]
 }
