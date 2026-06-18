@@ -1,0 +1,158 @@
+{
+  "fetched_days": 30,
+  "total_traces": 542,
+  "non_english_count": 19,
+  "language_counts": {
+    "Portuguese": 8,
+    "Latin-accented": 9,
+    "Spanish": 1,
+    "Arabic": 1
+  },
+  "top_tokens": {
+    "é": 4,
+    "não": 3,
+    "métricas": 2,
+    "diferença": 2,
+    "são": 2,
+    "هي منصة cc": 2,
+    "usuário": 2,
+    "opção": 2,
+    "demonstração": 1,
+    "dê": 1,
+    "vídeo": 1,
+    "muéstrame": 1,
+    "áreas": 1,
+    "más": 1,
+    "asignación": 1,
+    "automáticas": 1,
+    "clasificación": 1,
+    "campañas": 1,
+    "regiões": 1,
+    "atuação": 1,
+    "qué": 1,
+    "cómo": 1,
+    "vão": 1,
+    "dá": 1,
+    "ما هي": 1,
+    "ما هي م": 1,
+    "ما هي منص": 1,
+    "ما هي منصة": 1,
+    "ا هي منصة c": 1,
+    "ي منصة cc e": 1,
+    "ress من gup": 1,
+    "ess من gups": 1,
+    "pshup؟": 1,
+    "assíncrona": 1,
+    "sessão": 1,
+    "número": 1,
+    "disponível": 1,
+    "configurações": 1,
+    "específico": 1,
+    "habilitação": 1,
+    "prático": 1,
+    "único": 1,
+    "após": 1,
+    "documentação": 1,
+    "usuários": 1,
+    "práticos": 1,
+    "configuração": 1,
+    "nós": 1
+  },
+  "queries": [
+    {
+      "query": "Vou me reunir com uma marca automotiva. Que tipo de demonstração posso apresentar a eles?",
+      "lang": "Portuguese",
+      "trace_id": "kb-kb_answer-0721f30f68a747b0"
+    },
+    {
+      "query": "Sou uma loja de varejo; o que a Gupshup pode fazer por mim? Me dê a URL do vídeo.",
+      "lang": "Latin-accented",
+      "trace_id": "kb-kb_answer-9e053fa1b56843eb"
+    },
+    {
+      "query": "Muéstrame las áreas documentadas de Gupshup Console más relevantes para una demo de contact center de WhatsApp con agentes, colas, reglas de asignación, business hours, respuestas automáticas, analytics, IA para clasificación y resumen, plantillas, campañas e integraciones.",
+      "lang": "Spanish",
+      "trace_id": "kb-kb_answer-3607d3741b9148f3"
+    },
+    {
+      "query": "No Gupshup Console, como consultar ou exportar analytics de WhatsApp por projeto com métricas de requested, sent, delivered, read, failed, clicks, templates, campanhas, origin type e principais erros?",
+      "lang": "Latin-accented",
+      "trace_id": "kb-kb_answer-cd6e34980bbb4818"
+    },
+    {
+      "query": "Qual a diferença entre WhatsApp username e display name no perfil da marca?",
+      "lang": "Latin-accented",
+      "trace_id": "kb-kb_answer-202a35a5f9034eb5"
+    },
+    {
+      "query": "No WhatsApp, qual é a diferença entre o Username e o Display Name das marcas?",
+      "lang": "Latin-accented",
+      "trace_id": "kb-kb_answer-6c118cae48a249fb"
+    },
+    {
+      "query": "Quais são os principais clientes do segmento CPG da Gupshup e quais regiões de atuação? Sei que em Latam temos Diageo",
+      "lang": "Portuguese",
+      "trace_id": "kb-kb_answer-46159cdf1eea4448"
+    },
+    {
+      "query": "Por qué los templates se archivan en Gupshup Console y cómo ocurre esto? (WhatsApp templates: estado archived)",
+      "lang": "Latin-accented",
+      "trace_id": "kb-kb_answer-6cc4f3179aef4985"
+    },
+    {
+      "query": "No Agent Assist, onde verifico se os agentes da fila default vão receber assignment mesmo se estiverem offline ou busy? Existe algum registro na UI para confirmar isso?",
+      "lang": "Portuguese",
+      "trace_id": "kb-kb_answer-4909c19d003c4328"
+    },
+    {
+      "query": "Como acessar no Gupshup Console os analytics de WhatsApp e campanhas para ver métricas como sent, delivered, read, failed, clicks, breakdown por origem, top templates e campanhas?",
+      "lang": "Latin-accented",
+      "trace_id": "kb-kb_answer-91a03090bc414c2e"
+    },
+    {
+      "query": "Dá pra responder pelo Instagram?",
+      "lang": "Latin-accented",
+      "trace_id": "kb-kb_answer-492c3883dede430f"
+    },
+    {
+      "query": "ما هي منصة CC Express من Gupshup؟",
+      "lang": "Arabic",
+      "trace_id": "kb-kb_answer-0aaf5c2fcb114045"
+    },
+    {
+      "query": "No Bot Studio, quando um evento externo chega via Custom Integration para retomar uma jornada assíncrona, qual campo é usado para fazer o match com o usuário/sessão? É o número de telefone, o user_channel_id, ou outro identificador? E esse campo muda se o usuário não tiver telefone (BSUID-only)?",
+      "lang": "Portuguese",
+      "trace_id": "kb-kb_answer-9f97e9661c7042c3"
+    },
+    {
+      "query": "No Agent Assist, por que o status de um agente fica 'away' e não consigo mudar para 'available'/'disponível'? Quais são as causas mais comuns e o que verificar?",
+      "lang": "Portuguese",
+      "trace_id": "kb-kb_answer-acba1c12cd2948aa"
+    },
+    {
+      "query": "No Console, como habilitar a aba de configurações/canal Proxy para um projeto específico no menu Canais > Proxy? Existe um passo documentado para ativar a aba ou isso depende de habilitação interna/suporte?",
+      "lang": "Portuguese",
+      "trace_id": "kb-kb_answer-288ea10361514b98"
+    },
+    {
+      "query": "Explique o passo a passo documentado para receber evento externo no Console via Integrations Custom Integrations e depois usar esse evento em Journey Builder. Quero um fluxo prático: criar evento, configurar identificador único do evento, callback URL/token, e consumir esse evento na jornada.",
+      "lang": "Latin-accented",
+      "trace_id": "kb-kb_answer-643734b3c6ed4b04"
+    },
+    {
+      "query": "Como integrar Agent Assist com Journey Builder após encerramento de atendimento? Quero saber a abordagem documentada com webhook, API, eventos e quais campos carregar no payload.",
+      "lang": "Latin-accented",
+      "trace_id": "kb-kb_answer-25a28cf2b74d4f67"
+    },
+    {
+      "query": "No Agent Assist da Gupshup, existe forma documentada de emitir evento ou webhook quando um chat é resolvido ou encerrado? O que a documentação indica sobre isso?",
+      "lang": "Portuguese",
+      "trace_id": "kb-kb_answer-83529178d4c94d69"
+    },
+    {
+      "query": "No Journey Builder / Console, como configurar um teste A/B no menu principal da jornada para que 50% dos usuários vejam uma opção adicional no menu e os outros 50% não vejam essa opção? Quero os passos práticos de configuração e quais nós usar.",
+      "lang": "Portuguese",
+      "trace_id": "kb-kb_answer-63c3c8f664c74888"
+    }
+  ]
+}

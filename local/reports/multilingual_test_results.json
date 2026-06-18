@@ -1,0 +1,116 @@
+[
+  {
+    "id": 1,
+    "status": "ANSWERED",
+    "query": "Vou me reunir com uma marca automotiva. Que tipo de demonstração posso",
+    "detail": "I don't know based on the current docs."
+  },
+  {
+    "id": 2,
+    "status": "ANSWERED",
+    "query": "Sou uma loja de varejo; o que a Gupshup pode fazer por mim? Me dê a UR",
+    "detail": "I don't know based on the current docs."
+  },
+  {
+    "id": 3,
+    "status": "ANSWERED",
+    "query": "Muéstrame las áreas documentadas de Gupshup Console más relevantes par",
+    "detail": "Here are relevant customer success stories:\n\n- **Leading automobile company in I"
+  },
+  {
+    "id": 4,
+    "status": "ANSWERED",
+    "query": "No Gupshup Console, como consultar ou exportar analytics de WhatsApp p",
+    "detail": "I don't know based on the current docs."
+  },
+  {
+    "id": 5,
+    "status": "ANSWERED",
+    "query": "Qual a diferença entre WhatsApp username e display name no perfil da m",
+    "detail": "I don't know based on the current docs."
+  },
+  {
+    "id": 6,
+    "status": "ANSWERED",
+    "query": "No WhatsApp, qual é a diferença entre o Username e o Display Name das ",
+    "detail": "I don't know based on the current docs."
+  },
+  {
+    "id": 7,
+    "status": "ANSWERED",
+    "query": "Quais são os principais clientes do segmento CPG da Gupshup e quais re",
+    "detail": "I don't know based on the current docs."
+  },
+  {
+    "id": 8,
+    "status": "ANSWERED",
+    "query": "Por qué los templates se archivan en Gupshup Console y cómo ocurre est",
+    "detail": "I don't know based on the current docs."
+  },
+  {
+    "id": 9,
+    "status": "ANSWERED",
+    "query": "No Agent Assist, onde verifico se os agentes da fila default vão receb",
+    "detail": "**Chat Management Assignment Rules**\nExact path and steps\n- Chat Management: Ass"
+  },
+  {
+    "id": 10,
+    "status": "ANSWERED",
+    "query": "Como acessar no Gupshup Console os analytics de WhatsApp e campanhas p",
+    "detail": "I don't know based on the current docs."
+  },
+  {
+    "id": 11,
+    "status": "ANSWERED",
+    "query": "Dá pra responder pelo Instagram?",
+    "detail": "**By default, autoresponders are enabled once you go live with Instagram. You ha"
+  },
+  {
+    "id": 12,
+    "status": "IDK",
+    "query": "ما هي منصة CC Express من Gupshup؟",
+    "detail": "I don't have documentation on CC Express, so I can't help with that specific que"
+  },
+  {
+    "id": 13,
+    "status": "ANSWERED",
+    "query": "No Bot Studio, quando um evento externo chega via Custom Integration p",
+    "detail": "I don't know based on the current docs."
+  },
+  {
+    "id": 14,
+    "status": "ANSWERED",
+    "query": "No Agent Assist, por que o status de um agente fica 'away' e não consi",
+    "detail": "I don't know based on the current docs."
+  },
+  {
+    "id": 15,
+    "status": "ANSWERED",
+    "query": "No Console, como habilitar a aba de configurações/canal Proxy para um ",
+    "detail": "I don't know based on the current docs."
+  },
+  {
+    "id": 16,
+    "status": "ANSWERED",
+    "query": "Explique o passo a passo documentado para receber evento externo no Co",
+    "detail": "**Configuring Custom Event on Journey Builder:**\nExact path and steps\n- Callback"
+  },
+  {
+    "id": 17,
+    "status": "ANSWERED",
+    "query": "Como integrar Agent Assist com Journey Builder após encerramento de at",
+    "detail": "I don't know based on the current docs."
+  },
+  {
+    "id": 18,
+    "status": "ANSWERED",
+    "query": "No Agent Assist da Gupshup, existe forma documentada de emitir evento ",
+    "detail": "I don't know based on the current docs."
+  },
+  {
+    "id": 19,
+    "status": "ANSWERED",
+    "query": "No Journey Builder / Console, como configurar um teste A/B no menu pri",
+    "detail": "I don't know based on the current docs."
+  }
+]

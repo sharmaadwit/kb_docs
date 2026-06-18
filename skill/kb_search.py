@@ -1,6 +1,7 @@
 import json
 import math
 import re
+import unicodedata
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
@@ -1088,6 +1089,92 @@ def _sanitize_search_query(raw: str) -> str:
     return q
 
 
+# ---------------------------------------------------------------------------
+# Multilingual term translation (PT / ES / AR → EN)
+# Must run BEFORE _normalize_query_for_match() which strips all non-ASCII.
+# Extend _MULTILINGUAL_TERMS to add Indian-language support (Devanagari etc.)
+# ---------------------------------------------------------------------------
+_MULTILINGUAL_TERMS: dict = {
+    # Portuguese — video / demo
+    "demonstração":  "demo",
+    "demonstracao":  "demo",
+    "vídeos":        "video",
+    "vídeo":         "video",
+    # Portuguese — modules & actions
+    "configurações": "settings",
+    "configuracoes": "settings",
+    "configuração":  "setup",
+    "configuracao":  "setup",
+    "integrações":   "integrations",
+    "integracoes":   "integrations",
+    "integração":    "integration",
+    "integracao":    "integration",
+    "jornadas":      "journeys",
+    "jornada":       "journey",
+    "campanhas":     "campaigns",
+    "campanha":      "campaign",
+    "modelos":       "templates",
+    "modelo":        "template",
+    "métricas":      "analytics",
+    "análise":       "analytics",
+    "agentes":       "agents",
+    "agente":        "agent",
+    "canais":        "channels",
+    "canal":         "channel",
+    "eventos":       "events",
+    "evento":        "event",
+    "fluxo":         "flow",
+    "fila":          "queue",
+    "ajuda":         "help",
+    # Spanish — video / demo
+    "demostración":  "demo",
+    "demostracion":  "demo",
+    # Spanish — modules & actions
+    "configuración": "setup",
+    "configuracion": "setup",
+    "integraciones": "integrations",
+    "campañas":      "campaigns",
+    "campaña":       "campaign",
+    "plantillas":    "templates",
+    "plantilla":     "template",
+    "análisis":      "analytics",
+    "ayuda":         "help",
+    # Arabic — video / demo
+    "عرض توضيحي":  "demo",
+    "فيديو":        "video",
+    # Arabic — modules & actions
+    "إعداد":        "setup",
+    "تحليلات":      "analytics",
+    "تكاملات":      "integrations",
+    "نماذج":        "templates",
+    "قوالب":        "templates",
+    "حملات":        "campaigns",
+    "مساعدة":       "help",
+    "وكيل":         "agent",
+}
+_MULTILINGUAL_TERMS_SORTED = sorted(
+    _MULTILINGUAL_TERMS.items(), key=lambda kv: len(kv[0]), reverse=True
+)
+
+
+def _translate_key_terms(query: str) -> str:
+    """Replace non-English action/intent terms with English equivalents.
+
+    Covers Portuguese, Spanish, and Arabic. Designed to extend to Indian
+    languages (Devanagari) by adding entries to _MULTILINGUAL_TERMS.
+    Must run before _normalize_query_for_match() strips non-ASCII chars.
+    """
+    if not query:
+        return query
+    text = unicodedata.normalize("NFC", query).lower()
+    changed = False
+    for term, replacement in _MULTILINGUAL_TERMS_SORTED:
+        if term in text:
+            text = text.replace(term, f" {replacement} ")
+            changed = True
+    return re.sub(r"\s+", " ", text).strip() if changed else query.lower()
+
+
 def _extract_query(params: Dict) -> str:
     if not isinstance(params, dict):
         return ""
@@ -1637,6 +1724,7 @@ def _compact_langfuse(
 def kb_search(parameters: object = None, context=None, **kwargs) -> dict:
     params = _parse_parameters(parameters, **kwargs)
     query = _sanitize_search_query(_extract_query(params))
+    query = _translate_key_terms(query)
     try:
         top_k = int(params.get("top_k") or 5)
     except (TypeError, ValueError):
