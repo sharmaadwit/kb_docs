@@ -1096,10 +1096,21 @@ def _sanitize_search_query(raw: str) -> str:
 # ---------------------------------------------------------------------------
 _MULTILINGUAL_TERMS: dict = {
     # Portuguese — video / demo
+    "demonstrações": "demo",
+    "demonstracoes": "demo",
     "demonstração":  "demo",
     "demonstracao":  "demo",
     "vídeos":        "video",
     "vídeo":         "video",
+    # Portuguese — pitch / discovery (triggers _BROAD_QUERY_PATTERNS + _PITCH_BREADTH)
+    "funcionalidades": "features",
+    "casos de uso":  "use case",
+    "caso de uso":   "use case",
+    "soluções":      "solutions",
+    "solucoes":      "solutions",
+    "módulos":       "modules",
+    "modulos":       "modules",
+    "recursos":      "features",
     # Portuguese — modules & actions
     "configurações": "settings",
     "configuracoes": "settings",
@@ -1129,6 +1140,10 @@ _MULTILINGUAL_TERMS: dict = {
     # Spanish — video / demo
     "demostración":  "demo",
     "demostracion":  "demo",
+    # Spanish — pitch / discovery
+    "características": "features",
+    "caracteristicas": "features",
+    "soluciones":    "solutions",
     # Spanish — modules & actions
     "configuración": "setup",
     "configuracion": "setup",
@@ -1140,8 +1155,12 @@ _MULTILINGUAL_TERMS: dict = {
     "análisis":      "analytics",
     "ayuda":         "help",
     # Arabic — video / demo
-    "عرض توضيحي":  "demo",
-    "فيديو":        "video",
+    "عرض توضيحي":        "demo",
+    "فيديو":             "video",
+    # Arabic — pitch / discovery
+    "حالات الاستخدام":   "use case",
+    "ميزات":             "features",
+    "وحدات":             "modules",
     # Arabic — modules & actions
     "إعداد":        "setup",
     "تحليلات":      "analytics",
