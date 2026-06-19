@@ -1643,6 +1643,7 @@ def _compact_langfuse(
     explicit_module: str, intents: List[str], preferred_mode: str,
     latency_ms: int, context, params: Dict = None,
     video_meta: Dict = None,
+    original_query: Optional[str] = None,
 ) -> Dict:
     params = params or {}
 
@@ -1682,6 +1683,11 @@ def _compact_langfuse(
 
     trace_id = f"kb-{trace_name}-{datetime.now(timezone.utc).strftime('%H%M%S%f')}"
     query_meta = query if len(query) <= _TELEMETRY_QUERY_PREVIEW else query[:_TELEMETRY_QUERY_PREVIEW] + "…"
+    orig = original_query if original_query is not None else query
+    orig_meta = orig if len(orig) <= _TELEMETRY_QUERY_PREVIEW else orig[:_TELEMETRY_QUERY_PREVIEW] + "…"
+    # query is already lowercased by _translate_key_terms; compare case-insensitively
+    # so pure case-folding of an English query does NOT count as a translation.
+    was_translated = original_query is not None and original_query.lower() != query
     top_source = results[0].get("source") if results else None
     module_label = explicit_module if explicit_module != "General" else (
         _module_from_source(top_source or "") if top_source else "General"
@@ -1700,7 +1706,7 @@ def _compact_langfuse(
             "user_email": user.get("user_email"),
             "user_name": user.get("user_name"),
             "user_id": user.get("user_id"),
-            "query": query_meta,
+            "query": orig_meta,
             "release": release,
             "environment": environment,
             "deployment_label": deployment_label,
@@ -1733,6 +1739,8 @@ def _compact_langfuse(
     }
     if isinstance(video_meta, dict) and video_meta:
         out["metadata"].update(video_meta)
+    if was_translated:
+        out["metadata"]["query_translated"] = query_meta
     return out
 
 
@@ -1743,6 +1751,7 @@ def _compact_langfuse(
 def kb_search(parameters: object = None, context=None, **kwargs) -> dict:
     params = _parse_parameters(parameters, **kwargs)
     query = _sanitize_search_query(_extract_query(params))
+    original_query = query  # preserve user's original (pre-translation) text for telemetry
     query = _translate_key_terms(query)
     try:
         top_k = int(params.get("top_k") or 5)
@@ -1760,6 +1769,7 @@ def kb_search(parameters: object = None, context=None, **kwargs) -> dict:
         meta_q = "" if omit_q else query
         langfuse = _compact_langfuse(
             "kb_search", meta_q, [], "General", [guardrail], "refusal", latency_ms, context, params,
+            original_query=("" if omit_q else original_query),
         )
         return {
             "ok": True,
@@ -1776,6 +1786,7 @@ def kb_search(parameters: object = None, context=None, **kwargs) -> dict:
         latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
         langfuse = _compact_langfuse(
             "kb_search", query, [], "General", ["kb_error"], "refusal", latency_ms, context, params,
+            original_query=original_query,
         )
         return {
             "ok": False,
@@ -1832,6 +1843,7 @@ def kb_search(parameters: object = None, context=None, **kwargs) -> dict:
     langfuse = _compact_langfuse(
         "kb_search", query, results, explicit_module, intents, preferred_mode, latency_ms, context, params,
         video_meta=video_meta,
+        original_query=original_query,
     )
     return {
         "ok": True,

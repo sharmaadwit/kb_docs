@@ -5493,6 +5493,7 @@ def _send_langfuse(
     params: Optional[Dict[str, Any]] = None,
     video_meta: Optional[Dict[str, Any]] = None,
     channel_type: Optional[str] = None,
+    original_query: Optional[str] = None,
 ) -> Dict:
     trace_id = f"kb-{trace_name}-{uuid.uuid4().hex[:16]}"
     top_source = results[0].get("source") if results else None
@@ -5511,6 +5512,14 @@ def _send_langfuse(
     identifiers = _telemetry_identifiers(context, params)
     trace_user_id, user_meta = _langfuse_user_context(context, params)
     q_prev = query if len(query) <= _TELEMETRY_QUERY_PREVIEW else query[:_TELEMETRY_QUERY_PREVIEW] + "…"
+    # Telemetry logs the user's ORIGINAL query (pre-translation). The translated
+    # form is recorded as query_translated ONLY when translation changed the text,
+    # so English traffic (unchanged) stays clean and the field flags multilingual queries.
+    orig = original_query if original_query is not None else query
+    orig_prev = orig if len(orig) <= _TELEMETRY_QUERY_PREVIEW else orig[:_TELEMETRY_QUERY_PREVIEW] + "…"
+    # query is already lowercased by _translate_key_terms; compare case-insensitively
+    # so pure case-folding of an English query does NOT count as a translation.
+    was_translated = original_query is not None and original_query.lower() != query
     a_prev = (answer or "")[:_TELEMETRY_ANSWER_PREVIEW]
     if len(answer or "") > _TELEMETRY_ANSWER_PREVIEW:
         a_prev = a_prev + "…"
@@ -5519,7 +5528,7 @@ def _send_langfuse(
         "user_email": user_meta.get("user_email"),
         "user_name": user_meta.get("user_name"),
         "user_id": user_meta.get("user_id"),
-        "query": q_prev,
+        "query": orig_prev,
         "answer_preview": a_prev,
         "release": identifiers.get("release"),
         "environment": identifiers.get("environment"),
@@ -5551,10 +5560,12 @@ def _send_langfuse(
         "accuracy_score": None,
         "accuracy_source": None,
     }
+    if was_translated:
+        metadata["query_translated"] = q_prev
     if isinstance(video_meta, dict) and video_meta:
         metadata.update(video_meta)
     body = _build_langfuse_request(
-        trace_name, trace_id, query, answer, metadata, trace_user_id=trace_user_id,
+        trace_name, trace_id, orig, answer, metadata, trace_user_id=trace_user_id,
     )
 
     host = context.get_secret("LANGFUSE_HOST") if context else None
@@ -5616,6 +5627,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
     query = _sanitize_kb_query(_extract_query(params))
     if not query:
         raise ValueError("query is required")
+    original_query = query  # preserve user's original (pre-translation) text for telemetry
     query = _translate_key_terms(query)
 
     # Detect what channel the user is asking about from query text
@@ -5631,6 +5643,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
             "kb_answer", query, guardrail, [], "General",
             ["refusal"], "refusal", False, latency_ms, context, params,
             channel_type=detected_channel,
+            original_query=original_query,
         )
         return {
             "ok": True,
@@ -5647,6 +5660,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
             "kb_answer", query, undocumented, [], "General",
             ["unsupported"], "refusal", False, latency_ms, context, params,
             channel_type=detected_channel,
+            original_query=original_query,
         )
         return {
             "ok": True,
@@ -5663,6 +5677,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
             "kb_answer", query, external_gap, [], "General",
             ["setup"], "setup", False, latency_ms, context, params,
             channel_type=detected_channel,
+            original_query=original_query,
         )
         return {
             "ok": True,
@@ -5679,6 +5694,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
             "kb_answer", query, rate_gap, [], "General",
             ["setup"], "setup", False, latency_ms, context, params,
             channel_type=detected_channel,
+            original_query=original_query,
         )
         return {
             "ok": True,
@@ -5695,6 +5711,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
             "kb_answer", query, secret_guidance, [], "General",
             ["refusal"], "refusal", False, latency_ms, context, params,
             channel_type=detected_channel,
+            original_query=original_query,
         )
         return {
             "ok": True,
@@ -5713,6 +5730,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
             "kb_answer", query, msg, [], "General",
             ["kb_error"], "refusal", False, latency_ms, context, params,
             channel_type=detected_channel,
+            original_query=original_query,
         )
         return {
             "ok": False,
@@ -5748,6 +5766,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
                 "kb_answer", query, answer, evidence, "General",
                 ["case_study"], "overview", False, latency_ms, context, params,
                 channel_type=detected_channel,
+                original_query=original_query,
             )
             return {
                 "ok": True,
@@ -5863,6 +5882,7 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
         intents_list, intent, False, latency_ms, context, params,
         video_meta=video_meta,
         channel_type=detected_channel,
+        original_query=original_query,
     )
     return {
         "ok": True,
