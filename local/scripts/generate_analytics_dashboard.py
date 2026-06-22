@@ -438,7 +438,9 @@ def generate_html(analysis: Dict[str, Any]) -> str:
 
         .footer {{ text-align: center; color: white; margin-top: 40px; font-size: 0.9em; opacity: 0.8; }}
         .data-source {{ background: rgba(255,255,255,0.1); padding: 12px; border-radius: 6px; margin-top: 10px; }}
+        .chart-wrapper {{ height: 420px; margin: 20px 0; }}
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -527,37 +529,79 @@ def generate_html(analysis: Dict[str, Any]) -> str:
             </table>
         </div>
 
-        <!-- Intent Distribution -->
+        <!-- Intent Distribution Chart -->
         <div class="section">
             <h2>🎯 Intent Distribution</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Intent</th>
-                        <th class="numeric">Queries</th>
-                        <th class="numeric">% of Total</th>
-                        <th class="numeric">Answered</th>
-                    </tr>
-                </thead>
-                <tbody>
-"""
-
-    for intent, data in intents_sorted:
-        pct = (data["count"] / analysis["total_queries"] * 100) if analysis["total_queries"] > 0 else 0
-        answer_status = "status-good" if data["answer_rate"] >= 80 else ("status-warning" if data["answer_rate"] >= 50 else "status-critical")
-        bar_rgba = "rgba(46,204,113,0.35)" if data["answer_rate"] >= 80 else ("rgba(243,156,18,0.35)" if data["answer_rate"] >= 50 else "rgba(231,76,60,0.35)")
-        ans_bar = f"background: linear-gradient(to right, {bar_rgba} {data['answer_rate']:.1f}%, transparent {data['answer_rate']:.1f}%)"
-        html += f"""                    <tr>
-                        <td>{intent}</td>
-                        <td class="numeric">{data['count']}</td>
-                        <td class="numeric">{pct:.1f}%</td>
-                        <td class="numeric" style="{ans_bar}"><span class="{answer_status}">{data['answer_rate']:.1f}%</span></td>
-                    </tr>
-"""
-
-    html += """                </tbody>
-            </table>
+            <div class="chart-wrapper"><canvas id="intentCombo"></canvas></div>
+            <p style="color: #666; font-size: 0.85em; margin-top: 12px;">
+                <strong>Left axis:</strong> Query volume per intent (bars)
+                | <strong>Right axis:</strong> Answer % (green line) and Video % (orange dashed line)
+            </p>
         </div>
+        <script>
+            (function() {
+                const intents = [
+"""
+    for intent, data in intents_sorted:
+        video_pct = analysis.get("intent_video", {}).get(intent, {}).get("video_pct", 0)
+        html += f"                    ['{intent}', {data['count']}, {data['answer_rate']:.1f}, {video_pct:.1f}],\n"
+
+    html += """                ];
+                const labels = intents.map(r => r[0]);
+                const volumes = intents.map(r => r[1]);
+                const answerPct = intents.map(r => r[2]);
+                const videoPct = intents.map(r => r[3]);
+                new Chart(document.getElementById('intentCombo'), {
+                    data: {
+                        labels,
+                        datasets: [
+                            {
+                                type: 'bar', label: 'Queries', data: volumes, yAxisID: 'y',
+                                backgroundColor: 'rgba(102,126,234,0.7)', borderColor: 'rgba(102,126,234,1)',
+                                borderWidth: 1, borderRadius: 6, order: 3
+                            },
+                            {
+                                type: 'line', label: 'Answer %', data: answerPct, yAxisID: 'y1',
+                                borderColor: '#2ecc71', backgroundColor: '#2ecc71',
+                                borderWidth: 3, tension: 0.3, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#2ecc71', order: 1
+                            },
+                            {
+                                type: 'line', label: 'Video %', data: videoPct, yAxisID: 'y1',
+                                borderColor: '#f39c12', backgroundColor: '#f39c12',
+                                borderWidth: 3, borderDash: [6,4], tension: 0.3, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#f39c12', order: 2
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        interaction: { mode: 'index', intersect: false },
+                        plugins: {
+                            legend: {
+                                labels: { color: '#333', usePointStyle: true, padding: 18, font: { size: 12 } }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                ticks: { color: '#666' },
+                                grid: { color: '#e8e8e8' }
+                            },
+                            y: {
+                                position: 'left', beginAtZero: true,
+                                title: { display: true, text: 'Queries', color: '#666', font: { weight: '600' } },
+                                ticks: { color: '#666' },
+                                grid: { color: '#e8e8e8' }
+                            },
+                            y1: {
+                                position: 'right', beginAtZero: true, max: 100,
+                                title: { display: true, text: '% (Answer & Video)', color: '#666', font: { weight: '600' } },
+                                ticks: { color: '#666', callback: v => v + '%' },
+                                grid: { drawOnChartArea: false }
+                            }
+                        }
+                    }
+                });
+            })();
+        </script>
 
         <!-- User Segmentation -->
         <div class="section">

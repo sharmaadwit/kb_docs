@@ -56,13 +56,15 @@
 
         .footer { text-align: center; color: white; margin-top: 40px; font-size: 0.9em; opacity: 0.8; }
         .data-source { background: rgba(255,255,255,0.1); padding: 12px; border-radius: 6px; margin-top: 10px; }
+        .chart-wrapper { height: 420px; margin: 20px 0; }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>📊 Comprehensive KB Analytics Dashboard</h1>
-            <p>Live Langfuse Telemetry • Last Updated: 2026-06-22 11:43:54 UTC</p>
+            <p>Live Langfuse Telemetry • Last Updated: 2026-06-22 12:40:20 UTC</p>
         </div>
 
         <!-- Global Metrics -->
@@ -204,88 +206,85 @@
             </table>
         </div>
 
-        <!-- Intent Distribution -->
+        <!-- Intent Distribution Chart -->
         <div class="section">
             <h2>🎯 Intent Distribution</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Intent</th>
-                        <th class="numeric">Queries</th>
-                        <th class="numeric">% of Total</th>
-                        <th class="numeric">Answered</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>setup</td>
-                        <td class="numeric">92</td>
-                        <td class="numeric">66.2%</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(243,156,18,0.35) 71.7%, transparent 71.7%)"><span class="status-warning">71.7%</span></td>
-                    </tr>
-                    <tr>
-                        <td>definition</td>
-                        <td class="numeric">21</td>
-                        <td class="numeric">15.1%</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(243,156,18,0.35) 66.7%, transparent 66.7%)"><span class="status-warning">66.7%</span></td>
-                    </tr>
-                    <tr>
-                        <td>overview</td>
-                        <td class="numeric">14</td>
-                        <td class="numeric">10.1%</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(46,204,113,0.35) 92.9%, transparent 92.9%)"><span class="status-good">92.9%</span></td>
-                    </tr>
-                    <tr>
-                        <td>schema</td>
-                        <td class="numeric">14</td>
-                        <td class="numeric">10.1%</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(46,204,113,0.35) 100.0%, transparent 100.0%)"><span class="status-good">100.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>troubleshooting</td>
-                        <td class="numeric">4</td>
-                        <td class="numeric">2.9%</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(243,156,18,0.35) 75.0%, transparent 75.0%)"><span class="status-warning">75.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>page_lookup</td>
-                        <td class="numeric">4</td>
-                        <td class="numeric">2.9%</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(46,204,113,0.35) 100.0%, transparent 100.0%)"><span class="status-good">100.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>compare</td>
-                        <td class="numeric">4</td>
-                        <td class="numeric">2.9%</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(243,156,18,0.35) 75.0%, transparent 75.0%)"><span class="status-warning">75.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>behavior</td>
-                        <td class="numeric">3</td>
-                        <td class="numeric">2.2%</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(243,156,18,0.35) 66.7%, transparent 66.7%)"><span class="status-warning">66.7%</span></td>
-                    </tr>
-                    <tr>
-                        <td>refusal</td>
-                        <td class="numeric">3</td>
-                        <td class="numeric">2.2%</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(46,204,113,0.35) 100.0%, transparent 100.0%)"><span class="status-good">100.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>unsupported</td>
-                        <td class="numeric">2</td>
-                        <td class="numeric">1.4%</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(46,204,113,0.35) 100.0%, transparent 100.0%)"><span class="status-good">100.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>case_study</td>
-                        <td class="numeric">1</td>
-                        <td class="numeric">0.7%</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(46,204,113,0.35) 100.0%, transparent 100.0%)"><span class="status-good">100.0%</span></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="chart-wrapper"><canvas id="intentCombo"></canvas></div>
+            <p style="color: #666; font-size: 0.85em; margin-top: 12px;">
+                <strong>Left axis:</strong> Query volume per intent (bars)
+                | <strong>Right axis:</strong> Answer % (green line) and Video % (orange dashed line)
+            </p>
         </div>
+        <script>
+            (function() {
+                const intents = [
+                    ['setup', 92, 71.7, 25.0],
+                    ['definition', 21, 66.7, 38.1],
+                    ['overview', 14, 92.9, 92.9],
+                    ['schema', 14, 100.0, 14.3],
+                    ['troubleshooting', 4, 75.0, 75.0],
+                    ['page_lookup', 4, 100.0, 75.0],
+                    ['compare', 4, 75.0, 0.0],
+                    ['behavior', 3, 66.7, 66.7],
+                    ['refusal', 3, 100.0, 0.0],
+                    ['unsupported', 2, 100.0, 0.0],
+                    ['case_study', 1, 100.0, 0.0],
+                ];
+                const labels = intents.map(r => r[0]);
+                const volumes = intents.map(r => r[1]);
+                const answerPct = intents.map(r => r[2]);
+                const videoPct = intents.map(r => r[3]);
+                new Chart(document.getElementById('intentCombo'), {
+                    data: {
+                        labels,
+                        datasets: [
+                            {
+                                type: 'bar', label: 'Queries', data: volumes, yAxisID: 'y',
+                                backgroundColor: 'rgba(102,126,234,0.7)', borderColor: 'rgba(102,126,234,1)',
+                                borderWidth: 1, borderRadius: 6, order: 3
+                            },
+                            {
+                                type: 'line', label: 'Answer %', data: answerPct, yAxisID: 'y1',
+                                borderColor: '#2ecc71', backgroundColor: '#2ecc71',
+                                borderWidth: 3, tension: 0.3, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#2ecc71', order: 1
+                            },
+                            {
+                                type: 'line', label: 'Video %', data: videoPct, yAxisID: 'y1',
+                                borderColor: '#f39c12', backgroundColor: '#f39c12',
+                                borderWidth: 3, borderDash: [6,4], tension: 0.3, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#f39c12', order: 2
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        interaction: { mode: 'index', intersect: false },
+                        plugins: {
+                            legend: {
+                                labels: { color: '#333', usePointStyle: true, padding: 18, font: { size: 12 } }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                ticks: { color: '#666' },
+                                grid: { color: '#e8e8e8' }
+                            },
+                            y: {
+                                position: 'left', beginAtZero: true,
+                                title: { display: true, text: 'Queries', color: '#666', font: { weight: '600' } },
+                                ticks: { color: '#666' },
+                                grid: { color: '#e8e8e8' }
+                            },
+                            y1: {
+                                position: 'right', beginAtZero: true, max: 100,
+                                title: { display: true, text: '% (Answer & Video)', color: '#666', font: { weight: '600' } },
+                                ticks: { color: '#666', callback: v => v + '%' },
+                                grid: { drawOnChartArea: false }
+                            }
+                        }
+                    }
+                });
+            })();
+        </script>
 
         <!-- User Segmentation -->
         <div class="section">
@@ -685,7 +684,7 @@
             <div class="data-source">
                 <strong>Data Source:</strong> Live Langfuse API (Real-time telemetry)
                 <br>
-                <strong>Dashboard Generated:</strong> 2026-06-22 11:43:54 UTC
+                <strong>Dashboard Generated:</strong> 2026-06-22 12:40:20 UTC
                 <br>
                 <strong>Coverage:</strong> Last 7 days of production queries
             </div>
