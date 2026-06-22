@@ -64,7 +64,7 @@
     <div class="container">
         <div class="header">
             <h1>📊 Comprehensive KB Analytics Dashboard</h1>
-            <p>Live Langfuse Telemetry • Last Updated: 2026-06-22 12:40:20 UTC</p>
+            <p>Live Langfuse Telemetry • Last Updated: 2026-06-22 12:56:25 UTC</p>
         </div>
 
         <!-- Global Metrics -->
@@ -512,6 +512,77 @@
             </p>
         </div>
 
+        <!-- Language Distribution -->
+        <div class="section">
+            <h2>🌍 Language Distribution</h2>
+            <div class="chart-wrapper"><canvas id="languageChart"></canvas></div>
+            <p style="color: #666; font-size: 0.85em; margin-top: 12px;">
+                <strong>Left axis:</strong> Query volume per language (bars)
+                | <strong>Right axis:</strong> IDK % (orange line) and Video % (green line)
+            </p>
+        </div>
+        <script>
+            (function() {
+                const languages = [
+                    ['English', 136, 24.3, 32.4],
+                    ['Portuguese', 3, 66.7, 33.3],
+                ];
+                const labels = languages.map(r => r[0]);
+                const volumes = languages.map(r => r[1]);
+                const idkPct = languages.map(r => r[2]);
+                const videoPct = languages.map(r => r[3]);
+                new Chart(document.getElementById('languageChart'), {
+                    data: {
+                        labels,
+                        datasets: [
+                            {
+                                type: 'bar', label: 'Queries', data: volumes, yAxisID: 'y',
+                                backgroundColor: 'rgba(102,126,234,0.7)', borderColor: 'rgba(102,126,234,1)',
+                                borderWidth: 1, borderRadius: 6, order: 3
+                            },
+                            {
+                                type: 'line', label: 'IDK %', data: idkPct, yAxisID: 'y1',
+                                borderColor: '#f39c12', backgroundColor: '#f39c12',
+                                borderWidth: 3, tension: 0.3, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#f39c12', order: 1
+                            },
+                            {
+                                type: 'line', label: 'Video %', data: videoPct, yAxisID: 'y1',
+                                borderColor: '#2ecc71', backgroundColor: '#2ecc71',
+                                borderWidth: 3, borderDash: [6,4], tension: 0.3, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#2ecc71', order: 2
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        interaction: { mode: 'index', intersect: false },
+                        plugins: {
+                            legend: {
+                                labels: { color: '#333', usePointStyle: true, padding: 18, font: { size: 12 } }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                ticks: { color: '#666' },
+                                grid: { color: '#e8e8e8' }
+                            },
+                            y: {
+                                position: 'left', beginAtZero: true,
+                                title: { display: true, text: 'Queries', color: '#666', font: { weight: '600' } },
+                                ticks: { color: '#666' },
+                                grid: { color: '#e8e8e8' }
+                            },
+                            y1: {
+                                position: 'right', beginAtZero: true, max: 100,
+                                title: { display: true, text: '% (IDK & Video)', color: '#666', font: { weight: '600' } },
+                                ticks: { color: '#666', callback: v => v + '%' },
+                                grid: { drawOnChartArea: false }
+                            }
+                        }
+                    }
+                });
+            })();
+        </script>
+
         <!-- Multi-Intent Analysis -->
         <div class="section">
             <h2>🎯 Multi-Intent & Cross-Module Questions</h2>
@@ -616,75 +687,97 @@
 
         <!-- Sample of Remaining IDK Queries -->
         <div class="section">
-            <h2>❌ Sample of Remaining IDK Queries (Top 10)</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Query</th>
-                        <th>Module</th>
-                        <th>Top Score</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>In a flow, after the final submit is called, what flow data JSON is available and in which field? Ma</td>
-                        <td>Agent Assist</td>
-                        <td class="numeric">1.50</td>
-                    </tr>
-                    <tr style="background: rgba(231,76,60,0.07);">
-                        <td>journey variables in terminalmode</td>
-                        <td>Analytics</td>
-                        <td class="numeric" style="color: #e74c3c;">0.55</td>
-                    </tr>
-                    <tr style="background: rgba(231,76,60,0.07);">
-                        <td>whatsapp template test send</td>
-                        <td>Bot Studio</td>
-                        <td class="numeric" style="color: #e74c3c;">0.85</td>
-                    </tr>
-                    <tr style="background: rgba(231,76,60,0.07);">
-                        <td>whatsapp sandbox testing</td>
-                        <td>Bot Studio</td>
-                        <td class="numeric" style="color: #e74c3c;">0.55</td>
-                    </tr>
-                    <tr>
-                        <td>A web bot should remember returning anonymous users on the same browser. Which path is strongest? Go</td>
-                        <td>Bot Studio</td>
-                        <td class="numeric">1.90</td>
-                    </tr>
-                    <tr>
-                        <td>A customer wants DM automation on Instagram that connects to a bot journey. What is the strongest mo</td>
-                        <td>Agent Assist</td>
-                        <td class="numeric">1.85</td>
-                    </tr>
-                    <tr style="background: rgba(231,76,60,0.07);">
-                        <td>What's the right sequence to think about the Gupshup Conversational Platform Layers?</td>
-                        <td>Analytics</td>
-                        <td class="numeric" style="color: #e74c3c;">0.55</td>
-                    </tr>
-                    <tr style="background: rgba(231,76,60,0.07);">
-                        <td>What is GBM?</td>
-                        <td>General</td>
-                        <td class="numeric" style="color: #e74c3c;">0.00</td>
-                    </tr>
-                    <tr style="background: rgba(231,76,60,0.07);">
-                        <td>Is CRM part of Gupshup module?</td>
-                        <td>Integrations</td>
-                        <td class="numeric" style="color: #e74c3c;">0.85</td>
-                    </tr>
-                    <tr>
-                        <td>What is Overdue timer in Agent Assist?</td>
-                        <td>Agent Assist</td>
-                        <td class="numeric">1.45</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h2>❌ Sample of Remaining IDK Queries (By Language)</h2>
+            <style>
+                .lang-tabs { display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 2px solid #e8e8e8; }
+                .lang-tab { padding: 10px 16px; cursor: pointer; background: none; border: none; border-bottom: 3px solid transparent; color: #666; font-weight: 500; transition: all 0.2s; }
+                .lang-tab.active { color: #667eea; border-bottom-color: #667eea; }
+                .lang-tab:hover { color: #333; }
+                .lang-content { display: none; }
+                .lang-content.active { display: block; }
+            </style>
+            <div class="lang-tabs">
+                <button class="lang-tab active" onclick="showLangTab(event, 'en')">English</button>
+                <button class="lang-tab" onclick="showLangTab(event, 'pt')">Portuguese</button>
+            </div>
+            <div class="lang-content active" id="lang-en">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Query</th>
+                            <th>Module</th>
+                            <th>Top Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>In a flow, after the final submit is called, what flow data JSON is available and in which field? Ma</td>
+                            <td>Agent Assist</td>
+                            <td class="numeric">1.50</td>
+                        </tr>
+                        <tr style="background: rgba(231,76,60,0.07);">
+                            <td>journey variables in terminalmode</td>
+                            <td>Analytics</td>
+                            <td class="numeric" style="color: #e74c3c;">0.55</td>
+                        </tr>
+                        <tr style="background: rgba(231,76,60,0.07);">
+                            <td>whatsapp template test send</td>
+                            <td>Bot Studio</td>
+                            <td class="numeric" style="color: #e74c3c;">0.85</td>
+                        </tr>
+                        <tr style="background: rgba(231,76,60,0.07);">
+                            <td>whatsapp sandbox testing</td>
+                            <td>Bot Studio</td>
+                            <td class="numeric" style="color: #e74c3c;">0.55</td>
+                        </tr>
+                        <tr>
+                            <td>A web bot should remember returning anonymous users on the same browser. Which path is strongest? Go</td>
+                            <td>Bot Studio</td>
+                            <td class="numeric">1.90</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="lang-content" id="lang-pt">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Query</th>
+                            <th>Module</th>
+                            <th>Top Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>No Gupshup Console, como consultar ou exportar analytics de WhatsApp por projeto com métricas de req</td>
+                            <td>Analytics</td>
+                            <td class="numeric">1.25</td>
+                        </tr>
+                        <tr style="background: rgba(231,76,60,0.07);">
+                            <td>No WhatsApp, qual é a diferença entre o Username e o Display Name das marcas?</td>
+                            <td>Agent Assist</td>
+                            <td class="numeric" style="color: #e74c3c;">0.55</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <script>
+                function showLangTab(event, langCode) {
+                    const contents = document.querySelectorAll('.lang-content');
+                    contents.forEach(c => c.classList.remove('active'));
+                    const tabs = document.querySelectorAll('.lang-tab');
+                    tabs.forEach(t => t.classList.remove('active'));
+                    document.getElementById('lang-' + langCode).classList.add('active');
+                    event.target.classList.add('active');
+                }
+            </script>
         </div>
 
         <div class="footer">
             <div class="data-source">
                 <strong>Data Source:</strong> Live Langfuse API (Real-time telemetry)
                 <br>
-                <strong>Dashboard Generated:</strong> 2026-06-22 12:40:20 UTC
+                <strong>Dashboard Generated:</strong> {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC
                 <br>
                 <strong>Coverage:</strong> Last 7 days of production queries
             </div>

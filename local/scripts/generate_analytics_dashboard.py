@@ -11,6 +11,46 @@ from pathlib import Path
 from datetime import datetime, timedelta
 from collections import defaultdict
 from typing import Optional, Dict, List, Any
+import re
+
+def detect_language(text: str) -> str:
+    """Detect language from text using character patterns and common words."""
+    if not text:
+        return "unknown"
+
+    text_lower = text.lower()
+
+    # Portuguese patterns (pt)
+    if any(word in text_lower for word in ["ão", "ões", "ê", "õ", "é", "à", "ü"]):
+        if re.search(r'\b(o|a|de|para|com|sem|este|esse|aquele)\b', text_lower):
+            return "pt"
+
+    # Spanish patterns (es)
+    if any(word in text_lower for word in ["ñ", "¿", "¡", "ü"]):
+        if re.search(r'\b(el|la|de|para|con|sin|este|ese|aquel)\b', text_lower):
+            return "es"
+
+    # Arabic patterns (ar)
+    if re.search(r'[؀-ۿ]', text):
+        return "ar"
+
+    # Hindi patterns (hi)
+    if re.search(r'[ऀ-ॿ]', text):
+        return "hi"
+
+    # Chinese/Japanese patterns (zh/ja)
+    if re.search(r'[一-鿿]', text):
+        return "zh"
+    if re.search(r'[぀-ゟ゠-ヿ]', text):
+        return "ja"
+
+    # Korean patterns (ko)
+    if re.search(r'[가-힯]', text):
+        return "ko"
+
+    # Default to English
+    return "en"
+
 
 def _load_env():
     """Load .env file from kb_docs root into os.environ."""
@@ -240,7 +280,9 @@ def analyze_traces(traces: List[Dict]) -> Dict[str, Any]:
     intent_multi = defaultdict(lambda: {"count": 0, "answered": 0})
     intent_video = defaultdict(lambda: {"count": 0, "video": 0})
     daily_metrics = defaultdict(lambda: {"total": 0, "answered": 0, "idk": 0})
+    languages = defaultdict(lambda: {"count": 0, "answered": 0, "idk": 0, "video": 0})
     idk_samples = []
+    idk_by_language = defaultdict(list)
 
     for trace in traces:
         meta = trace.get("metadata") or {}
@@ -249,13 +291,27 @@ def analyze_traces(traces: List[Dict]) -> Dict[str, Any]:
 
         total_queries += 1
         is_answered = meta.get("answered", False)
+        query = meta.get("query", "").strip()
+
+        # Detect language
+        lang = detect_language(query)
+        languages[lang]["count"] += 1
+        languages[lang]["answered" if is_answered else "idk"] += 1
+        if meta.get("video_attached"):
+            languages[lang]["video"] += 1
+
         if is_answered:
             answered += 1
         else:
             idk_count += 1
-            query = meta.get("query", "").strip()
             if query:
                 idk_samples.append({
+                    "query": query[:100],
+                    "module": meta.get("module_label", "Unknown"),
+                    "score": meta.get("top_score") or 0.0,
+                    "language": lang,
+                })
+                idk_by_language[lang].append({
                     "query": query[:100],
                     "module": meta.get("module_label", "Unknown"),
                     "score": meta.get("top_score") or 0.0,
@@ -363,6 +419,14 @@ def analyze_traces(traces: List[Dict]) -> Dict[str, Any]:
             "video_pct": round(v["video"] / v["count"] * 100, 1) if v["count"] > 0 else 0,
         } for k, v in intent_video.items()},
         "daily": dict(daily_metrics),
+        "languages": {k: {
+            "count": v["count"],
+            "answered": v["answered"],
+            "idk": v["idk"],
+            "answer_rate": round(v["answered"] / v["count"] * 100, 1) if v["count"] > 0 else 0,
+            "video_pct": round(v["video"] / v["count"] * 100, 1) if v["count"] > 0 else 0,
+        } for k, v in languages.items()},
+        "idk_by_language": {k: v[:5] for k, v in idk_by_language.items()},
         "idk_samples": idk_samples[:10],
     }
 
@@ -712,6 +776,83 @@ def generate_html(analysis: Dict[str, Any]) -> str:
             </p>
         </div>
 
+        <!-- Language Distribution -->
+        <div class="section">
+            <h2>🌍 Language Distribution</h2>
+            <div class="chart-wrapper"><canvas id="languageChart"></canvas></div>
+            <p style="color: #666; font-size: 0.85em; margin-top: 12px;">
+                <strong>Left axis:</strong> Query volume per language (bars)
+                | <strong>Right axis:</strong> IDK % (orange line) and Video % (green line)
+            </p>
+        </div>
+        <script>
+            (function() {
+                const languages = [
+"""
+    # Sort languages by query count
+    lang_sorted = sorted(analysis.get("languages", {}).items(), key=lambda x: -x[1]["count"])
+    for lang_code, data in lang_sorted:
+        lang_name = {"en": "English", "pt": "Portuguese", "es": "Spanish", "ar": "Arabic", "hi": "Hindi", "zh": "Chinese", "ja": "Japanese", "ko": "Korean"}.get(lang_code, lang_code.upper())
+        idk_rate = round((data["idk"] / data["count"] * 100), 1) if data["count"] > 0 else 0
+        html += f"                    ['{lang_name}', {data['count']}, {idk_rate}, {data['video_pct']:.1f}],\n"
+
+    html += """                ];
+                const labels = languages.map(r => r[0]);
+                const volumes = languages.map(r => r[1]);
+                const idkPct = languages.map(r => r[2]);
+                const videoPct = languages.map(r => r[3]);
+                new Chart(document.getElementById('languageChart'), {
+                    data: {
+                        labels,
+                        datasets: [
+                            {
+                                type: 'bar', label: 'Queries', data: volumes, yAxisID: 'y',
+                                backgroundColor: 'rgba(102,126,234,0.7)', borderColor: 'rgba(102,126,234,1)',
+                                borderWidth: 1, borderRadius: 6, order: 3
+                            },
+                            {
+                                type: 'line', label: 'IDK %', data: idkPct, yAxisID: 'y1',
+                                borderColor: '#f39c12', backgroundColor: '#f39c12',
+                                borderWidth: 3, tension: 0.3, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#f39c12', order: 1
+                            },
+                            {
+                                type: 'line', label: 'Video %', data: videoPct, yAxisID: 'y1',
+                                borderColor: '#2ecc71', backgroundColor: '#2ecc71',
+                                borderWidth: 3, borderDash: [6,4], tension: 0.3, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#2ecc71', order: 2
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        interaction: { mode: 'index', intersect: false },
+                        plugins: {
+                            legend: {
+                                labels: { color: '#333', usePointStyle: true, padding: 18, font: { size: 12 } }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                ticks: { color: '#666' },
+                                grid: { color: '#e8e8e8' }
+                            },
+                            y: {
+                                position: 'left', beginAtZero: true,
+                                title: { display: true, text: 'Queries', color: '#666', font: { weight: '600' } },
+                                ticks: { color: '#666' },
+                                grid: { color: '#e8e8e8' }
+                            },
+                            y1: {
+                                position: 'right', beginAtZero: true, max: 100,
+                                title: { display: true, text: '% (IDK & Video)', color: '#666', font: { weight: '600' } },
+                                ticks: { color: '#666', callback: v => v + '%' },
+                                grid: { drawOnChartArea: false }
+                            }
+                        }
+                    }
+                });
+            })();
+        </script>
+
         <!-- Multi-Intent Analysis -->
         <div class="section">
             <h2>🎯 Multi-Intent & Cross-Module Questions</h2>
@@ -768,38 +909,72 @@ def generate_html(analysis: Dict[str, Any]) -> str:
 
         <!-- Sample of Remaining IDK Queries -->
         <div class="section">
-            <h2>❌ Sample of Remaining IDK Queries (Top 10)</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Query</th>
-                        <th>Module</th>
-                        <th>Top Score</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <h2>❌ Sample of Remaining IDK Queries (By Language)</h2>
+            <style>
+                .lang-tabs {{ display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 2px solid #e8e8e8; }}
+                .lang-tab {{ padding: 10px 16px; cursor: pointer; background: none; border: none; border-bottom: 3px solid transparent; color: #666; font-weight: 500; transition: all 0.2s; }}
+                .lang-tab.active {{ color: #667eea; border-bottom-color: #667eea; }}
+                .lang-tab:hover {{ color: #333; }}
+                .lang-content {{ display: none; }}
+                .lang-content.active {{ display: block; }}
+            </style>
+            <div class="lang-tabs">
+"""
+    idk_by_lang = analysis.get("idk_by_language", {})
+    lang_names = {"en": "English", "pt": "Portuguese", "es": "Spanish", "ar": "Arabic", "hi": "Hindi", "zh": "Chinese", "ja": "Japanese", "ko": "Korean"}
+    for i, (lang_code, _) in enumerate(sorted(idk_by_lang.items())):
+        lang_name = lang_names.get(lang_code, lang_code.upper())
+        active_class = " active" if i == 0 else ""
+        html += f'                <button class="lang-tab{active_class}" onclick="showLangTab(event, \'{lang_code}\')">{lang_name}</button>\n'
+
+    html += """            </div>
+"""
+    for i, (lang_code, idk_list) in enumerate(sorted(idk_by_lang.items())):
+        lang_name = lang_names.get(lang_code, lang_code.upper())
+        active_class = " active" if i == 0 else ""
+        html += f"""            <div class="lang-content{active_class}" id="lang-{lang_code}">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Query</th>
+                            <th>Module</th>
+                            <th>Top Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+"""
+        for idk in idk_list:
+            score = float(idk.get('score', 0.0) or 0.0)
+            if score > 5:
+                row_style = ' style="background: rgba(46,204,113,0.07);"'
+                score_style = ' style="color: #2ecc71; font-weight: 600;"'
+            elif score < 1:
+                row_style = ' style="background: rgba(231,76,60,0.07);"'
+                score_style = ' style="color: #e74c3c;"'
+            else:
+                row_style = ''
+                score_style = ''
+            html += f"""                        <tr{row_style}>
+                            <td>{idk['query']}</td>
+                            <td>{idk['module']}</td>
+                            <td class="numeric"{score_style}>{score:.2f}</td>
+                        </tr>
+"""
+        html += """                    </tbody>
+                </table>
+            </div>
 """
 
-    for idk in analysis["idk_samples"]:
-        score = float(idk.get('score', 0.0) or 0.0)
-        if score > 5:
-            row_style = ' style="background: rgba(46,204,113,0.07);"'
-            score_style = ' style="color: #2ecc71; font-weight: 600;"'
-        elif score < 1:
-            row_style = ' style="background: rgba(231,76,60,0.07);"'
-            score_style = ' style="color: #e74c3c;"'
-        else:
-            row_style = ''
-            score_style = ''
-        html += f"""                    <tr{row_style}>
-                        <td>{idk['query']}</td>
-                        <td>{idk['module']}</td>
-                        <td class="numeric"{score_style}>{score:.2f}</td>
-                    </tr>
-"""
-
-    html += f"""                </tbody>
-            </table>
+    html += """            <script>
+                function showLangTab(event, langCode) {
+                    const contents = document.querySelectorAll('.lang-content');
+                    contents.forEach(c => c.classList.remove('active'));
+                    const tabs = document.querySelectorAll('.lang-tab');
+                    tabs.forEach(t => t.classList.remove('active'));
+                    document.getElementById('lang-' + langCode).classList.add('active');
+                    event.target.classList.add('active');
+                }
+            </script>
         </div>
 
         <div class="footer">

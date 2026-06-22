@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-22T12:40:20.294114",
+  "timestamp": "2026-06-22T12:56:25.271793",
   "total_queries": 139,
   "answered": 104,
   "idk": 35,
@@ -531,56 +531,123 @@
       "idk": 5
     }
   },
+  "languages": {
+    "en": {
+      "count": 136,
+      "answered": 103,
+      "idk": 33,
+      "answer_rate": 75.7,
+      "video_pct": 32.4
+    },
+    "pt": {
+      "count": 3,
+      "answered": 1,
+      "idk": 2,
+      "answer_rate": 33.3,
+      "video_pct": 33.3
+    }
+  },
+  "idk_by_language": {
+    "en": [
+      {
+        "query": "In a flow, after the final submit is called, what flow data JSON is available and in which field? Ma",
+        "module": "Agent Assist",
+        "score": 1.5000000000000002
+      },
+      {
+        "query": "journey variables in terminalmode",
+        "module": "Analytics",
+        "score": 0.55
+      },
+      {
+        "query": "whatsapp template test send",
+        "module": "Bot Studio",
+        "score": 0.8500000000000001
+      },
+      {
+        "query": "whatsapp sandbox testing",
+        "module": "Bot Studio",
+        "score": 0.55
+      },
+      {
+        "query": "A web bot should remember returning anonymous users on the same browser. Which path is strongest? Go",
+        "module": "Bot Studio",
+        "score": 1.9000000000000004
+      }
+    ],
+    "pt": [
+      {
+        "query": "No Gupshup Console, como consultar ou exportar analytics de WhatsApp por projeto com m\u00e9tricas de req",
+        "module": "Analytics",
+        "score": 1.25
+      },
+      {
+        "query": "No WhatsApp, qual \u00e9 a diferen\u00e7a entre o Username e o Display Name das marcas?",
+        "module": "Agent Assist",
+        "score": 0.55
+      }
+    ]
+  },
   "idk_samples": [
     {
       "query": "In a flow, after the final submit is called, what flow data JSON is available and in which field? Ma",
       "module": "Agent Assist",
-      "score": 1.5000000000000002
+      "score": 1.5000000000000002,
+      "language": "en"
     },
     {
       "query": "journey variables in terminalmode",
       "module": "Analytics",
-      "score": 0.55
+      "score": 0.55,
+      "language": "en"
     },
     {
       "query": "whatsapp template test send",
       "module": "Bot Studio",
-      "score": 0.8500000000000001
+      "score": 0.8500000000000001,
+      "language": "en"
     },
     {
       "query": "whatsapp sandbox testing",
       "module": "Bot Studio",
-      "score": 0.55
+      "score": 0.55,
+      "language": "en"
     },
     {
       "query": "A web bot should remember returning anonymous users on the same browser. Which path is strongest? Go",
       "module": "Bot Studio",
-      "score": 1.9000000000000004
+      "score": 1.9000000000000004,
+      "language": "en"
     },
     {
       "query": "A customer wants DM automation on Instagram that connects to a bot journey. What is the strongest mo",
       "module": "Agent Assist",
-      "score": 1.85
+      "score": 1.85,
+      "language": "en"
     },
     {
       "query": "What's the right sequence to think about the Gupshup Conversational Platform Layers?",
       "module": "Analytics",
-      "score": 0.55
+      "score": 0.55,
+      "language": "en"
     },
     {
       "query": "What is GBM?",
       "module": "General",
-      "score": 0.0
+      "score": 0.0,
+      "language": "en"
     },
     {
       "query": "Is CRM part of Gupshup module?",
       "module": "Integrations",
-      "score": 0.8500000000000001
+      "score": 0.8500000000000001,
+      "language": "en"
     },
     {
       "query": "What is Overdue timer in Agent Assist?",
       "module": "Agent Assist",
-      "score": 1.4500000000000002
+      "score": 1.4500000000000002,
+      "language": "en"
     }
   ],
   "video_events": {
