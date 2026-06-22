@@ -33,10 +33,20 @@ def fetch_langfuse_traces(days: int = 7) -> Optional[List[Dict]]:
 
     # Method 1: Langfuse REST API (v2 traces endpoint)
     try:
-        import urllib.request, urllib.parse, base64
+        import urllib.request, urllib.parse, base64, ssl
         host   = os.environ.get("LANGFUSE_HOST", "https://cloud.langfuse.com").rstrip("/")
         pub    = os.environ.get("LANGFUSE_PUBLIC_KEY", "")
         sec    = os.environ.get("LANGFUSE_SECRET_KEY", "")
+
+        # Build a verified SSL context (macOS system Python often lacks a CA bundle).
+        try:
+            import certifi
+            ssl_ctx = ssl.create_default_context(cafile=certifi.where())
+        except Exception:
+            print("⚠️  certifi unavailable — falling back to unverified TLS (run: pip install certifi)")
+            ssl_ctx = ssl.create_default_context()
+            ssl_ctx.check_hostname = False
+            ssl_ctx.verify_mode = ssl.CERT_NONE
 
         if pub and sec:
             creds  = base64.b64encode(f"{pub}:{sec}".encode()).decode()
@@ -50,7 +60,7 @@ def fetch_langfuse_traces(days: int = 7) -> Optional[List[Dict]]:
                 params = urllib.parse.urlencode({"page": page, "limit": 100, "fromTimestamp": from_date})
                 url = f"{host}/api/public/traces?{params}"
                 req = urllib.request.Request(url, headers=headers)
-                with urllib.request.urlopen(req, timeout=30) as resp:
+                with urllib.request.urlopen(req, timeout=30, context=ssl_ctx) as resp:
                     body = json.loads(resp.read())
 
                 batch = body.get("data", [])
@@ -108,6 +118,113 @@ def fetch_langfuse_traces(days: int = 7) -> Optional[List[Dict]]:
 
     print("❌ No trace data available")
     return None
+
+def load_ndjson_traces(days: int = 7) -> List[Dict]:
+    """Load query traces exported to local NDJSON logs (kb/analytics/*.ndjson).
+
+    Some NDJSON rows are full Langfuse trace exports (keys: id, name, input,
+    output, metadata, timestamp) rather than 'video.delivered' events. These are
+    real query traces and share the same id format as the live REST API, so the
+    caller can union them with the live pull and dedupe by trace id.
+    """
+    import glob
+    analytics_dir = Path(__file__).parent.parent.parent / "kb" / "analytics"
+    cutoff = datetime.utcnow() - timedelta(days=days)
+
+    traces = {}
+    for fn in glob.glob(str(analytics_dir / "*.ndjson")):
+        try:
+            with open(fn) as f:
+                for line in f:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    try:
+                        rec = json.loads(line)
+                    except Exception:
+                        continue
+                    # Trace records have id + name + metadata dict; event logs do not.
+                    if not (rec.get("id") and rec.get("name") and isinstance(rec.get("metadata"), dict)):
+                        continue
+                    ts = rec.get("timestamp", "")
+                    try:
+                        dt = datetime.fromisoformat(ts.replace("Z", "+00:00")).replace(tzinfo=None)
+                    except Exception:
+                        continue
+                    if dt < cutoff:
+                        continue
+                    traces[rec["id"]] = rec  # dedupe within NDJSON by id
+        except FileNotFoundError:
+            continue
+    return list(traces.values())
+
+
+def load_video_events(days: int = 7) -> Dict[str, Any]:
+    """Load real video-delivery events from local NDJSON logs (kb/analytics/*.ndjson).
+
+    NDJSON 'video.delivered' rows are EVENTS, not query traces — they are NOT
+    merged into query/answer/IDK counts. They provide ground-truth video
+    delivery metrics that enrich the Video Analytics sections.
+    """
+    import glob
+    analytics_dir = Path(__file__).parent.parent.parent / "kb" / "analytics"
+    cutoff = datetime.utcnow() - timedelta(days=days)
+
+    seen = set()
+    total = caps = fallbacks = 0
+    by_intent = defaultdict(int)
+    by_module = defaultdict(int)
+    latest_ts = ""
+
+    for fn in glob.glob(str(analytics_dir / "*.ndjson")):
+        try:
+            with open(fn) as f:
+                for line in f:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    try:
+                        rec = json.loads(line)
+                    except Exception:
+                        continue
+                    if rec.get("event") != "video.delivered":
+                        continue
+                    ts = rec.get("ts", "")
+                    p = rec.get("payload") or {}
+                    key = (ts, p.get("video_id"), p.get("source"))
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    if ts > latest_ts:
+                        latest_ts = ts
+                    try:
+                        dt = datetime.fromisoformat(ts).replace(tzinfo=None)
+                    except Exception:
+                        continue
+                    if dt < cutoff:
+                        continue
+                    total += 1
+                    if p.get("captions_on"):
+                        caps += 1
+                    if p.get("fallback"):
+                        fallbacks += 1
+                    by_intent[p.get("intent", "unknown")] += 1
+                    by_module[p.get("module", "Unknown")] += 1
+        except FileNotFoundError:
+            continue
+
+    return {
+        "total_deliveries": total,
+        "captions_on": caps,
+        "captions_pct": round(caps / total * 100, 1) if total else 0.0,
+        "fallbacks": fallbacks,
+        "fallback_pct": round(fallbacks / total * 100, 1) if total else 0.0,
+        "by_intent": dict(sorted(by_intent.items(), key=lambda x: -x[1])),
+        "by_module": dict(sorted(by_module.items(), key=lambda x: -x[1])),
+        "latest_event_ts": latest_ts,
+        "window_days": days,
+    }
+
 
 def analyze_traces(traces: List[Dict]) -> Dict[str, Any]:
     """Analyze traces and extract all metrics for all reports."""
@@ -246,7 +363,7 @@ def analyze_traces(traces: List[Dict]) -> Dict[str, Any]:
             "video_pct": round(v["video"] / v["count"] * 100, 1) if v["count"] > 0 else 0,
         } for k, v in intent_video.items()},
         "daily": dict(daily_metrics),
-        "idk_samples": idk_samples[:20],
+        "idk_samples": idk_samples[:10],
     }
 
 def generate_html(analysis: Dict[str, Any]) -> str:
@@ -524,19 +641,31 @@ def generate_html(analysis: Dict[str, Any]) -> str:
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Overall Video Attachment Rate</td>
+                        <td>Overall Video Attachment Rate <span style="color:#888;font-size:0.8em">(Langfuse)</span></td>
                         <td class="numeric status-good">""" + f"""{analysis['video_rate']:.1f}%""" + """</td>
                     </tr>
                     <tr>
-                        <td>Videos Appended to Answer</td>
+                        <td>Videos Appended to Answer <span style="color:#888;font-size:0.8em">(Langfuse)</span></td>
                         <td class="numeric">""" + f"""{analysis['video_rate']:.1f}%""" + """</td>
                     </tr>
                     <tr>
-                        <td>Captions Enabled</td>
-                        <td class="numeric">100.0%</td>
+                        <td>Real Video Deliveries <span style="color:#888;font-size:0.8em">(NDJSON events, """ + f"""{analysis['video_events']['window_days']}""" + """d)</span></td>
+                        <td class="numeric status-good">""" + f"""{analysis['video_events']['total_deliveries']}""" + """</td>
+                    </tr>
+                    <tr>
+                        <td>Captions Enabled <span style="color:#888;font-size:0.8em">(NDJSON events)</span></td>
+                        <td class="numeric">""" + f"""{analysis['video_events']['captions_pct']:.1f}%""" + """</td>
+                    </tr>
+                    <tr>
+                        <td>Fallback Video Rate <span style="color:#888;font-size:0.8em">(NDJSON events)</span></td>
+                        <td class="numeric">""" + f"""{analysis['video_events']['fallback_pct']:.1f}%""" + """</td>
                     </tr>
                 </tbody>
             </table>
+            <p style="color:#888;font-size:0.82em;margin-top:8px">
+                Video-delivery metrics sourced from local NDJSON event logs
+                (<code>kb/analytics/*.ndjson</code>). Latest delivery event: """ + f"""{analysis['video_events']['latest_event_ts'] or 'n/a'}""" + """.
+            </p>
         </div>
 
         <!-- Multi-Intent Analysis -->
@@ -595,7 +724,7 @@ def generate_html(analysis: Dict[str, Any]) -> str:
 
         <!-- Sample of Remaining IDK Queries -->
         <div class="section">
-            <h2>❌ Sample of Remaining IDK Queries (Top 20)</h2>
+            <h2>❌ Sample of Remaining IDK Queries (Top 10)</h2>
             <table>
                 <thead>
                     <tr>
@@ -652,13 +781,34 @@ def main():
     print("=" * 80)
     print()
 
-    traces = fetch_langfuse_traces(days=7)
+    traces = fetch_langfuse_traces(days=7) or []
+    live_count = len(traces)
+
+    # Merge query traces exported to local NDJSON (union, dedupe by trace id).
+    ndjson_traces = load_ndjson_traces(days=7)
+    by_id = {t.get("id"): t for t in traces if t.get("id")}
+    no_id = [t for t in traces if not t.get("id")]
+    added = 0
+    for t in ndjson_traces:
+        if t["id"] not in by_id:
+            by_id[t["id"]] = t
+            added += 1
+    traces = list(by_id.values()) + no_id
+    print(f"🔗 Merged traces: {live_count} live + {len(ndjson_traces)} NDJSON "
+          f"(+{added} unique) = {len(traces)} total after dedupe")
+
     if not traces:
         print("❌ No trace data available. Cannot generate dashboard.")
         return
 
     print(f"📊 Analyzing {len(traces)} traces...")
     analysis = analyze_traces(traces)
+
+    print(f"🎥 Loading video-delivery events from NDJSON logs...")
+    analysis["video_events"] = load_video_events(days=7)
+    ve = analysis["video_events"]
+    print(f"   Video deliveries (7d): {ve['total_deliveries']} | captions: {ve['captions_pct']}% "
+          f"| fallback: {ve['fallback_pct']}% | latest event: {ve['latest_event_ts'] or 'n/a'}")
 
     print(f"\n✅ Analysis complete:")
     print(f"   Total queries: {analysis['total_queries']}")
