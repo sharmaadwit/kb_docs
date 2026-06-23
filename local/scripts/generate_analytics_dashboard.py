@@ -737,45 +737,6 @@ def generate_html(analysis: Dict[str, Any]) -> str:
             </table>
         </div>
 
-        <!-- Video Analytics -->
-        <div class="section">
-            <h2>🎥 Video Analytics</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Metric</th>
-                        <th class="numeric">Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Overall Video Attachment Rate <span style="color:#888;font-size:0.8em">(Langfuse)</span></td>
-                        <td class="numeric status-good">""" + f"""{analysis['video_rate']:.1f}%""" + """</td>
-                    </tr>
-                    <tr>
-                        <td>Videos Appended to Answer <span style="color:#888;font-size:0.8em">(Langfuse)</span></td>
-                        <td class="numeric">""" + f"""{analysis['video_rate']:.1f}%""" + """</td>
-                    </tr>
-                    <tr>
-                        <td>Real Video Deliveries <span style="color:#888;font-size:0.8em">(NDJSON events, """ + f"""{analysis['video_events']['window_days']}""" + """d)</span></td>
-                        <td class="numeric status-good">""" + f"""{analysis['video_events']['total_deliveries']}""" + """</td>
-                    </tr>
-                    <tr>
-                        <td>Captions Enabled <span style="color:#888;font-size:0.8em">(NDJSON events)</span></td>
-                        <td class="numeric">""" + f"""{analysis['video_events']['captions_pct']:.1f}%""" + """</td>
-                    </tr>
-                    <tr>
-                        <td>Fallback Video Rate <span style="color:#888;font-size:0.8em">(NDJSON events)</span></td>
-                        <td class="numeric">""" + f"""{analysis['video_events']['fallback_pct']:.1f}%""" + """</td>
-                    </tr>
-                </tbody>
-            </table>
-            <p style="color:#888;font-size:0.82em;margin-top:8px">
-                Video-delivery metrics sourced from local NDJSON event logs
-                (<code>kb/analytics/*.ndjson</code>). Latest delivery event: """ + f"""{analysis['video_events']['latest_event_ts'] or 'n/a'}""" + """.
-            </p>
-        </div>
-
         <!-- Language Distribution -->
         <div class="section">
             <h2>🌍 Language Distribution</h2>
