@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-23T06:24:27.973122",
+  "timestamp": "2026-06-23T06:26:01.287167",
   "total_queries": 141,
   "answered": 108,
   "idk": 33,
@@ -666,33 +666,34 @@
     }
   ],
   "video_events": {
-    "total_deliveries": 150,
-    "captions_on": 150,
+    "total_deliveries": 193,
+    "captions_on": 193,
     "captions_pct": 100.0,
     "fallbacks": 0,
     "fallback_pct": 0.0,
     "by_intent": {
-      "overview": 98,
-      "setup": 43,
+      "overview": 115,
+      "setup": 50,
+      "schema": 13,
+      "page_lookup": 7,
       "definition": 3,
-      "page_lookup": 2,
-      "compare": 2,
+      "compare": 3,
       "chain": 2
     },
     "by_module": {
-      "General": 93,
-      "Bot Studio": 15,
+      "General": 124,
+      "Bot Studio": 22,
       "Agent Assist": 10,
+      "Analytics": 10,
       "Overview": 9,
       "CTX": 7,
-      "Analytics": 7,
-      "Campaign Manager": 3,
+      "Campaign Manager": 5,
       "SuperAgent": 2,
       "Goals": 2,
       "AI Admin": 1,
       "Channels": 1
     },
-    "latest_event_ts": "2026-06-19T14:53:07.376627+00:00",
+    "latest_event_ts": "2026-06-23T06:04:56.761972+00:00",
     "window_days": 7
   }
 }
