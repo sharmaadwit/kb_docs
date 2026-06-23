@@ -1,143 +1,322 @@
 {
-  "timestamp": "2026-06-23T12:54:41.651141",
-  "total_queries": 106,
-  "answered": 50,
-  "idk": 56,
-  "idk_rate": 52.8,
-  "answer_rate": 47.2,
-  "avg_confidence": 3.15,
-  "video_rate": 50.0,
+  "timestamp": "2026-06-23T13:05:30.143857",
+  "total_queries": 152,
+  "answered": 118,
+  "idk": 34,
+  "idk_rate": 22.4,
+  "answer_rate": 77.6,
+  "avg_confidence": 4.29,
+  "video_rate": 38.1,
   "modules": {
-    "Channels": {
-      "count": 12,
-      "answered": 6,
-      "idk": 6,
-      "avg_confidence": 2.57
-    },
     "General": {
-      "count": 18,
-      "answered": 11,
-      "idk": 7,
-      "avg_confidence": 1.78
+      "count": 37,
+      "answered": 29,
+      "idk": 8,
+      "avg_confidence": 1.61
+    },
+    "Bot Studio": {
+      "count": 64,
+      "answered": 53,
+      "idk": 11,
+      "avg_confidence": 5.83
+    },
+    "Agent Assist": {
+      "count": 14,
+      "answered": 9,
+      "idk": 5,
+      "avg_confidence": 4.37
+    },
+    "Campaign Manager": {
+      "count": 4,
+      "answered": 4,
+      "idk": 0,
+      "avg_confidence": 4.19
+    },
+    "Channels": {
+      "count": 7,
+      "answered": 5,
+      "idk": 2,
+      "avg_confidence": 5.85
+    },
+    "Analytics": {
+      "count": 6,
+      "answered": 3,
+      "idk": 3,
+      "avg_confidence": 1.98
+    },
+    "Overview": {
+      "count": 2,
+      "answered": 2,
+      "idk": 0,
+      "avg_confidence": 1.23
+    },
+    "CTX": {
+      "count": 7,
+      "answered": 6,
+      "idk": 1,
+      "avg_confidence": 2.42
     },
     "SuperAgent": {
       "count": 4,
-      "answered": 2,
-      "idk": 2,
-      "avg_confidence": 3.84
+      "answered": 3,
+      "idk": 1,
+      "avg_confidence": 5.09
     },
-    "Bot Studio": {
-      "count": 27,
-      "answered": 12,
-      "idk": 15,
-      "avg_confidence": 4.93
+    "Goals": {
+      "count": 2,
+      "answered": 2,
+      "idk": 0,
+      "avg_confidence": 6.17
     },
     "AI Admin": {
-      "count": 8,
-      "answered": 5,
-      "idk": 3,
-      "avg_confidence": 4.26
-    },
-    "Agent Assist": {
-      "count": 11,
-      "answered": 5,
-      "idk": 6,
-      "avg_confidence": 3.46
-    },
-    "CTX": {
-      "count": 12,
-      "answered": 4,
-      "idk": 8,
-      "avg_confidence": 1.18
-    },
-    "Overview": {
-      "count": 6,
+      "count": 3,
       "answered": 2,
-      "idk": 4,
-      "avg_confidence": 0.78
+      "idk": 1,
+      "avg_confidence": 11.32
     },
     "Integrations": {
-      "count": 5,
-      "answered": 2,
-      "idk": 3,
-      "avg_confidence": 3.74
-    },
-    "Campaign Manager": {
       "count": 2,
-      "answered": 1,
-      "idk": 1,
-      "avg_confidence": 3.45
-    },
-    "Analytics": {
-      "count": 1,
       "answered": 0,
-      "idk": 1,
-      "avg_confidence": 6.15
+      "idk": 2,
+      "avg_confidence": 1.33
     }
   },
   "intents": {
+    "kb_error": {
+      "count": 10,
+      "answered": 10,
+      "idk": 0,
+      "answer_rate": 100.0
+    },
     "setup": {
-      "count": 76,
-      "answered": 32,
-      "idk": 44,
-      "answer_rate": 42.1
-    },
-    "page_lookup": {
-      "count": 7,
-      "answered": 3,
-      "idk": 4,
-      "answer_rate": 42.9
-    },
-    "troubleshooting": {
-      "count": 2,
-      "answered": 0,
-      "idk": 2,
-      "answer_rate": 0.0
+      "count": 94,
+      "answered": 67,
+      "idk": 27,
+      "answer_rate": 71.3
     },
     "definition": {
-      "count": 15,
-      "answered": 9,
+      "count": 20,
+      "answered": 14,
       "idk": 6,
-      "answer_rate": 60.0
+      "answer_rate": 70.0
     },
-    "unsupported": {
-      "count": 1,
-      "answered": 1,
+    "schema": {
+      "count": 17,
+      "answered": 17,
       "idk": 0,
       "answer_rate": 100.0
     },
     "overview": {
-      "count": 9,
-      "answered": 7,
-      "idk": 2,
-      "answer_rate": 77.8
-    },
-    "behavior": {
-      "count": 2,
-      "answered": 2,
+      "count": 14,
+      "answered": 14,
       "idk": 0,
       "answer_rate": 100.0
     },
-    "compare": {
+    "page_lookup": {
+      "count": 6,
+      "answered": 6,
+      "idk": 0,
+      "answer_rate": 100.0
+    },
+    "unsupported": {
+      "count": 3,
+      "answered": 3,
+      "idk": 0,
+      "answer_rate": 100.0
+    },
+    "case_study": {
+      "count": 1,
+      "answered": 1,
+      "idk": 0,
+      "answer_rate": 100.0
+    },
+    "troubleshooting": {
+      "count": 4,
+      "answered": 3,
+      "idk": 1,
+      "answer_rate": 75.0
+    },
+    "behavior": {
       "count": 1,
       "answered": 0,
       "idk": 1,
       "answer_rate": 0.0
     },
-    "refusal": {
-      "count": 5,
-      "answered": 5,
+    "compare": {
+      "count": 3,
+      "answered": 3,
       "idk": 0,
       "answer_rate": 100.0
     },
-    "schema": {
+    "refusal": {
       "count": 2,
-      "answered": 1,
-      "idk": 1,
-      "answer_rate": 50.0
+      "answered": 2,
+      "idk": 0,
+      "answer_rate": 100.0
     }
   },
   "users_internal": {
+    "natasha.puri@gupshup.io": {
+      "count": 4,
+      "answered": 4,
+      "answer_rate": 100.0,
+      "avg_confidence": 0.51,
+      "video_pct": 0.0
+    },
+    "ananya.a@gupshup.io": {
+      "count": 22,
+      "answered": 18,
+      "answer_rate": 81.8,
+      "avg_confidence": 6.48,
+      "video_pct": 36.4
+    },
+    "ankit.kanwara@gupshup.io": {
+      "count": 8,
+      "answered": 2,
+      "answer_rate": 25.0,
+      "avg_confidence": 1.86,
+      "video_pct": 12.5
+    },
+    "puru.chauhan@knowlarity.com": {
+      "count": 2,
+      "answered": 2,
+      "answer_rate": 100.0,
+      "avg_confidence": 5.88,
+      "video_pct": 100.0
+    },
+    "bernardo.silva@gupshup.io": {
+      "count": 6,
+      "answered": 4,
+      "answer_rate": 66.7,
+      "avg_confidence": 4.29,
+      "video_pct": 0.0
+    },
+    "luana.santos@gupshup.io": {
+      "count": 2,
+      "answered": 0,
+      "answer_rate": 0.0,
+      "avg_confidence": 0.55,
+      "video_pct": 0.0
+    },
+    "preety.sharma@gupshup.io": {
+      "count": 2,
+      "answered": 2,
+      "answer_rate": 100.0,
+      "avg_confidence": 0.3,
+      "video_pct": 100.0
+    },
+    "brendon.castelino@gupshup.io": {
+      "count": 3,
+      "answered": 1,
+      "answer_rate": 33.3,
+      "avg_confidence": 2.32,
+      "video_pct": 33.3
+    },
+    "saikrishna.ramagiri@knowlarity.com": {
+      "count": 1,
+      "answered": 1,
+      "answer_rate": 100.0,
+      "avg_confidence": 6.8,
+      "video_pct": 100.0
+    },
+    "yashas.reddy@gupshup.io": {
+      "count": 4,
+      "answered": 4,
+      "answer_rate": 100.0,
+      "avg_confidence": 5.08,
+      "video_pct": 75.0
+    },
+    "abhijit.chatterjee@gupshup.io": {
+      "count": 11,
+      "answered": 5,
+      "answer_rate": 45.5,
+      "avg_confidence": 0.51,
+      "video_pct": 36.4
+    },
+    "joseph.cobbinah@gupshup.io": {
+      "count": 1,
+      "answered": 1,
+      "answer_rate": 100.0,
+      "avg_confidence": 0.3,
+      "video_pct": 100.0
+    },
+    "hemanth.swamy@gupshup.io": {
+      "count": 1,
+      "answered": 1,
+      "answer_rate": 100.0,
+      "avg_confidence": 6.45,
+      "video_pct": 100.0
+    },
+    "guilherme.garcia@gupshup.io": {
+      "count": 2,
+      "answered": 2,
+      "answer_rate": 100.0,
+      "avg_confidence": 0.85,
+      "video_pct": 0.0
+    },
+    "efrain.fernandez@gupshup.io": {
+      "count": 1,
+      "answered": 1,
+      "answer_rate": 100.0,
+      "avg_confidence": 1.5,
+      "video_pct": 100.0
+    },
+    "rajnik.bauva@gupshup.io": {
+      "count": 3,
+      "answered": 1,
+      "answer_rate": 33.3,
+      "avg_confidence": 0.82,
+      "video_pct": 33.3
+    },
+    "mauricio.martins@gupshup.io": {
+      "count": 2,
+      "answered": 0,
+      "answer_rate": 0.0,
+      "avg_confidence": 0.62,
+      "video_pct": 0.0
+    },
+    "abdulrahman.alsaify@gupshup.io": {
+      "count": 4,
+      "answered": 4,
+      "answer_rate": 100.0,
+      "avg_confidence": 4.29,
+      "video_pct": 0.0
+    },
+    "ketan.thakur@gupshup.io": {
+      "count": 1,
+      "answered": 1,
+      "answer_rate": 100.0,
+      "avg_confidence": 0.0,
+      "video_pct": 0.0
+    },
+    "renata.martins@gupshup.io": {
+      "count": 4,
+      "answered": 0,
+      "answer_rate": 0.0,
+      "avg_confidence": 0.28,
+      "video_pct": 0.0
+    },
+    "nidhi.shridhar@gupshup.io": {
+      "count": 1,
+      "answered": 1,
+      "answer_rate": 100.0,
+      "avg_confidence": 6.55,
+      "video_pct": 100.0
+    },
+    "omkar.patil@gupshup.io": {
+      "count": 3,
+      "answered": 3,
+      "answer_rate": 100.0,
+      "avg_confidence": 4.47,
+      "video_pct": 33.3
+    },
+    "deepak.upadhyay@gupshup.io": {
+      "count": 2,
+      "answered": 0,
+      "answer_rate": 0.0,
+      "avg_confidence": 0.78,
+      "video_pct": 0.0
+    },
     "mark.kreuiter@gupshup.io": {
       "count": 3,
       "answered": 1,
@@ -145,18 +324,11 @@
       "avg_confidence": 6.3,
       "video_pct": 0.0
     },
-    "ankit.kanwara@gupshup.io": {
-      "count": 18,
-      "answered": 6,
-      "answer_rate": 33.3,
-      "avg_confidence": 3.46,
-      "video_pct": 5.6
-    },
     "prem.kishan@gupshup.io": {
-      "count": 4,
+      "count": 2,
       "answered": 0,
       "answer_rate": 0.0,
-      "avg_confidence": 0.44,
+      "avg_confidence": 0.43,
       "video_pct": 0.0
     },
     "sanchit.aggarwal@gupshup.io": {
@@ -166,204 +338,87 @@
       "avg_confidence": 1.43,
       "video_pct": 25.0
     },
-    "brendon.castelino@gupshup.io": {
-      "count": 6,
-      "answered": 0,
-      "answer_rate": 0.0,
-      "avg_confidence": 0.53,
-      "video_pct": 0.0
-    },
     "mayank.singh@gupshup.io": {
       "count": 2,
       "answered": 0,
       "answer_rate": 0.0,
       "avg_confidence": 0.55,
       "video_pct": 0.0
-    },
-    "arunkumar.m@gupshup.io": {
-      "count": 3,
-      "answered": 1,
-      "answer_rate": 33.3,
-      "avg_confidence": 2.3,
-      "video_pct": 33.3
-    },
-    "yashas.reddy@gupshup.io": {
-      "count": 12,
-      "answered": 4,
-      "answer_rate": 33.3,
-      "avg_confidence": 3.21,
-      "video_pct": 16.7
-    },
-    "navneet.mangalasseri@gupshup.io": {
-      "count": 2,
-      "answered": 0,
-      "answer_rate": 0.0,
-      "avg_confidence": 0.58,
-      "video_pct": 0.0
-    },
-    "dibakar.nath@gupshup.io": {
-      "count": 3,
-      "answered": 1,
-      "answer_rate": 33.3,
-      "avg_confidence": 1.99,
-      "video_pct": 0.0
-    },
-    "willian.trevisan@gupshup.io": {
-      "count": 3,
-      "answered": 1,
-      "answer_rate": 33.3,
-      "avg_confidence": 0.35,
-      "video_pct": 33.3
-    },
-    "omkar.patil@gupshup.io": {
-      "count": 2,
-      "answered": 0,
-      "answer_rate": 0.0,
-      "avg_confidence": 2.5,
-      "video_pct": 0.0
-    },
-    "sherwin.misquitta@gupshup.io": {
-      "count": 2,
-      "answered": 0,
-      "answer_rate": 0.0,
-      "avg_confidence": 0.67,
-      "video_pct": 0.0
-    },
-    "sarvesh.jhalani@knowlarity.com": {
-      "count": 3,
-      "answered": 1,
-      "answer_rate": 33.3,
-      "avg_confidence": 2.1,
-      "video_pct": 33.3
-    },
-    "ananya.a@gupshup.io": {
-      "count": 6,
-      "answered": 2,
-      "answer_rate": 33.3,
-      "avg_confidence": 0.27,
-      "video_pct": 0.0
-    },
-    "vishal.sharma@gupshup.io": {
-      "count": 1,
-      "answered": 1,
-      "answer_rate": 100.0,
-      "avg_confidence": 8.54,
-      "video_pct": 100.0
-    },
-    "mridul.kumawat@gupshup.io": {
-      "count": 2,
-      "answered": 0,
-      "answer_rate": 0.0,
-      "avg_confidence": 0.43,
-      "video_pct": 0.0
-    },
-    "naveen.verma@knowlarity.com": {
-      "count": 8,
-      "answered": 2,
-      "answer_rate": 25.0,
-      "avg_confidence": 1.21,
-      "video_pct": 25.0
-    },
-    "eduardo.avila@gupshup.io": {
-      "count": 5,
-      "answered": 5,
-      "answer_rate": 100.0,
-      "avg_confidence": 7.67,
-      "video_pct": 0.0
-    },
-    "abraham.aigbe@gupshup.io": {
-      "count": 3,
-      "answered": 1,
-      "answer_rate": 33.3,
-      "avg_confidence": 0.3,
-      "video_pct": 33.3
-    },
-    "pavankalyan.killari@gupshup.io": {
-      "count": 2,
-      "answered": 0,
-      "answer_rate": 0.0,
-      "avg_confidence": 4.4,
-      "video_pct": 0.0
-    },
-    "renu.singh@knowlarity.com": {
-      "count": 2,
-      "answered": 2,
-      "answer_rate": 100.0,
-      "avg_confidence": 6.46,
-      "video_pct": 100.0
-    },
-    "rahul.panchal@gupshup.io": {
-      "count": 3,
-      "answered": 1,
-      "answer_rate": 33.3,
-      "avg_confidence": 1.92,
-      "video_pct": 33.3
-    },
-    "saikrishna.ramagiri@knowlarity.com": {
-      "count": 2,
-      "answered": 0,
-      "answer_rate": 0.0,
-      "avg_confidence": 0.38,
-      "video_pct": 0.0
-    },
-    "avinash.kumar@knowlarity.com": {
-      "count": 8,
-      "answered": 2,
-      "answer_rate": 25.0,
-      "avg_confidence": 1.78,
-      "video_pct": 12.5
-    },
-    "hemanth.swamy@gupshup.io": {
-      "count": 2,
-      "answered": 0,
-      "answer_rate": 0.0,
-      "avg_confidence": 0.28,
-      "video_pct": 0.0
-    },
-    "chijioke.ugwuh@gupshup.io": {
-      "count": 1,
-      "answered": 1,
-      "answer_rate": 100.0,
-      "avg_confidence": 1.25,
-      "video_pct": 100.0
-    },
-    "ketan.thakur@gupshup.io": {
-      "count": 4,
-      "answered": 0,
-      "answer_rate": 0.0,
-      "avg_confidence": 3.09,
-      "video_pct": 0.0
-    },
-    "roger.guimaraes@gupshup.io": {
-      "count": 7,
-      "answered": 1,
-      "answer_rate": 14.3,
-      "avg_confidence": 0.79,
-      "video_pct": 0.0
-    },
-    "shubham.matwandkar@gupshup.io": {
-      "count": 7,
-      "answered": 1,
-      "answer_rate": 14.3,
-      "avg_confidence": 1.05,
-      "video_pct": 14.3
-    },
-    "mohyeldein.elbaroudy@gupshup.io": {
-      "count": 2,
-      "answered": 2,
-      "answer_rate": 100.0,
-      "avg_confidence": 0.68,
-      "video_pct": 100.0
-    },
-    "varun.singh@knowlarity.com": {
-      "count": 2,
-      "answered": 0,
-      "answer_rate": 0.0,
-      "avg_confidence": 0.35,
-      "video_pct": 0.0
     }
   },
   "users_external": {
+    "shreyank@lokta.ai": {
+      "domain": "lokta.ai",
+      "count": 20,
+      "answered": 14,
+      "answer_rate": 70.0,
+      "avg_confidence": 3.96,
+      "video_pct": 15.0
+    },
+    "mis@digitalnest.in": {
+      "domain": "digitalnest.in",
+      "count": 1,
+      "answered": 1,
+      "answer_rate": 100.0,
+      "avg_confidence": 0.0,
+      "video_pct": 0.0
+    },
+    "admin.digital@karmadevelopers.ae": {
+      "domain": "karmadevelopers.ae",
+      "count": 1,
+      "answered": 1,
+      "answer_rate": 100.0,
+      "avg_confidence": 5.05,
+      "video_pct": 0.0
+    },
+    "vamshi@lokta.ai": {
+      "domain": "lokta.ai",
+      "count": 22,
+      "answered": 20,
+      "answer_rate": 90.9,
+      "avg_confidence": 7.78,
+      "video_pct": 9.1
+    },
+    "ishwarnale14@gmail.com": {
+      "domain": "gmail.com",
+      "count": 14,
+      "answered": 8,
+      "answer_rate": 57.1,
+      "avg_confidence": 1.55,
+      "video_pct": 28.6
+    },
+    "basavaraj@bullkingtimes.com": {
+      "domain": "bullkingtimes.com",
+      "count": 2,
+      "answered": 2,
+      "answer_rate": 100.0,
+      "avg_confidence": 8.07,
+      "video_pct": 0.0
+    },
+    "florela2003@yahoo.com": {
+      "domain": "yahoo.com",
+      "count": 2,
+      "answered": 2,
+      "answer_rate": 100.0,
+      "avg_confidence": 1.1,
+      "video_pct": 100.0
+    },
+    "adhirajvij9@gmail.com": {
+      "domain": "gmail.com",
+      "count": 3,
+      "answered": 1,
+      "answer_rate": 33.3,
+      "avg_confidence": 2.17,
+      "video_pct": 33.3
+    },
+    "hardik@vertexmediahouse.com": {
+      "domain": "vertexmediahouse.com",
+      "count": 1,
+      "answered": 1,
+      "answer_rate": 100.0,
+      "avg_confidence": 0.0,
+      "video_pct": 0.0
+    },
     "nishchal.motwani@ampdlocal.com": {
       "domain": "ampdlocal.com",
       "count": 14,
@@ -379,244 +434,245 @@
       "answer_rate": 100.0,
       "avg_confidence": 0.85,
       "video_pct": 100.0
-    },
-    "adityagupta318@gmail.com": {
-      "domain": "gmail.com",
-      "count": 2,
-      "answered": 0,
-      "answer_rate": 0.0,
-      "avg_confidence": 0.2,
-      "video_pct": 0.0
-    },
-    "admin@bloomerce.ai": {
-      "domain": "bloomerce.ai",
-      "count": 3,
-      "answered": 3,
-      "answer_rate": 100.0,
-      "avg_confidence": 0.0,
-      "video_pct": 0.0
-    },
-    "devendra@apporbits.com": {
-      "domain": "apporbits.com",
-      "count": 4,
-      "answered": 2,
-      "answer_rate": 50.0,
-      "avg_confidence": 2.89,
-      "video_pct": 50.0
     }
   },
   "intent_multi": {
     "1": {
-      "count": 92,
-      "answered": 40,
-      "answer_rate": 43.5
+      "count": 132,
+      "answered": 99,
+      "answer_rate": 75.0
+    },
+    "3": {
+      "count": 3,
+      "answered": 3,
+      "answer_rate": 100.0
     },
     "2": {
-      "count": 14,
-      "answered": 10,
-      "answer_rate": 71.4
+      "count": 17,
+      "answered": 16,
+      "answer_rate": 94.1
     }
   },
   "intent_video": {
-    "setup": {
-      "count": 76,
-      "video": 13,
-      "video_pct": 17.1
-    },
-    "page_lookup": {
-      "count": 7,
-      "video": 1,
-      "video_pct": 14.3
-    },
-    "troubleshooting": {
-      "count": 2,
+    "kb_error": {
+      "count": 10,
       "video": 0,
       "video_pct": 0.0
+    },
+    "setup": {
+      "count": 94,
+      "video": 23,
+      "video_pct": 24.5
     },
     "definition": {
-      "count": 15,
+      "count": 20,
       "video": 7,
-      "video_pct": 46.7
+      "video_pct": 35.0
+    },
+    "schema": {
+      "count": 17,
+      "video": 2,
+      "video_pct": 11.8
+    },
+    "overview": {
+      "count": 14,
+      "video": 13,
+      "video_pct": 92.9
+    },
+    "page_lookup": {
+      "count": 6,
+      "video": 5,
+      "video_pct": 83.3
     },
     "unsupported": {
+      "count": 3,
+      "video": 0,
+      "video_pct": 0.0
+    },
+    "case_study": {
       "count": 1,
       "video": 0,
       "video_pct": 0.0
     },
-    "overview": {
-      "count": 9,
-      "video": 7,
-      "video_pct": 77.8
+    "troubleshooting": {
+      "count": 4,
+      "video": 3,
+      "video_pct": 75.0
     },
     "behavior": {
-      "count": 2,
-      "video": 2,
-      "video_pct": 100.0
+      "count": 1,
+      "video": 0,
+      "video_pct": 0.0
     },
     "compare": {
-      "count": 1,
+      "count": 3,
       "video": 0,
       "video_pct": 0.0
     },
     "refusal": {
-      "count": 5,
+      "count": 2,
       "video": 0,
       "video_pct": 0.0
-    },
-    "schema": {
-      "count": 2,
-      "video": 1,
-      "video_pct": 50.0
     }
   },
   "daily": {
-    "2026-06-16": {
-      "total": 25,
-      "answered": 11,
-      "idk": 14
+    "2026-06-23": {
+      "total": 19,
+      "answered": 17,
+      "idk": 2
     },
-    "2026-06-15": {
-      "total": 12,
-      "answered": 7,
-      "idk": 5
-    },
-    "2026-06-14": {
-      "total": 3,
-      "answered": 0,
-      "idk": 3
-    },
-    "2026-06-12": {
-      "total": 28,
-      "answered": 18,
-      "idk": 10
-    },
-    "2026-06-11": {
-      "total": 17,
+    "2026-06-22": {
+      "total": 10,
       "answered": 8,
-      "idk": 9
+      "idk": 2
     },
-    "2026-06-10": {
-      "total": 9,
-      "answered": 2,
+    "2026-06-21": {
+      "total": 22,
+      "answered": 21,
+      "idk": 1
+    },
+    "2026-06-20": {
+      "total": 1,
+      "answered": 1,
+      "idk": 0
+    },
+    "2026-06-19": {
+      "total": 11,
+      "answered": 10,
+      "idk": 1
+    },
+    "2026-06-18": {
+      "total": 37,
+      "answered": 30,
       "idk": 7
     },
-    "2026-06-09": {
-      "total": 12,
-      "answered": 4,
-      "idk": 8
+    "2026-06-17": {
+      "total": 20,
+      "answered": 16,
+      "idk": 4
+    },
+    "2026-06-16": {
+      "total": 32,
+      "answered": 15,
+      "idk": 17
     }
   },
   "languages": {
     "en": {
-      "count": 105,
-      "answered": 50,
-      "idk": 55,
-      "answer_rate": 47.6,
-      "video_pct": 23.8
+      "count": 145,
+      "answered": 113,
+      "idk": 32,
+      "answer_rate": 77.9,
+      "video_pct": 30.3
     },
     "pt": {
-      "count": 1,
-      "answered": 0,
-      "idk": 1,
-      "answer_rate": 0.0,
-      "video_pct": 0.0
+      "count": 7,
+      "answered": 5,
+      "idk": 2,
+      "answer_rate": 71.4,
+      "video_pct": 14.3
     }
   },
   "idk_by_language": {
     "en": [
       {
-        "query": "In Channels > WhatsApp, I only see Edit. How do I disconnect the WhatsApp channel connection?",
-        "module": "Channels",
-        "score": 1.5500000000000003
-      },
-      {
-        "query": "How to disconnect or remove a current WhatsApp Business Account / WhatsApp channel connection in Gup",
+        "query": "where can i find GUPSHUP_API_KEY and your-app-id in Gupshup Console",
         "module": "General",
-        "score": 3.9000000000000004
+        "score": 1.4500000000000002
       },
       {
-        "query": "How do I disconnect my WhatsApp Business Account (WABA) or channel connection from Gupshup Console? ",
-        "module": "General",
-        "score": 4.2
-      },
-      {
-        "query": "User cannot find Disconnect option to disconnect WhatsApp channel/WABA from Console. Where else is d",
-        "module": "General",
-        "score": 3.95
-      },
-      {
-        "query": "How do I disconnect my whatsapp?",
+        "query": "message_metadata response JSON structure",
         "module": "Bot Studio",
-        "score": 0.55
+        "score": 0.8500000000000001
+      },
+      {
+        "query": "No Journey Builder, como modelar fallback para reply buttons quando o usu\u00e1rio digita um valor inespe",
+        "module": "Bot Studio",
+        "score": 1.4500000000000002
+      },
+      {
+        "query": "Como definir fallback de inatividade no node de reply?",
+        "module": "Bot Studio",
+        "score": 1.1
+      },
+      {
+        "query": "In a flow, after the final submit is called, what flow data JSON is available and in which field? Ma",
+        "module": "Agent Assist",
+        "score": 1.5000000000000002
       }
     ],
     "pt": [
       {
-        "query": "Quais s\u00e3o os principais clientes do segmento CPG da Gupshup e quais regi\u00f5es de atua\u00e7\u00e3o? Sei que em L",
-        "module": "CTX",
-        "score": 0.35
+        "query": "No Gupshup Console, como consultar ou exportar analytics de WhatsApp por projeto com m\u00e9tricas de req",
+        "module": "Analytics",
+        "score": 1.25
+      },
+      {
+        "query": "No WhatsApp, qual \u00e9 a diferen\u00e7a entre o Username e o Display Name das marcas?",
+        "module": "Agent Assist",
+        "score": 0.55
       }
     ]
   },
   "idk_samples": [
     {
-      "query": "In Channels > WhatsApp, I only see Edit. How do I disconnect the WhatsApp channel connection?",
-      "module": "Channels",
-      "score": 1.5500000000000003,
-      "language": "en"
-    },
-    {
-      "query": "How to disconnect or remove a current WhatsApp Business Account / WhatsApp channel connection in Gup",
+      "query": "where can i find GUPSHUP_API_KEY and your-app-id in Gupshup Console",
       "module": "General",
-      "score": 3.9000000000000004,
+      "score": 1.4500000000000002,
       "language": "en"
     },
     {
-      "query": "How do I disconnect my WhatsApp Business Account (WABA) or channel connection from Gupshup Console? ",
-      "module": "General",
-      "score": 4.2,
+      "query": "message_metadata response JSON structure",
+      "module": "Bot Studio",
+      "score": 0.8500000000000001,
       "language": "en"
     },
     {
-      "query": "User cannot find Disconnect option to disconnect WhatsApp channel/WABA from Console. Where else is d",
-      "module": "General",
-      "score": 3.95,
+      "query": "No Journey Builder, como modelar fallback para reply buttons quando o usu\u00e1rio digita um valor inespe",
+      "module": "Bot Studio",
+      "score": 1.4500000000000002,
       "language": "en"
     },
     {
-      "query": "How do I disconnect my whatsapp?",
+      "query": "Como definir fallback de inatividade no node de reply?",
+      "module": "Bot Studio",
+      "score": 1.1,
+      "language": "en"
+    },
+    {
+      "query": "In a flow, after the final submit is called, what flow data JSON is available and in which field? Ma",
+      "module": "Agent Assist",
+      "score": 1.5000000000000002,
+      "language": "en"
+    },
+    {
+      "query": "journey variables in terminalmode",
+      "module": "Analytics",
+      "score": 0.55,
+      "language": "en"
+    },
+    {
+      "query": "whatsapp template test send",
+      "module": "Bot Studio",
+      "score": 0.8500000000000001,
+      "language": "en"
+    },
+    {
+      "query": "whatsapp sandbox testing",
       "module": "Bot Studio",
       "score": 0.55,
       "language": "en"
     },
     {
-      "query": "How do I create an AI Admin FAQ bot from a website URL and connect it to a journey?",
-      "module": "AI Admin",
-      "score": 11.65,
+      "query": "A web bot should remember returning anonymous users on the same browser. Which path is strongest? Go",
+      "module": "Bot Studio",
+      "score": 1.9000000000000004,
       "language": "en"
     },
     {
-      "query": "Does Gupshup support WhatsApp Communities?",
-      "module": "General",
-      "score": 0.8500000000000001,
-      "language": "en"
-    },
-    {
-      "query": "What is sticky chat in Agent Assist?",
+      "query": "A customer wants DM automation on Instagram that connects to a bot journey. What is the strongest mo",
       "module": "Agent Assist",
-      "score": 1.4500000000000002,
-      "language": "en"
-    },
-    {
-      "query": "How to download leads from Gupshup Console",
-      "module": "General",
-      "score": 0.8500000000000001,
-      "language": "en"
-    },
-    {
-      "query": "What is an Enterprise WhatsApp account / Enterprise account in Gupshup onboarding?",
-      "module": "General",
-      "score": 3.8,
+      "score": 1.85,
       "language": "en"
     }
   ],
