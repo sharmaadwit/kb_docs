@@ -291,7 +291,7 @@ def analyze_traces(traces: List[Dict]) -> Dict[str, Any]:
 
         total_queries += 1
         is_answered = meta.get("answered", False)
-        query = meta.get("query", "").strip()
+        query = (meta.get("query") or "").strip()
 
         # Detect language
         lang = detect_language(query)
@@ -340,7 +340,7 @@ def analyze_traces(traces: List[Dict]) -> Dict[str, Any]:
             intent_multi[intent_count]["answered"] += 1
 
         # User tracking
-        user_email = meta.get("user_email", "Anonymous")
+        user_email = meta.get("user_email") or "Anonymous"
         is_internal = "@gupshup.io" in user_email or "@knowlarity.com" in user_email
 
         if is_internal:
@@ -476,8 +476,403 @@ def group_related_traces(traces):
         "total_hierarchical": len(hierarchy),
     }
 
+
+def _parse_ts(trace: Dict) -> Optional[datetime]:
+    """Best-effort parse of a trace timestamp into a naive UTC datetime."""
+    ts = trace.get("timestamp") or trace.get("createdAt") or ""
+    if not ts:
+        return None
+    try:
+        return datetime.fromisoformat(ts.replace("Z", "+00:00")).replace(tzinfo=None)
+    except Exception:
+        try:
+            return datetime.strptime(ts.split(".")[0].replace("Z", ""), "%Y-%m-%dT%H:%M:%S")
+        except Exception:
+            return None
+
+
+def analyze_conversations(traces: List[Dict], session_gap_minutes: int = 30) -> Dict[str, Any]:
+    """Group traces into conversations and compute multi-turn / decomposition metrics.
+
+    A "conversation" is a sequence of related queries by a single user. We resolve
+    the grouping key in priority order:
+      1. metadata.correlation_id (explicit linkage, when telemetry provides it)
+      2. trace.sessionId (Langfuse session linkage)
+      3. derived session: same user_email + time gap <= session_gap_minutes
+
+    Within each conversation, the chronologically first query is the ROOT query;
+    the rest are FOLLOW-UPS. Conversations with more than one query are treated as
+    DECOMPOSED (the user broke a goal into multiple sub-queries).
+    """
+    # Normalize + sort traces chronologically, skipping the owner's own traffic.
+    rows = []
+    for t in traces:
+        meta = t.get("metadata") or {}
+        if meta.get("user_email") == "adwit.sharma@gupshup.io":
+            continue
+        rows.append((t, meta, _parse_ts(t)))
+    rows.sort(key=lambda r: (r[2] or datetime.min))
+
+    # Assign each trace to a conversation key.
+    conversations: Dict[str, List[Dict]] = defaultdict(list)
+    last_seen: Dict[str, Any] = {}  # user -> (dt, derived_key)
+    derived_counter = 0
+    gap = timedelta(minutes=session_gap_minutes)
+
+    for t, meta, dt in rows:
+        corr = meta.get("correlation_id") or t.get("sessionId")
+        if corr:
+            key = f"corr:{corr}"
+        else:
+            user = meta.get("user_email") or "Anonymous"
+            prev = last_seen.get(user)
+            if prev and dt and prev[0] and (dt - prev[0]) <= gap:
+                key = prev[1]
+            else:
+                derived_counter += 1
+                key = f"sess:{user}:{derived_counter}"
+            last_seen[user] = (dt, key)
+        conversations[key].append({
+            "query": (meta.get("query") or "").strip(),
+            "answered": bool(meta.get("answered", False)),
+            "confidence": float(meta.get("top_score") or meta.get("confidence") or 0.0),
+            "latency_ms": float(meta.get("latency_ms") or 0.0),
+            "user": meta.get("user_email") or "Anonymous",
+            "module": meta.get("module_label", "Unknown"),
+            "timestamp": t.get("timestamp", ""),
+        })
+
+    # Per-conversation stats.
+    conversation_stats = []
+    for key, qs in conversations.items():
+        length = len(qs)
+        answered = sum(1 for q in qs if q["answered"])
+        success_rate = round(answered / length * 100, 1) if length else 0.0
+        root = qs[0]
+        conversation_stats.append({
+            "id": key,
+            "length": length,
+            "answered": answered,
+            "success_rate": success_rate,
+            "root_query": root["query"][:120],
+            "root_answered": root["answered"],
+            "root_confidence": round(root["confidence"], 2),
+            "is_decomposed": length > 1,
+            "avg_confidence": round(sum(q["confidence"] for q in qs) / length, 2) if length else 0.0,
+            "avg_latency": round(sum(q["latency_ms"] for q in qs) / length, 0) if length else 0.0,
+            "user": root["user"],
+            "timestamp": root["timestamp"],
+        })
+
+    total_conv = len(conversation_stats)
+    single_turn = sum(1 for c in conversation_stats if c["length"] == 1)
+    multi_turn = total_conv - single_turn
+    total_q = sum(c["length"] for c in conversation_stats)
+    max_len = max((c["length"] for c in conversation_stats), default=0)
+
+    # Report 2: success rate bucketed by conversation length (1, 2, 3, 4+).
+    length_buckets = {"1": [], "2": [], "3": [], "4+": []}
+    for c in conversation_stats:
+        bucket = str(c["length"]) if c["length"] <= 3 else "4+"
+        length_buckets[bucket].append(c["success_rate"])
+    success_by_length = {
+        b: {
+            "conversations": len(vals),
+            "avg_success_rate": round(sum(vals) / len(vals), 1) if vals else 0.0,
+        }
+        for b, vals in length_buckets.items()
+    }
+
+    # Report 3: root query vs follow-up comparison.
+    root_ans = root_idk = 0
+    root_conf_sum = 0.0
+    fu_ans = fu_idk = 0
+    fu_conf_sum = 0.0
+    fu_total = 0
+    for key, qs in conversations.items():
+        for i, q in enumerate(qs):
+            if i == 0:
+                if q["answered"]:
+                    root_ans += 1
+                else:
+                    root_idk += 1
+                root_conf_sum += q["confidence"]
+            else:
+                fu_total += 1
+                if q["answered"]:
+                    fu_ans += 1
+                else:
+                    fu_idk += 1
+                fu_conf_sum += q["confidence"]
+    root_total = root_ans + root_idk
+    root_vs_followup = {
+        "root": {
+            "count": root_total,
+            "answer_rate": round(root_ans / root_total * 100, 1) if root_total else 0.0,
+            "idk_rate": round(root_idk / root_total * 100, 1) if root_total else 0.0,
+            "avg_confidence": round(root_conf_sum / root_total, 2) if root_total else 0.0,
+        },
+        "followup": {
+            "count": fu_total,
+            "answer_rate": round(fu_ans / fu_total * 100, 1) if fu_total else 0.0,
+            "idk_rate": round(fu_idk / fu_total * 100, 1) if fu_total else 0.0,
+            "avg_confidence": round(fu_conf_sum / fu_total, 2) if fu_total else 0.0,
+        },
+    }
+
+    # Report 4: decomposition effectiveness (multi-query conversations only).
+    decomposed = [c for c in conversation_stats if c["is_decomposed"]]
+    all_success = sum(1 for c in decomposed if c["answered"] == c["length"])
+    all_failed = sum(1 for c in decomposed if c["answered"] == 0)
+    partial = len(decomposed) - all_success - all_failed
+    decomp_total = len(decomposed)
+    decomposition_effectiveness = {
+        "total_decomposed": decomp_total,
+        "all_success": all_success,
+        "partial_success": partial,
+        "all_failed": all_failed,
+        "all_success_pct": round(all_success / decomp_total * 100, 1) if decomp_total else 0.0,
+        "partial_success_pct": round(partial / decomp_total * 100, 1) if decomp_total else 0.0,
+        "all_failed_pct": round(all_failed / decomp_total * 100, 1) if decomp_total else 0.0,
+    }
+
+    return {
+        "conversation_stats": sorted(conversation_stats, key=lambda c: -c["length"]),
+        # Report 1
+        "overview": {
+            "total_conversations": total_conv,
+            "single_turn": single_turn,
+            "multi_turn": multi_turn,
+            "single_turn_pct": round(single_turn / total_conv * 100, 1) if total_conv else 0.0,
+            "multi_turn_pct": round(multi_turn / total_conv * 100, 1) if total_conv else 0.0,
+            "avg_queries_per_conversation": round(total_q / total_conv, 2) if total_conv else 0.0,
+            "max_queries": max_len,
+            "total_queries": total_q,
+        },
+        # Report 2
+        "success_by_length": success_by_length,
+        # Report 3
+        "root_vs_followup": root_vs_followup,
+        # Report 4
+        "decomposition_effectiveness": decomposition_effectiveness,
+    }
+
+
+def generate_conversation_reports(conv: Dict[str, Any]) -> str:
+    """Build the HTML for the 4 conversation-insight reports (Tab 1).
+
+    Reuses the existing card / section / Chart.js conventions and color scheme.
+    """
+    ov = conv["overview"]
+    sbl = conv["success_by_length"]
+    rvf = conv["root_vs_followup"]
+    de = conv["decomposition_effectiveness"]
+
+    # Report 2 chart data
+    length_labels = ["1", "2", "3", "4+"]
+    length_rates = [sbl[b]["avg_success_rate"] for b in length_labels]
+    length_counts = [sbl[b]["conversations"] for b in length_labels]
+
+    html = f"""
+        <!-- ===================== TAB 1: CONVERSATION INSIGHTS ===================== -->
+
+        <!-- Report 1: Multi-Turn Conversation Dashboard -->
+        <div class="section">
+            <h2>💬 Multi-Turn Conversation Dashboard</h2>
+            <div class="grid">
+                <div class="card" style="border-left: 5px solid #667eea;">
+                    <div class="metric">
+                        <div class="metric-label">Total Conversations</div>
+                        <div class="metric-value">{ov['total_conversations']}</div>
+                        <div class="metric-unit">{ov['total_queries']} queries</div>
+                    </div>
+                </div>
+                <div class="card" style="border-left: 5px solid #2ecc71;">
+                    <div class="metric">
+                        <div class="metric-label">Single-Turn</div>
+                        <div class="metric-value status-good">{ov['single_turn_pct']}%</div>
+                        <div class="metric-unit">({ov['single_turn']} conversations)</div>
+                    </div>
+                </div>
+                <div class="card" style="border-left: 5px solid #f39c12;">
+                    <div class="metric">
+                        <div class="metric-label">Multi-Turn</div>
+                        <div class="metric-value status-warning">{ov['multi_turn_pct']}%</div>
+                        <div class="metric-unit">({ov['multi_turn']} conversations)</div>
+                    </div>
+                </div>
+                <div class="card" style="border-left: 5px solid #667eea;">
+                    <div class="metric">
+                        <div class="metric-label">Avg Queries / Conversation</div>
+                        <div class="metric-value">{ov['avg_queries_per_conversation']}</div>
+                    </div>
+                </div>
+                <div class="card" style="border-left: 5px solid #aaa;">
+                    <div class="metric">
+                        <div class="metric-label">Max Queries in a Conversation</div>
+                        <div class="metric-value">{ov['max_queries']}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Report 2: Conversation Success Rate by Length -->
+        <div class="section">
+            <h2>📈 Conversation Success Rate by Length</h2>
+            <div class="chart-wrapper"><canvas id="successByLength"></canvas></div>
+            <p style="color: #666; font-size: 0.85em; margin-top: 12px;">
+                Average per-conversation success rate grouped by number of queries.
+                Bars show conversation volume; the green line shows success %.
+            </p>
+        </div>
+        <script>
+            (function() {{
+                const labels = {length_labels};
+                const counts = {length_counts};
+                const rates = {length_rates};
+                new Chart(document.getElementById('successByLength'), {{
+                    data: {{
+                        labels,
+                        datasets: [
+                            {{
+                                type: 'bar', label: 'Conversations', data: counts, yAxisID: 'y',
+                                backgroundColor: 'rgba(102,126,234,0.7)', borderColor: 'rgba(102,126,234,1)',
+                                borderWidth: 1, borderRadius: 6, order: 2
+                            }},
+                            {{
+                                type: 'line', label: 'Success %', data: rates, yAxisID: 'y1',
+                                borderColor: '#2ecc71', backgroundColor: '#2ecc71',
+                                borderWidth: 3, tension: 0.3, pointRadius: 5, pointHoverRadius: 7,
+                                pointBackgroundColor: '#2ecc71', order: 1
+                            }}
+                        ]
+                    }},
+                    options: {{
+                        responsive: true, maintainAspectRatio: false,
+                        interaction: {{ mode: 'index', intersect: false }},
+                        plugins: {{ legend: {{ labels: {{ color: '#333', usePointStyle: true, padding: 18, font: {{ size: 12 }} }} }} }},
+                        scales: {{
+                            x: {{ title: {{ display: true, text: 'Queries per Conversation', color: '#666', font: {{ weight: '600' }} }}, ticks: {{ color: '#666' }}, grid: {{ color: '#e8e8e8' }} }},
+                            y: {{ position: 'left', beginAtZero: true, title: {{ display: true, text: 'Conversations', color: '#666', font: {{ weight: '600' }} }}, ticks: {{ color: '#666' }}, grid: {{ color: '#e8e8e8' }} }},
+                            y1: {{ position: 'right', beginAtZero: true, max: 100, title: {{ display: true, text: 'Success %', color: '#666', font: {{ weight: '600' }} }}, ticks: {{ color: '#666', callback: v => v + '%' }}, grid: {{ drawOnChartArea: false }} }}
+                        }}
+                    }}
+                }});
+            }})();
+        </script>
+
+        <!-- Report 3: Root Query vs Follow-up Analysis -->
+        <div class="section">
+            <h2>🌱 Root Query vs Follow-up Analysis</h2>
+            <div class="grid">
+                <div class="card" style="border-left: 5px solid #667eea;">
+                    <div class="metric">
+                        <div class="metric-label">Root Queries</div>
+                        <div class="metric-value">{rvf['root']['count']}</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Answer Rate</div>
+                        <div class="metric-value status-good">{rvf['root']['answer_rate']}%</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">IDK Rate</div>
+                        <div class="metric-value status-critical">{rvf['root']['idk_rate']}%</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Avg Confidence</div>
+                        <div class="metric-value">{rvf['root']['avg_confidence']}</div>
+                    </div>
+                </div>
+                <div class="card" style="border-left: 5px solid #f39c12;">
+                    <div class="metric">
+                        <div class="metric-label">Follow-up Queries</div>
+                        <div class="metric-value">{rvf['followup']['count']}</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Answer Rate</div>
+                        <div class="metric-value status-good">{rvf['followup']['answer_rate']}%</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">IDK Rate</div>
+                        <div class="metric-value status-critical">{rvf['followup']['idk_rate']}%</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Avg Confidence</div>
+                        <div class="metric-value">{rvf['followup']['avg_confidence']}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-wrapper" style="height: 320px;"><canvas id="rootVsFollowup"></canvas></div>
+        </div>
+        <script>
+            (function() {{
+                new Chart(document.getElementById('rootVsFollowup'), {{
+                    type: 'bar',
+                    data: {{
+                        labels: ['Answer %', 'IDK %', 'Avg Confidence'],
+                        datasets: [
+                            {{ label: 'Root Query', data: [{rvf['root']['answer_rate']}, {rvf['root']['idk_rate']}, {rvf['root']['avg_confidence']}], backgroundColor: 'rgba(102,126,234,0.7)', borderColor: 'rgba(102,126,234,1)', borderWidth: 1, borderRadius: 6 }},
+                            {{ label: 'Follow-up', data: [{rvf['followup']['answer_rate']}, {rvf['followup']['idk_rate']}, {rvf['followup']['avg_confidence']}], backgroundColor: 'rgba(243,156,18,0.7)', borderColor: 'rgba(243,156,18,1)', borderWidth: 1, borderRadius: 6 }}
+                        ]
+                    }},
+                    options: {{
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: {{ legend: {{ labels: {{ color: '#333', usePointStyle: true, padding: 18, font: {{ size: 12 }} }} }} }},
+                        scales: {{ x: {{ ticks: {{ color: '#666' }}, grid: {{ color: '#e8e8e8' }} }}, y: {{ beginAtZero: true, ticks: {{ color: '#666' }}, grid: {{ color: '#e8e8e8' }} }} }}
+                    }}
+                }});
+            }})();
+        </script>
+
+        <!-- Report 4: Decomposition Effectiveness -->
+        <div class="section">
+            <h2>🧩 Decomposition Effectiveness</h2>
+            <p style="color: #666; font-size: 0.9em; margin-bottom: 16px;">
+                Of {de['total_decomposed']} decomposed (multi-query) conversations, how many had
+                <strong>all</strong>, <strong>some</strong>, or <strong>none</strong> of their sub-queries answered.
+            </p>
+            <div class="chart-wrapper" style="height: 360px;"><canvas id="decompChart"></canvas></div>
+        </div>
+        <script>
+            (function() {{
+                new Chart(document.getElementById('decompChart'), {{
+                    type: 'doughnut',
+                    data: {{
+                        labels: ['All Answered ({de['all_success_pct']}%)', 'Partial ({de['partial_success_pct']}%)', 'All Failed ({de['all_failed_pct']}%)'],
+                        datasets: [{{
+                            data: [{de['all_success']}, {de['partial_success']}, {de['all_failed']}],
+                            backgroundColor: ['rgba(46,204,113,0.8)', 'rgba(243,156,18,0.8)', 'rgba(231,76,60,0.8)'],
+                            borderColor: ['#2ecc71', '#f39c12', '#e74c3c'], borderWidth: 2
+                        }}]
+                    }},
+                    options: {{
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: {{ legend: {{ position: 'right', labels: {{ color: '#333', usePointStyle: true, padding: 18, font: {{ size: 13 }} }} }} }}
+                    }}
+                }});
+            }})();
+        </script>
+"""
+    return html
+
+
 def generate_html(analysis: Dict[str, Any]) -> str:
     """Generate comprehensive HTML with all reports."""
+
+    # Tab 1 content (conversation insights). Falls back to empty if unavailable.
+    conversation_reports_html = generate_conversation_reports(
+        analysis.get("conversations", {
+            "overview": {"total_conversations": 0, "single_turn": 0, "multi_turn": 0,
+                         "single_turn_pct": 0.0, "multi_turn_pct": 0.0,
+                         "avg_queries_per_conversation": 0.0, "max_queries": 0, "total_queries": 0},
+            "success_by_length": {b: {"conversations": 0, "avg_success_rate": 0.0} for b in ["1", "2", "3", "4+"]},
+            "root_vs_followup": {"root": {"count": 0, "answer_rate": 0.0, "idk_rate": 0.0, "avg_confidence": 0.0},
+                                 "followup": {"count": 0, "answer_rate": 0.0, "idk_rate": 0.0, "avg_confidence": 0.0}},
+            "decomposition_effectiveness": {"total_decomposed": 0, "all_success": 0, "partial_success": 0,
+                                            "all_failed": 0, "all_success_pct": 0.0, "partial_success_pct": 0.0,
+                                            "all_failed_pct": 0.0},
+        })
+    )
 
     idk_rate = analysis["idk_rate"]
     idk_color = "status-critical" if idk_rate > 50 else ("status-warning" if idk_rate > 40 else "status-good")
@@ -549,6 +944,18 @@ def generate_html(analysis: Dict[str, Any]) -> str:
         .footer {{ text-align: center; color: white; margin-top: 40px; font-size: 0.9em; opacity: 0.8; }}
         .data-source {{ background: rgba(255,255,255,0.1); padding: 12px; border-radius: 6px; margin-top: 10px; }}
         .chart-wrapper {{ height: 420px; margin: 20px 0; }}
+
+        /* Top-level tab navigation */
+        .main-tabs {{ display: flex; gap: 10px; margin-bottom: 24px; }}
+        .main-tab {{
+            padding: 14px 28px; cursor: pointer; background: rgba(255,255,255,0.15);
+            border: none; border-radius: 10px 10px 0 0; color: white; font-weight: 600;
+            font-size: 1.05em; letter-spacing: 0.5px; transition: all 0.2s;
+        }}
+        .main-tab:hover {{ background: rgba(255,255,255,0.3); }}
+        .main-tab.active {{ background: white; color: #667eea; box-shadow: 0 -4px 12px rgba(0,0,0,0.1); }}
+        .main-tab-content {{ display: none; }}
+        .main-tab-content.active {{ display: block; }}
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
@@ -558,6 +965,20 @@ def generate_html(analysis: Dict[str, Any]) -> str:
             <h1>📊 Comprehensive KB Analytics Dashboard</h1>
             <p>Live Langfuse Telemetry • Last Updated: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC</p>
         </div>
+
+        <!-- Top-level Tab Navigation -->
+        <div class="main-tabs">
+            <button class="main-tab active" onclick="showMainTab(event, 'conversation-insights')">💬 CONVERSATION INSIGHTS</button>
+            <button class="main-tab" onclick="showMainTab(event, 'query-metrics')">📊 QUERY METRICS</button>
+        </div>
+
+        <!-- ===================== TAB 1 ===================== -->
+        <div class="main-tab-content active" id="tab-conversation-insights">
+{conversation_reports_html}
+        </div>
+
+        <!-- ===================== TAB 2 ===================== -->
+        <div class="main-tab-content" id="tab-query-metrics">
 
         <!-- Global Metrics -->
         <div class="grid">
@@ -1003,6 +1424,17 @@ def generate_html(analysis: Dict[str, Any]) -> str:
             </script>
         </div>
 
+        </div> <!-- /tab-query-metrics -->
+
+        <script>
+            function showMainTab(event, tabId) {
+                document.querySelectorAll('.main-tab-content').forEach(c => c.classList.remove('active'));
+                document.querySelectorAll('.main-tab').forEach(t => t.classList.remove('active'));
+                document.getElementById('tab-' + tabId).classList.add('active');
+                event.target.classList.add('active');
+            }
+        </script>
+
         <div class="footer">
             <div class="data-source">
                 <strong>Data Source:</strong> Live Langfuse API (Real-time telemetry)
@@ -1048,6 +1480,17 @@ def main():
 
     print(f"📊 Analyzing {len(traces)} traces...")
     analysis = analyze_traces(traces)
+
+    print(f"💬 Analyzing conversations (grouping by correlation_id / session)...")
+    analysis["conversations"] = analyze_conversations(traces)
+    cv = analysis["conversations"]["overview"]
+    print(f"   Conversations: {cv['total_conversations']} | "
+          f"single-turn: {cv['single_turn']} ({cv['single_turn_pct']}%) | "
+          f"multi-turn: {cv['multi_turn']} ({cv['multi_turn_pct']}%) | "
+          f"avg q/conv: {cv['avg_queries_per_conversation']} | max: {cv['max_queries']}")
+    de = analysis["conversations"]["decomposition_effectiveness"]
+    print(f"   Decomposed: {de['total_decomposed']} | all-success: {de['all_success_pct']}% | "
+          f"partial: {de['partial_success_pct']}% | all-failed: {de['all_failed_pct']}%")
 
     print(f"🎥 Loading video-delivery events from NDJSON logs...")
     analysis["video_events"] = load_video_events(days=7)
