@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "created_at": "2026-06-15T07:43:32.346480+00:00",
+  "created_at": "2026-06-23T10:58:41.563737+00:00",
   "repo": "sharmaadwit/kb_docs",
   "branch": "main",
   "docs_path": "kb",
@@ -8,7 +8,7 @@
     "kb/analytics"
   ],
   "md_files": 400,
-  "chunks": 6653,
+  "chunks": 6679,
   "docs": [
     {
       "path": "kb/agent-assist/about-agent-assist.md",
@@ -537,6 +537,10 @@
     {
       "path": "kb/bot-studio/goal-node.md",
       "chunks": 20
+    },
+    {
+      "path": "kb/bot-studio/google-sheets-integration.md",
+      "chunks": 34
     },
     {
       "path": "kb/bot-studio/gupshup-journey-builder-legacy-vs-v2-vs-pro.md",
@@ -1605,10 +1609,6 @@
     {
       "path": "kb/whatsapp/waba-setup-detailed-gupshup-console.md",
       "chunks": 14
-    },
-    {
-      "path": "kb/workflows/agent-assist-availability-vs-auto-replies.md",
-      "chunks": 8
     }
   ],
   "chunking": {
