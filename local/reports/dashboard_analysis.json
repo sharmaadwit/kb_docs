@@ -1,13 +1,19 @@
 {
-  "timestamp": "2026-06-23T06:58:45.846878",
-  "total_queries": 141,
-  "answered": 108,
+  "timestamp": "2026-06-23T10:28:57.546217",
+  "total_queries": 148,
+  "answered": 115,
   "idk": 33,
-  "idk_rate": 23.4,
-  "answer_rate": 76.6,
-  "avg_confidence": 4.61,
-  "video_rate": 41.7,
+  "idk_rate": 22.3,
+  "answer_rate": 77.7,
+  "avg_confidence": 4.4,
+  "video_rate": 39.1,
   "modules": {
+    "General": {
+      "count": 33,
+      "answered": 26,
+      "idk": 7,
+      "avg_confidence": 1.76
+    },
     "Bot Studio": {
       "count": 64,
       "answered": 53,
@@ -19,12 +25,6 @@
       "answered": 9,
       "idk": 5,
       "avg_confidence": 4.37
-    },
-    "General": {
-      "count": 26,
-      "answered": 19,
-      "idk": 7,
-      "avg_confidence": 2.23
     },
     "Campaign Manager": {
       "count": 4,
@@ -82,6 +82,12 @@
     }
   },
   "intents": {
+    "kb_error": {
+      "count": 7,
+      "answered": 7,
+      "idk": 0,
+      "answer_rate": 100.0
+    },
     "definition": {
       "count": 20,
       "answered": 14,
@@ -150,6 +156,20 @@
     }
   },
   "users_internal": {
+    "ananya.a@gupshup.io": {
+      "count": 22,
+      "answered": 18,
+      "answer_rate": 81.8,
+      "avg_confidence": 6.48,
+      "video_pct": 36.4
+    },
+    "ankit.kanwara@gupshup.io": {
+      "count": 8,
+      "answered": 2,
+      "answer_rate": 25.0,
+      "avg_confidence": 1.86,
+      "video_pct": 12.5
+    },
     "puru.chauhan@knowlarity.com": {
       "count": 2,
       "answered": 2,
@@ -226,13 +246,6 @@
       "answer_rate": 100.0,
       "avg_confidence": 6.45,
       "video_pct": 100.0
-    },
-    "ananya.a@gupshup.io": {
-      "count": 19,
-      "answered": 15,
-      "answer_rate": 78.9,
-      "avg_confidence": 7.51,
-      "video_pct": 42.1
     },
     "guilherme.garcia@gupshup.io": {
       "count": 2,
@@ -311,13 +324,6 @@
       "avg_confidence": 6.3,
       "video_pct": 0.0
     },
-    "ankit.kanwara@gupshup.io": {
-      "count": 7,
-      "answered": 1,
-      "answer_rate": 14.3,
-      "avg_confidence": 2.13,
-      "video_pct": 14.3
-    },
     "prem.kishan@gupshup.io": {
       "count": 2,
       "answered": 0,
@@ -343,11 +349,11 @@
   "users_external": {
     "shreyank@lokta.ai": {
       "domain": "lokta.ai",
-      "count": 15,
-      "answered": 11,
-      "answer_rate": 73.3,
-      "avg_confidence": 5.19,
-      "video_pct": 20.0
+      "count": 18,
+      "answered": 14,
+      "answer_rate": 77.8,
+      "avg_confidence": 4.32,
+      "video_pct": 16.7
     },
     "mis@digitalnest.in": {
       "domain": "digitalnest.in",
@@ -431,15 +437,15 @@
     }
   },
   "intent_multi": {
+    "1": {
+      "count": 128,
+      "answered": 96,
+      "answer_rate": 75.0
+    },
     "3": {
       "count": 3,
       "answered": 3,
       "answer_rate": 100.0
-    },
-    "1": {
-      "count": 121,
-      "answered": 89,
-      "answer_rate": 73.6
     },
     "2": {
       "count": 17,
@@ -448,6 +454,11 @@
     }
   },
   "intent_video": {
+    "kb_error": {
+      "count": 7,
+      "video": 0,
+      "video_pct": 0.0
+    },
     "definition": {
       "count": 20,
       "video": 7,
@@ -506,8 +517,8 @@
   },
   "daily": {
     "2026-06-23": {
-      "total": 8,
-      "answered": 7,
+      "total": 15,
+      "answered": 14,
       "idk": 1
     },
     "2026-06-22": {
@@ -548,11 +559,11 @@
   },
   "languages": {
     "en": {
-      "count": 134,
-      "answered": 103,
+      "count": 141,
+      "answered": 110,
       "idk": 31,
-      "answer_rate": 76.9,
-      "video_pct": 32.8
+      "answer_rate": 78.0,
+      "video_pct": 31.2
     },
     "pt": {
       "count": 7,
@@ -666,22 +677,22 @@
     }
   ],
   "video_events": {
-    "total_deliveries": 192,
-    "captions_on": 192,
+    "total_deliveries": 185,
+    "captions_on": 185,
     "captions_pct": 100.0,
     "fallbacks": 0,
     "fallback_pct": 0.0,
     "by_intent": {
       "overview": 115,
-      "setup": 49,
+      "setup": 43,
       "schema": 13,
-      "page_lookup": 7,
+      "page_lookup": 6,
       "definition": 3,
       "compare": 3,
       "chain": 2
     },
     "by_module": {
-      "General": 123,
+      "General": 116,
       "Bot Studio": 22,
       "Agent Assist": 10,
       "Analytics": 10,

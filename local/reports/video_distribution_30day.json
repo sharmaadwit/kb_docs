@@ -1,0 +1,273 @@
+{
+  "window": {
+    "from": "2026-05-22",
+    "to": "2026-06-21",
+    "days": 30
+  },
+  "total_traces": 374,
+  "total_videos_shown": 91,
+  "video_rate_pct": 24.3,
+  "video_by_module": {
+    "Bot Studio": 20,
+    "Overview": 6,
+    "CTX": 9,
+    "General": 3,
+    "Agent Assist": 24,
+    "SuperAgent": 5,
+    "Channels": 5,
+    "Goals": 3,
+    "Analytics": 3,
+    "Campaign Manager": 4,
+    "Integrations": 2,
+    "AI Admin": 5,
+    "Personalize": 2
+  },
+  "video_by_intent": {
+    "schema": 4,
+    "setup": 53,
+    "overview": 26,
+    "troubleshooting": 3,
+    "page_lookup": 4,
+    "definition": 18,
+    "behavior": 2,
+    "compare": 3
+  },
+  "module_distribution": {
+    "Bot Studio": {
+      "total_queries": 141,
+      "answered_count": 91,
+      "answer_rate": 64.5,
+      "idk_rate": 35.5,
+      "avg_confidence": 5.39,
+      "videos_shown_count": 20,
+      "video_rate": 14.2
+    },
+    "Agent Assist": {
+      "total_queries": 55,
+      "answered_count": 33,
+      "answer_rate": 60.0,
+      "idk_rate": 40.0,
+      "avg_confidence": 4.16,
+      "videos_shown_count": 24,
+      "video_rate": 43.6
+    },
+    "General": {
+      "total_queries": 32,
+      "answered_count": 23,
+      "answer_rate": 71.9,
+      "idk_rate": 28.1,
+      "avg_confidence": 1.86,
+      "videos_shown_count": 3,
+      "video_rate": 9.4
+    },
+    "Channels": {
+      "total_queries": 25,
+      "answered_count": 12,
+      "answer_rate": 48.0,
+      "idk_rate": 52.0,
+      "avg_confidence": 2.94,
+      "videos_shown_count": 5,
+      "video_rate": 20.0
+    },
+    "Overview": {
+      "total_queries": 21,
+      "answered_count": 9,
+      "answer_rate": 42.9,
+      "idk_rate": 57.1,
+      "avg_confidence": 1.03,
+      "videos_shown_count": 6,
+      "video_rate": 28.6
+    },
+    "CTX": {
+      "total_queries": 20,
+      "answered_count": 9,
+      "answer_rate": 45.0,
+      "idk_rate": 55.0,
+      "avg_confidence": 1.62,
+      "videos_shown_count": 9,
+      "video_rate": 45.0
+    },
+    "AI Admin": {
+      "total_queries": 19,
+      "answered_count": 10,
+      "answer_rate": 52.6,
+      "idk_rate": 47.4,
+      "avg_confidence": 4.64,
+      "videos_shown_count": 5,
+      "video_rate": 26.3
+    },
+    "Integrations": {
+      "total_queries": 17,
+      "answered_count": 5,
+      "answer_rate": 29.4,
+      "idk_rate": 70.6,
+      "avg_confidence": 3.19,
+      "videos_shown_count": 2,
+      "video_rate": 11.8
+    },
+    "Campaign Manager": {
+      "total_queries": 11,
+      "answered_count": 10,
+      "answer_rate": 90.9,
+      "idk_rate": 9.1,
+      "avg_confidence": 3.17,
+      "videos_shown_count": 4,
+      "video_rate": 36.4
+    },
+    "Analytics": {
+      "total_queries": 10,
+      "answered_count": 3,
+      "answer_rate": 30.0,
+      "idk_rate": 70.0,
+      "avg_confidence": 1.46,
+      "videos_shown_count": 3,
+      "video_rate": 30.0
+    },
+    "SuperAgent": {
+      "total_queries": 7,
+      "answered_count": 5,
+      "answer_rate": 71.4,
+      "idk_rate": 28.6,
+      "avg_confidence": 4.85,
+      "videos_shown_count": 5,
+      "video_rate": 71.4
+    },
+    "Goals": {
+      "total_queries": 6,
+      "answered_count": 6,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0,
+      "avg_confidence": 4.83,
+      "videos_shown_count": 3,
+      "video_rate": 50.0
+    },
+    "Personalize": {
+      "total_queries": 5,
+      "answered_count": 5,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0,
+      "avg_confidence": 1.4,
+      "videos_shown_count": 2,
+      "video_rate": 40.0
+    },
+    "WhatsApp Voice": {
+      "total_queries": 3,
+      "answered_count": 2,
+      "answer_rate": 66.7,
+      "idk_rate": 33.3,
+      "avg_confidence": 5.6,
+      "videos_shown_count": 0,
+      "video_rate": 0.0
+    },
+    "Workflows": {
+      "total_queries": 2,
+      "answered_count": 2,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0,
+      "avg_confidence": 3.12,
+      "videos_shown_count": 0,
+      "video_rate": 0.0
+    }
+  },
+  "intent_distribution": {
+    "setup": {
+      "total_queries": 263,
+      "answered_count": 143,
+      "answer_rate": 54.4,
+      "idk_rate": 45.6,
+      "avg_confidence": 4.23,
+      "videos_shown_count": 53,
+      "video_rate": 20.2
+    },
+    "definition": {
+      "total_queries": 52,
+      "answered_count": 32,
+      "answer_rate": 61.5,
+      "idk_rate": 38.5,
+      "avg_confidence": 4.01,
+      "videos_shown_count": 18,
+      "video_rate": 34.6
+    },
+    "overview": {
+      "total_queries": 46,
+      "answered_count": 42,
+      "answer_rate": 91.3,
+      "idk_rate": 8.7,
+      "avg_confidence": 2.26,
+      "videos_shown_count": 26,
+      "video_rate": 56.5
+    },
+    "schema": {
+      "total_queries": 22,
+      "answered_count": 19,
+      "answer_rate": 86.4,
+      "idk_rate": 13.6,
+      "avg_confidence": 6.91,
+      "videos_shown_count": 4,
+      "video_rate": 18.2
+    },
+    "page_lookup": {
+      "total_queries": 17,
+      "answered_count": 9,
+      "answer_rate": 52.9,
+      "idk_rate": 47.1,
+      "avg_confidence": 4.12,
+      "videos_shown_count": 4,
+      "video_rate": 23.5
+    },
+    "troubleshooting": {
+      "total_queries": 8,
+      "answered_count": 5,
+      "answer_rate": 62.5,
+      "idk_rate": 37.5,
+      "avg_confidence": 5.78,
+      "videos_shown_count": 3,
+      "video_rate": 37.5
+    },
+    "compare": {
+      "total_queries": 8,
+      "answered_count": 6,
+      "answer_rate": 75.0,
+      "idk_rate": 25.0,
+      "avg_confidence": 5.71,
+      "videos_shown_count": 3,
+      "video_rate": 37.5
+    },
+    "refusal": {
+      "total_queries": 7,
+      "answered_count": 7,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0,
+      "avg_confidence": 0.0,
+      "videos_shown_count": 0,
+      "video_rate": 0.0
+    },
+    "behavior": {
+      "total_queries": 3,
+      "answered_count": 2,
+      "answer_rate": 66.7,
+      "idk_rate": 33.3,
+      "avg_confidence": 6.77,
+      "videos_shown_count": 2,
+      "video_rate": 66.7
+    },
+    "unsupported": {
+      "total_queries": 2,
+      "answered_count": 2,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0,
+      "avg_confidence": 0.0,
+      "videos_shown_count": 0,
+      "video_rate": 0.0
+    },
+    "case_study": {
+      "total_queries": 1,
+      "answered_count": 1,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0,
+      "avg_confidence": 2.05,
+      "videos_shown_count": 0,
+      "video_rate": 0.0
+    }
+  }
+}
