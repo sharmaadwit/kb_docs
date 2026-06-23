@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-23T06:26:01.287167",
+  "timestamp": "2026-06-23T06:58:45.846878",
   "total_queries": 141,
   "answered": 108,
   "idk": 33,
@@ -666,14 +666,14 @@
     }
   ],
   "video_events": {
-    "total_deliveries": 193,
-    "captions_on": 193,
+    "total_deliveries": 192,
+    "captions_on": 192,
     "captions_pct": 100.0,
     "fallbacks": 0,
     "fallback_pct": 0.0,
     "by_intent": {
       "overview": 115,
-      "setup": 50,
+      "setup": 49,
       "schema": 13,
       "page_lookup": 7,
       "definition": 3,
@@ -681,7 +681,7 @@
       "chain": 2
     },
     "by_module": {
-      "General": 124,
+      "General": 123,
       "Bot Studio": 22,
       "Agent Assist": 10,
       "Analytics": 10,
