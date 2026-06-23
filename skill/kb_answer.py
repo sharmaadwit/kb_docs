@@ -5410,6 +5410,7 @@ def _langfuse_user_context(
 def _build_langfuse_request(
     trace_name: str, trace_id: str, query: str, answer: str, metadata: Dict,
     trace_user_id: Optional[str] = None,
+    parent_trace_id: Optional[str] = None,
 ) -> Dict:
     event_id = f"evt-{uuid.uuid4().hex[:24]}"
     event_timestamp = _utc_now_iso()
@@ -5423,6 +5424,8 @@ def _build_langfuse_request(
     }
     if trace_user_id:
         body["userId"] = trace_user_id
+    if parent_trace_id:
+        body["parentTraceId"] = parent_trace_id
     return {
         "batch": [
             {
@@ -5494,6 +5497,8 @@ def _send_langfuse(
     video_meta: Optional[Dict[str, Any]] = None,
     channel_type: Optional[str] = None,
     original_query: Optional[str] = None,
+    correlation_id: Optional[str] = None,
+    parent_trace_id: Optional[str] = None,
 ) -> Dict:
     trace_id = f"kb-{trace_name}-{uuid.uuid4().hex[:16]}"
     top_source = results[0].get("source") if results else None
@@ -5562,10 +5567,15 @@ def _send_langfuse(
     }
     if was_translated:
         metadata["query_translated"] = q_prev
+    metadata["correlation_id"] = correlation_id
+    metadata["parent_trace_id"] = parent_trace_id
+    metadata["decomposition_level"] = params.get("decomposition_level", 0) if params else 0
+    metadata["is_sub_query"] = bool(parent_trace_id)
     if isinstance(video_meta, dict) and video_meta:
         metadata.update(video_meta)
     body = _build_langfuse_request(
         trace_name, trace_id, orig, answer, metadata, trace_user_id=trace_user_id,
+        parent_trace_id=parent_trace_id,
     )
 
     host = context.get_secret("LANGFUSE_HOST") if context else None
@@ -5641,7 +5651,7 @@ def _send_langfuse(
 # Section 11 — Main entry point
 # ---------------------------------------------------------------------------
 
-def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
+def kb_answer(parameters: object = None, context=None, correlation_id: Optional[str] = None, parent_trace_id: Optional[str] = None, **kwargs) -> dict:
     params = _parse_parameters(parameters, **kwargs)
     query = _sanitize_kb_query(_extract_query(params))
     if not query:
@@ -5663,6 +5673,8 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
             ["refusal"], "refusal", False, latency_ms, context, params,
             channel_type=detected_channel,
             original_query=original_query,
+            correlation_id=correlation_id,
+            parent_trace_id=parent_trace_id,
         )
         return {
             "ok": True,
@@ -5680,6 +5692,8 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
             ["unsupported"], "refusal", False, latency_ms, context, params,
             channel_type=detected_channel,
             original_query=original_query,
+            correlation_id=correlation_id,
+            parent_trace_id=parent_trace_id,
         )
         return {
             "ok": True,
@@ -5697,6 +5711,8 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
             ["setup"], "setup", False, latency_ms, context, params,
             channel_type=detected_channel,
             original_query=original_query,
+            correlation_id=correlation_id,
+            parent_trace_id=parent_trace_id,
         )
         return {
             "ok": True,
@@ -5714,6 +5730,8 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
             ["setup"], "setup", False, latency_ms, context, params,
             channel_type=detected_channel,
             original_query=original_query,
+            correlation_id=correlation_id,
+            parent_trace_id=parent_trace_id,
         )
         return {
             "ok": True,
@@ -5731,6 +5749,8 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
             ["refusal"], "refusal", False, latency_ms, context, params,
             channel_type=detected_channel,
             original_query=original_query,
+            correlation_id=correlation_id,
+            parent_trace_id=parent_trace_id,
         )
         return {
             "ok": True,
@@ -5750,6 +5770,8 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
             ["kb_error"], "refusal", False, latency_ms, context, params,
             channel_type=detected_channel,
             original_query=original_query,
+            correlation_id=correlation_id,
+            parent_trace_id=parent_trace_id,
         )
         return {
             "ok": False,
@@ -5786,6 +5808,8 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
                 ["case_study"], "overview", False, latency_ms, context, params,
                 channel_type=detected_channel,
                 original_query=original_query,
+                correlation_id=correlation_id,
+                parent_trace_id=parent_trace_id,
             )
             return {
                 "ok": True,
@@ -5902,6 +5926,8 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
         video_meta=video_meta,
         channel_type=detected_channel,
         original_query=original_query,
+        correlation_id=correlation_id,
+        parent_trace_id=parent_trace_id,
     )
     return {
         "ok": True,
@@ -5912,4 +5938,112 @@ def kb_answer(parameters: object = None, context=None, **kwargs) -> dict:
         "videos": videos,
         "langfuse": langfuse,
         "answer_policy": policy_meta,
+    }
+
+
+def kb_search(
+    parameters: object = None,
+    context=None,
+    correlation_id: Optional[str] = None,
+    parent_trace_id: Optional[str] = None,
+    **kwargs,
+) -> dict:
+    """Search the knowledge base and return ranked chunks with telemetry.
+
+    Supports trace linking via ``correlation_id`` (ties multiple calls in the
+    same user session together) and ``parent_trace_id`` (marks this trace as a
+    child of an upstream orchestrator trace in Langfuse).
+
+    Returns a dict with keys:
+      - ok          – bool
+      - query       – sanitised query string sent to the scorer
+      - results     – list of scored chunk dicts (source, score, text snippet)
+      - langfuse    – telemetry payload / ingestion result
+    """
+    params = _parse_parameters(parameters, **kwargs)
+    query = _sanitize_kb_query(_extract_query(params))
+    if not query:
+        raise ValueError("query is required")
+    original_query = query
+    query = _translate_key_terms(query)
+
+    detected_channel = _detect_channel_from_query(query)
+    started = datetime.now(timezone.utc)
+
+    # Guardrail check — refuse sensitive / off-topic searches the same way
+    # kb_answer does so that correlation-linked traces are consistent.
+    guardrail = _guardrail_answer(query)
+    if guardrail:
+        latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
+        langfuse = _send_langfuse(
+            "kb_search", query, guardrail, [], "General",
+            ["refusal"], "refusal", False, latency_ms, context, params,
+            channel_type=detected_channel,
+            original_query=original_query,
+            correlation_id=correlation_id,
+            parent_trace_id=parent_trace_id,
+        )
+        return {
+            "ok": True,
+            "query": _visible_kb_answer_query_field(query, _guardrail_category(query)),
+            "results": [],
+            "langfuse": langfuse,
+        }
+
+    try:
+        chunks = _load_chunks(context)
+    except RuntimeError:
+        latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
+        msg = "The knowledge base could not be loaded right now. Try again later."
+        langfuse = _send_langfuse(
+            "kb_search", query, msg, [], "General",
+            ["kb_error"], "refusal", False, latency_ms, context, params,
+            channel_type=detected_channel,
+            original_query=original_query,
+            correlation_id=correlation_id,
+            parent_trace_id=parent_trace_id,
+        )
+        return {
+            "ok": False,
+            "query": _redact_secrets_in_query_echo(query),
+            "results": [],
+            "langfuse": langfuse,
+        }
+
+    explicit_module = _detect_module(query)
+    entities = _extract_entities(query)
+    intent = _classify_intent(query, entities)
+    intents_list = _detect_intents(query)
+
+    top_n = int(params.get("top_n", 5)) if isinstance(params, dict) else 5
+    top_n = max(1, min(top_n, 20))
+
+    scored = []
+    for c in chunks:
+        s = _score_chunk(query, c, entities, explicit_module)
+        if s >= MIN_CHUNK_SCORE:
+            row = dict(c)
+            row["score"] = s
+            scored.append(row)
+    scored.sort(key=lambda x: x.get("score", 0.0), reverse=True)
+    results = scored[:top_n]
+
+    # Build a concise answer summary for telemetry (not returned to caller).
+    _telemetry_answer = f"kb_search: {len(results)} result(s) for '{query[:60]}'"
+
+    latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
+    langfuse = _send_langfuse(
+        "kb_search", query, _telemetry_answer, results, explicit_module,
+        intents_list, intent, False, latency_ms, context, params,
+        channel_type=detected_channel,
+        original_query=original_query,
+        correlation_id=correlation_id,
+        parent_trace_id=parent_trace_id,
+    )
+
+    return {
+        "ok": True,
+        "query": _redact_secrets_in_query_echo(query),
+        "results": results,
+        "langfuse": langfuse,
     }

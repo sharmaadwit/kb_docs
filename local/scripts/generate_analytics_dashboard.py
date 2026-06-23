@@ -372,7 +372,7 @@ def analyze_traces(traces: List[Dict]) -> Dict[str, Any]:
     avg_confidence = sum(m["total_confidence"] for m in modules.values()) / total_queries if total_queries > 0 else 0
     video_rate = (sum(u["video"] for u in users_internal.values()) + sum(u["video"] for u in users_external.values())) / max(answered, 1) * 100
 
-    return {
+    analysis = {
         "timestamp": datetime.utcnow().isoformat(),
         "total_queries": total_queries,
         "answered": answered,
@@ -428,6 +428,52 @@ def analyze_traces(traces: List[Dict]) -> Dict[str, Any]:
         } for k, v in languages.items()},
         "idk_by_language": {k: v[:5] for k, v in idk_by_language.items()},
         "idk_samples": idk_samples[:10],
+    }
+
+    # Group related traces
+    trace_grouping = group_related_traces(traces)
+    analysis["trace_grouping"] = {
+        "total_correlation_groups": trace_grouping["total_groups"],
+        "total_hierarchical_chains": trace_grouping["total_hierarchical"],
+        "multi_trace_queries": len([g for g in trace_grouping["by_correlation"].values() if len(g) > 1]),
+    }
+
+    return analysis
+
+def group_related_traces(traces):
+    """Group traces by correlation_id and build parent-child hierarchy."""
+    from collections import defaultdict
+
+    trace_groups = {}  # correlation_id → [traces]
+    hierarchy = {}     # parent_trace_id → [child_trace_ids]
+    traces_by_id = {}  # trace_id → trace
+
+    for trace in traces:
+        trace_id = trace.get("id")
+        meta = trace.get("metadata", {})
+        corr_id = meta.get("correlation_id")
+        parent_id = trace.get("parentTraceId")
+
+        traces_by_id[trace_id] = trace
+
+        # Group by correlation_id
+        if corr_id:
+            if corr_id not in trace_groups:
+                trace_groups[corr_id] = []
+            trace_groups[corr_id].append(trace)
+
+        # Build hierarchy
+        if parent_id:
+            if parent_id not in hierarchy:
+                hierarchy[parent_id] = []
+            hierarchy[parent_id].append(trace_id)
+
+    return {
+        "by_correlation": trace_groups,
+        "hierarchy": hierarchy,
+        "traces_by_id": traces_by_id,
+        "total_groups": len(trace_groups),
+        "total_hierarchical": len(hierarchy),
     }
 
 def generate_html(analysis: Dict[str, Any]) -> str:
@@ -878,6 +924,11 @@ def generate_html(analysis: Dict[str, Any]) -> str:
                 .lang-tab:hover {{ color: #333; }}
                 .lang-content {{ display: none; }}
                 .lang-content.active {{ display: block; }}
+                .grouping-stats {{ background: white; border-radius: 12px; padding: 24px; margin: 30px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }}
+                .grouping-stats h3 {{ margin-bottom: 16px; color: #333; }}
+                .grouping-stats .stat-row {{ display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }}
+                .grouping-stats .stat-label {{ color: #666; }}
+                .grouping-stats .stat-value {{ font-weight: 700; color: #667eea; }}
             </style>
             <div class="lang-tabs">
 """
@@ -924,6 +975,20 @@ def generate_html(analysis: Dict[str, Any]) -> str:
         html += """                    </tbody>
                 </table>
             </div>
+"""
+
+    html += f"""
+            <section class="grouping-stats">
+                <h3>Trace Linking Analysis</h3>
+                <div class="stat-row">
+                    <span class="stat-label">Queries with Multiple Traces:</span>
+                    <span class="stat-value">{analysis['trace_grouping']['multi_trace_queries']}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Hierarchical Trace Chains:</span>
+                    <span class="stat-value">{analysis['trace_grouping']['total_hierarchical_chains']}</span>
+                </div>
+            </section>
 """
 
     html += """            <script>
@@ -996,6 +1061,10 @@ def main():
     print(f"   IDK rate: {analysis['idk_rate']}%")
     print(f"   Modules analyzed: {len(analysis['modules'])}")
     print(f"   Intents tracked: {len(analysis['intents'])}")
+    tg = analysis['trace_grouping']
+    print(f"   Trace grouping: {tg['total_correlation_groups']} correlation groups | "
+          f"{tg['multi_trace_queries']} multi-trace queries | "
+          f"{tg['total_hierarchical_chains']} hierarchical chains")
 
     print(f"\n🎨 Generating HTML dashboard with all reports...")
     html = generate_html(analysis)
