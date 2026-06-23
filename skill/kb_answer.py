@@ -5576,6 +5576,8 @@ def _send_langfuse(
     error = None
     ingestion_ok = False
     if host and public_key and secret_key:
+        # Debug: Log that we have credentials (without exposing secrets)
+        # print(f"[LANGFUSE] Credentials found, endpoint will be: {host.rstrip('/')}/api/public/ingestion", flush=True)
         endpoint = host.rstrip("/") + "/api/public/ingestion"
         auth_raw = f"{public_key}:{secret_key}"
         auth_value = "Basic " + base64.b64encode(auth_raw.encode("utf-8")).decode("utf-8")
@@ -5589,9 +5591,26 @@ def _send_langfuse(
             status_code = resp.status_code
             ingestion_ok = resp.status_code < 400
             if not ingestion_ok:
-                error = "ingestion_failed"
-        except Exception:
-            error = "ingestion_transport_error"
+                error = f"ingestion_failed_http_{status_code}"
+                try:
+                    resp_text = resp.text[:200]
+                except:
+                    resp_text = "[unable to read response]"
+                print(f"[LANGFUSE] Ingestion failed: HTTP {status_code} | {resp_text}", flush=True)
+        except Exception as e:
+            error = f"ingestion_transport_error: {type(e).__name__}: {str(e)[:100]}"
+            print(f"[LANGFUSE] Ingestion exception: {error}", flush=True)
+    else:
+        # Credentials missing
+        missing = []
+        if not host:
+            missing.append("LANGFUSE_HOST")
+        if not public_key:
+            missing.append("LANGFUSE_PUBLIC_KEY")
+        if not secret_key:
+            missing.append("LANGFUSE_SECRET_KEY")
+        error = f"missing_credentials: {', '.join(missing)}"
+        print(f"[LANGFUSE] Cannot ingest: {error}", flush=True)
     meta_out = {
         k: v
         for k, v in metadata.items()
