@@ -1,13 +1,22 @@
 #!/bin/bash
 # Refresh comprehensive dashboard with latest data from GitHub + Langfuse
-# Always fetches: latest NDJSON files from GitHub, latest traces from Langfuse API
+# Always fetches and analyzes:
+#   - Latest NDJSON files from GitHub
+#   - Latest traces from Langfuse API
+#   - Both Standalone and CC Express segments (email-based segmentation)
 
 set -e
 
 cd "$(dirname "$0")/../.."
 
 echo "=================================================================================="
-echo "DASHBOARD REFRESH: Pull Latest + Regenerate"
+echo "DASHBOARD REFRESH: Pull Latest + Analyze Both Segments"
+echo "=================================================================================="
+echo "📊 This refresh will:"
+echo "   ✓ Fetch latest NDJSON analytics from GitHub"
+echo "   ✓ Fetch latest traces from Langfuse API"
+echo "   ✓ Segment users: Standalone vs CC Express (@ccexpress.gupshup.io)"
+echo "   ✓ Generate dual-segment comprehensive dashboard"
 echo "=================================================================================="
 echo
 
@@ -38,7 +47,17 @@ echo "🔄 Regenerating dashboard with live Langfuse + merged NDJSON..."
 python3 local/scripts/generate_analytics_dashboard.py 2>&1 | grep -vE "DeprecationWarning|utcnow\(\)|from_date|timestamp.*isoformat"
 
 echo
+echo "=================================================================================="
 echo "✅ Dashboard refresh complete!"
-echo "   File: local/reports/comprehensive_dashboard.html"
+echo "=================================================================================="
+echo "📁 Files updated:"
+echo "   • local/reports/comprehensive_dashboard.html"
+echo "   • local/reports/dashboard_analysis.json"
 echo
-echo "Next: Review changes and commit locally, or 'git push' to update remote"
+echo "📊 Dashboard contains:"
+echo "   • Standalone tab (authenticated Gupshup users)"
+echo "   • CC Express tab (users with @ccexpress.gupshup.io email domain)"
+echo "   • Parity comparison metrics (answer rate, confidence, volume)"
+echo
+echo "Next: git status / git diff to review, then commit"
+echo "=================================================================================="

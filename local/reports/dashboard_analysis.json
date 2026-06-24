@@ -1,6 +1,6 @@
 {
   "cc_express": {
-    "timestamp": "2026-06-24T08:03:11.457898",
+    "timestamp": "2026-06-24T09:27:43.121808",
     "total_queries": 2,
     "answered": 2,
     "idk": 0,
@@ -154,26 +154,26 @@
     }
   },
   "standalone": {
-    "timestamp": "2026-06-24T08:03:11.460135",
-    "total_queries": 141,
-    "answered": 115,
-    "idk": 26,
-    "idk_rate": 18.4,
-    "answer_rate": 81.6,
-    "avg_confidence": 4.21,
-    "video_rate": 34.8,
+    "timestamp": "2026-06-24T09:27:43.123689",
+    "total_queries": 145,
+    "answered": 118,
+    "idk": 27,
+    "idk_rate": 18.6,
+    "answer_rate": 81.4,
+    "avg_confidence": 4.26,
+    "video_rate": 36.4,
     "modules": {
-      "Agent Assist": {
-        "count": 17,
-        "answered": 11,
-        "idk": 6,
-        "avg_confidence": 4.26
-      },
       "Bot Studio": {
-        "count": 64,
+        "count": 65,
         "answered": 54,
-        "idk": 10,
-        "avg_confidence": 5.77
+        "idk": 11,
+        "avg_confidence": 5.69
+      },
+      "Agent Assist": {
+        "count": 20,
+        "answered": 14,
+        "idk": 6,
+        "avg_confidence": 4.78
       },
       "Analytics": {
         "count": 7,
@@ -238,10 +238,28 @@
     },
     "intents": {
       "setup": {
-        "count": 88,
-        "answered": 66,
-        "idk": 22,
-        "answer_rate": 75.0
+        "count": 91,
+        "answered": 68,
+        "idk": 23,
+        "answer_rate": 74.7
+      },
+      "definition": {
+        "count": 13,
+        "answered": 10,
+        "idk": 3,
+        "answer_rate": 76.9
+      },
+      "compare": {
+        "count": 4,
+        "answered": 4,
+        "idk": 0,
+        "answer_rate": 100.0
+      },
+      "troubleshooting": {
+        "count": 4,
+        "answered": 4,
+        "idk": 0,
+        "answer_rate": 100.0
       },
       "case_study": {
         "count": 2,
@@ -267,12 +285,6 @@
         "idk": 0,
         "answer_rate": 100.0
       },
-      "definition": {
-        "count": 11,
-        "answered": 8,
-        "idk": 3,
-        "answer_rate": 72.7
-      },
       "overview": {
         "count": 12,
         "answered": 12,
@@ -285,23 +297,11 @@
         "idk": 0,
         "answer_rate": 100.0
       },
-      "troubleshooting": {
-        "count": 3,
-        "answered": 3,
-        "idk": 0,
-        "answer_rate": 100.0
-      },
       "behavior": {
         "count": 1,
         "answered": 0,
         "idk": 1,
         "answer_rate": 0.0
-      },
-      "compare": {
-        "count": 3,
-        "answered": 3,
-        "idk": 0,
-        "answer_rate": 100.0
       },
       "refusal": {
         "count": 2,
@@ -311,6 +311,20 @@
       }
     },
     "users_internal": {
+      "abraham.aigbe@gupshup.io": {
+        "count": 2,
+        "answered": 0,
+        "answer_rate": 0.0,
+        "avg_confidence": 0.17,
+        "video_pct": 0.0
+      },
+      "roshan.agarwal@gupshup.io": {
+        "count": 3,
+        "answered": 3,
+        "answer_rate": 100.0,
+        "avg_confidence": 7.75,
+        "video_pct": 100.0
+      },
       "ketan.thakur@gupshup.io": {
         "count": 2,
         "answered": 2,
@@ -564,9 +578,14 @@
     },
     "intent_multi": {
       "1": {
-        "count": 124,
-        "answered": 99,
-        "answer_rate": 79.8
+        "count": 127,
+        "answered": 101,
+        "answer_rate": 79.5
+      },
+      "4": {
+        "count": 1,
+        "answered": 1,
+        "answer_rate": 100.0
       },
       "2": {
         "count": 15,
@@ -581,9 +600,24 @@
     },
     "intent_video": {
       "setup": {
-        "count": 88,
-        "video": 23,
-        "video_pct": 26.1
+        "count": 91,
+        "video": 25,
+        "video_pct": 27.5
+      },
+      "definition": {
+        "count": 13,
+        "video": 6,
+        "video_pct": 46.2
+      },
+      "compare": {
+        "count": 4,
+        "video": 1,
+        "video_pct": 25.0
+      },
+      "troubleshooting": {
+        "count": 4,
+        "video": 4,
+        "video_pct": 100.0
       },
       "case_study": {
         "count": 2,
@@ -605,11 +639,6 @@
         "video": 0,
         "video_pct": 0.0
       },
-      "definition": {
-        "count": 11,
-        "video": 4,
-        "video_pct": 36.4
-      },
       "overview": {
         "count": 12,
         "video": 11,
@@ -620,18 +649,8 @@
         "video": 4,
         "video_pct": 80.0
       },
-      "troubleshooting": {
-        "count": 3,
-        "video": 3,
-        "video_pct": 100.0
-      },
       "behavior": {
         "count": 1,
-        "video": 0,
-        "video_pct": 0.0
-      },
-      "compare": {
-        "count": 3,
         "video": 0,
         "video_pct": 0.0
       },
@@ -643,9 +662,9 @@
     },
     "daily": {
       "2026-06-24": {
-        "total": 10,
-        "answered": 6,
-        "idk": 4
+        "total": 14,
+        "answered": 9,
+        "idk": 5
       },
       "2026-06-23": {
         "total": 30,
@@ -685,11 +704,11 @@
     },
     "languages": {
       "en": {
-        "count": 134,
-        "answered": 109,
-        "idk": 25,
-        "answer_rate": 81.3,
-        "video_pct": 29.1
+        "count": 138,
+        "answered": 112,
+        "idk": 26,
+        "answer_rate": 81.2,
+        "video_pct": 30.4
       },
       "pt": {
         "count": 7,
@@ -701,6 +720,11 @@
     },
     "idk_by_language": {
       "en": [
+        {
+          "query": "Do we provide SMS service for Unilever Plc?",
+          "module": "Bot Studio",
+          "score": 0.35
+        },
         {
           "query": "help me create a journey in Journey Builder Bot Studio",
           "module": "Bot Studio",
@@ -720,11 +744,6 @@
           "query": "How to check whether the WhatsApp inbound webhook/event is enabled and pointing to the correct URL i",
           "module": "General",
           "score": 1.1500000000000001
-        },
-        {
-          "query": "checkInBusinessHour API documentation",
-          "module": "Agent Assist",
-          "score": 1.1
         }
       ],
       "pt": [
@@ -736,6 +755,12 @@
       ]
     },
     "idk_samples": [
+      {
+        "query": "Do we provide SMS service for Unilever Plc?",
+        "module": "Bot Studio",
+        "score": 0.35,
+        "language": "en"
+      },
       {
         "query": "help me create a journey in Journey Builder Bot Studio",
         "module": "Bot Studio",
@@ -788,12 +813,6 @@
         "query": "What about automation?",
         "module": "SuperAgent",
         "score": 0.3,
-        "language": "en"
-      },
-      {
-        "query": "where can i find GUPSHUP_API_KEY and your-app-id in Gupshup Console",
-        "module": "General",
-        "score": 1.4500000000000002,
         "language": "en"
       }
     ],
@@ -1055,6 +1074,20 @@
           "avg_latency": 477.0,
           "user": "ananya.a@gupshup.io",
           "timestamp": "2026-06-24T05:00:53.108Z"
+        },
+        {
+          "id": "sess:roshan.agarwal@gupshup.io:64",
+          "length": 3,
+          "answered": 3,
+          "success_rate": 100.0,
+          "root_query": "In Agent Assist, we are facing issues separating inbound and outbound chats in the current setup. Also, for outbound cha",
+          "root_answered": true,
+          "root_confidence": 13.05,
+          "is_decomposed": true,
+          "avg_confidence": 7.75,
+          "avg_latency": 5113.0,
+          "user": "roshan.agarwal@gupshup.io",
+          "timestamp": "2026-06-24T08:31:49.634Z"
         },
         {
           "id": "sess:rajnik.bauva@gupshup.io:9",
@@ -1699,30 +1732,44 @@
           "avg_latency": 4367.0,
           "user": "ketan.thakur@gupshup.io",
           "timestamp": "2026-06-24T06:38:32.135Z"
+        },
+        {
+          "id": "sess:abraham.aigbe@gupshup.io:65",
+          "length": 1,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "Do we provide SMS service for Unilever Plc?",
+          "root_answered": false,
+          "root_confidence": 0.35,
+          "is_decomposed": false,
+          "avg_confidence": 0.35,
+          "avg_latency": 558.0,
+          "user": "abraham.aigbe@gupshup.io",
+          "timestamp": "2026-06-24T09:01:09.207Z"
         }
       ],
       "overview": {
-        "total_conversations": 64,
-        "single_turn": 35,
-        "multi_turn": 29,
-        "single_turn_pct": 54.7,
-        "multi_turn_pct": 45.3,
+        "total_conversations": 66,
+        "single_turn": 36,
+        "multi_turn": 30,
+        "single_turn_pct": 54.5,
+        "multi_turn_pct": 45.5,
         "avg_queries_per_conversation": 2.2,
         "max_queries": 9,
-        "total_queries": 141
+        "total_queries": 145
       },
       "success_by_length": {
         "1": {
-          "conversations": 35,
-          "avg_success_rate": 80.0
+          "conversations": 36,
+          "avg_success_rate": 77.8
         },
         "2": {
           "conversations": 11,
           "avg_success_rate": 77.3
         },
         "3": {
-          "conversations": 6,
-          "avg_success_rate": 77.8
+          "conversations": 7,
+          "avg_success_rate": 81.0
         },
         "4+": {
           "conversations": 12,
@@ -1731,25 +1778,25 @@
       },
       "root_vs_followup": {
         "root": {
-          "count": 64,
-          "answer_rate": 71.9,
-          "idk_rate": 28.1,
-          "avg_confidence": 2.86
+          "count": 66,
+          "answer_rate": 71.2,
+          "idk_rate": 28.8,
+          "avg_confidence": 2.98
         },
         "followup": {
-          "count": 77,
-          "answer_rate": 89.6,
-          "idk_rate": 10.4,
+          "count": 79,
+          "answer_rate": 89.9,
+          "idk_rate": 10.1,
           "avg_confidence": 5.33
         }
       },
       "decomposition_effectiveness": {
-        "total_decomposed": 29,
-        "all_success": 15,
+        "total_decomposed": 30,
+        "all_success": 16,
         "partial_success": 14,
         "all_failed": 0,
-        "all_success_pct": 51.7,
-        "partial_success_pct": 48.3,
+        "all_success_pct": 53.3,
+        "partial_success_pct": 46.7,
         "all_failed_pct": 0.0
       }
     }
@@ -1759,8 +1806,8 @@
     "ref_answer_rate": 0.0,
     "answer_delta": 0.0,
     "ccx_avg_confidence": 0.0,
-    "ref_avg_confidence": 3.718648648648649,
-    "confidence_delta": -3.718648648648649,
+    "ref_avg_confidence": 3.764814814814815,
+    "confidence_delta": -3.764814814814815,
     "low_confidence_flags": []
   }
 }
