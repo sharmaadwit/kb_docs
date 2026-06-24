@@ -1513,10 +1513,10 @@ def generate_query_analytics_html(analysis: Dict[str, Any], segment_key: str) ->
             else:
                 row_style = ''
                 score_style = ''
-            html += f"""                        <tr{{row_style}}>
-                            <td>{{idk['query']}}</td>
-                            <td>{{idk['module']}}</td>
-                            <td class="numeric"{{score_style}}>{{score:.2f}}</td>
+            html += f"""                        <tr{row_style}>
+                            <td>{idk['query']}</td>
+                            <td>{idk['module']}</td>
+                            <td class="numeric"{score_style}>{score:.2f}</td>
                         </tr>
 """
         html += """                    </tbody>
