@@ -38,6 +38,7 @@
 
         .section { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         .section h2 { font-size: 1.6em; margin-bottom: 20px; color: #333; border-bottom: 3px solid #667eea; padding-bottom: 10px; }
+        .section h3 { font-size: 1.2em; margin-bottom: 12px; color: #444; }
 
         table { width: 100%; border-collapse: collapse; margin-top: 10px; }
         th {
@@ -58,17 +59,49 @@
         .data-source { background: rgba(255,255,255,0.1); padding: 12px; border-radius: 6px; margin-top: 10px; }
         .chart-wrapper { height: 420px; margin: 20px 0; }
 
-        /* Top-level tab navigation */
-        .main-tabs { display: flex; gap: 10px; margin-bottom: 24px; }
-        .main-tab {
-            padding: 14px 28px; cursor: pointer; background: rgba(255,255,255,0.15);
-            border: none; border-radius: 10px 10px 0 0; color: white; font-weight: 600;
-            font-size: 1.05em; letter-spacing: 0.5px; transition: all 0.2s;
+        /* CC EXPRESS FEATURE: Product pill selector */
+        .product-pills {
+            display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap;
         }
-        .main-tab:hover { background: rgba(255,255,255,0.3); }
-        .main-tab.active { background: white; color: #667eea; box-shadow: 0 -4px 12px rgba(0,0,0,0.1); }
-        .main-tab-content { display: none; }
-        .main-tab-content.active { display: block; }
+        .product-pill {
+            padding: 12px 24px; cursor: pointer; background: rgba(255,255,255,0.15);
+            border: none; border-radius: 24px; color: white; font-weight: 600;
+            font-size: 1em; letter-spacing: 0.4px; transition: all 0.2s;
+        }
+        .product-pill:hover { background: rgba(255,255,255,0.3); }
+        .product-pill.active { background: white; color: #667eea; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+        .product-panel { display: none; }
+        .product-panel.active { display: block; }
+
+        /* CC EXPRESS FEATURE: Sub-tab navigation within each product */
+        .sub-tabs {
+            display: flex; gap: 0; margin-bottom: 20px;
+            background: rgba(255,255,255,0.08); border-radius: 8px; padding: 4px;
+        }
+        .sub-tab {
+            flex: 1; padding: 10px 20px; cursor: pointer; background: transparent;
+            border: none; border-radius: 6px; color: rgba(255,255,255,0.7); font-weight: 600;
+            font-size: 0.95em; transition: all 0.2s; text-align: center;
+        }
+        .sub-tab:hover { color: white; background: rgba(255,255,255,0.15); }
+        .sub-tab.active { background: white; color: #667eea; }
+        .sub-tab-content { display: none; }
+        .sub-tab-content.active { display: block; }
+
+        /* IDK language tabs */
+        .lang-tabs { display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 2px solid #e8e8e8; }
+        .lang-tab { padding: 10px 16px; cursor: pointer; background: none; border: none; border-bottom: 3px solid transparent; color: #666; font-weight: 500; transition: all 0.2s; }
+        .lang-tab.active { color: #667eea; border-bottom-color: #667eea; }
+        .lang-tab:hover { color: #333; }
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
+
+        /* Grouping stats */
+        .grouping-stats { background: white; border-radius: 12px; padding: 24px; margin: 30px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .grouping-stats h3 { margin-bottom: 16px; color: #333; }
+        .grouping-stats .stat-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
+        .grouping-stats .stat-label { color: #666; }
+        .grouping-stats .stat-value { font-weight: 700; color: #667eea; }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
@@ -76,19 +109,63 @@
     <div class="container">
         <div class="header">
             <h1>📊 Comprehensive KB Analytics Dashboard</h1>
-            <p>Live Langfuse Telemetry • Last Updated: 2026-06-24 05:55:12 UTC</p>
+            <p>Live Langfuse Telemetry • Last Updated: 2026-06-24 07:49:16 UTC</p>
         </div>
 
-        <!-- Top-level Tab Navigation -->
-        <div class="main-tabs">
-            <button class="main-tab active" onclick="showMainTab(event, 'conversation-insights')">💬 CONVERSATION INSIGHTS</button>
-            <button class="main-tab" onclick="showMainTab(event, 'query-metrics')">📊 QUERY METRICS</button>
+        <!-- CC EXPRESS FEATURE: Product pill selector (replaces 2-button tab nav) -->
+        <div class="product-pills">
+            <button class="product-pill active" onclick="showProduct(event, 'standalone')">🌐 Standalone</button>
         </div>
 
-        <!-- ===================== TAB 1 ===================== -->
-        <div class="main-tab-content active" id="tab-conversation-insights">
+        <!-- CC EXPRESS FEATURE: product panel for standalone -->
+        <div class="product-panel active" id="panel-standalone">
 
-        <!-- ===================== TAB 1: CONVERSATION INSIGHTS ===================== -->
+            <!-- Product summary cards -->
+
+        <div class="product-summary-cards" style="margin-bottom: 8px;">
+            <div class="grid">
+                <div class="card" style="border-left: 5px solid #667eea;">
+                    <div class="metric">
+                        <div class="metric-label">Standalone — Volume</div>
+                        <div class="metric-value">143</div>
+                        <div class="metric-unit">traces</div>
+                    </div>
+                </div>
+                <div class="card" style="border-left: 5px solid #667eea;">
+                    <div class="metric">
+                        <div class="metric-label">Answer Rate</div>
+                        <div class="metric-value status-good">81.8%</div>
+                        <div class="metric-unit">(117 answered)</div>
+                    </div>
+                </div>
+                <div class="card" style="border-left: 5px solid #667eea;">
+                    <div class="metric">
+                        <div class="metric-label">IDK Rate</div>
+                        <div class="metric-value status-good">18.2%</div>
+                        <div class="metric-unit">(26 queries)</div>
+                    </div>
+                </div>
+                <div class="card" style="border-left: 5px solid #667eea;">
+                    <div class="metric">
+                        <div class="metric-label">Avg Confidence</div>
+                        <div class="metric-value">4.15</div>
+                        <div class="metric-unit">out of 20</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            <!-- CC EXPRESS FEATURE: Sub-tab nav (Conversation Insights | Query Analytics) -->
+            <div class="sub-tabs" id="sub-tabs-standalone">
+                <button class="sub-tab active" onclick="showSubTab(event, 'standalone', 'conv')">💬 Conversation Insights</button>
+                <button class="sub-tab" onclick="showSubTab(event, 'standalone', 'query')">📊 Query Analytics</button>
+            </div>
+
+            <!-- Sub-tab: Conversation Insights -->
+            <div class="sub-tab-content active" id="subtab-standalone-conv">
+
+        <!-- ===================== CONVERSATION INSIGHTS ===================== -->
 
         <!-- Report 1: Multi-Turn Conversation Dashboard -->
         <div class="section">
@@ -97,28 +174,28 @@
                 <div class="card" style="border-left: 5px solid #667eea;">
                     <div class="metric">
                         <div class="metric-label">Total Conversations</div>
-                        <div class="metric-value">63</div>
-                        <div class="metric-unit">140 queries</div>
+                        <div class="metric-value">65</div>
+                        <div class="metric-unit">143 queries</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #2ecc71;">
                     <div class="metric">
                         <div class="metric-label">Single-Turn</div>
-                        <div class="metric-value status-good">54.0%</div>
-                        <div class="metric-unit">(34 conversations)</div>
+                        <div class="metric-value status-good">53.8%</div>
+                        <div class="metric-unit">(35 conversations)</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #f39c12;">
                     <div class="metric">
                         <div class="metric-label">Multi-Turn</div>
-                        <div class="metric-value status-warning">46.0%</div>
-                        <div class="metric-unit">(29 conversations)</div>
+                        <div class="metric-value status-warning">46.2%</div>
+                        <div class="metric-unit">(30 conversations)</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #667eea;">
                     <div class="metric">
                         <div class="metric-label">Avg Queries / Conversation</div>
-                        <div class="metric-value">2.22</div>
+                        <div class="metric-value">2.2</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #aaa;">
@@ -133,7 +210,7 @@
         <!-- Report 2: Conversation Success Rate by Length -->
         <div class="section">
             <h2>📈 Conversation Success Rate by Length</h2>
-            <div class="chart-wrapper"><canvas id="successByLength"></canvas></div>
+            <div class="chart-wrapper"><canvas id="successByLength_standalone"></canvas></div>
             <p style="color: #666; font-size: 0.85em; margin-top: 12px;">
                 Average per-conversation success rate grouped by number of queries.
                 Bars show conversation volume; the green line shows success %.
@@ -142,9 +219,9 @@
         <script>
             (function() {
                 const labels = ['1', '2', '3', '4+'];
-                const counts = [34, 11, 6, 12];
-                const rates = [79.4, 77.3, 77.8, 84.4];
-                new Chart(document.getElementById('successByLength'), {
+                const counts = [35, 12, 6, 12];
+                const rates = [80.0, 79.2, 77.8, 84.4];
+                new Chart(document.getElementById('successByLength_standalone'), {
                     data: {
                         labels,
                         datasets: [
@@ -182,51 +259,51 @@
                 <div class="card" style="border-left: 5px solid #667eea;">
                     <div class="metric">
                         <div class="metric-label">Root Queries</div>
-                        <div class="metric-value">63</div>
+                        <div class="metric-value">65</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">Answer Rate</div>
-                        <div class="metric-value status-good">71.4%</div>
+                        <div class="metric-value status-good">72.3%</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">IDK Rate</div>
-                        <div class="metric-value status-critical">28.6%</div>
+                        <div class="metric-value status-critical">27.7%</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">Avg Confidence</div>
-                        <div class="metric-value">2.8</div>
+                        <div class="metric-value">2.82</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #f39c12;">
                     <div class="metric">
                         <div class="metric-label">Follow-up Queries</div>
-                        <div class="metric-value">77</div>
+                        <div class="metric-value">78</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">Answer Rate</div>
-                        <div class="metric-value status-good">89.6%</div>
+                        <div class="metric-value status-good">89.7%</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">IDK Rate</div>
-                        <div class="metric-value status-critical">10.4%</div>
+                        <div class="metric-value status-critical">10.3%</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">Avg Confidence</div>
-                        <div class="metric-value">5.33</div>
+                        <div class="metric-value">5.27</div>
                     </div>
                 </div>
             </div>
-            <div class="chart-wrapper" style="height: 320px;"><canvas id="rootVsFollowup"></canvas></div>
+            <div class="chart-wrapper" style="height: 320px;"><canvas id="rootVsFollowup_standalone"></canvas></div>
         </div>
         <script>
             (function() {
-                new Chart(document.getElementById('rootVsFollowup'), {
+                new Chart(document.getElementById('rootVsFollowup_standalone'), {
                     type: 'bar',
                     data: {
                         labels: ['Answer %', 'IDK %', 'Avg Confidence'],
                         datasets: [
-                            { label: 'Root Query', data: [71.4, 28.6, 2.8], backgroundColor: 'rgba(102,126,234,0.7)', borderColor: 'rgba(102,126,234,1)', borderWidth: 1, borderRadius: 6 },
-                            { label: 'Follow-up', data: [89.6, 10.4, 5.33], backgroundColor: 'rgba(243,156,18,0.7)', borderColor: 'rgba(243,156,18,1)', borderWidth: 1, borderRadius: 6 }
+                            { label: 'Root Query', data: [72.3, 27.7, 2.82], backgroundColor: 'rgba(102,126,234,0.7)', borderColor: 'rgba(102,126,234,1)', borderWidth: 1, borderRadius: 6 },
+                            { label: 'Follow-up', data: [89.7, 10.3, 5.27], backgroundColor: 'rgba(243,156,18,0.7)', borderColor: 'rgba(243,156,18,1)', borderWidth: 1, borderRadius: 6 }
                         ]
                     },
                     options: {
@@ -242,19 +319,19 @@
         <div class="section">
             <h2>🧩 Decomposition Effectiveness</h2>
             <p style="color: #666; font-size: 0.9em; margin-bottom: 16px;">
-                Of 29 decomposed (multi-query) conversations, how many had
+                Of 30 decomposed (multi-query) conversations, how many had
                 <strong>all</strong>, <strong>some</strong>, or <strong>none</strong> of their sub-queries answered.
             </p>
-            <div class="chart-wrapper" style="height: 360px;"><canvas id="decompChart"></canvas></div>
+            <div class="chart-wrapper" style="height: 360px;"><canvas id="decompChart_standalone"></canvas></div>
         </div>
         <script>
             (function() {
-                new Chart(document.getElementById('decompChart'), {
+                new Chart(document.getElementById('decompChart_standalone'), {
                     type: 'doughnut',
                     data: {
-                        labels: ['All Answered (51.7%)', 'Partial (48.3%)', 'All Failed (0.0%)'],
+                        labels: ['All Answered (53.3%)', 'Partial (46.7%)', 'All Failed (0.0%)'],
                         datasets: [{
-                            data: [15, 14, 0],
+                            data: [16, 14, 0],
                             backgroundColor: ['rgba(46,204,113,0.8)', 'rgba(243,156,18,0.8)', 'rgba(231,76,60,0.8)'],
                             borderColor: ['#2ecc71', '#f39c12', '#e74c3c'], borderWidth: 2
                         }]
@@ -267,32 +344,32 @@
             })();
         </script>
 
-        </div>
+            </div>
 
-        <!-- ===================== TAB 2 ===================== -->
-        <div class="main-tab-content" id="tab-query-metrics">
+            <!-- Sub-tab: Query Analytics -->
+            <div class="sub-tab-content" id="subtab-standalone-query">
 
         <!-- Global Metrics -->
         <div class="grid">
             <div class="card" style="border-left: 5px solid #667eea;">
                 <div class="metric">
                     <div class="metric-label">Total Queries</div>
-                    <div class="metric-value">140</div>
+                    <div class="metric-value">143</div>
                 </div>
             </div>
 
             <div class="card" style="border-left: 5px solid #2ecc71;">
                 <div class="metric">
                     <div class="metric-label">Answer Rate</div>
-                    <div class="metric-value status-good">81.4%</div>
-                    <div class="metric-unit">(114 answered)</div>
+                    <div class="metric-value status-good">81.8%</div>
+                    <div class="metric-unit">(117 answered)</div>
                 </div>
             </div>
 
             <div class="card" style="border-left: 5px solid #e74c3c;">
                 <div class="metric">
                     <div class="metric-label">IDK Rate</div>
-                    <div class="metric-value status-good">18.6%</div>
+                    <div class="metric-value status-good">18.2%</div>
                     <div class="metric-unit">(26 queries)</div>
                 </div>
             </div>
@@ -300,7 +377,7 @@
             <div class="card" style="border-left: 5px solid #2ecc71;">
                 <div class="metric">
                     <div class="metric-label">Avg Confidence</div>
-                    <div class="metric-value status-good">4.19</div>
+                    <div class="metric-value status-good">4.15</div>
                     <div class="metric-unit">out of 20</div>
                 </div>
             </div>
@@ -338,43 +415,43 @@
                     <tr>
                         <td>Bot Studio</td>
                         <td class="numeric">64</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 45.7%, transparent 45.7%)">45.7%</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 44.8%, transparent 44.8%)">44.8%</td>
                         <td class="numeric">5.77</td>
                     </tr>
                     <tr>
                         <td>General</td>
-                        <td class="numeric">30</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 21.4%, transparent 21.4%)">21.4%</td>
-                        <td class="numeric">1.04</td>
+                        <td class="numeric">32</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 22.4%, transparent 22.4%)">22.4%</td>
+                        <td class="numeric">0.97</td>
                     </tr>
                     <tr>
                         <td>Agent Assist</td>
-                        <td class="numeric">16</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 11.4%, transparent 11.4%)">11.4%</td>
-                        <td class="numeric">4.1</td>
+                        <td class="numeric">17</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 11.9%, transparent 11.9%)">11.9%</td>
+                        <td class="numeric">4.26</td>
                     </tr>
                     <tr>
                         <td>Analytics</td>
                         <td class="numeric">7</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 5.0%, transparent 5.0%)">5.0%</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 4.9%, transparent 4.9%)">4.9%</td>
                         <td class="numeric">1.79</td>
                     </tr>
                     <tr>
                         <td>CTX</td>
                         <td class="numeric">5</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 3.6%, transparent 3.6%)">3.6%</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 3.5%, transparent 3.5%)">3.5%</td>
                         <td class="numeric">2.95</td>
                     </tr>
                     <tr>
                         <td>Channels</td>
                         <td class="numeric">5</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 3.6%, transparent 3.6%)">3.6%</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 3.5%, transparent 3.5%)">3.5%</td>
                         <td class="numeric">7.57</td>
                     </tr>
                     <tr>
                         <td>Campaign Manager</td>
                         <td class="numeric">4</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 2.9%, transparent 2.9%)">2.9%</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 2.8%, transparent 2.8%)">2.8%</td>
                         <td class="numeric">4.19</td>
                     </tr>
                     <tr>
@@ -414,7 +491,7 @@
         <!-- Intent Distribution Chart -->
         <div class="section">
             <h2>🎯 Intent Distribution</h2>
-            <div class="chart-wrapper"><canvas id="intentCombo"></canvas></div>
+            <div class="chart-wrapper"><canvas id="intentCombo_standalone"></canvas></div>
             <p style="color: #666; font-size: 0.85em; margin-top: 12px;">
                 <strong>Left axis:</strong> Query volume per intent (bars)
                 | <strong>Right axis:</strong> Answer % (green line) and Video % (orange dashed line)
@@ -422,40 +499,40 @@
         </div>
         <script>
             (function() {
-                const intents = [
-                    ['setup', 87, 74.7, 25.3],
+                const intents_standalone = [
+                    ['setup', 88, 75.0, 26.1],
                     ['schema', 18, 94.4, 11.1],
                     ['kb_error', 12, 100.0, 0.0],
                     ['overview', 12, 100.0, 91.7],
                     ['definition', 11, 72.7, 36.4],
                     ['page_lookup', 5, 100.0, 80.0],
-                    ['unsupported', 3, 100.0, 0.0],
+                    ['unsupported', 4, 100.0, 0.0],
+                    ['refusal', 3, 100.0, 0.0],
                     ['troubleshooting', 3, 100.0, 100.0],
                     ['compare', 3, 100.0, 0.0],
                     ['case_study', 2, 100.0, 0.0],
-                    ['refusal', 2, 100.0, 0.0],
                     ['behavior', 1, 0.0, 0.0],
                 ];
-                const labels = intents.map(r => r[0]);
-                const volumes = intents.map(r => r[1]);
-                const answerPct = intents.map(r => r[2]);
-                const videoPct = intents.map(r => r[3]);
-                new Chart(document.getElementById('intentCombo'), {
+                const labels_standalone = intents_standalone.map(r => r[0]);
+                const volumes_standalone = intents_standalone.map(r => r[1]);
+                const answerPct_standalone = intents_standalone.map(r => r[2]);
+                const videoPct_standalone = intents_standalone.map(r => r[3]);
+                new Chart(document.getElementById('intentCombo_standalone'), {
                     data: {
-                        labels,
+                        labels: labels_standalone,
                         datasets: [
                             {
-                                type: 'bar', label: 'Queries', data: volumes, yAxisID: 'y',
+                                type: 'bar', label: 'Queries', data: volumes_standalone, yAxisID: 'y',
                                 backgroundColor: 'rgba(102,126,234,0.7)', borderColor: 'rgba(102,126,234,1)',
                                 borderWidth: 1, borderRadius: 6, order: 3
                             },
                             {
-                                type: 'line', label: 'Answer %', data: answerPct, yAxisID: 'y1',
+                                type: 'line', label: 'Answer %', data: answerPct_standalone, yAxisID: 'y1',
                                 borderColor: '#2ecc71', backgroundColor: '#2ecc71',
                                 borderWidth: 3, tension: 0.3, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#2ecc71', order: 1
                             },
                             {
-                                type: 'line', label: 'Video %', data: videoPct, yAxisID: 'y1',
+                                type: 'line', label: 'Video %', data: videoPct_standalone, yAxisID: 'y1',
                                 borderColor: '#f39c12', backgroundColor: '#f39c12',
                                 borderWidth: 3, borderDash: [6,4], tension: 0.3, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#f39c12', order: 2
                             }
@@ -464,28 +541,11 @@
                     options: {
                         responsive: true, maintainAspectRatio: false,
                         interaction: { mode: 'index', intersect: false },
-                        plugins: {
-                            legend: {
-                                labels: { color: '#333', usePointStyle: true, padding: 18, font: { size: 12 } }
-                            }
-                        },
+                        plugins: { legend: { labels: { color: '#333', usePointStyle: true, padding: 18, font: { size: 12 } } } },
                         scales: {
-                            x: {
-                                ticks: { color: '#666' },
-                                grid: { color: '#e8e8e8' }
-                            },
-                            y: {
-                                position: 'left', beginAtZero: true,
-                                title: { display: true, text: 'Queries', color: '#666', font: { weight: '600' } },
-                                ticks: { color: '#666' },
-                                grid: { color: '#e8e8e8' }
-                            },
-                            y1: {
-                                position: 'right', beginAtZero: true, max: 100,
-                                title: { display: true, text: '% (Answer & Video)', color: '#666', font: { weight: '600' } },
-                                ticks: { color: '#666', callback: v => v + '%' },
-                                grid: { drawOnChartArea: false }
-                            }
+                            x: { ticks: { color: '#666' }, grid: { color: '#e8e8e8' } },
+                            y: { position: 'left', beginAtZero: true, title: { display: true, text: 'Queries', color: '#666', font: { weight: '600' } }, ticks: { color: '#666' }, grid: { color: '#e8e8e8' } },
+                            y1: { position: 'right', beginAtZero: true, max: 100, title: { display: true, text: '% (Answer & Video)', color: '#666', font: { weight: '600' } }, ticks: { color: '#666', callback: v => v + '%' }, grid: { drawOnChartArea: false } }
                         }
                     }
                 });
@@ -570,11 +630,11 @@
                         <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 33.3%, transparent 33.3%)">33.3%</td>
                     </tr>
                     <tr>
-                        <td>fernando.reynoso@gupshup.io</td>
+                        <td>ketan.thakur@gupshup.io</td>
                         <td class="numeric">2</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(231,76,60,0.35) 0.0%, transparent 0.0%)"><span class="status-critical">0.0%</span></td>
-                        <td class="numeric">0.55</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(46,204,113,0.35) 100.0%, transparent 100.0%)"><span class="status-good">100.0%</span></td>
+                        <td class="numeric">3.38</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 50.0%, transparent 50.0%)">50.0%</td>
                     </tr>
                 </tbody>
             </table>
@@ -644,6 +704,14 @@
                         <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 33.3%, transparent 33.3%)">33.3%</td>
                     </tr>
                     <tr>
+                        <td>visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io</td>
+                        <td>ccexpress.gupshup.io</td>
+                        <td class="numeric">2</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(46,204,113,0.35) 100.0%, transparent 100.0%)"><span class="status-good">100.0%</span></td>
+                        <td class="numeric">0.0</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
+                    </tr>
+                    <tr>
                         <td>basavaraj@bullkingtimes.com</td>
                         <td>bullkingtimes.com</td>
                         <td class="numeric">2</td>
@@ -682,7 +750,7 @@
         <!-- Language Distribution -->
         <div class="section">
             <h2>🌍 Language Distribution</h2>
-            <div class="chart-wrapper"><canvas id="languageChart"></canvas></div>
+            <div class="chart-wrapper"><canvas id="languageChart_standalone"></canvas></div>
             <p style="color: #666; font-size: 0.85em; margin-top: 12px;">
                 <strong>Left axis:</strong> Query volume per language (bars)
                 | <strong>Right axis:</strong> IDK % (orange line) and Video % (green line)
@@ -690,30 +758,26 @@
         </div>
         <script>
             (function() {
-                const languages = [
-                    ['English', 133, 18.8, 28.6],
+                const langs_standalone = [
+                    ['English', 136, 18.4, 28.7],
                     ['Portuguese', 7, 14.3, 14.3],
                 ];
-                const labels = languages.map(r => r[0]);
-                const volumes = languages.map(r => r[1]);
-                const idkPct = languages.map(r => r[2]);
-                const videoPct = languages.map(r => r[3]);
-                new Chart(document.getElementById('languageChart'), {
+                new Chart(document.getElementById('languageChart_standalone'), {
                     data: {
-                        labels,
+                        labels: langs_standalone.map(r => r[0]),
                         datasets: [
                             {
-                                type: 'bar', label: 'Queries', data: volumes, yAxisID: 'y',
+                                type: 'bar', label: 'Queries', data: langs_standalone.map(r => r[1]), yAxisID: 'y',
                                 backgroundColor: 'rgba(102,126,234,0.7)', borderColor: 'rgba(102,126,234,1)',
                                 borderWidth: 1, borderRadius: 6, order: 3
                             },
                             {
-                                type: 'line', label: 'IDK %', data: idkPct, yAxisID: 'y1',
+                                type: 'line', label: 'IDK %', data: langs_standalone.map(r => r[2]), yAxisID: 'y1',
                                 borderColor: '#f39c12', backgroundColor: '#f39c12',
                                 borderWidth: 3, tension: 0.3, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#f39c12', order: 1
                             },
                             {
-                                type: 'line', label: 'Video %', data: videoPct, yAxisID: 'y1',
+                                type: 'line', label: 'Video %', data: langs_standalone.map(r => r[3]), yAxisID: 'y1',
                                 borderColor: '#2ecc71', backgroundColor: '#2ecc71',
                                 borderWidth: 3, borderDash: [6,4], tension: 0.3, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#2ecc71', order: 2
                             }
@@ -722,28 +786,11 @@
                     options: {
                         responsive: true, maintainAspectRatio: false,
                         interaction: { mode: 'index', intersect: false },
-                        plugins: {
-                            legend: {
-                                labels: { color: '#333', usePointStyle: true, padding: 18, font: { size: 12 } }
-                            }
-                        },
+                        plugins: { legend: { labels: { color: '#333', usePointStyle: true, padding: 18, font: { size: 12 } } } },
                         scales: {
-                            x: {
-                                ticks: { color: '#666' },
-                                grid: { color: '#e8e8e8' }
-                            },
-                            y: {
-                                position: 'left', beginAtZero: true,
-                                title: { display: true, text: 'Queries', color: '#666', font: { weight: '600' } },
-                                ticks: { color: '#666' },
-                                grid: { color: '#e8e8e8' }
-                            },
-                            y1: {
-                                position: 'right', beginAtZero: true, max: 100,
-                                title: { display: true, text: '% (IDK & Video)', color: '#666', font: { weight: '600' } },
-                                ticks: { color: '#666', callback: v => v + '%' },
-                                grid: { drawOnChartArea: false }
-                            }
+                            x: { ticks: { color: '#666' }, grid: { color: '#e8e8e8' } },
+                            y: { position: 'left', beginAtZero: true, title: { display: true, text: 'Queries', color: '#666', font: { weight: '600' } }, ticks: { color: '#666' }, grid: { color: '#e8e8e8' } },
+                            y1: { position: 'right', beginAtZero: true, max: 100, title: { display: true, text: '% (IDK & Video)', color: '#666', font: { weight: '600' } }, ticks: { color: '#666', callback: v => v + '%' }, grid: { drawOnChartArea: false } }
                         }
                     }
                 });
@@ -764,8 +811,8 @@
                 <tbody>
                     <tr>
                         <td>1 intent</td>
-                        <td class="numeric">123</td>
-                        <td class="numeric"><span class="status-warning">79.7%</span></td>
+                        <td class="numeric">126</td>
+                        <td class="numeric"><span class="status-good">80.2%</span></td>
                     </tr>
                     <tr>
                         <td>2 intents</td>
@@ -795,8 +842,8 @@
                 <tbody>
                     <tr>
                         <td>setup</td>
-                        <td class="numeric">87</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 25.3%, transparent 25.3%)">25.3%</td>
+                        <td class="numeric">88</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 26.1%, transparent 26.1%)">26.1%</td>
                     </tr>
                     <tr>
                         <td>schema</td>
@@ -825,6 +872,11 @@
                     </tr>
                     <tr>
                         <td>unsupported</td>
+                        <td class="numeric">4</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
+                    </tr>
+                    <tr>
+                        <td>refusal</td>
                         <td class="numeric">3</td>
                         <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
                     </tr>
@@ -844,11 +896,6 @@
                         <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
                     </tr>
                     <tr>
-                        <td>refusal</td>
-                        <td class="numeric">2</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
-                    </tr>
-                    <tr>
                         <td>behavior</td>
                         <td class="numeric">1</td>
                         <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
@@ -860,24 +907,11 @@
         <!-- Sample of Remaining IDK Queries -->
         <div class="section">
             <h2>❌ Sample of Remaining IDK Queries (By Language)</h2>
-            <style>
-                .lang-tabs { display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 2px solid #e8e8e8; }
-                .lang-tab { padding: 10px 16px; cursor: pointer; background: none; border: none; border-bottom: 3px solid transparent; color: #666; font-weight: 500; transition: all 0.2s; }
-                .lang-tab.active { color: #667eea; border-bottom-color: #667eea; }
-                .lang-tab:hover { color: #333; }
-                .lang-content { display: none; }
-                .lang-content.active { display: block; }
-                .grouping-stats { background: white; border-radius: 12px; padding: 24px; margin: 30px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-                .grouping-stats h3 { margin-bottom: 16px; color: #333; }
-                .grouping-stats .stat-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
-                .grouping-stats .stat-label { color: #666; }
-                .grouping-stats .stat-value { font-weight: 700; color: #667eea; }
-            </style>
-            <div class="lang-tabs">
-                <button class="lang-tab active" onclick="showLangTab(event, 'en')">English</button>
-                <button class="lang-tab" onclick="showLangTab(event, 'pt')">Portuguese</button>
+            <div class="lang-tabs" id="lang-tabs-standalone">
+                <button class="lang-tab{active_class}" onclick="showLangTab_standalone(event, '{lang_code}')">English</button>
+                <button class="lang-tab{active_class}" onclick="showLangTab_standalone(event, '{lang_code}')">Portuguese</button>
             </div>
-            <div class="lang-content active" id="lang-en">
+            <div class="lang-content{active_class}" id="lang-standalone-{lang_code}">
                 <table>
                     <thead>
                         <tr>
@@ -887,35 +921,35 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>help me create a journey in Journey Builder Bot Studio</td>
-                            <td>Bot Studio</td>
-                            <td class="numeric">1.90</td>
+                        <tr{row_style}>
+                            <td>{idk['query']}</td>
+                            <td>{idk['module']}</td>
+                            <td class="numeric"{score_style}>{score:.2f}</td>
                         </tr>
-                        <tr style="background: rgba(231,76,60,0.07);">
-                            <td>TTL-based agent mapping approach</td>
-                            <td>Agent Assist</td>
-                            <td class="numeric" style="color: #e74c3c;">0.60</td>
+                        <tr{row_style}>
+                            <td>{idk['query']}</td>
+                            <td>{idk['module']}</td>
+                            <td class="numeric"{score_style}>{score:.2f}</td>
                         </tr>
-                        <tr style="background: rgba(231,76,60,0.07);">
-                            <td>do we have STD service in voice ai platform</td>
-                            <td>Bot Studio</td>
-                            <td class="numeric" style="color: #e74c3c;">0.55</td>
+                        <tr{row_style}>
+                            <td>{idk['query']}</td>
+                            <td>{idk['module']}</td>
+                            <td class="numeric"{score_style}>{score:.2f}</td>
                         </tr>
-                        <tr>
-                            <td>How to check whether the WhatsApp inbound webhook/event is enabled and pointing to the correct URL i</td>
-                            <td>General</td>
-                            <td class="numeric">1.15</td>
+                        <tr{row_style}>
+                            <td>{idk['query']}</td>
+                            <td>{idk['module']}</td>
+                            <td class="numeric"{score_style}>{score:.2f}</td>
                         </tr>
-                        <tr>
-                            <td>checkInBusinessHour API documentation</td>
-                            <td>Agent Assist</td>
-                            <td class="numeric">1.10</td>
+                        <tr{row_style}>
+                            <td>{idk['query']}</td>
+                            <td>{idk['module']}</td>
+                            <td class="numeric"{score_style}>{score:.2f}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="lang-content" id="lang-pt">
+            <div class="lang-content{active_class}" id="lang-standalone-{lang_code}">
                 <table>
                     <thead>
                         <tr>
@@ -925,10 +959,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>No Gupshup Console, como consultar ou exportar analytics de WhatsApp por projeto com métricas de req</td>
-                            <td>Analytics</td>
-                            <td class="numeric">1.25</td>
+                        <tr{row_style}>
+                            <td>{idk['query']}</td>
+                            <td>{idk['module']}</td>
+                            <td class="numeric"{score_style}>{score:.2f}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -945,29 +979,52 @@
                     <span class="stat-value">0</span>
                 </div>
             </section>
-            <script>
-                function showLangTab(event, langCode) {
-                    const contents = document.querySelectorAll('.lang-content');
-                    contents.forEach(c => c.classList.remove('active'));
-                    const tabs = document.querySelectorAll('.lang-tab');
-                    tabs.forEach(t => t.classList.remove('active'));
-                    document.getElementById('lang-' + langCode).classList.add('active');
-                    event.target.classList.add('active');
-                }
-            </script>
         </div>
-
-        </div> <!-- /tab-query-metrics -->
-
         <script>
-            function showMainTab(event, tabId) {
-                document.querySelectorAll('.main-tab-content').forEach(c => c.classList.remove('active'));
-                document.querySelectorAll('.main-tab').forEach(t => t.classList.remove('active'));
-                document.getElementById('tab-' + tabId).classList.add('active');
+            function showLangTab_standalone(event, langCode) {
+                const tabs = document.getElementById('lang-tabs-standalone').querySelectorAll('.lang-tab');
+                tabs.forEach(t => t.classList.remove('active'));
                 event.target.classList.add('active');
+                // Hide all lang-content for this segment
+                document.querySelectorAll('[id^="lang-standalone-"]').forEach(c => c.classList.remove('active'));
+                const target = document.getElementById('lang-standalone-' + langCode);
+                if (target) target.classList.add('active');
             }
         </script>
 
+            </div>
+        </div>
+
+        <!-- Global footer -->
+        <script>
+            // CC EXPRESS FEATURE: product pill switching
+            function showProduct(event, segKey) {
+                document.querySelectorAll('.product-panel').forEach(p => p.classList.remove('active'));
+                document.querySelectorAll('.product-pill').forEach(b => b.classList.remove('active'));
+                document.getElementById('panel-' + segKey).classList.add('active');
+                event.target.classList.add('active');
+            }
+
+            // CC EXPRESS FEATURE: two-level sub-tab switching
+            function showSubTab(event, ns, subKey) {
+                const panel = document.getElementById('panel-' + ns);
+                panel.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+                panel.querySelectorAll('.sub-tab-content').forEach(c => c.classList.remove('active'));
+                event.target.classList.add('active');
+                const target = document.getElementById('subtab-' + ns + '-' + subKey);
+                if (target) target.classList.add('active');
+            }
+        </script>
+
+        <div class="footer">
+            <div class="data-source">
+                <strong>Data Source:</strong> Live Langfuse API (Real-time telemetry)
+                <br>
+                <strong>Dashboard Generated:</strong> 2026-06-24 07:49:16 UTC
+                <br>
+                <strong>Coverage:</strong> Last 7 days of production queries
+            </div>
+        </div>
     </div>
 </body>
 </html>

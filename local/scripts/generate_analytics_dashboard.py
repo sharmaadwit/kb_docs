@@ -658,15 +658,208 @@ def analyze_conversations(traces: List[Dict], session_gap_minutes: int = 30) -> 
     }
 
 
-def generate_conversation_reports(conv: Dict[str, Any]) -> str:
-    """Build the HTML for the 4 conversation-insight reports (Tab 1).
+# CC EXPRESS FEATURE
+def partition_traces_by_product(traces):
+    """Partition traces by detected_product_original field."""
+    segments = {
+        'standalone': [t for t in traces if t.get('metadata', {}).get('detected_product_original') is None],
+        'cc_express': [t for t in traces if t.get('metadata', {}).get('detected_product_original') == 'cc_express'],
+        'console': [t for t in traces if t.get('metadata', {}).get('detected_product_original') == 'console'],
+    }
+    return {k: v for k, v in segments.items() if v}  # Only keep non-empty segments
+
+
+# CC EXPRESS FEATURE
+def compute_cc_express_parity(all_analysis):
+    """Compare CC Express vs reference segment (Console or Standalone)."""
+    if 'cc_express' not in all_analysis:
+        return None
+
+    ccx = all_analysis['cc_express']
+    ref = all_analysis.get('console') or all_analysis.get('standalone')
+    if not ref:
+        return None
+
+    ccx_answer_rate = (ccx.get('total_answered', 0) / ccx.get('total_queries', 1)) * 100
+    ref_answer_rate = (ref.get('total_answered', 0) / ref.get('total_queries', 1)) * 100
+
+    ccx_avg_conf = sum(t.get('metadata', {}).get('confidence', 0) for t in all_analysis.get('cc_express_traces', [])) / max(len(all_analysis.get('cc_express_traces', [])), 1)
+    ref_avg_conf = sum(t.get('metadata', {}).get('confidence', 0) for t in (all_analysis.get('ref_traces') or [])) / max(len(all_analysis.get('ref_traces') or []), 1)
+
+    low_conf = [t for t in all_analysis.get('cc_express_traces', []) if t.get('metadata', {}).get('confidence', 0) < 2.0 and not t.get('metadata', {}).get('answered', True)]
+
+    return {
+        'ccx_answer_rate': ccx_answer_rate,
+        'ref_answer_rate': ref_answer_rate,
+        'answer_delta': ccx_answer_rate - ref_answer_rate,
+        'ccx_avg_confidence': ccx_avg_conf,
+        'ref_avg_confidence': ref_avg_conf,
+        'confidence_delta': ccx_avg_conf - ref_avg_conf,
+        'low_confidence_flags': low_conf
+    }
+
+
+# CC EXPRESS FEATURE
+def generate_product_summary_cards(segment_key: str, analysis: Dict[str, Any], all_analysis: Dict[str, Any]) -> str:
+    """Generate summary metric cards for a product segment, colour-coded vs best performer."""
+    label_map = {'standalone': 'Standalone', 'cc_express': 'CC Express', 'console': 'Console'}
+    colour_map = {'standalone': '#667eea', 'cc_express': '#e74c3c', 'console': '#2ecc71'}
+    accent = colour_map.get(segment_key, '#667eea')
+    label = label_map.get(segment_key, segment_key.title())
+
+    total_q = analysis.get('total_queries', 0)
+    answer_rate = analysis.get('answer_rate', 0.0)
+    idk_rate = analysis.get('idk_rate', 0.0)
+    avg_conf = analysis.get('avg_confidence', 0.0)
+
+    # Find best answer_rate across segments for colour-coding
+    best_answer = max((v.get('answer_rate', 0.0) for v in all_analysis.values() if isinstance(v, dict) and 'answer_rate' in v), default=0.0)
+    ans_class = 'status-good' if answer_rate >= best_answer * 0.95 else ('status-warning' if answer_rate >= best_answer * 0.75 else 'status-critical')
+    idk_class = 'status-good' if idk_rate < 20 else ('status-warning' if idk_rate < 40 else 'status-critical')
+
+    return f"""
+        <div class="product-summary-cards" style="margin-bottom: 8px;">
+            <div class="grid">
+                <div class="card" style="border-left: 5px solid {accent};">
+                    <div class="metric">
+                        <div class="metric-label">{label} — Volume</div>
+                        <div class="metric-value">{total_q}</div>
+                        <div class="metric-unit">traces</div>
+                    </div>
+                </div>
+                <div class="card" style="border-left: 5px solid {accent};">
+                    <div class="metric">
+                        <div class="metric-label">Answer Rate</div>
+                        <div class="metric-value {ans_class}">{answer_rate}%</div>
+                        <div class="metric-unit">({analysis.get('answered', 0)} answered)</div>
+                    </div>
+                </div>
+                <div class="card" style="border-left: 5px solid {accent};">
+                    <div class="metric">
+                        <div class="metric-label">IDK Rate</div>
+                        <div class="metric-value {idk_class}">{idk_rate}%</div>
+                        <div class="metric-unit">({analysis.get('idk', 0)} queries)</div>
+                    </div>
+                </div>
+                <div class="card" style="border-left: 5px solid {accent};">
+                    <div class="metric">
+                        <div class="metric-label">Avg Confidence</div>
+                        <div class="metric-value">{avg_conf}</div>
+                        <div class="metric-unit">out of 20</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+"""
+
+
+# CC EXPRESS FEATURE
+def generate_parity_widget(parity: Dict[str, Any], ref_label: str) -> str:
+    """Render a side-by-side parity comparison for CC Express vs reference segment."""
+    if not parity:
+        return ''
+
+    answer_delta = parity['answer_delta']
+    conf_delta = parity['confidence_delta']
+
+    # Colour logic for answer delta
+    if answer_delta >= -2:
+        ans_delta_class = 'status-good'
+    elif answer_delta >= -5:
+        ans_delta_class = 'status-warning'
+    else:
+        ans_delta_class = 'status-critical'
+
+    # Colour logic for confidence delta
+    abs_conf = abs(conf_delta)
+    if abs_conf < 0.5:
+        conf_delta_class = 'status-good'
+    elif abs_conf < 2.0:
+        conf_delta_class = 'status-warning'
+    else:
+        conf_delta_class = 'status-critical'
+
+    low_conf_flags = parity.get('low_confidence_flags', [])
+    low_conf_rows = ''
+    if low_conf_flags:
+        for t in low_conf_flags[:10]:
+            meta = t.get('metadata', {})
+            q = (meta.get('query') or '')[:100]
+            conf = meta.get('confidence', 0) or meta.get('top_score', 0) or 0
+            module = meta.get('module_label', 'Unknown')
+            low_conf_rows += f"""                <tr>
+                    <td>{q}</td>
+                    <td>{module}</td>
+                    <td class="numeric" style="color:#e74c3c;">{float(conf):.2f}</td>
+                </tr>
+"""
+    else:
+        low_conf_rows = '<tr><td colspan="3" style="text-align:center; color:#999;">No low-confidence IDK traces found</td></tr>'
+
+    return f"""
+        <!-- CC EXPRESS FEATURE: Parity Widget -->
+        <div class="section" style="border: 2px solid #e74c3c;">
+            <h2>⚖️ CC Express Parity vs {ref_label}</h2>
+            <div class="grid">
+                <div class="card" style="border-left: 5px solid #e74c3c;">
+                    <div class="metric">
+                        <div class="metric-label">CCX Answer Rate</div>
+                        <div class="metric-value">{parity['ccx_answer_rate']:.1f}%</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">{ref_label} Answer Rate</div>
+                        <div class="metric-value">{parity['ref_answer_rate']:.1f}%</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Delta (CCX − Ref)</div>
+                        <div class="metric-value {ans_delta_class}">{answer_delta:+.1f}%</div>
+                    </div>
+                </div>
+                <div class="card" style="border-left: 5px solid #9b59b6;">
+                    <div class="metric">
+                        <div class="metric-label">CCX Avg Confidence</div>
+                        <div class="metric-value">{parity['ccx_avg_confidence']:.2f}</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">{ref_label} Avg Confidence</div>
+                        <div class="metric-value">{parity['ref_avg_confidence']:.2f}</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Confidence Delta</div>
+                        <div class="metric-value {conf_delta_class}">{conf_delta:+.2f}</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 20px 0 12px; color: #e74c3c;">⚠️ Low-Confidence IDK Traces (confidence &lt; 2.0)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Query</th>
+                        <th>Module</th>
+                        <th class="numeric">Confidence</th>
+                    </tr>
+                </thead>
+                <tbody>
+{low_conf_rows}                </tbody>
+            </table>
+        </div>
+"""
+
+
+def generate_conversation_reports(conv: Dict[str, Any], segment_key: str = 'standalone') -> str:
+    """Build the HTML for the 4 conversation-insight reports.
 
     Reuses the existing card / section / Chart.js conventions and color scheme.
-    """
+    Chart IDs are namespaced by segment_key to avoid DOM collisions.
+    """  # CC EXPRESS FEATURE: segment_key param + namespaced chart IDs
     ov = conv["overview"]
     sbl = conv["success_by_length"]
     rvf = conv["root_vs_followup"]
     de = conv["decomposition_effectiveness"]
+
+    # Chart ID namespace prefix  # CC EXPRESS FEATURE
+    ns = segment_key
 
     # Report 2 chart data
     length_labels = ["1", "2", "3", "4+"]
@@ -674,7 +867,7 @@ def generate_conversation_reports(conv: Dict[str, Any]) -> str:
     length_counts = [sbl[b]["conversations"] for b in length_labels]
 
     html = f"""
-        <!-- ===================== TAB 1: CONVERSATION INSIGHTS ===================== -->
+        <!-- ===================== CONVERSATION INSIGHTS ===================== -->
 
         <!-- Report 1: Multi-Turn Conversation Dashboard -->
         <div class="section">
@@ -719,7 +912,7 @@ def generate_conversation_reports(conv: Dict[str, Any]) -> str:
         <!-- Report 2: Conversation Success Rate by Length -->
         <div class="section">
             <h2>📈 Conversation Success Rate by Length</h2>
-            <div class="chart-wrapper"><canvas id="successByLength"></canvas></div>
+            <div class="chart-wrapper"><canvas id="successByLength_{ns}"></canvas></div>
             <p style="color: #666; font-size: 0.85em; margin-top: 12px;">
                 Average per-conversation success rate grouped by number of queries.
                 Bars show conversation volume; the green line shows success %.
@@ -730,7 +923,7 @@ def generate_conversation_reports(conv: Dict[str, Any]) -> str:
                 const labels = {length_labels};
                 const counts = {length_counts};
                 const rates = {length_rates};
-                new Chart(document.getElementById('successByLength'), {{
+                new Chart(document.getElementById('successByLength_{ns}'), {{
                     data: {{
                         labels,
                         datasets: [
@@ -802,11 +995,11 @@ def generate_conversation_reports(conv: Dict[str, Any]) -> str:
                     </div>
                 </div>
             </div>
-            <div class="chart-wrapper" style="height: 320px;"><canvas id="rootVsFollowup"></canvas></div>
+            <div class="chart-wrapper" style="height: 320px;"><canvas id="rootVsFollowup_{ns}"></canvas></div>
         </div>
         <script>
             (function() {{
-                new Chart(document.getElementById('rootVsFollowup'), {{
+                new Chart(document.getElementById('rootVsFollowup_{ns}'), {{
                     type: 'bar',
                     data: {{
                         labels: ['Answer %', 'IDK %', 'Avg Confidence'],
@@ -831,11 +1024,11 @@ def generate_conversation_reports(conv: Dict[str, Any]) -> str:
                 Of {de['total_decomposed']} decomposed (multi-query) conversations, how many had
                 <strong>all</strong>, <strong>some</strong>, or <strong>none</strong> of their sub-queries answered.
             </p>
-            <div class="chart-wrapper" style="height: 360px;"><canvas id="decompChart"></canvas></div>
+            <div class="chart-wrapper" style="height: 360px;"><canvas id="decompChart_{ns}"></canvas></div>
         </div>
         <script>
             (function() {{
-                new Chart(document.getElementById('decompChart'), {{
+                new Chart(document.getElementById('decompChart_{ns}'), {{
                     type: 'doughnut',
                     data: {{
                         labels: ['All Answered ({de['all_success_pct']}%)', 'Partial ({de['partial_success_pct']}%)', 'All Failed ({de['all_failed_pct']}%)'],
@@ -856,28 +1049,37 @@ def generate_conversation_reports(conv: Dict[str, Any]) -> str:
     return html
 
 
-def generate_html(analysis: Dict[str, Any]) -> str:
-    """Generate comprehensive HTML with all reports."""
+# CC EXPRESS FEATURE
+def _empty_conv_fallback():
+    """Return an empty conversations structure for graceful fallback."""
+    return {
+        "overview": {"total_conversations": 0, "single_turn": 0, "multi_turn": 0,
+                     "single_turn_pct": 0.0, "multi_turn_pct": 0.0,
+                     "avg_queries_per_conversation": 0.0, "max_queries": 0, "total_queries": 0},
+        "success_by_length": {b: {"conversations": 0, "avg_success_rate": 0.0} for b in ["1", "2", "3", "4+"]},
+        "root_vs_followup": {"root": {"count": 0, "answer_rate": 0.0, "idk_rate": 0.0, "avg_confidence": 0.0},
+                             "followup": {"count": 0, "answer_rate": 0.0, "idk_rate": 0.0, "avg_confidence": 0.0}},
+        "decomposition_effectiveness": {"total_decomposed": 0, "all_success": 0, "partial_success": 0,
+                                        "all_failed": 0, "all_success_pct": 0.0, "partial_success_pct": 0.0,
+                                        "all_failed_pct": 0.0},
+    }
 
-    # Tab 1 content (conversation insights). Falls back to empty if unavailable.
-    conversation_reports_html = generate_conversation_reports(
-        analysis.get("conversations", {
-            "overview": {"total_conversations": 0, "single_turn": 0, "multi_turn": 0,
-                         "single_turn_pct": 0.0, "multi_turn_pct": 0.0,
-                         "avg_queries_per_conversation": 0.0, "max_queries": 0, "total_queries": 0},
-            "success_by_length": {b: {"conversations": 0, "avg_success_rate": 0.0} for b in ["1", "2", "3", "4+"]},
-            "root_vs_followup": {"root": {"count": 0, "answer_rate": 0.0, "idk_rate": 0.0, "avg_confidence": 0.0},
-                                 "followup": {"count": 0, "answer_rate": 0.0, "idk_rate": 0.0, "avg_confidence": 0.0}},
-            "decomposition_effectiveness": {"total_decomposed": 0, "all_success": 0, "partial_success": 0,
-                                            "all_failed": 0, "all_success_pct": 0.0, "partial_success_pct": 0.0,
-                                            "all_failed_pct": 0.0},
-        })
-    )
+
+# CC EXPRESS FEATURE: generate_query_analytics_html() extracted so it can be
+# called once per segment without duplicating the big block of HTML/Python.
+def generate_query_analytics_html(analysis: Dict[str, Any], segment_key: str) -> str:
+    """Render the Query Analytics sub-tab for one product segment.
+
+    All Chart.js canvas IDs are namespaced with segment_key to avoid DOM collisions.
+    """
+    ns = segment_key  # CC EXPRESS FEATURE: namespace prefix
+
+    if not analysis.get('total_queries'):
+        return f'<div class="section"><p style="color:#999; text-align:center; padding:40px 0;">No traces found for this segment</p></div>'
 
     idk_rate = analysis["idk_rate"]
     idk_color = "status-critical" if idk_rate > 50 else ("status-warning" if idk_rate > 40 else "status-good")
 
-    # Prepare data for tables
     modules_sorted = sorted(analysis["modules"].items(), key=lambda x: x[1]["count"], reverse=True)
     intents_sorted = sorted(analysis["intents"].items(), key=lambda x: x[1]["count"], reverse=True)
     users_int_sorted = sorted(analysis["users_internal"].items(), key=lambda x: x[1]["count"], reverse=True)
@@ -885,101 +1087,7 @@ def generate_html(analysis: Dict[str, Any]) -> str:
     intent_multi_sorted = sorted(analysis["intent_multi"].items(), key=lambda x: x[0])
     intent_video_sorted = sorted(analysis["intent_video"].items(), key=lambda x: x[1]["count"], reverse=True)
 
-    html = f"""<!DOCTYPE html>
-<html>
-<head>
-    <title>Comprehensive KB Analytics Dashboard</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        * {{ margin: 0; padding: 0; box-sizing: border-box; }}
-        body {{
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 40px 20px;
-            color: #333;
-        }}
-        .container {{ max-width: 1600px; margin: 0 auto; }}
-        .header {{ color: white; margin-bottom: 30px; }}
-        .header h1 {{ font-size: 2.8em; margin-bottom: 10px; }}
-        .header p {{ font-size: 1.1em; opacity: 0.9; }}
-
-        .grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 30px; }}
-        .card {{
-            background: white;
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
-        }}
-        .card:hover {{ transform: translateY(-5px); }}
-
-        .metric {{ margin-bottom: 20px; }}
-        .metric-label {{ font-size: 0.8em; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }}
-        .metric-value {{ font-size: 2.2em; font-weight: bold; color: #333; }}
-        .metric-unit {{ font-size: 0.45em; color: #999; margin-left: 5px; }}
-
-        .status-good {{ color: #2ecc71; }}
-        .status-warning {{ color: #f39c12; }}
-        .status-critical {{ color: #e74c3c; }}
-
-        .section {{ background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }}
-        .section h2 {{ font-size: 1.6em; margin-bottom: 20px; color: #333; border-bottom: 3px solid #667eea; padding-bottom: 10px; }}
-
-        table {{ width: 100%; border-collapse: collapse; margin-top: 10px; }}
-        th {{
-            background: #f8f9fa;
-            padding: 12px;
-            text-align: left;
-            font-weight: 600;
-            color: #555;
-            border-bottom: 2px solid #ddd;
-            font-size: 0.9em;
-        }}
-        th.numeric {{ text-align: right; }}
-        td {{ padding: 12px; border-bottom: 1px solid #eee; font-size: 0.95em; }}
-        td.numeric {{ text-align: right; }}
-        tr:hover {{ background: #f8f9fa; }}
-
-        .footer {{ text-align: center; color: white; margin-top: 40px; font-size: 0.9em; opacity: 0.8; }}
-        .data-source {{ background: rgba(255,255,255,0.1); padding: 12px; border-radius: 6px; margin-top: 10px; }}
-        .chart-wrapper {{ height: 420px; margin: 20px 0; }}
-
-        /* Top-level tab navigation */
-        .main-tabs {{ display: flex; gap: 10px; margin-bottom: 24px; }}
-        .main-tab {{
-            padding: 14px 28px; cursor: pointer; background: rgba(255,255,255,0.15);
-            border: none; border-radius: 10px 10px 0 0; color: white; font-weight: 600;
-            font-size: 1.05em; letter-spacing: 0.5px; transition: all 0.2s;
-        }}
-        .main-tab:hover {{ background: rgba(255,255,255,0.3); }}
-        .main-tab.active {{ background: white; color: #667eea; box-shadow: 0 -4px 12px rgba(0,0,0,0.1); }}
-        .main-tab-content {{ display: none; }}
-        .main-tab-content.active {{ display: block; }}
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>📊 Comprehensive KB Analytics Dashboard</h1>
-            <p>Live Langfuse Telemetry • Last Updated: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC</p>
-        </div>
-
-        <!-- Top-level Tab Navigation -->
-        <div class="main-tabs">
-            <button class="main-tab active" onclick="showMainTab(event, 'conversation-insights')">💬 CONVERSATION INSIGHTS</button>
-            <button class="main-tab" onclick="showMainTab(event, 'query-metrics')">📊 QUERY METRICS</button>
-        </div>
-
-        <!-- ===================== TAB 1 ===================== -->
-        <div class="main-tab-content active" id="tab-conversation-insights">
-{conversation_reports_html}
-        </div>
-
-        <!-- ===================== TAB 2 ===================== -->
-        <div class="main-tab-content" id="tab-query-metrics">
-
+    html = f"""
         <!-- Global Metrics -->
         <div class="grid">
             <div class="card" style="border-left: 5px solid #667eea;">
@@ -1056,82 +1164,65 @@ def generate_html(analysis: Dict[str, Any]) -> str:
                     </tr>
 """
 
-    html += """                </tbody>
+    html += f"""                </tbody>
             </table>
         </div>
 
         <!-- Intent Distribution Chart -->
         <div class="section">
             <h2>🎯 Intent Distribution</h2>
-            <div class="chart-wrapper"><canvas id="intentCombo"></canvas></div>
+            <div class="chart-wrapper"><canvas id="intentCombo_{ns}"></canvas></div>
             <p style="color: #666; font-size: 0.85em; margin-top: 12px;">
                 <strong>Left axis:</strong> Query volume per intent (bars)
                 | <strong>Right axis:</strong> Answer % (green line) and Video % (orange dashed line)
             </p>
         </div>
         <script>
-            (function() {
-                const intents = [
+            (function() {{
+                const intents_{ns} = [
 """
     for intent, data in intents_sorted:
         video_pct = analysis.get("intent_video", {}).get(intent, {}).get("video_pct", 0)
         html += f"                    ['{intent}', {data['count']}, {data['answer_rate']:.1f}, {video_pct:.1f}],\n"
 
-    html += """                ];
-                const labels = intents.map(r => r[0]);
-                const volumes = intents.map(r => r[1]);
-                const answerPct = intents.map(r => r[2]);
-                const videoPct = intents.map(r => r[3]);
-                new Chart(document.getElementById('intentCombo'), {
-                    data: {
-                        labels,
+    html += f"""                ];
+                const labels_{ns} = intents_{ns}.map(r => r[0]);
+                const volumes_{ns} = intents_{ns}.map(r => r[1]);
+                const answerPct_{ns} = intents_{ns}.map(r => r[2]);
+                const videoPct_{ns} = intents_{ns}.map(r => r[3]);
+                new Chart(document.getElementById('intentCombo_{ns}'), {{
+                    data: {{
+                        labels: labels_{ns},
                         datasets: [
-                            {
-                                type: 'bar', label: 'Queries', data: volumes, yAxisID: 'y',
+                            {{
+                                type: 'bar', label: 'Queries', data: volumes_{ns}, yAxisID: 'y',
                                 backgroundColor: 'rgba(102,126,234,0.7)', borderColor: 'rgba(102,126,234,1)',
                                 borderWidth: 1, borderRadius: 6, order: 3
-                            },
-                            {
-                                type: 'line', label: 'Answer %', data: answerPct, yAxisID: 'y1',
+                            }},
+                            {{
+                                type: 'line', label: 'Answer %', data: answerPct_{ns}, yAxisID: 'y1',
                                 borderColor: '#2ecc71', backgroundColor: '#2ecc71',
                                 borderWidth: 3, tension: 0.3, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#2ecc71', order: 1
-                            },
-                            {
-                                type: 'line', label: 'Video %', data: videoPct, yAxisID: 'y1',
+                            }},
+                            {{
+                                type: 'line', label: 'Video %', data: videoPct_{ns}, yAxisID: 'y1',
                                 borderColor: '#f39c12', backgroundColor: '#f39c12',
                                 borderWidth: 3, borderDash: [6,4], tension: 0.3, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#f39c12', order: 2
-                            }
+                            }}
                         ]
-                    },
-                    options: {
+                    }},
+                    options: {{
                         responsive: true, maintainAspectRatio: false,
-                        interaction: { mode: 'index', intersect: false },
-                        plugins: {
-                            legend: {
-                                labels: { color: '#333', usePointStyle: true, padding: 18, font: { size: 12 } }
-                            }
-                        },
-                        scales: {
-                            x: {
-                                ticks: { color: '#666' },
-                                grid: { color: '#e8e8e8' }
-                            },
-                            y: {
-                                position: 'left', beginAtZero: true,
-                                title: { display: true, text: 'Queries', color: '#666', font: { weight: '600' } },
-                                ticks: { color: '#666' },
-                                grid: { color: '#e8e8e8' }
-                            },
-                            y1: {
-                                position: 'right', beginAtZero: true, max: 100,
-                                title: { display: true, text: '% (Answer & Video)', color: '#666', font: { weight: '600' } },
-                                ticks: { color: '#666', callback: v => v + '%' },
-                                grid: { drawOnChartArea: false }
-                            }
-                        }
-                    }
-                });
-            })();
+                        interaction: {{ mode: 'index', intersect: false }},
+                        plugins: {{ legend: {{ labels: {{ color: '#333', usePointStyle: true, padding: 18, font: {{ size: 12 }} }} }} }},
+                        scales: {{
+                            x: {{ ticks: {{ color: '#666' }}, grid: {{ color: '#e8e8e8' }} }},
+                            y: {{ position: 'left', beginAtZero: true, title: {{ display: true, text: 'Queries', color: '#666', font: {{ weight: '600' }} }}, ticks: {{ color: '#666' }}, grid: {{ color: '#e8e8e8' }} }},
+                            y1: {{ position: 'right', beginAtZero: true, max: 100, title: {{ display: true, text: '% (Answer & Video)', color: '#666', font: {{ weight: '600' }} }}, ticks: {{ color: '#666', callback: v => v + '%' }}, grid: {{ drawOnChartArea: false }} }}
+                        }}
+                    }}
+                }});
+            }})();
         </script>
 
         <!-- User Segmentation -->
@@ -1200,85 +1291,63 @@ def generate_html(analysis: Dict[str, Any]) -> str:
                     </tr>
 """
 
-    html += """                </tbody>
+    html += f"""                </tbody>
             </table>
         </div>
 
         <!-- Language Distribution -->
         <div class="section">
             <h2>🌍 Language Distribution</h2>
-            <div class="chart-wrapper"><canvas id="languageChart"></canvas></div>
+            <div class="chart-wrapper"><canvas id="languageChart_{ns}"></canvas></div>
             <p style="color: #666; font-size: 0.85em; margin-top: 12px;">
                 <strong>Left axis:</strong> Query volume per language (bars)
                 | <strong>Right axis:</strong> IDK % (orange line) and Video % (green line)
             </p>
         </div>
         <script>
-            (function() {
-                const languages = [
+            (function() {{
+                const langs_{ns} = [
 """
-    # Sort languages by query count
     lang_sorted = sorted(analysis.get("languages", {}).items(), key=lambda x: -x[1]["count"])
     for lang_code, data in lang_sorted:
         lang_name = {"en": "English", "pt": "Portuguese", "es": "Spanish", "ar": "Arabic", "hi": "Hindi", "zh": "Chinese", "ja": "Japanese", "ko": "Korean"}.get(lang_code, lang_code.upper())
-        idk_rate = round((data["idk"] / data["count"] * 100), 1) if data["count"] > 0 else 0
-        html += f"                    ['{lang_name}', {data['count']}, {idk_rate}, {data['video_pct']:.1f}],\n"
+        lang_idk_rate = round((data["idk"] / data["count"] * 100), 1) if data["count"] > 0 else 0
+        html += f"                    ['{lang_name}', {data['count']}, {lang_idk_rate}, {data['video_pct']:.1f}],\n"
 
-    html += """                ];
-                const labels = languages.map(r => r[0]);
-                const volumes = languages.map(r => r[1]);
-                const idkPct = languages.map(r => r[2]);
-                const videoPct = languages.map(r => r[3]);
-                new Chart(document.getElementById('languageChart'), {
-                    data: {
-                        labels,
+    html += f"""                ];
+                new Chart(document.getElementById('languageChart_{ns}'), {{
+                    data: {{
+                        labels: langs_{ns}.map(r => r[0]),
                         datasets: [
-                            {
-                                type: 'bar', label: 'Queries', data: volumes, yAxisID: 'y',
+                            {{
+                                type: 'bar', label: 'Queries', data: langs_{ns}.map(r => r[1]), yAxisID: 'y',
                                 backgroundColor: 'rgba(102,126,234,0.7)', borderColor: 'rgba(102,126,234,1)',
                                 borderWidth: 1, borderRadius: 6, order: 3
-                            },
-                            {
-                                type: 'line', label: 'IDK %', data: idkPct, yAxisID: 'y1',
+                            }},
+                            {{
+                                type: 'line', label: 'IDK %', data: langs_{ns}.map(r => r[2]), yAxisID: 'y1',
                                 borderColor: '#f39c12', backgroundColor: '#f39c12',
                                 borderWidth: 3, tension: 0.3, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#f39c12', order: 1
-                            },
-                            {
-                                type: 'line', label: 'Video %', data: videoPct, yAxisID: 'y1',
+                            }},
+                            {{
+                                type: 'line', label: 'Video %', data: langs_{ns}.map(r => r[3]), yAxisID: 'y1',
                                 borderColor: '#2ecc71', backgroundColor: '#2ecc71',
                                 borderWidth: 3, borderDash: [6,4], tension: 0.3, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#2ecc71', order: 2
-                            }
+                            }}
                         ]
-                    },
-                    options: {
+                    }},
+                    options: {{
                         responsive: true, maintainAspectRatio: false,
-                        interaction: { mode: 'index', intersect: false },
-                        plugins: {
-                            legend: {
-                                labels: { color: '#333', usePointStyle: true, padding: 18, font: { size: 12 } }
-                            }
-                        },
-                        scales: {
-                            x: {
-                                ticks: { color: '#666' },
-                                grid: { color: '#e8e8e8' }
-                            },
-                            y: {
-                                position: 'left', beginAtZero: true,
-                                title: { display: true, text: 'Queries', color: '#666', font: { weight: '600' } },
-                                ticks: { color: '#666' },
-                                grid: { color: '#e8e8e8' }
-                            },
-                            y1: {
-                                position: 'right', beginAtZero: true, max: 100,
-                                title: { display: true, text: '% (IDK & Video)', color: '#666', font: { weight: '600' } },
-                                ticks: { color: '#666', callback: v => v + '%' },
-                                grid: { drawOnChartArea: false }
-                            }
-                        }
-                    }
-                });
-            })();
+                        interaction: {{ mode: 'index', intersect: false }},
+                        plugins: {{ legend: {{ labels: {{ color: '#333', usePointStyle: true, padding: 18, font: {{ size: 12 }} }} }} }},
+                        scales: {{
+                            x: {{ ticks: {{ color: '#666' }}, grid: {{ color: '#e8e8e8' }} }},
+                            y: {{ position: 'left', beginAtZero: true, title: {{ display: true, text: 'Queries', color: '#666', font: {{ weight: '600' }} }}, ticks: {{ color: '#666' }}, grid: {{ color: '#e8e8e8' }} }},
+                            y1: {{ position: 'right', beginAtZero: true, max: 100, title: {{ display: true, text: '% (IDK & Video)', color: '#666', font: {{ weight: '600' }} }}, ticks: {{ color: '#666', callback: v => v + '%' }}, grid: {{ drawOnChartArea: false }} }}
+                        }}
+                    }}
+                }});
+            }})();
         </script>
 
         <!-- Multi-Intent Analysis -->
@@ -1338,34 +1407,21 @@ def generate_html(analysis: Dict[str, Any]) -> str:
         <!-- Sample of Remaining IDK Queries -->
         <div class="section">
             <h2>❌ Sample of Remaining IDK Queries (By Language)</h2>
-            <style>
-                .lang-tabs {{ display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 2px solid #e8e8e8; }}
-                .lang-tab {{ padding: 10px 16px; cursor: pointer; background: none; border: none; border-bottom: 3px solid transparent; color: #666; font-weight: 500; transition: all 0.2s; }}
-                .lang-tab.active {{ color: #667eea; border-bottom-color: #667eea; }}
-                .lang-tab:hover {{ color: #333; }}
-                .lang-content {{ display: none; }}
-                .lang-content.active {{ display: block; }}
-                .grouping-stats {{ background: white; border-radius: 12px; padding: 24px; margin: 30px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }}
-                .grouping-stats h3 {{ margin-bottom: 16px; color: #333; }}
-                .grouping-stats .stat-row {{ display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }}
-                .grouping-stats .stat-label {{ color: #666; }}
-                .grouping-stats .stat-value {{ font-weight: 700; color: #667eea; }}
-            </style>
-            <div class="lang-tabs">
+            <div class="lang-tabs" id="lang-tabs-{ns}">
 """
     idk_by_lang = analysis.get("idk_by_language", {})
     lang_names = {"en": "English", "pt": "Portuguese", "es": "Spanish", "ar": "Arabic", "hi": "Hindi", "zh": "Chinese", "ja": "Japanese", "ko": "Korean"}
     for i, (lang_code, _) in enumerate(sorted(idk_by_lang.items())):
         lang_name = lang_names.get(lang_code, lang_code.upper())
         active_class = " active" if i == 0 else ""
-        html += f'                <button class="lang-tab{active_class}" onclick="showLangTab(event, \'{lang_code}\')">{lang_name}</button>\n'
+        html += f'                <button class="lang-tab{{active_class}}" onclick="showLangTab_{ns}(event, \'{{lang_code}}\')">{lang_name}</button>\n'
 
-    html += """            </div>
+    html += f"""            </div>
 """
     for i, (lang_code, idk_list) in enumerate(sorted(idk_by_lang.items())):
         lang_name = lang_names.get(lang_code, lang_code.upper())
         active_class = " active" if i == 0 else ""
-        html += f"""            <div class="lang-content{active_class}" id="lang-{lang_code}">
+        html += f"""            <div class="lang-content{{active_class}}" id="lang-{ns}-{{lang_code}}">
                 <table>
                     <thead>
                         <tr>
@@ -1387,10 +1443,10 @@ def generate_html(analysis: Dict[str, Any]) -> str:
             else:
                 row_style = ''
                 score_style = ''
-            html += f"""                        <tr{row_style}>
-                            <td>{idk['query']}</td>
-                            <td>{idk['module']}</td>
-                            <td class="numeric"{score_style}>{score:.2f}</td>
+            html += f"""                        <tr{{row_style}}>
+                            <td>{{idk['query']}}</td>
+                            <td>{{idk['module']}}</td>
+                            <td class="numeric"{{score_style}}>{{score:.2f}}</td>
                         </tr>
 """
         html += """                    </tbody>
@@ -1410,36 +1466,264 @@ def generate_html(analysis: Dict[str, Any]) -> str:
                     <span class="stat-value">{analysis['trace_grouping']['total_hierarchical_chains']}</span>
                 </div>
             </section>
+        </div>
+        <script>
+            function showLangTab_{ns}(event, langCode) {{
+                const tabs = document.getElementById('lang-tabs-{ns}').querySelectorAll('.lang-tab');
+                tabs.forEach(t => t.classList.remove('active'));
+                event.target.classList.add('active');
+                // Hide all lang-content for this segment
+                document.querySelectorAll('[id^="lang-{ns}-"]').forEach(c => c.classList.remove('active'));
+                const target = document.getElementById('lang-{ns}-' + langCode);
+                if (target) target.classList.add('active');
+            }}
+        </script>
 """
+    return html
 
-    html += """            <script>
-                function showLangTab(event, langCode) {
-                    const contents = document.querySelectorAll('.lang-content');
-                    contents.forEach(c => c.classList.remove('active'));
-                    const tabs = document.querySelectorAll('.lang-tab');
-                    tabs.forEach(t => t.classList.remove('active'));
-                    document.getElementById('lang-' + langCode).classList.add('active');
-                    event.target.classList.add('active');
-                }
-            </script>
+
+# CC EXPRESS FEATURE: main generate_html() now accepts all_analysis + video_data + parity
+def generate_html(all_analysis: Dict[str, Any], video_data: Dict[str, Any], parity: Optional[Dict]) -> str:
+    """Generate comprehensive HTML with product-segmented tabs.
+
+    all_analysis: dict keyed by segment ('standalone', 'cc_express', 'console').
+                  Each value is the dict returned by analyze_traces() plus
+                  'conversations' (from analyze_conversations()) and '_traces'.
+    video_data:   global video events (not segmented).
+    parity:       output of compute_cc_express_parity(), or None.
+    """
+
+    # CC EXPRESS FEATURE: display order + labels
+    segment_order = [k for k in ['standalone', 'cc_express', 'console'] if k in all_analysis]
+    segment_labels = {'standalone': 'Standalone', 'cc_express': 'CC Express', 'console': 'Console'}
+    segment_icons  = {'standalone': '🌐', 'cc_express': '🚀', 'console': '🖥️'}
+
+    # Reference segment label for the parity widget
+    ref_label = segment_labels.get('console' if 'console' in all_analysis else 'standalone', 'Reference')
+
+    # Build per-segment HTML blocks
+    segment_blocks = {}
+    for seg in segment_order:
+        analysis = all_analysis[seg]
+        ns = seg
+
+        # Conversation Insights sub-tab  # CC EXPRESS FEATURE: namespaced
+        conv_html = generate_conversation_reports(
+            analysis.get('conversations', _empty_conv_fallback()),
+            segment_key=ns,
+        )
+
+        # Query Analytics sub-tab  # CC EXPRESS FEATURE: namespaced
+        query_html = generate_query_analytics_html(analysis, segment_key=ns)
+
+        # CC Express parity widget only in the cc_express segment  # CC EXPRESS FEATURE
+        parity_html = ''
+        if seg == 'cc_express' and parity:
+            parity_html = generate_parity_widget(parity, ref_label)
+
+        # Product summary cards  # CC EXPRESS FEATURE
+        summary_cards = generate_product_summary_cards(seg, analysis, all_analysis)
+
+        segment_blocks[seg] = (summary_cards, conv_html, query_html, parity_html)
+
+    # --- Build the first tab ID (the active one) ---
+    first_seg = segment_order[0] if segment_order else 'standalone'
+
+    # Product pill buttons  # CC EXPRESS FEATURE
+    product_pill_buttons = ''
+    for i, seg in enumerate(segment_order):
+        active = ' active' if i == 0 else ''
+        label = segment_icons.get(seg, '') + ' ' + segment_labels.get(seg, seg.title())
+        product_pill_buttons += f'            <button class="product-pill{active}" onclick="showProduct(event, \'{seg}\')">{label}</button>\n'
+
+    now_str = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+
+    html = f"""<!DOCTYPE html>
+<html>
+<head>
+    <title>Comprehensive KB Analytics Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+        body {{
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            color: #333;
+        }}
+        .container {{ max-width: 1600px; margin: 0 auto; }}
+        .header {{ color: white; margin-bottom: 30px; }}
+        .header h1 {{ font-size: 2.8em; margin-bottom: 10px; }}
+        .header p {{ font-size: 1.1em; opacity: 0.9; }}
+
+        .grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 30px; }}
+        .card {{
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }}
+        .card:hover {{ transform: translateY(-5px); }}
+
+        .metric {{ margin-bottom: 20px; }}
+        .metric-label {{ font-size: 0.8em; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }}
+        .metric-value {{ font-size: 2.2em; font-weight: bold; color: #333; }}
+        .metric-unit {{ font-size: 0.45em; color: #999; margin-left: 5px; }}
+
+        .status-good {{ color: #2ecc71; }}
+        .status-warning {{ color: #f39c12; }}
+        .status-critical {{ color: #e74c3c; }}
+
+        .section {{ background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }}
+        .section h2 {{ font-size: 1.6em; margin-bottom: 20px; color: #333; border-bottom: 3px solid #667eea; padding-bottom: 10px; }}
+        .section h3 {{ font-size: 1.2em; margin-bottom: 12px; color: #444; }}
+
+        table {{ width: 100%; border-collapse: collapse; margin-top: 10px; }}
+        th {{
+            background: #f8f9fa;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #555;
+            border-bottom: 2px solid #ddd;
+            font-size: 0.9em;
+        }}
+        th.numeric {{ text-align: right; }}
+        td {{ padding: 12px; border-bottom: 1px solid #eee; font-size: 0.95em; }}
+        td.numeric {{ text-align: right; }}
+        tr:hover {{ background: #f8f9fa; }}
+
+        .footer {{ text-align: center; color: white; margin-top: 40px; font-size: 0.9em; opacity: 0.8; }}
+        .data-source {{ background: rgba(255,255,255,0.1); padding: 12px; border-radius: 6px; margin-top: 10px; }}
+        .chart-wrapper {{ height: 420px; margin: 20px 0; }}
+
+        /* CC EXPRESS FEATURE: Product pill selector */
+        .product-pills {{
+            display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap;
+        }}
+        .product-pill {{
+            padding: 12px 24px; cursor: pointer; background: rgba(255,255,255,0.15);
+            border: none; border-radius: 24px; color: white; font-weight: 600;
+            font-size: 1em; letter-spacing: 0.4px; transition: all 0.2s;
+        }}
+        .product-pill:hover {{ background: rgba(255,255,255,0.3); }}
+        .product-pill.active {{ background: white; color: #667eea; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }}
+        .product-panel {{ display: none; }}
+        .product-panel.active {{ display: block; }}
+
+        /* CC EXPRESS FEATURE: Sub-tab navigation within each product */
+        .sub-tabs {{
+            display: flex; gap: 0; margin-bottom: 20px;
+            background: rgba(255,255,255,0.08); border-radius: 8px; padding: 4px;
+        }}
+        .sub-tab {{
+            flex: 1; padding: 10px 20px; cursor: pointer; background: transparent;
+            border: none; border-radius: 6px; color: rgba(255,255,255,0.7); font-weight: 600;
+            font-size: 0.95em; transition: all 0.2s; text-align: center;
+        }}
+        .sub-tab:hover {{ color: white; background: rgba(255,255,255,0.15); }}
+        .sub-tab.active {{ background: white; color: #667eea; }}
+        .sub-tab-content {{ display: none; }}
+        .sub-tab-content.active {{ display: block; }}
+
+        /* IDK language tabs */
+        .lang-tabs {{ display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 2px solid #e8e8e8; }}
+        .lang-tab {{ padding: 10px 16px; cursor: pointer; background: none; border: none; border-bottom: 3px solid transparent; color: #666; font-weight: 500; transition: all 0.2s; }}
+        .lang-tab.active {{ color: #667eea; border-bottom-color: #667eea; }}
+        .lang-tab:hover {{ color: #333; }}
+        .lang-content {{ display: none; }}
+        .lang-content.active {{ display: block; }}
+
+        /* Grouping stats */
+        .grouping-stats {{ background: white; border-radius: 12px; padding: 24px; margin: 30px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }}
+        .grouping-stats h3 {{ margin-bottom: 16px; color: #333; }}
+        .grouping-stats .stat-row {{ display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }}
+        .grouping-stats .stat-label {{ color: #666; }}
+        .grouping-stats .stat-value {{ font-weight: 700; color: #667eea; }}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Comprehensive KB Analytics Dashboard</h1>
+            <p>Live Langfuse Telemetry • Last Updated: {now_str} UTC</p>
         </div>
 
-        </div> <!-- /tab-query-metrics -->
+        <!-- CC EXPRESS FEATURE: Product pill selector (replaces 2-button tab nav) -->
+        <div class="product-pills">
+{product_pill_buttons}        </div>
+"""
 
+    # CC EXPRESS FEATURE: Emit one panel per product
+    for i, seg in enumerate(segment_order):
+        active = ' active' if i == 0 else ''
+        summary_cards, conv_html, query_html, parity_html = segment_blocks[seg]
+        ns = seg
+        label = segment_labels.get(seg, seg.title())
+
+        html += f"""
+        <!-- CC EXPRESS FEATURE: product panel for {seg} -->
+        <div class="product-panel{active}" id="panel-{seg}">
+
+            <!-- Product summary cards -->
+{summary_cards}
+
+            <!-- CC EXPRESS FEATURE: Sub-tab nav (Conversation Insights | Query Analytics) -->
+            <div class="sub-tabs" id="sub-tabs-{ns}">
+                <button class="sub-tab active" onclick="showSubTab(event, '{ns}', 'conv')">💬 Conversation Insights</button>
+                <button class="sub-tab" onclick="showSubTab(event, '{ns}', 'query')">📊 Query Analytics</button>
+            </div>
+
+            <!-- Sub-tab: Conversation Insights -->
+            <div class="sub-tab-content active" id="subtab-{ns}-conv">
+{conv_html}
+            </div>
+
+            <!-- Sub-tab: Query Analytics -->
+            <div class="sub-tab-content" id="subtab-{ns}-query">
+{query_html}
+            </div>
+"""
+        # CC EXPRESS FEATURE: parity widget only in cc_express panel
+        if parity_html:
+            html += f"""
+            <!-- CC EXPRESS FEATURE: Parity widget (cc_express only) -->
+{parity_html}
+"""
+
+        html += """        </div>
+"""
+
+    html += f"""
+        <!-- Global footer -->
         <script>
-            function showMainTab(event, tabId) {
-                document.querySelectorAll('.main-tab-content').forEach(c => c.classList.remove('active'));
-                document.querySelectorAll('.main-tab').forEach(t => t.classList.remove('active'));
-                document.getElementById('tab-' + tabId).classList.add('active');
+            // CC EXPRESS FEATURE: product pill switching
+            function showProduct(event, segKey) {{
+                document.querySelectorAll('.product-panel').forEach(p => p.classList.remove('active'));
+                document.querySelectorAll('.product-pill').forEach(b => b.classList.remove('active'));
+                document.getElementById('panel-' + segKey).classList.add('active');
                 event.target.classList.add('active');
-            }
+            }}
+
+            // CC EXPRESS FEATURE: two-level sub-tab switching
+            function showSubTab(event, ns, subKey) {{
+                const panel = document.getElementById('panel-' + ns);
+                panel.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+                panel.querySelectorAll('.sub-tab-content').forEach(c => c.classList.remove('active'));
+                event.target.classList.add('active');
+                const target = document.getElementById('subtab-' + ns + '-' + subKey);
+                if (target) target.classList.add('active');
+            }}
         </script>
 
         <div class="footer">
             <div class="data-source">
                 <strong>Data Source:</strong> Live Langfuse API (Real-time telemetry)
                 <br>
-                <strong>Dashboard Generated:</strong> {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC
+                <strong>Dashboard Generated:</strong> {now_str} UTC
                 <br>
                 <strong>Coverage:</strong> Last 7 days of production queries
             </div>
@@ -1450,6 +1734,7 @@ def generate_html(analysis: Dict[str, Any]) -> str:
 """
 
     return html
+
 
 def main():
     """Main execution."""
@@ -1478,39 +1763,70 @@ def main():
         print("❌ No trace data available. Cannot generate dashboard.")
         return
 
-    print(f"📊 Analyzing {len(traces)} traces...")
-    analysis = analyze_traces(traces)
+    # CC EXPRESS FEATURE: partition traces by detected_product_original
+    print(f"🗂️  Partitioning {len(traces)} traces by product...")
+    segments = partition_traces_by_product(traces)
+    seg_summary = {k: len(v) for k, v in segments.items()}
+    print(f"   Segments: {seg_summary}")
 
-    print(f"💬 Analyzing conversations (grouping by correlation_id / session)...")
-    analysis["conversations"] = analyze_conversations(traces)
-    cv = analysis["conversations"]["overview"]
-    print(f"   Conversations: {cv['total_conversations']} | "
-          f"single-turn: {cv['single_turn']} ({cv['single_turn_pct']}%) | "
-          f"multi-turn: {cv['multi_turn']} ({cv['multi_turn_pct']}%) | "
-          f"avg q/conv: {cv['avg_queries_per_conversation']} | max: {cv['max_queries']}")
-    de = analysis["conversations"]["decomposition_effectiveness"]
-    print(f"   Decomposed: {de['total_decomposed']} | all-success: {de['all_success_pct']}% | "
-          f"partial: {de['partial_success_pct']}% | all-failed: {de['all_failed_pct']}%")
+    # CC EXPRESS FEATURE: analyze each segment independently (reuse existing functions)
+    all_analysis: Dict[str, Any] = {}
+    for segment_key, segment_traces in segments.items():
+        print(f"📊 Analyzing segment '{segment_key}' ({len(segment_traces)} traces)...")
+        seg_analysis = analyze_traces(segment_traces)
 
+        print(f"💬 Analyzing conversations for '{segment_key}'...")
+        seg_analysis['conversations'] = analyze_conversations(segment_traces)
+        cv = seg_analysis['conversations']['overview']
+        print(f"   Conversations: {cv['total_conversations']} | "
+              f"single-turn: {cv['single_turn']} ({cv['single_turn_pct']}%) | "
+              f"multi-turn: {cv['multi_turn']} ({cv['multi_turn_pct']}%) | "
+              f"avg q/conv: {cv['avg_queries_per_conversation']} | max: {cv['max_queries']}")
+        de = seg_analysis['conversations']['decomposition_effectiveness']
+        print(f"   Decomposed: {de['total_decomposed']} | all-success: {de['all_success_pct']}% | "
+              f"partial: {de['partial_success_pct']}% | all-failed: {de['all_failed_pct']}%")
+
+        seg_analysis['_traces'] = segment_traces
+        all_analysis[segment_key] = seg_analysis
+
+    # CC EXPRESS FEATURE: compute parity metrics
+    print(f"⚖️  Computing CC Express parity metrics...")
+    parity = compute_cc_express_parity({
+        **all_analysis,
+        'cc_express_traces': segments.get('cc_express', []),
+        'ref_traces': segments.get('console') or segments.get('standalone') or [],
+    })
+    if parity:
+        print(f"   CCX answer rate: {parity['ccx_answer_rate']:.1f}% | "
+              f"ref: {parity['ref_answer_rate']:.1f}% | delta: {parity['answer_delta']:+.1f}%")
+        print(f"   CCX avg conf: {parity['ccx_avg_confidence']:.2f} | "
+              f"ref: {parity['ref_avg_confidence']:.2f} | delta: {parity['confidence_delta']:+.2f}")
+        print(f"   Low-confidence IDK flags: {len(parity['low_confidence_flags'])}")
+    else:
+        print("   (No CC Express segment found — parity widget will be hidden)")
+
+    # Video events are global (not segmented)
     print(f"🎥 Loading video-delivery events from NDJSON logs...")
-    analysis["video_events"] = load_video_events(days=7)
-    ve = analysis["video_events"]
+    video_data = load_video_events(days=7)
+    ve = video_data
     print(f"   Video deliveries (7d): {ve['total_deliveries']} | captions: {ve['captions_pct']}% "
           f"| fallback: {ve['fallback_pct']}% | latest event: {ve['latest_event_ts'] or 'n/a'}")
 
+    # Print summary across all segments
     print(f"\n✅ Analysis complete:")
-    print(f"   Total queries: {analysis['total_queries']}")
-    print(f"   Answer rate: {analysis['answer_rate']}%")
-    print(f"   IDK rate: {analysis['idk_rate']}%")
-    print(f"   Modules analyzed: {len(analysis['modules'])}")
-    print(f"   Intents tracked: {len(analysis['intents'])}")
-    tg = analysis['trace_grouping']
-    print(f"   Trace grouping: {tg['total_correlation_groups']} correlation groups | "
-          f"{tg['multi_trace_queries']} multi-trace queries | "
-          f"{tg['total_hierarchical_chains']} hierarchical chains")
+    for seg, analysis in all_analysis.items():
+        tg = analysis['trace_grouping']
+        print(f"   [{seg}] queries: {analysis['total_queries']} | "
+              f"answer: {analysis['answer_rate']}% | "
+              f"IDK: {analysis['idk_rate']}% | "
+              f"modules: {len(analysis['modules'])} | "
+              f"intents: {len(analysis['intents'])}")
+        print(f"      trace grouping: {tg['total_correlation_groups']} correlation groups | "
+              f"{tg['multi_trace_queries']} multi-trace queries | "
+              f"{tg['total_hierarchical_chains']} hierarchical chains")
 
     print(f"\n🎨 Generating HTML dashboard with all reports...")
-    html = generate_html(analysis)
+    html = generate_html(all_analysis, video_data, parity)
 
     output_path = Path("/Users/adwit.sharma/kb_docs/local/reports/comprehensive_dashboard.html")
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -1520,9 +1836,12 @@ def main():
 
     print(f"✅ Dashboard saved to: {output_path}")
 
+    # CC EXPRESS FEATURE: save all_analysis (segmented) + parity to JSON
     analysis_path = Path("/Users/adwit.sharma/kb_docs/local/reports/dashboard_analysis.json")
+    serialisable = {seg: {k: v for k, v in a.items() if k != '_traces'} for seg, a in all_analysis.items()}
+    serialisable['_parity'] = parity
     with open(analysis_path, "w") as f:
-        json.dump(analysis, f, indent=2, default=str)
+        json.dump(serialisable, f, indent=2, default=str)
 
     print(f"✅ Analysis saved to: {analysis_path}")
     print()
