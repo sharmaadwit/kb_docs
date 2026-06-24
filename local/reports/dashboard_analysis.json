@@ -1,36 +1,48 @@
 {
-  "timestamp": "2026-06-23T14:40:56.691639",
-  "total_queries": 157,
-  "answered": 122,
-  "idk": 35,
-  "idk_rate": 22.3,
-  "answer_rate": 77.7,
-  "avg_confidence": 4.16,
-  "video_rate": 36.9,
+  "timestamp": "2026-06-24T05:55:12.844354",
+  "total_queries": 140,
+  "answered": 114,
+  "idk": 26,
+  "idk_rate": 18.6,
+  "answer_rate": 81.4,
+  "avg_confidence": 4.19,
+  "video_rate": 34.2,
   "modules": {
-    "General": {
-      "count": 39,
-      "answered": 31,
-      "idk": 8,
-      "avg_confidence": 1.53
-    },
-    "SuperAgent": {
-      "count": 5,
-      "answered": 3,
-      "idk": 2,
-      "avg_confidence": 4.13
-    },
     "Bot Studio": {
-      "count": 66,
-      "answered": 55,
-      "idk": 11,
-      "avg_confidence": 5.67
+      "count": 64,
+      "answered": 54,
+      "idk": 10,
+      "avg_confidence": 5.77
+    },
+    "Analytics": {
+      "count": 7,
+      "answered": 4,
+      "idk": 3,
+      "avg_confidence": 1.79
+    },
+    "General": {
+      "count": 30,
+      "answered": 27,
+      "idk": 3,
+      "avg_confidence": 1.04
     },
     "Agent Assist": {
-      "count": 14,
-      "answered": 9,
-      "idk": 5,
-      "avg_confidence": 4.37
+      "count": 16,
+      "answered": 10,
+      "idk": 6,
+      "avg_confidence": 4.1
+    },
+    "CTX": {
+      "count": 5,
+      "answered": 4,
+      "idk": 1,
+      "avg_confidence": 2.95
+    },
+    "SuperAgent": {
+      "count": 2,
+      "answered": 1,
+      "idk": 1,
+      "avg_confidence": 3.38
     },
     "Campaign Manager": {
       "count": 4,
@@ -39,28 +51,16 @@
       "avg_confidence": 4.19
     },
     "Channels": {
-      "count": 7,
+      "count": 5,
       "answered": 5,
-      "idk": 2,
-      "avg_confidence": 5.85
-    },
-    "Analytics": {
-      "count": 6,
-      "answered": 3,
-      "idk": 3,
-      "avg_confidence": 1.98
+      "idk": 0,
+      "avg_confidence": 7.57
     },
     "Overview": {
       "count": 2,
       "answered": 2,
       "idk": 0,
       "avg_confidence": 1.23
-    },
-    "CTX": {
-      "count": 7,
-      "answered": 6,
-      "idk": 1,
-      "avg_confidence": 2.42
     },
     "Goals": {
       "count": 2,
@@ -69,10 +69,10 @@
       "avg_confidence": 6.17
     },
     "AI Admin": {
-      "count": 3,
-      "answered": 2,
-      "idk": 1,
-      "avg_confidence": 11.32
+      "count": 1,
+      "answered": 1,
+      "idk": 0,
+      "avg_confidence": 15.05
     },
     "Integrations": {
       "count": 2,
@@ -82,39 +82,15 @@
     }
   },
   "intents": {
-    "kb_error": {
-      "count": 12,
-      "answered": 12,
-      "idk": 0,
-      "answer_rate": 100.0
-    },
     "setup": {
-      "count": 97,
-      "answered": 69,
-      "idk": 28,
-      "answer_rate": 71.1
+      "count": 87,
+      "answered": 65,
+      "idk": 22,
+      "answer_rate": 74.7
     },
-    "definition": {
-      "count": 20,
-      "answered": 14,
-      "idk": 6,
-      "answer_rate": 70.0
-    },
-    "schema": {
-      "count": 17,
-      "answered": 17,
-      "idk": 0,
-      "answer_rate": 100.0
-    },
-    "overview": {
-      "count": 14,
-      "answered": 14,
-      "idk": 0,
-      "answer_rate": 100.0
-    },
-    "page_lookup": {
-      "count": 6,
-      "answered": 6,
+    "case_study": {
+      "count": 2,
+      "answered": 2,
       "idk": 0,
       "answer_rate": 100.0
     },
@@ -124,17 +100,41 @@
       "idk": 0,
       "answer_rate": 100.0
     },
-    "case_study": {
-      "count": 1,
-      "answered": 1,
+    "schema": {
+      "count": 18,
+      "answered": 17,
+      "idk": 1,
+      "answer_rate": 94.4
+    },
+    "kb_error": {
+      "count": 12,
+      "answered": 12,
+      "idk": 0,
+      "answer_rate": 100.0
+    },
+    "definition": {
+      "count": 11,
+      "answered": 8,
+      "idk": 3,
+      "answer_rate": 72.7
+    },
+    "overview": {
+      "count": 12,
+      "answered": 12,
+      "idk": 0,
+      "answer_rate": 100.0
+    },
+    "page_lookup": {
+      "count": 5,
+      "answered": 5,
       "idk": 0,
       "answer_rate": 100.0
     },
     "troubleshooting": {
-      "count": 4,
+      "count": 3,
       "answered": 3,
-      "idk": 1,
-      "answer_rate": 75.0
+      "idk": 0,
+      "answer_rate": 100.0
     },
     "behavior": {
       "count": 1,
@@ -156,6 +156,41 @@
     }
   },
   "users_internal": {
+    "gaurav.kachhawa@gupshup.io": {
+      "count": 5,
+      "answered": 3,
+      "answer_rate": 60.0,
+      "avg_confidence": 1.87,
+      "video_pct": 20.0
+    },
+    "ananya.a@gupshup.io": {
+      "count": 27,
+      "answered": 19,
+      "answer_rate": 70.4,
+      "avg_confidence": 5.42,
+      "video_pct": 29.6
+    },
+    "gabriel.torres@gupshup.io": {
+      "count": 3,
+      "answered": 1,
+      "answer_rate": 33.3,
+      "avg_confidence": 1.05,
+      "video_pct": 33.3
+    },
+    "fernando.reynoso@gupshup.io": {
+      "count": 2,
+      "answered": 0,
+      "answer_rate": 0.0,
+      "avg_confidence": 0.55,
+      "video_pct": 0.0
+    },
+    "vitor.madeira@gupshup.io": {
+      "count": 2,
+      "answered": 0,
+      "answer_rate": 0.0,
+      "avg_confidence": 1.32,
+      "video_pct": 0.0
+    },
     "willian.trevisan@gupshup.io": {
       "count": 2,
       "answered": 2,
@@ -170,19 +205,12 @@
       "avg_confidence": 0.51,
       "video_pct": 0.0
     },
-    "ananya.a@gupshup.io": {
-      "count": 22,
-      "answered": 18,
-      "answer_rate": 81.8,
-      "avg_confidence": 6.48,
-      "video_pct": 36.4
-    },
     "ankit.kanwara@gupshup.io": {
-      "count": 8,
-      "answered": 2,
-      "answer_rate": 25.0,
-      "avg_confidence": 1.86,
-      "video_pct": 12.5
+      "count": 1,
+      "answered": 1,
+      "answer_rate": 100.0,
+      "avg_confidence": 0.0,
+      "video_pct": 0.0
     },
     "puru.chauhan@knowlarity.com": {
       "count": 2,
@@ -213,11 +241,11 @@
       "video_pct": 100.0
     },
     "brendon.castelino@gupshup.io": {
-      "count": 3,
+      "count": 1,
       "answered": 1,
-      "answer_rate": 33.3,
-      "avg_confidence": 2.32,
-      "video_pct": 33.3
+      "answer_rate": 100.0,
+      "avg_confidence": 5.25,
+      "video_pct": 100.0
     },
     "saikrishna.ramagiri@knowlarity.com": {
       "count": 1,
@@ -295,87 +323,31 @@
       "answer_rate": 100.0,
       "avg_confidence": 0.0,
       "video_pct": 0.0
-    },
-    "renata.martins@gupshup.io": {
-      "count": 4,
-      "answered": 0,
-      "answer_rate": 0.0,
-      "avg_confidence": 0.28,
-      "video_pct": 0.0
-    },
-    "nidhi.shridhar@gupshup.io": {
-      "count": 1,
-      "answered": 1,
-      "answer_rate": 100.0,
-      "avg_confidence": 6.55,
-      "video_pct": 100.0
-    },
-    "omkar.patil@gupshup.io": {
-      "count": 3,
-      "answered": 3,
-      "answer_rate": 100.0,
-      "avg_confidence": 4.47,
-      "video_pct": 33.3
-    },
-    "deepak.upadhyay@gupshup.io": {
-      "count": 2,
-      "answered": 0,
-      "answer_rate": 0.0,
-      "avg_confidence": 0.78,
-      "video_pct": 0.0
-    },
-    "mark.kreuiter@gupshup.io": {
-      "count": 3,
-      "answered": 1,
-      "answer_rate": 33.3,
-      "avg_confidence": 6.3,
-      "video_pct": 0.0
-    },
-    "prem.kishan@gupshup.io": {
-      "count": 2,
-      "answered": 0,
-      "answer_rate": 0.0,
-      "avg_confidence": 0.43,
-      "video_pct": 0.0
-    },
-    "sanchit.aggarwal@gupshup.io": {
-      "count": 8,
-      "answered": 4,
-      "answer_rate": 50.0,
-      "avg_confidence": 1.43,
-      "video_pct": 25.0
-    },
-    "mayank.singh@gupshup.io": {
-      "count": 2,
-      "answered": 0,
-      "answer_rate": 0.0,
-      "avg_confidence": 0.55,
-      "video_pct": 0.0
     }
   },
   "users_external": {
+    "mis@digitalnest.in": {
+      "domain": "digitalnest.in",
+      "count": 4,
+      "answered": 2,
+      "answer_rate": 50.0,
+      "avg_confidence": 0.29,
+      "video_pct": 0.0
+    },
+    "shreyank@lokta.ai": {
+      "domain": "lokta.ai",
+      "count": 23,
+      "answered": 15,
+      "answer_rate": 65.2,
+      "avg_confidence": 3.86,
+      "video_pct": 13.0
+    },
     "Anonymous": {
       "domain": "unknown",
       "count": 4,
       "answered": 2,
       "answer_rate": 50.0,
       "avg_confidence": 0.43,
-      "video_pct": 0.0
-    },
-    "shreyank@lokta.ai": {
-      "domain": "lokta.ai",
-      "count": 20,
-      "answered": 14,
-      "answer_rate": 70.0,
-      "avg_confidence": 3.96,
-      "video_pct": 15.0
-    },
-    "mis@digitalnest.in": {
-      "domain": "digitalnest.in",
-      "count": 1,
-      "answered": 1,
-      "answer_rate": 100.0,
-      "avg_confidence": 0.0,
       "video_pct": 0.0
     },
     "admin.digital@karmadevelopers.ae": {
@@ -433,86 +405,70 @@
       "answer_rate": 100.0,
       "avg_confidence": 0.0,
       "video_pct": 0.0
-    },
-    "nishchal.motwani@ampdlocal.com": {
-      "domain": "ampdlocal.com",
-      "count": 14,
-      "answered": 4,
-      "answer_rate": 28.6,
-      "avg_confidence": 1.78,
-      "video_pct": 14.3
-    },
-    "sales@indiatradersagra.com": {
-      "domain": "indiatradersagra.com",
-      "count": 1,
-      "answered": 1,
-      "answer_rate": 100.0,
-      "avg_confidence": 0.85,
-      "video_pct": 100.0
     }
   },
   "intent_multi": {
     "1": {
-      "count": 137,
-      "answered": 103,
-      "answer_rate": 75.2
-    },
-    "3": {
-      "count": 3,
-      "answered": 3,
-      "answer_rate": 100.0
+      "count": 123,
+      "answered": 98,
+      "answer_rate": 79.7
     },
     "2": {
-      "count": 17,
-      "answered": 16,
-      "answer_rate": 94.1
+      "count": 15,
+      "answered": 14,
+      "answer_rate": 93.3
+    },
+    "3": {
+      "count": 2,
+      "answered": 2,
+      "answer_rate": 100.0
     }
   },
   "intent_video": {
-    "kb_error": {
-      "count": 12,
+    "setup": {
+      "count": 87,
+      "video": 22,
+      "video_pct": 25.3
+    },
+    "case_study": {
+      "count": 2,
       "video": 0,
       "video_pct": 0.0
-    },
-    "setup": {
-      "count": 97,
-      "video": 23,
-      "video_pct": 23.7
-    },
-    "definition": {
-      "count": 20,
-      "video": 7,
-      "video_pct": 35.0
-    },
-    "schema": {
-      "count": 17,
-      "video": 2,
-      "video_pct": 11.8
-    },
-    "overview": {
-      "count": 14,
-      "video": 13,
-      "video_pct": 92.9
-    },
-    "page_lookup": {
-      "count": 6,
-      "video": 5,
-      "video_pct": 83.3
     },
     "unsupported": {
       "count": 3,
       "video": 0,
       "video_pct": 0.0
     },
-    "case_study": {
-      "count": 1,
+    "schema": {
+      "count": 18,
+      "video": 2,
+      "video_pct": 11.1
+    },
+    "kb_error": {
+      "count": 12,
       "video": 0,
       "video_pct": 0.0
     },
+    "definition": {
+      "count": 11,
+      "video": 4,
+      "video_pct": 36.4
+    },
+    "overview": {
+      "count": 12,
+      "video": 11,
+      "video_pct": 91.7
+    },
+    "page_lookup": {
+      "count": 5,
+      "video": 4,
+      "video_pct": 80.0
+    },
     "troubleshooting": {
-      "count": 4,
+      "count": 3,
       "video": 3,
-      "video_pct": 75.0
+      "video_pct": 100.0
     },
     "behavior": {
       "count": 1,
@@ -531,10 +487,15 @@
     }
   },
   "daily": {
+    "2026-06-24": {
+      "total": 9,
+      "answered": 5,
+      "idk": 4
+    },
     "2026-06-23": {
-      "total": 24,
-      "answered": 21,
-      "idk": 3
+      "total": 30,
+      "answered": 23,
+      "idk": 7
     },
     "2026-06-22": {
       "total": 10,
@@ -565,54 +526,49 @@
       "total": 20,
       "answered": 16,
       "idk": 4
-    },
-    "2026-06-16": {
-      "total": 32,
-      "answered": 15,
-      "idk": 17
     }
   },
   "languages": {
     "en": {
-      "count": 149,
-      "answered": 116,
-      "idk": 33,
-      "answer_rate": 77.9,
-      "video_pct": 29.5
+      "count": 133,
+      "answered": 108,
+      "idk": 25,
+      "answer_rate": 81.2,
+      "video_pct": 28.6
     },
     "pt": {
-      "count": 8,
+      "count": 7,
       "answered": 6,
-      "idk": 2,
-      "answer_rate": 75.0,
-      "video_pct": 12.5
+      "idk": 1,
+      "answer_rate": 85.7,
+      "video_pct": 14.3
     }
   },
   "idk_by_language": {
     "en": [
       {
-        "query": "What about automation?",
-        "module": "SuperAgent",
-        "score": 0.3
+        "query": "help me create a journey in Journey Builder Bot Studio",
+        "module": "Bot Studio",
+        "score": 1.9000000000000004
       },
       {
-        "query": "where can i find GUPSHUP_API_KEY and your-app-id in Gupshup Console",
+        "query": "TTL-based agent mapping approach",
+        "module": "Agent Assist",
+        "score": 0.6000000000000001
+      },
+      {
+        "query": "do we have STD service in voice ai platform",
+        "module": "Bot Studio",
+        "score": 0.55
+      },
+      {
+        "query": "How to check whether the WhatsApp inbound webhook/event is enabled and pointing to the correct URL i",
         "module": "General",
-        "score": 1.4500000000000002
+        "score": 1.1500000000000001
       },
       {
-        "query": "message_metadata response JSON structure",
-        "module": "Bot Studio",
-        "score": 0.8500000000000001
-      },
-      {
-        "query": "No Journey Builder, como modelar fallback para reply buttons quando o usu\u00e1rio digita um valor inespe",
-        "module": "Bot Studio",
-        "score": 1.4500000000000002
-      },
-      {
-        "query": "Como definir fallback de inatividade no node de reply?",
-        "module": "Bot Studio",
+        "query": "checkInBusinessHour API documentation",
+        "module": "Agent Assist",
         "score": 1.1
       }
     ],
@@ -621,15 +577,58 @@
         "query": "No Gupshup Console, como consultar ou exportar analytics de WhatsApp por projeto com m\u00e9tricas de req",
         "module": "Analytics",
         "score": 1.25
-      },
-      {
-        "query": "No WhatsApp, qual \u00e9 a diferen\u00e7a entre o Username e o Display Name das marcas?",
-        "module": "Agent Assist",
-        "score": 0.55
       }
     ]
   },
   "idk_samples": [
+    {
+      "query": "help me create a journey in Journey Builder Bot Studio",
+      "module": "Bot Studio",
+      "score": 1.9000000000000004,
+      "language": "en"
+    },
+    {
+      "query": "TTL-based agent mapping approach",
+      "module": "Agent Assist",
+      "score": 0.6000000000000001,
+      "language": "en"
+    },
+    {
+      "query": "do we have STD service in voice ai platform",
+      "module": "Bot Studio",
+      "score": 0.55,
+      "language": "en"
+    },
+    {
+      "query": "How to check whether the WhatsApp inbound webhook/event is enabled and pointing to the correct URL i",
+      "module": "General",
+      "score": 1.1500000000000001,
+      "language": "en"
+    },
+    {
+      "query": "checkInBusinessHour API documentation",
+      "module": "Agent Assist",
+      "score": 1.1,
+      "language": "en"
+    },
+    {
+      "query": "c\u00f3mo puedo saber cuando un journey est\u00e1 LIVE?",
+      "module": "CTX",
+      "score": 1.1,
+      "language": "en"
+    },
+    {
+      "query": "In Agent Assist, when using chatCustomerFields/add to set chat customer fields, how should dropdown-",
+      "module": "Agent Assist",
+      "score": 2.65,
+      "language": "en"
+    },
+    {
+      "query": "How do I access CDP variable phone in a curl payload?",
+      "module": "Bot Studio",
+      "score": 0.8500000000000001,
+      "language": "en"
+    },
     {
       "query": "What about automation?",
       "module": "SuperAgent",
@@ -641,54 +640,6 @@
       "module": "General",
       "score": 1.4500000000000002,
       "language": "en"
-    },
-    {
-      "query": "message_metadata response JSON structure",
-      "module": "Bot Studio",
-      "score": 0.8500000000000001,
-      "language": "en"
-    },
-    {
-      "query": "No Journey Builder, como modelar fallback para reply buttons quando o usu\u00e1rio digita um valor inespe",
-      "module": "Bot Studio",
-      "score": 1.4500000000000002,
-      "language": "en"
-    },
-    {
-      "query": "Como definir fallback de inatividade no node de reply?",
-      "module": "Bot Studio",
-      "score": 1.1,
-      "language": "en"
-    },
-    {
-      "query": "In a flow, after the final submit is called, what flow data JSON is available and in which field? Ma",
-      "module": "Agent Assist",
-      "score": 1.5000000000000002,
-      "language": "en"
-    },
-    {
-      "query": "journey variables in terminalmode",
-      "module": "Analytics",
-      "score": 0.55,
-      "language": "en"
-    },
-    {
-      "query": "whatsapp template test send",
-      "module": "Bot Studio",
-      "score": 0.8500000000000001,
-      "language": "en"
-    },
-    {
-      "query": "whatsapp sandbox testing",
-      "module": "Bot Studio",
-      "score": 0.55,
-      "language": "en"
-    },
-    {
-      "query": "A web bot should remember returning anonymous users on the same browser. Which path is strongest? Go",
-      "module": "Bot Studio",
-      "score": 1.9000000000000004,
-      "language": "en"
     }
   ],
   "trace_grouping": {
@@ -699,21 +650,7 @@
   "conversations": {
     "conversation_stats": [
       {
-        "id": "sess:nishchal.motwani@ampdlocal.com:10",
-        "length": 9,
-        "answered": 4,
-        "success_rate": 44.4,
-        "root_query": "How do I disconnect a WhatsApp channel connection in Gupshup Console?",
-        "root_answered": true,
-        "root_confidence": 1.2,
-        "is_decomposed": true,
-        "avg_confidence": 2.76,
-        "avg_latency": 1441.0,
-        "user": "nishchal.motwani@ampdlocal.com",
-        "timestamp": "2026-06-16T08:58:21.885Z"
-      },
-      {
-        "id": "sess:ananya.a@gupshup.io:32",
+        "id": "sess:ananya.a@gupshup.io:18",
         "length": 9,
         "answered": 7,
         "success_rate": 77.8,
@@ -727,7 +664,7 @@
         "timestamp": "2026-06-18T07:08:22.080Z"
       },
       {
-        "id": "sess:ananya.a@gupshup.io:31",
+        "id": "sess:ananya.a@gupshup.io:17",
         "length": 8,
         "answered": 8,
         "success_rate": 100.0,
@@ -741,7 +678,7 @@
         "timestamp": "2026-06-18T05:40:13.992Z"
       },
       {
-        "id": "sess:vamshi@lokta.ai:46",
+        "id": "sess:vamshi@lokta.ai:32",
         "length": 7,
         "answered": 7,
         "success_rate": 100.0,
@@ -755,21 +692,7 @@
         "timestamp": "2026-06-21T04:49:26.150Z"
       },
       {
-        "id": "sess:sanchit.aggarwal@gupshup.io:4",
-        "length": 6,
-        "answered": 4,
-        "success_rate": 66.7,
-        "root_query": "difference between Partner portal, CC Express, Enterprise account, Unify, Golden Gate functionality that Gupshup offers ",
-        "root_answered": true,
-        "root_confidence": 0.0,
-        "is_decomposed": true,
-        "avg_confidence": 1.9,
-        "avg_latency": 1354.0,
-        "user": "sanchit.aggarwal@gupshup.io",
-        "timestamp": "2026-06-16T06:10:10.627Z"
-      },
-      {
-        "id": "sess:abhijit.chatterjee@gupshup.io:30",
+        "id": "sess:abhijit.chatterjee@gupshup.io:16",
         "length": 6,
         "answered": 3,
         "success_rate": 50.0,
@@ -783,7 +706,7 @@
         "timestamp": "2026-06-18T04:52:26.019Z"
       },
       {
-        "id": "sess:shreyank@lokta.ai:42",
+        "id": "sess:shreyank@lokta.ai:28",
         "length": 5,
         "answered": 4,
         "success_rate": 80.0,
@@ -797,7 +720,7 @@
         "timestamp": "2026-06-19T06:20:00.906Z"
       },
       {
-        "id": "sess:vamshi@lokta.ai:48",
+        "id": "sess:vamshi@lokta.ai:34",
         "length": 5,
         "answered": 5,
         "success_rate": 100.0,
@@ -811,7 +734,7 @@
         "timestamp": "2026-06-21T10:48:18.780Z"
       },
       {
-        "id": "sess:vamshi@lokta.ai:49",
+        "id": "sess:vamshi@lokta.ai:35",
         "length": 5,
         "answered": 5,
         "success_rate": 100.0,
@@ -825,7 +748,7 @@
         "timestamp": "2026-06-21T13:09:02.078Z"
       },
       {
-        "id": "sess:bernardo.silva@gupshup.io:56",
+        "id": "sess:bernardo.silva@gupshup.io:42",
         "length": 5,
         "answered": 4,
         "success_rate": 80.0,
@@ -839,7 +762,7 @@
         "timestamp": "2026-06-22T19:40:32.966Z"
       },
       {
-        "id": "sess:abdulrahman.alsaify@gupshup.io:17",
+        "id": "sess:abdulrahman.alsaify@gupshup.io:3",
         "length": 4,
         "answered": 4,
         "success_rate": 100.0,
@@ -853,7 +776,7 @@
         "timestamp": "2026-06-17T07:02:25.091Z"
       },
       {
-        "id": "sess:ishwarnale14@gmail.com:38",
+        "id": "sess:ishwarnale14@gmail.com:24",
         "length": 4,
         "answered": 2,
         "success_rate": 50.0,
@@ -867,7 +790,7 @@
         "timestamp": "2026-06-18T10:21:03.089Z"
       },
       {
-        "id": "sess:ishwarnale14@gmail.com:41",
+        "id": "sess:ishwarnale14@gmail.com:27",
         "length": 4,
         "answered": 4,
         "success_rate": 100.0,
@@ -881,21 +804,21 @@
         "timestamp": "2026-06-19T05:42:37.766Z"
       },
       {
-        "id": "sess:omkar.patil@gupshup.io:12",
-        "length": 3,
+        "id": "sess:gaurav.kachhawa@gupshup.io:62",
+        "length": 4,
         "answered": 3,
-        "success_rate": 100.0,
-        "root_query": "In Journey Builder, can I store a WhatsApp list JSON payload like this in one variable and reuse it later in a send mess",
+        "success_rate": 75.0,
+        "root_query": "how do I create a journey",
         "root_answered": true,
-        "root_confidence": 6.25,
+        "root_confidence": 0.6,
         "is_decomposed": true,
-        "avg_confidence": 4.47,
-        "avg_latency": 2287.0,
-        "user": "omkar.patil@gupshup.io",
-        "timestamp": "2026-06-16T10:44:44.418Z"
+        "avg_confidence": 2.34,
+        "avg_latency": 1463.0,
+        "user": "gaurav.kachhawa@gupshup.io",
+        "timestamp": "2026-06-24T05:41:46.450Z"
       },
       {
-        "id": "sess:yashas.reddy@gupshup.io:39",
+        "id": "sess:yashas.reddy@gupshup.io:25",
         "length": 3,
         "answered": 3,
         "success_rate": 100.0,
@@ -909,7 +832,7 @@
         "timestamp": "2026-06-18T13:44:13.783Z"
       },
       {
-        "id": "sess:vamshi@lokta.ai:47",
+        "id": "sess:vamshi@lokta.ai:33",
         "length": 3,
         "answered": 2,
         "success_rate": 66.7,
@@ -923,7 +846,7 @@
         "timestamp": "2026-06-21T06:19:58.647Z"
       },
       {
-        "id": "sess:shreyank@lokta.ai:59",
+        "id": "sess:shreyank@lokta.ai:45",
         "length": 3,
         "answered": 2,
         "success_rate": 66.7,
@@ -937,7 +860,7 @@
         "timestamp": "2026-06-23T05:59:12.620Z"
       },
       {
-        "id": "sess:ananya.a@gupshup.io:63",
+        "id": "sess:ananya.a@gupshup.io:49",
         "length": 3,
         "answered": 3,
         "success_rate": 100.0,
@@ -951,7 +874,7 @@
         "timestamp": "2026-06-23T08:44:07.800Z"
       },
       {
-        "id": "sess:natasha.puri@gupshup.io:65",
+        "id": "sess:natasha.puri@gupshup.io:51",
         "length": 3,
         "answered": 3,
         "success_rate": 100.0,
@@ -965,49 +888,21 @@
         "timestamp": "2026-06-23T12:15:50.922Z"
       },
       {
-        "id": "sess:ankit.kanwara@gupshup.io:3",
-        "length": 2,
+        "id": "sess:ananya.a@gupshup.io:61",
+        "length": 3,
         "answered": 1,
-        "success_rate": 50.0,
-        "root_query": "What is the 'All agents' section in SuperAgent/Console? Explain purpose and what you can do there.",
-        "root_answered": true,
-        "root_confidence": 6.35,
-        "is_decomposed": true,
-        "avg_confidence": 6.3,
-        "avg_latency": 3034.0,
-        "user": "ankit.kanwara@gupshup.io",
-        "timestamp": "2026-06-16T06:07:36.266Z"
-      },
-      {
-        "id": "sess:mark.kreuiter@gupshup.io:9",
-        "length": 2,
-        "answered": 1,
-        "success_rate": 50.0,
-        "root_query": "How do I create an AI Admin FAQ bot from a website URL and connect it to a journey?",
-        "root_answered": false,
-        "root_confidence": 11.65,
-        "is_decomposed": true,
-        "avg_confidence": 9.45,
-        "avg_latency": 625.0,
-        "user": "mark.kreuiter@gupshup.io",
-        "timestamp": "2026-06-16T08:20:04.432Z"
-      },
-      {
-        "id": "sess:renata.martins@gupshup.io:14",
-        "length": 2,
-        "answered": 0,
-        "success_rate": 0.0,
-        "root_query": "No WhatsApp, qual \u00e9 a diferen\u00e7a entre o Username e o Display Name das marcas?",
+        "success_rate": 33.3,
+        "root_query": "do we have STD service in voice ai platform",
         "root_answered": false,
         "root_confidence": 0.55,
         "is_decomposed": true,
-        "avg_confidence": 0.55,
-        "avg_latency": 716.0,
-        "user": "renata.martins@gupshup.io",
-        "timestamp": "2026-06-16T22:26:38.405Z"
+        "avg_confidence": 1.25,
+        "avg_latency": 477.0,
+        "user": "ananya.a@gupshup.io",
+        "timestamp": "2026-06-24T05:00:53.108Z"
       },
       {
-        "id": "sess:rajnik.bauva@gupshup.io:23",
+        "id": "sess:rajnik.bauva@gupshup.io:9",
         "length": 2,
         "answered": 1,
         "success_rate": 50.0,
@@ -1021,7 +916,7 @@
         "timestamp": "2026-06-17T10:18:32.996Z"
       },
       {
-        "id": "sess:guilherme.garcia@gupshup.io:29",
+        "id": "sess:guilherme.garcia@gupshup.io:15",
         "length": 2,
         "answered": 2,
         "success_rate": 100.0,
@@ -1035,7 +930,7 @@
         "timestamp": "2026-06-17T20:48:35.248Z"
       },
       {
-        "id": "sess:ishwarnale14@gmail.com:34",
+        "id": "sess:ishwarnale14@gmail.com:20",
         "length": 2,
         "answered": 2,
         "success_rate": 100.0,
@@ -1049,7 +944,7 @@
         "timestamp": "2026-06-18T09:01:58.908Z"
       },
       {
-        "id": "sess:preety.sharma@gupshup.io:53",
+        "id": "sess:preety.sharma@gupshup.io:39",
         "length": 2,
         "answered": 2,
         "success_rate": 100.0,
@@ -1063,7 +958,7 @@
         "timestamp": "2026-06-22T06:41:19.364Z"
       },
       {
-        "id": "sess:shreyank@lokta.ai:57",
+        "id": "sess:shreyank@lokta.ai:43",
         "length": 2,
         "answered": 2,
         "success_rate": 100.0,
@@ -1077,7 +972,7 @@
         "timestamp": "2026-06-23T03:06:12.767Z"
       },
       {
-        "id": "sess:puru.chauhan@knowlarity.com:60",
+        "id": "sess:puru.chauhan@knowlarity.com:46",
         "length": 2,
         "answered": 2,
         "success_rate": 100.0,
@@ -1091,7 +986,7 @@
         "timestamp": "2026-06-23T06:01:11.228Z"
       },
       {
-        "id": "sess:shreyank@lokta.ai:64",
+        "id": "sess:shreyank@lokta.ai:50",
         "length": 2,
         "answered": 2,
         "success_rate": 100.0,
@@ -1119,119 +1014,49 @@
         "timestamp": "2026-06-23T13:40:01.731Z"
       },
       {
-        "id": "sess:mayank.singh@gupshup.io:1",
-        "length": 1,
-        "answered": 0,
-        "success_rate": 0.0,
-        "root_query": "What short domain should be whitelisted as CTA on DLT for Gupshup? Which short domains are used for WhatsApp CTA URLs?",
+        "id": "sess:shreyank@lokta.ai:56",
+        "length": 2,
+        "answered": 1,
+        "success_rate": 50.0,
+        "root_query": "How do I access CDP variable phone in a curl payload?",
+        "root_answered": false,
+        "root_confidence": 0.85,
+        "is_decomposed": true,
+        "avg_confidence": 4.72,
+        "avg_latency": 642.0,
+        "user": "shreyank@lokta.ai",
+        "timestamp": "2026-06-23T16:26:47.226Z"
+      },
+      {
+        "id": "sess:gabriel.torres@gupshup.io:59",
+        "length": 2,
+        "answered": 1,
+        "success_rate": 50.0,
+        "root_query": "checkInBusinessHour API documentation",
         "root_answered": false,
         "root_confidence": 1.1,
-        "is_decomposed": false,
-        "avg_confidence": 1.1,
-        "avg_latency": 911.0,
-        "user": "mayank.singh@gupshup.io",
-        "timestamp": "2026-06-16T01:57:40.009Z"
+        "is_decomposed": true,
+        "avg_confidence": 1.58,
+        "avg_latency": 2400.0,
+        "user": "gabriel.torres@gupshup.io",
+        "timestamp": "2026-06-23T20:02:23.521Z"
       },
       {
-        "id": "sess:brendon.castelino@gupshup.io:2",
-        "length": 1,
-        "answered": 0,
-        "success_rate": 0.0,
-        "root_query": "In Gupshup Console WhatsApp onboarding, how does a customer generate the API key to start using WhatsApp API, and can th",
-        "root_answered": false,
-        "root_confidence": 1.7,
-        "is_decomposed": false,
-        "avg_confidence": 1.7,
-        "avg_latency": 1219.0,
-        "user": "brendon.castelino@gupshup.io",
-        "timestamp": "2026-06-16T03:33:04.139Z"
-      },
-      {
-        "id": "sess:prem.kishan@gupshup.io:5",
-        "length": 1,
-        "answered": 0,
-        "success_rate": 0.0,
-        "root_query": "How to download leads from Gupshup Console",
-        "root_answered": false,
-        "root_confidence": 0.85,
-        "is_decomposed": false,
-        "avg_confidence": 0.85,
-        "avg_latency": 519.0,
-        "user": "prem.kishan@gupshup.io",
-        "timestamp": "2026-06-16T06:21:40.210Z"
-      },
-      {
-        "id": "sess:ankit.kanwara@gupshup.io:6",
-        "length": 1,
-        "answered": 0,
-        "success_rate": 0.0,
-        "root_query": "What is sticky chat in Agent Assist?",
-        "root_answered": false,
-        "root_confidence": 1.45,
-        "is_decomposed": false,
-        "avg_confidence": 1.45,
-        "avg_latency": 559.0,
-        "user": "ankit.kanwara@gupshup.io",
-        "timestamp": "2026-06-16T06:49:31.279Z"
-      },
-      {
-        "id": "sess:sales@indiatradersagra.com:7",
-        "length": 1,
+        "id": "sess:mis@digitalnest.in:60",
+        "length": 2,
         "answered": 1,
-        "success_rate": 100.0,
-        "root_query": "How do I create a WhatsApp API on Gupshup?",
-        "root_answered": true,
-        "root_confidence": 0.85,
-        "is_decomposed": false,
-        "avg_confidence": 0.85,
-        "avg_latency": 4735.0,
-        "user": "sales@indiatradersagra.com",
-        "timestamp": "2026-06-16T06:56:09.457Z"
-      },
-      {
-        "id": "sess:ankit.kanwara@gupshup.io:8",
-        "length": 1,
-        "answered": 0,
-        "success_rate": 0.0,
-        "root_query": "Does Gupshup support WhatsApp Communities?",
+        "success_rate": 50.0,
+        "root_query": "How to check whether the WhatsApp inbound webhook/event is enabled and pointing to the correct URL in Gupshup Console?",
         "root_answered": false,
-        "root_confidence": 0.85,
-        "is_decomposed": false,
-        "avg_confidence": 0.85,
-        "avg_latency": 769.0,
-        "user": "ankit.kanwara@gupshup.io",
-        "timestamp": "2026-06-16T08:03:07.796Z"
+        "root_confidence": 1.15,
+        "is_decomposed": true,
+        "avg_confidence": 0.58,
+        "avg_latency": 469.0,
+        "user": "mis@digitalnest.in",
+        "timestamp": "2026-06-24T04:50:00.219Z"
       },
       {
-        "id": "sess:deepak.upadhyay@gupshup.io:11",
-        "length": 1,
-        "answered": 0,
-        "success_rate": 0.0,
-        "root_query": "Graph API delete WhatsApp template message_templates hsm_id delete template API documentation",
-        "root_answered": false,
-        "root_confidence": 1.55,
-        "is_decomposed": false,
-        "avg_confidence": 1.55,
-        "avg_latency": 1211.0,
-        "user": "deepak.upadhyay@gupshup.io",
-        "timestamp": "2026-06-16T10:26:36.986Z"
-      },
-      {
-        "id": "sess:nidhi.shridhar@gupshup.io:13",
-        "length": 1,
-        "answered": 1,
-        "success_rate": 100.0,
-        "root_query": "How do I configure a WhatsApp Flow Node in Journey Builder to trigger a WhatsApp Flow from a bot journey?",
-        "root_answered": true,
-        "root_confidence": 6.55,
-        "is_decomposed": false,
-        "avg_confidence": 6.55,
-        "avg_latency": 5303.0,
-        "user": "nidhi.shridhar@gupshup.io",
-        "timestamp": "2026-06-16T12:08:17.849Z"
-      },
-      {
-        "id": "sess:abhijit.chatterjee@gupshup.io:15",
+        "id": "sess:abhijit.chatterjee@gupshup.io:1",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1245,7 +1070,7 @@
         "timestamp": "2026-06-17T05:13:16.968Z"
       },
       {
-        "id": "sess:ketan.thakur@gupshup.io:16",
+        "id": "sess:ketan.thakur@gupshup.io:2",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1259,7 +1084,7 @@
         "timestamp": "2026-06-17T05:20:13.594Z"
       },
       {
-        "id": "sess:ishwarnale14@gmail.com:18",
+        "id": "sess:ishwarnale14@gmail.com:4",
         "length": 1,
         "answered": 0,
         "success_rate": 0.0,
@@ -1273,7 +1098,7 @@
         "timestamp": "2026-06-17T07:53:58.649Z"
       },
       {
-        "id": "sess:basavaraj@bullkingtimes.com:19",
+        "id": "sess:basavaraj@bullkingtimes.com:5",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1287,7 +1112,7 @@
         "timestamp": "2026-06-17T08:48:22.375Z"
       },
       {
-        "id": "sess:mauricio.martins@gupshup.io:20",
+        "id": "sess:mauricio.martins@gupshup.io:6",
         "length": 1,
         "answered": 0,
         "success_rate": 0.0,
@@ -1301,7 +1126,7 @@
         "timestamp": "2026-06-17T09:01:25.601Z"
       },
       {
-        "id": "sess:hardik@vertexmediahouse.com:21",
+        "id": "sess:hardik@vertexmediahouse.com:7",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1315,7 +1140,7 @@
         "timestamp": "2026-06-17T10:09:50.700Z"
       },
       {
-        "id": "sess:adhirajvij9@gmail.com:22",
+        "id": "sess:adhirajvij9@gmail.com:8",
         "length": 1,
         "answered": 0,
         "success_rate": 0.0,
@@ -1329,7 +1154,7 @@
         "timestamp": "2026-06-17T10:11:53.133Z"
       },
       {
-        "id": "sess:adhirajvij9@gmail.com:24",
+        "id": "sess:adhirajvij9@gmail.com:10",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1343,7 +1168,7 @@
         "timestamp": "2026-06-17T11:55:51.600Z"
       },
       {
-        "id": "sess:florela2003@yahoo.com:25",
+        "id": "sess:florela2003@yahoo.com:11",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1357,7 +1182,7 @@
         "timestamp": "2026-06-17T12:18:06.161Z"
       },
       {
-        "id": "sess:florela2003@yahoo.com:26",
+        "id": "sess:florela2003@yahoo.com:12",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1371,7 +1196,7 @@
         "timestamp": "2026-06-17T14:42:14.700Z"
       },
       {
-        "id": "sess:efrain.fernandez@gupshup.io:27",
+        "id": "sess:efrain.fernandez@gupshup.io:13",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1385,7 +1210,7 @@
         "timestamp": "2026-06-17T16:15:56.518Z"
       },
       {
-        "id": "sess:shreyank@lokta.ai:28",
+        "id": "sess:shreyank@lokta.ai:14",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1399,7 +1224,7 @@
         "timestamp": "2026-06-17T17:07:19.423Z"
       },
       {
-        "id": "sess:basavaraj@bullkingtimes.com:33",
+        "id": "sess:basavaraj@bullkingtimes.com:19",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1413,7 +1238,7 @@
         "timestamp": "2026-06-18T08:36:16.793Z"
       },
       {
-        "id": "sess:hemanth.swamy@gupshup.io:35",
+        "id": "sess:hemanth.swamy@gupshup.io:21",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1427,7 +1252,7 @@
         "timestamp": "2026-06-18T09:44:23.436Z"
       },
       {
-        "id": "sess:joseph.cobbinah@gupshup.io:36",
+        "id": "sess:joseph.cobbinah@gupshup.io:22",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1441,7 +1266,7 @@
         "timestamp": "2026-06-18T09:47:28.348Z"
       },
       {
-        "id": "sess:shreyank@lokta.ai:37",
+        "id": "sess:shreyank@lokta.ai:23",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1455,7 +1280,7 @@
         "timestamp": "2026-06-18T09:57:17.848Z"
       },
       {
-        "id": "sess:abhijit.chatterjee@gupshup.io:40",
+        "id": "sess:abhijit.chatterjee@gupshup.io:26",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1469,7 +1294,7 @@
         "timestamp": "2026-06-18T15:02:02.706Z"
       },
       {
-        "id": "sess:yashas.reddy@gupshup.io:43",
+        "id": "sess:yashas.reddy@gupshup.io:29",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1483,7 +1308,7 @@
         "timestamp": "2026-06-19T07:02:07.011Z"
       },
       {
-        "id": "sess:natasha.puri@gupshup.io:44",
+        "id": "sess:natasha.puri@gupshup.io:30",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1497,7 +1322,7 @@
         "timestamp": "2026-06-19T12:26:02.356Z"
       },
       {
-        "id": "sess:shreyank@lokta.ai:45",
+        "id": "sess:shreyank@lokta.ai:31",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1511,7 +1336,7 @@
         "timestamp": "2026-06-20T15:30:33.373Z"
       },
       {
-        "id": "sess:vamshi@lokta.ai:50",
+        "id": "sess:vamshi@lokta.ai:36",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1525,7 +1350,7 @@
         "timestamp": "2026-06-21T14:09:07.385Z"
       },
       {
-        "id": "sess:saikrishna.ramagiri@knowlarity.com:51",
+        "id": "sess:saikrishna.ramagiri@knowlarity.com:37",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1539,7 +1364,7 @@
         "timestamp": "2026-06-21T18:45:32.895Z"
       },
       {
-        "id": "sess:brendon.castelino@gupshup.io:52",
+        "id": "sess:brendon.castelino@gupshup.io:38",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1553,7 +1378,7 @@
         "timestamp": "2026-06-22T03:32:40.886Z"
       },
       {
-        "id": "sess:admin.digital@karmadevelopers.ae:54",
+        "id": "sess:admin.digital@karmadevelopers.ae:40",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1567,7 +1392,7 @@
         "timestamp": "2026-06-22T09:28:36.226Z"
       },
       {
-        "id": "sess:luana.santos@gupshup.io:55",
+        "id": "sess:luana.santos@gupshup.io:41",
         "length": 1,
         "answered": 0,
         "success_rate": 0.0,
@@ -1581,7 +1406,7 @@
         "timestamp": "2026-06-22T18:13:33.079Z"
       },
       {
-        "id": "sess:mis@digitalnest.in:58",
+        "id": "sess:mis@digitalnest.in:44",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1595,7 +1420,7 @@
         "timestamp": "2026-06-23T05:34:26.976Z"
       },
       {
-        "id": "sess:ankit.kanwara@gupshup.io:61",
+        "id": "sess:ankit.kanwara@gupshup.io:47",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1609,7 +1434,7 @@
         "timestamp": "2026-06-23T08:08:42.544Z"
       },
       {
-        "id": "sess:shreyank@lokta.ai:62",
+        "id": "sess:shreyank@lokta.ai:48",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1623,7 +1448,7 @@
         "timestamp": "2026-06-23T08:32:14.641Z"
       },
       {
-        "id": "sess:shreyank@lokta.ai:66",
+        "id": "sess:shreyank@lokta.ai:52",
         "length": 1,
         "answered": 0,
         "success_rate": 0.0,
@@ -1637,7 +1462,7 @@
         "timestamp": "2026-06-23T12:16:49.435Z"
       },
       {
-        "id": "sess:Anonymous:67",
+        "id": "sess:Anonymous:53",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1651,7 +1476,7 @@
         "timestamp": "2026-06-23T13:12:15.715Z"
       },
       {
-        "id": "sess:willian.trevisan@gupshup.io:68",
+        "id": "sess:willian.trevisan@gupshup.io:54",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1665,7 +1490,7 @@
         "timestamp": "2026-06-23T14:00:36.739Z"
       },
       {
-        "id": "sess:willian.trevisan@gupshup.io:69",
+        "id": "sess:willian.trevisan@gupshup.io:55",
         "length": 1,
         "answered": 1,
         "success_rate": 100.0,
@@ -1677,69 +1502,97 @@
         "avg_latency": 273.0,
         "user": "willian.trevisan@gupshup.io",
         "timestamp": "2026-06-23T14:34:18.113Z"
+      },
+      {
+        "id": "sess:vitor.madeira@gupshup.io:57",
+        "length": 1,
+        "answered": 0,
+        "success_rate": 0.0,
+        "root_query": "In Agent Assist, when using chatCustomerFields/add to set chat customer fields, how should dropdown-type customer fields",
+        "root_answered": false,
+        "root_confidence": 2.65,
+        "is_decomposed": false,
+        "avg_confidence": 2.65,
+        "avg_latency": 814.0,
+        "user": "vitor.madeira@gupshup.io",
+        "timestamp": "2026-06-23T16:43:19.398Z"
+      },
+      {
+        "id": "sess:fernando.reynoso@gupshup.io:58",
+        "length": 1,
+        "answered": 0,
+        "success_rate": 0.0,
+        "root_query": "c\u00f3mo puedo saber cuando un journey est\u00e1 LIVE?",
+        "root_answered": false,
+        "root_confidence": 1.1,
+        "is_decomposed": false,
+        "avg_confidence": 1.1,
+        "avg_latency": 482.0,
+        "user": "fernando.reynoso@gupshup.io",
+        "timestamp": "2026-06-23T16:56:42.603Z"
       }
     ],
     "overview": {
-      "total_conversations": 70,
-      "single_turn": 40,
-      "multi_turn": 30,
-      "single_turn_pct": 57.1,
-      "multi_turn_pct": 42.9,
-      "avg_queries_per_conversation": 2.24,
+      "total_conversations": 63,
+      "single_turn": 34,
+      "multi_turn": 29,
+      "single_turn_pct": 54.0,
+      "multi_turn_pct": 46.0,
+      "avg_queries_per_conversation": 2.22,
       "max_queries": 9,
-      "total_queries": 157
+      "total_queries": 140
     },
     "success_by_length": {
       "1": {
-        "conversations": 40,
-        "avg_success_rate": 72.5
+        "conversations": 34,
+        "avg_success_rate": 79.4
       },
       "2": {
         "conversations": 11,
-        "avg_success_rate": 72.7
+        "avg_success_rate": 77.3
       },
       "3": {
         "conversations": 6,
-        "avg_success_rate": 88.9
+        "avg_success_rate": 77.8
       },
       "4+": {
-        "conversations": 13,
-        "avg_success_rate": 80.7
+        "conversations": 12,
+        "avg_success_rate": 84.4
       }
     },
     "root_vs_followup": {
       "root": {
-        "count": 70,
+        "count": 63,
         "answer_rate": 71.4,
         "idk_rate": 28.6,
-        "avg_confidence": 2.99
+        "avg_confidence": 2.8
       },
       "followup": {
-        "count": 87,
-        "answer_rate": 82.8,
-        "idk_rate": 17.2,
-        "avg_confidence": 5.11
+        "count": 77,
+        "answer_rate": 89.6,
+        "idk_rate": 10.4,
+        "avg_confidence": 5.33
       }
     },
     "decomposition_effectiveness": {
-      "total_decomposed": 30,
-      "all_success": 16,
-      "partial_success": 13,
-      "all_failed": 1,
-      "all_success_pct": 53.3,
-      "partial_success_pct": 43.3,
-      "all_failed_pct": 3.3
+      "total_decomposed": 29,
+      "all_success": 15,
+      "partial_success": 14,
+      "all_failed": 0,
+      "all_success_pct": 51.7,
+      "partial_success_pct": 48.3,
+      "all_failed_pct": 0.0
     }
   },
   "video_events": {
-    "total_deliveries": 220,
-    "captions_on": 220,
+    "total_deliveries": 215,
+    "captions_on": 215,
     "captions_pct": 100.0,
     "fallbacks": 0,
     "fallback_pct": 0.0,
     "by_intent": {
-      "overview": 150,
-      "setup": 42,
+      "overview": 141,
+      "setup": 46,
       "schema": 13,
       "page_lookup": 6,
       "definition": 4,
@@ -1747,19 +1600,18 @@
       "chain": 2
     },
     "by_module": {
-      "General": 152,
-      "Bot Studio": 20,
-      "Agent Assist": 11,
+      "General": 154,
+      "Bot Studio": 24,
+      "Agent Assist": 12,
       "Analytics": 10,
-      "Overview": 9,
-      "CTX": 7,
-      "Campaign Manager": 5,
-      "SuperAgent": 2,
+      "CTX": 6,
+      "Campaign Manager": 4,
       "Goals": 2,
       "AI Admin": 1,
-      "Channels": 1
+      "Channels": 1,
+      "SuperAgent": 1
     },
-    "latest_event_ts": "2026-06-23T12:51:14.671087+00:00",
+    "latest_event_ts": "2026-06-24T05:44:01.734230+00:00",
     "window_days": 7
   }
 }
