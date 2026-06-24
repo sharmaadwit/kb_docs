@@ -664,6 +664,9 @@ def partition_traces_by_product(traces):
 
     CC Express users identified by email pattern: visitor-*@ccexpress.gupshup.io
     Other patterns may indicate Console or Standalone.
+
+    Returns both segments (Standalone + CC Express) always, even if empty.
+    This ensures dashboard always shows comparison metrics.
     """
     def is_cc_express_user(email):
         """Check if email belongs to CC Express user."""
@@ -690,7 +693,8 @@ def partition_traces_by_product(traces):
             else:
                 segments['standalone'].append(trace)
 
-    return {k: v for k, v in segments.items() if v}  # Only keep non-empty segments
+    # Always return both segments (even if empty) for consistent dashboard structure
+    return segments
 
 
 # CC EXPRESS FEATURE
@@ -877,6 +881,16 @@ def generate_conversation_reports(conv: Dict[str, Any], segment_key: str = 'stan
     Reuses the existing card / section / Chart.js conventions and color scheme.
     Chart IDs are namespaced by segment_key to avoid DOM collisions.
     """  # CC EXPRESS FEATURE: segment_key param + namespaced chart IDs
+
+    # Handle empty segment gracefully
+    if not conv or conv.get("overview", {}).get("total_conversations", 0) == 0:
+        return f"""
+        <div class="section">
+            <h2>💬 Conversation Insights</h2>
+            <p style="color: #999; font-style: italic;">No conversation data available for this segment.</p>
+        </div>
+"""
+
     ov = conv["overview"]
     sbl = conv["success_by_length"]
     rvf = conv["root_vs_followup"]
@@ -1518,7 +1532,9 @@ def generate_html(all_analysis: Dict[str, Any], video_data: Dict[str, Any], pari
     """
 
     # CC EXPRESS FEATURE: display order + labels
-    segment_order = [k for k in ['standalone', 'cc_express', 'console'] if k in all_analysis]
+    # Always show Standalone and CC Express, optionally Console if present
+    segment_order = [k for k in ['standalone', 'cc_express'] if k in all_analysis] + \
+                    [k for k in ['console'] if k in all_analysis]
     segment_labels = {'standalone': 'Standalone', 'cc_express': 'CC Express', 'console': 'Console'}
     segment_icons  = {'standalone': '🌐', 'cc_express': '🚀', 'console': '🖥️'}
 
