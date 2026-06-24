@@ -660,19 +660,35 @@ def analyze_conversations(traces: List[Dict], session_gap_minutes: int = 30) -> 
 
 # CC EXPRESS FEATURE
 def partition_traces_by_product(traces):
-    """Partition traces by user email domain (primary) and detected_product_original (fallback).
+    """Partition traces by multi-signal CC Express detection (equal weight for all signals).
 
-    CC Express users identified by email pattern: visitor-*@ccexpress.gupshup.io
-    Other patterns may indicate Console or Standalone.
+    CC Express users identified by ANY of these signals (equal probability):
+    1. Email domain: *@ccexpress.gupshup.io (authentication-based)
+    2. Query mention: "CC Express" explicitly in query text (user-stated preference)
+    3. Detected product: detected_product_original == 'cc_express' (system detection)
+
+    All three signals weighted equally — a trace needs >=1 signal to be tagged as CC Express.
+    This catches CC Express users who use normal email addresses but mention "CC Express" in queries.
 
     Returns both segments (Standalone + CC Express) always, even if empty.
     This ensures dashboard always shows comparison metrics.
     """
-    def is_cc_express_user(email):
-        """Check if email belongs to CC Express user."""
+    def is_cc_express_user_by_email(email):
+        """Signal 1: Check if email belongs to CC Express domain."""
         if not email:
             return False
         return '@ccexpress.gupshup.io' in email.lower()
+
+    def is_cc_express_mention_in_query(query):
+        """Signal 2: Check if query explicitly mentions 'CC Express'."""
+        if not query:
+            return False
+        query_norm = query.lower()
+        return 'cc express' in query_norm or 'ccexpress' in query_norm
+
+    def is_cc_express_detected_by_system(detected_product):
+        """Signal 3: Check if system detected CC Express as product."""
+        return detected_product == 'cc_express'
 
     segments = {
         'cc_express': [],
@@ -682,18 +698,34 @@ def partition_traces_by_product(traces):
     for trace in traces:
         meta = trace.get('metadata', {})
         user_email = meta.get('user_email') or ''
+        query = meta.get('query') or ''
+        detected_product = meta.get('detected_product_original')
 
-        # Primary: Check email domain
-        if is_cc_express_user(user_email):
+        # Multi-signal detection (equal weight)
+        signal_count = 0
+        signals_detected = []
+
+        if is_cc_express_user_by_email(user_email):
+            signal_count += 1
+            signals_detected.append('email')
+
+        if is_cc_express_mention_in_query(query):
+            signal_count += 1
+            signals_detected.append('query_mention')
+
+        if is_cc_express_detected_by_system(detected_product):
+            signal_count += 1
+            signals_detected.append('system_detection')
+
+        # Tag as CC Express if any signal detected (>=1)
+        # Traces can have: [email + query], [email + system], [query + system], or just [email] or [query] or [system]
+        if signal_count >= 1:
             segments['cc_express'].append(trace)
+            # Store signal sources in metadata for analysis (optional)
+            trace['_cc_express_signals'] = signals_detected
         else:
-            # Fallback: Check detected_product_original field for additional CC Express signals
-            if meta.get('detected_product_original') == 'cc_express':
-                segments['cc_express'].append(trace)
-            else:
-                segments['standalone'].append(trace)
+            segments['standalone'].append(trace)
 
-    # Always return both segments (even if empty) for consistent dashboard structure
     return segments
 
 
