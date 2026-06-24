@@ -932,6 +932,8 @@ PRODUCT_SIGNAL_TERMS = [
     "live monitoring dashboard", "agent state",
     "human agent", "hand a chat", "hand off",
     "campaign metrics", "ctwa", "goals",
+    # CC Express is a silent alias of Console / Conversation Cloud.
+    "cc express", "ccexpress", "conversation cloud", "console",
 ]
 
 OFFTOPIC_TERMS = [

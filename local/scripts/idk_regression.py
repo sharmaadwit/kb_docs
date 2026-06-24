@@ -39,9 +39,11 @@ IDK_MARKERS = ("i don't know", "i don t know", "i don’t know")
 # expected: "answer" (should produce a substantive answer post-fix)
 #           "decline" (no docs exist -> must decline gracefully, NOT wrong-page guess)
 QUESTIONS = [
-    {"id": "ccx_roles", "expected": "decline", "topic": "CC Express",
+    # CC Express is now a SILENT ALIAS of Console/Conversation Cloud: these must
+    # answer from existing Console KB content (no decline), mirroring user wording.
+    {"id": "ccx_roles", "expected": "answer", "topic": "CC Express (alias->Console)",
      "q": "In CC Express, what roles are there?"},
-    {"id": "ccx_arabic", "expected": "decline", "topic": "CC Express",
+    {"id": "ccx_arabic", "expected": "answer", "topic": "CC Express (alias->Console)",
      "q": "\u0645\u0627 \u0647\u064a \u0645\u0646\u0635\u0629 CC Express \u0645\u0646 Gupshup\u061f"},
     {"id": "console_roles", "expected": "answer", "topic": "Console roles",
      "q": "What are the console roles in Gupshup Console?"},
@@ -109,7 +111,7 @@ def _setup_local_kb():
 
     def _cap_lf(trace_name, query, answer, results, explicit_module, intents,
                 selected_answer_mode, clarification_asked, latency_ms, context,
-                params=None, video_meta=None):
+                params=None, video_meta=None, **kwargs):
         captured["last"] = {
             "top_source": results[0].get("source") if results else None,
             "top_score": results[0].get("score") if results else None,
@@ -118,6 +120,8 @@ def _setup_local_kb():
             "intents": intents,
             "module": explicit_module,
             "video_attached": (video_meta or {}).get("video_attached"),
+            # alias-tracking: present once the skill change lands. None pre-change.
+            "detected_product_original": kwargs.get("detected_product_original"),
         }
         return {}
 
@@ -193,6 +197,7 @@ def main() -> int:
             "top_score": meta.get("top_score"),
             "top_source": meta.get("top_source"),
             "mode": meta.get("mode"),
+            "detected_product_original": meta.get("detected_product_original"),
             "answer_preview": ans[:140],
         })
 

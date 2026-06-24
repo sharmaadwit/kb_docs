@@ -122,6 +122,8 @@ PRODUCT_SIGNAL_TERMS = [
     "total clicks", "otp", "third party api", "3rd party api",
     "branch based on response", "parse response",
     "human agent", "hand a chat", "hand off",
+    # CC Express is a silent alias of Console / Conversation Cloud.
+    "cc express", "ccexpress", "conversation cloud", "console",
 ]
 
 OFFTOPIC_TERMS = [
@@ -2529,9 +2531,12 @@ def _guardrail_answer(query: str) -> str:
 
 # Products/topics with no KB coverage. Decline cleanly instead of guessing a
 # nearby page. Keys are normalized-query substrings; value is the display name.
+# Products/topics with no KB coverage. Decline cleanly instead of guessing a
+# nearby page. Keys are normalized-query substrings; value is the display name.
+# NOTE: "cc express" / "ccexpress" intentionally removed — CC Express is now a
+# SILENT ALIAS of Console / Conversation Cloud and is answered from existing
+# Console KB content (see _detect_product_mention + main flow below).
 UNDOCUMENTED_TOPICS = {
-    "cc express": "CC Express",
-    "ccexpress": "CC Express",
     "leadsquared": "LeadSquared",
     "lead squared": "LeadSquared",
 }
@@ -2548,6 +2553,29 @@ def _undocumented_topic_decline(query: str) -> str:
                 f"CTX, and Integrations."
             )
     return ""
+
+
+def _detect_product_mention(query: str) -> Optional[str]:
+    """Return the normalized product the user named, or None.
+
+    CC Express is a silent alias of Console / Conversation Cloud. Detect which
+    product label the USER used so we can (a) mirror their language in responses,
+    and (b) tag telemetry distinctly for analytics, while routing ALL of them to
+    the same Console answering path.
+
+    Precedence: an explicit "console"/"conversation cloud" mention wins over
+    "cc express" so a mixed query like "cc express console settings" is treated
+    as Console (the canonical product). Pure CC Express queries tag cc_express.
+    """
+    qn = _normalize_query_for_match(query)
+    has_cc = ("cc express" in qn) or ("ccexpress" in qn)
+    has_console = "console" in qn
+    has_cloud = "conversation cloud" in qn
+    if has_console or has_cloud:
+        return "console"
+    if has_cc:
+        return "cc_express"
+    return None
 
 
 def _external_integration_gap_answer(query: str) -> Optional[str]:
@@ -5497,6 +5525,7 @@ def _send_langfuse(
     video_meta: Optional[Dict[str, Any]] = None,
     channel_type: Optional[str] = None,
     original_query: Optional[str] = None,
+    detected_product_original: Optional[str] = None,
     correlation_id: Optional[str] = None,
     parent_trace_id: Optional[str] = None,
 ) -> Dict:
@@ -5555,6 +5584,9 @@ def _send_langfuse(
         "top_score": results[0].get("score") if results else None,
         "top_source": top_source,
         "channel_type": channel_type,
+        # Silent-alias analytics: cc_express | console | None. Lets dashboards
+        # keep CC Express usage distinct even though answers come from Console KB.
+        "detected_product_original": detected_product_original,
         "source_count": len(results),
         "latency_ms": latency_ms,
         "intent_labels": intents,
@@ -5662,6 +5694,10 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
     # Detect what channel the user is asking about from query text
     detected_channel = _detect_channel_from_query(query)
 
+    # CC Express silent-alias tracking. Detect from the ORIGINAL query so we
+    # mirror the user's exact product wording and tag telemetry distinctly.
+    detected_product_original = _detect_product_mention(original_query)
+
     started = datetime.now(timezone.utc)
 
     guardrail = _guardrail_answer(query)
@@ -5673,6 +5709,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
             ["refusal"], "refusal", False, latency_ms, context, params,
             channel_type=detected_channel,
             original_query=original_query,
+            detected_product_original=detected_product_original,
             correlation_id=correlation_id,
             parent_trace_id=parent_trace_id,
         )
@@ -5692,6 +5729,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
             ["unsupported"], "refusal", False, latency_ms, context, params,
             channel_type=detected_channel,
             original_query=original_query,
+            detected_product_original=detected_product_original,
             correlation_id=correlation_id,
             parent_trace_id=parent_trace_id,
         )
@@ -5711,6 +5749,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
             ["setup"], "setup", False, latency_ms, context, params,
             channel_type=detected_channel,
             original_query=original_query,
+            detected_product_original=detected_product_original,
             correlation_id=correlation_id,
             parent_trace_id=parent_trace_id,
         )
@@ -5730,6 +5769,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
             ["setup"], "setup", False, latency_ms, context, params,
             channel_type=detected_channel,
             original_query=original_query,
+            detected_product_original=detected_product_original,
             correlation_id=correlation_id,
             parent_trace_id=parent_trace_id,
         )
@@ -5749,6 +5789,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
             ["refusal"], "refusal", False, latency_ms, context, params,
             channel_type=detected_channel,
             original_query=original_query,
+            detected_product_original=detected_product_original,
             correlation_id=correlation_id,
             parent_trace_id=parent_trace_id,
         )
@@ -5770,6 +5811,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
             ["kb_error"], "refusal", False, latency_ms, context, params,
             channel_type=detected_channel,
             original_query=original_query,
+            detected_product_original=detected_product_original,
             correlation_id=correlation_id,
             parent_trace_id=parent_trace_id,
         )
@@ -5980,6 +6022,7 @@ def kb_search(
             ["refusal"], "refusal", False, latency_ms, context, params,
             channel_type=detected_channel,
             original_query=original_query,
+            detected_product_original=detected_product_original,
             correlation_id=correlation_id,
             parent_trace_id=parent_trace_id,
         )
@@ -6000,6 +6043,7 @@ def kb_search(
             ["kb_error"], "refusal", False, latency_ms, context, params,
             channel_type=detected_channel,
             original_query=original_query,
+            detected_product_original=detected_product_original,
             correlation_id=correlation_id,
             parent_trace_id=parent_trace_id,
         )
