@@ -1424,6 +1424,9 @@ def _classify_intent(query: str, entities: List[Dict]) -> str:
 # Section 6 — Scoring (data-driven from concept registry)
 # ---------------------------------------------------------------------------
 
+# Common 3-character acronyms that should be scored despite being < 3 chars
+COMMON_ACRONYMS = frozenset(['ai', 'ml', 'ui', 'ux', 'sms', 'std', 'ttl', 'rcs', 'mms', 'ott', 'sla', 'crm', 'nlp'])
+
 def _score_chunk(
     query: str, chunk: Dict, entities: List[Dict], explicit_module: str,
 ) -> float:
@@ -1437,7 +1440,7 @@ def _score_chunk(
     length_divisor = max(1.0, math.sqrt(len(text) / 1500.0))
 
     for token in re.findall(r"[a-z0-9&+-]+", q):
-        if len(token) < 3 or token in SCORING_STOP_WORDS:
+        if len(token) < 3 and token not in COMMON_ACRONYMS or token in SCORING_STOP_WORDS:
             continue
         if token in heading:
             score += 0.25

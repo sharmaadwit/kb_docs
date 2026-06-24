@@ -4756,7 +4756,7 @@ def _select_evidence(
 
     if intent in {"setup", "troubleshooting", "chain"}:
         action_rows = []
-        for row in scoped[:6]:
+        for row in scoped[:12]:
             text_lines = str(row.get("text") or "").splitlines()
             if any(_is_action_oriented(x) for x in text_lines):
                 action_rows.append(row)
@@ -4855,9 +4855,13 @@ def _has_explicit_support(
         return False
 
     if not module_match and not _top_evidence_has_entity_boost(evidence, entities or []):
-        unboosted_floor = MIN_EVIDENCE_SCORE_UNBOOSTED
-        if len(evidence) >= 2 and top1_overlap >= 0.25:
-            unboosted_floor = MIN_EVIDENCE_SCORE_UNBOOSTED_MULTI
+        # Adaptive floor: Agent Assist gets lenient when module matches
+        if explicit_module == "Agent Assist" and top1.get("score", 0.0) >= 0.6:
+            unboosted_floor = 0.6  # Lower floor for Agent Assist borderline cases
+        else:
+            unboosted_floor = MIN_EVIDENCE_SCORE_UNBOOSTED  # 1.0 (default strict)
+            if len(evidence) >= 2 and top1_overlap >= 0.25:
+                unboosted_floor = MIN_EVIDENCE_SCORE_UNBOOSTED_MULTI
         if (
             intent != "overview"
             and top1.get("score", 0.0) < unboosted_floor
