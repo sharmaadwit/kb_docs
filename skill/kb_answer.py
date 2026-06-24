@@ -56,7 +56,8 @@ _COMMON_LONG_PRODUCT_WORDS = frozenset({
     "omnichannel", "documentation", "troubleshooting", "implementation",
     "recommendations", "representative", "subscriptions", "personalization",
     "notifications", "authentication", "authorization", "functionality",
-    "requirements", "requirement",
+    "requirements", "requirement", "checkinbusinesshour",
+    "sms", "std", "ttl", "rcs", "mms", "ott",
 })
 
 # Tokens that appear broadly across the KB — they don't identify a specific
@@ -801,6 +802,14 @@ CONCEPT_REGISTRY: List[Dict] = [
             "team support schedules for after hours routing",
             "working hour windows for agent assist teams",
             "business hour configuration",
+            "checkinbusinesshour",
+            "checkinbusinesshour api",
+            "checkInBusinessHour",
+            "check in business hour",
+            "check in business hour api",
+            "business hour api",
+            "business hours api",
+            "business hours api endpoint"
         ],
         "keywords": ['hours', 'schedule', 'offline'],
         "module_context": [],
@@ -2035,6 +2044,36 @@ CONCEPT_REGISTRY: List[Dict] = [
         "module": "Overview",
     },
     {
+        "id": "agent_assist_user_management",
+        "aliases": [
+            "create a user",
+            "create user",
+            "add a user",
+            "add user",
+            "invite user",
+            "invite a user",
+            "user management",
+            "add member",
+            "add team member",
+            "invite agent",
+            "add agent",
+            "create agent",
+            "create agent account",
+            "access manager",
+            "agent access",
+            "manage users agent assist",
+            "agent user creation"
+        ],
+        "keywords": ["create", "user", "invite", "add", "agent", "member"],
+        "source_boosts": {
+            "agent-assist/user-management-users": 2.5,
+            "agent-assist/user-management-teams": 2.0,
+            "agent-assist/add-members": 2.0
+        },
+        "display": "Agent Assist User Management",
+        "module": "Agent Assist",
+    },
+    {
         "id": "customer_360",
         "aliases": ["customer 360", "customer360"],
         "keywords": ["customer"],
@@ -2349,6 +2388,68 @@ CONCEPT_REGISTRY: List[Dict] = [
         "display": "WhatsApp Catalog Message",
         "page_display": "Catalog Message & Training",
         "module": "AI Admin",
+    },
+    {
+        "id": "cc_express_plans",
+        "aliases": [
+            "cc express plan",
+            "cc express pricing",
+            "cc express includes agent assist",
+            "does cc express include agent assist",
+            "cc express agent assist",
+            "agent assist in cc express",
+            "cc express features",
+            "cc express product",
+            "what is cc express",
+            "cc express what included"
+        ],
+        "keywords": ["cc express", "plan", "pricing", "include", "bundle"],
+        "source_boosts": {},
+        "display": "CC Express Plans & Pricing",
+        "module": "Overview",
+    },
+    {
+        "id": "whatsapp_inbound_webhook",
+        "aliases": [
+            "whatsapp inbound webhook",
+            "inbound webhook event",
+            "inbound webhook enabled",
+            "webhook event enabled",
+            "check inbound webhook",
+            "inbound webhook check",
+            "whatsapp inbound event",
+            "whatsapp inbound enabled",
+            "enable inbound webhook",
+            "inbound message webhook",
+            "webhook event configuration"
+        ],
+        "keywords": ["whatsapp", "inbound", "webhook", "event", "enabled"],
+        "source_boosts": {
+            "channels/inbound-messages-and-events": 3.0,
+            "channels/whatsapp": 2.0
+        },
+        "display": "WhatsApp Inbound Webhook",
+        "module": "General",
+    },
+    {
+        "id": "ttl_agent_mapping",
+        "aliases": [
+            "ttl based agent mapping",
+            "ttl agent mapping",
+            "time to live agent mapping",
+            "agent ttl mapping",
+            "ttl mapping approach",
+            "agent routing ttl",
+            "ttl routing",
+            "agent assignment ttl"
+        ],
+        "keywords": ["ttl", "time to live", "agent", "mapping", "routing"],
+        "source_boosts": {
+            "agent-assist/chat-management-assignment-rules": 2.5,
+            "agent-assist/assignment-enhancements-in-console-7-0": 2.0
+        },
+        "display": "TTL-based Agent Mapping",
+        "module": "Agent Assist",
     },
 ]
 
@@ -4123,9 +4224,26 @@ def _detect_intents(query: str) -> List[str]:
     return intents
 
 
+# CC EXPRESS PLAN ANSWER (hardcoded for pricing question)
+CC_EXPRESS_PLAN_ANSWER = (
+    "CC Express is a silent alias for Gupshup Console / Conversation Cloud. "
+    "All features available in Console are also available to CC Express users. "
+    "Agent Assist is included as part of the Console platform for customer support and agent productivity. "
+    "For specific pricing tiers and plan details, please contact your Gupshup account manager."
+)
+
+def _is_cc_express_plan_query(query: str) -> bool:
+    """Check if query is asking about CC Express plans or bundling."""
+    qn = _normalize_query_for_match(query)
+    return bool(re.search(r'cc express.*plan|cc express.*pricing|cc express.*agent assist|cc express.*includ', qn))
+
+
 # ---------------------------------------------------------------------------
 # Section 7 — Scoring (data-driven from concept registry)
 # ---------------------------------------------------------------------------
+
+# Common 3-character acronyms that should be scored despite being < 3 chars
+COMMON_ACRONYMS = frozenset(['ai', 'ml', 'ui', 'ux', 'sms', 'std', 'ttl', 'rcs', 'mms', 'ott', 'sla', 'crm', 'nlp'])
 
 def _score_chunk(
     query: str, chunk: Dict, entities: List[Dict], explicit_module: str,
@@ -4140,7 +4258,7 @@ def _score_chunk(
     source_hits = 0
 
     for token in re.findall(r"[a-z0-9&+-]+", q):
-        if len(token) < 3 or token in SCORING_STOP_WORDS:
+        if len(token) < 3 and token not in COMMON_ACRONYMS or token in SCORING_STOP_WORDS:
             continue
         if token in heading:
             score += 0.25
@@ -5797,6 +5915,26 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
             "ok": True,
             "query": _redact_secrets_in_query_echo(query),
             "answer": secret_guidance,
+            "citations": [],
+            "langfuse": langfuse,
+        }
+
+    # Check for CC Express plan/pricing question (early exit with hardcoded template)
+    if _is_cc_express_plan_query(original_query):
+        latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
+        langfuse = _send_langfuse(
+            "kb_answer", query, CC_EXPRESS_PLAN_ANSWER, [], "General",
+            ["setup"], "template", True, latency_ms, context, params,
+            channel_type=detected_channel,
+            original_query=original_query,
+            detected_product_original=detected_product_original,
+            correlation_id=correlation_id,
+            parent_trace_id=parent_trace_id,
+        )
+        return {
+            "ok": True,
+            "query": _visible_kb_answer_query_field(query, "cc_express_plan"),
+            "answer": CC_EXPRESS_PLAN_ANSWER,
             "citations": [],
             "langfuse": langfuse,
         }
