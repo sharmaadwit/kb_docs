@@ -1,25 +1,173 @@
 {
+  "cc_express": {
+    "timestamp": "2026-06-24T07:56:52.024954",
+    "total_queries": 2,
+    "answered": 2,
+    "idk": 0,
+    "idk_rate": 0.0,
+    "answer_rate": 100.0,
+    "avg_confidence": 0.0,
+    "video_rate": 0.0,
+    "modules": {
+      "General": {
+        "count": 2,
+        "answered": 2,
+        "idk": 0,
+        "avg_confidence": 0.0
+      }
+    },
+    "intents": {
+      "unsupported": {
+        "count": 1,
+        "answered": 1,
+        "idk": 0,
+        "answer_rate": 100.0
+      },
+      "refusal": {
+        "count": 1,
+        "answered": 1,
+        "idk": 0,
+        "answer_rate": 100.0
+      }
+    },
+    "users_internal": {},
+    "users_external": {
+      "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io": {
+        "domain": "ccexpress.gupshup.io",
+        "count": 2,
+        "answered": 2,
+        "answer_rate": 100.0,
+        "avg_confidence": 0.0,
+        "video_pct": 0.0
+      }
+    },
+    "intent_multi": {
+      "1": {
+        "count": 2,
+        "answered": 2,
+        "answer_rate": 100.0
+      }
+    },
+    "intent_video": {
+      "unsupported": {
+        "count": 1,
+        "video": 0,
+        "video_pct": 0.0
+      },
+      "refusal": {
+        "count": 1,
+        "video": 0,
+        "video_pct": 0.0
+      }
+    },
+    "daily": {
+      "2026-06-24": {
+        "total": 2,
+        "answered": 2,
+        "idk": 0
+      }
+    },
+    "languages": {
+      "en": {
+        "count": 2,
+        "answered": 2,
+        "idk": 0,
+        "answer_rate": 100.0,
+        "video_pct": 0.0
+      }
+    },
+    "idk_by_language": {},
+    "idk_samples": [],
+    "trace_grouping": {
+      "total_correlation_groups": 0,
+      "total_hierarchical_chains": 0,
+      "multi_trace_queries": 0
+    },
+    "conversations": {
+      "conversation_stats": [
+        {
+          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:1",
+          "length": 2,
+          "answered": 2,
+          "success_rate": 100.0,
+          "root_query": "Can I create multiple wallets or projects under CC Express?",
+          "root_answered": true,
+          "root_confidence": 0.0,
+          "is_decomposed": true,
+          "avg_confidence": 0.0,
+          "avg_latency": 0.0,
+          "user": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
+          "timestamp": "2026-06-24T06:34:52.903Z"
+        }
+      ],
+      "overview": {
+        "total_conversations": 1,
+        "single_turn": 0,
+        "multi_turn": 1,
+        "single_turn_pct": 0.0,
+        "multi_turn_pct": 100.0,
+        "avg_queries_per_conversation": 2.0,
+        "max_queries": 2,
+        "total_queries": 2
+      },
+      "success_by_length": {
+        "1": {
+          "conversations": 0,
+          "avg_success_rate": 0.0
+        },
+        "2": {
+          "conversations": 1,
+          "avg_success_rate": 100.0
+        },
+        "3": {
+          "conversations": 0,
+          "avg_success_rate": 0.0
+        },
+        "4+": {
+          "conversations": 0,
+          "avg_success_rate": 0.0
+        }
+      },
+      "root_vs_followup": {
+        "root": {
+          "count": 1,
+          "answer_rate": 100.0,
+          "idk_rate": 0.0,
+          "avg_confidence": 0.0
+        },
+        "followup": {
+          "count": 1,
+          "answer_rate": 100.0,
+          "idk_rate": 0.0,
+          "avg_confidence": 0.0
+        }
+      },
+      "decomposition_effectiveness": {
+        "total_decomposed": 1,
+        "all_success": 1,
+        "partial_success": 0,
+        "all_failed": 0,
+        "all_success_pct": 100.0,
+        "partial_success_pct": 0.0,
+        "all_failed_pct": 0.0
+      }
+    }
+  },
   "standalone": {
-    "timestamp": "2026-06-24T07:49:16.835806",
-    "total_queries": 143,
-    "answered": 117,
+    "timestamp": "2026-06-24T07:56:52.027027",
+    "total_queries": 141,
+    "answered": 115,
     "idk": 26,
-    "idk_rate": 18.2,
-    "answer_rate": 81.8,
-    "avg_confidence": 4.15,
-    "video_rate": 34.2,
+    "idk_rate": 18.4,
+    "answer_rate": 81.6,
+    "avg_confidence": 4.21,
+    "video_rate": 34.8,
     "modules": {
       "Agent Assist": {
         "count": 17,
         "answered": 11,
         "idk": 6,
         "avg_confidence": 4.26
-      },
-      "General": {
-        "count": 32,
-        "answered": 29,
-        "idk": 3,
-        "avg_confidence": 0.97
       },
       "Bot Studio": {
         "count": 64,
@@ -32,6 +180,12 @@
         "answered": 4,
         "idk": 3,
         "avg_confidence": 1.79
+      },
+      "General": {
+        "count": 30,
+        "answered": 27,
+        "idk": 3,
+        "avg_confidence": 1.04
       },
       "CTX": {
         "count": 5,
@@ -89,21 +243,15 @@
         "idk": 22,
         "answer_rate": 75.0
       },
-      "unsupported": {
-        "count": 4,
-        "answered": 4,
-        "idk": 0,
-        "answer_rate": 100.0
-      },
-      "refusal": {
-        "count": 3,
-        "answered": 3,
-        "idk": 0,
-        "answer_rate": 100.0
-      },
       "case_study": {
         "count": 2,
         "answered": 2,
+        "idk": 0,
+        "answer_rate": 100.0
+      },
+      "unsupported": {
+        "count": 3,
+        "answered": 3,
         "idk": 0,
         "answer_rate": 100.0
       },
@@ -152,6 +300,12 @@
       "compare": {
         "count": 3,
         "answered": 3,
+        "idk": 0,
+        "answer_rate": 100.0
+      },
+      "refusal": {
+        "count": 2,
+        "answered": 2,
         "idk": 0,
         "answer_rate": 100.0
       }
@@ -327,14 +481,6 @@
       }
     },
     "users_external": {
-      "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io": {
-        "domain": "ccexpress.gupshup.io",
-        "count": 2,
-        "answered": 2,
-        "answer_rate": 100.0,
-        "avg_confidence": 0.0,
-        "video_pct": 0.0
-      },
       "mis@digitalnest.in": {
         "domain": "digitalnest.in",
         "count": 4,
@@ -418,9 +564,9 @@
     },
     "intent_multi": {
       "1": {
-        "count": 126,
-        "answered": 101,
-        "answer_rate": 80.2
+        "count": 124,
+        "answered": 99,
+        "answer_rate": 79.8
       },
       "2": {
         "count": 15,
@@ -439,18 +585,13 @@
         "video": 23,
         "video_pct": 26.1
       },
-      "unsupported": {
-        "count": 4,
-        "video": 0,
-        "video_pct": 0.0
-      },
-      "refusal": {
-        "count": 3,
-        "video": 0,
-        "video_pct": 0.0
-      },
       "case_study": {
         "count": 2,
+        "video": 0,
+        "video_pct": 0.0
+      },
+      "unsupported": {
+        "count": 3,
         "video": 0,
         "video_pct": 0.0
       },
@@ -493,12 +634,17 @@
         "count": 3,
         "video": 0,
         "video_pct": 0.0
+      },
+      "refusal": {
+        "count": 2,
+        "video": 0,
+        "video_pct": 0.0
       }
     },
     "daily": {
       "2026-06-24": {
-        "total": 12,
-        "answered": 8,
+        "total": 10,
+        "answered": 6,
         "idk": 4
       },
       "2026-06-23": {
@@ -539,11 +685,11 @@
     },
     "languages": {
       "en": {
-        "count": 136,
-        "answered": 111,
+        "count": 134,
+        "answered": 109,
         "idk": 25,
-        "answer_rate": 81.6,
-        "video_pct": 28.7
+        "answer_rate": 81.3,
+        "video_pct": 29.1
       },
       "pt": {
         "count": 7,
@@ -1065,20 +1211,6 @@
           "timestamp": "2026-06-24T04:50:00.219Z"
         },
         {
-          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:63",
-          "length": 2,
-          "answered": 2,
-          "success_rate": 100.0,
-          "root_query": "Can I create multiple wallets or projects under CC Express?",
-          "root_answered": true,
-          "root_confidence": 0.0,
-          "is_decomposed": true,
-          "avg_confidence": 0.0,
-          "avg_latency": 0.0,
-          "user": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
-          "timestamp": "2026-06-24T06:34:52.903Z"
-        },
-        {
           "id": "sess:abhijit.chatterjee@gupshup.io:1",
           "length": 1,
           "answered": 1,
@@ -1555,7 +1687,7 @@
           "timestamp": "2026-06-23T16:56:42.603Z"
         },
         {
-          "id": "sess:ketan.thakur@gupshup.io:64",
+          "id": "sess:ketan.thakur@gupshup.io:63",
           "length": 1,
           "answered": 1,
           "success_rate": 100.0,
@@ -1570,14 +1702,14 @@
         }
       ],
       "overview": {
-        "total_conversations": 65,
+        "total_conversations": 64,
         "single_turn": 35,
-        "multi_turn": 30,
-        "single_turn_pct": 53.8,
-        "multi_turn_pct": 46.2,
+        "multi_turn": 29,
+        "single_turn_pct": 54.7,
+        "multi_turn_pct": 45.3,
         "avg_queries_per_conversation": 2.2,
         "max_queries": 9,
-        "total_queries": 143
+        "total_queries": 141
       },
       "success_by_length": {
         "1": {
@@ -1585,8 +1717,8 @@
           "avg_success_rate": 80.0
         },
         "2": {
-          "conversations": 12,
-          "avg_success_rate": 79.2
+          "conversations": 11,
+          "avg_success_rate": 77.3
         },
         "3": {
           "conversations": 6,
@@ -1599,28 +1731,36 @@
       },
       "root_vs_followup": {
         "root": {
-          "count": 65,
-          "answer_rate": 72.3,
-          "idk_rate": 27.7,
-          "avg_confidence": 2.82
+          "count": 64,
+          "answer_rate": 71.9,
+          "idk_rate": 28.1,
+          "avg_confidence": 2.86
         },
         "followup": {
-          "count": 78,
-          "answer_rate": 89.7,
-          "idk_rate": 10.3,
-          "avg_confidence": 5.27
+          "count": 77,
+          "answer_rate": 89.6,
+          "idk_rate": 10.4,
+          "avg_confidence": 5.33
         }
       },
       "decomposition_effectiveness": {
-        "total_decomposed": 30,
-        "all_success": 16,
+        "total_decomposed": 29,
+        "all_success": 15,
         "partial_success": 14,
         "all_failed": 0,
-        "all_success_pct": 53.3,
-        "partial_success_pct": 46.7,
+        "all_success_pct": 51.7,
+        "partial_success_pct": 48.3,
         "all_failed_pct": 0.0
       }
     }
   },
-  "_parity": null
+  "_parity": {
+    "ccx_answer_rate": 0.0,
+    "ref_answer_rate": 0.0,
+    "answer_delta": 0.0,
+    "ccx_avg_confidence": 0.0,
+    "ref_avg_confidence": 3.718648648648649,
+    "confidence_delta": -3.718648648648649,
+    "low_confidence_flags": []
+  }
 }

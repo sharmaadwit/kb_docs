@@ -660,12 +660,36 @@ def analyze_conversations(traces: List[Dict], session_gap_minutes: int = 30) -> 
 
 # CC EXPRESS FEATURE
 def partition_traces_by_product(traces):
-    """Partition traces by detected_product_original field."""
+    """Partition traces by user email domain (primary) and detected_product_original (fallback).
+
+    CC Express users identified by email pattern: visitor-*@ccexpress.gupshup.io
+    Other patterns may indicate Console or Standalone.
+    """
+    def is_cc_express_user(email):
+        """Check if email belongs to CC Express user."""
+        if not email:
+            return False
+        return '@ccexpress.gupshup.io' in email.lower()
+
     segments = {
-        'standalone': [t for t in traces if t.get('metadata', {}).get('detected_product_original') is None],
-        'cc_express': [t for t in traces if t.get('metadata', {}).get('detected_product_original') == 'cc_express'],
-        'console': [t for t in traces if t.get('metadata', {}).get('detected_product_original') == 'console'],
+        'cc_express': [],
+        'standalone': [],
     }
+
+    for trace in traces:
+        meta = trace.get('metadata', {})
+        user_email = meta.get('user_email') or ''
+
+        # Primary: Check email domain
+        if is_cc_express_user(user_email):
+            segments['cc_express'].append(trace)
+        else:
+            # Fallback: Check detected_product_original field for additional CC Express signals
+            if meta.get('detected_product_original') == 'cc_express':
+                segments['cc_express'].append(trace)
+            else:
+                segments['standalone'].append(trace)
+
     return {k: v for k, v in segments.items() if v}  # Only keep non-empty segments
 
 
