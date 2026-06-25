@@ -2025,6 +2025,33 @@ CONCEPT_REGISTRY: List[Dict] = [
         "compare_blurb": "AI Agents are generative assistants powered by ACE Agentic LLM for multi-turn conversations.",
         "related": ["ai_admin_workspace", "ai_admin_training"],
     },
+    {
+        "id": "campaign_manager_prompts",
+        "aliases": [
+            "campaign manager prompts",
+            "available prompts",
+            "prompt templates",
+            "campaign prompts",
+            "what prompts are available",
+            "campaign features",
+            "campaign manager features",
+            "what can i do with campaign manager",
+            "campaign manager capabilities",
+            "create campaign prompt",
+            "prompt creation",
+            "campaign template prompts",
+            "available templates",
+            "template library",
+            "prompt library",
+        ],
+        "keywords": ["campaign", "manager", "prompt", "template", "feature", "available"],
+        "source_boosts": {
+            "campaign-manager/creating-your-first-campaign.md": 2.5,
+            "campaign-manager/creating-a-new-campaign.md": 2.5,
+        },
+        "display": "Campaign Manager Prompts",
+        "module": "Campaign Manager",
+    },
     # ---- IDK-fix routing concepts (boost the correct EXISTING page) ----
     {
         "id": "console_roles",
