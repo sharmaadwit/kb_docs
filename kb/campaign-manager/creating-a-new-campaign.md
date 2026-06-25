@@ -11,6 +11,51 @@ source_url: https://console-docs.gupshup.io/docs/creating-a-new-campaign
 - If the content or users are the same as any of the previously created campaigns you can clone a campaign rather than starting from scratch.
 A new campaign can be created in just 4 steps -
 
+## Features & Capabilities
+
+Campaign Manager provides the following features and capabilities for sending bulk personalized messages:
+
+**Message Channels & Types**
+- WhatsApp campaigns (primary channel, fully supported)
+- RCS campaigns (rich media, interactive buttons, verified branding)
+- SMS campaigns (supported via integration)
+- Multi-channel support (broadcast to multiple channels simultaneously)
+
+**Campaign Types**
+- **Broadcast campaigns**: One-time, scheduled, or recurring bulk sends to opted-in audiences
+- **Automated/Triggered campaigns**: Event-driven, trigger-based campaigns (e.g., abandoned-cart nudges, welcome messages)
+- **Promotional campaigns**: Special offers and announcements
+- **Reminder campaigns**: Subscription reminders, drop-off notifications
+
+**Template & Message Features**
+- Pre-approved WhatsApp templates (selected from Meta-approved library)
+- Template variable substitution (personalize with CSV column data)
+- Fallback values (for missing data)
+- Media templates (images: JPEG/PNG up to 5MB, videos: MP4/3gpp up to 16MB, documents: PDF up to 100MB)
+- CTA buttons (customizable call-to-action links per user)
+- Dynamic link tracking and Click Through Rate (CTR) analytics
+
+**Audience & Targeting**
+- CSV/XLS file upload (up to 50 MB, with custom column headers)
+- Saved audience segments (Lists & Segments)
+- All users (broadcast to entire opted-in base)
+- Consent verification (mandatory opt-in declaration)
+- Audience cloning (reuse previous campaign audiences)
+
+**Campaign Management**
+- Campaign cloning (create new campaign from existing one)
+- Draft campaigns (save and edit before sending)
+- Schedule campaigns (select date/time or send immediately)
+- Campaign status tracking (draft, scheduled, sent)
+- Stop scheduled campaigns (delete before send)
+
+**Analytics & Tracking**
+- Delivery metrics (targeted, sent, delivered, failed, dropped)
+- Read/engagement metrics (message read status)
+- Click analysis (total clicks, unique clicks, CTR calculation)
+- Link tracking (original URL, Gupshup URL, click timestamp, device/OS)
+- Response file generation (timewise delivery summary)
+
 ## Procedure
 ### Exact UI path
 Gupshup Console → Campaign Manager → Creating A New Campaign
