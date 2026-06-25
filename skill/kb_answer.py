@@ -2459,6 +2459,53 @@ CONCEPT_REGISTRY: List[Dict] = [
         "module": "General",
     },
     {
+        "id": "whatsapp_templates",
+        "aliases": [
+            "whatsapp message template",
+            "whatsapp template",
+            "whatsapp variable parameters",
+            "whatsapp template variables",
+            "maximum whatsapp template variables",
+            "whatsapp template format",
+            "whatsapp template variable limit",
+            "whatsapp message variables",
+            "whatsapp hsm template",
+            "whatsapp template hsm"
+        ],
+        "keywords": [
+            "whatsapp",
+            "template",
+            "variables",
+            "parameters",
+            "message template",
+            "hsm"
+        ],
+        "source_boosts": {
+            "channels/whatsapp-templates": 3.5,
+            "channels/whatsapp": 2.5,
+            "channels/whatsapp-message-templates": 3.5
+        },
+        "display": "WhatsApp Message Templates",
+        "module": "General",
+    },
+    {
+        "id": "rcs_templates",
+        "aliases": [
+            "rcs message template",
+            "rcs template",
+            "rcs variable parameters",
+            "rcs template variables",
+            "rcs template format"
+        ],
+        "keywords": ["rcs", "template", "variables", "parameters"],
+        "source_boosts": {
+            "channels/rcs-templates": 3.5,
+            "channels/rcs": 2.5
+        },
+        "display": "RCS Message Templates",
+        "module": "General",
+    },
+    {
         "id": "ttl_agent_mapping",
         "aliases": [
             "ttl based agent mapping",
