@@ -75,16 +75,16 @@
 
         /* CC EXPRESS FEATURE: Sub-tab navigation within each product */
         .sub-tabs {
-            display: flex; gap: 0; margin-bottom: 20px;
-            background: rgba(255,255,255,0.08); border-radius: 8px; padding: 4px;
+            display: flex; gap: 8px; margin-bottom: 20px;
+            background: transparent; border-radius: 8px; padding: 4px;
         }
         .sub-tab {
-            flex: 1; padding: 10px 20px; cursor: pointer; background: transparent;
-            border: none; border-radius: 6px; color: rgba(255,255,255,0.7); font-weight: 600;
-            font-size: 0.95em; transition: all 0.2s; text-align: center;
+            flex: 1; padding: 12px 24px; cursor: pointer; background: rgba(255,255,255,0.12);
+            border: none; border-radius: 8px; color: rgba(255,255,255,0.8); font-weight: 600;
+            font-size: 0.95em; transition: all 0.3s; text-align: center;
         }
-        .sub-tab:hover { color: white; background: rgba(255,255,255,0.15); }
-        .sub-tab.active { background: white; color: #667eea; }
+        .sub-tab:hover { color: white; background: rgba(255,255,255,0.2); }
+        .sub-tab.active { background: #10b981; color: white; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4); }
         .sub-tab-content { display: none; }
         .sub-tab-content.active { display: block; }
 
@@ -109,7 +109,7 @@
     <div class="container">
         <div class="header">
             <h1>📊 Comprehensive KB Analytics Dashboard</h1>
-            <p>Live Langfuse Telemetry • Last Updated: 2026-06-26 08:01:36 UTC</p>
+            <p>Live Langfuse Telemetry • Last Updated: 2026-06-26 08:03:53 UTC</p>
         </div>
 
         <!-- CC EXPRESS FEATURE: Product pill selector (replaces 2-button tab nav) -->
@@ -1667,7 +1667,7 @@
             <div class="data-source">
                 <strong>Data Source:</strong> Live Langfuse API (Real-time telemetry)
                 <br>
-                <strong>Dashboard Generated:</strong> 2026-06-26 08:01:36 UTC
+                <strong>Dashboard Generated:</strong> 2026-06-26 08:03:53 UTC
                 <br>
                 <strong>Coverage:</strong> Last 7 days of production queries
             </div>
