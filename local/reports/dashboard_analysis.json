@@ -1,28 +1,34 @@
 {
   "cc_express": {
-    "timestamp": "2026-06-26T08:01:36.949712",
-    "total_queries": 12,
-    "answered": 10,
+    "timestamp": "2026-06-26T12:46:29.584623",
+    "total_queries": 13,
+    "answered": 11,
     "idk": 2,
-    "idk_rate": 16.7,
-    "answer_rate": 83.3,
-    "avg_confidence": 4.4,
-    "video_rate": 50.0,
+    "idk_rate": 15.4,
+    "answer_rate": 84.6,
+    "avg_confidence": 4.16,
+    "video_rate": 54.5,
     "modules": {
+      "Agent Assist": {
+        "count": 9,
+        "answered": 7,
+        "idk": 2,
+        "avg_confidence": 5.61
+      },
       "General": {
         "count": 4,
         "answered": 4,
         "idk": 0,
         "avg_confidence": 0.9
-      },
-      "Agent Assist": {
-        "count": 8,
-        "answered": 6,
-        "idk": 2,
-        "avg_confidence": 6.16
       }
     },
     "intents": {
+      "overview": {
+        "count": 2,
+        "answered": 2,
+        "idk": 0,
+        "answer_rate": 100.0
+      },
       "definition": {
         "count": 1,
         "answered": 1,
@@ -36,12 +42,6 @@
         "answer_rate": 75.0
       },
       "behavior": {
-        "count": 1,
-        "answered": 1,
-        "idk": 0,
-        "answer_rate": 100.0
-      },
-      "overview": {
         "count": 1,
         "answered": 1,
         "idk": 0,
@@ -77,6 +77,14 @@
       }
     },
     "users_external": {
+      "visitor-5ceb5a5a-edea-4101-a6e1-939a32350630@ccexpress.gupshup.io": {
+        "domain": "ccexpress.gupshup.io",
+        "count": 1,
+        "answered": 1,
+        "answer_rate": 100.0,
+        "avg_confidence": 1.25,
+        "video_pct": 100.0
+      },
       "visitor-938eafdf-35b0-4c4c-aaf7-8c27f2eb4732@ccexpress.gupshup.io": {
         "domain": "ccexpress.gupshup.io",
         "count": 7,
@@ -96,9 +104,9 @@
     },
     "intent_multi": {
       "1": {
-        "count": 11,
-        "answered": 9,
-        "answer_rate": 81.8
+        "count": 12,
+        "answered": 10,
+        "answer_rate": 83.3
       },
       "3": {
         "count": 1,
@@ -107,6 +115,11 @@
       }
     },
     "intent_video": {
+      "overview": {
+        "count": 2,
+        "video": 2,
+        "video_pct": 100.0
+      },
       "definition": {
         "count": 1,
         "video": 0,
@@ -118,11 +131,6 @@
         "video_pct": 62.5
       },
       "behavior": {
-        "count": 1,
-        "video": 1,
-        "video_pct": 100.0
-      },
-      "overview": {
         "count": 1,
         "video": 1,
         "video_pct": 100.0
@@ -140,8 +148,8 @@
     },
     "daily": {
       "2026-06-26": {
-        "total": 7,
-        "answered": 7,
+        "total": 8,
+        "answered": 8,
         "idk": 0
       },
       "2026-06-24": {
@@ -157,11 +165,11 @@
     },
     "languages": {
       "en": {
-        "count": 12,
-        "answered": 10,
+        "count": 13,
+        "answered": 11,
         "idk": 2,
-        "answer_rate": 83.3,
-        "video_pct": 41.7
+        "answer_rate": 84.6,
+        "video_pct": 46.2
       }
     },
     "idk_by_language": {
@@ -254,21 +262,35 @@
           "avg_latency": 0.0,
           "user": "yashas.reddy@gupshup.io",
           "timestamp": "2026-06-19T07:02:07.011Z"
+        },
+        {
+          "id": "sess:visitor-5ceb5a5a-edea-4101-a6e1-939a32350630@ccexpress.gupshup.io:5",
+          "length": 1,
+          "answered": 1,
+          "success_rate": 100.0,
+          "root_query": "What AI automations and features does Gupshup Conversation Cloud and Voice AI offer for a luxury real estate company usi",
+          "root_answered": true,
+          "root_confidence": 1.25,
+          "is_decomposed": false,
+          "avg_confidence": 1.25,
+          "avg_latency": 14895.0,
+          "user": "visitor-5ceb5a5a-edea-4101-a6e1-939a32350630@ccexpress.gupshup.io",
+          "timestamp": "2026-06-26T10:33:02.774Z"
         }
       ],
       "overview": {
-        "total_conversations": 4,
-        "single_turn": 1,
+        "total_conversations": 5,
+        "single_turn": 2,
         "multi_turn": 3,
-        "single_turn_pct": 25.0,
-        "multi_turn_pct": 75.0,
-        "avg_queries_per_conversation": 3.0,
+        "single_turn_pct": 40.0,
+        "multi_turn_pct": 60.0,
+        "avg_queries_per_conversation": 2.6,
         "max_queries": 7,
-        "total_queries": 12
+        "total_queries": 13
       },
       "success_by_length": {
         "1": {
-          "conversations": 1,
+          "conversations": 2,
           "avg_success_rate": 100.0
         },
         "2": {
@@ -286,10 +308,10 @@
       },
       "root_vs_followup": {
         "root": {
-          "count": 4,
-          "answer_rate": 75.0,
-          "idk_rate": 25.0,
-          "avg_confidence": 2.3
+          "count": 5,
+          "answer_rate": 80.0,
+          "idk_rate": 20.0,
+          "avg_confidence": 2.09
         },
         "followup": {
           "count": 8,
@@ -310,15 +332,33 @@
     }
   },
   "standalone": {
-    "timestamp": "2026-06-26T08:01:36.950915",
-    "total_queries": 122,
-    "answered": 97,
-    "idk": 25,
-    "idk_rate": 20.5,
-    "answer_rate": 79.5,
-    "avg_confidence": 4.25,
-    "video_rate": 29.9,
+    "timestamp": "2026-06-26T12:46:29.586167",
+    "total_queries": 126,
+    "answered": 99,
+    "idk": 27,
+    "idk_rate": 21.4,
+    "answer_rate": 78.6,
+    "avg_confidence": 4.18,
+    "video_rate": 31.3,
     "modules": {
+      "Channels": {
+        "count": 9,
+        "answered": 9,
+        "idk": 0,
+        "avg_confidence": 3.61
+      },
+      "Campaign Manager": {
+        "count": 6,
+        "answered": 4,
+        "idk": 2,
+        "avg_confidence": 3.33
+      },
+      "General": {
+        "count": 21,
+        "answered": 18,
+        "idk": 3,
+        "avg_confidence": 0.44
+      },
       "Agent Assist": {
         "count": 16,
         "answered": 9,
@@ -331,35 +371,17 @@
         "idk": 1,
         "avg_confidence": 3.25
       },
-      "Campaign Manager": {
-        "count": 4,
-        "answered": 3,
-        "idk": 1,
-        "avg_confidence": 3.34
-      },
       "Bot Studio": {
         "count": 60,
         "answered": 50,
         "idk": 10,
         "avg_confidence": 5.99
       },
-      "Channels": {
-        "count": 8,
-        "answered": 8,
-        "idk": 0,
-        "avg_confidence": 3.92
-      },
       "CTX": {
         "count": 4,
         "answered": 1,
         "idk": 3,
         "avg_confidence": 1.09
-      },
-      "General": {
-        "count": 20,
-        "answered": 18,
-        "idk": 2,
-        "avg_confidence": 0.42
       },
       "AI Admin": {
         "count": 3,
@@ -381,6 +403,18 @@
       }
     },
     "intents": {
+      "page_lookup": {
+        "count": 5,
+        "answered": 4,
+        "idk": 1,
+        "answer_rate": 80.0
+      },
+      "setup": {
+        "count": 81,
+        "answered": 56,
+        "idk": 25,
+        "answer_rate": 69.1
+      },
       "troubleshooting": {
         "count": 4,
         "answered": 3,
@@ -392,12 +426,6 @@
         "answered": 9,
         "idk": 1,
         "answer_rate": 90.0
-      },
-      "setup": {
-        "count": 79,
-        "answered": 56,
-        "idk": 23,
-        "answer_rate": 70.9
       },
       "compare": {
         "count": 3,
@@ -416,12 +444,6 @@
         "answered": 5,
         "idk": 0,
         "answer_rate": 100.0
-      },
-      "page_lookup": {
-        "count": 3,
-        "answered": 2,
-        "idk": 1,
-        "answer_rate": 66.7
       },
       "schema": {
         "count": 22,
@@ -619,6 +641,14 @@
       }
     },
     "users_external": {
+      "mis@digitalnest.in": {
+        "domain": "digitalnest.in",
+        "count": 10,
+        "answered": 4,
+        "answer_rate": 40.0,
+        "avg_confidence": 0.97,
+        "video_pct": 20.0
+      },
       "shrithasampath@gmail.com": {
         "domain": "gmail.com",
         "count": 3,
@@ -649,14 +679,6 @@
         "answered": 0,
         "answer_rate": 0.0,
         "avg_confidence": 0.6,
-        "video_pct": 0.0
-      },
-      "mis@digitalnest.in": {
-        "domain": "digitalnest.in",
-        "count": 4,
-        "answered": 2,
-        "answer_rate": 50.0,
-        "avg_confidence": 0.29,
         "video_pct": 0.0
       },
       "shreyank@lokta.ai": {
@@ -694,9 +716,9 @@
     },
     "intent_multi": {
       "1": {
-        "count": 104,
-        "answered": 81,
-        "answer_rate": 77.9
+        "count": 108,
+        "answered": 83,
+        "answer_rate": 76.9
       },
       "2": {
         "count": 16,
@@ -715,6 +737,16 @@
       }
     },
     "intent_video": {
+      "page_lookup": {
+        "count": 5,
+        "video": 4,
+        "video_pct": 80.0
+      },
+      "setup": {
+        "count": 81,
+        "video": 18,
+        "video_pct": 22.2
+      },
       "troubleshooting": {
         "count": 4,
         "video": 2,
@@ -724,11 +756,6 @@
         "count": 10,
         "video": 5,
         "video_pct": 50.0
-      },
-      "setup": {
-        "count": 79,
-        "video": 18,
-        "video_pct": 22.8
       },
       "compare": {
         "count": 3,
@@ -744,11 +771,6 @@
         "count": 5,
         "video": 4,
         "video_pct": 80.0
-      },
-      "page_lookup": {
-        "count": 3,
-        "video": 2,
-        "video_pct": 66.7
       },
       "schema": {
         "count": 22,
@@ -773,9 +795,9 @@
     },
     "daily": {
       "2026-06-26": {
-        "total": 6,
-        "answered": 5,
-        "idk": 1
+        "total": 10,
+        "answered": 7,
+        "idk": 3
       },
       "2026-06-25": {
         "total": 25,
@@ -815,11 +837,11 @@
     },
     "languages": {
       "en": {
-        "count": 113,
-        "answered": 89,
-        "idk": 24,
-        "answer_rate": 78.8,
-        "video_pct": 24.8
+        "count": 117,
+        "answered": 91,
+        "idk": 26,
+        "answer_rate": 77.8,
+        "video_pct": 25.6
       },
       "pt": {
         "count": 9,
@@ -831,6 +853,16 @@
     },
     "idk_by_language": {
       "en": [
+        {
+          "query": "I sent a message from a broadcast campaign. Where can I check whether a specific user replied after ",
+          "module": "Campaign Manager",
+          "score": 0.7000000000000002
+        },
+        {
+          "query": "How do I remove a user from an experiment in Gupshup Console?",
+          "module": "General",
+          "score": 0.8500000000000001
+        },
         {
           "query": "Agent Assist option is missing from the Console portal. How can it be enabled for the account?",
           "module": "Agent Assist",
@@ -845,16 +877,6 @@
           "query": "How does template and header mapping work in SMS and DLT?",
           "module": "Agent Assist",
           "score": 0.6000000000000001
-        },
-        {
-          "query": "Gupshup KYC for company outside India, specifically Israel. What documents are needed and what is th",
-          "module": "Bot Studio",
-          "score": 0.55
-        },
-        {
-          "query": "Can WhatsApp CTWA or web chat entry links be configured to expire after 24 hours, and is there a con",
-          "module": "CTX",
-          "score": 1.2000000000000002
         }
       ],
       "pt": [
@@ -866,6 +888,18 @@
       ]
     },
     "idk_samples": [
+      {
+        "query": "I sent a message from a broadcast campaign. Where can I check whether a specific user replied after ",
+        "module": "Campaign Manager",
+        "score": 0.7000000000000002,
+        "language": "en"
+      },
+      {
+        "query": "How do I remove a user from an experiment in Gupshup Console?",
+        "module": "General",
+        "score": 0.8500000000000001,
+        "language": "en"
+      },
       {
         "query": "Agent Assist option is missing from the Console portal. How can it be enabled for the account?",
         "module": "Agent Assist",
@@ -912,18 +946,6 @@
         "query": "How can I create a user in Agent Assist / access manager?",
         "module": "Agent Assist",
         "score": 1.2000000000000002,
-        "language": "en"
-      },
-      {
-        "query": "Can the AI chatbot read uploaded images such as doctor prescriptions or medical reports, extract tex",
-        "module": "Bot Studio",
-        "score": 1.1,
-        "language": "en"
-      },
-      {
-        "query": "Do we provide SMS service for Unilever Plc?",
-        "module": "Bot Studio",
-        "score": 0.35,
         "language": "en"
       }
     ],
@@ -1059,6 +1081,20 @@
           "avg_latency": 1878.0,
           "user": "ananya.a@gupshup.io",
           "timestamp": "2026-06-25T13:33:51.089Z"
+        },
+        {
+          "id": "sess:mis@digitalnest.in:60",
+          "length": 4,
+          "answered": 2,
+          "success_rate": 50.0,
+          "root_query": "How do I remove a user from an experiment in Gupshup Console?",
+          "root_answered": false,
+          "root_confidence": 0.85,
+          "is_decomposed": true,
+          "avg_confidence": 2.14,
+          "avg_latency": 2562.0,
+          "user": "mis@digitalnest.in",
+          "timestamp": "2026-06-26T10:45:52.556Z"
         },
         {
           "id": "sess:vamshi@lokta.ai:6",
@@ -1776,14 +1812,14 @@
         }
       ],
       "overview": {
-        "total_conversations": 60,
+        "total_conversations": 61,
         "single_turn": 32,
-        "multi_turn": 28,
-        "single_turn_pct": 53.3,
-        "multi_turn_pct": 46.7,
-        "avg_queries_per_conversation": 2.03,
+        "multi_turn": 29,
+        "single_turn_pct": 52.5,
+        "multi_turn_pct": 47.5,
+        "avg_queries_per_conversation": 2.07,
         "max_queries": 7,
-        "total_queries": 122
+        "total_queries": 126
       },
       "success_by_length": {
         "1": {
@@ -1799,31 +1835,31 @@
           "avg_success_rate": 83.3
         },
         "4+": {
-          "conversations": 9,
-          "avg_success_rate": 92.8
+          "conversations": 10,
+          "avg_success_rate": 88.5
         }
       },
       "root_vs_followup": {
         "root": {
-          "count": 60,
-          "answer_rate": 63.3,
-          "idk_rate": 36.7,
-          "avg_confidence": 3.03
+          "count": 61,
+          "answer_rate": 62.3,
+          "idk_rate": 37.7,
+          "avg_confidence": 3.0
         },
         "followup": {
-          "count": 62,
-          "answer_rate": 95.2,
-          "idk_rate": 4.8,
-          "avg_confidence": 5.42
+          "count": 65,
+          "answer_rate": 93.8,
+          "idk_rate": 6.2,
+          "avg_confidence": 5.29
         }
       },
       "decomposition_effectiveness": {
-        "total_decomposed": 28,
+        "total_decomposed": 29,
         "all_success": 17,
-        "partial_success": 11,
+        "partial_success": 12,
         "all_failed": 0,
-        "all_success_pct": 60.7,
-        "partial_success_pct": 39.3,
+        "all_success_pct": 58.6,
+        "partial_success_pct": 41.4,
         "all_failed_pct": 0.0
       }
     }
@@ -1832,9 +1868,9 @@
     "ccx_answer_rate": 0.0,
     "ref_answer_rate": 0.0,
     "answer_delta": 0.0,
-    "ccx_avg_confidence": 4.404166666666667,
-    "ref_avg_confidence": 3.9156666666666666,
-    "confidence_delta": 0.48850000000000016,
+    "ccx_avg_confidence": 4.161538461538462,
+    "ref_avg_confidence": 3.8694805194805193,
+    "confidence_delta": 0.29205794205794255,
     "low_confidence_flags": [
       {
         "id": "kb-kb_answer-fdccb13451594be1",
