@@ -1797,7 +1797,7 @@ def generate_html(all_analysis: Dict[str, Any], video_data: Dict[str, Any], pari
                 <br>
                 <strong>Dashboard Generated:</strong> {now_str} UTC
                 <br>
-                <strong>Coverage:</strong> Last 7 days of production queries
+                <strong>Coverage:</strong> Last 15 days of production queries
             </div>
         </div>
     </div>
@@ -1815,11 +1815,11 @@ def main():
     print("=" * 80)
     print()
 
-    traces = fetch_langfuse_traces(days=7) or []
+    traces = fetch_langfuse_traces(days=15) or []
     live_count = len(traces)
 
     # Merge query traces exported to local NDJSON (union, dedupe by trace id).
-    ndjson_traces = load_ndjson_traces(days=7)
+    ndjson_traces = load_ndjson_traces(days=15)
     by_id = {t.get("id"): t for t in traces if t.get("id")}
     no_id = [t for t in traces if not t.get("id")]
     added = 0
@@ -1879,9 +1879,9 @@ def main():
 
     # Video events are global (not segmented)
     print(f"🎥 Loading video-delivery events from NDJSON logs...")
-    video_data = load_video_events(days=7)
+    video_data = load_video_events(days=15)
     ve = video_data
-    print(f"   Video deliveries (7d): {ve['total_deliveries']} | captions: {ve['captions_pct']}% "
+    print(f"   Video deliveries (15d): {ve['total_deliveries']} | captions: {ve['captions_pct']}% "
           f"| fallback: {ve['fallback_pct']}% | latest event: {ve['latest_event_ts'] or 'n/a'}")
 
     # Print summary across all segments

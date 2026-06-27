@@ -109,7 +109,7 @@
     <div class="container">
         <div class="header">
             <h1>📊 Comprehensive KB Analytics Dashboard</h1>
-            <p>Live Langfuse Telemetry • Last Updated: 2026-06-27 05:14:44 UTC</p>
+            <p>Live Langfuse Telemetry • Last Updated: 2026-06-27 05:19:44 UTC</p>
         </div>
 
         <!-- CC EXPRESS FEATURE: Product pill selector (replaces 2-button tab nav) -->
@@ -128,28 +128,28 @@
                 <div class="card" style="border-left: 5px solid #667eea;">
                     <div class="metric">
                         <div class="metric-label">Standalone — Volume</div>
-                        <div class="metric-value">123</div>
+                        <div class="metric-value">264</div>
                         <div class="metric-unit">traces</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #667eea;">
                     <div class="metric">
                         <div class="metric-label">Answer Rate</div>
-                        <div class="metric-value status-warning">77.2%</div>
-                        <div class="metric-unit">(95 answered)</div>
+                        <div class="metric-value status-warning">71.6%</div>
+                        <div class="metric-unit">(189 answered)</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #667eea;">
                     <div class="metric">
                         <div class="metric-label">IDK Rate</div>
-                        <div class="metric-value status-warning">22.8%</div>
-                        <div class="metric-unit">(28 queries)</div>
+                        <div class="metric-value status-warning">28.4%</div>
+                        <div class="metric-unit">(75 queries)</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #667eea;">
                     <div class="metric">
                         <div class="metric-label">Avg Confidence</div>
-                        <div class="metric-value">4.27</div>
+                        <div class="metric-value">4.05</div>
                         <div class="metric-unit">out of 20</div>
                     </div>
                 </div>
@@ -175,34 +175,34 @@
                 <div class="card" style="border-left: 5px solid #667eea;">
                     <div class="metric">
                         <div class="metric-label">Total Conversations</div>
-                        <div class="metric-value">60</div>
-                        <div class="metric-unit">123 queries</div>
+                        <div class="metric-value">122</div>
+                        <div class="metric-unit">264 queries</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #2ecc71;">
                     <div class="metric">
                         <div class="metric-label">Single-Turn</div>
-                        <div class="metric-value status-good">51.7%</div>
-                        <div class="metric-unit">(31 conversations)</div>
+                        <div class="metric-value status-good">53.3%</div>
+                        <div class="metric-unit">(65 conversations)</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #f39c12;">
                     <div class="metric">
                         <div class="metric-label">Multi-Turn</div>
-                        <div class="metric-value status-warning">48.3%</div>
-                        <div class="metric-unit">(29 conversations)</div>
+                        <div class="metric-value status-warning">46.7%</div>
+                        <div class="metric-unit">(57 conversations)</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #667eea;">
                     <div class="metric">
                         <div class="metric-label">Avg Queries / Conversation</div>
-                        <div class="metric-value">2.05</div>
+                        <div class="metric-value">2.16</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #aaa;">
                     <div class="metric">
                         <div class="metric-label">Max Queries in a Conversation</div>
-                        <div class="metric-value">7</div>
+                        <div class="metric-value">9</div>
                     </div>
                 </div>
             </div>
@@ -220,8 +220,8 @@
         <script>
             (function() {
                 const labels = ['1', '2', '3', '4+'];
-                const counts = [31, 12, 8, 9];
-                const rates = [58.1, 75.0, 83.3, 87.2];
+                const counts = [65, 22, 13, 22];
+                const rates = [56.9, 63.6, 87.2, 78.1];
                 new Chart(document.getElementById('successByLength_standalone'), {
                     data: {
                         labels,
@@ -260,37 +260,37 @@
                 <div class="card" style="border-left: 5px solid #667eea;">
                     <div class="metric">
                         <div class="metric-label">Root Queries</div>
-                        <div class="metric-value">60</div>
+                        <div class="metric-value">122</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">Answer Rate</div>
-                        <div class="metric-value status-good">60.0%</div>
+                        <div class="metric-value status-good">57.4%</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">IDK Rate</div>
-                        <div class="metric-value status-critical">40.0%</div>
+                        <div class="metric-value status-critical">42.6%</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">Avg Confidence</div>
-                        <div class="metric-value">3.03</div>
+                        <div class="metric-value">2.93</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #f39c12;">
                     <div class="metric">
                         <div class="metric-label">Follow-up Queries</div>
-                        <div class="metric-value">63</div>
+                        <div class="metric-value">142</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">Answer Rate</div>
-                        <div class="metric-value status-good">93.7%</div>
+                        <div class="metric-value status-good">83.8%</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">IDK Rate</div>
-                        <div class="metric-value status-critical">6.3%</div>
+                        <div class="metric-value status-critical">16.2%</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">Avg Confidence</div>
-                        <div class="metric-value">5.44</div>
+                        <div class="metric-value">5.02</div>
                     </div>
                 </div>
             </div>
@@ -303,8 +303,8 @@
                     data: {
                         labels: ['Answer %', 'IDK %', 'Avg Confidence'],
                         datasets: [
-                            { label: 'Root Query', data: [60.0, 40.0, 3.03], backgroundColor: 'rgba(102,126,234,0.7)', borderColor: 'rgba(102,126,234,1)', borderWidth: 1, borderRadius: 6 },
-                            { label: 'Follow-up', data: [93.7, 6.3, 5.44], backgroundColor: 'rgba(243,156,18,0.7)', borderColor: 'rgba(243,156,18,1)', borderWidth: 1, borderRadius: 6 }
+                            { label: 'Root Query', data: [57.4, 42.6, 2.93], backgroundColor: 'rgba(102,126,234,0.7)', borderColor: 'rgba(102,126,234,1)', borderWidth: 1, borderRadius: 6 },
+                            { label: 'Follow-up', data: [83.8, 16.2, 5.02], backgroundColor: 'rgba(243,156,18,0.7)', borderColor: 'rgba(243,156,18,1)', borderWidth: 1, borderRadius: 6 }
                         ]
                     },
                     options: {
@@ -320,7 +320,7 @@
         <div class="section">
             <h2>🧩 Decomposition Effectiveness</h2>
             <p style="color: #666; font-size: 0.9em; margin-bottom: 16px;">
-                Of 29 decomposed (multi-query) conversations, how many had
+                Of 57 decomposed (multi-query) conversations, how many had
                 <strong>all</strong>, <strong>some</strong>, or <strong>none</strong> of their sub-queries answered.
             </p>
             <div class="chart-wrapper" style="height: 360px;"><canvas id="decompChart_standalone"></canvas></div>
@@ -330,9 +330,9 @@
                 new Chart(document.getElementById('decompChart_standalone'), {
                     type: 'doughnut',
                     data: {
-                        labels: ['All Answered (55.2%)', 'Partial (44.8%)', 'All Failed (0.0%)'],
+                        labels: ['All Answered (45.6%)', 'Partial (50.9%)', 'All Failed (3.5%)'],
                         datasets: [{
-                            data: [16, 13, 0],
+                            data: [26, 29, 2],
                             backgroundColor: ['rgba(46,204,113,0.8)', 'rgba(243,156,18,0.8)', 'rgba(231,76,60,0.8)'],
                             borderColor: ['#2ecc71', '#f39c12', '#e74c3c'], borderWidth: 2
                         }]
@@ -355,30 +355,30 @@
             <div class="card" style="border-left: 5px solid #667eea;">
                 <div class="metric">
                     <div class="metric-label">Total Queries</div>
-                    <div class="metric-value">123</div>
+                    <div class="metric-value">264</div>
                 </div>
             </div>
 
             <div class="card" style="border-left: 5px solid #2ecc71;">
                 <div class="metric">
                     <div class="metric-label">Answer Rate</div>
-                    <div class="metric-value status-good">77.2%</div>
-                    <div class="metric-unit">(95 answered)</div>
+                    <div class="metric-value status-good">71.6%</div>
+                    <div class="metric-unit">(189 answered)</div>
                 </div>
             </div>
 
             <div class="card" style="border-left: 5px solid #e74c3c;">
                 <div class="metric">
                     <div class="metric-label">IDK Rate</div>
-                    <div class="metric-value status-good">22.8%</div>
-                    <div class="metric-unit">(28 queries)</div>
+                    <div class="metric-value status-good">28.4%</div>
+                    <div class="metric-unit">(75 queries)</div>
                 </div>
             </div>
 
             <div class="card" style="border-left: 5px solid #2ecc71;">
                 <div class="metric">
                     <div class="metric-label">Avg Confidence</div>
-                    <div class="metric-value status-good">4.27</div>
+                    <div class="metric-value status-good">4.05</div>
                     <div class="metric-unit">out of 20</div>
                 </div>
             </div>
@@ -386,7 +386,7 @@
             <div class="card" style="border-left: 5px solid #f39c12;">
                 <div class="metric">
                     <div class="metric-label">Video Attach Rate</div>
-                    <div class="metric-value status-warning">30.5%</div>
+                    <div class="metric-value status-warning">39.7%</div>
                     <div class="metric-unit">of answers</div>
                 </div>
             </div>
@@ -415,57 +415,75 @@
                 <tbody>
                     <tr>
                         <td>Bot Studio</td>
-                        <td class="numeric">58</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 47.2%, transparent 47.2%)">47.2%</td>
-                        <td class="numeric">5.91</td>
+                        <td class="numeric">101</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 38.3%, transparent 38.3%)">38.3%</td>
+                        <td class="numeric">5.6</td>
                     </tr>
                     <tr>
                         <td>General</td>
-                        <td class="numeric">19</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 15.4%, transparent 15.4%)">15.4%</td>
-                        <td class="numeric">0.32</td>
+                        <td class="numeric">47</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 17.8%, transparent 17.8%)">17.8%</td>
+                        <td class="numeric">1.36</td>
                     </tr>
                     <tr>
                         <td>Agent Assist</td>
-                        <td class="numeric">18</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 14.6%, transparent 14.6%)">14.6%</td>
-                        <td class="numeric">4.45</td>
+                        <td class="numeric">39</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 14.8%, transparent 14.8%)">14.8%</td>
+                        <td class="numeric">4.33</td>
                     </tr>
                     <tr>
                         <td>Channels</td>
-                        <td class="numeric">10</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 8.1%, transparent 8.1%)">8.1%</td>
-                        <td class="numeric">3.42</td>
-                    </tr>
-                    <tr>
-                        <td>Campaign Manager</td>
-                        <td class="numeric">6</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 4.9%, transparent 4.9%)">4.9%</td>
-                        <td class="numeric">3.33</td>
-                    </tr>
-                    <tr>
-                        <td>AI Admin</td>
-                        <td class="numeric">4</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 3.3%, transparent 3.3%)">3.3%</td>
-                        <td class="numeric">5.84</td>
+                        <td class="numeric">23</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 8.7%, transparent 8.7%)">8.7%</td>
+                        <td class="numeric">4.1</td>
                     </tr>
                     <tr>
                         <td>CTX</td>
-                        <td class="numeric">3</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 2.4%, transparent 2.4%)">2.4%</td>
-                        <td class="numeric">1.05</td>
+                        <td class="numeric">11</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 4.2%, transparent 4.2%)">4.2%</td>
+                        <td class="numeric">1.86</td>
+                    </tr>
+                    <tr>
+                        <td>Campaign Manager</td>
+                        <td class="numeric">9</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 3.4%, transparent 3.4%)">3.4%</td>
+                        <td class="numeric">3.52</td>
+                    </tr>
+                    <tr>
+                        <td>AI Admin</td>
+                        <td class="numeric">8</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 3.0%, transparent 3.0%)">3.0%</td>
+                        <td class="numeric">7.2</td>
                     </tr>
                     <tr>
                         <td>Analytics</td>
-                        <td class="numeric">3</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 2.4%, transparent 2.4%)">2.4%</td>
-                        <td class="numeric">2.88</td>
+                        <td class="numeric">8</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 3.0%, transparent 3.0%)">3.0%</td>
+                        <td class="numeric">1.72</td>
                     </tr>
                     <tr>
                         <td>SuperAgent</td>
+                        <td class="numeric">6</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 2.3%, transparent 2.3%)">2.3%</td>
+                        <td class="numeric">4.48</td>
+                    </tr>
+                    <tr>
+                        <td>Overview</td>
+                        <td class="numeric">5</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 1.9%, transparent 1.9%)">1.9%</td>
+                        <td class="numeric">0.99</td>
+                    </tr>
+                    <tr>
+                        <td>Integrations</td>
+                        <td class="numeric">5</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 1.9%, transparent 1.9%)">1.9%</td>
+                        <td class="numeric">2.03</td>
+                    </tr>
+                    <tr>
+                        <td>Goals</td>
                         <td class="numeric">2</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 1.6%, transparent 1.6%)">1.6%</td>
-                        <td class="numeric">3.25</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.8%, transparent 0.8%)">0.8%</td>
+                        <td class="numeric">6.17</td>
                     </tr>
                 </tbody>
             </table>
@@ -483,17 +501,18 @@
         <script>
             (function() {
                 const intents_standalone = [
-                    ['setup', 78, 67.9, 20.5],
-                    ['schema', 20, 95.0, 10.0],
+                    ['setup', 171, 66.1, 24.0],
+                    ['definition', 36, 72.2, 44.4],
+                    ['schema', 24, 95.8, 12.5],
+                    ['overview', 20, 90.0, 85.0],
+                    ['page_lookup', 14, 71.4, 50.0],
                     ['kb_error', 12, 100.0, 0.0],
-                    ['definition', 11, 90.9, 45.5],
-                    ['troubleshooting', 6, 66.7, 33.3],
-                    ['page_lookup', 5, 80.0, 80.0],
-                    ['overview', 5, 100.0, 80.0],
-                    ['compare', 3, 100.0, 66.7],
+                    ['troubleshooting', 10, 70.0, 50.0],
+                    ['compare', 7, 85.7, 28.6],
+                    ['refusal', 7, 100.0, 0.0],
+                    ['behavior', 3, 66.7, 66.7],
+                    ['case_study', 2, 100.0, 0.0],
                     ['unsupported', 2, 100.0, 0.0],
-                    ['refusal', 1, 100.0, 0.0],
-                    ['case_study', 1, 100.0, 0.0],
                 ];
                 const labels_standalone = intents_standalone.map(r => r[0]);
                 const volumes_standalone = intents_standalone.map(r => r[1]);
@@ -550,10 +569,52 @@
                 <tbody>
                     <tr>
                         <td>ananya.a@gupshup.io</td>
-                        <td class="numeric">20</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(243,156,18,0.35) 50.0%, transparent 50.0%)"><span class="status-warning">50.0%</span></td>
-                        <td class="numeric">2.34</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 15.0%, transparent 15.0%)">15.0%</td>
+                        <td class="numeric">41</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(243,156,18,0.35) 61.0%, transparent 61.0%)"><span class="status-warning">61.0%</span></td>
+                        <td class="numeric">4.63</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 26.8%, transparent 26.8%)">26.8%</td>
+                    </tr>
+                    <tr>
+                        <td>ankit.kanwara@gupshup.io</td>
+                        <td class="numeric">17</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(231,76,60,0.35) 41.2%, transparent 41.2%)"><span class="status-critical">41.2%</span></td>
+                        <td class="numeric">3.59</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 5.9%, transparent 5.9%)">5.9%</td>
+                    </tr>
+                    <tr>
+                        <td>abhijit.chatterjee@gupshup.io</td>
+                        <td class="numeric">11</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(231,76,60,0.35) 45.5%, transparent 45.5%)"><span class="status-critical">45.5%</span></td>
+                        <td class="numeric">0.51</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 36.4%, transparent 36.4%)">36.4%</td>
+                    </tr>
+                    <tr>
+                        <td>yashas.reddy@gupshup.io</td>
+                        <td class="numeric">9</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(243,156,18,0.35) 77.8%, transparent 77.8%)"><span class="status-warning">77.8%</span></td>
+                        <td class="numeric">5.62</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 55.6%, transparent 55.6%)">55.6%</td>
+                    </tr>
+                    <tr>
+                        <td>naveen.verma@knowlarity.com</td>
+                        <td class="numeric">8</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(231,76,60,0.35) 25.0%, transparent 25.0%)"><span class="status-critical">25.0%</span></td>
+                        <td class="numeric">1.21</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 25.0%, transparent 25.0%)">25.0%</td>
+                    </tr>
+                    <tr>
+                        <td>brendon.castelino@gupshup.io</td>
+                        <td class="numeric">7</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(231,76,60,0.35) 14.3%, transparent 14.3%)"><span class="status-critical">14.3%</span></td>
+                        <td class="numeric">1.2</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 14.3%, transparent 14.3%)">14.3%</td>
+                    </tr>
+                    <tr>
+                        <td>sanchit.aggarwal@gupshup.io</td>
+                        <td class="numeric">7</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(231,76,60,0.35) 42.9%, transparent 42.9%)"><span class="status-critical">42.9%</span></td>
+                        <td class="numeric">1.63</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 28.6%, transparent 28.6%)">28.6%</td>
                     </tr>
                     <tr>
                         <td>rahul.panchal@gupshup.io</td>
@@ -574,48 +635,6 @@
                         <td class="numeric">6</td>
                         <td class="numeric" style="background: linear-gradient(to right, rgba(243,156,18,0.35) 66.7%, transparent 66.7%)"><span class="status-warning">66.7%</span></td>
                         <td class="numeric">4.29</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
-                    </tr>
-                    <tr>
-                        <td>gaurav.kachhawa@gupshup.io</td>
-                        <td class="numeric">5</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(243,156,18,0.35) 60.0%, transparent 60.0%)"><span class="status-warning">60.0%</span></td>
-                        <td class="numeric">1.87</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 20.0%, transparent 20.0%)">20.0%</td>
-                    </tr>
-                    <tr>
-                        <td>gabriel.lucena@gupshup.io</td>
-                        <td class="numeric">4</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(243,156,18,0.35) 50.0%, transparent 50.0%)"><span class="status-warning">50.0%</span></td>
-                        <td class="numeric">4.33</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 25.0%, transparent 25.0%)">25.0%</td>
-                    </tr>
-                    <tr>
-                        <td>vedant.sawant@gupshup.io</td>
-                        <td class="numeric">3</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(231,76,60,0.35) 33.3%, transparent 33.3%)"><span class="status-critical">33.3%</span></td>
-                        <td class="numeric">0.82</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
-                    </tr>
-                    <tr>
-                        <td>guilherme.garcia@gupshup.io</td>
-                        <td class="numeric">3</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(46,204,113,0.35) 100.0%, transparent 100.0%)"><span class="status-good">100.0%</span></td>
-                        <td class="numeric">7.65</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 33.3%, transparent 33.3%)">33.3%</td>
-                    </tr>
-                    <tr>
-                        <td>gabriel.torres@gupshup.io</td>
-                        <td class="numeric">3</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(231,76,60,0.35) 33.3%, transparent 33.3%)"><span class="status-critical">33.3%</span></td>
-                        <td class="numeric">1.05</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 33.3%, transparent 33.3%)">33.3%</td>
-                    </tr>
-                    <tr>
-                        <td>natasha.puri@gupshup.io</td>
-                        <td class="numeric">3</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(46,204,113,0.35) 100.0%, transparent 100.0%)"><span class="status-good">100.0%</span></td>
-                        <td class="numeric">0.0</td>
                         <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
                     </tr>
                 </tbody>
@@ -648,10 +667,26 @@
                     <tr>
                         <td>shreyank@lokta.ai</td>
                         <td>lokta.ai</td>
-                        <td class="numeric">15</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(243,156,18,0.35) 60.0%, transparent 60.0%)"><span class="status-warning">60.0%</span></td>
-                        <td class="numeric">3.53</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 6.7%, transparent 6.7%)">6.7%</td>
+                        <td class="numeric">23</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(243,156,18,0.35) 65.2%, transparent 65.2%)"><span class="status-warning">65.2%</span></td>
+                        <td class="numeric">3.86</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 13.0%, transparent 13.0%)">13.0%</td>
+                    </tr>
+                    <tr>
+                        <td>ishwarnale14@gmail.com</td>
+                        <td>gmail.com</td>
+                        <td class="numeric">14</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(243,156,18,0.35) 57.1%, transparent 57.1%)"><span class="status-warning">57.1%</span></td>
+                        <td class="numeric">1.55</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 28.6%, transparent 28.6%)">28.6%</td>
+                    </tr>
+                    <tr>
+                        <td>nishchal.motwani@ampdlocal.com</td>
+                        <td>ampdlocal.com</td>
+                        <td class="numeric">14</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(231,76,60,0.35) 28.6%, transparent 28.6%)"><span class="status-critical">28.6%</span></td>
+                        <td class="numeric">1.78</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 14.3%, transparent 14.3%)">14.3%</td>
                     </tr>
                     <tr>
                         <td>mis@digitalnest.in</td>
@@ -660,6 +695,14 @@
                         <td class="numeric" style="background: linear-gradient(to right, rgba(231,76,60,0.35) 40.0%, transparent 40.0%)"><span class="status-critical">40.0%</span></td>
                         <td class="numeric">0.97</td>
                         <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 20.0%, transparent 20.0%)">20.0%</td>
+                    </tr>
+                    <tr>
+                        <td>devendra@apporbits.com</td>
+                        <td>apporbits.com</td>
+                        <td class="numeric">6</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(231,76,60,0.35) 33.3%, transparent 33.3%)"><span class="status-critical">33.3%</span></td>
+                        <td class="numeric">2.13</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 33.3%, transparent 33.3%)">33.3%</td>
                     </tr>
                     <tr>
                         <td>Anonymous</td>
@@ -678,6 +721,22 @@
                         <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 66.7%, transparent 66.7%)">66.7%</td>
                     </tr>
                     <tr>
+                        <td>adhirajvij9@gmail.com</td>
+                        <td>gmail.com</td>
+                        <td class="numeric">3</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(231,76,60,0.35) 33.3%, transparent 33.3%)"><span class="status-critical">33.3%</span></td>
+                        <td class="numeric">2.17</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 33.3%, transparent 33.3%)">33.3%</td>
+                    </tr>
+                    <tr>
+                        <td>admin@bloomerce.ai</td>
+                        <td>bloomerce.ai</td>
+                        <td class="numeric">3</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(46,204,113,0.35) 100.0%, transparent 100.0%)"><span class="status-good">100.0%</span></td>
+                        <td class="numeric">0.0</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
+                    </tr>
+                    <tr>
                         <td>shai@cohens.dev</td>
                         <td>cohens.dev</td>
                         <td class="numeric">2</td>
@@ -686,11 +745,27 @@
                         <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
                     </tr>
                     <tr>
-                        <td>devendra@apporbits.com</td>
-                        <td>apporbits.com</td>
+                        <td>basavaraj@bullkingtimes.com</td>
+                        <td>bullkingtimes.com</td>
+                        <td class="numeric">2</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(46,204,113,0.35) 100.0%, transparent 100.0%)"><span class="status-good">100.0%</span></td>
+                        <td class="numeric">8.07</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
+                    </tr>
+                    <tr>
+                        <td>florela2003@yahoo.com</td>
+                        <td>yahoo.com</td>
+                        <td class="numeric">2</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(46,204,113,0.35) 100.0%, transparent 100.0%)"><span class="status-good">100.0%</span></td>
+                        <td class="numeric">1.1</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 100.0%, transparent 100.0%)">100.0%</td>
+                    </tr>
+                    <tr>
+                        <td>adityagupta318@gmail.com</td>
+                        <td>gmail.com</td>
                         <td class="numeric">2</td>
                         <td class="numeric" style="background: linear-gradient(to right, rgba(231,76,60,0.35) 0.0%, transparent 0.0%)"><span class="status-critical">0.0%</span></td>
-                        <td class="numeric">0.6</td>
+                        <td class="numeric">0.2</td>
                         <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
                     </tr>
                     <tr>
@@ -700,6 +775,22 @@
                         <td class="numeric" style="background: linear-gradient(to right, rgba(46,204,113,0.35) 100.0%, transparent 100.0%)"><span class="status-good">100.0%</span></td>
                         <td class="numeric">5.05</td>
                         <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
+                    </tr>
+                    <tr>
+                        <td>hardik@vertexmediahouse.com</td>
+                        <td>vertexmediahouse.com</td>
+                        <td class="numeric">1</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(46,204,113,0.35) 100.0%, transparent 100.0%)"><span class="status-good">100.0%</span></td>
+                        <td class="numeric">0.0</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
+                    </tr>
+                    <tr>
+                        <td>sales@indiatradersagra.com</td>
+                        <td>indiatradersagra.com</td>
+                        <td class="numeric">1</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(46,204,113,0.35) 100.0%, transparent 100.0%)"><span class="status-good">100.0%</span></td>
+                        <td class="numeric">0.85</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 100.0%, transparent 100.0%)">100.0%</td>
                     </tr>
                 </tbody>
             </table>
@@ -717,8 +808,8 @@
         <script>
             (function() {
                 const langs_standalone = [
-                    ['English', 114, 23.7, 24.6],
-                    ['Portuguese', 9, 11.1, 11.1],
+                    ['English', 251, 28.3, 29.1],
+                    ['Portuguese', 13, 30.8, 15.4],
                 ];
                 new Chart(document.getElementById('languageChart_standalone'), {
                     data: {
@@ -769,17 +860,17 @@
                 <tbody>
                     <tr>
                         <td>1 intent</td>
-                        <td class="numeric">105</td>
-                        <td class="numeric"><span class="status-warning">75.2%</span></td>
+                        <td class="numeric">225</td>
+                        <td class="numeric"><span class="status-warning">68.9%</span></td>
                     </tr>
                     <tr>
                         <td>2 intents</td>
-                        <td class="numeric">16</td>
-                        <td class="numeric"><span class="status-good">87.5%</span></td>
+                        <td class="numeric">35</td>
+                        <td class="numeric"><span class="status-good">85.7%</span></td>
                     </tr>
                     <tr>
                         <td>3 intents</td>
-                        <td class="numeric">1</td>
+                        <td class="numeric">3</td>
                         <td class="numeric"><span class="status-good">100.0%</span></td>
                     </tr>
                     <tr>
@@ -805,13 +896,28 @@
                 <tbody>
                     <tr>
                         <td>setup</td>
-                        <td class="numeric">78</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 20.5%, transparent 20.5%)">20.5%</td>
+                        <td class="numeric">171</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 24.0%, transparent 24.0%)">24.0%</td>
+                    </tr>
+                    <tr>
+                        <td>definition</td>
+                        <td class="numeric">36</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 44.4%, transparent 44.4%)">44.4%</td>
                     </tr>
                     <tr>
                         <td>schema</td>
+                        <td class="numeric">24</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 12.5%, transparent 12.5%)">12.5%</td>
+                    </tr>
+                    <tr>
+                        <td>overview</td>
                         <td class="numeric">20</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 10.0%, transparent 10.0%)">10.0%</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 85.0%, transparent 85.0%)">85.0%</td>
+                    </tr>
+                    <tr>
+                        <td>page_lookup</td>
+                        <td class="numeric">14</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 50.0%, transparent 50.0%)">50.0%</td>
                     </tr>
                     <tr>
                         <td>kb_error</td>
@@ -819,43 +925,33 @@
                         <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
                     </tr>
                     <tr>
-                        <td>definition</td>
-                        <td class="numeric">11</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 45.5%, transparent 45.5%)">45.5%</td>
-                    </tr>
-                    <tr>
                         <td>troubleshooting</td>
-                        <td class="numeric">6</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 33.3%, transparent 33.3%)">33.3%</td>
-                    </tr>
-                    <tr>
-                        <td>page_lookup</td>
-                        <td class="numeric">5</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 80.0%, transparent 80.0%)">80.0%</td>
-                    </tr>
-                    <tr>
-                        <td>overview</td>
-                        <td class="numeric">5</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 80.0%, transparent 80.0%)">80.0%</td>
+                        <td class="numeric">10</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 50.0%, transparent 50.0%)">50.0%</td>
                     </tr>
                     <tr>
                         <td>compare</td>
+                        <td class="numeric">7</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 28.6%, transparent 28.6%)">28.6%</td>
+                    </tr>
+                    <tr>
+                        <td>refusal</td>
+                        <td class="numeric">7</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
+                    </tr>
+                    <tr>
+                        <td>behavior</td>
                         <td class="numeric">3</td>
                         <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 66.7%, transparent 66.7%)">66.7%</td>
                     </tr>
                     <tr>
-                        <td>unsupported</td>
+                        <td>case_study</td>
                         <td class="numeric">2</td>
                         <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
                     </tr>
                     <tr>
-                        <td>refusal</td>
-                        <td class="numeric">1</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
-                    </tr>
-                    <tr>
-                        <td>case_study</td>
-                        <td class="numeric">1</td>
+                        <td>unsupported</td>
+                        <td class="numeric">2</td>
                         <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
                     </tr>
                 </tbody>
@@ -922,6 +1018,21 @@
                             <td>CTX</td>
                             <td class="numeric" style="color: #e74c3c;">0.85</td>
                         </tr>
+                        <tr>
+                            <td>No Gupshup Console, como consultar ou exportar analytics de WhatsApp por projeto com métricas de req</td>
+                            <td>Analytics</td>
+                            <td class="numeric">1.25</td>
+                        </tr>
+                        <tr style="background: rgba(231,76,60,0.07);">
+                            <td>No WhatsApp, qual é a diferença entre o Username e o Display Name das marcas?</td>
+                            <td>Agent Assist</td>
+                            <td class="numeric" style="color: #e74c3c;">0.55</td>
+                        </tr>
+                        <tr style="background: rgba(231,76,60,0.07);">
+                            <td>Quais são os principais clientes do segmento CPG da Gupshup e quais regiões de atuação? Sei que em L</td>
+                            <td>CTX</td>
+                            <td class="numeric" style="color: #e74c3c;">0.35</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -963,28 +1074,28 @@
                 <div class="card" style="border-left: 5px solid #e74c3c;">
                     <div class="metric">
                         <div class="metric-label">CC Express — Volume</div>
-                        <div class="metric-value">12</div>
+                        <div class="metric-value">14</div>
                         <div class="metric-unit">traces</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #e74c3c;">
                     <div class="metric">
                         <div class="metric-label">Answer Rate</div>
-                        <div class="metric-value status-good">83.3%</div>
-                        <div class="metric-unit">(10 answered)</div>
+                        <div class="metric-value status-good">85.7%</div>
+                        <div class="metric-unit">(12 answered)</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #e74c3c;">
                     <div class="metric">
                         <div class="metric-label">IDK Rate</div>
-                        <div class="metric-value status-good">16.7%</div>
+                        <div class="metric-value status-good">14.3%</div>
                         <div class="metric-unit">(2 queries)</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #e74c3c;">
                     <div class="metric">
                         <div class="metric-label">Avg Confidence</div>
-                        <div class="metric-value">4.51</div>
+                        <div class="metric-value">3.86</div>
                         <div class="metric-unit">out of 20</div>
                     </div>
                 </div>
@@ -1010,28 +1121,28 @@
                 <div class="card" style="border-left: 5px solid #667eea;">
                     <div class="metric">
                         <div class="metric-label">Total Conversations</div>
-                        <div class="metric-value">4</div>
-                        <div class="metric-unit">12 queries</div>
+                        <div class="metric-value">6</div>
+                        <div class="metric-unit">14 queries</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #2ecc71;">
                     <div class="metric">
                         <div class="metric-label">Single-Turn</div>
-                        <div class="metric-value status-good">25.0%</div>
-                        <div class="metric-unit">(1 conversations)</div>
+                        <div class="metric-value status-good">50.0%</div>
+                        <div class="metric-unit">(3 conversations)</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #f39c12;">
                     <div class="metric">
                         <div class="metric-label">Multi-Turn</div>
-                        <div class="metric-value status-warning">75.0%</div>
+                        <div class="metric-value status-warning">50.0%</div>
                         <div class="metric-unit">(3 conversations)</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #667eea;">
                     <div class="metric">
                         <div class="metric-label">Avg Queries / Conversation</div>
-                        <div class="metric-value">3.0</div>
+                        <div class="metric-value">2.33</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #aaa;">
@@ -1055,7 +1166,7 @@
         <script>
             (function() {
                 const labels = ['1', '2', '3', '4+'];
-                const counts = [1, 2, 0, 1];
+                const counts = [3, 2, 0, 1];
                 const rates = [100.0, 50.0, 0.0, 100.0];
                 new Chart(document.getElementById('successByLength_cc_express'), {
                     data: {
@@ -1095,19 +1206,19 @@
                 <div class="card" style="border-left: 5px solid #667eea;">
                     <div class="metric">
                         <div class="metric-label">Root Queries</div>
-                        <div class="metric-value">4</div>
+                        <div class="metric-value">6</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">Answer Rate</div>
-                        <div class="metric-value status-good">75.0%</div>
+                        <div class="metric-value status-good">83.3%</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">IDK Rate</div>
-                        <div class="metric-value status-critical">25.0%</div>
+                        <div class="metric-value status-critical">16.7%</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">Avg Confidence</div>
-                        <div class="metric-value">2.61</div>
+                        <div class="metric-value">1.74</div>
                     </div>
                 </div>
                 <div class="card" style="border-left: 5px solid #f39c12;">
@@ -1138,7 +1249,7 @@
                     data: {
                         labels: ['Answer %', 'IDK %', 'Avg Confidence'],
                         datasets: [
-                            { label: 'Root Query', data: [75.0, 25.0, 2.61], backgroundColor: 'rgba(102,126,234,0.7)', borderColor: 'rgba(102,126,234,1)', borderWidth: 1, borderRadius: 6 },
+                            { label: 'Root Query', data: [83.3, 16.7, 1.74], backgroundColor: 'rgba(102,126,234,0.7)', borderColor: 'rgba(102,126,234,1)', borderWidth: 1, borderRadius: 6 },
                             { label: 'Follow-up', data: [87.5, 12.5, 5.46], backgroundColor: 'rgba(243,156,18,0.7)', borderColor: 'rgba(243,156,18,1)', borderWidth: 1, borderRadius: 6 }
                         ]
                     },
@@ -1190,22 +1301,22 @@
             <div class="card" style="border-left: 5px solid #667eea;">
                 <div class="metric">
                     <div class="metric-label">Total Queries</div>
-                    <div class="metric-value">12</div>
+                    <div class="metric-value">14</div>
                 </div>
             </div>
 
             <div class="card" style="border-left: 5px solid #2ecc71;">
                 <div class="metric">
                     <div class="metric-label">Answer Rate</div>
-                    <div class="metric-value status-good">83.3%</div>
-                    <div class="metric-unit">(10 answered)</div>
+                    <div class="metric-value status-good">85.7%</div>
+                    <div class="metric-unit">(12 answered)</div>
                 </div>
             </div>
 
             <div class="card" style="border-left: 5px solid #e74c3c;">
                 <div class="metric">
                     <div class="metric-label">IDK Rate</div>
-                    <div class="metric-value status-good">16.7%</div>
+                    <div class="metric-value status-good">14.3%</div>
                     <div class="metric-unit">(2 queries)</div>
                 </div>
             </div>
@@ -1213,7 +1324,7 @@
             <div class="card" style="border-left: 5px solid #2ecc71;">
                 <div class="metric">
                     <div class="metric-label">Avg Confidence</div>
-                    <div class="metric-value status-good">4.51</div>
+                    <div class="metric-value status-good">3.86</div>
                     <div class="metric-unit">out of 20</div>
                 </div>
             </div>
@@ -1221,7 +1332,7 @@
             <div class="card" style="border-left: 5px solid #f39c12;">
                 <div class="metric">
                     <div class="metric-label">Video Attach Rate</div>
-                    <div class="metric-value status-warning">60.0%</div>
+                    <div class="metric-value status-warning">50.0%</div>
                     <div class="metric-unit">of answers</div>
                 </div>
             </div>
@@ -1251,14 +1362,14 @@
                     <tr>
                         <td>Agent Assist</td>
                         <td class="numeric">9</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 75.0%, transparent 75.0%)">75.0%</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 64.3%, transparent 64.3%)">64.3%</td>
                         <td class="numeric">5.61</td>
                     </tr>
                     <tr>
                         <td>General</td>
-                        <td class="numeric">3</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 25.0%, transparent 25.0%)">25.0%</td>
-                        <td class="numeric">1.2</td>
+                        <td class="numeric">5</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 35.7%, transparent 35.7%)">35.7%</td>
+                        <td class="numeric">0.72</td>
                     </tr>
                 </tbody>
             </table>
@@ -1277,10 +1388,10 @@
             (function() {
                 const intents_cc_express = [
                     ['setup', 8, 75.0, 62.5],
+                    ['unsupported', 3, 100.0, 0.0],
                     ['overview', 2, 100.0, 100.0],
                     ['definition', 1, 100.0, 0.0],
                     ['behavior', 1, 100.0, 100.0],
-                    ['unsupported', 1, 100.0, 0.0],
                     ['refusal', 1, 100.0, 0.0],
                 ];
                 const labels_cc_express = intents_cc_express.map(r => r[0]);
@@ -1343,6 +1454,20 @@
                         <td class="numeric">0.57</td>
                         <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
                     </tr>
+                    <tr>
+                        <td>yashas.reddy@gupshup.io</td>
+                        <td class="numeric">1</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(46,204,113,0.35) 100.0%, transparent 100.0%)"><span class="status-good">100.0%</span></td>
+                        <td class="numeric">0.0</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
+                    </tr>
+                    <tr>
+                        <td>sanchit.aggarwal@gupshup.io</td>
+                        <td class="numeric">1</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(46,204,113,0.35) 100.0%, transparent 100.0%)"><span class="status-good">100.0%</span></td>
+                        <td class="numeric">0.0</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -1402,7 +1527,7 @@
         <script>
             (function() {
                 const langs_cc_express = [
-                    ['English', 12, 16.7, 50.0],
+                    ['English', 14, 14.3, 42.9],
                 ];
                 new Chart(document.getElementById('languageChart_cc_express'), {
                     data: {
@@ -1453,8 +1578,8 @@
                 <tbody>
                     <tr>
                         <td>1 intent</td>
-                        <td class="numeric">11</td>
-                        <td class="numeric"><span class="status-good">81.8%</span></td>
+                        <td class="numeric">13</td>
+                        <td class="numeric"><span class="status-good">84.6%</span></td>
                     </tr>
                     <tr>
                         <td>3 intents</td>
@@ -1483,6 +1608,11 @@
                         <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 62.5%, transparent 62.5%)">62.5%</td>
                     </tr>
                     <tr>
+                        <td>unsupported</td>
+                        <td class="numeric">3</td>
+                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
+                    </tr>
+                    <tr>
                         <td>overview</td>
                         <td class="numeric">2</td>
                         <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 100.0%, transparent 100.0%)">100.0%</td>
@@ -1496,11 +1626,6 @@
                         <td>behavior</td>
                         <td class="numeric">1</td>
                         <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 100.0%, transparent 100.0%)">100.0%</td>
-                    </tr>
-                    <tr>
-                        <td>unsupported</td>
-                        <td class="numeric">1</td>
-                        <td class="numeric" style="background: linear-gradient(to right, rgba(102,126,234,0.35) 0.0%, transparent 0.0%)">0.0%</td>
                     </tr>
                     <tr>
                         <td>refusal</td>
@@ -1590,15 +1715,15 @@
                 <div class="card" style="border-left: 5px solid #9b59b6;">
                     <div class="metric">
                         <div class="metric-label">CCX Avg Confidence</div>
-                        <div class="metric-value">4.51</div>
+                        <div class="metric-value">3.86</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">Standalone Avg Confidence</div>
-                        <div class="metric-value">3.98</div>
+                        <div class="metric-value">3.72</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">Confidence Delta</div>
-                        <div class="metric-value status-warning">+0.53</div>
+                        <div class="metric-value status-good">+0.15</div>
                     </div>
                 </div>
             </div>
@@ -1654,9 +1779,9 @@
             <div class="data-source">
                 <strong>Data Source:</strong> Live Langfuse API (Real-time telemetry)
                 <br>
-                <strong>Dashboard Generated:</strong> 2026-06-27 05:14:44 UTC
+                <strong>Dashboard Generated:</strong> 2026-06-27 05:19:44 UTC
                 <br>
-                <strong>Coverage:</strong> Last 7 days of production queries
+                <strong>Coverage:</strong> Last 15 days of production queries
             </div>
         </div>
     </div>
