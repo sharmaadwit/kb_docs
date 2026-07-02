@@ -426,6 +426,88 @@ def select_video(query: str, intent: str, module: str, ranked_rows, language=Non
         return None
 
 
+def select_demoforge_demo(query: str, intent: str, module: str, context) -> dict:
+    """Select a DemoForge demo matching the query intent and module.
+
+    DemoForge demos are organized by intent (how_to, overview, setup, etc) and
+    module (campaigns, bot_studio, rcs, whatsapp, etc). This function maps the
+    intent and module to the best matching demo_id, looks it up in the manifest,
+    and returns a structured demo dict for delivery to the client.
+
+    Args:
+        query: User's natural language query (used for fallback scoring).
+        intent: Classification of user intent (e.g. 'how_to', 'overview', 'setup').
+        module: KB module name (e.g. 'bot_studio', 'campaigns', 'rcs').
+        context: Agent context dict with access to secrets and file I/O.
+
+    Returns:
+        A dict with keys:
+        - type: 'demoforge' (constant)
+        - demo_id: String ID for the DemoForge demo
+        - name: Human-readable demo name
+        - industry: Target industry (e.g. 'Banking', 'Retail')
+        - persona: Target persona (e.g. 'Head of Marketing', 'VP of Engineering')
+        - share_token: None (will be populated later via DemoForge API)
+
+        Returns None if no matching demo found.
+
+    Example:
+        >>> demo = select_demoforge_demo(
+        ...     query="how do I send an RCS campaign",
+        ...     intent="how_to",
+        ...     module="rcs",
+        ...     context=agent_context,
+        ... )
+        >>> if demo:
+        ...     print(f"Selected: {demo['name']} for {demo['persona']}")
+    """
+    try:
+        # Load manifest with module-to-demo mappings
+        manifest_path = _get_secret(context, "KB_DEMOFORGE_MANIFEST_PATH") or "kb/demoforge_manifest.json"
+        manifest = kb_storage.read_json(manifest_path, context)
+        if not manifest:
+            return None
+
+        # The manifest structure: {"module_to_demos": {module_name: {intent: demo_id}}, "demos_by_id": {demo_id: {...}}}
+        # For now, flatten the structure from projects+demos into a lookup-friendly format
+        module_to_demos = manifest.get("module_to_demos")
+        demos_by_id = manifest.get("demos_by_id")
+
+        # If the manifest hasn't been pre-indexed, build the lookups from projects
+        if not module_to_demos or not demos_by_id:
+            return None
+
+        # Map intent to underscore format (e.g. "how-to" -> "how_to")
+        intent_key = str(intent or "").lower().replace("-", "_")
+        if not intent_key:
+            return None
+
+        # Look up demo_id for this module + intent combination
+        module_key = str(module or "").lower().replace("-", "_")
+        module_demos = module_to_demos.get(module_key, {})
+        demo_id = module_demos.get(intent_key)
+
+        if not demo_id:
+            return None
+
+        # Retrieve the full demo metadata
+        demo = demos_by_id.get(demo_id)
+        if not demo or not isinstance(demo, dict):
+            return None
+
+        return {
+            "type": "demoforge",
+            "demo_id": demo_id,
+            "name": demo.get("name", ""),
+            "industry": demo.get("industry"),
+            "persona": demo.get("persona"),
+            "share_token": None,  # Filled later via DemoForge API (create_share_token)
+        }
+    except Exception:
+        logger.exception("Failed selecting DemoForge demo")
+        return None
+
+
 def catalog_videos(query: str, language=None, context=None, max_videos: int = 10):
     """Return the curated platform-tour videos (manifest entries flagged ``pitch``).
 
