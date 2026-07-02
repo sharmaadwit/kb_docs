@@ -6486,6 +6486,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                         language=_lang, context=context, require_query_overlap=False,
                     ) or []
                 video_source = "youtube" if videos else "none"
+                _df_fallback_reason = "overview_intent"
             else:
                 # Non-overview: try DemoForge first, then YouTube fallback.
                 demoforge_demo = kb_video.select_demoforge_demo(
@@ -6511,9 +6512,9 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                         videos = [demoforge_demo]
                         video_source = "demoforge"
                     else:
-                        videos = _youtube_single(reason="demoforge_share_link_failed")
+                        videos = _youtube_single(reason="api_failure")
                 else:
-                    videos = _youtube_single(reason="no_demoforge_demo")
+                    videos = _youtube_single(reason="no_demoforge_match")
         except Exception as e:
             logger.warning(f"Video selection failed: {e}; falling back to YouTube")
             try:
@@ -6563,6 +6564,8 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
         video_meta = kb_video.video_telemetry_metadata(
             video, "kb_answer", appended_to_answer=video_appended,
         )
+        if _df_fallback_reason:
+            video_meta["fallback_reason"] = _df_fallback_reason
         # Add DemoForge-specific telemetry
         if video and video.get("type") == "demoforge":
             video_meta["video_source"] = "demoforge"

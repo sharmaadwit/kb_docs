@@ -483,7 +483,7 @@ def select_demoforge_demo(query: str, intent: str, module: str, context) -> dict
             return None
 
         # Look up demo_id for this module + intent combination
-        module_key = str(module or "").lower().replace("-", "_")
+        module_key = str(module or "").lower().replace("-", "_").replace(" ", "_")
         module_demos = module_to_demos.get(module_key, {})
         demo_id = module_demos.get(intent_key)
 

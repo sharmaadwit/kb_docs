@@ -1,135 +1,271 @@
 {
-  "projects": [
-    {
-      "id": "6a2695c69096c01ba76af563",
-      "name": "Monitoring",
-      "demo_count": 1,
-      "demos": [
-        {
-          "id": "6a26960d9096c01ba76af564",
-          "name": "chatpulse",
-          "use_case": "This tool continuously monitors your applications and modules for errors every 20 mins (configurable)). It collects logs from Graylog, classifies failures with AI, and sends alerts (e.g. Slack) so you can fix issues quickly. You configure triggers per project (how often to run) and modules (which products to monitor).",
-          "industry": "Internal",
-          "persona": "VP",
-          "status": "complete"
-        }
-      ]
+  "module_to_demos": {
+    "campaign_manager": {
+      "overview": "6a4402a6f14e94517beb8474",
+      "how_to": "6a4402a6f14e94517beb8474",
+      "setup": "6a4402a6f14e94517beb8474",
+      "task": "6a4402a6f14e94517beb8474",
+      "definition": "6a4402a6f14e94517beb8474",
+      "behavior": "6a4402a6f14e94517beb8474",
+      "troubleshooting": "6a4402a6f14e94517beb8474",
+      "schema": "6a4402a6f14e94517beb8474",
+      "page_lookup": "6a4402a6f14e94517beb8474",
+      "compare": "6a4402a6f14e94517beb8474",
+      "chain": "6a4402a6f14e94517beb8474"
     },
-    {
-      "id": "6a22472c006916ed72e6f0a9",
-      "name": "Sales / Presales",
-      "demo_count": 1,
-      "demos": [
-        {
-          "id": "6a224d31006916ed72e6f0aa",
-          "name": "demoforge",
-          "use_case": "Automated demo creation and delivery",
-          "industry": "SaaS / Sales technology",
-          "persona": "Sales engineer or pre-sales pod member",
-          "status": "complete"
-        }
-      ]
+    "campaign manager": {
+      "overview": "6a4402a6f14e94517beb8474",
+      "how_to": "6a4402a6f14e94517beb8474",
+      "setup": "6a4402a6f14e94517beb8474",
+      "task": "6a4402a6f14e94517beb8474",
+      "definition": "6a4402a6f14e94517beb8474",
+      "behavior": "6a4402a6f14e94517beb8474",
+      "troubleshooting": "6a4402a6f14e94517beb8474",
+      "schema": "6a4402a6f14e94517beb8474",
+      "page_lookup": "6a4402a6f14e94517beb8474",
+      "compare": "6a4402a6f14e94517beb8474",
+      "chain": "6a4402a6f14e94517beb8474"
     },
-    {
-      "id": "6a213c233808c27de0c875f1",
-      "name": "GS Demo",
-      "demo_count": 8,
-      "demos": [
-        {
-          "id": "6a4402a6f14e94517beb8474",
-          "name": "Campaign Manager Demo",
-          "use_case": "Send the same offer or update to many recipients at once, with personalized content, then measure delivery and engagement after the send.",
-          "industry": "Banking",
-          "persona": "Head of Marketing",
-          "status": "complete"
-        },
-        {
-          "id": "6a44013ef14e94517beb846c",
-          "name": "Personalize Demo",
-          "use_case": "Event-driven customer profile enrichment and downstream actioning.",
-          "industry": "Skincare",
-          "persona": "Head of Marketing",
-          "status": "complete"
-        },
-        {
-          "id": "6a43fde1f14e94517beb845f",
-          "name": "AI Admin Demo",
-          "use_case": "Domain-tuned LLM handles routine banking queries (balance, mini-statement, KYC status) and escalates the messy stuff to a human with full conversation context.",
-          "industry": "Banking",
-          "persona": "Director of Product",
-          "status": "complete"
-        },
-        {
-          "id": "6a43fca8f14e94517beb8455",
-          "name": "RCS Demo",
-          "use_case": "Send a rich RCS card to your contact base and watch the platform fall back to SMS or WhatsApp for handsets that don't support RCS — without you writing any routing logic.",
-          "industry": "Banking",
-          "persona": "Head of Marketing",
-          "status": "complete"
-        },
-        {
-          "id": "6a43fbc7f14e94517beb844a",
-          "name": "CTWA Demo",
-          "use_case": "Replace a static lead form with a 60-second chat that disqualifies tyre-kickers and books warm leads on the sales calendar.",
-          "industry": "B2B SaaS",
-          "persona": "Head of Marketing",
-          "status": "complete"
-        },
-        {
-          "id": "6a43f349f14e94517beb843f",
-          "name": "Agent Assist Demo",
-          "use_case": "Live agent sees AI-suggested replies, customer-history summaries, and intent tags in real time — without leaving the inbox.",
-          "industry": "Contact Center",
-          "persona": "VP of Support Team",
-          "status": "complete"
-        },
-        {
-          "id": "6a433c867d620401bb6774c1",
-          "name": "Bot Studio",
-          "use_case": "Build a single conversation journey in Bot Studio and deploy it to WhatsApp, Instagram, and the web widget simultaneously — no per-channel rework.",
-          "industry": "General",
-          "persona": "VP of Engineering",
-          "status": "complete"
-        },
-        {
-          "id": "6a38bd8d9096c01ba76af5f0",
-          "name": "General Demo",
-          "use_case": "A bank wants to understand our Console capabilities and features. A walkthrough of the entire platform is required.",
-          "industry": "Banking",
-          "persona": "Head of Digital Banking / VP Retail Loans",
-          "status": "complete"
-        }
-      ]
+    "personalize": {
+      "overview": "6a44013ef14e94517beb846c",
+      "how_to": "6a44013ef14e94517beb846c",
+      "setup": "6a44013ef14e94517beb846c",
+      "task": "6a44013ef14e94517beb846c",
+      "definition": "6a44013ef14e94517beb846c",
+      "behavior": "6a44013ef14e94517beb846c",
+      "troubleshooting": "6a44013ef14e94517beb846c",
+      "schema": "6a44013ef14e94517beb846c",
+      "page_lookup": "6a44013ef14e94517beb846c",
+      "compare": "6a44013ef14e94517beb846c",
+      "chain": "6a44013ef14e94517beb846c"
     },
-    {
-      "id": "6a0f06d88ae7349cf7bc0900",
-      "name": "Commerce POD",
-      "demo_count": 1,
-      "demos": [
-        {
-          "id": "6a0f0a368ae7349cf7bc0901",
-          "name": "commerce-root-demo",
-          "use_case": "Launch a fully-managed WhatsApp commerce storefront for a D2C brand — product discovery, AI-led shopping assistant, cart + checkout, abandoned-cart recovery and post-purchase engagement — provisioned end-to-end (WhatsApp templates, journeys, segments, AI agent) from a single Gupshup onboarding flow, with weekly revenue tracking for the pod.",
-          "industry": "Retail & D2C E-commerce (also applicable to Fashion, Beauty, Grocery, Consumer Electronics).",
-          "persona": "Head of Digital / Growth at a D2C brand",
-          "status": "complete"
-        }
-      ]
+    "ai_admin": {
+      "overview": "6a43fde1f14e94517beb845f",
+      "how_to": "6a43fde1f14e94517beb845f",
+      "setup": "6a43fde1f14e94517beb845f",
+      "task": "6a43fde1f14e94517beb845f",
+      "definition": "6a43fde1f14e94517beb845f",
+      "behavior": "6a43fde1f14e94517beb845f",
+      "troubleshooting": "6a43fde1f14e94517beb845f",
+      "schema": "6a43fde1f14e94517beb845f",
+      "page_lookup": "6a43fde1f14e94517beb845f",
+      "compare": "6a43fde1f14e94517beb845f",
+      "chain": "6a43fde1f14e94517beb845f"
     },
-    {
-      "id": "6a0d6dcc8ae7349cf7bc08e9",
-      "name": "Click To Chat",
-      "demo_count": 1,
-      "demos": [
-        {
-          "id": "6a0de0b48ae7349cf7bc08f0",
-          "name": "Ctxdemo1",
-          "use_case": "Re-engage prospects who started a loan application but didn't finish, using WhatsApp to answer questions, collect missing documents, and route to a human banker.",
-          "industry": "Banking",
-          "persona": "Head of Digital Banking / VP Retail Loans",
-          "status": "complete"
-        }
-      ]
+    "ai admin": {
+      "overview": "6a43fde1f14e94517beb845f",
+      "how_to": "6a43fde1f14e94517beb845f",
+      "setup": "6a43fde1f14e94517beb845f",
+      "task": "6a43fde1f14e94517beb845f",
+      "definition": "6a43fde1f14e94517beb845f",
+      "behavior": "6a43fde1f14e94517beb845f",
+      "troubleshooting": "6a43fde1f14e94517beb845f",
+      "schema": "6a43fde1f14e94517beb845f",
+      "page_lookup": "6a43fde1f14e94517beb845f",
+      "compare": "6a43fde1f14e94517beb845f",
+      "chain": "6a43fde1f14e94517beb845f"
+    },
+    "rcs": {
+      "overview": "6a43fca8f14e94517beb8455",
+      "how_to": "6a43fca8f14e94517beb8455",
+      "setup": "6a43fca8f14e94517beb8455",
+      "task": "6a43fca8f14e94517beb8455",
+      "definition": "6a43fca8f14e94517beb8455",
+      "behavior": "6a43fca8f14e94517beb8455",
+      "troubleshooting": "6a43fca8f14e94517beb8455",
+      "schema": "6a43fca8f14e94517beb8455",
+      "page_lookup": "6a43fca8f14e94517beb8455",
+      "compare": "6a43fca8f14e94517beb8455",
+      "chain": "6a43fca8f14e94517beb8455"
+    },
+    "ctwa": {
+      "overview": "6a43fbc7f14e94517beb844a",
+      "how_to": "6a43fbc7f14e94517beb844a",
+      "setup": "6a43fbc7f14e94517beb844a",
+      "task": "6a43fbc7f14e94517beb844a",
+      "definition": "6a43fbc7f14e94517beb844a",
+      "behavior": "6a43fbc7f14e94517beb844a",
+      "troubleshooting": "6a43fbc7f14e94517beb844a",
+      "schema": "6a43fbc7f14e94517beb844a",
+      "page_lookup": "6a43fbc7f14e94517beb844a",
+      "compare": "6a43fbc7f14e94517beb844a",
+      "chain": "6a43fbc7f14e94517beb844a"
+    },
+    "ctx": {
+      "overview": "6a43fbc7f14e94517beb844a",
+      "how_to": "6a43fbc7f14e94517beb844a",
+      "setup": "6a43fbc7f14e94517beb844a",
+      "task": "6a43fbc7f14e94517beb844a",
+      "definition": "6a43fbc7f14e94517beb844a",
+      "behavior": "6a43fbc7f14e94517beb844a",
+      "troubleshooting": "6a43fbc7f14e94517beb844a",
+      "schema": "6a43fbc7f14e94517beb844a",
+      "page_lookup": "6a43fbc7f14e94517beb844a",
+      "compare": "6a43fbc7f14e94517beb844a",
+      "chain": "6a43fbc7f14e94517beb844a"
+    },
+    "agent_assist": {
+      "overview": "6a43f349f14e94517beb843f",
+      "how_to": "6a43f349f14e94517beb843f",
+      "setup": "6a43f349f14e94517beb843f",
+      "task": "6a43f349f14e94517beb843f",
+      "definition": "6a43f349f14e94517beb843f",
+      "behavior": "6a43f349f14e94517beb843f",
+      "troubleshooting": "6a43f349f14e94517beb843f",
+      "schema": "6a43f349f14e94517beb843f",
+      "page_lookup": "6a43f349f14e94517beb843f",
+      "compare": "6a43f349f14e94517beb843f",
+      "chain": "6a43f349f14e94517beb843f"
+    },
+    "agent assist": {
+      "overview": "6a43f349f14e94517beb843f",
+      "how_to": "6a43f349f14e94517beb843f",
+      "setup": "6a43f349f14e94517beb843f",
+      "task": "6a43f349f14e94517beb843f",
+      "definition": "6a43f349f14e94517beb843f",
+      "behavior": "6a43f349f14e94517beb843f",
+      "troubleshooting": "6a43f349f14e94517beb843f",
+      "schema": "6a43f349f14e94517beb843f",
+      "page_lookup": "6a43f349f14e94517beb843f",
+      "compare": "6a43f349f14e94517beb843f",
+      "chain": "6a43f349f14e94517beb843f"
+    },
+    "bot_studio": {
+      "overview": "6a433c867d620401bb6774c1",
+      "how_to": "6a433c867d620401bb6774c1",
+      "setup": "6a433c867d620401bb6774c1",
+      "task": "6a433c867d620401bb6774c1",
+      "definition": "6a433c867d620401bb6774c1",
+      "behavior": "6a433c867d620401bb6774c1",
+      "troubleshooting": "6a433c867d620401bb6774c1",
+      "schema": "6a433c867d620401bb6774c1",
+      "page_lookup": "6a433c867d620401bb6774c1",
+      "compare": "6a433c867d620401bb6774c1",
+      "chain": "6a433c867d620401bb6774c1"
+    },
+    "bot studio": {
+      "overview": "6a433c867d620401bb6774c1",
+      "how_to": "6a433c867d620401bb6774c1",
+      "setup": "6a433c867d620401bb6774c1",
+      "task": "6a433c867d620401bb6774c1",
+      "definition": "6a433c867d620401bb6774c1",
+      "behavior": "6a433c867d620401bb6774c1",
+      "troubleshooting": "6a433c867d620401bb6774c1",
+      "schema": "6a433c867d620401bb6774c1",
+      "page_lookup": "6a433c867d620401bb6774c1",
+      "compare": "6a433c867d620401bb6774c1",
+      "chain": "6a433c867d620401bb6774c1"
+    },
+    "general": {
+      "overview": "6a38bd8d9096c01ba76af5f0",
+      "how_to": "6a38bd8d9096c01ba76af5f0",
+      "setup": "6a38bd8d9096c01ba76af5f0",
+      "task": "6a38bd8d9096c01ba76af5f0",
+      "definition": "6a38bd8d9096c01ba76af5f0",
+      "behavior": "6a38bd8d9096c01ba76af5f0",
+      "troubleshooting": "6a38bd8d9096c01ba76af5f0",
+      "schema": "6a38bd8d9096c01ba76af5f0",
+      "page_lookup": "6a38bd8d9096c01ba76af5f0",
+      "compare": "6a38bd8d9096c01ba76af5f0",
+      "chain": "6a38bd8d9096c01ba76af5f0"
     }
-  ]
+  },
+  "demos_by_id": {
+    "6a26960d9096c01ba76af564": {
+      "id": "6a26960d9096c01ba76af564",
+      "name": "chatpulse",
+      "use_case": "This tool continuously monitors your applications and modules for errors every 20 mins (configurable)). It collects logs from Graylog, classifies failures with AI, and sends alerts (e.g. Slack) so you can fix issues quickly. You configure triggers per project (how often to run) and modules (which products to monitor).",
+      "industry": "Internal",
+      "persona": "VP",
+      "status": "complete"
+    },
+    "6a224d31006916ed72e6f0aa": {
+      "id": "6a224d31006916ed72e6f0aa",
+      "name": "demoforge",
+      "use_case": "Automated demo creation and delivery",
+      "industry": "SaaS / Sales technology",
+      "persona": "Sales engineer or pre-sales pod member",
+      "status": "complete"
+    },
+    "6a4402a6f14e94517beb8474": {
+      "id": "6a4402a6f14e94517beb8474",
+      "name": "Campaign Manager Demo",
+      "use_case": "Send the same offer or update to many recipients at once, with personalized content, then measure delivery and engagement after the send.",
+      "industry": "Banking",
+      "persona": "Head of Marketing",
+      "status": "complete"
+    },
+    "6a44013ef14e94517beb846c": {
+      "id": "6a44013ef14e94517beb846c",
+      "name": "Personalize Demo",
+      "use_case": "Event-driven customer profile enrichment and downstream actioning.",
+      "industry": "Skincare",
+      "persona": "Head of Marketing",
+      "status": "complete"
+    },
+    "6a43fde1f14e94517beb845f": {
+      "id": "6a43fde1f14e94517beb845f",
+      "name": "AI Admin Demo",
+      "use_case": "Domain-tuned LLM handles routine banking queries (balance, mini-statement, KYC status) and escalates the messy stuff to a human with full conversation context.",
+      "industry": "Banking",
+      "persona": "Director of Product",
+      "status": "complete"
+    },
+    "6a43fca8f14e94517beb8455": {
+      "id": "6a43fca8f14e94517beb8455",
+      "name": "RCS Demo",
+      "use_case": "Send a rich RCS card to your contact base and watch the platform fall back to SMS or WhatsApp for handsets that don't support RCS — without you writing any routing logic.",
+      "industry": "Banking",
+      "persona": "Head of Marketing",
+      "status": "complete"
+    },
+    "6a43fbc7f14e94517beb844a": {
+      "id": "6a43fbc7f14e94517beb844a",
+      "name": "CTWA Demo",
+      "use_case": "Replace a static lead form with a 60-second chat that disqualifies tyre-kickers and books warm leads on the sales calendar.",
+      "industry": "B2B SaaS",
+      "persona": "Head of Marketing",
+      "status": "complete"
+    },
+    "6a43f349f14e94517beb843f": {
+      "id": "6a43f349f14e94517beb843f",
+      "name": "Agent Assist Demo",
+      "use_case": "Live agent sees AI-suggested replies, customer-history summaries, and intent tags in real time — without leaving the inbox.",
+      "industry": "Contact Center",
+      "persona": "VP of Support Team",
+      "status": "complete"
+    },
+    "6a433c867d620401bb6774c1": {
+      "id": "6a433c867d620401bb6774c1",
+      "name": "Bot Studio",
+      "use_case": "Build a single conversation journey in Bot Studio and deploy it to WhatsApp, Instagram, and the web widget simultaneously — no per-channel rework.",
+      "industry": "General",
+      "persona": "VP of Engineering",
+      "status": "complete"
+    },
+    "6a38bd8d9096c01ba76af5f0": {
+      "id": "6a38bd8d9096c01ba76af5f0",
+      "name": "General Demo",
+      "use_case": "A bank wants to understand our Console capabilities and features. A walkthrough of the entire platform is required.",
+      "industry": "Banking",
+      "persona": "Head of Digital Banking / VP Retail Loans",
+      "status": "complete"
+    },
+    "6a0f0a368ae7349cf7bc0901": {
+      "id": "6a0f0a368ae7349cf7bc0901",
+      "name": "commerce-root-demo",
+      "use_case": "Launch a fully-managed WhatsApp commerce storefront for a D2C brand — product discovery, AI-led shopping assistant, cart + checkout, abandoned-cart recovery and post-purchase engagement — provisioned end-to-end (WhatsApp templates, journeys, segments, AI agent) from a single Gupshup onboarding flow, with weekly revenue tracking for the pod.",
+      "industry": "Retail & D2C E-commerce (also applicable to Fashion, Beauty, Grocery, Consumer Electronics).",
+      "persona": "Head of Digital / Growth at a D2C brand",
+      "status": "complete"
+    },
+    "6a0de0b48ae7349cf7bc08f0": {
+      "id": "6a0de0b48ae7349cf7bc08f0",
+      "name": "Ctxdemo1",
+      "use_case": "Re-engage prospects who started a loan application but didn't finish, using WhatsApp to answer questions, collect missing documents, and route to a human banker.",
+      "industry": "Banking",
+      "persona": "Head of Digital Banking / VP Retail Loans",
+      "status": "complete"
+    }
+  }
 }
