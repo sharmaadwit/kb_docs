@@ -1,7 +1,11 @@
+import base64
 import json
 import re
 from datetime import datetime, timezone
 from typing import Dict, List
+from urllib.parse import quote as _kb_quote
+
+import requests
 
 
 def _parse_parameters(parameters: object = None, **kwargs) -> Dict:
@@ -21,23 +25,139 @@ def _parse_parameters(parameters: object = None, **kwargs) -> Dict:
     return {**parameters, **kwargs}
 
 
-def _get_storage():
+# --- Inline provider-agnostic git storage (GitHub/GitLab) ---
+# Self-contained: the skill sandbox forbids importing sibling modules.
+def _kb_secret(context, name):
+    if context is None:
+        return None
     try:
-        import kb_storage
-    except ImportError:
-        import importlib, sys, os
-        sys.path.insert(0, os.path.dirname(__file__))
-        kb_storage = importlib.import_module("kb_storage")
-    return kb_storage
+        v = context.get_secret(name)
+    except Exception:
+        return None
+    if v is None:
+        return None
+    t = str(v).strip()
+    return t or None
+
+
+def _kb_cfg(context):
+    provider = (_kb_secret(context, "KB_GIT_PROVIDER") or "github").strip().lower()
+    if provider not in ("github", "gitlab"):
+        provider = "github"
+    kb_repo = _kb_secret(context, "KB_REPO")
+    owner = repo = project = ""
+    if provider == "github":
+        if kb_repo and "/" in kb_repo:
+            owner, repo = kb_repo.split("/", 1)
+        else:
+            owner = _kb_secret(context, "GITHUB_OWNER") or ""
+            repo = _kb_secret(context, "GITHUB_REPO") or ""
+        project = ("%s/%s" % (owner, repo)) if owner and repo else ""
+    else:
+        project = kb_repo or ""
+    branch = _kb_secret(context, "KB_BRANCH") or _kb_secret(context, "GITHUB_BRANCH") or "main"
+    token = _kb_secret(context, "KB_TOKEN") or _kb_secret(context, "GITHUB_TOKEN") or ""
+    host = (_kb_secret(context, "KB_GITLAB_HOST") or "https://gitlab.com").rstrip("/")
+    return {"provider": provider, "owner": owner, "repo": repo,
+            "project": project, "branch": branch, "token": token, "host": host}
+
+
+def _kb_gl_proj(project):
+    return project if project.isdigit() else _kb_quote(project, safe="")
+
+
+def _kb_read_text(path, context):
+    cfg = _kb_cfg(context)
+    if cfg["provider"] == "github":
+        url = "https://raw.githubusercontent.com/%s/%s/%s/%s" % (
+            cfg["owner"], cfg["repo"], cfg["branch"], path)
+        headers = {"Accept": "application/vnd.github+json"}
+        if cfg["token"]:
+            headers["Authorization"] = "Bearer " + cfg["token"]
+    else:
+        url = "%s/api/v4/projects/%s/repository/files/%s/raw?ref=%s" % (
+            cfg["host"], _kb_gl_proj(cfg["project"]), _kb_quote(path, safe=""), cfg["branch"])
+        headers = {"Accept": "application/json"}
+        if cfg["token"]:
+            headers["PRIVATE-TOKEN"] = cfg["token"]
+    r = requests.get(url, headers=headers, timeout=30)
+    r.raise_for_status()
+    return r.text
+
+
+def _kb_write_file(path, content, message, context):
+    cfg = _kb_cfg(context)
+    encoded = base64.b64encode(content.encode("utf-8")).decode("utf-8")
+    if cfg["provider"] == "github":
+        base = "https://api.github.com/repos/%s/%s/contents/%s" % (
+            cfg["owner"], cfg["repo"], path)
+        h = {"Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"}
+        if cfg["token"]:
+            h["Authorization"] = "Bearer " + cfg["token"]
+        sha = ""
+        rg = requests.get(base, headers=h, params={"ref": cfg["branch"]}, timeout=30)
+        if rg.status_code == 200:
+            sha = (rg.json() or {}).get("sha", "")
+        payload = {"message": message, "content": encoded, "branch": cfg["branch"]}
+        if sha:
+            payload["sha"] = sha
+        r = requests.put(base, headers=h, data=json.dumps(payload), timeout=30)
+        r.raise_for_status()
+        return
+    enc = _kb_gl_proj(cfg["project"])
+    url = "%s/api/v4/projects/%s/repository/files/%s" % (
+        cfg["host"], enc, _kb_quote(path, safe=""))
+    h = {"Accept": "application/json"}
+    if cfg["token"]:
+        h["PRIVATE-TOKEN"] = cfg["token"]
+    body = {"branch": cfg["branch"], "content": encoded,
+            "encoding": "base64", "commit_message": message}
+    r = requests.post(url, headers=h, json=body, timeout=30)
+    if r.status_code == 400 and "already exists" in r.text.lower():
+        r = requests.put(url, headers=h, json=body, timeout=30)
+    r.raise_for_status()
+
+
+def _kb_list_dir(path, context):
+    cfg = _kb_cfg(context)
+    if cfg["provider"] == "github":
+        url = "https://api.github.com/repos/%s/%s/contents/%s" % (
+            cfg["owner"], cfg["repo"], path)
+        h = {"Accept": "application/vnd.github+json"}
+        if cfg["token"]:
+            h["Authorization"] = "Bearer " + cfg["token"]
+        r = requests.get(url, headers=h, params={"ref": cfg["branch"]}, timeout=30)
+        r.raise_for_status()
+        items = r.json()
+        if not isinstance(items, list):
+            return []
+        return [{"type": it.get("type"), "path": it.get("path"), "name": it.get("name")}
+                for it in items]
+    enc = _kb_gl_proj(cfg["project"])
+    url = "%s/api/v4/projects/%s/repository/tree" % (cfg["host"], enc)
+    h = {"Accept": "application/json"}
+    if cfg["token"]:
+        h["PRIVATE-TOKEN"] = cfg["token"]
+    r = requests.get(url, headers=h,
+                     params={"path": path, "ref": cfg["branch"], "per_page": 100}, timeout=30)
+    r.raise_for_status()
+    items = r.json()
+    if not isinstance(items, list):
+        return []
+    out = []
+    for it in items:
+        nm = it.get("name")
+        out.append({"type": "dir" if it.get("type") == "tree" else "file",
+                    "path": (path + "/" + nm) if path else nm, "name": nm})
+    return out
 
 
 def _list_md_files(docs_path: str, context) -> List[str]:
-    kb_storage = _get_storage()
     out = []
     stack = [docs_path.strip("/")]
     while stack:
         p = stack.pop()
-        items = kb_storage.list_directory(p, context=context)
+        items = _kb_list_dir(p, context)
         for item in items:
             t = item.get("type")
             ip = item.get("path") or item.get("name")
@@ -59,7 +179,7 @@ _MAX_TOTAL_CHUNKS = 80_000
 
 
 def _get_raw(path_in_repo: str, context) -> str:
-    text = _get_storage().read_text(path_in_repo, context=context)
+    text = _kb_read_text(path_in_repo, context)
     if len(text.encode("utf-8")) > _MAX_RAW_FILE_BYTES:
         raise RuntimeError("Document exceeds maximum size for ingestion")
     return text
@@ -323,7 +443,7 @@ def _chunk_text(text: str, source: str, chunk_size: int = 1200, overlap: int = 1
 
 
 def _write_file(path_in_repo: str, content: str, message: str, context) -> None:
-    _get_storage().write_file(path_in_repo, content, message, context=context)
+    _kb_write_file(path_in_repo, content, message, context)
 
 
 def _safe_path_segment(path: str, fallback: str) -> str:

@@ -1,11 +1,84 @@
-import logging
+import base64
+import json
 import re
-from urllib.parse import urlencode
+from urllib.parse import urlencode, quote as _kb_quote
 
-import kb_storage
+import requests
 
 
-logger = logging.getLogger(__name__)
+class _NoopLogger:
+    """Sandbox forbids importing `logging`; preserve logger.* call sites as no-ops."""
+    def __getattr__(self, _name):
+        def _noop(*_args, **_kwargs):
+            return None
+        return _noop
+
+
+logger = _NoopLogger()
+
+
+# --- Inline provider-agnostic git storage (GitHub/GitLab) ---
+# Self-contained: the skill sandbox forbids importing sibling modules.
+def _kb_secret(context, name):
+    if context is None:
+        return None
+    try:
+        v = context.get_secret(name)
+    except Exception:
+        return None
+    if v is None:
+        return None
+    t = str(v).strip()
+    return t or None
+
+
+def _kb_cfg(context):
+    provider = (_kb_secret(context, "KB_GIT_PROVIDER") or "github").strip().lower()
+    if provider not in ("github", "gitlab"):
+        provider = "github"
+    kb_repo = _kb_secret(context, "KB_REPO")
+    owner = repo = project = ""
+    if provider == "github":
+        if kb_repo and "/" in kb_repo:
+            owner, repo = kb_repo.split("/", 1)
+        else:
+            owner = _kb_secret(context, "GITHUB_OWNER") or ""
+            repo = _kb_secret(context, "GITHUB_REPO") or ""
+        project = ("%s/%s" % (owner, repo)) if owner and repo else ""
+    else:
+        project = kb_repo or ""
+    branch = _kb_secret(context, "KB_BRANCH") or _kb_secret(context, "GITHUB_BRANCH") or "main"
+    token = _kb_secret(context, "KB_TOKEN") or _kb_secret(context, "GITHUB_TOKEN") or ""
+    host = (_kb_secret(context, "KB_GITLAB_HOST") or "https://gitlab.com").rstrip("/")
+    return {"provider": provider, "owner": owner, "repo": repo,
+            "project": project, "branch": branch, "token": token, "host": host}
+
+
+def _kb_gl_proj(project):
+    return project if project.isdigit() else _kb_quote(project, safe="")
+
+
+def _kb_read_text(path, context):
+    cfg = _kb_cfg(context)
+    if cfg["provider"] == "github":
+        url = "https://raw.githubusercontent.com/%s/%s/%s/%s" % (
+            cfg["owner"], cfg["repo"], cfg["branch"], path)
+        headers = {"Accept": "application/vnd.github+json"}
+        if cfg["token"]:
+            headers["Authorization"] = "Bearer " + cfg["token"]
+    else:
+        url = "%s/api/v4/projects/%s/repository/files/%s/raw?ref=%s" % (
+            cfg["host"], _kb_gl_proj(cfg["project"]), _kb_quote(path, safe=""), cfg["branch"])
+        headers = {"Accept": "application/json"}
+        if cfg["token"]:
+            headers["PRIVATE-TOKEN"] = cfg["token"]
+    r = requests.get(url, headers=headers, timeout=30)
+    r.raise_for_status()
+    return r.text
+
+
+def _kb_read_json(path, context):
+    return json.loads(_kb_read_text(path, context))
 
 _STOP_WORDS = {
     "how",
@@ -326,7 +399,7 @@ def _finalize_video(entry, heading, primary, query, language, transcript_dir, co
         if video_id:
             transcript_path = f"{transcript_dir}/{video_id}.json"
             try:
-                transcript = kb_storage.read_json(transcript_path, context)
+                transcript = _kb_read_json(transcript_path, context)
             except Exception:
                 transcript = None
         if isinstance(transcript, list) and transcript:
@@ -360,7 +433,7 @@ def select_video(query: str, intent: str, module: str, ranked_rows, language=Non
         manifest_path = _get_secret(context, "KB_VIDEO_MANIFEST_PATH") or "kb/video_manifest.json"
         transcript_dir = _get_secret(context, "KB_VIDEO_TRANSCRIPT_DIR") or "kb/video_transcripts"
 
-        manifest = kb_storage.read_json(manifest_path, context)
+        manifest = _kb_read_json(manifest_path, context)
         if not ranked_rows or not manifest:
             return None
         if not isinstance(ranked_rows, list):
@@ -464,7 +537,7 @@ def select_demoforge_demo(query: str, intent: str, module: str, context) -> dict
     try:
         # Load manifest with module-to-demo mappings
         manifest_path = _get_secret(context, "KB_DEMOFORGE_MANIFEST_PATH") or "kb/demoforge_manifest.json"
-        manifest = kb_storage.read_json(manifest_path, context)
+        manifest = _kb_read_json(manifest_path, context)
         if not manifest:
             return None
 
@@ -520,7 +593,7 @@ def catalog_videos(query: str, language=None, context=None, max_videos: int = 10
     try:
         manifest_path = _get_secret(context, "KB_VIDEO_MANIFEST_PATH") or "kb/video_manifest.json"
         transcript_dir = _get_secret(context, "KB_VIDEO_TRANSCRIPT_DIR") or "kb/video_transcripts"
-        manifest = kb_storage.read_json(manifest_path, context)
+        manifest = _kb_read_json(manifest_path, context)
         if not manifest or not isinstance(manifest, list):
             return []
         pitched = [
@@ -570,7 +643,7 @@ def select_videos(query: str, intent: str, module: str, ranked_rows, language=No
         manifest_path = _get_secret(context, "KB_VIDEO_MANIFEST_PATH") or "kb/video_manifest.json"
         transcript_dir = _get_secret(context, "KB_VIDEO_TRANSCRIPT_DIR") or "kb/video_transcripts"
 
-        manifest = kb_storage.read_json(manifest_path, context)
+        manifest = _kb_read_json(manifest_path, context)
         if not ranked_rows or not manifest or not isinstance(ranked_rows, list):
             return []
 

@@ -1,7 +1,11 @@
+import base64
 import json
 import re
 from datetime import datetime, timezone
 from typing import Any, Dict, List
+from urllib.parse import quote as _kb_quote
+
+import requests
 
 _MAX_STR = 2000
 _MAX_LIST = 50
@@ -67,27 +71,110 @@ def _sanitize_payload(value: Any, depth: int = 0) -> Any:
     return str(value)[:_MAX_STR]
 
 
+# --- Inline provider-agnostic git storage (GitHub/GitLab) ---
+# Self-contained: the skill sandbox forbids importing sibling modules.
+def _kb_secret(context, name):
+    if context is None:
+        return None
+    try:
+        v = context.get_secret(name)
+    except Exception:
+        return None
+    if v is None:
+        return None
+    t = str(v).strip()
+    return t or None
+
+
+def _kb_cfg(context):
+    provider = (_kb_secret(context, "KB_GIT_PROVIDER") or "github").strip().lower()
+    if provider not in ("github", "gitlab"):
+        provider = "github"
+    kb_repo = _kb_secret(context, "KB_REPO")
+    owner = repo = project = ""
+    if provider == "github":
+        if kb_repo and "/" in kb_repo:
+            owner, repo = kb_repo.split("/", 1)
+        else:
+            owner = _kb_secret(context, "GITHUB_OWNER") or ""
+            repo = _kb_secret(context, "GITHUB_REPO") or ""
+        project = ("%s/%s" % (owner, repo)) if owner and repo else ""
+    else:
+        project = kb_repo or ""
+    branch = _kb_secret(context, "KB_BRANCH") or _kb_secret(context, "GITHUB_BRANCH") or "main"
+    token = _kb_secret(context, "KB_TOKEN") or _kb_secret(context, "GITHUB_TOKEN") or ""
+    host = (_kb_secret(context, "KB_GITLAB_HOST") or "https://gitlab.com").rstrip("/")
+    return {"provider": provider, "owner": owner, "repo": repo,
+            "project": project, "branch": branch, "token": token, "host": host}
+
+
+def _kb_gl_proj(project):
+    return project if project.isdigit() else _kb_quote(project, safe="")
+
+
+def _kb_read_text(path, context):
+    cfg = _kb_cfg(context)
+    if cfg["provider"] == "github":
+        url = "https://raw.githubusercontent.com/%s/%s/%s/%s" % (
+            cfg["owner"], cfg["repo"], cfg["branch"], path)
+        headers = {"Accept": "application/vnd.github+json"}
+        if cfg["token"]:
+            headers["Authorization"] = "Bearer " + cfg["token"]
+    else:
+        url = "%s/api/v4/projects/%s/repository/files/%s/raw?ref=%s" % (
+            cfg["host"], _kb_gl_proj(cfg["project"]), _kb_quote(path, safe=""), cfg["branch"])
+        headers = {"Accept": "application/json"}
+        if cfg["token"]:
+            headers["PRIVATE-TOKEN"] = cfg["token"]
+    r = requests.get(url, headers=headers, timeout=30)
+    r.raise_for_status()
+    return r.text
+
+
+def _kb_write_file(path, content, message, context):
+    cfg = _kb_cfg(context)
+    encoded = base64.b64encode(content.encode("utf-8")).decode("utf-8")
+    if cfg["provider"] == "github":
+        base = "https://api.github.com/repos/%s/%s/contents/%s" % (
+            cfg["owner"], cfg["repo"], path)
+        h = {"Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"}
+        if cfg["token"]:
+            h["Authorization"] = "Bearer " + cfg["token"]
+        sha = ""
+        rg = requests.get(base, headers=h, params={"ref": cfg["branch"]}, timeout=30)
+        if rg.status_code == 200:
+            sha = (rg.json() or {}).get("sha", "")
+        payload = {"message": message, "content": encoded, "branch": cfg["branch"]}
+        if sha:
+            payload["sha"] = sha
+        r = requests.put(base, headers=h, data=json.dumps(payload), timeout=30)
+        r.raise_for_status()
+        return
+    enc = _kb_gl_proj(cfg["project"])
+    url = "%s/api/v4/projects/%s/repository/files/%s" % (
+        cfg["host"], enc, _kb_quote(path, safe=""))
+    h = {"Accept": "application/json"}
+    if cfg["token"]:
+        h["PRIVATE-TOKEN"] = cfg["token"]
+    body = {"branch": cfg["branch"], "content": encoded,
+            "encoding": "base64", "commit_message": message}
+    r = requests.post(url, headers=h, json=body, timeout=30)
+    if r.status_code == 400 and "already exists" in r.text.lower():
+        r = requests.put(url, headers=h, json=body, timeout=30)
+    r.raise_for_status()
+
+
 def _append_line(path: str, line: str, context) -> None:
     try:
-        import kb_storage
-    except ImportError:
-        import importlib, sys, os
-        sys.path.insert(0, os.path.dirname(__file__))
-        kb_storage = importlib.import_module("kb_storage")
-    try:
-        existing = kb_storage.read_text(path, context=context) or ""
+        existing = _kb_read_text(path, context) or ""
     except Exception:
         existing = ""
     new_content = (existing.rstrip("\n") + "\n" + line + "\n") if existing else (line + "\n")
-    kb_storage.write_file(
-        path, new_content,
-        message=f"KB analytics: append usage log to {path}",
-        context=context,
-    )
+    _kb_write_file(path, new_content, f"KB analytics: append usage log to {path}", context)
 
 
 def kb_analytics(event: str = "", payload: object = None, context=None) -> dict:
-    """Append usage analytics to both rolling and daily NDJSON files via kb_storage."""
+    """Append usage analytics to both rolling and daily NDJSON files in the git repo."""
     if context is None:
         raise RuntimeError("Skill execution context is missing")
 

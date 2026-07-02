@@ -260,14 +260,17 @@ Answer a user question from the knowledge base.
 Log internal usage data for supported workflows.
 
 ## Skill Settings (required)
-- `GITHUB_TOKEN`
-- `GITHUB_OWNER`
-- `GITHUB_REPO`
-- `GITHUB_BRANCH`
-- `GITHUB_DOCS_PATH`
+- `KB_GIT_PROVIDER` — `gitlab` (or `github`)
+- `KB_REPO` — GitLab numeric project ID or `group/project` path (GitHub: `owner/repo`)
+- `KB_TOKEN` — access token with read + write on the repo
+- `KB_BRANCH` — branch name (default `main`)
+- `KB_GITLAB_HOST` — GitLab host URL (e.g. `https://gitlab.gupshup.io`); GitLab only
 
 ## Skill Settings (optional)
-- Custom knowledge-base storage paths
-- Internal analytics configuration
-- Optional tracing/observability configuration
-- Environment and release labels for internal monitoring
+- `GITHUB_DOCS_PATH` — docs root within the repo (default `kb`)
+- `GITHUB_KB_CHUNKS_PATH` — chunk index path (default `<docs>/kb_chunks.jsonl`)
+- `GITHUB_KB_USAGE_LOG_PATH` — analytics NDJSON path (default `kb/analytics/kb_usage.ndjson`)
+- Optional tracing/observability configuration (`TRACE_ENV`, release/deployment labels)
+
+**Legacy GitHub settings** (still honored as fallbacks when `KB_*` are unset):
+`GITHUB_TOKEN`, `GITHUB_OWNER`, `GITHUB_REPO`, `GITHUB_BRANCH`.

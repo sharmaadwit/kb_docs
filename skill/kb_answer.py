@@ -1,7 +1,4 @@
-import asyncio
 import json
-import logging
-import os
 import re
 import time
 import unicodedata
@@ -11,8 +8,849 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Tuple
 
 import requests
+from urllib.parse import urlencode, quote as _kb_quote
 
-logger = logging.getLogger(__name__)
+
+# --- BEGIN consolidated video/storage/analytics helpers (self-contained) ---
+class _NoopLogger:
+    """Sandbox forbids importing `logging`; preserve logger.* call sites as no-ops."""
+    def __getattr__(self, _name):
+        def _noop(*_args, **_kwargs):
+            return None
+        return _noop
+
+
+logger = _NoopLogger()
+
+
+# --- Inline provider-agnostic git storage (GitHub/GitLab) ---
+# Self-contained: the skill sandbox forbids importing sibling modules.
+def _kb_secret(context, name):
+    if context is None:
+        return None
+    try:
+        v = context.get_secret(name)
+    except Exception:
+        return None
+    if v is None:
+        return None
+    t = str(v).strip()
+    return t or None
+
+
+def _kb_cfg(context):
+    provider = (_kb_secret(context, "KB_GIT_PROVIDER") or "github").strip().lower()
+    if provider not in ("github", "gitlab"):
+        provider = "github"
+    kb_repo = _kb_secret(context, "KB_REPO")
+    owner = repo = project = ""
+    if provider == "github":
+        if kb_repo and "/" in kb_repo:
+            owner, repo = kb_repo.split("/", 1)
+        else:
+            owner = _kb_secret(context, "GITHUB_OWNER") or ""
+            repo = _kb_secret(context, "GITHUB_REPO") or ""
+        project = ("%s/%s" % (owner, repo)) if owner and repo else ""
+    else:
+        project = kb_repo or ""
+    branch = _kb_secret(context, "KB_BRANCH") or _kb_secret(context, "GITHUB_BRANCH") or "main"
+    token = _kb_secret(context, "KB_TOKEN") or _kb_secret(context, "GITHUB_TOKEN") or ""
+    host = (_kb_secret(context, "KB_GITLAB_HOST") or "https://gitlab.com").rstrip("/")
+    return {"provider": provider, "owner": owner, "repo": repo,
+            "project": project, "branch": branch, "token": token, "host": host}
+
+
+def _kb_gl_proj(project):
+    return project if project.isdigit() else _kb_quote(project, safe="")
+
+
+def _kb_read_text(path, context):
+    cfg = _kb_cfg(context)
+    if cfg["provider"] == "github":
+        url = "https://raw.githubusercontent.com/%s/%s/%s/%s" % (
+            cfg["owner"], cfg["repo"], cfg["branch"], path)
+        headers = {"Accept": "application/vnd.github+json"}
+        if cfg["token"]:
+            headers["Authorization"] = "Bearer " + cfg["token"]
+    else:
+        url = "%s/api/v4/projects/%s/repository/files/%s/raw?ref=%s" % (
+            cfg["host"], _kb_gl_proj(cfg["project"]), _kb_quote(path, safe=""), cfg["branch"])
+        headers = {"Accept": "application/json"}
+        if cfg["token"]:
+            headers["PRIVATE-TOKEN"] = cfg["token"]
+    r = requests.get(url, headers=headers, timeout=30)
+    r.raise_for_status()
+    return r.text
+
+
+def _kb_read_json(path, context):
+    return json.loads(_kb_read_text(path, context))
+
+
+def _kb_write_file(path, content, message, context):
+    cfg = _kb_cfg(context)
+    encoded = base64.b64encode(content.encode("utf-8")).decode("utf-8")
+    if cfg["provider"] == "github":
+        base_url = "https://api.github.com/repos/%s/%s/contents/%s" % (
+            cfg["owner"], cfg["repo"], path)
+        h = {"Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"}
+        if cfg["token"]:
+            h["Authorization"] = "Bearer " + cfg["token"]
+        sha = ""
+        rg = requests.get(base_url, headers=h, params={"ref": cfg["branch"]}, timeout=30)
+        if rg.status_code == 200:
+            sha = (rg.json() or {}).get("sha", "")
+        payload = {"message": message, "content": encoded, "branch": cfg["branch"]}
+        if sha:
+            payload["sha"] = sha
+        r = requests.put(base_url, headers=h, data=json.dumps(payload), timeout=30)
+        r.raise_for_status()
+        return
+    enc = _kb_gl_proj(cfg["project"])
+    url = "%s/api/v4/projects/%s/repository/files/%s" % (
+        cfg["host"], enc, _kb_quote(path, safe=""))
+    h = {"Accept": "application/json"}
+    if cfg["token"]:
+        h["PRIVATE-TOKEN"] = cfg["token"]
+    body = {"branch": cfg["branch"], "content": encoded,
+            "encoding": "base64", "commit_message": message}
+    r = requests.post(url, headers=h, json=body, timeout=30)
+    if r.status_code == 400 and "already exists" in r.text.lower():
+        r = requests.put(url, headers=h, json=body, timeout=30)
+    r.raise_for_status()
+
+
+def _kb_append_analytics_event(event, payload, context):
+    now = datetime.now(timezone.utc)
+    rec = {"ts": now.isoformat(), "event": str(event)[:128], "payload": payload}
+    line = json.dumps(rec, ensure_ascii=False)
+    if len(line) > 120000:
+        line = json.dumps({"ts": now.isoformat(), "event": str(event)[:128],
+                           "payload": "[record too large]"}, ensure_ascii=False)
+    for p in ("kb/analytics/kb_usage.ndjson",
+              "kb/analytics/%s.ndjson" % now.strftime("%Y-%m-%d")):
+        try:
+            existing = _kb_read_text(p, context) or ""
+        except Exception:
+            existing = ""
+        new_content = (existing.rstrip("\n") + "\n" + line + "\n") if existing else (line + "\n")
+        try:
+            _kb_write_file(p, new_content, "KB analytics: append usage log to %s" % p, context)
+        except Exception:
+            pass
+
+_STOP_WORDS = {
+    "how",
+    "to",
+    "use",
+    "from",
+    "in",
+    "a",
+    "the",
+    "my",
+    "is",
+    "it",
+    "do",
+    "can",
+    "that",
+    "this",
+    "and",
+    "or",
+    "for",
+    "with",
+    "on",
+    "of",
+    "what",
+    "where",
+    "when",
+    "which",
+    "are",
+    "was",
+    "will",
+    "should",
+    "does",
+    "have",
+    "not",
+    "but",
+    "they",
+    "their",
+    "its",
+    "all",
+    "an",
+    "be",
+    "so",
+    "if",
+    "am",
+    "trying",
+    "want",
+    "ensure",
+    "also",
+    "need",
+    "using",
+    "about",
+    "into",
+    "would",
+    "could",
+    "dont",
+    "get",
+    "set",
+    "go",
+    "see",
+    "way",
+    "like",
+    "just",
+    "any",
+    "has",
+    "been",
+    "being",
+    "were",
+    "did",
+    "had",
+    "than",
+    "then",
+    "there",
+    "here",
+    "these",
+    "those",
+    "each",
+    "every",
+    "some",
+    "such",
+    "own",
+    "same",
+    "other",
+    "only",
+}
+
+
+def _tokenize(text):
+    text = str(text or "").lower()
+    tokens = []
+    for token in re.findall(r"[a-z0-9]+", text):
+        if len(token) < 3 or token in _STOP_WORDS:
+            continue
+        tokens.append(token)
+    return tokens
+
+
+_BROAD_QUERY_PATTERNS = (
+    "what can gupshup",
+    "what does gupshup",
+    "what is gupshup",
+    "what all can",
+    "use case",
+    "use-case",
+    "suitable for",
+    "suited for",
+    "good for",
+    "best for",
+    "right for",
+    "which module",
+    "what module",
+    "what modules",
+    "which industr",
+    "getting started",
+    "get started",
+    "new to gupshup",
+    "introduction to",
+    "overview of gupshup",
+    "tell me about gupshup",
+    "pitch",
+)
+
+
+def _is_broad_query(query: str) -> bool:
+    # Discovery / pitch / "what can it do" style asks from new users or sales,
+    # where no single KB page is the answer. Used only as a fallback to surface
+    # a high-level overview video when no specific page-mapped video matched.
+    q = str(query or "").lower()
+    return any(p in q for p in _BROAD_QUERY_PATTERNS)
+
+
+def _safe_int(value, default=0):
+    try:
+        return int(value)
+    except Exception:
+        return default
+
+
+def _safe_float(value, default=0.0):
+    try:
+        return float(value)
+    except Exception:
+        return default
+
+
+def _get_secret(context, name):
+    if context is None:
+        return None
+    try:
+        value = context.get_secret(name)
+    except Exception:
+        return None
+    if value is None:
+        return None
+    text = str(value).strip()
+    return text or None
+
+
+def build_video_url(video_id: str, start, end=None, lang=None) -> str:
+    # The skill emits a clickable link that opens as a top-level YouTube page.
+    # We must use a normal /watch URL: /embed/ URLs only play inside an <iframe>
+    # and fail with "Error 153" when opened directly. Watch URLs honour a start
+    # offset (t=) but have no native stop/end param (only an iframe can auto-end),
+    # so `end` is accepted for metadata but intentionally not placed in the URL.
+    params = [("v", video_id), ("t", _safe_int(start, 0))]
+    if lang:
+        params.append(("cc_load_policy", 1))
+        params.append(("cc_lang_pref", str(lang)))
+        params.append(("hl", str(lang)))
+    return f"https://www.youtube.com/watch?{urlencode(params)}"
+
+
+def derive_window(cues, query_text: str, max_seconds: int = 90):
+    max_seconds = max(1, _safe_int(max_seconds, 90))
+    normalized = []
+    for cue in cues or []:
+        if not isinstance(cue, dict):
+            continue
+        start = _safe_float(cue.get("start"), 0.0)
+        dur = _safe_float(cue.get("dur"), 0.0)
+        if dur < 0:
+            dur = 0.0
+        end = start + dur
+        normalized.append(
+            {
+                "start": start,
+                "dur": dur,
+                "end": end,
+                "tokens": set(_tokenize(cue.get("text", ""))),
+            }
+        )
+
+    if not normalized:
+        return (0, max_seconds)
+
+    query_tokens = set(_tokenize(query_text))
+    total_end = int(normalized[-1]["end"])
+
+    best_score = -1
+    best_start = 0
+    best_end = min(max_seconds, total_end) if total_end > 0 else max_seconds
+
+    for i in range(len(normalized)):
+        start = normalized[i]["start"]
+        window_tokens = set()
+        last_end = start
+
+        for j in range(i, len(normalized)):
+            candidate_end = normalized[j]["end"]
+            if j > i and candidate_end - start > max_seconds:
+                break
+            window_tokens.update(normalized[j]["tokens"])
+            last_end = candidate_end
+
+            score = len(query_tokens.intersection(window_tokens))
+            if score > best_score:
+                best_score = score
+                best_start = int(start)
+                best_end = int(last_end)
+            elif score == best_score and int(start) < best_start:
+                best_start = int(start)
+                best_end = int(last_end)
+
+    if best_score <= 0:
+        fallback_end = total_end if total_end > 0 else max_seconds
+        return (0, min(max_seconds, fallback_end))
+
+    if best_end < best_start:
+        best_end = best_start
+    if best_end - best_start > max_seconds:
+        best_end = best_start + max_seconds
+    return (best_start, best_end)
+
+
+def pick_language(requested_lang, query_text: str, entry: dict):
+    del query_text
+    entry = entry or {}
+    caption_langs = entry.get("caption_langs") or []
+    if requested_lang and requested_lang in caption_langs:
+        return requested_lang, True
+
+    default_lang = entry.get("default_lang")
+    if default_lang and default_lang in caption_langs:
+        return default_lang, True
+    return None, False
+
+
+def _score_candidate(entry, row_heading, intent, query_tokens):
+    intents = entry.get("intents")
+    chapters = entry.get("chapters") if isinstance(entry.get("chapters"), dict) else {}
+    intent_match = int(isinstance(intents, list) and intent in intents)
+    chapter_match = int(bool(row_heading) and row_heading in chapters)
+    # Tie-break when several videos map to the same KB page: prefer the
+    # one whose title/keywords overlap the query the most.
+    kw_text = " ".join(
+        [str(entry.get("title") or "")]
+        + [str(k) for k in (entry.get("keywords") or [])]
+    )
+    kw_overlap = len(query_tokens.intersection(set(_tokenize(kw_text))))
+    return (intent_match, chapter_match, kw_overlap)
+
+
+def _row_is_relevant(row, row_heading, chosen, query_tokens):
+    # Guard against attaching a video to a barely-related top result.
+    # kb_search has no "I don't know" gate, so without this an off-topic
+    # query (e.g. "refund policy") could still surface the nearest page's
+    # video. Require at least one distinctive token shared between the
+    # query and the matched page / video entry.
+    ref_tokens = set(_tokenize(row.get("source", "")))
+    ref_tokens |= set(_tokenize(row_heading))
+    ref_tokens |= set(_tokenize(chosen.get("title") or ""))
+    for kw in (chosen.get("keywords") or []):
+        ref_tokens |= set(_tokenize(kw))
+    if query_tokens & ref_tokens:
+        return True
+    # Relaxation: the matched page is already among the top retrieval results,
+    # so high query/page token overlap (>= 0.4) is itself enough — even without
+    # one shared distinctive source/title token. This lets answers that just
+    # flipped to "answered" still attach their module walkthrough.
+    page_tokens = set(_tokenize(row.get("source", "")))
+    page_tokens |= set(_tokenize(row_heading))
+    page_tokens |= set(_tokenize(row.get("text", "")))
+    if query_tokens and page_tokens:
+        if len(query_tokens & page_tokens) / len(query_tokens) >= 0.4:
+            return True
+    return False
+
+
+def _candidates_for_source(manifest, source):
+    return [
+        e for e in manifest
+        if isinstance(e, dict)
+        and e.get("embeddable") is not False
+        and (
+            e.get("source") == source
+            or (
+                isinstance(e.get("also_sources"), list)
+                and source in e.get("also_sources")
+            )
+        )
+    ]
+
+
+def _finalize_video(entry, heading, primary, query, language, transcript_dir, context, is_fallback=False):
+    """Build the public video dict (start/end window, captions, URL) for an entry."""
+    lang, cc_on = pick_language(language, query, entry)
+
+    start = 0
+    end = None
+    chapters = entry.get("chapters")
+    chapter = None
+    if isinstance(chapters, dict) and heading:
+        chapter = chapters.get(heading)
+    if isinstance(chapter, dict) and "start" in chapter and "end" in chapter:
+        start = _safe_int(chapter.get("start"), 0)
+        end = _safe_int(chapter.get("end"), start)
+    else:
+        transcript = None
+        video_id = entry.get("video_id")
+        if video_id:
+            transcript_path = f"{transcript_dir}/{video_id}.json"
+            try:
+                transcript = _kb_read_json(transcript_path, context)
+            except Exception:
+                transcript = None
+        if isinstance(transcript, list) and transcript:
+            primary_text = primary.get("text", "") if isinstance(primary, dict) else ""
+            combined_query = f"{query or ''} {primary_text}".strip()
+            start, end = derive_window(transcript, combined_query)
+        else:
+            start, end = 0, None
+
+    video_id = entry.get("video_id")
+    if not video_id:
+        return None
+
+    url = build_video_url(video_id, start, end, lang if cc_on else None)
+    return {
+        "video_id": video_id,
+        "title": entry.get("title", ""),
+        "start": start,
+        "end": end,
+        "lang": lang,
+        "captions_on": cc_on,
+        "url": url,
+        "source": entry.get("source"),
+        "fallback": is_fallback,
+    }
+
+
+def select_video(query: str, intent: str, module: str, ranked_rows, language=None, context=None):
+    del module
+    try:
+        manifest_path = _get_secret(context, "KB_VIDEO_MANIFEST_PATH") or "kb/video_manifest.json"
+        transcript_dir = _get_secret(context, "KB_VIDEO_TRANSCRIPT_DIR") or "kb/video_transcripts"
+
+        manifest = _kb_read_json(manifest_path, context)
+        if not ranked_rows or not manifest:
+            return None
+        if not isinstance(ranked_rows, list):
+            return None
+
+        query_tokens = set(_tokenize(query))
+
+        # Scan the top ranked rows for the first one that maps to a manifest
+        # entry, so a relevant video is not missed just because the single best
+        # evidence row happens to be an unmapped page.
+        primary = None
+        entry = None
+        heading = ""
+        for row in ranked_rows[:8]:
+            if not isinstance(row, dict):
+                continue
+            source = row.get("source")
+            if not source:
+                continue
+            candidates = _candidates_for_source(manifest, source)
+            if not candidates:
+                continue
+            row_heading = row.get("heading") or ""
+            best = max(candidates, key=lambda e: _score_candidate(e, row_heading, intent, query_tokens))
+            if not _row_is_relevant(row, row_heading, best, query_tokens):
+                continue
+            primary = row
+            heading = row_heading
+            entry = best
+            break
+
+        # Broad / discovery questions (e.g. "what can Gupshup do", "which modules
+        # suit retail", a sales pitch) rarely map to one page, so the scan above
+        # finds nothing. For new users and sales, still attach a high-level
+        # overview video flagged `broad_fallback` so the first answer carries one.
+        is_fallback = False
+        if entry is None and _is_broad_query(query):
+            fallback = next(
+                (
+                    e for e in manifest
+                    if isinstance(e, dict)
+                    and e.get("broad_fallback") is True
+                    and e.get("embeddable") is not False
+                    and e.get("video_id")
+                ),
+                None,
+            )
+            if fallback is not None:
+                entry = fallback
+                primary = {"source": fallback.get("source"), "text": ""}
+                heading = ""
+                is_fallback = True
+
+        if entry is None or primary is None:
+            return None
+
+        return _finalize_video(
+            entry, heading, primary, query, language, transcript_dir, context,
+            is_fallback=is_fallback,
+        )
+    except Exception:
+        logger.exception("Failed selecting video")
+        return None
+
+
+def select_demoforge_demo(query: str, intent: str, module: str, context) -> dict:
+    """Select a DemoForge demo matching the query intent and module.
+
+    DemoForge demos are organized by intent (how_to, overview, setup, etc) and
+    module (campaigns, bot_studio, rcs, whatsapp, etc). This function maps the
+    intent and module to the best matching demo_id, looks it up in the manifest,
+    and returns a structured demo dict for delivery to the client.
+
+    Args:
+        query: User's natural language query (used for fallback scoring).
+        intent: Classification of user intent (e.g. 'how_to', 'overview', 'setup').
+        module: KB module name (e.g. 'bot_studio', 'campaigns', 'rcs').
+        context: Agent context dict with access to secrets and file I/O.
+
+    Returns:
+        A dict with keys:
+        - type: 'demoforge' (constant)
+        - demo_id: String ID for the DemoForge demo
+        - name: Human-readable demo name
+        - industry: Target industry (e.g. 'Banking', 'Retail')
+        - persona: Target persona (e.g. 'Head of Marketing', 'VP of Engineering')
+        - share_token: None (will be populated later via DemoForge API)
+
+        Returns None if no matching demo found.
+
+    Example:
+        >>> demo = select_demoforge_demo(
+        ...     query="how do I send an RCS campaign",
+        ...     intent="how_to",
+        ...     module="rcs",
+        ...     context=agent_context,
+        ... )
+        >>> if demo:
+        ...     print(f"Selected: {demo['name']} for {demo['persona']}")
+    """
+    try:
+        # Load manifest with module-to-demo mappings
+        manifest_path = _get_secret(context, "KB_DEMOFORGE_MANIFEST_PATH") or "kb/demoforge_manifest.json"
+        manifest = _kb_read_json(manifest_path, context)
+        if not manifest:
+            return None
+
+        # The manifest structure: {"module_to_demos": {module_name: {intent: demo_id}}, "demos_by_id": {demo_id: {...}}}
+        # For now, flatten the structure from projects+demos into a lookup-friendly format
+        module_to_demos = manifest.get("module_to_demos")
+        demos_by_id = manifest.get("demos_by_id")
+
+        # If the manifest hasn't been pre-indexed, build the lookups from projects
+        if not module_to_demos or not demos_by_id:
+            return None
+
+        # Map intent to underscore format (e.g. "how-to" -> "how_to")
+        intent_key = str(intent or "").lower().replace("-", "_")
+        if not intent_key:
+            return None
+
+        # Look up demo_id for this module + intent combination
+        module_key = str(module or "").lower().replace("-", "_").replace(" ", "_")
+        module_demos = module_to_demos.get(module_key, {})
+        demo_id = module_demos.get(intent_key)
+
+        if not demo_id:
+            return None
+
+        # Retrieve the full demo metadata
+        demo = demos_by_id.get(demo_id)
+        if not demo or not isinstance(demo, dict):
+            return None
+
+        return {
+            "type": "demoforge",
+            "demo_id": demo_id,
+            "name": demo.get("name", ""),
+            "industry": demo.get("industry"),
+            "persona": demo.get("persona"),
+            "share_token": None,  # Filled later via DemoForge API (create_share_token)
+        }
+    except Exception:
+        logger.exception("Failed selecting DemoForge demo")
+        return None
+
+
+def catalog_videos(query: str, language=None, context=None, max_videos: int = 10):
+    """Return the curated platform-tour videos (manifest entries flagged ``pitch``).
+
+    A broad platform-wide ask ("what can Gupshup do", "show me demos") cannot be
+    answered from a single page's evidence, so the retriever only surfaces one
+    module. For sales / new-user pitches we instead return the hand-picked set of
+    module walkthroughs, ordered by ``pitch_order``, so every key module's video
+    is offered up front.
+    """
+    try:
+        manifest_path = _get_secret(context, "KB_VIDEO_MANIFEST_PATH") or "kb/video_manifest.json"
+        transcript_dir = _get_secret(context, "KB_VIDEO_TRANSCRIPT_DIR") or "kb/video_transcripts"
+        manifest = _kb_read_json(manifest_path, context)
+        if not manifest or not isinstance(manifest, list):
+            return []
+        pitched = [
+            e for e in manifest
+            if isinstance(e, dict)
+            and e.get("pitch") is True
+            and e.get("embeddable") is not False
+            and e.get("video_id")
+        ]
+        pitched.sort(key=lambda e: _safe_int(e.get("pitch_order"), 999))
+        results = []
+        seen_videos = set()
+        for entry in pitched:
+            if len(results) >= max(1, int(max_videos or 10)):
+                break
+            vid = entry.get("video_id")
+            if not vid or vid in seen_videos:
+                continue
+            built = _finalize_video(
+                entry, "", {"source": entry.get("source"), "text": ""},
+                query, language, transcript_dir, context, is_fallback=False,
+            )
+            if built and built.get("url"):
+                seen_videos.add(vid)
+                results.append(built)
+        return results
+    except Exception:
+        logger.exception("Failed building video catalog")
+        return []
+
+
+def select_videos(query: str, intent: str, module: str, ranked_rows, language=None, context=None, max_videos: int = 6, require_query_overlap: bool = True):
+    """Return up to ``max_videos`` distinct, relevant videos for a broad answer.
+
+    Unlike :func:`select_video` (single best match), this collects one video per
+    distinct mapped module/page found across the top ranked rows, deduplicated by
+    ``video_id`` and ordered by rank. Used for broad / overview answers that span
+    several modules so the response can surface every relevant walkthrough.
+
+    ``require_query_overlap`` keeps the per-row relevance guard (a query token must
+    overlap the matched page/video). For a genuine overview answer that spans
+    modules the user never named, set it ``False`` so the retriever's own ranking
+    decides relevance and every covered module's walkthrough is surfaced.
+    """
+    del module
+    try:
+        manifest_path = _get_secret(context, "KB_VIDEO_MANIFEST_PATH") or "kb/video_manifest.json"
+        transcript_dir = _get_secret(context, "KB_VIDEO_TRANSCRIPT_DIR") or "kb/video_transcripts"
+
+        manifest = _kb_read_json(manifest_path, context)
+        if not ranked_rows or not manifest or not isinstance(ranked_rows, list):
+            return []
+
+        try:
+            max_videos = max(1, int(max_videos))
+        except Exception:
+            max_videos = 6
+
+        query_tokens = set(_tokenize(query))
+        results = []
+        seen_videos = set()
+
+        # Scan deeper than select_video so a multi-module answer can collect a
+        # video for each distinct module that actually appears in the evidence.
+        for row in ranked_rows[: max(24, max_videos * 6)]:
+            if len(results) >= max_videos:
+                break
+            if not isinstance(row, dict):
+                continue
+            source = row.get("source")
+            if not source:
+                continue
+            candidates = _candidates_for_source(manifest, source)
+            if not candidates:
+                continue
+            row_heading = row.get("heading") or ""
+            best = max(candidates, key=lambda e: _score_candidate(e, row_heading, intent, query_tokens))
+            video_id = best.get("video_id")
+            if not video_id or video_id in seen_videos:
+                continue
+            if require_query_overlap and not _row_is_relevant(row, row_heading, best, query_tokens):
+                continue
+            built = _finalize_video(
+                best, row_heading, row, query, language, transcript_dir, context,
+                is_fallback=False,
+            )
+            if built and built.get("url"):
+                seen_videos.add(video_id)
+                results.append(built)
+
+        # If nothing matched but this is a broad/discovery ask, fall back to the
+        # high-level overview video so the answer still carries one.
+        if not results and _is_broad_query(query):
+            fallback = next(
+                (
+                    e for e in manifest
+                    if isinstance(e, dict)
+                    and e.get("broad_fallback") is True
+                    and e.get("embeddable") is not False
+                    and e.get("video_id")
+                ),
+                None,
+            )
+            if fallback is not None:
+                built = _finalize_video(
+                    fallback, "", {"source": fallback.get("source"), "text": ""},
+                    query, language, transcript_dir, context, is_fallback=True,
+                )
+                if built and built.get("url"):
+                    results.append(built)
+
+        return results
+    except Exception:
+        logger.exception("Failed selecting videos")
+        return []
+
+
+def video_telemetry_metadata(
+    video,
+    channel: str,
+    *,
+    appended_to_answer: bool = None,
+) -> dict:
+    """Flat fields for Langfuse trace metadata (filterable in dashboards).
+
+    Emits ONE consistent shape for both video platforms so dashboards never see a
+    ragged schema:
+      - Original fields (video_attached, video_channel, video_id, video_title,
+        video_source, video_fallback, ...) are ALWAYS present when a video is
+        attached, whether it is a YouTube clip or a DemoForge interactive demo.
+      - ``video_platform`` names the source type ("youtube" | "demoforge").
+      - DemoForge-specific values are ADDED under ``demoforge_*`` keys so they
+        never collide with the original-shape semantics (e.g. ``video_source``
+        stays the KB source path; it is None for DemoForge, which has no KB chunk).
+    """
+    channel = str(channel or "").strip() or "unknown"
+    # A DemoForge demo has no YouTube video_id but is still an attached video.
+    is_demoforge = bool(video and video.get("type") == "demoforge" and video.get("demo_id"))
+    if not video or (not video.get("video_id") and not is_demoforge):
+        return {"video_attached": False, "video_channel": channel}
+    meta = {
+        "video_attached": True,
+        "video_channel": channel,
+        # Unified asset identity: YouTube video_id, else DemoForge demo_id.
+        "video_id": video.get("video_id") or video.get("demo_id"),
+        "video_title": video.get("title") or video.get("name") or "",
+        "video_start": video.get("start"),
+        "video_end": video.get("end"),
+        "video_source": video.get("source"),  # KB source path; None for DemoForge
+        "video_fallback": bool(video.get("fallback")),
+        "video_lang": video.get("lang"),
+        "video_captions_on": bool(video.get("captions_on")),
+    }
+    if appended_to_answer is not None:
+        meta["video_appended_to_answer"] = bool(appended_to_answer)
+    # Source-type indicator + DemoForge-namespaced extras (original shape above intact).
+    if is_demoforge:
+        meta["video_platform"] = "demoforge"
+        meta["demoforge_demo_id"] = video.get("demo_id")
+        if video.get("share_token"):
+            meta["demoforge_share_token"] = video.get("share_token")
+        if video.get("api_latency_ms") is not None:
+            meta["demoforge_api_latency_ms"] = video.get("api_latency_ms")
+    else:
+        meta["video_platform"] = "youtube"
+    return meta
+
+
+def record_video_delivery(video, channel: str, query: str, context=None, extra: dict = None) -> None:
+    """Append a durable NDJSON event (kb/analytics/*.ndjson) when a video is offered.
+
+    Failures are swallowed so answer/search latency is unaffected. True click/play
+    consumption must be reported separately from the agent UI when the user opens the link
+    from the agent UI when the user opens the Watch link.
+    """
+    if not video or not video.get("video_id") or context is None:
+        return
+    payload = {
+        "channel": str(channel or "").strip() or "unknown",
+        "video_id": video.get("video_id"),
+        "title": video.get("title"),
+        "start": video.get("start"),
+        "end": video.get("end"),
+        "source": video.get("source"),
+        "fallback": bool(video.get("fallback")),
+        "lang": video.get("lang"),
+        "captions_on": bool(video.get("captions_on")),
+    }
+    if isinstance(extra, dict):
+        payload.update(extra)
+    q = str(query or "").strip()
+    if q:
+        payload["query_preview"] = q if len(q) <= 400 else q[:400] + "…"
+    try:
+        _kb_append_analytics_event("video.delivered", payload, context)
+    except Exception:
+        logger.debug("video.delivered analytics append skipped", exc_info=True)
+# --- END consolidated helpers ---
 
 _MAX_KB_QUERY_LEN = 4000
 _MAX_ANSWER_CHARS = 24000
@@ -3010,53 +3848,28 @@ def _extract_query(params: Dict) -> str:
     return ""
 
 
-def _gh_headers(context) -> Dict[str, str]:
-    token = context.get_secret("GITHUB_TOKEN") if context else None
-    if not token:
-        raise RuntimeError("KB repo configuration or GitHub token is missing")
-    return {
-        "Authorization": f"Bearer {token}",
-        "Accept": "application/vnd.github+json",
-        "User-Agent": "superagent-product-kb-answer",
-        "X-GitHub-Api-Version": "2022-11-28",
-    }
-
-
-def _repo_cfg(context) -> Dict[str, str]:
-    docs_path = context.get_secret("GITHUB_DOCS_PATH") if context else None
-    docs_root = (docs_path or "kb").strip("/")
-    return {
-        "owner": context.get_secret("GITHUB_OWNER") if context else None,
-        "repo": context.get_secret("GITHUB_REPO") if context else None,
-        "branch": (context.get_secret("GITHUB_BRANCH") if context else None) or "main",
-        "docs_path": docs_root,
-        "chunks_path": (context.get_secret("GITHUB_KB_CHUNKS_PATH") if context else None)
-        or f"{docs_root}/kb_chunks.jsonl",
-    }
-
-
 def _load_chunks(context) -> List[Dict]:
-    cfg = _repo_cfg(context)
-    if not cfg.get("owner") or not cfg.get("repo"):
-        raise RuntimeError("KB repo configuration or GitHub token is missing")
-    url = (
-        f"https://raw.githubusercontent.com/{cfg['owner']}/{cfg['repo']}"
-        f"/{cfg['branch']}/{cfg['chunks_path']}"
+    docs_path = (context.get_secret("GITHUB_DOCS_PATH") if context else None) or "kb"
+    docs_root = docs_path.strip("/")
+    chunks_path = (
+        (context.get_secret("GITHUB_KB_CHUNKS_PATH") if context else None)
+        or f"{docs_root}/kb_chunks.jsonl"
     )
     try:
-        r = requests.get(url, headers=_gh_headers(context), timeout=30)
-        r.raise_for_status()
+        raw = _kb_read_text(chunks_path, context)
     except Exception as exc:
         raise RuntimeError("Could not load knowledge base content") from exc
     items: List[Dict] = []
-    for line in r.text.splitlines():
+    for line in raw.splitlines():
         line = line.strip()
         if not line:
             continue
         try:
-            items.append(json.loads(line))
+            obj = json.loads(line)
         except Exception:
             continue
+        if isinstance(obj, dict):
+            items.append(obj)
     return items
 
 
@@ -3602,7 +4415,7 @@ def _emit_langfuse_event(
     return result
 
 
-async def _mint_demoforge_share_link(
+def _mint_demoforge_share_link(
     demo_id: str,
     context,
     params: Optional[Dict[str, Any]] = None,
@@ -3644,25 +4457,20 @@ async def _mint_demoforge_share_link(
             pat = context.get("demoforge_pat") or context.get("secrets", {}).get("demoforge_pat")
     except Exception:
         pat = None
-    if not pat:
-        pat = os.getenv("DEMOFORGE_PAT")
-
     base_url = None
     try:
         if context is not None and hasattr(context, "get_secret"):
             base_url = context.get_secret("DEMOFORGE_BASE_URL")
     except Exception:
         base_url = None
-    base_url = (base_url or os.getenv("DEMOFORGE_BASE_URL")
-                or "https://demoforge-api.gupshup.io").rstrip("/")
+    base_url = (base_url or "https://demoforge-api.gupshup.io").rstrip("/")
     frontend_url = None
     try:
         if context is not None and hasattr(context, "get_secret"):
             frontend_url = context.get_secret("DEMOFORGE_FRONTEND_URL")
     except Exception:
         frontend_url = None
-    frontend_url = (frontend_url or os.getenv("DEMOFORGE_FRONTEND_URL")
-                    or "https://demoforge-ui.gupshup.io").rstrip("/")
+    frontend_url = (frontend_url or "https://demoforge-ui.gupshup.io").rstrip("/")
 
     email = _demoforge_email(context, params)
 
@@ -3679,8 +4487,7 @@ async def _mint_demoforge_share_link(
         "User-Agent": "superagent-product-kb-answer",
     }
 
-    # requests is synchronous; run it off the event loop so the 5s timeout and
-    # retry/backoff schedule cooperate with the surrounding async runtime.
+    # Synchronous HTTP POST with bounded timeout + retry/backoff.
     def _do_post():
         return requests.post(url, headers=headers, json=request_body, timeout=(3, 5))
 
@@ -3689,11 +4496,11 @@ async def _mint_demoforge_share_link(
     last_error = None
     for attempt in range(max_retries + 1):
         try:
-            resp = await asyncio.to_thread(_do_post)
+            resp = _do_post()
         except Exception as e:  # timeout / connection error -> retriable
             last_error = f"transport_{type(e).__name__}"
             if attempt < max_retries:
-                await asyncio.sleep(min(backoff_s, 1.0))
+                time.sleep(min(backoff_s, 1.0))
                 backoff_s *= 2
                 continue
             api_latency_ms = int((time.monotonic() - started) * 1000)
@@ -3739,7 +4546,7 @@ async def _mint_demoforge_share_link(
         if status == 429 or 500 <= status < 600:
             last_error = f"http_{status}"
             if attempt < max_retries:
-                await asyncio.sleep(min(backoff_s, 1.0))
+                time.sleep(min(backoff_s, 1.0))
                 backoff_s *= 2
                 continue
             logger.error(f"DemoForge server error after retries: HTTP {status}")
@@ -3747,33 +4554,9 @@ async def _mint_demoforge_share_link(
 
         # Any other status: non-retriable failure.
         logger.warning(f"DemoForge unexpected status {status}")
-        _emit(None, api_latency_ms, error=f"http_{status}")
         return None
 
     return None
-
-
-def _run_async(coro):
-    """Drive a coroutine to completion from the synchronous ``kb_answer`` path.
-
-    Uses ``asyncio.run`` when no loop is running; if an event loop is already
-    active (rare in this runtime), executes the coroutine on a dedicated loop in
-    a worker thread so we never call ``run`` inside a running loop."""
-    try:
-        asyncio.get_running_loop()
-    except RuntimeError:
-        return asyncio.run(coro)
-    import concurrent.futures
-
-    def _runner():
-        loop = asyncio.new_event_loop()
-        try:
-            return loop.run_until_complete(coro)
-        finally:
-            loop.close()
-
-    with concurrent.futures.ThreadPoolExecutor(max_workers=1) as ex:
-        return ex.submit(_runner).result()
 
 
 def _demoforge_subtitle(v: Dict) -> str:
@@ -6427,7 +7210,6 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
     _df_fallback_reason = None
     if answer_is_substantive:
         try:
-            import kb_video
             _lang = None
             if isinstance(params, dict):
                 _lang = params.get("language") or params.get("lang")
@@ -6436,7 +7218,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
 
             def _youtube_single(reason=None):
                 nonlocal video_source, _df_fallback_reason
-                _single = kb_video.select_video(
+                _single = select_video(
                     query, intent, explicit_module, _video_rows,
                     language=_lang, context=context,
                 )
@@ -6456,13 +7238,13 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                 # module like SuperAgent is also named).
                 _platform = _is_platform_pitch(query, explicit_module) or _wants_full_catalog(query, explicit_module)
                 if _platform:
-                    videos = kb_video.catalog_videos(
+                    videos = catalog_videos(
                         query, language=_lang, context=context,
                     ) or []
                 # Module-scoped overview (or empty catalog): let the retriever's
                 # ranking decide and surface every covered module's walkthrough.
                 if not videos:
-                    videos = kb_video.select_videos(
+                    videos = select_videos(
                         query, intent, explicit_module, _video_rows,
                         language=_lang, context=context, require_query_overlap=False,
                     ) or []
@@ -6470,19 +7252,17 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                 _df_fallback_reason = "overview_intent"
             else:
                 # Non-overview: try DemoForge first, then YouTube fallback.
-                demoforge_demo = kb_video.select_demoforge_demo(
+                demoforge_demo = select_demoforge_demo(
                     query=query, intent=intent, module=explicit_module, context=context,
                 )
                 if demoforge_demo:
                     _df_demo_id = demoforge_demo.get("demo_id")
-                    share_link = _run_async(
-                        _mint_demoforge_share_link(
-                            demo_id=_df_demo_id,
-                            context=context,
-                            params=params,
-                            correlation_id=correlation_id,
-                            parent_trace_id=parent_trace_id,
-                        )
+                    share_link = _mint_demoforge_share_link(
+                        demo_id=_df_demo_id,
+                        context=context,
+                        params=params,
+                        correlation_id=correlation_id,
+                        parent_trace_id=parent_trace_id,
                     )
                     if share_link:
                         _df_latency_ms = share_link.get("api_latency_ms")
@@ -6501,7 +7281,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
         except Exception as e:
             logger.warning(f"Video selection failed: {e}; falling back to YouTube")
             try:
-                _single = kb_video.select_video(
+                _single = select_video(
                     query, intent, explicit_module, _video_rows,
                     language=_lang, context=context,
                 )
@@ -6523,16 +7303,15 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
         answer = _append_videos_section(answer, videos)
         video_appended = True
     try:
-        import kb_video
         # video_telemetry_metadata() emits the full original shape plus
         # video_platform + demoforge_* fields for DemoForge videos (single source
         # of truth for the telemetry shape — no per-call patching here).
-        video_meta = kb_video.video_telemetry_metadata(
+        video_meta = video_telemetry_metadata(
             video, "kb_answer", appended_to_answer=video_appended,
         )
 
         # Record fallback reason for all video paths (DemoForge or YouTube).
-        # Computed in this function, so it is appended here rather than in kb_video.
+        # Computed in this function, so it is appended here rather than in 
         if _df_fallback_reason:
             video_meta["demoforge_fallback_reason"] = _df_fallback_reason
 
@@ -6543,7 +7322,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
 
         for _v in videos:
             if _v and _v.get("video_id"):
-                kb_video.record_video_delivery(
+                record_video_delivery(
                     _v, "kb_answer", query, context,
                     extra={"intent": intent, "module": explicit_module},
                 )
