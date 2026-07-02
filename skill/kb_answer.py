@@ -1,5 +1,8 @@
+import asyncio
 import json
+import os
 import re
+import time
 import unicodedata
 import uuid
 import base64
@@ -3508,18 +3511,158 @@ def _append_video_section(answer: str, video: Dict) -> str:
     return "\n".join([answer.rstrip(), "", f"**Watch:** [{title}]({video.get('url')})"])
 
 
+async def _mint_demoforge_share_link(
+    client,
+    demo_id: str,
+    context,
+    email: str = None,
+    max_retries: int = 2
+) -> dict:
+    """Mint a shareable link for a DemoForge demo. Idempotent.
+
+    Args:
+        client: httpx.AsyncClient for API calls
+        demo_id: DemoForge demo ID (24-hex ObjectId)
+        context: Agent context with secrets
+        email: User email for tracking (from superagentData)
+        max_retries: Max retries on 429/5xx/timeout
+
+    Returns:
+        {share_token, share_status, share_url} or None on error
+    """
+    import asyncio
+    import os
+
+    if not demo_id:
+        return None
+
+    pat = None
+    if isinstance(context, dict):
+        pat = context.get('demoforge_pat') or context.get('secrets', {}).get('demoforge_pat')
+    else:
+        pat = getattr(context, 'demoforge_pat', None) or getattr(context, 'get_secret', lambda x: None)('DEMOFORGE_PAT')
+
+    pat = pat or os.getenv('DEMOFORGE_PAT')
+
+    if not pat:
+        logger.warning('DEMOFORGE_PAT not configured')
+        return None
+
+    url = f"https://demoforge-api.gupshup.io/demos/{demo_id}/share"
+    headers = {"Authorization": f"Bearer {pat}"}
+
+    request_body = {}
+    if email:
+        request_body["superagentData"] = {"email": email}
+
+    backoff_ms = 250
+    start_time = datetime.now(timezone.utc)
+
+    for retry in range(max_retries + 1):
+        try:
+            if not client:
+                logger.warning("No HTTP client available for DemoForge API")
+                return None
+
+            r = await client.post(
+                url,
+                headers=headers,
+                json=request_body if request_body else None,
+                timeout=__import__('httpx').Timeout(5.0, connect=3.0)
+            )
+
+            api_latency_ms = int((datetime.now(timezone.utc) - start_time).total_seconds() * 1000)
+
+            # Non-retriable errors
+            if r.status_code == 401:
+                logger.warning(f"DemoForge auth failed (401): invalid PAT")
+                try:
+                    logger.debug(f"Response: {r.text[:200]}")
+                except:
+                    pass
+                return None
+            if r.status_code in (400, 404):
+                logger.warning(f"DemoForge request failed ({r.status_code}): {r.text[:200] if r.text else 'no detail'}")
+                return None
+
+            # Retriable server errors
+            if r.status_code >= 500:
+                if retry < max_retries:
+                    await asyncio.sleep(backoff_ms / 1000)
+                    backoff_ms *= 4
+                    continue
+                logger.error(f"DemoForge server error after {max_retries} retries: HTTP {r.status_code}")
+                return None
+
+            r.raise_for_status()
+            demo = r.json()
+            token = demo.get("share_token")
+
+            if not token:
+                logger.error("DemoForge response missing share_token")
+                return None
+
+            share_url = f"https://demoforge-ui.gupshup.io/shared/{token}/autoplay"
+
+            # Log to Langfuse
+            try:
+                logger.info(f"DemoForge share link minted for demo {demo_id}: {token[:8]}... (latency: {api_latency_ms}ms)")
+            except:
+                pass
+
+            return {
+                "share_token": token,
+                "share_status": demo.get("share_status"),
+                "share_url": share_url,
+                "type": "demoforge",
+                "api_latency_ms": api_latency_ms,
+            }
+
+        except Exception as e:
+            error_type = type(e).__name__
+            if "Timeout" in error_type:
+                if retry < max_retries:
+                    await asyncio.sleep(backoff_ms / 1000)
+                    backoff_ms *= 4
+                    continue
+                logger.error(f"DemoForge API timeout after {max_retries} retries")
+            else:
+                logger.error(f"DemoForge API error: {error_type}: {str(e)[:100]}")
+            return None
+
+    return None
+
+
 def _append_videos_section(answer: str, videos: List[Dict]) -> str:
-    """Append one or more walkthrough links. A single video uses the compact
-    `**Watch:**` line; multiple videos are listed under a `**Videos:**` heading."""
+    """Append one or more walkthrough links. DemoForge videos are formatted as
+    "See it in action"; YouTube videos use "Watch:". A single video uses the
+    compact line; multiple videos are listed under a "Videos:" heading."""
     valid = [v for v in (videos or []) if v and v.get("url")]
     if not valid:
         return answer
     if len(valid) == 1:
-        return _append_video_section(answer, valid[0])
+        v = valid[0]
+        if v.get("type") == "demoforge":
+            # DemoForge format
+            name = v.get("name", "See the demo")
+            industry = v.get("industry", "")
+            persona = v.get("persona", "")
+            subtitle = f" ({industry}" + (f" · {persona}" if persona else "") + ")" if industry else ""
+            return "\n".join([answer.rstrip(), "", f"**See it in action:** {name}{subtitle}\n{v.get('url')}"])
+        else:
+            # YouTube format
+            return _append_video_section(answer, v)
     lines = [answer.rstrip(), "", "**Videos:**"]
     for v in valid:
-        title = (str(v.get("title") or "")).strip() or "Watch the walkthrough"
-        lines.append(f"- [{title}]({v.get('url')})")
+        if v.get("type") == "demoforge":
+            name = v.get("name", "Demo")
+            industry = v.get("industry", "")
+            persona = v.get("persona", "")
+            subtitle = f" ({industry}" + (f" · {persona}" if persona else "") + ")" if industry else ""
+            lines.append(f"- **{name}{subtitle}**\n  {v.get('url')}")
+        else:
+            title = (str(v.get("title") or "")).strip() or "Watch the walkthrough"
+            lines.append(f"- [{title}]({v.get('url')})")
     return "\n".join(lines)
 
 
@@ -6154,6 +6297,51 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                 videos = [_single] if _single else []
         except Exception:
             videos = []
+    # Try DemoForge before YouTube (non-overview intents only)
+    video_source = "none"
+    if answer_is_substantive and intent != "overview":
+        try:
+            import kb_video
+            demoforge_demo = kb_video.select_demoforge_demo(
+                query=query,
+                intent=intent,
+                module=explicit_module,
+                context=context
+            )
+            if demoforge_demo:
+                share_link = await _mint_demoforge_share_link(
+                    client=context.get('http_client') if isinstance(context, dict) else getattr(context, 'http_client', None),
+                    demo_id=demoforge_demo.get('demo_id'),
+                    context=context,
+                    email=context.get('superagent_email') if isinstance(context, dict) else getattr(context, 'superagent_email', None)
+                )
+                if share_link:
+                    demoforge_demo.update(share_link)
+                    videos = [demoforge_demo]
+                    video_source = "demoforge"
+                else:
+                    _single = kb_video.select_video(
+                        query, intent, explicit_module, _video_rows,
+                        language=_lang, context=context,
+                    )
+                    videos = [_single] if _single else []
+                    video_source = "youtube" if videos else "none"
+            else:
+                _single = kb_video.select_video(
+                    query, intent, explicit_module, _video_rows,
+                    language=_lang, context=context,
+                )
+                videos = [_single] if _single else []
+                video_source = "youtube" if videos else "none"
+        except Exception as e:
+            logger.warning(f"DemoForge selection failed: {e}, falling back to YouTube")
+            _single = kb_video.select_video(
+                query, intent, explicit_module, _video_rows,
+                language=_lang, context=context,
+            )
+            videos = [_single] if _single else []
+            video_source = "youtube" if videos else "none"
+
     videos = [v for v in videos if v and v.get("url")]
     video = videos[0] if videos else None
     video_appended = False
@@ -6165,15 +6353,33 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
         video_meta = kb_video.video_telemetry_metadata(
             video, "kb_answer", appended_to_answer=video_appended,
         )
+        # Add DemoForge-specific telemetry
+        if video and video.get("type") == "demoforge":
+            video_meta["video_source"] = "demoforge"
+            video_meta["demo_id"] = video.get("demo_id")
+            video_meta["share_token"] = video.get("share_token")
+            if video.get("api_latency_ms"):
+                video_meta["demoforge_api_latency_ms"] = video.get("api_latency_ms")
+        elif video:
+            video_meta["video_source"] = "youtube"
+
         if len(videos) > 1:
             video_meta["video_count"] = len(videos)
-            video_meta["video_ids"] = [v.get("video_id") for v in videos]
+            video_meta["video_ids"] = [v.get("video_id") or v.get("demo_id") for v in videos]
+            video_meta["video_sources"] = [v.get("type", "youtube") for v in videos]
+
         for _v in videos:
             if _v and _v.get("video_id"):
                 kb_video.record_video_delivery(
                     _v, "kb_answer", query, context,
                     extra={"intent": intent, "module": explicit_module},
                 )
+            elif _v and _v.get("type") == "demoforge":
+                # Log DemoForge delivery
+                try:
+                    logger.info(f"DemoForge video delivered: demo_id={_v.get('demo_id')}, share_token={_v.get('share_token')[:8]}... (intent={intent}, module={explicit_module})")
+                except:
+                    pass
     except Exception:
         pass
 
