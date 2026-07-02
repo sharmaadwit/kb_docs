@@ -3062,6 +3062,10 @@ def _load_chunks(context) -> List[Dict]:
 
 def _detect_module(query: str) -> str:
     q = (query or "").lower()
+    if "campaign" in q:
+        return "Campaign Manager"
+    if "rcs" in q:
+        return "Channels"
     for k, v in EXPLICIT_MODULES.items():
         if k in q:
             return v
@@ -6513,8 +6517,10 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                         video_source = "demoforge"
                     else:
                         videos = _youtube_single(reason="api_failure")
+                        _df_fallback_reason = "api_failure"
                 else:
                     videos = _youtube_single(reason="no_demoforge_match")
+                    _df_fallback_reason = "no_demoforge_match"
         except Exception as e:
             logger.warning(f"Video selection failed: {e}; falling back to YouTube")
             try:
@@ -6566,6 +6572,9 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
         )
         if _df_fallback_reason:
             video_meta["fallback_reason"] = _df_fallback_reason
+        _vm_email = _demoforge_email(context, params)
+        if _vm_email:
+            video_meta["email"] = _vm_email
         # Add DemoForge-specific telemetry
         if video and video.get("type") == "demoforge":
             video_meta["video_source"] = "demoforge"

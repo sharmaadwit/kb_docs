@@ -13,19 +13,6 @@
       "compare": "6a4402a6f14e94517beb8474",
       "chain": "6a4402a6f14e94517beb8474"
     },
-    "campaign manager": {
-      "overview": "6a4402a6f14e94517beb8474",
-      "how_to": "6a4402a6f14e94517beb8474",
-      "setup": "6a4402a6f14e94517beb8474",
-      "task": "6a4402a6f14e94517beb8474",
-      "definition": "6a4402a6f14e94517beb8474",
-      "behavior": "6a4402a6f14e94517beb8474",
-      "troubleshooting": "6a4402a6f14e94517beb8474",
-      "schema": "6a4402a6f14e94517beb8474",
-      "page_lookup": "6a4402a6f14e94517beb8474",
-      "compare": "6a4402a6f14e94517beb8474",
-      "chain": "6a4402a6f14e94517beb8474"
-    },
     "personalize": {
       "overview": "6a44013ef14e94517beb846c",
       "how_to": "6a44013ef14e94517beb846c",
@@ -40,19 +27,6 @@
       "chain": "6a44013ef14e94517beb846c"
     },
     "ai_admin": {
-      "overview": "6a43fde1f14e94517beb845f",
-      "how_to": "6a43fde1f14e94517beb845f",
-      "setup": "6a43fde1f14e94517beb845f",
-      "task": "6a43fde1f14e94517beb845f",
-      "definition": "6a43fde1f14e94517beb845f",
-      "behavior": "6a43fde1f14e94517beb845f",
-      "troubleshooting": "6a43fde1f14e94517beb845f",
-      "schema": "6a43fde1f14e94517beb845f",
-      "page_lookup": "6a43fde1f14e94517beb845f",
-      "compare": "6a43fde1f14e94517beb845f",
-      "chain": "6a43fde1f14e94517beb845f"
-    },
-    "ai admin": {
       "overview": "6a43fde1f14e94517beb845f",
       "how_to": "6a43fde1f14e94517beb845f",
       "setup": "6a43fde1f14e94517beb845f",
@@ -117,33 +91,7 @@
       "compare": "6a43f349f14e94517beb843f",
       "chain": "6a43f349f14e94517beb843f"
     },
-    "agent assist": {
-      "overview": "6a43f349f14e94517beb843f",
-      "how_to": "6a43f349f14e94517beb843f",
-      "setup": "6a43f349f14e94517beb843f",
-      "task": "6a43f349f14e94517beb843f",
-      "definition": "6a43f349f14e94517beb843f",
-      "behavior": "6a43f349f14e94517beb843f",
-      "troubleshooting": "6a43f349f14e94517beb843f",
-      "schema": "6a43f349f14e94517beb843f",
-      "page_lookup": "6a43f349f14e94517beb843f",
-      "compare": "6a43f349f14e94517beb843f",
-      "chain": "6a43f349f14e94517beb843f"
-    },
     "bot_studio": {
-      "overview": "6a433c867d620401bb6774c1",
-      "how_to": "6a433c867d620401bb6774c1",
-      "setup": "6a433c867d620401bb6774c1",
-      "task": "6a433c867d620401bb6774c1",
-      "definition": "6a433c867d620401bb6774c1",
-      "behavior": "6a433c867d620401bb6774c1",
-      "troubleshooting": "6a433c867d620401bb6774c1",
-      "schema": "6a433c867d620401bb6774c1",
-      "page_lookup": "6a433c867d620401bb6774c1",
-      "compare": "6a433c867d620401bb6774c1",
-      "chain": "6a433c867d620401bb6774c1"
-    },
-    "bot studio": {
       "overview": "6a433c867d620401bb6774c1",
       "how_to": "6a433c867d620401bb6774c1",
       "setup": "6a433c867d620401bb6774c1",
