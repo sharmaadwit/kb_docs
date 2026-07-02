@@ -1,7 +1,7 @@
 ---
 name: gupshup_guide
 description: "Knowledge-base assistant for Gupshup Console documentation. Answers KB-backed how-to, configuration, troubleshooting, feature, and node-level product questions using only indexed Markdown guides. Gives customer-friendly, implementation-oriented guidance for Bot Studio, Journey Builder, Agent Assist, Campaign Manager, AI Admin, CTX, Channels, Goals, and related modules. No citations by default."
-version: "3.9"
+version: "4"
 category: "Customer Support"
 triggers:
   - product kb
