@@ -6524,25 +6524,15 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
         video_appended = True
     try:
         import kb_video
+        # video_telemetry_metadata() emits the full original shape plus
+        # video_platform + demoforge_* fields for DemoForge videos (single source
+        # of truth for the telemetry shape — no per-call patching here).
         video_meta = kb_video.video_telemetry_metadata(
             video, "kb_answer", appended_to_answer=video_appended,
         )
-        # Add video_platform: indicator of video type (demoforge vs youtube vs none)
-        # Preserves original video_source field (KB source path like "kb/agent-assist/settings.md")
-        if video and video.get("type") == "demoforge":
-            video_meta["video_platform"] = "demoforge"
-            video_meta["video_attached"] = True  # Override short-circuit from video_telemetry_metadata
-            # DemoForge-specific fields (namespaced to avoid original-shape collision)
-            if video.get("demo_id"):
-                video_meta["demoforge_demo_id"] = video.get("demo_id")
-            if video.get("share_token"):
-                video_meta["demoforge_share_token"] = video.get("share_token")
-            if video.get("api_latency_ms"):
-                video_meta["demoforge_api_latency_ms"] = video.get("api_latency_ms")
-        elif video and video.get("video_id"):
-            video_meta["video_platform"] = "youtube"
 
-        # Record fallback reason for all video paths (DemoForge or YouTube)
+        # Record fallback reason for all video paths (DemoForge or YouTube).
+        # Computed in this function, so it is appended here rather than in kb_video.
         if _df_fallback_reason:
             video_meta["demoforge_fallback_reason"] = _df_fallback_reason
 

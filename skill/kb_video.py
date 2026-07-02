@@ -644,24 +644,48 @@ def video_telemetry_metadata(
     *,
     appended_to_answer: bool = None,
 ) -> dict:
-    """Flat fields for Langfuse trace metadata (filterable in dashboards)."""
+    """Flat fields for Langfuse trace metadata (filterable in dashboards).
+
+    Emits ONE consistent shape for both video platforms so dashboards never see a
+    ragged schema:
+      - Original fields (video_attached, video_channel, video_id, video_title,
+        video_source, video_fallback, ...) are ALWAYS present when a video is
+        attached, whether it is a YouTube clip or a DemoForge interactive demo.
+      - ``video_platform`` names the source type ("youtube" | "demoforge").
+      - DemoForge-specific values are ADDED under ``demoforge_*`` keys so they
+        never collide with the original-shape semantics (e.g. ``video_source``
+        stays the KB source path; it is None for DemoForge, which has no KB chunk).
+    """
     channel = str(channel or "").strip() or "unknown"
-    if not video or not video.get("video_id"):
+    # A DemoForge demo has no YouTube video_id but is still an attached video.
+    is_demoforge = bool(video and video.get("type") == "demoforge" and video.get("demo_id"))
+    if not video or (not video.get("video_id") and not is_demoforge):
         return {"video_attached": False, "video_channel": channel}
     meta = {
         "video_attached": True,
         "video_channel": channel,
-        "video_id": video.get("video_id"),
-        "video_title": video.get("title") or "",
+        # Unified asset identity: YouTube video_id, else DemoForge demo_id.
+        "video_id": video.get("video_id") or video.get("demo_id"),
+        "video_title": video.get("title") or video.get("name") or "",
         "video_start": video.get("start"),
         "video_end": video.get("end"),
-        "video_source": video.get("source"),
+        "video_source": video.get("source"),  # KB source path; None for DemoForge
         "video_fallback": bool(video.get("fallback")),
         "video_lang": video.get("lang"),
         "video_captions_on": bool(video.get("captions_on")),
     }
     if appended_to_answer is not None:
         meta["video_appended_to_answer"] = bool(appended_to_answer)
+    # Source-type indicator + DemoForge-namespaced extras (original shape above intact).
+    if is_demoforge:
+        meta["video_platform"] = "demoforge"
+        meta["demoforge_demo_id"] = video.get("demo_id")
+        if video.get("share_token"):
+            meta["demoforge_share_token"] = video.get("share_token")
+        if video.get("api_latency_ms") is not None:
+            meta["demoforge_api_latency_ms"] = video.get("api_latency_ms")
+    else:
+        meta["video_platform"] = "youtube"
     return meta
 
 
