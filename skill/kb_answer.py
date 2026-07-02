@@ -7253,7 +7253,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
             else:
                 # Non-overview: try DemoForge first, then YouTube fallback.
                 demoforge_demo = select_demoforge_demo(
-                    query=query, intent=intent, module=explicit_module, context=context,
+                    query=query, intent=intent, module=explicit_module or _module_from_source(top_source or ""), context=context,
                 )
                 if demoforge_demo:
                     _df_demo_id = demoforge_demo.get("demo_id")
