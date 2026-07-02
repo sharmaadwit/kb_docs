@@ -6550,19 +6550,19 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
         video_meta = kb_video.video_telemetry_metadata(
             video, "kb_answer", appended_to_answer=video_appended,
         )
-        if _df_fallback_reason:
-            video_meta["fallback_reason"] = _df_fallback_reason
-        _vm_email = _demoforge_email(context, params)
-        if _vm_email:
-            video_meta["email"] = _vm_email
-        # Add DemoForge-specific telemetry
+        # Set video_source: indicator of video type (demoforge vs youtube vs none)
         if video and video.get("type") == "demoforge":
             video_meta["video_source"] = "demoforge"
-            video_meta["demo_id"] = video.get("demo_id")
-            video_meta["share_token"] = video.get("share_token")
+            # DemoForge-specific fields (namespaced to avoid original-shape collision)
+            if video.get("demo_id"):
+                video_meta["demoforge_demo_id"] = video.get("demo_id")
+            if video.get("share_token"):
+                video_meta["demoforge_share_token"] = video.get("share_token")
             if video.get("api_latency_ms"):
                 video_meta["demoforge_api_latency_ms"] = video.get("api_latency_ms")
-        elif video:
+            if _df_fallback_reason:
+                video_meta["demoforge_fallback_reason"] = _df_fallback_reason
+        elif video and video.get("video_id"):
             video_meta["video_source"] = "youtube"
 
         if len(videos) > 1:
