@@ -1,12 +1,12 @@
 {
   "ok": true,
-  "created_at": "2026-07-02T11:26:51.198753+00:00",
+  "created_at": "2026-07-02T17:39:25.295192+00:00",
   "docs_path": "kb",
   "excluded": [
     "kb/analytics"
   ],
   "md_files": 400,
-  "chunks": 6681,
+  "chunks": 6669,
   "docs": [
     {
       "path": "kb/agent-assist/about-agent-assist.md",
@@ -22,7 +22,7 @@
     },
     {
       "path": "kb/agent-assist/assignment-enhancements-in-console-7-0.md",
-      "chunks": 22
+      "chunks": 21
     },
     {
       "path": "kb/agent-assist/campaign-and-ctx-ad-preview.md",
@@ -82,7 +82,7 @@
     },
     {
       "path": "kb/agent-assist/insights-team-summary.md",
-      "chunks": 18
+      "chunks": 17
     },
     {
       "path": "kb/agent-assist/live-monitoring-dashboard-real-time-chat-analytics-and-performance-insights.md",
@@ -150,7 +150,7 @@
     },
     {
       "path": "kb/agent-assist/underlying-raw-data-for-chat-summary.md",
-      "chunks": 28
+      "chunks": 23
     },
     {
       "path": "kb/agent-assist/user-management-business-hours.md",
@@ -382,7 +382,7 @@
     },
     {
       "path": "kb/bot-studio/api-timeout-default-to-10-secs.md",
-      "chunks": 25
+      "chunks": 24
     },
     {
       "path": "kb/bot-studio/audio-node.md",
@@ -586,7 +586,7 @@
     },
     {
       "path": "kb/bot-studio/json-handler.md",
-      "chunks": 24
+      "chunks": 26
     },
     {
       "path": "kb/bot-studio/list-node.md",
@@ -650,7 +650,7 @@
     },
     {
       "path": "kb/bot-studio/prompt-nodes.md",
-      "chunks": 25
+      "chunks": 24
     },
     {
       "path": "kb/bot-studio/quick-reply.md",
@@ -758,7 +758,7 @@
     },
     {
       "path": "kb/campaign-manager/creating-a-new-campaign.md",
-      "chunks": 26
+      "chunks": 25
     },
     {
       "path": "kb/campaign-manager/creating-your-first-campaign.md",
@@ -1166,7 +1166,7 @@
     },
     {
       "path": "kb/channels/autoresponders.md",
-      "chunks": 29
+      "chunks": 28
     },
     {
       "path": "kb/channels/before-you-begin.md",
@@ -1234,7 +1234,7 @@
     },
     {
       "path": "kb/channels/rcs-faq.md",
-      "chunks": 16
+      "chunks": 15
     },
     {
       "path": "kb/channels/rcs-messaging-api.md",
@@ -1242,7 +1242,7 @@
     },
     {
       "path": "kb/channels/rcs-overview.md",
-      "chunks": 12
+      "chunks": 11
     },
     {
       "path": "kb/channels/rcs-quickstart.md",
@@ -1390,7 +1390,7 @@
     },
     {
       "path": "kb/integrations/clevertap-integration.md",
-      "chunks": 20
+      "chunks": 19
     },
     {
       "path": "kb/integrations/crm-integrations.md",
