@@ -305,9 +305,9 @@ def _extract_video_view(res, capture, mock_api):
     # DemoForge-only fields — prefer explicit output, fall back to mock record.
     demo_id = primary.get("demo_id") or meta.get("demo_id")
     share_token = primary.get("share_token") or meta.get("share_token")
-    source = primary.get("source_type") or meta.get("source")
+    source = primary.get("source_type") or meta.get("video_source")
     fallback_reason = primary.get("fallback_reason") or meta.get("fallback_reason")
-    api_latency_ms = meta.get("api_latency_ms")
+    api_latency_ms = meta.get("demoforge_api_latency_ms")
 
     email_in_body = None
     if mock_api and mock_api.calls:

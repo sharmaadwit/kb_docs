@@ -6582,8 +6582,8 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                     logger.info(f"DemoForge video delivered: demo_id={_v.get('demo_id')}, share_token={_v.get('share_token')[:8]}... (intent={intent}, module={explicit_module})")
                 except:
                     pass
-    except Exception:
-        pass
+    except Exception as e:
+        logger.warning(f"Error building video_meta: {type(e).__name__}: {e}")
 
     latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
     langfuse = _send_langfuse(
