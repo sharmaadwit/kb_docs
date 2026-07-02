@@ -263,3 +263,55 @@ def write_file(path: str, content: str, message: str, context=None) -> Dict:
 
     raise RuntimeError(f"Unsupported git provider: {provider}")
 
+
+
+def list_directory(path: str, context=None) -> List[Dict]:
+    """List files and subdirectories at path. Returns list of {type, path, name} dicts."""
+    cfg = _resolve_config(context)
+    provider = cfg["provider"]
+
+    if provider == "github":
+        url = _github_contents_api_url(cfg, path)
+        try:
+            resp = requests.get(
+                url,
+                headers=_github_headers(cfg["token"]),
+                params={"ref": cfg["branch"]},
+                timeout=30,
+            )
+            resp.raise_for_status()
+        except Exception as exc:
+            raise RuntimeError(f"Could not list directory from github: {path}") from exc
+        items = resp.json()
+        if not isinstance(items, list):
+            return []
+        return [
+            {"type": item.get("type"), "path": item.get("path"), "name": item.get("name")}
+            for item in items
+        ]
+
+    if provider == "gitlab":
+        enc_project = _encode_gitlab_project(cfg["project"])
+        try:
+            resp = requests.get(
+                f"{cfg['gitlab_host']}/api/v4/projects/{enc_project}/repository/tree",
+                headers=_gitlab_headers(cfg["token"]),
+                params={"path": path, "ref": cfg["branch"], "per_page": 100},
+                timeout=30,
+            )
+            resp.raise_for_status()
+        except Exception as exc:
+            raise RuntimeError(f"Could not list directory from gitlab: {path}") from exc
+        items = resp.json()
+        if not isinstance(items, list):
+            return []
+        return [
+            {
+                "type": "dir" if item.get("type") == "tree" else "file",
+                "path": f"{path}/{item['name']}" if path else item["name"],
+                "name": item.get("name"),
+            }
+            for item in items
+        ]
+
+    raise RuntimeError(f"Unsupported git provider: {provider}")

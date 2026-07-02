@@ -1,10 +1,7 @@
-import base64
 import json
 import re
 from datetime import datetime, timezone
 from typing import Dict, List
-
-import requests
 
 
 def _parse_parameters(parameters: object = None, **kwargs) -> Dict:
@@ -24,54 +21,33 @@ def _parse_parameters(parameters: object = None, **kwargs) -> Dict:
     return {**parameters, **kwargs}
 
 
-def _gh_headers(context) -> Dict[str, str]:
-    token = context.get_secret("GITHUB_TOKEN")
-    if not token:
-        raise RuntimeError("Missing GitHub configuration secrets")
-    return {
-        "Authorization": f"Bearer {token}",
-        "Accept": "application/vnd.github+json",
-        "X-GitHub-Api-Version": "2022-11-28",
-    }
+def _get_storage():
+    try:
+        import kb_storage
+    except ImportError:
+        import importlib, sys, os
+        sys.path.insert(0, os.path.dirname(__file__))
+        kb_storage = importlib.import_module("kb_storage")
+    return kb_storage
 
 
-def _gh_get_json(url: str, context, params: Dict = None) -> Dict:
-    r = requests.get(url, headers=_gh_headers(context), params=params or {}, timeout=30)
-    if r.status_code >= 400:
-        raise RuntimeError("GitHub API request failed")
-    return r.json()
-
-
-def _gh_put_json(url: str, context, payload: Dict) -> Dict:
-    r = requests.put(url, headers=_gh_headers(context), data=json.dumps(payload), timeout=30)
-    if r.status_code >= 400:
-        raise RuntimeError("GitHub API request failed")
-    return r.json()
-
-
-def _list_md_files(owner: str, repo: str, branch: str, docs_path: str, context) -> List[str]:
+def _list_md_files(docs_path: str, context) -> List[str]:
+    kb_storage = _get_storage()
     out = []
     stack = [docs_path.strip("/")]
     while stack:
         p = stack.pop()
-        url = f"https://api.github.com/repos/{owner}/{repo}/contents/{p}"
-        data = _gh_get_json(url, context, params={"ref": branch})
-        if isinstance(data, dict) and data.get("type") == "file":
-            if p.lower().endswith(".md"):
-                out.append(p)
-            continue
-        if not isinstance(data, list):
-            continue
-        for item in data:
+        items = kb_storage.list_directory(p, context=context)
+        for item in items:
             t = item.get("type")
-            ip = item.get("path")
+            ip = item.get("path") or item.get("name")
             if not ip:
                 continue
-            if t == "dir":
+            if t == "dir" or t == "tree":
                 if ip.startswith("kb/analytics"):
                     continue
                 stack.append(ip)
-            elif t == "file" and ip.lower().endswith(".md"):
+            elif t in ("file", "blob") and ip.lower().endswith(".md"):
                 out.append(ip)
     return sorted(set(out))
 
@@ -82,15 +58,11 @@ _MAX_CHUNKS_PER_FILE = 400
 _MAX_TOTAL_CHUNKS = 80_000
 
 
-def _get_raw(owner: str, repo: str, branch: str, path_in_repo: str, context) -> str:
-    url = f"https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path_in_repo}"
-    r = requests.get(url, headers=_gh_headers(context), timeout=60)
-    if r.status_code >= 400:
-        raise RuntimeError("GitHub content fetch failed")
-    data = r.content
-    if len(data) > _MAX_RAW_FILE_BYTES:
+def _get_raw(path_in_repo: str, context) -> str:
+    text = _get_storage().read_text(path_in_repo, context=context)
+    if len(text.encode("utf-8")) > _MAX_RAW_FILE_BYTES:
         raise RuntimeError("Document exceeds maximum size for ingestion")
-    return data.decode("utf-8", errors="replace")
+    return text
 
 
 def _normalize_whitespace(text: str) -> str:
@@ -350,23 +322,8 @@ def _chunk_text(text: str, source: str, chunk_size: int = 1200, overlap: int = 1
     return out
 
 
-def _get_file_sha(owner: str, repo: str, branch: str, path_in_repo: str, context) -> str:
-    url = f"https://api.github.com/repos/{owner}/{repo}/contents/{path_in_repo}"
-    r = requests.get(url, headers=_gh_headers(context), params={"ref": branch}, timeout=30)
-    if r.status_code == 404:
-        return ""
-    if r.status_code >= 400:
-        raise RuntimeError("GitHub API request failed")
-    return (r.json() or {}).get("sha", "")
-
-
-def _write_file(owner: str, repo: str, branch: str, path_in_repo: str, content: str, message: str, context) -> None:
-    url = f"https://api.github.com/repos/{owner}/{repo}/contents/{path_in_repo}"
-    sha = _get_file_sha(owner, repo, branch, path_in_repo, context)
-    payload = {"message": message, "content": base64.b64encode(content.encode("utf-8")).decode("utf-8"), "branch": branch}
-    if sha:
-        payload["sha"] = sha
-    _gh_put_json(url, context, payload)
+def _write_file(path_in_repo: str, content: str, message: str, context) -> None:
+    _get_storage().write_file(path_in_repo, content, message, context=context)
 
 
 def _safe_path_segment(path: str, fallback: str) -> str:
@@ -379,7 +336,7 @@ def _safe_path_segment(path: str, fallback: str) -> str:
 
 
 def kb_ingest(parameters: object = None, context=None, **kwargs) -> dict:
-    """Ingest markdown docs from a GitHub repo path, chunk them, and write index artifacts."""
+    """Ingest markdown docs from the configured git repo, chunk them, and write index artifacts."""
     if context is None:
         raise RuntimeError("Skill execution context is missing")
 
@@ -388,9 +345,6 @@ def kb_ingest(parameters: object = None, context=None, **kwargs) -> dict:
     except ValueError:
         return {"ok": False, "error": "Invalid parameters"}
 
-    owner = context.get_secret("GITHUB_OWNER")
-    repo = context.get_secret("GITHUB_REPO")
-    branch = (context.get_secret("GITHUB_BRANCH") or "main").strip()
     docs_path = _safe_path_segment(
         context.get_secret("GITHUB_DOCS_PATH") or "kb",
         "kb",
@@ -399,17 +353,10 @@ def kb_ingest(parameters: object = None, context=None, **kwargs) -> dict:
     index_out = context.get_secret("GITHUB_KB_INDEX_PATH") or f"{docs_path}/kb_index.json"
     if isinstance(params.get("docs_path"), str) and params.get("docs_path").strip():
         docs_path = _safe_path_segment(params["docs_path"], docs_path)
-    if isinstance(params.get("branch"), str) and params["branch"].strip():
-        branch = params["branch"].strip()[:256]
-        if ".." in branch or "\x00" in branch:
-            return {"ok": False, "error": "Invalid branch override"}
-
-    if not owner or not repo or not branch:
-        raise RuntimeError("Missing GitHub configuration secrets")
 
     excluded = [f"{docs_path}/analytics"]
     try:
-        md_files = _list_md_files(owner, repo, branch, docs_path, context)
+        md_files = _list_md_files(docs_path, context)
     except Exception:
         return {"ok": False, "error": "Could not list documentation files"}
 
@@ -422,7 +369,7 @@ def kb_ingest(parameters: object = None, context=None, **kwargs) -> dict:
 
     try:
         for fp in md_files:
-            raw = _get_raw(owner, repo, branch, fp, context)
+            raw = _get_raw(fp, context)
             chunk_records = _chunk_text(raw, fp)
             if len(chunk_records) > _MAX_CHUNKS_PER_FILE:
                 chunk_records = chunk_records[:_MAX_CHUNKS_PER_FILE]
@@ -450,8 +397,6 @@ def kb_ingest(parameters: object = None, context=None, **kwargs) -> dict:
         index = {
             "ok": True,
             "created_at": now,
-            "repo": f"{owner}/{repo}",
-            "branch": branch,
             "docs_path": docs_path,
             "excluded": excluded,
             "md_files": len(md_files),
@@ -465,15 +410,13 @@ def kb_ingest(parameters: object = None, context=None, **kwargs) -> dict:
             },
         }
 
-        _write_file(owner, repo, branch, chunks_out, "\n".join(chunks_lines) + "\n", "KB ingest: write chunks", context)
-        _write_file(owner, repo, branch, index_out, json.dumps(index, indent=2), "KB ingest: write index", context)
+        _write_file(chunks_out, "\n".join(chunks_lines) + "\n", "KB ingest: write chunks", context)
+        _write_file(index_out, json.dumps(index, indent=2), "KB ingest: write index", context)
     except Exception:
         return {"ok": False, "error": "Ingest failed"}
 
     return {
         "ok": True,
-        "repo": f"{owner}/{repo}",
-        "branch": branch,
         "docs_path": docs_path,
         "excluded": excluded,
         "md_files": len(md_files),
