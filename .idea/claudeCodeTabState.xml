@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ClaudeCodeTabState">
+    <option name="tabNames">
+      <map>
+        <entry key="0" value="analytics agent" />
+        <entry key="1" value="code chnage agent" />
+      </map>
+    </option>
+    <option name="tabSessions">
+      <map>
+        <entry key="0">
+          <value>
+            <TabSessionState>
+              <option name="provider" value="claude" />
+              <option name="sessionId" value="bf8b5c33-3789-44c7-a1c5-4e38c2e6177c" />
+              <option name="cwd" value="$PROJECT_DIR$" />
+              <option name="model" value="claude-haiku-4-5" />
+              <option name="permissionMode" value="acceptEdits" />
+            </TabSessionState>
+          </value>
+        </entry>
+        <entry key="1">
+          <value>
+            <TabSessionState>
+              <option name="provider" value="claude" />
+              <option name="sessionId" value="d279665f-038b-4479-bbb6-6363d9494e26" />
+              <option name="cwd" value="$PROJECT_DIR$" />
+              <option name="model" value="claude-haiku-4-5" />
+              <option name="permissionMode" value="acceptEdits" />
+            </TabSessionState>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="tabCount" value="2" />
+  </component>
+</project>

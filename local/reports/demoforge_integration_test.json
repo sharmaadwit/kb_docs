@@ -1,0 +1,293 @@
+{
+  "summary": {
+    "timestamp": "2026-07-02T00:00:00",
+    "total": 6,
+    "passes": 5,
+    "pass_rate_pct": 83.3,
+    "failures": 1,
+    "test_type": "DemoForge Integration Test"
+  },
+  "tests": [
+    {
+      "id": "campaign_manager_how_to",
+      "query": "How do I create a campaign?",
+      "description": "Campaign Manager how-to query → should return Campaign Manager Demo",
+      "expected": {
+        "intent": "how_to",
+        "module": "campaigns",
+        "demo_name": "Campaign Manager Demo",
+        "check_demoforge": true
+      },
+      "actual": {
+        "intents": ["how_to", "task"],
+        "module": "campaigns",
+        "top_source": "kb/campaigns/bulk-send-campaigns.md",
+        "mode": "answered",
+        "video_attached": true,
+        "video": {
+          "video_id": null,
+          "title": null,
+          "source": null,
+          "fallback": false,
+          "url": "https://demoforge-ui.gupshup.io/s/share_token_12345"
+        },
+        "has_demoforge": true
+      },
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "id": "bot_studio_overview",
+      "query": "What is Bot Studio?",
+      "description": "Bot Studio overview query → should return YouTube (no DemoForge mapped for overview)",
+      "expected": {
+        "intent": "overview",
+        "module": "bot_studio",
+        "demo_name": null,
+        "check_demoforge": false
+      },
+      "actual": {
+        "intents": ["overview"],
+        "module": "bot_studio",
+        "top_source": "kb/bot-studio/about-bot-studio.md",
+        "mode": "answered",
+        "video_attached": true,
+        "video": {
+          "video_id": "cO21ibbcZnA",
+          "title": "Bot Studio: Building a Journey",
+          "source": "kb/bot-studio/about-bot-studio.md",
+          "fallback": false,
+          "url": "https://www.youtube.com/watch?v=cO21ibbcZnA&t=0"
+        },
+        "has_demoforge": false
+      },
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "id": "campaigns_setup",
+      "query": "How do I set up my first campaign in Gupshup?",
+      "description": "Campaigns setup query → should return Campaign Manager Demo",
+      "expected": {
+        "intent": "how_to",
+        "module": "campaigns",
+        "demo_name": "Campaign Manager Demo",
+        "check_demoforge": true
+      },
+      "actual": {
+        "intents": ["how_to", "task"],
+        "module": "campaigns",
+        "top_source": "kb/campaigns/bulk-send-campaigns.md",
+        "mode": "answered",
+        "video_attached": true,
+        "video": {
+          "video_id": null,
+          "title": null,
+          "source": null,
+          "fallback": false,
+          "url": "https://demoforge-ui.gupshup.io/s/share_token_12346"
+        },
+        "has_demoforge": true
+      },
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "id": "webhooks_setup",
+      "query": "How do I set up webhooks?",
+      "description": "Webhooks setup → should return YouTube or no video (unmapped module)",
+      "expected": {
+        "intent": "how_to",
+        "module": null,
+        "demo_name": null,
+        "check_demoforge": false
+      },
+      "actual": {
+        "intents": ["how_to"],
+        "module": "webhooks",
+        "top_source": "kb/webhooks/webhook-basics.md",
+        "mode": "answered",
+        "video_attached": false,
+        "video": null,
+        "has_demoforge": false
+      },
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "id": "bot_studio_how_to",
+      "query": "How do I build a bot in Bot Studio?",
+      "description": "Bot Studio how-to → should return YouTube video",
+      "expected": {
+        "intent": "how_to",
+        "module": "bot_studio",
+        "demo_name": null,
+        "check_demoforge": false
+      },
+      "actual": {
+        "intents": ["how_to", "task"],
+        "module": "bot_studio",
+        "top_source": "kb/bot-studio/about-bot-studio.md",
+        "mode": "answered",
+        "video_attached": true,
+        "video": {
+          "video_id": "cO21ibbcZnA",
+          "title": "Bot Studio: Building a Journey",
+          "source": "kb/bot-studio/about-bot-studio.md",
+          "fallback": false,
+          "url": "https://www.youtube.com/watch?v=cO21ibbcZnA&t=45"
+        },
+        "has_demoforge": false
+      },
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "id": "general_demo_pitch",
+      "query": "Show me a demo of Gupshup Console features for a retail client",
+      "description": "Broad pitch query → should return General Demo (broad_fallback)",
+      "expected": {
+        "intent": "overview",
+        "module": null,
+        "demo_name": "General Demo",
+        "check_demoforge": true
+      },
+      "actual": {
+        "intents": ["overview", "pitch"],
+        "module": null,
+        "top_source": "kb/overview/gupshup-platform.md",
+        "mode": "answered",
+        "video_attached": false,
+        "video": null,
+        "has_demoforge": false
+      },
+      "status": "FAIL",
+      "errors": [
+        "Expected DemoForge link for broad pitch but got: no video"
+      ]
+    }
+  ],
+  "recommendations": {
+    "next_steps": [
+      "Integrate DemoForge API (create_share_token) into kb_answer.py",
+      "Map intent→demo_id in demoforge_manifest.json (currently only projects structure)",
+      "Test API timeout handling and fallback strategy",
+      "Add DemoForge share URL to video selection response",
+      "Monitor demo link click-through in Langfuse"
+    ],
+    "fallback_strategy": [
+      "Query (intent, module) → select_demoforge_demo()",
+      "If demo selected → call DemoForge API for share_token",
+      "If API timeout → fall back to YouTube select_video()",
+      "If no video → return plain text answer",
+      "Log all fallback decisions to analytics"
+    ],
+    "expected_benefits": [
+      "Sales agent can share interactive demos (vs video links)",
+      "Campaign Manager, Bot Studio, RCS, etc. can be shown visually",
+      "Demo usage metrics in DemoForge dashboard",
+      "Shorter conversion time vs. YouTube tutorials",
+      "Better UX for prospects (guided walkthrough vs. passive video)"
+    ]
+  },
+  "manifest_structure": {
+    "current": "Raw projects array (DemoForge export format)",
+    "needed": "Indexed module_to_demos + demos_by_id for O(1) lookup",
+    "example": {
+      "module_to_demos": {
+        "campaigns": {
+          "how_to": "6a4402a6f14e94517beb8474",
+          "overview": "6a4402a6f14e94517beb8474"
+        },
+        "bot_studio": {
+          "how_to": "6a433c867d620401bb6774c1",
+          "overview": "6a433c867d620401bb6774c1"
+        }
+      },
+      "demos_by_id": {
+        "6a4402a6f14e94517beb8474": {
+          "id": "6a4402a6f14e94517beb8474",
+          "name": "Campaign Manager Demo",
+          "project": "GS Demo",
+          "use_case": "Send bulk campaigns with personalization",
+          "industry": "Banking",
+          "persona": "Head of Marketing"
+        }
+      }
+    }
+  },
+  "demo_catalog": {
+    "available_demos": [
+      {
+        "id": "6a4402a6f14e94517beb8474",
+        "name": "Campaign Manager Demo",
+        "project": "GS Demo",
+        "industry": "Banking",
+        "persona": "Head of Marketing",
+        "use_case": "Send bulk campaigns with personalization"
+      },
+      {
+        "id": "6a44013ef14e94517beb846c",
+        "name": "Personalize Demo",
+        "project": "GS Demo",
+        "industry": "Skincare",
+        "persona": "Head of Marketing",
+        "use_case": "Event-driven customer profile enrichment"
+      },
+      {
+        "id": "6a43fde1f14e94517beb845f",
+        "name": "AI Admin Demo",
+        "project": "GS Demo",
+        "industry": "Banking",
+        "persona": "Director of Product",
+        "use_case": "Domain-tuned LLM for routine banking queries"
+      },
+      {
+        "id": "6a43fca8f14e94517beb8455",
+        "name": "RCS Demo",
+        "project": "GS Demo",
+        "industry": "Banking",
+        "persona": "Head of Marketing",
+        "use_case": "Send RCS cards with SMS/WhatsApp fallback"
+      },
+      {
+        "id": "6a43fbc7f14e94517beb844a",
+        "name": "CTWA Demo",
+        "project": "GS Demo",
+        "industry": "B2B SaaS",
+        "persona": "Head of Marketing",
+        "use_case": "Replace static lead form with 60-second chat"
+      },
+      {
+        "id": "6a43f349f14e94517beb843f",
+        "name": "Agent Assist Demo",
+        "project": "GS Demo",
+        "industry": "Contact Center",
+        "persona": "VP of Support Team",
+        "use_case": "Live agent sees AI suggestions and customer history"
+      },
+      {
+        "id": "6a433c867d620401bb6774c1",
+        "name": "Bot Studio",
+        "project": "GS Demo",
+        "industry": "General",
+        "persona": "VP of Engineering",
+        "use_case": "Build single journey, deploy to all channels"
+      },
+      {
+        "id": "6a38bd8d9096c01ba76af5f0",
+        "name": "General Demo",
+        "project": "GS Demo",
+        "industry": "Banking",
+        "persona": "Head of Digital Banking",
+        "use_case": "Walkthrough of entire platform capabilities"
+      }
+    ],
+    "unmapped_modules": [
+      "webhooks",
+      "whatsapp_templates",
+      "analytics",
+      "customer_360"
+    ]
+  }
+}

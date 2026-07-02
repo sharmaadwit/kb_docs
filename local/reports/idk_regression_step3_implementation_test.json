@@ -1,0 +1,20 @@
+{
+  "step": "step3",
+  "test_queries": [
+    "checkInBusinessHour API documentation"
+  ],
+  "pass_count": 1,
+  "fail_count": 0,
+  "passed": true,
+  "details": {
+    "query": "checkInBusinessHour API documentation",
+    "confidence": 5.0,
+    "answered": true,
+    "pass_confidence": true,
+    "pass_answered": true,
+    "top_source": "kb/agent-assist/user-management-business-hours.md",
+    "module": "General",
+    "intent": "setup",
+    "answer_preview": "Exact page\n- User Management: Business Hours\n- Configure business hours there for in-hours versus after-hours behavior."
+  }
+}

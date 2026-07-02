@@ -3625,8 +3625,8 @@ async def _mint_demoforge_share_link(
     Returns ``{share_token, share_status, share_url, type, api_latency_ms}`` on
     success, else ``None``.
 
-    Telemetry: emits a ``demoforge_share_link`` Langfuse event with demo_id,
-    share_token, api_latency_ms, source, email and error (if any). Never raises.
+    Telemetry: metrics consolidated into main kb_answer response trace via video_meta.
+    Never raises.
     """
     if not demo_id:
         return None
@@ -3666,26 +3666,8 @@ async def _mint_demoforge_share_link(
 
     email = _demoforge_email(context, params)
 
-    def _emit(share_token, api_latency_ms, error=None):
-        _emit_langfuse_event(
-            "demoforge_share_link",
-            context,
-            {
-                "demo_id": demo_id,
-                "share_token": share_token,
-                "api_latency_ms": api_latency_ms,
-                "source": "demoforge",
-                "email": email,
-                "error": error,
-            },
-            params=params,
-            correlation_id=correlation_id,
-            parent_trace_id=parent_trace_id,
-        )
-
     if not pat:
         logger.warning("DEMOFORGE_PAT not configured")
-        _emit(None, 0, error="missing_demoforge_pat")
         return None
 
     # CRITICAL: personalization email must be in the request body.
@@ -3716,7 +3698,6 @@ async def _mint_demoforge_share_link(
                 continue
             api_latency_ms = int((time.monotonic() - started) * 1000)
             logger.error(f"DemoForge API error after retries: {last_error}")
-            _emit(None, api_latency_ms, error=last_error)
             return None
 
         status = resp.status_code
@@ -3731,7 +3712,6 @@ async def _mint_demoforge_share_link(
             token = data.get("share_token") or data.get("shareToken")
             if not token:
                 logger.error("DemoForge response missing share_token")
-                _emit(None, api_latency_ms, error="missing_share_token")
                 return None
             share_url = (
                 data.get("share_url") or data.get("shareUrl")
@@ -3742,7 +3722,6 @@ async def _mint_demoforge_share_link(
                 f"DemoForge share link minted for demo {demo_id}: "
                 f"{str(token)[:8]}... (latency: {api_latency_ms}ms)"
             )
-            _emit(token, api_latency_ms, error=None)
             return {
                 "share_token": token,
                 "share_status": share_status,
@@ -3754,7 +3733,6 @@ async def _mint_demoforge_share_link(
         # Non-retriable client errors: fall back to YouTube gracefully.
         if status in (400, 401, 404):
             logger.warning(f"DemoForge request failed ({status}) - non-retriable")
-            _emit(None, api_latency_ms, error=f"http_{status}")
             return None
 
         # Retriable: 429 or any 5xx.
@@ -3765,7 +3743,6 @@ async def _mint_demoforge_share_link(
                 backoff_s *= 2
                 continue
             logger.error(f"DemoForge server error after retries: HTTP {status}")
-            _emit(None, api_latency_ms, error=last_error)
             return None
 
         # Any other status: non-retriable failure.
@@ -6554,6 +6531,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
         # Preserves original video_source field (KB source path like "kb/agent-assist/settings.md")
         if video and video.get("type") == "demoforge":
             video_meta["video_platform"] = "demoforge"
+            video_meta["video_attached"] = True  # Override short-circuit from video_telemetry_metadata
             # DemoForge-specific fields (namespaced to avoid original-shape collision)
             if video.get("demo_id"):
                 video_meta["demoforge_demo_id"] = video.get("demo_id")
@@ -6561,10 +6539,12 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                 video_meta["demoforge_share_token"] = video.get("share_token")
             if video.get("api_latency_ms"):
                 video_meta["demoforge_api_latency_ms"] = video.get("api_latency_ms")
-            if _df_fallback_reason:
-                video_meta["demoforge_fallback_reason"] = _df_fallback_reason
         elif video and video.get("video_id"):
             video_meta["video_platform"] = "youtube"
+
+        # Record fallback reason for all video paths (DemoForge or YouTube)
+        if _df_fallback_reason:
+            video_meta["demoforge_fallback_reason"] = _df_fallback_reason
 
         if len(videos) > 1:
             video_meta["video_count"] = len(videos)

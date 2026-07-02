@@ -1,0 +1,18 @@
+{
+  "test_name": "Campaign Manager how-to",
+  "query": "How do I create a campaign in Gupshup?",
+  "intent_detected": "setup",
+  "module_detected": "General",
+  "inferred_module": "Campaign Manager",
+  "demo_selected": {
+    "type": "demoforge",
+    "demo_id": "6a4402a6f14e94517beb8474",
+    "name": "Campaign Manager Demo",
+    "industry": "Banking",
+    "persona": "Head of Marketing"
+  },
+  "video_url": null,
+  "video_type": "demoforge",
+  "passed": true,
+  "failures": []
+}

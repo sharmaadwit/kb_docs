@@ -1,0 +1,70 @@
+{
+  "step": "step9",
+  "test_queries": [
+    "Campaign Manager prompts available in Gupshup Console",
+    "What prompts are available in Campaign Manager?",
+    "Campaign Manager features and templates",
+    "Can I create custom campaign prompts?"
+  ],
+  "pass_count": 3,
+  "fail_count": 1,
+  "passed": false,
+  "details": [
+    {
+      "query": "Campaign Manager prompts available in Gupshup Console",
+      "confidence": 4.0,
+      "answered": true,
+      "pass_confidence": true,
+      "pass_answered": true,
+      "pass_source": true,
+      "passed": true,
+      "top_source": "kb/campaign-manager/creating-your-first-campaign.md",
+      "module": "Campaign Manager",
+      "intent": "setup",
+      "evidence_count": 4,
+      "answer_preview": "**4. Campaign Manager Access**\nExact path and steps\n- Creating Your First Campaign\n- Prerequisites \u2014 5 minutes\n- 4. Campaign Manager Access\n- \u2713 Your user account has \"Campaign Manager\" permission\n- \u2713 "
+    },
+    {
+      "query": "What prompts are available in Campaign Manager?",
+      "confidence": 3.95,
+      "answered": true,
+      "pass_confidence": true,
+      "pass_answered": true,
+      "pass_source": true,
+      "passed": true,
+      "top_source": "kb/campaign-manager/creating-your-first-campaign.md",
+      "module": "Campaign Manager",
+      "intent": "setup",
+      "evidence_count": 4,
+      "answer_preview": "**4. Campaign Manager Access**\nExact path and steps\n- Creating Your First Campaign\n- Prerequisites \u2014 5 minutes\n- 4. Campaign Manager Access\n- \u2713 Your user account has \"Campaign Manager\" permission\n- \u2713 "
+    },
+    {
+      "query": "Campaign Manager features and templates",
+      "confidence": 0.95,
+      "answered": true,
+      "pass_confidence": false,
+      "pass_answered": true,
+      "pass_source": true,
+      "passed": false,
+      "top_source": "kb/campaign-manager/about-campaign-manager.md",
+      "module": "Campaign Manager",
+      "intent": "overview",
+      "evidence_count": 4,
+      "answer_preview": "The documentation covers several Campaign Manager topics. The most relevant pages are:\n- About Campaign Manager\n- Creating Your First Campaign\n- How To Access Campaign Manager?\n- Creating A New Campai"
+    },
+    {
+      "query": "Can I create custom campaign prompts?",
+      "confidence": 3.15,
+      "answered": true,
+      "pass_confidence": true,
+      "pass_answered": true,
+      "pass_source": true,
+      "passed": true,
+      "top_source": "kb/campaign-manager/creating-your-first-campaign.md",
+      "module": "General",
+      "intent": "setup",
+      "evidence_count": 4,
+      "answer_preview": "**What Are Campaigns and Why You Need Them**\nExact path and steps\n- Creating Your First Campaign\n- What Are Campaigns and Why You Need Them\n- Definition: A campaign is a bulk message sent to multiple "
+    }
+  ]
+}

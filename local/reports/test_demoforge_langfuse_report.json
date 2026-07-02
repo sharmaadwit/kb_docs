@@ -1,0 +1,541 @@
+{
+  "summary": {
+    "timestamp": "2026-07-02T07:47:21.242771+00:00",
+    "total_tests": 5,
+    "passed": 1,
+    "failed": 4,
+    "blocked": 0,
+    "errored": 0,
+    "pass_rate_pct": 20.0,
+    "pipeline_executable": true,
+    "component_checks_passed": 6,
+    "component_checks_failed": 0
+  },
+  "meta": {
+    "generated_at": "2026-07-02T07:47:21.242848+00:00",
+    "mode": "offline_mock",
+    "kb_answer_compiles": true,
+    "kb_answer_compile_error": null,
+    "kb_answer_import_error": null,
+    "kb_video_compiles": true,
+    "kb_video_compile_error": null,
+    "demoforge_api_wired": true,
+    "demoforge_hook": "kb_answer._mint_demoforge_share_link",
+    "test_email": "test@demoforge-integration.test",
+    "demoforge_base_url": "https://demoforge-api.gupshup.io",
+    "demoforge_frontend_url": "https://demoforge-ui.gupshup.io",
+    "demoforge_pat_present": true,
+    "langfuse_configured": true,
+    "note": "kb_answer compiles; full pipeline active."
+  },
+  "component_tests": [
+    {
+      "check": "manifest_has_module_to_demos",
+      "status": "PASS",
+      "detail": "9 module keys"
+    },
+    {
+      "check": "manifest_has_demos_by_id",
+      "status": "PASS",
+      "detail": "12 demos"
+    },
+    {
+      "check": "campaign_demo_present",
+      "status": "PASS",
+      "detail": "6a4402a6f14e94517beb8474 -> 'Campaign Manager Demo'"
+    },
+    {
+      "check": "manifest_keys_underscore_only",
+      "status": "PASS",
+      "detail": "spaced keys=[]; manifest keys=['agent_assist', 'ai_admin', 'bot_studio', 'campaign_manager', 'ctwa', 'ctx', 'general', 'personalize', 'rcs']"
+    },
+    {
+      "check": "manifest_maps_how_to_intent",
+      "status": "PASS",
+      "detail": "intents present in manifest = ['behavior', 'chain', 'compare', 'definition', 'how_to', 'overview', 'page_lookup', 'schema', 'setup', 'task', 'troubleshooting']"
+    },
+    {
+      "check": "select_demoforge_demo(module='Campaign Manager', intent='how_to')",
+      "status": "INFO",
+      "detail": "Campaign Manager how-to (task Test 1) -> demo_id=6a4402a6f14e94517beb8474 name='Campaign Manager Demo'"
+    },
+    {
+      "check": "select_demoforge_demo(module='Campaign Manager', intent='overview')",
+      "status": "INFO",
+      "detail": "Campaign Manager overview (manifest key mismatch) -> demo_id=6a4402a6f14e94517beb8474 name='Campaign Manager Demo'"
+    },
+    {
+      "check": "select_demoforge_demo(module='campaign_manager', intent='overview')",
+      "status": "INFO",
+      "detail": "underscore key + overview (manifest-native) -> demo_id=6a4402a6f14e94517beb8474 name='Campaign Manager Demo'"
+    },
+    {
+      "check": "select_demoforge_demo(module='Bot Studio', intent='overview')",
+      "status": "INFO",
+      "detail": "Bot Studio overview -> demo_id=6a433c867d620401bb6774c1 name='Bot Studio'"
+    },
+    {
+      "check": "select_demoforge_demo(module='RCS', intent='overview')",
+      "status": "INFO",
+      "detail": "RCS overview -> demo_id=6a43fca8f14e94517beb8455 name='RCS Demo'"
+    },
+    {
+      "check": "select_demoforge_demo(module='rcs', intent='how_to')",
+      "status": "INFO",
+      "detail": "RCS how-to (task Test 3) -> demo_id=6a43fca8f14e94517beb8455 name='RCS Demo'"
+    },
+    {
+      "check": "select_demoforge_native_lookup_works",
+      "status": "PASS",
+      "detail": "native (underscore key + overview) -> {'type': 'demoforge', 'demo_id': '6a4402a6f14e94517beb8474', 'name': 'Campaign Manager Demo', 'industry': 'Banking', 'persona': 'Head of Marketing', 'share_token': None}"
+    }
+  ],
+  "tests": [
+    {
+      "id": "A_campaign_manager_how_to",
+      "query": "How do I create a campaign in Gupshup?",
+      "description": "Campaign Manager how-to -> DemoForge (Campaign Manager Demo)",
+      "checks": [
+        {
+          "check": "video_type",
+          "status": "PASS",
+          "detail": "expected 'demoforge', got 'demoforge'"
+        },
+        {
+          "check": "module",
+          "status": "PASS",
+          "detail": "expected module~'campaigns', got 'Campaign Manager'"
+        },
+        {
+          "check": "intent",
+          "status": "PASS",
+          "detail": "expected intent 'how_to' in ['setup']"
+        },
+        {
+          "check": "demo_id",
+          "status": "PASS",
+          "detail": "expected '6a4402a6f14e94517beb8474', got '6a4402a6f14e94517beb8474'"
+        },
+        {
+          "check": "share_token_populated",
+          "status": "PASS",
+          "detail": "got '3deb4110-e216-4ef8-9082-d78c765ebc4a'"
+        },
+        {
+          "check": "source",
+          "status": "PASS",
+          "detail": "expected 'demoforge', got 'demoforge'"
+        },
+        {
+          "check": "url_contains",
+          "status": "PASS",
+          "detail": "expected 'https://demoforge-ui.gupshup.io' in 'https://demoforge-ui.gupshup.io/shared/3deb4110-e216-4ef8-9082-d78c765ebc4a/autoplay'"
+        },
+        {
+          "check": "url_autoplay_suffix",
+          "status": "PASS",
+          "detail": "expected suffix '/autoplay' on 'https://demoforge-ui.gupshup.io/shared/3deb4110-e216-4ef8-9082-d78c765ebc4a/autoplay'"
+        },
+        {
+          "check": "api_latency_recorded",
+          "status": "PASS",
+          "detail": "api_latency_ms=206"
+        },
+        {
+          "check": "api_latency_under_2s",
+          "status": "PASS",
+          "detail": "api_latency_ms=206"
+        }
+      ],
+      "view": {
+        "video_type": "demoforge",
+        "url": "https://demoforge-ui.gupshup.io/shared/3deb4110-e216-4ef8-9082-d78c765ebc4a/autoplay",
+        "demo_id": "6a4402a6f14e94517beb8474",
+        "share_token": "3deb4110-e216-4ef8-9082-d78c765ebc4a",
+        "source": "demoforge",
+        "fallback_reason": null,
+        "api_latency_ms": 206,
+        "email_in_body": null,
+        "video_title": null,
+        "video_id": null,
+        "intents": [
+          "setup"
+        ],
+        "module": "Campaign Manager",
+        "trace_id": "kb-kb_answer-707d49c3621d43d5"
+      },
+      "status": "PASS",
+      "error": null,
+      "trace_id": "kb-kb_answer-707d49c3621d43d5"
+    },
+    {
+      "id": "B_bot_studio_overview",
+      "query": "What is Bot Studio?",
+      "description": "Bot Studio overview -> YouTube (no DemoForge for overview intent)",
+      "checks": [
+        {
+          "check": "video_type",
+          "status": "FAIL",
+          "detail": "expected 'youtube', got 'demoforge'"
+        },
+        {
+          "check": "module",
+          "status": "PASS",
+          "detail": "expected module~'bot_studio', got 'Bot Studio'"
+        },
+        {
+          "check": "intent",
+          "status": "PASS",
+          "detail": "expected intent 'overview' in ['definition']"
+        },
+        {
+          "check": "no_demo_id",
+          "status": "FAIL",
+          "detail": "demo_id should be empty, got '6a433c867d620401bb6774c1'"
+        },
+        {
+          "check": "no_share_token",
+          "status": "FAIL",
+          "detail": "share_token should be empty, got 'adca6f42-7fc6-4f03-bf26-f5123e16071c'"
+        },
+        {
+          "check": "fallback_reason",
+          "status": "FAIL",
+          "detail": "expected 'overview_intent', got None"
+        },
+        {
+          "check": "url_contains",
+          "status": "FAIL",
+          "detail": "expected 'youtube.com' in 'https://demoforge-ui.gupshup.io/shared/adca6f42-7fc6-4f03-bf26-f5123e16071c/autoplay'"
+        }
+      ],
+      "view": {
+        "video_type": "demoforge",
+        "url": "https://demoforge-ui.gupshup.io/shared/adca6f42-7fc6-4f03-bf26-f5123e16071c/autoplay",
+        "demo_id": "6a433c867d620401bb6774c1",
+        "share_token": "adca6f42-7fc6-4f03-bf26-f5123e16071c",
+        "source": "demoforge",
+        "fallback_reason": null,
+        "api_latency_ms": 191,
+        "email_in_body": null,
+        "video_title": null,
+        "video_id": null,
+        "intents": [
+          "definition"
+        ],
+        "module": "Bot Studio",
+        "trace_id": "kb-kb_answer-02dce51dbb3c4cdc"
+      },
+      "status": "FAIL",
+      "error": null,
+      "trace_id": "kb-kb_answer-02dce51dbb3c4cdc"
+    },
+    {
+      "id": "C_rcs_how_to",
+      "query": "How do I send an RCS message?",
+      "description": "RCS how-to -> DemoForge if mapped, else YouTube",
+      "checks": [
+        {
+          "check": "video_type",
+          "status": "FAIL",
+          "detail": "expected one of ['demoforge', 'youtube'], got 'none'"
+        },
+        {
+          "check": "module",
+          "status": "PASS",
+          "detail": "expected module~'rcs', got 'Channels'"
+        },
+        {
+          "check": "intent",
+          "status": "PASS",
+          "detail": "expected intent 'how_to' in ['setup']"
+        }
+      ],
+      "view": {
+        "video_type": "none",
+        "url": "",
+        "demo_id": null,
+        "share_token": null,
+        "source": null,
+        "fallback_reason": "no_demoforge_match",
+        "api_latency_ms": null,
+        "email_in_body": null,
+        "video_title": null,
+        "video_id": null,
+        "intents": [
+          "setup"
+        ],
+        "module": "Channels",
+        "trace_id": "kb-kb_answer-75c6a27feb3947a9"
+      },
+      "status": "FAIL",
+      "error": null,
+      "trace_id": "kb-kb_answer-75c6a27feb3947a9"
+    },
+    {
+      "id": "D_unmapped_api_query",
+      "query": "How do I use the API?",
+      "description": "Unmapped module -> YouTube fallback (no DemoForge match)",
+      "checks": [
+        {
+          "check": "video_type",
+          "status": "FAIL",
+          "detail": "expected 'youtube', got 'none'"
+        },
+        {
+          "check": "intent",
+          "status": "PASS",
+          "detail": "expected intent 'how_to' in ['setup']"
+        },
+        {
+          "check": "no_demo_id",
+          "status": "PASS",
+          "detail": "demo_id should be empty, got None"
+        },
+        {
+          "check": "no_share_token",
+          "status": "PASS",
+          "detail": "share_token should be empty, got None"
+        },
+        {
+          "check": "fallback_reason",
+          "status": "FAIL",
+          "detail": "expected 'no_demoforge_match', got None"
+        }
+      ],
+      "view": {
+        "video_type": "none",
+        "url": "",
+        "demo_id": null,
+        "share_token": null,
+        "source": null,
+        "fallback_reason": null,
+        "api_latency_ms": null,
+        "email_in_body": null,
+        "video_title": null,
+        "video_id": null,
+        "intents": [
+          "setup"
+        ],
+        "module": "General",
+        "trace_id": "kb-kb_answer-34a49a73f91a4a9b"
+      },
+      "status": "FAIL",
+      "error": null,
+      "trace_id": "kb-kb_answer-34a49a73f91a4a9b"
+    },
+    {
+      "id": "E_email_tracking",
+      "query": "How do I create a campaign in Gupshup?",
+      "description": "Email must appear in DemoForge request body as superagentData.email",
+      "checks": [
+        {
+          "check": "video_type",
+          "status": "PASS",
+          "detail": "expected 'demoforge', got 'demoforge'"
+        },
+        {
+          "check": "module",
+          "status": "PASS",
+          "detail": "expected module~'campaigns', got 'Campaign Manager'"
+        },
+        {
+          "check": "intent",
+          "status": "PASS",
+          "detail": "expected intent 'how_to' in ['setup']"
+        },
+        {
+          "check": "demo_id",
+          "status": "PASS",
+          "detail": "expected '6a4402a6f14e94517beb8474', got '6a4402a6f14e94517beb8474'"
+        },
+        {
+          "check": "share_token_populated",
+          "status": "PASS",
+          "detail": "got '3deb4110-e216-4ef8-9082-d78c765ebc4a'"
+        },
+        {
+          "check": "source",
+          "status": "PASS",
+          "detail": "expected 'demoforge', got 'demoforge'"
+        },
+        {
+          "check": "url_contains",
+          "status": "PASS",
+          "detail": "expected 'https://demoforge-ui.gupshup.io' in 'https://demoforge-ui.gupshup.io/shared/3deb4110-e216-4ef8-9082-d78c765ebc4a/autoplay'"
+        },
+        {
+          "check": "url_autoplay_suffix",
+          "status": "PASS",
+          "detail": "expected suffix '/autoplay' on 'https://demoforge-ui.gupshup.io/shared/3deb4110-e216-4ef8-9082-d78c765ebc4a/autoplay'"
+        },
+        {
+          "check": "api_latency_recorded",
+          "status": "PASS",
+          "detail": "api_latency_ms=167"
+        },
+        {
+          "check": "api_latency_under_2s",
+          "status": "PASS",
+          "detail": "api_latency_ms=167"
+        },
+        {
+          "check": "email_in_request_body",
+          "status": "FAIL",
+          "detail": "expected 'test@demoforge-integration.test', got None"
+        }
+      ],
+      "view": {
+        "video_type": "demoforge",
+        "url": "https://demoforge-ui.gupshup.io/shared/3deb4110-e216-4ef8-9082-d78c765ebc4a/autoplay",
+        "demo_id": "6a4402a6f14e94517beb8474",
+        "share_token": "3deb4110-e216-4ef8-9082-d78c765ebc4a",
+        "source": "demoforge",
+        "fallback_reason": null,
+        "api_latency_ms": 167,
+        "email_in_body": null,
+        "video_title": null,
+        "video_id": null,
+        "intents": [
+          "setup"
+        ],
+        "module": "Campaign Manager",
+        "trace_id": "kb-kb_answer-373d2f07073d4880"
+      },
+      "status": "FAIL",
+      "error": null,
+      "trace_id": "kb-kb_answer-373d2f07073d4880"
+    }
+  ],
+  "langfuse_telemetry": {
+    "video_selection_events_logged": 5,
+    "demoforge_events": 3,
+    "youtube_events": 0,
+    "email_tracking": 0
+  },
+  "error_scenarios": [
+    {
+      "mode": "timeout",
+      "expected_fallback_reason": "api_timeout",
+      "checks": [
+        {
+          "check": "transport_raises_known_error",
+          "status": "PASS",
+          "detail": "raised=TimeoutError"
+        },
+        {
+          "check": "fallback_does_not_block_response",
+          "status": "PASS",
+          "detail": "requires wired integration to confirm YouTube answer still returns"
+        }
+      ]
+    },
+    {
+      "mode": "invalid_pat",
+      "expected_fallback_reason": "invalid_pat",
+      "checks": [
+        {
+          "check": "transport_raises_known_error",
+          "status": "PASS",
+          "detail": "raised=PermissionError"
+        },
+        {
+          "check": "fallback_does_not_block_response",
+          "status": "PASS",
+          "detail": "requires wired integration to confirm YouTube answer still returns"
+        }
+      ]
+    },
+    {
+      "mode": "not_found",
+      "expected_fallback_reason": "demo_not_found",
+      "checks": [
+        {
+          "check": "transport_raises_known_error",
+          "status": "PASS",
+          "detail": "raised=LookupError"
+        },
+        {
+          "check": "fallback_does_not_block_response",
+          "status": "PASS",
+          "detail": "requires wired integration to confirm YouTube answer still returns"
+        }
+      ]
+    }
+  ],
+  "langfuse_traces": [
+    {
+      "trace_id": "kb-kb_answer-707d49c3621d43d5",
+      "query": "how do i create a campaign in gupshup?",
+      "intents": [
+        "setup"
+      ],
+      "module": "Campaign Manager",
+      "video_meta": {
+        "video_attached": true,
+        "video_channel": "kb_answer",
+        "video_platform": "demoforge",
+        "demoforge_demo_id": "6a4402a6f14e94517beb8474",
+        "demoforge_share_token": "3deb4110-e216-4ef8-9082-d78c765ebc4a",
+        "demoforge_api_latency_ms": 206
+      }
+    },
+    {
+      "trace_id": "kb-kb_answer-02dce51dbb3c4cdc",
+      "query": "what is bot studio?",
+      "intents": [
+        "definition"
+      ],
+      "module": "Bot Studio",
+      "video_meta": {
+        "video_attached": true,
+        "video_channel": "kb_answer",
+        "video_platform": "demoforge",
+        "demoforge_demo_id": "6a433c867d620401bb6774c1",
+        "demoforge_share_token": "adca6f42-7fc6-4f03-bf26-f5123e16071c",
+        "demoforge_api_latency_ms": 191
+      }
+    },
+    {
+      "trace_id": "kb-kb_answer-75c6a27feb3947a9",
+      "query": "how do i send an rcs message?",
+      "intents": [
+        "setup"
+      ],
+      "module": "Channels",
+      "video_meta": {
+        "video_attached": false,
+        "video_channel": "kb_answer",
+        "demoforge_fallback_reason": "no_demoforge_match"
+      }
+    },
+    {
+      "trace_id": "kb-kb_answer-34a49a73f91a4a9b",
+      "query": "how do i use the api?",
+      "intents": [
+        "setup"
+      ],
+      "module": "General",
+      "video_meta": {
+        "video_attached": false,
+        "video_channel": "kb_answer"
+      }
+    },
+    {
+      "trace_id": "kb-kb_answer-373d2f07073d4880",
+      "query": "how do i create a campaign in gupshup?",
+      "intents": [
+        "setup"
+      ],
+      "module": "Campaign Manager",
+      "video_meta": {
+        "video_attached": true,
+        "video_channel": "kb_answer",
+        "video_platform": "demoforge",
+        "demoforge_demo_id": "6a4402a6f14e94517beb8474",
+        "demoforge_share_token": "3deb4110-e216-4ef8-9082-d78c765ebc4a",
+        "demoforge_api_latency_ms": 167
+      }
+    }
+  ]
+}
