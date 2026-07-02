@@ -160,23 +160,49 @@ def fetch_langfuse_traces(days: int = 7) -> Optional[List[Dict]]:
     return None
 
 def load_ndjson_traces(days: int = 7) -> List[Dict]:
-    """Load query traces exported to local NDJSON logs (kb/analytics/*.ndjson).
+    """Load query traces from GitLab NDJSON logs (kb/analytics/*.ndjson).
 
-    Some NDJSON rows are full Langfuse trace exports (keys: id, name, input,
-    output, metadata, timestamp) rather than 'video.delivered' events. These are
-    real query traces and share the same id format as the live REST API, so the
-    caller can union them with the live pull and dedupe by trace id.
+    Fetches from GitLab API. Some NDJSON rows are full Langfuse trace exports
+    (keys: id, name, input, output, metadata, timestamp) rather than 'video.delivered'
+    events. These are real query traces and share the same id format as the live REST API,
+    so the caller can union them with the live pull and dedupe by trace id.
     """
-    import glob
-    analytics_dir = Path(__file__).parent.parent.parent / "kb" / "analytics"
+    import urllib.request, urllib.parse, base64, ssl
+
+    _load_env()
+
+    gitlab_host = os.environ.get("KB_GITLAB_HOST", "https://gitlab.gupshup.io").rstrip("/")
+    gitlab_token = os.environ.get("KB_TOKEN", "")
+    project_id = os.environ.get("KB_REPO", "17250")
+    branch = os.environ.get("KB_BRANCH", "main")
+
+    if not gitlab_token:
+        print("⚠️  GitLab token missing — skipping NDJSON fetch from GitLab")
+        return []
+
+    # Setup SSL context
+    try:
+        import certifi
+        ssl_ctx = ssl.create_default_context(cafile=certifi.where())
+    except:
+        ssl_ctx = ssl.create_default_context()
+        ssl_ctx.check_hostname = False
+        ssl_ctx.verify_mode = ssl.CERT_NONE
+
+    headers = {"PRIVATE-TOKEN": gitlab_token}
     cutoff = datetime.utcnow() - timedelta(days=days)
 
     traces = {}
-    for fn in glob.glob(str(analytics_dir / "*.ndjson")):
+    ndjson_files = ["kb/analytics/kb_usage.ndjson", "kb/analytics/2026-07-02.ndjson"]
+
+    for ndjson_path in ndjson_files:
         try:
-            with open(fn) as f:
-                for line in f:
-                    line = line.strip()
+            # GitLab raw file API
+            url = f"{gitlab_host}/api/v4/projects/{project_id}/repository/files/{urllib.parse.quote(ndjson_path)}/raw?ref={branch}"
+            req = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(req, timeout=30, context=ssl_ctx) as resp:
+                for line in resp:
+                    line = line.decode().strip()
                     if not line:
                         continue
                     try:
@@ -194,20 +220,53 @@ def load_ndjson_traces(days: int = 7) -> List[Dict]:
                     if dt < cutoff:
                         continue
                     traces[rec["id"]] = rec  # dedupe within NDJSON by id
-        except FileNotFoundError:
-            continue
+        except urllib.error.HTTPError as e:
+            if e.code == 404:
+                continue  # File doesn't exist yet
+            print(f"⚠️  Failed to fetch {ndjson_path}: {e.code}")
+        except Exception as e:
+            print(f"⚠️  Error fetching {ndjson_path}: {e}")
+
     return list(traces.values())
 
 
 def load_video_events(days: int = 7) -> Dict[str, Any]:
-    """Load real video-delivery events from local NDJSON logs (kb/analytics/*.ndjson).
+    """Load real video-delivery events from GitLab NDJSON logs (kb/analytics/*.ndjson).
 
     NDJSON 'video.delivered' rows are EVENTS, not query traces — they are NOT
     merged into query/answer/IDK counts. They provide ground-truth video
     delivery metrics that enrich the Video Analytics sections.
     """
-    import glob
-    analytics_dir = Path(__file__).parent.parent.parent / "kb" / "analytics"
+    import urllib.request, urllib.parse, ssl
+
+    _load_env()
+
+    gitlab_host = os.environ.get("KB_GITLAB_HOST", "https://gitlab.gupshup.io").rstrip("/")
+    gitlab_token = os.environ.get("KB_TOKEN", "")
+    project_id = os.environ.get("KB_REPO", "17250")
+    branch = os.environ.get("KB_BRANCH", "main")
+
+    if not gitlab_token:
+        print("⚠️  GitLab token missing — skipping video events fetch from GitLab")
+        return {
+            "total_deliveries": 0,
+            "captions_pct": 0.0,
+            "fallback_pct": 0.0,
+            "latest_event_ts": "",
+            "by_intent": {},
+            "by_module": {}
+        }
+
+    # Setup SSL context
+    try:
+        import certifi
+        ssl_ctx = ssl.create_default_context(cafile=certifi.where())
+    except:
+        ssl_ctx = ssl.create_default_context()
+        ssl_ctx.check_hostname = False
+        ssl_ctx.verify_mode = ssl.CERT_NONE
+
+    headers = {"PRIVATE-TOKEN": gitlab_token}
     cutoff = datetime.utcnow() - timedelta(days=days)
 
     seen = set()
@@ -216,11 +275,16 @@ def load_video_events(days: int = 7) -> Dict[str, Any]:
     by_module = defaultdict(int)
     latest_ts = ""
 
-    for fn in glob.glob(str(analytics_dir / "*.ndjson")):
+    ndjson_files = ["kb/analytics/kb_usage.ndjson", "kb/analytics/2026-07-02.ndjson"]
+
+    for ndjson_path in ndjson_files:
         try:
-            with open(fn) as f:
-                for line in f:
-                    line = line.strip()
+            # GitLab raw file API
+            url = f"{gitlab_host}/api/v4/projects/{project_id}/repository/files/{urllib.parse.quote(ndjson_path)}/raw?ref={branch}"
+            req = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(req, timeout=30, context=ssl_ctx) as resp:
+                for line in resp:
+                    line = line.decode().strip()
                     if not line:
                         continue
                     try:
@@ -250,8 +314,12 @@ def load_video_events(days: int = 7) -> Dict[str, Any]:
                         fallbacks += 1
                     by_intent[p.get("intent", "unknown")] += 1
                     by_module[p.get("module", "Unknown")] += 1
-        except FileNotFoundError:
-            continue
+        except urllib.error.HTTPError as e:
+            if e.code == 404:
+                continue  # File doesn't exist yet
+            print(f"⚠️  Failed to fetch {ndjson_path}: {e.code}")
+        except Exception as e:
+            print(f"⚠️  Error fetching {ndjson_path}: {e}")
 
     return {
         "total_deliveries": total,
@@ -283,6 +351,11 @@ def analyze_traces(traces: List[Dict]) -> Dict[str, Any]:
     languages = defaultdict(lambda: {"count": 0, "answered": 0, "idk": 0, "video": 0})
     idk_samples = []
     idk_by_language = defaultdict(list)
+
+    # Video platform tracking
+    video_platforms = {"youtube": 0, "demoforge": 0}
+    demo_videos = defaultdict(lambda: {"count": 0, "title": ""})
+    youtube_videos = defaultdict(lambda: {"count": 0, "title": ""})
 
     for trace in traces:
         meta = trace.get("metadata") or {}
@@ -323,6 +396,21 @@ def analyze_traces(traces: List[Dict]) -> Dict[str, Any]:
         modules[module]["answered" if is_answered else "idk"] += 1
         confidence = meta.get("top_score") or 0.0
         modules[module]["total_confidence"] += confidence
+
+        # Video platform tracking
+        if meta.get("video_attached"):
+            video_id = meta.get("video_id", "")
+            video_title = meta.get("video_title", "Unknown")
+            video_source = meta.get("video_source", "") or ""
+
+            if video_id and (video_id.startswith("http") or "youtube.com" in video_source):
+                video_platforms["youtube"] += 1
+                youtube_videos[video_id]["count"] += 1
+                youtube_videos[video_id]["title"] = video_title
+            elif video_id:
+                video_platforms["demoforge"] += 1
+                demo_videos[video_id]["count"] += 1
+                demo_videos[video_id]["title"] = video_title
 
         # Intent tracking
         intent_list = meta.get("intent_labels", [])
@@ -428,6 +516,14 @@ def analyze_traces(traces: List[Dict]) -> Dict[str, Any]:
         } for k, v in languages.items()},
         "idk_by_language": {k: v[:5] for k, v in idk_by_language.items()},
         "idk_samples": idk_samples[:10],
+        "video_platforms": {
+            "youtube": video_platforms["youtube"],
+            "demoforge": video_platforms["demoforge"],
+            "youtube_pct": round(video_platforms["youtube"] / (video_platforms["youtube"] + video_platforms["demoforge"]) * 100, 1) if (video_platforms["youtube"] + video_platforms["demoforge"]) > 0 else 0,
+            "demoforge_pct": round(video_platforms["demoforge"] / (video_platforms["youtube"] + video_platforms["demoforge"]) * 100, 1) if (video_platforms["youtube"] + video_platforms["demoforge"]) > 0 else 0,
+        },
+        "demo_videos": {k: v for k, v in sorted(demo_videos.items(), key=lambda x: x[1]["count"], reverse=True)},
+        "youtube_videos": {k: v for k, v in sorted(youtube_videos.items(), key=lambda x: x[1]["count"], reverse=True)[:10]},
     }
 
     # Group related traces
@@ -1473,6 +1569,123 @@ def generate_query_analytics_html(analysis: Dict[str, Any], segment_key: str) ->
     html += f"""                </tbody>
             </table>
         </div>
+
+        <!-- Video Platform Split -->
+        <div class="section">
+            <h2>🎥 Video Platform Split (YouTube vs DemoForge)</h2>
+            <div class="grid">
+                <div class="card" style="border-left: 5px solid #e74c3c;">
+                    <div class="metric">
+                        <div class="metric-label">YouTube Videos</div>
+                        <div class="metric-value">{analysis.get('video_platforms', {}).get('youtube', 0)}</div>
+                        <div class="metric-unit">{analysis.get('video_platforms', {}).get('youtube_pct', 0)}%</div>
+                    </div>
+                </div>
+
+                <div class="card" style="border-left: 5px solid #3498db;">
+                    <div class="metric">
+                        <div class="metric-label">DemoForge Videos</div>
+                        <div class="metric-value">{analysis.get('video_platforms', {}).get('demoforge', 0)}</div>
+                        <div class="metric-unit">{analysis.get('video_platforms', {}).get('demoforge_pct', 0)}%</div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 20px;">
+                <canvas id="videoPlatform_{ns}"></canvas>
+            </div>
+        </div>
+        <script>
+            (function() {{
+                const youtube_count = {analysis.get('video_platforms', {}).get('youtube', 0)};
+                const demoforge_count = {analysis.get('video_platforms', {}).get('demoforge', 0)};
+                new Chart(document.getElementById('videoPlatform_{ns}'), {{
+                    type: 'doughnut',
+                    data: {{
+                        labels: ['YouTube', 'DemoForge'],
+                        datasets: [{{
+                            data: [youtube_count, demoforge_count],
+                            backgroundColor: ['#e74c3c', '#3498db'],
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        }}]
+                    }},
+                    options: {{
+                        responsive: true, maintainAspectRatio: true,
+                        plugins: {{
+                            legend: {{
+                                position: 'bottom',
+                                labels: {{ color: '#333', font: {{ size: 12 }}, padding: 20 }}
+                            }},
+                            tooltip: {{ callbacks: {{ label: ctx => ctx.label + ': ' + ctx.parsed + ' videos' }} }}
+                        }}
+                    }}
+                }});
+            }})();
+        </script>
+
+        <!-- DemoForge Coverage Report -->
+        <div class="section">
+            <h2>🎞️ DemoForge Coverage Report</h2>
+"""
+    demo_videos = analysis.get("demo_videos", {})
+    if demo_videos:
+        html += f"""            <table>
+                <thead>
+                    <tr>
+                        <th>Demo ID</th>
+                        <th>Demo Title</th>
+                        <th class="numeric">Usage Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+"""
+        for demo_id, data in sorted(demo_videos.items(), key=lambda x: x[1]['count'], reverse=True):
+            html += f"""                    <tr>
+                        <td><code>{demo_id}</code></td>
+                        <td>{data.get('title', 'Untitled')}</td>
+                        <td class="numeric">{data['count']}</td>
+                    </tr>
+"""
+        html += f"""                </tbody>
+            </table>
+"""
+    else:
+        html += f"""            <p style="color: #999; text-align: center; padding: 40px 0;">No DemoForge videos used in this segment</p>
+"""
+
+    html += f"""        </div>
+
+        <!-- Top YouTube Videos -->
+        <div class="section">
+            <h2>📺 Top YouTube Videos (Last 10)</h2>
+"""
+    youtube_videos = analysis.get("youtube_videos", {})
+    if youtube_videos:
+        html += f"""            <table>
+                <thead>
+                    <tr>
+                        <th>Video ID</th>
+                        <th>Title</th>
+                        <th class="numeric">Attachments</th>
+                    </tr>
+                </thead>
+                <tbody>
+"""
+        for video_id, data in list(youtube_videos.items())[:10]:
+            html += f"""                    <tr>
+                        <td><code>{video_id}</code></td>
+                        <td>{data.get('title', 'Untitled')}</td>
+                        <td class="numeric">{data['count']}</td>
+                    </tr>
+"""
+        html += f"""                </tbody>
+            </table>
+"""
+    else:
+        html += f"""            <p style="color: #999; text-align: center; padding: 40px 0;">No YouTube videos attached in this segment</p>
+"""
+
+    html += f"""        </div>
 
         <!-- Sample of Remaining IDK Queries -->
         <div class="section">
