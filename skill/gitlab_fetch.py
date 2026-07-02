@@ -1,10 +1,6 @@
 import base64
-import os
 import requests
 from urllib.parse import quote
-
-
-LOCAL_SKILL_DIR = "/Users/adwit.sharma/kb_docs/skill"
 
 
 def _get_secret(context, name: str):
@@ -134,23 +130,17 @@ def gitlab_fetch(project: str = None, path: str = "", file_path: str = None, ref
     }
 
 
-def _safe_local_path(base_dir: str, filename: str) -> str:
-    """Resolve a filename under base_dir, rejecting any path traversal."""
-    base_abs = os.path.abspath(base_dir)
-    target_abs = os.path.abspath(os.path.join(base_abs, filename))
-    if target_abs != base_abs and not target_abs.startswith(base_abs + os.sep):
-        raise ValueError(f"Refusing to write outside skill directory: {filename}")
-    return target_abs
+def sync_skill_files_from_gitlab(context=None) -> dict:
+    """Fetch all .py files from GitLab's skill/ folder on the main branch and return
+    their contents and metadata in a structured response.
 
-
-def sync_skill_files_from_gitlab(context=None, local_dir: str = LOCAL_SKILL_DIR) -> dict:
-    """Fetch all .py files from GitLab's skill/ folder on the main branch and write them
-    directly to the local skill/ folder (overwriting existing files).
+    This is a valid SuperAgent skill action: it performs no local filesystem access
+    (no os / open) and instead returns the fetched file contents to the caller.
 
     Reuses the existing _get_secret / _resolve_config / _headers / gitlab_fetch
     infrastructure. Individual file failures are captured and do not abort the sync.
 
-    Returns a summary dict with the synced files, count, and any per-file errors.
+    Returns a summary dict with the fetched files, count, and any per-file errors.
     """
     if context is None:
         raise RuntimeError("Skill execution context is missing")
@@ -158,7 +148,7 @@ def sync_skill_files_from_gitlab(context=None, local_dir: str = LOCAL_SKILL_DIR)
     cfg = _resolve_config(context)
     branch = (cfg.get("branch") or "main").strip() or "main"
 
-    synced = []
+    files = []
     errors = []
 
     # Step 1: list the skill/ folder tree on the configured branch.
@@ -167,10 +157,9 @@ def sync_skill_files_from_gitlab(context=None, local_dir: str = LOCAL_SKILL_DIR)
     except Exception as exc:
         return {
             "mode": "sync",
-            "local_dir": local_dir,
             "ref": branch,
-            "synced": [],
-            "synced_count": 0,
+            "files_found": 0,
+            "files": [],
             "errors": [{"file": "skill/", "error": f"Failed to list skill folder: {exc}"}],
             "ok": False,
         }
@@ -184,41 +173,21 @@ def sync_skill_files_from_gitlab(context=None, local_dir: str = LOCAL_SKILL_DIR)
         and item.get("path")
     ]
 
-    # Ensure the local target directory exists.
-    try:
-        os.makedirs(local_dir, exist_ok=True)
-    except Exception as exc:
-        return {
-            "mode": "sync",
-            "local_dir": local_dir,
-            "ref": branch,
-            "synced": [],
-            "synced_count": 0,
-            "errors": [{"file": local_dir, "error": f"Failed to create local dir: {exc}"}],
-            "ok": False,
-        }
-
-    # Step 3: fetch and write each file, continuing past individual failures.
+    # Step 3: fetch each file's content, continuing past individual failures.
     for item in py_files:
         name = item.get("name")
         remote_path = item.get("path")
         try:
             result = gitlab_fetch(file_path=remote_path, ref=branch, context=context)
             content = result.get("content", "")
-            local_path = _safe_local_path(local_dir, name)
-            if result.get("is_binary"):
-                data = base64.b64decode(content)
-                with open(local_path, "wb") as handle:
-                    handle.write(data)
-            else:
-                with open(local_path, "w", encoding="utf-8") as handle:
-                    handle.write(content)
-            synced.append(
+            is_binary = bool(result.get("is_binary"))
+            files.append(
                 {
                     "name": name,
                     "remote_path": remote_path,
-                    "local_path": local_path,
+                    "content": content,
                     "bytes": result.get("content_length"),
+                    "encoding": "base64" if is_binary else "utf-8",
                 }
             )
         except Exception as exc:
@@ -226,10 +195,9 @@ def sync_skill_files_from_gitlab(context=None, local_dir: str = LOCAL_SKILL_DIR)
 
     return {
         "mode": "sync",
-        "local_dir": local_dir,
         "ref": branch,
-        "synced": synced,
-        "synced_count": len(synced),
+        "files_found": len(files),
+        "files": files,
         "errors": errors,
         "ok": len(errors) == 0,
     }
