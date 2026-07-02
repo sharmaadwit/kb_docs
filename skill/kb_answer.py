@@ -4097,7 +4097,7 @@ def _answer_from_case_study_chunks(query: str, case_chunks: List[Dict]) -> Optio
         "answer": answer,
         "sources": sources,
         "_chunks": scored_top_matches,  # Include chunks for langfuse metadata
-        "confidence": 8.0
+        "confidence": min(1.0, max(0.0, (scored_top_matches[0].get("score", 0.0) / 8.0))) if scored_top_matches else 0.0
     }
 
 
@@ -6870,7 +6870,7 @@ def _send_langfuse(
         "latency_ms": latency_ms,
         "intent_labels": intents,
         "explicit_module": None if explicit_module == "General" else explicit_module,
-        "confidence": results[0].get("score") if results else 0.0,
+        "confidence": min(1.0, max(0.0, (results[0].get("score", 0.0) / 8.0))) if results else 0.0,
         "failure_type": None,
         "accuracy_label": None,
         "accuracy_score": None,

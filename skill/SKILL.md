@@ -256,6 +256,11 @@ Answer a user question from the knowledge base.
 **Parameters (JSON):**
 - `query` (string, required)
 
+**Telemetry fields (internal-only; visible in Langfuse traces):**
+These describe the response metadata emitted on `kb_answer` traces. They are internal observability data and must never be shown to end users (see Hardening strategy).
+- `confidence` — Normalized relevance score in the range `0–1`, where `1.0` = maximum confidence. Use this for interpretable, comparable confidence.
+- `top_score` — Raw, unbounded relevance score (typically `0.5` to `8+`) kept for internal analysis. Not normalized; use `confidence` for interpretation.
+
 ### `kb_analytics`
 Log internal usage data for supported workflows.
 
