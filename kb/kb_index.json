@@ -1,8 +1,6 @@
 {
   "ok": true,
-  "created_at": "2026-06-25T10:01:35.369589+00:00",
-  "repo": "sharmaadwit/kb_docs",
-  "branch": "main",
+  "created_at": "2026-07-02T11:26:51.198753+00:00",
   "docs_path": "kb",
   "excluded": [
     "kb/analytics"
