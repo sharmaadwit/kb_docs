@@ -6550,9 +6550,10 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
         video_meta = kb_video.video_telemetry_metadata(
             video, "kb_answer", appended_to_answer=video_appended,
         )
-        # Set video_source: indicator of video type (demoforge vs youtube vs none)
+        # Add video_platform: indicator of video type (demoforge vs youtube vs none)
+        # Preserves original video_source field (KB source path like "kb/agent-assist/settings.md")
         if video and video.get("type") == "demoforge":
-            video_meta["video_source"] = "demoforge"
+            video_meta["video_platform"] = "demoforge"
             # DemoForge-specific fields (namespaced to avoid original-shape collision)
             if video.get("demo_id"):
                 video_meta["demoforge_demo_id"] = video.get("demo_id")
@@ -6563,7 +6564,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
             if _df_fallback_reason:
                 video_meta["demoforge_fallback_reason"] = _df_fallback_reason
         elif video and video.get("video_id"):
-            video_meta["video_source"] = "youtube"
+            video_meta["video_platform"] = "youtube"
 
         if len(videos) > 1:
             video_meta["video_count"] = len(videos)

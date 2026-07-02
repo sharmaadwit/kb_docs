@@ -305,7 +305,7 @@ def _extract_video_view(res, capture, mock_api):
     # DemoForge-only fields — prefer explicit output, fall back to mock record.
     demo_id = primary.get("demo_id") or meta.get("demoforge_demo_id")
     share_token = primary.get("share_token") or meta.get("demoforge_share_token")
-    source = primary.get("source_type") or meta.get("video_source")
+    source = primary.get("source_type") or meta.get("video_platform")
     fallback_reason = primary.get("fallback_reason") or meta.get("demoforge_fallback_reason")
     api_latency_ms = meta.get("demoforge_api_latency_ms")
 
@@ -684,8 +684,8 @@ def main():
     comp_fail = sum(c["status"] == "FAIL" for c in component_checks)
 
     # Langfuse telemetry roll-up from captured traces.
-    df_events = sum(1 for t in capture.traces if (t["video_meta"] or {}).get("demoforge_demo_id"))
-    yt_events = sum(1 for t in capture.traces if (t["video_meta"] or {}).get("video_source") == "youtube")
+    df_events = sum(1 for t in capture.traces if (t["video_meta"] or {}).get("video_platform") == "demoforge")
+    yt_events = sum(1 for t in capture.traces if (t["video_meta"] or {}).get("video_platform") == "youtube")
     email_events = sum(1 for t in capture.traces if (t["video_meta"] or {}).get("demoforge_email") or (t["video_meta"] or {}).get("email"))
 
     report = {
