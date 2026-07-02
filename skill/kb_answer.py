@@ -5985,8 +5985,8 @@ def _telemetry_identifiers(context, params: Optional[Dict[str, Any]] = None) -> 
         return None
 
     environment = (
-        _pick_param(["telemetry_env", "environment", "env", "stage"])
-        or _pick_secret(["KB_ENV", "APP_ENV", "ENVIRONMENT", "DEPLOY_ENV", "DEPLOYMENT_ENV", "RUNTIME_ENV"])
+        _pick_param(["telemetry_env", "trace_env", "environment", "env", "stage"])
+        or _pick_secret(["TRACE_ENV", "KB_ENV", "APP_ENV", "ENVIRONMENT", "DEPLOY_ENV", "DEPLOYMENT_ENV", "RUNTIME_ENV"])
         or "unknown"
     )
     deployment_label = (

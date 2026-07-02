@@ -44,7 +44,7 @@ class Ctx:
     """Context that resolves secrets from the loaded environment."""
     def __init__(self):
         self.secrets = {}
-        self.user_email = "adwit.sharma.gupshup@gmail.com"
+        self.user_email = "adwit.sharma@gupshup.io"
 
     def get_secret(self, key):
         return os.getenv(key)
@@ -54,13 +54,14 @@ def run_query(query, label):
     print(f"\n{'='*70}\nRunning: {label}\nQuery: {query}\n{'='*70}")
     corr_id = f"sdktest_{label.replace(' ', '_')}_{int(time.time()*1000)}"
     try:
+        # trace_env is NOT hardcoded here — it comes from KB_ENV in .env
+        # (loaded into the environment above), which the skill resolves via
+        # context.get_secret("KB_ENV") -> trace_env=local. SuperAgent prod sets
+        # its own KB_ENV, so this only tags local test traffic.
         kb_answer_module.kb_answer(
             parameters={
                 "query": query,
-                "user_email": "adwit.sharma.gupshup@gmail.com",
-                # Tag every locally-issued query so dashboards can separate
-                # local testing from SuperAgent prod traffic (trace_env=local).
-                "telemetry_env": "local",
+                "user_email": "adwit.sharma@gupshup.io",
             },
             context=Ctx(),
             correlation_id=corr_id,

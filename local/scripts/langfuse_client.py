@@ -30,10 +30,7 @@ except ImportError as e:  # pragma: no cover
 
 
 def _load_env_from_dotenv():
-    """Best-effort load of LANGFUSE_* keys from ../../.env if not already set."""
-    if all(os.getenv(k) for k in
-           ("LANGFUSE_HOST", "LANGFUSE_PUBLIC_KEY", "LANGFUSE_SECRET_KEY")):
-        return
+    """Best-effort load of .env into environment (all keys, not just LANGFUSE_*)."""
     dotenv = os.path.join(os.path.dirname(__file__), "..", "..", ".env")
     if not os.path.exists(dotenv):
         return
@@ -44,7 +41,8 @@ def _load_env_from_dotenv():
                 continue
             key, _, val = line.partition("=")
             key, val = key.strip(), val.strip().strip('"').strip("'")
-            if key.startswith("LANGFUSE_") and not os.getenv(key):
+            # Load any non-empty key that's not already set (don't override shell env)
+            if key and not os.getenv(key):
                 os.environ[key] = val
 
 

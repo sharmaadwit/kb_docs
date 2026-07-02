@@ -23,8 +23,9 @@ static YouTube links) and make the **telemetry clean**:
    path** (e.g. `kb/agent-assist/settings.md`), NOT a type. Never overwrite it
    with "youtube"/"demoforge". The type goes in the separate `video_platform`
    field. For DemoForge (no KB chunk) `video_source` is `None`.
-3. **`trace_env=local` for local testing.** Every query issued from local scripts
-   must pass `telemetry_env: "local"` so dashboards separate local vs SuperAgent prod.
+3. **`trace_env=local` for local testing.** Driven by `TRACE_ENV=local` in `.env`
+   (gitignored), NOT hardcoded. The skill resolves it via
+   `context.get_secret("TRACE_ENV")`. SuperAgent prod sets its own `TRACE_ENV`.
 4. **Never push to git without explicit user permission.**
 5. **Skill code transmits via raw HTTP** (unchanged transport). The Langfuse
    **v4 SDK** is used **only** in `local/scripts/` for analysis/cleanup.
@@ -67,8 +68,8 @@ Multi-video (overview): adds `video_count`, `video_ids`, `video_sources`.
   emits NO telemetry event (consolidated). Returns
   `{share_token, share_status, share_url, type, api_latency_ms}` or None.
 - `skill/kb_answer.py::_telemetry_identifiers()` (~L5965) — `environment`/`trace_env`
-  resolved from param `telemetry_env|environment|env|stage` OR secret
-  `KB_ENV|APP_ENV|...`. **Local scripts pass `telemetry_env:"local"`.**
+  resolved from param `telemetry_env|trace_env|environment|env|stage` OR secret
+  `TRACE_ENV|KB_ENV|APP_ENV|...`. **Local: `TRACE_ENV=local` in `.env` → trace_env=local.**
 - `skill/kb_answer.py::_send_langfuse()` (~L6009) — builds trace; `trace_env` at
   metadata; merges `video_meta`.
 
@@ -79,7 +80,7 @@ Multi-video (overview): adds `video_count`, `video_ids`, `video_sources`.
   `get_trace()`, `delete_traces()`. Uses `.api.trace.list/get/delete_multiple`
   with 60s timeout (cloud reads are slow from this network). Loads creds from `.env`.
 - `local/scripts/test_consolidated_telemetry.py` — runs 2 queries with
-  `telemetry_env=local`, then verifies via SDK: (1) no `demoforge_share_link`
+  `TRACE_ENV=local` from `.env`, then verifies via SDK: (1) no `demoforge_share_link`
   traces, (2) full video shape present. **Adds `skill/` to sys.path** so the flat
   `import kb_video` inside the skill resolves.
 
