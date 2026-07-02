@@ -6536,26 +6536,6 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                 video_source = "none"
 
     # Emit a dedicated video_selection telemetry event to Langfuse.
-    try:
-        _emit_langfuse_event(
-            "video_selection",
-            context,
-            {
-                "intent": intent,
-                "module": explicit_module,
-                "demo_id": _df_demo_id,
-                "video_type": video_source,
-                "api_latency_ms": _df_latency_ms,
-                "fallback_reason": _df_fallback_reason,
-                "email": _demoforge_email(context, params),
-            },
-            params=params,
-            correlation_id=correlation_id,
-            parent_trace_id=parent_trace_id,
-        )
-    except Exception:
-        pass
-
     videos = [
         v for v in videos
         if v and (v.get("url") or (v.get("type") == "demoforge" and v.get("share_url")))
