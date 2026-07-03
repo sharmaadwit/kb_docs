@@ -3923,6 +3923,25 @@ def _detect_module(query: str) -> str:
     ):
         return "SuperAgent"
 
+    # 2b. SuperAgent + integration -> SuperAgent (Priority 1 fix #1).
+    #     "What third-party integrations does SuperAgent support?" must route
+    #     to SuperAgent integrations, not generic integrations KB.
+    if ("integration" in q or "integrations" in q) and any(
+        t in q for t in ("superagent", "super agent", "super-agent")
+    ):
+        return "SuperAgent"
+
+    # 2c. Agent Assist + analytics -> Agent Assist (Priority 1 fix #2).
+    #     "How do I access agent analytics?" must route to Agent Assist,
+    #     not Bot Studio Analytics. Matches "Agent Assist" explicit mention
+    #     or "analytics" + Agent Assist context (team, routing, chat, insights).
+    if "analytics" in q and (
+        "agent assist" in q
+        or has_agent and any(t in q for t in ("team", "routing", "chat", "insights"))
+        or any(t in q for t in ("team", "routing")) and ("for" in q or "analytics" in q)
+    ):
+        return "Agent Assist"
+
     # 3. Meta / business agent phrasing -> WhatsApp (R1).
     if "meta business agent" in q or "business agent" in q:
         return "WhatsApp"
