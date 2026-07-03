@@ -4,6 +4,7 @@ import time
 import unicodedata
 import uuid
 import base64
+import os
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -3864,10 +3865,32 @@ def _load_chunks(context) -> List[Dict]:
         (context.get_secret("GITHUB_KB_CHUNKS_PATH") if context else None)
         or f"{docs_root}/kb_chunks.jsonl"
     )
+    raw = None
+    # Try remote first (via _kb_read_text)
     try:
         raw = _kb_read_text(chunks_path, context)
     except Exception as exc:
-        raise RuntimeError("Could not load knowledge base content") from exc
+        # Fallback to local file reading for development/testing
+        try:
+            # Try local paths: kb_chunks.jsonl in root, or {docs_root}/kb_chunks.jsonl
+            local_paths = [
+                "kb_chunks.jsonl",
+                chunks_path,
+                os.path.join(os.getcwd(), "kb_chunks.jsonl"),
+                os.path.join(os.getcwd(), chunks_path),
+            ]
+            for local_path in local_paths:
+                if os.path.isfile(local_path):
+                    with open(local_path, "r", encoding="utf-8") as f:
+                        raw = f.read()
+                    break
+        except Exception:
+            pass
+
+        # If still no raw content, raise the original error
+        if raw is None:
+            raise RuntimeError("Could not load knowledge base content") from exc
+
     items: List[Dict] = []
     for line in raw.splitlines():
         line = line.strip()
