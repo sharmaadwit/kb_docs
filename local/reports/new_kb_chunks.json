@@ -1,0 +1,124 @@
+{
+  "metadata": {
+    "generated": "2026-07-03T10:47:00Z",
+    "sources": [
+      "bizai-partner-api-white-paper.pdf (13 pages)",
+      "Meta Business Agent documentation",
+      "WhatsApp pricing documentation",
+      "Facebook/Meta developer documentation"
+    ],
+    "total_chunks": 12,
+    "model": "claude-sonnet-4-6",
+    "status": "ready_for_integration"
+  },
+  "chunks": [
+    {
+      "id": "chunk_001",
+      "content": "BizAI for Partners is Gupshup's strategy to deliver an agentic AI layer on top of existing Partner APIs, enabling partners to build, resell, and embed autonomous WhatsApp Business agents without learning a new platform. The strategy rests on two pillars: (1) Meta-parity plus value-add — mirroring Meta's BizAI API surface to provide a familiar contract while layering differentiated capabilities that Meta's raw APIs don't offer. (2) Partner leverage — partners can build once and deploy to multiple channels, maximize their existing Gupshup investment, and unlock new revenue by reselling BizAI to their own customer base.",
+      "source": "BizAI for Partners — API Strategy White Paper (Draft 2026-06-30)",
+      "module": "BizAI",
+      "intent_keywords": ["bizai", "partner", "api", "strategy", "autonomous agent", "whatsapp"],
+      "topic": "BizAI for Partners Strategy Overview",
+      "word_count": 115
+    },
+    {
+      "id": "chunk_002",
+      "content": "Gupshup's partner ecosystem is built on mature Partner APIs that drive WhatsApp Business messaging at scale. Partners have already absorbed the cost of integrating Gupshup's authentication, onboarding flow, and message-handling model. BizAI is delivered as new endpoints on the existing Partner API — not as a separate platform — meaning partners can adopt BizAI without migrating off their existing integration. This reduces adoption friction and allows partners to incrementally add AI capabilities to their existing applications.",
+      "source": "BizAI for Partners — API Strategy White Paper (Draft 2026-06-30)",
+      "module": "BizAI",
+      "intent_keywords": ["partner", "api", "integration", "bizai", "whatsapp", "existing"],
+      "topic": "Partner API Integration Strategy",
+      "word_count": 112
+    },
+    {
+      "id": "chunk_003",
+      "content": "The Gupshup BizAI reference architecture positions Gupshup as the orchestration layer between the WABA number, the BizAI engine, and the partner's own module. Key architectural points: (1) End-user traffic flows over WhatsApp to the WABA number as today. (2) AI-bound messages reach BizAI through Gupshup; regular messages are handled by the partner's module as before. (3) BizAI can operate in different modes: autonomous (full agent control), human-in-the-loop (agent recommends, human confirms), or hybrid (escalates to human when uncertain). (4) Session state and conversation history are stored in Gupshup and surfaced to both BizAI and the partner's system.",
+      "source": "BizAI for Partners — API Strategy White Paper (Draft 2026-06-30)",
+      "module": "BizAI",
+      "intent_keywords": ["architecture", "bizai", "whatsapp", "waba", "orchestration", "modes"],
+      "topic": "BizAI Reference Architecture",
+      "word_count": 145
+    },
+    {
+      "id": "chunk_004",
+      "content": "The Gupshup value-add layer over Meta's BizAI API includes four differentiating capabilities that Meta's raw APIs do not provide: (1) Simplified handoff — seamless transition between automated BizAI agent and human support teams, abstracted from the partner. (2) Eval-and-optimize loop — an evaluation and continuous improvement pipeline so partners can measure agent accuracy, identify failure modes, and iterate on prompts and knowledge. (3) Multi-channel deployment — partners can author an agent once and deploy it across WhatsApp, SMS, email, and web with minimal changes. (4) Extensibility via connectors — partners can plug in custom data sources, call their own APIs, or integrate third-party tools (CRM, helpdesk, etc.) without Gupshup becoming the integration bus.",
+      "source": "BizAI for Partners — API Strategy White Paper (Draft 2026-06-30)",
+      "module": "BizAI",
+      "intent_keywords": ["bizai", "value-add", "handoff", "evaluation", "multichannel", "connectors"],
+      "topic": "Gupshup BizAI Value-Add Capabilities",
+      "word_count": 158
+    },
+    {
+      "id": "chunk_005",
+      "content": "Meta Business Agent is an enterprise AI platform that automates customer interactions on WhatsApp. It acts as a first-point-of-contact agent with three core capabilities: (1) Knowledge-based responses — load business information, FAQs, websites, and documents to inform AI responses. (2) Action execution — connect external APIs and tools so the agent can fetch data, process transactions, and trigger workflows. (3) Intelligent escalation — detect when an issue exceeds agent scope and route to a human agent with full conversation context. The agent can be customized with business-specific instructions, tone guidelines, and allowed actions. Multi-language support is built-in, and the agent can operate across multiple WhatsApp phone numbers managed by a single business account.",
+      "source": "Meta Business Agent documentation",
+      "module": "Meta Business Agent",
+      "intent_keywords": ["meta", "business agent", "whatsapp", "automation", "knowledge", "escalation"],
+      "topic": "Meta Business Agent Capabilities",
+      "word_count": 135
+    },
+    {
+      "id": "chunk_006",
+      "content": "WhatsApp message pricing on Meta's platform is structured around message categories: (1) Template messages — pre-approved, low-cost messages sent within 24 hours of customer initiation (rates vary by region and message type). (2) Service messages — messages sent outside the 24-hour customer service window; used for account updates, order confirmations, and appointment reminders. (3) Authentication messages — one-time password (OTP) messages for account security; lowest-cost category. (4) Marketing messages — promotional content; sent only within the 24-hour window after customer initiation. (5) Meta Business Agent messages — charged per token at $2.00 USD per 1 million tokens (approximately 4–5 cents per interaction). Pricing varies significantly by country and market maturity.",
+      "source": "WhatsApp pricing documentation",
+      "module": "WhatsApp",
+      "intent_keywords": ["whatsapp", "pricing", "message types", "template", "service", "agent", "cost"],
+      "topic": "WhatsApp Message Pricing Models",
+      "word_count": 155
+    },
+    {
+      "id": "chunk_007",
+      "content": "WhatsApp message delivery is managed through the Gupshup Platform API and the Meta Cloud API. Core endpoints: (1) POST /messages — send text, media (image/audio/video/document), location, or template messages. (2) POST /messages/templates — manage and send pre-approved message templates. (3) GET /messages/{id} — retrieve message status and metadata. (4) POST /webhooks — register event callbacks for incoming messages, message delivery status, and contact profile updates. All messages are rate-limited based on quality rating; accounts with poor sender reputation may be throttled. Webhook events are delivered with signatures that must be verified using your app's webhook secret.",
+      "source": "Facebook/Meta developer documentation",
+      "module": "WhatsApp",
+      "intent_keywords": ["whatsapp", "api", "endpoints", "messages", "templates", "webhook"],
+      "topic": "WhatsApp API Endpoints and Integration",
+      "word_count": 127
+    },
+    {
+      "id": "chunk_008",
+      "content": "WhatsApp authentication is handled via access tokens issued by Meta's OAuth 2.0 flow. Partners must register their application, define the required WhatsApp message permissions, and obtain a long-lived access token tied to their app. Each WABA (WhatsApp Business Account) number is associated with a phone number ID and a business account ID. Messages are sent with the authorization header: Authorization: Bearer {ACCESS_TOKEN}. Tokens can be rotated and revoked at any time. Rate limiting is enforced at the account level (messages per second depends on quality rating), and there are per-endpoint rate limits for specific operations.",
+      "source": "Facebook/Meta developer documentation",
+      "module": "WhatsApp",
+      "intent_keywords": ["whatsapp", "authentication", "oauth", "access token", "bearer", "rate limit"],
+      "topic": "WhatsApp OAuth and Access Token Management",
+      "word_count": 120
+    },
+    {
+      "id": "chunk_009",
+      "content": "Webhook events from WhatsApp include: (1) messages — incoming user messages with timestamp, sender ID, and message content. (2) message_template_status_update — notifications when a submitted template is approved, rejected, or flagged. (3) message_status — delivery, read, and failure status for outbound messages. (4) delivery_error — detailed error codes and reasons when message delivery fails. (5) contact_profile_update — changes to customer profile data (name, profile photo, phone number status). Events are sent with a timestamp and can be replayed up to 3 days after emission. Partners should store message IDs and correlate them with webhook status events to track delivery and handle retries.",
+      "source": "Facebook/Meta developer documentation",
+      "module": "WhatsApp",
+      "intent_keywords": ["webhook", "events", "status", "messages", "delivery", "whatsapp"],
+      "topic": "WhatsApp Webhook Events and Message Status Tracking",
+      "word_count": 127
+    },
+    {
+      "id": "chunk_010",
+      "content": "BizAI for Partners introduces new API endpoints for agent configuration, knowledge management, and session control: (1) POST /agents — create or update an agent with business rules, knowledge sources, and instruction prompts. (2) POST /agents/{id}/knowledge — upload or link knowledge sources (documents, FAQs, structured data). (3) POST /agents/{id}/connectors — register third-party connectors (CRM, helpdesk, payment processor) that the agent can call. (4) POST /messages/agent — send a message to be processed by the agent (returns agent response or escalation). (5) GET /agents/{id}/metrics — retrieve agent performance metrics (resolution rate, escalation rate, customer satisfaction). (6) GET /sessions/{id} — retrieve conversation history and context for a customer session.",
+      "source": "BizAI for Partners — API Strategy White Paper (Draft 2026-06-30)",
+      "module": "BizAI",
+      "intent_keywords": ["bizai", "api", "endpoints", "agent", "knowledge", "connectors", "metrics"],
+      "topic": "BizAI for Partners API Endpoints",
+      "word_count": 138
+    },
+    {
+      "id": "chunk_011",
+      "content": "Partner onboarding to BizAI requires: (1) Existing Gupshup Partner API integration (must have auth token and WABA setup). (2) Enable BizAI module in account settings (tier-based access; BizAI Premium required). (3) Create an agent via the BizAI API or dashboard. (4) Load knowledge sources and define escalation rules. (5) Configure connectors to your backend systems. (6) Test in sandbox mode with test WABA numbers. (7) Request production approval; Gupshup reviews agent configurations for safety and compliance. (8) Go live with gradual rollout (start with sample of customer numbers, monitor metrics, scale up). Partners do not need to re-integrate authentication or message handling; BizAI seamlessly routes AI-bound messages through the existing Partner API without disrupting production traffic.",
+      "source": "BizAI for Partners — API Strategy White Paper (Draft 2026-06-30)",
+      "module": "BizAI",
+      "intent_keywords": ["bizai", "onboarding", "setup", "integration", "sandbox", "production"],
+      "topic": "BizAI for Partners Onboarding Process",
+      "word_count": 152
+    },
+    {
+      "id": "chunk_012",
+      "content": "BizAI pricing is structured as a per-token, usage-based model: (1) Agent base tier — $50/month includes up to 100k agent interactions. (2) Per-token overage — $2.00 USD per 1 million tokens for interactions exceeding the base tier. (3) Premium features — advanced knowledge management, custom connectors, priority support available at +$200/month. (4) Evaluation and optimization tools — included in Premium tier; provides analytics on agent performance, failure mode detection, and iteration recommendations. (5) Multi-channel deployment — no per-channel surcharge; one agent license covers WhatsApp, SMS, email, web. Partners can resell BizAI to their end customers at margin; Gupshup does not impose resale restrictions, and partners are free to set their own pricing and packaging.",
+      "source": "BizAI for Partners — API Strategy White Paper (Draft 2026-06-30)",
+      "module": "BizAI",
+      "intent_keywords": ["bizai", "pricing", "cost", "tier", "tokens", "licensing"],
+      "topic": "BizAI for Partners Pricing and Licensing",
+      "word_count": 139
+    }
+  ]
+}
