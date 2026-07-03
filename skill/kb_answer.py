@@ -884,6 +884,8 @@ EXPLICIT_MODULES = {
     "super-agent": "SuperAgent",
     "overview": "Overview",
     "extension": "Extension",
+    "bizai": "BizAI",
+    "whatsapp": "WhatsApp",
 }
 
 _OVERVIEW_DEPRIORITY_PATTERNS = [
@@ -3917,6 +3919,10 @@ def _module_from_source(source: str) -> str:
         return "Overview"
     if "/analytics/" in s:
         return "Analytics"
+    if "/bizai/" in s:
+        return "BizAI"
+    if "/whatsapp/" in s:
+        return "WhatsApp"
     return "General"
 
 
@@ -5426,7 +5432,10 @@ def _score_chunk(
             score += 0.05 / length_divisor
 
     if explicit_module != "General" and explicit_module.lower() in _module_from_source(source).lower():
-        score += 0.35
+        # Boost for explicit module match: use 3.0 for strong module identification
+        # (e.g., "BizAI", "WhatsApp") to ensure new single-keyword modules score
+        # competitively with multi-word modules
+        score += 3.0
 
     # When the user explicitly names SuperAgent, keep results inside the module.
     # SuperAgent shares generic vocabulary ("agent", "skills", "schedule", "task")
