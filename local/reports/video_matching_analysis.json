@@ -1,0 +1,465 @@
+{
+  "summary": {
+    "analysis_timestamp": "2026-07-03T05:09:21.303699Z",
+    "total_traces_analyzed": 20,
+    "traces_with_video": 17,
+    "traces_with_module": 20,
+    "video_attachment_rate_percent": 85.0,
+    "traces_with_video_module_match": 0,
+    "module_video_matching_accuracy_percent": 0.0
+  },
+  "module_stats": {
+    "CTX": {
+      "total_traces": 2,
+      "with_video": 2,
+      "matching_count": 0,
+      "accuracy"
+# Report saved to /Users/adwit.sharma/kb_docs/local/reports/video_matching_analysis.json
+{
+  "summary": {
+    "analysis_timestamp": "2026-07-03T05:09:21.303699Z",
+    "total_traces_analyzed": 20,
+    "traces_with_video": 17,
+    "traces_with_module": 20,
+    "video_attachment_rate_percent": 85.0,
+    "traces_with_video_module_match": 0,
+    "module_video_matching_accuracy_percent": 0.0
+  },
+  "module_stats": {
+    "CTX": {
+      "total_traces": 2,
+      "with_video": 2,
+      "matching_count": 0,
+      "accuracy": 0.0,
+      "avg_confidence": 0.0
+    },
+    "AI Admin": {
+      "total_traces": 2,
+      "with_video": 2,
+      "matching_count": 0,
+      "accuracy": 0.0,
+      "avg_confidence": 0.5
+    },
+    "Bot Studio": {
+      "total_traces": 9,
+      "with_video": 9,
+      "matching_count": 0,
+      "accuracy": 0.0,
+      "avg_confidence": 0.4444444444444444
+    },
+    "Analytics": {
+      "total_traces": 1,
+      "with_video": 1,
+      "matching_count": 0,
+      "accuracy": 0.0,
+      "avg_confidence": 0.0
+    },
+    "Overview": {
+      "total_traces": 2,
+      "with_video": 2,
+      "matching_count": 0,
+      "accuracy": 0.0,
+      "avg_confidence": 0.0
+    },
+    "Campaign Manager": {
+      "total_traces": 1,
+      "with_video": 1,
+      "matching_count": 0,
+      "accuracy": 0.0,
+      "avg_confidence": 0.5
+    }
+  },
+  "traces": [
+    {
+      "trace_id": "kb-kb_answer-2aeffa9d70a74582",
+      "timestamp": "2026-07-03T03:33:48.573Z",
+      "query": "click to chat module",
+      "module": "CTX",
+      "video_title": "General Demo",
+      "video_platform": "demoforge",
+      "demoforge_demo_id": "6a38bd8d9096c01ba76af5f0",
+      "confidence_score": 0.9000000000000001,
+      "match_result": {
+        "matches": false,
+        "reason": "no_match",
+        "module_platform_expected": "demo_videos",
+        "platform_match": false,
+        "title_contains_module_marker": false,
+        "confidence": 0.0
+      }
+    },
+    {
+      "trace_id": "kb-kb_answer-0461d7337c6f4f4d",
+      "timestamp": "2026-07-02T18:48:18.920Z",
+      "query": "AI Admin troubleshooting: workspace shows validation warnings for missing content, missing description, missing intent utterances, and missing intent-",
+      "module": "AI Admin",
+      "video_title": "AI Admin Demo",
+      "video_platform": "demoforge",
+      "demoforge_demo_id": "6a43fde1f14e94517beb845f",
+      "confidence_score": 11.7,
+      "match_result": {
+        "matches": false,
+        "reason": "title_marker_found",
+        "module_platform_expected": "demo_videos",
+        "platform_match": false,
+        "title_contains_module_marker": true,
+        "confidence": 0.5
+      }
+    },
+    {
+      "trace_id": "kb-kb_answer-a4db613fcf4246a9",
+      "timestamp": "2026-07-02T18:34:24.589Z",
+      "query": "AI Admin setup troubleshooting: workspace creation is failing. How do I verify the setup prerequisites and configuration in Gupshup Console?",
+      "module": "AI Admin",
+      "video_title": "AI Admin Demo",
+      "video_platform": "demoforge",
+      "demoforge_demo_id": "6a43fde1f14e94517beb845f",
+      "confidence_score": 5.6,
+      "match_result": {
+        "matches": false,
+        "reason": "title_marker_found",
+        "module_platform_expected": "demo_videos",
+        "platform_match": false,
+        "title_contains_module_marker": true,
+        "confidence": 0.5
+      }
+    },
+    {
+      "trace_id": "kb-kb_answer-0610361f530e4510",
+      "timestamp": "2026-07-02T17:39:49.624Z",
+      "query": "Journey Builder Wait for Events node user_message timeout 24 hours branching reply timeout documentation",
+      "module": "Bot Studio",
+      "video_title": "Bot Studio",
+      "video_platform": "demoforge",
+      "demoforge_demo_id": "6a433c867d620401bb6774c1",
+      "confidence_score": 7.05,
+      "match_result": {
+        "matches": false,
+        "reason": "title_marker_found",
+        "module_platform_expected": "demo_videos",
+        "platform_match": false,
+        "title_contains_module_marker": true,
+        "confidence": 0.5
+      }
+    },
+    {
+      "trace_id": "kb-kb_answer-56af7878d2e04a04",
+      "timestamp": "2026-07-02T17:25:12.641Z",
+      "query": "Does Wait for Event in Journey Builder support a 24 hour timeout?",
+      "module": "Bot Studio",
+      "video_title": "Bot Studio",
+      "video_platform": "demoforge",
+      "demoforge_demo_id": "6a433c867d620401bb6774c1",
+      "confidence_score": 7.300000000000001,
+      "match_result": {
+        "matches": false,
+        "reason": "title_marker_found",
+        "module_platform_expected": "demo_videos",
+        "platform_match": false,
+        "title_contains_module_marker": true,
+        "confidence": 0.5
+      }
+    },
+    {
+      "trace_id": "kb-kb_answer-dccb5b1b2d404098",
+      "timestamp": "2026-07-02T17:25:12.587Z",
+      "query": "In Journey Builder, how do I use Condition Node to branch a journey based on whether a user clicked or replied after Wait for Event?",
+      "module": "Bot Studio",
+      "video_title": "Bot Studio",
+      "video_platform": "demoforge",
+      "demoforge_demo_id": "6a433c867d620401bb6774c1",
+      "confidence_score": 7.75,
+      "match_result": {
+        "matches": false,
+        "reason": "title_marker_found",
+        "module_platform_expected": "demo_videos",
+        "platform_match": false,
+        "title_contains_module_marker": true,
+        "confidence": 0.5
+      }
+    },
+    {
+      "trace_id": "kb-kb_answer-b2e5ab219a634891",
+      "timestamp": "2026-07-02T17:25:12.525Z",
+      "query": "In Journey Builder, how do I use the API Node to call a webhook and send variables like name and phone when a user clicks or replies?",
+      "module": "Bot Studio",
+      "video_title": "Bot Studio",
+      "video_platform": "demoforge",
+      "demoforge_demo_id": "6a433c867d620401bb6774c1",
+      "confidence_score": 9,
+      "match_result": {
+        "matches": false,
+        "reason": "title_marker_found",
+        "module_platform_expected": "demo_videos",
+        "platform_match": false,
+        "title_contains_module_marker": true,
+        "confidence": 0.5
+      }
+    },
+    {
+      "trace_id": "kb-kb_answer-713cd46243b94ece",
+      "timestamp": "2026-07-02T17:25:07.795Z",
+      "query": "In Journey Builder, how do I set up a WhatsApp flow where after message 1 I wait 24 hours, users who click or reply exit to a webhook, and non-engager",
+      "module": "Bot Studio",
+      "video_title": "Bot Studio",
+      "video_platform": "demoforge",
+      "demoforge_demo_id": "6a433c867d620401bb6774c1",
+      "confidence_score": 7.6000000000000005,
+      "match_result": {
+        "matches": false,
+        "reason": "title_marker_found",
+        "module_platform_expected": "demo_videos",
+        "platform_match": false,
+        "title_contains_module_marker": true,
+        "confidence": 0.5
+      }
+    },
+    {
+      "trace_id": "kb-kb_answer-b51ad0cc947547a2",
+      "timestamp": "2026-07-02T17:22:00.076Z",
+      "query": "show me the journey node setup",
+      "module": "CTX",
+      "video_title": "General Demo",
+      "video_platform": "demoforge",
+      "demoforge_demo_id": "6a38bd8d9096c01ba76af5f0",
+      "confidence_score": 1.1,
+      "match_result": {
+        "matches": false,
+        "reason": "no_match",
+        "module_platform_expected": "demo_videos",
+        "platform_match": false,
+        "title_contains_module_marker": false,
+        "confidence": 0.0
+      }
+    },
+    {
+      "trace_id": "kb-kb_answer-f824c4ff444e480b",
+      "timestamp": "2026-07-02T17:20:57.966Z",
+      "query": "how to create a journey",
+      "module": "Analytics",
+      "video_title": "General Demo",
+      "video_platform": "demoforge",
+      "demoforge_demo_id": "6a38bd8d9096c01ba76af5f0",
+      "confidence_score": 0.6000000000000001,
+      "match_result": {
+        "matches": false,
+        "reason": "no_match",
+        "module_platform_expected": "demo_videos",
+        "platform_match": false,
+        "title_contains_module_marker": false,
+        "confidence": 0.0
+      }
+    },
+    {
+      "trace_id": "kb-kb_answer-ce40563bcdb348ac",
+      "timestamp": "2026-07-02T17:19:32.335Z",
+      "query": "What is a Goal node in Gupshup Journey Builder / Bot Studio?",
+      "module": "Bot Studio",
+      "video_title": "Bot Studio",
+      "video_platform": "demoforge",
+      "demoforge_demo_id": "6a433c867d620401bb6774c1",
+      "confidence_score": 10.95,
+      "match_result": {
+        "matches": false,
+        "reason": "title_marker_found",
+        "module_platform_expected": "demo_videos",
+        "platform_match": false,
+        "title_contains_module_marker": true,
+        "confidence": 0.5
+      }
+    },
+    {
+      "trace_id": "kb-kb_answer-b0ff887ba0884dd2",
+      "timestamp": "2026-07-02T17:15:07.557Z",
+      "query": "how to put goal nodes in a journey",
+      "module": "Bot Studio",
+      "video_title": "General Demo",
+      "video_platform": "demoforge",
+      "demoforge_demo_id": "6a38bd8d9096c01ba76af5f0",
+      "confidence_score": 9.85,
+      "match_result": {
+        "matches": false,
+        "reason": "no_match",
+        "module_platform_expected": "demo_videos",
+        "platform_match": false,
+        "title_contains_module_marker": false,
+        "confidence": 0.0
+      }
+    },
+    {
+      "trace_id": "kb-kb_answer-709429b13788442c",
+      "timestamp": "2026-07-02T15:00:58.687Z",
+      "query": "Manage organisation change org name",
+      "module": "Overview",
+      "video_title": "General Demo",
+      "video_platform": "demoforge",
+      "demoforge_demo_id": "6a38bd8d9096c01ba76af5f0",
+      "confidence_score": 0.9000000000000001,
+      "match_result": {
+        "matches": false,
+        "reason": "no_match",
+        "module_platform_expected": "demo_videos",
+        "platform_match": false,
+        "title_contains_module_marker": false,
+        "confidence": 0.0
+      }
+    },
+    {
+      "trace_id": "kb-kb_answer-b677cdde8c1243d7",
+      "timestamp": "2026-07-02T14:29:42.816Z",
+      "query": "How do I change my organization name in Gupshup Console?",
+      "module": "Overview",
+      "video_title": "General Demo",
+      "video_platform": "demoforge",
+      "demoforge_demo_id": "6a38bd8d9096c01ba76af5f0",
+      "confidence_score": 0.9000000000000001,
+      "match_result": {
+        "matches": false,
+        "reason": "no_match",
+        "module_platform_expected": "demo_videos",
+        "platform_match": false,
+        "title_contains_module_marker": false,
+        "confidence": 0.0
+      }
+    },
+    {
+      "trace_id": "kb-kb_answer-ebcf24173d384fae",
+      "timestamp": "2026-07-02T12:54:51.424Z",
+      "query": "Step-by-step setup for creating a Journey Builder journey to qualify a lead",
+      "module": "Bot Studio",
+      "video_title": "Bot Studio",
+      "video_platform": "demoforge",
+      "demoforge_demo_id": "6a433c867d620401bb6774c1",
+      "confidence_score": 5.95,
+      "match_result": {
+        "matches": false,
+        "reason": "title_marker_found",
+        "module_platform_expected": "demo_videos",
+        "platform_match": false,
+        "title_contains_module_marker": true,
+        "confidence": 0.5
+      }
+    },
+    {
+      "trace_id": "kb-kb_answer-3b36a72594d54308",
+      "timestamp": "2026-07-02T12:54:12.696Z",
+      "query": "How to create a Journey Builder journey to qualify a lead",
+      "module": "Bot Studio",
+      "video_title": "Bot Studio",
+      "video_platform": "demoforge",
+      "demoforge_demo_id": "6a433c867d620401bb6774c1",
+      "confidence_score": 5.45,
+      "match_result": {
+        "matches": false,
+        "reason": "title_marker_found",
+        "module_platform_expected": "demo_videos",
+        "platform_match": false,
+        "title_contains_module_marker": true,
+        "confidence": 0.5
+      }
+    },
+    {
+      "trace_id": "kb-kb_answer-a141371a41c44758",
+      "timestamp": "2026-07-02T12:50:16.665Z",
+      "query": "Campaign Manager targeting audience scheduling sending steps",
+      "module": "Campaign Manager",
+      "video_title": "Campaign Manager Demo",
+      "video_platform": "demoforge",
+      "demoforge_demo_id": "6a4402a6f14e94517beb8474",
+      "confidence_score": 3.95,
+      "match_result": {
+        "matches": false,
+        "reason": "title_marker_found",
+        "module_platform_expected": "demo_videos",
+        "platform_match": false,
+        "title_contains_module_marker": true,
+        "confidence": 0.5
+      }
+    }
+  ],
+  "top_mismatches": [
+    {
+      "query": "AI Admin troubleshooting: workspace shows validation warnings for missing content, missing descripti",
+      "module": "AI Admin",
+      "current_video": "AI Admin Demo",
+      "issue": "title_marker_found",
+      "expected_platform": "demo_videos",
+      "current_platform": "demoforge"
+    },
+    {
+      "query": "AI Admin setup troubleshooting: workspace creation is failing. How do I verify the setup prerequisit",
+      "module": "AI Admin",
+      "current_video": "AI Admin Demo",
+      "issue": "title_marker_found",
+      "expected_platform": "demo_videos",
+      "current_platform": "demoforge"
+    },
+    {
+      "query": "Journey Builder Wait for Events node user_message timeout 24 hours branching reply timeout documenta",
+      "module": "Bot Studio",
+      "current_video": "Bot Studio",
+      "issue": "title_marker_found",
+      "expected_platform": "demo_videos",
+      "current_platform": "demoforge"
+    },
+    {
+      "query": "Does Wait for Event in Journey Builder support a 24 hour timeout?",
+      "module": "Bot Studio",
+      "current_video": "Bot Studio",
+      "issue": "title_marker_found",
+      "expected_platform": "demo_videos",
+      "current_platform": "demoforge"
+    },
+    {
+      "query": "In Journey Builder, how do I use Condition Node to branch a journey based on whether a user clicked ",
+      "module": "Bot Studio",
+      "current_video": "Bot Studio",
+      "issue": "title_marker_found",
+      "expected_platform": "demo_videos",
+      "current_platform": "demoforge"
+    },
+    {
+      "query": "In Journey Builder, how do I use the API Node to call a webhook and send variables like name and pho",
+      "module": "Bot Studio",
+      "current_video": "Bot Studio",
+      "issue": "title_marker_found",
+      "expected_platform": "demo_videos",
+      "current_platform": "demoforge"
+    },
+    {
+      "query": "In Journey Builder, how do I set up a WhatsApp flow where after message 1 I wait 24 hours, users who",
+      "module": "Bot Studio",
+      "current_video": "Bot Studio",
+      "issue": "title_marker_found",
+      "expected_platform": "demo_videos",
+      "current_platform": "demoforge"
+    },
+    {
+      "query": "What is a Goal node in Gupshup Journey Builder / Bot Studio?",
+      "module": "Bot Studio",
+      "current_video": "Bot Studio",
+      "issue": "title_marker_found",
+      "expected_platform": "demo_videos",
+      "current_platform": "demoforge"
+    },
+    {
+      "query": "Step-by-step setup for creating a Journey Builder journey to qualify a lead",
+      "module": "Bot Studio",
+      "current_video": "Bot Studio",
+      "issue": "title_marker_found",
+      "expected_platform": "demo_videos",
+      "current_platform": "demoforge"
+    },
+    {
+      "query": "How to create a Journey Builder journey to qualify a lead",
+      "module": "Bot Studio",
+      "current_video": "Bot Studio",
+      "issue": "title_marker_found",
+      "expected_platform": "demo_videos",
+      "current_platform": "demoforge"
+    }
+  ],
+  "recommendations": [
+    "Module-video matching accuracy is below 80%. Review video selection logic to better align with module context."
+  ]
+}

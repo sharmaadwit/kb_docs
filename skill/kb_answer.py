@@ -619,7 +619,11 @@ def select_demoforge_demo(query: str, intent: str, module: str, context) -> dict
         module_demos = module_to_demos.get(module_key, {})
         demo_id = module_demos.get(intent_key)
 
+        # DEBUG: Log module/intent lookup
+        logger.debug(f"[DemoForge] module='{module}' -> module_key='{module_key}', intent='{intent}' -> intent_key='{intent_key}', demo_id={demo_id}")
+
         if not demo_id:
+            logger.debug(f"[DemoForge] No demo found for module_key='{module_key}' with intent_key='{intent_key}'. Available modules: {list(module_to_demos.keys())}")
             return None
 
         # Retrieve the full demo metadata
@@ -7252,8 +7256,11 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                 _df_fallback_reason = "overview_intent"
             else:
                 # Non-overview: try DemoForge first, then YouTube fallback.
+                inferred_module = _module_from_source(top_source or "")
+                final_module = explicit_module or inferred_module
+                logger.debug(f"[VideoSelection] intent='{intent}', explicit_module='{explicit_module}', top_source='{top_source}', inferred_module='{inferred_module}', final_module='{final_module}'")
                 demoforge_demo = select_demoforge_demo(
-                    query=query, intent=intent, module=explicit_module or _module_from_source(top_source or ""), context=context,
+                    query=query, intent=intent, module=final_module, context=context,
                 )
                 if demoforge_demo:
                     _df_demo_id = demoforge_demo.get("demo_id")
