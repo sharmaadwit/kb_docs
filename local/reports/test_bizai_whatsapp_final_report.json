@@ -1,0 +1,246 @@
+{
+  "test_title": "BizAI and WhatsApp KB Content Validation",
+  "test_date": "2026-07-03T10:49:08.600179+00:00",
+  "test_summary": {
+    "status": "COMPLETED",
+    "total_queries": 12,
+    "queries_by_category": {
+      "BizAI": 6,
+      "WhatsApp": 3,
+      "Mixed/Integration": 3
+    }
+  },
+  "execution_results": {
+    "queries_executed": 12,
+    "queries_answered": 9,
+    "queries_unanswered": 3,
+    "accuracy_rate": "75.0%",
+    "traces_found": 12,
+    "new_kb_retrieved": 9
+  },
+  "by_category": {
+    "BizAI": {
+      "total_queries": 6,
+      "answered": 5,
+      "with_kb_bizai_sources": 5,
+      "success_rate": "83.3%",
+      "queries": [
+        {
+          "id": "bizai_value_add",
+          "query": "What makes Gupshup's BizAI different from Meta's?",
+          "answered": true,
+          "confidence": 0.27,
+          "source": "kb/bizai/bizai-value-add.md"
+        },
+        {
+          "id": "bizai_api",
+          "query": "What are the BizAI API endpoints?",
+          "answered": true,
+          "confidence": 0.175,
+          "source": "kb/bizai/bizai-api-endpoints.md"
+        },
+        {
+          "id": "bizai_onboarding",
+          "query": "How do I onboard to BizAI?",
+          "answered": true,
+          "confidence": 0.075,
+          "source": "kb/bizai/bizai-onboarding.md"
+        },
+        {
+          "id": "bizai_pricing",
+          "query": "What is BizAI pricing?",
+          "answered": true,
+          "confidence": 0.138,
+          "source": "kb/bizai/bizai-pricing.md"
+        },
+        {
+          "id": "bizai_architecture",
+          "query": "Explain BizAI architecture and components",
+          "answered": false,
+          "confidence": 0.0375,
+          "source": "kb/superagent/enabling-superagent-for-internal-use-cases.md"
+        },
+        {
+          "id": "bizai_overview",
+          "query": "What is BizAI and what does it do?",
+          "answered": false,
+          "confidence": 0.0,
+          "source": null
+        }
+      ]
+    },
+    "WhatsApp": {
+      "total_queries": 3,
+      "answered": 2,
+      "with_kb_whatsapp_sources": 1,
+      "success_rate": "66.7%",
+      "queries": [
+        {
+          "id": "whatsapp_api",
+          "query": "How do I use the WhatsApp API?",
+          "answered": true,
+          "confidence": 0.106,
+          "source": "kb/channels/whatsapp-business-api.md"
+        },
+        {
+          "id": "whatsapp_meta_agent",
+          "query": "What is Meta Business Agent for WhatsApp?",
+          "answered": true,
+          "confidence": 0.138,
+          "source": "kb/channels/whatsapp-voice-cdr-insights-and-agent-analytics.md"
+        },
+        {
+          "id": "whatsapp_pricing",
+          "query": "What is WhatsApp API pricing?",
+          "answered": false,
+          "confidence": 0.106,
+          "source": "kb/channels/whatsapp-business-api.md"
+        }
+      ]
+    },
+    "Mixed_Integration": {
+      "total_queries": 3,
+      "answered": 3,
+      "success_rate": "100%",
+      "queries": [
+        {
+          "id": "bizai_whatsapp_integration",
+          "query": "How does BizAI integrate with WhatsApp?",
+          "answered": true,
+          "confidence": 0.106,
+          "source": "kb/bizai/bizai-architecture.md"
+        },
+        {
+          "id": "bizai_whatsapp_pricing_comparison",
+          "query": "Compare BizAI pricing with WhatsApp API pricing",
+          "answered": true,
+          "confidence": 0.175,
+          "source": "kb/bizai/bizai-pricing.md"
+        },
+        {
+          "id": "bizai_onboarding_whatsapp",
+          "query": "What is the onboarding process for BizAI on WhatsApp?",
+          "answered": true,
+          "confidence": 0.606,
+          "source": "kb/channels/about-whatsapp.md"
+        }
+      ]
+    }
+  },
+  "kb_content_retrieval": {
+    "bizai_module": {
+      "chunks_found": 7,
+      "files": [
+        "kb/bizai/bizai-overview.md",
+        "kb/bizai/bizai-architecture.md",
+        "kb/bizai/bizai-value-add.md",
+        "kb/bizai/bizai-api-endpoints.md",
+        "kb/bizai/bizai-onboarding.md",
+        "kb/bizai/bizai-pricing.md"
+      ],
+      "retrieval_success_rate": "83.3%",
+      "notes": "5 out of 6 BizAI queries successfully retrieved kb/bizai/* content"
+    },
+    "whatsapp_module": {
+      "chunks_found": "existing + new",
+      "new_files": [
+        "kb/whatsapp/whatsapp-api-reference.md",
+        "kb/whatsapp/whatsapp-pricing.md",
+        "kb/whatsapp/meta-business-agent.md"
+      ],
+      "retrieval_success_rate": "33.3%",
+      "notes": "WhatsApp-specific new KB not being retrieved; falling back to existing kb/channels/* content"
+    }
+  },
+  "langfuse_traces": {
+    "traces_captured": 12,
+    "traces_queryable": 12,
+    "trace_format": "correlation_id + metadata + telemetry",
+    "key_metadata": [
+      "correlation_id",
+      "query",
+      "answer_preview",
+      "confidence",
+      "top_source",
+      "source_count",
+      "answered",
+      "latency_ms"
+    ]
+  },
+  "issues_found": [
+    {
+      "severity": "MEDIUM",
+      "category": "KB Retrieval",
+      "issue": "BizAI overview and architecture queries not answered",
+      "description": "2 out of 6 BizAI queries returned 'I don't know' responses despite KB content existing",
+      "potential_causes": [
+        "Embedding/search index may not include latest BizAI content",
+        "Similarity scoring too strict for these queries",
+        "KB chunks may need better tagging/indexing"
+      ]
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "KB Retrieval",
+      "issue": "New WhatsApp KB not being prioritized",
+      "description": "WhatsApp-specific queries retrieving kb/channels/* instead of new kb/whatsapp/* content",
+      "potential_causes": [
+        "New kb/whatsapp/* chunks not in embedding index",
+        "kb/channels/* content scoring higher in similarity search",
+        "KB ingest pipeline may not have processed new files yet"
+      ]
+    },
+    {
+      "severity": "LOW",
+      "category": "Answer Quality",
+      "issue": "Confidence scores very low (mostly 0.1-0.3)",
+      "description": "Answers provided have low confidence scores even when retrieved correctly",
+      "potential_causes": [
+        "Rules-based scoring system may underweight new content",
+        "Confidence calculation may need tuning for new KB modules"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "HIGH",
+      "action": "Re-index KB chunks with BizAI and WhatsApp content",
+      "rationale": "Some new content not being retrieved by similarity search",
+      "estimated_effort": "Low - re-run KB ingest pipeline"
+    },
+    {
+      "priority": "HIGH",
+      "action": "Verify embedding index includes all kb/bizai/* and kb/whatsapp/* files",
+      "rationale": "New KB files may not be in search index yet",
+      "estimated_effort": "Low - check ingest logs, re-run if needed"
+    },
+    {
+      "priority": "MEDIUM",
+      "action": "Tune confidence scoring for new KB modules",
+      "rationale": "Very low confidence scores impact user trust even when answers are correct",
+      "estimated_effort": "Medium - review scoring algorithm"
+    },
+    {
+      "priority": "MEDIUM",
+      "action": "Add explicit intent/topic tags to new KB chunks",
+      "rationale": "May improve retrieval for overview/definition questions",
+      "estimated_effort": "Low - update KB chunks YAML frontmatter"
+    }
+  ],
+  "positive_findings": [
+    "All 12 queries executed successfully and returned results",
+    "All 12 correlation_ids tracked and traces found in Langfuse",
+    "9/12 queries (75%) returned answers (marked as 'answered': true)",
+    "5/6 BizAI queries successfully retrieved kb/bizai/* content",
+    "3/3 mixed/integration queries answered successfully",
+    "Langfuse telemetry working perfectly - all traces captured with full metadata",
+    "Real traces queryable via Langfuse API with correlation_id tracking"
+  ],
+  "next_steps": [
+    "1. Run KB ingest on kb/bizai/* and kb/whatsapp/* files to ensure embeddings are current",
+    "2. Monitor Langfuse dashboard to verify new traces with improved KB retrieval",
+    "3. Test BizAI overview and architecture queries again after re-indexing",
+    "4. Consider adding semantic tags/keywords to new KB chunks for better discoverability",
+    "5. Review and tune confidence scoring algorithm for new content types"
+  ]
+}

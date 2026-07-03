@@ -1,0 +1,116 @@
+[2026-07-03T10:46:05Z] Step 1: Loading .env credentials
+[2026-07-03T10:46:05Z] Step 1: Loaded 12 env vars from .env
+[2026-07-03T10:46:05Z] Step 1: LANGFUSE_HOST=https://cloud.langfuse.com
+[2026-07-03T10:46:05Z] Step 2: Importing kb_answer from skill/kb_answer.py
+[2026-07-03T10:46:05Z] Step 2: kb_answer imported successfully
+[2026-07-03T10:46:05Z] Step 3: Executing 12 test queries
+[2026-07-03T10:46:05Z] Step 3: Query 1/12 - bizai_overview (correlation_id=5d273e0f7ec0)
+[2026-07-03T10:46:07Z] Step 3: Query 1 executed - confidence=0.0, sources=0
+[2026-07-03T10:46:07Z] Step 3: Query 2/12 - bizai_architecture (correlation_id=512b913addab)
+[2026-07-03T10:46:10Z] Step 3: Query 2 executed - confidence=0.0375, sources=1
+[2026-07-03T10:46:10Z] Step 3: Query 3/12 - bizai_value_add (correlation_id=7caa41c53232)
+[2026-07-03T10:46:12Z] Step 3: Query 3 executed - confidence=0.08125, sources=4
+[2026-07-03T10:46:12Z] Step 3: Query 4/12 - bizai_api (correlation_id=61d7be3f93f2)
+[2026-07-03T10:46:15Z] Step 3: Query 4 executed - confidence=0.07500000000000001, sources=1
+[2026-07-03T10:46:15Z] Step 3: Query 5/12 - bizai_onboarding (correlation_id=47198cb8687b)
+[2026-07-03T10:46:17Z] Step 3: Query 5 executed - confidence=0.06875, sources=4
+[2026-07-03T10:46:17Z] Step 3: Query 6/12 - bizai_pricing (correlation_id=b59897d7bb16)
+[2026-07-03T10:46:19Z] Step 3: Query 6 executed - confidence=0.0375, sources=2
+[2026-07-03T10:46:19Z] Step 3: Query 7/12 - whatsapp_pricing (correlation_id=951fb56f2cb1)
+[2026-07-03T10:46:22Z] Step 3: Query 7 executed - confidence=0.10625000000000001, sources=4
+[2026-07-03T10:46:22Z] Step 3: Query 8/12 - whatsapp_api (correlation_id=19c9aaf1fdf8)
+[2026-07-03T10:46:24Z] Step 3: Query 8 executed - confidence=0.10625000000000001, sources=1
+[2026-07-03T10:46:24Z] Step 3: Query 9/12 - whatsapp_meta_agent (correlation_id=dfb1a5d0e314)
+[2026-07-03T10:46:28Z] Step 3: Query 9 executed - confidence=0.425, sources=4
+[2026-07-03T10:46:28Z] Step 3: Query 10/12 - bizai_whatsapp_integration (correlation_id=53a3db9b4c6c)
+[2026-07-03T10:46:30Z] Step 3: Query 10 executed - confidence=0.06875, sources=4
+[2026-07-03T10:46:30Z] Step 3: Query 11/12 - bizai_whatsapp_pricing_comparison (correlation_id=7d66ef00060f)
+[2026-07-03T10:46:33Z] Step 3: Query 11 executed - confidence=0.10625000000000001, sources=1
+[2026-07-03T10:46:33Z] Step 3: Query 12/12 - bizai_onboarding_whatsapp (correlation_id=c8f808857731)
+[2026-07-03T10:46:35Z] Step 3: Query 12 executed - confidence=0.60625, sources=3
+[2026-07-03T10:46:35Z] Step 3: Completed 12 queries
+[2026-07-03T10:46:35Z] Step 4: Waiting 30 seconds for traces to propagate to Langfuse
+[2026-07-03T10:47:05Z] Step 5: Fetching traces from Langfuse API
+[2026-07-03T10:47:05Z] Step 5: Fetching trace for bizai_overview (correlation_id=5d273e0f7ec0)
+[2026-07-03T10:47:06Z] Step 5: ERROR fetching trace: 404 Client Error: Not Found for url: https://cloud.langfuse.com/api/traces
+[2026-07-03T10:47:06Z] Step 5: Fetching trace for bizai_architecture (correlation_id=512b913addab)
+[2026-07-03T10:47:07Z] Step 5: ERROR fetching trace: 404 Client Error: Not Found for url: https://cloud.langfuse.com/api/traces
+[2026-07-03T10:47:07Z] Step 5: Fetching trace for bizai_value_add (correlation_id=7caa41c53232)
+[2026-07-03T10:47:08Z] Step 5: ERROR fetching trace: 404 Client Error: Not Found for url: https://cloud.langfuse.com/api/traces
+[2026-07-03T10:47:08Z] Step 5: Fetching trace for bizai_api (correlation_id=61d7be3f93f2)
+[2026-07-03T10:47:08Z] Step 5: ERROR fetching trace: 404 Client Error: Not Found for url: https://cloud.langfuse.com/api/traces
+[2026-07-03T10:47:08Z] Step 5: Fetching trace for bizai_onboarding (correlation_id=47198cb8687b)
+[2026-07-03T10:47:09Z] Step 5: ERROR fetching trace: 404 Client Error: Not Found for url: https://cloud.langfuse.com/api/traces
+[2026-07-03T10:47:09Z] Step 5: Fetching trace for bizai_pricing (correlation_id=b59897d7bb16)
+[2026-07-03T10:47:10Z] Step 5: ERROR fetching trace: 404 Client Error: Not Found for url: https://cloud.langfuse.com/api/traces
+[2026-07-03T10:47:10Z] Step 5: Fetching trace for whatsapp_pricing (correlation_id=951fb56f2cb1)
+[2026-07-03T10:47:10Z] Step 5: ERROR fetching trace: 404 Client Error: Not Found for url: https://cloud.langfuse.com/api/traces
+[2026-07-03T10:47:10Z] Step 5: Fetching trace for whatsapp_api (correlation_id=19c9aaf1fdf8)
+[2026-07-03T10:47:11Z] Step 5: ERROR fetching trace: 404 Client Error: Not Found for url: https://cloud.langfuse.com/api/traces
+[2026-07-03T10:47:11Z] Step 5: Fetching trace for whatsapp_meta_agent (correlation_id=dfb1a5d0e314)
+[2026-07-03T10:47:12Z] Step 5: ERROR fetching trace: 404 Client Error: Not Found for url: https://cloud.langfuse.com/api/traces
+[2026-07-03T10:47:12Z] Step 5: Fetching trace for bizai_whatsapp_integration (correlation_id=53a3db9b4c6c)
+[2026-07-03T10:47:13Z] Step 5: ERROR fetching trace: 404 Client Error: Not Found for url: https://cloud.langfuse.com/api/traces
+[2026-07-03T10:47:13Z] Step 5: Fetching trace for bizai_whatsapp_pricing_comparison (correlation_id=7d66ef00060f)
+[2026-07-03T10:47:13Z] Step 5: ERROR fetching trace: 404 Client Error: Not Found for url: https://cloud.langfuse.com/api/traces
+[2026-07-03T10:47:13Z] Step 5: Fetching trace for bizai_onboarding_whatsapp (correlation_id=c8f808857731)
+[2026-07-03T10:47:14Z] Step 5: ERROR fetching trace: 404 Client Error: Not Found for url: https://cloud.langfuse.com/api/traces
+[2026-07-03T10:47:14Z] Step 5: Found 0 traces
+[2026-07-03T10:47:14Z] Step 6: Analyzing results
+[2026-07-03T10:47:14Z] Step 7: Generating final report
+[2026-07-03T10:47:14Z] Step 7: Test complete
+[2026-07-03T10:47:14Z] Report saved to /Users/adwit.sharma/kb_docs/local/reports/test_bizai_whatsapp_report.json
+[2026-07-03T10:47:14Z] COMPLETED
+[2026-07-03T10:47:40Z] Step 1: Loading .env credentials
+[2026-07-03T10:47:40Z] Step 1: Loaded 12 env vars from .env
+[2026-07-03T10:47:40Z] Step 1: LANGFUSE_HOST=https://cloud.langfuse.com
+[2026-07-03T10:47:40Z] Step 2: Importing kb_answer from skill/kb_answer.py
+[2026-07-03T10:47:40Z] Step 2: kb_answer imported successfully
+[2026-07-03T10:47:40Z] Step 3: Executing 12 test queries
+[2026-07-03T10:47:40Z] Step 3: Query 1/12 - bizai_overview (correlation_id=171f66b238be)
+[2026-07-03T10:47:43Z] Step 3: Query 1 executed - confidence=0.0, sources=0
+[2026-07-03T10:47:43Z] Step 3: Query 2/12 - bizai_architecture (correlation_id=d0ee55d46b27)
+[2026-07-03T10:47:47Z] Step 3: Query 2 executed - confidence=0.0375, sources=1
+[2026-07-03T10:47:47Z] Step 3: Query 3/12 - bizai_value_add (correlation_id=c40745b5b7a6)
+[2026-07-03T10:47:50Z] Step 3: Query 3 executed - confidence=0.26875000000000004, sources=1
+[2026-07-03T10:47:50Z] Step 3: Query 4/12 - bizai_api (correlation_id=9434e26ddd3b)
+[2026-07-03T10:47:53Z] Step 3: Query 4 executed - confidence=0.17500000000000002, sources=1
+[2026-07-03T10:47:53Z] Step 3: Query 5/12 - bizai_onboarding (correlation_id=61e9fbcaabd5)
+[2026-07-03T10:47:56Z] Step 3: Query 5 executed - confidence=0.07500000000000001, sources=3
+[2026-07-03T10:47:56Z] Step 3: Query 6/12 - bizai_pricing (correlation_id=6272c852823e)
+[2026-07-03T10:47:58Z] Step 3: Query 6 executed - confidence=0.1375, sources=4
+[2026-07-03T10:47:58Z] Step 3: Query 7/12 - whatsapp_pricing (correlation_id=9e0ef62464c0)
+[2026-07-03T10:48:00Z] Step 3: Query 7 executed - confidence=0.10625000000000001, sources=4
+[2026-07-03T10:48:00Z] Step 3: Query 8/12 - whatsapp_api (correlation_id=d1bf316b62f9)
+[2026-07-03T10:48:03Z] Step 3: Query 8 executed - confidence=0.10625000000000001, sources=1
+[2026-07-03T10:48:03Z] Step 3: Query 9/12 - whatsapp_meta_agent (correlation_id=13d109cef634)
+[2026-07-03T10:48:07Z] Step 3: Query 9 executed - confidence=0.1375, sources=4
+[2026-07-03T10:48:07Z] Step 3: Query 10/12 - bizai_whatsapp_integration (correlation_id=cebccbd2723c)
+[2026-07-03T10:48:10Z] Step 3: Query 10 executed - confidence=0.10625000000000001, sources=1
+[2026-07-03T10:48:10Z] Step 3: Query 11/12 - bizai_whatsapp_pricing_comparison (correlation_id=eedaf69c37a2)
+[2026-07-03T10:48:13Z] Step 3: Query 11 executed - confidence=0.17500000000000002, sources=1
+[2026-07-03T10:48:13Z] Step 3: Query 12/12 - bizai_onboarding_whatsapp (correlation_id=49dded58ec6c)
+[2026-07-03T10:48:16Z] Step 3: Query 12 executed - confidence=0.60625, sources=3
+[2026-07-03T10:48:16Z] Step 3: Completed 12 queries
+[2026-07-03T10:48:16Z] Step 4: Waiting 30 seconds for traces to propagate to Langfuse
+[2026-07-03T10:48:46Z] Step 5: Fetching traces from Langfuse API
+[2026-07-03T10:48:46Z] Step 5: Fetching all recent traces from Langfuse
+[2026-07-03T10:49:08Z] Step 5: Fetched 100 total traces from Langfuse
+[2026-07-03T10:49:08Z] Step 5: Found trace for bizai_overview
+[2026-07-03T10:49:08Z] Step 5: Found trace for bizai_architecture
+[2026-07-03T10:49:08Z] Step 5: Found trace for bizai_value_add
+[2026-07-03T10:49:08Z] Step 5: Found trace for bizai_api
+[2026-07-03T10:49:08Z] Step 5: Found trace for bizai_onboarding
+[2026-07-03T10:49:08Z] Step 5: Found trace for bizai_pricing
+[2026-07-03T10:49:08Z] Step 5: Found trace for whatsapp_pricing
+[2026-07-03T10:49:08Z] Step 5: Found trace for whatsapp_api
+[2026-07-03T10:49:08Z] Step 5: Found trace for whatsapp_meta_agent
+[2026-07-03T10:49:08Z] Step 5: Found trace for bizai_whatsapp_integration
+[2026-07-03T10:49:08Z] Step 5: Found trace for bizai_whatsapp_pricing_comparison
+[2026-07-03T10:49:08Z] Step 5: Found trace for bizai_onboarding_whatsapp
+[2026-07-03T10:49:08Z] Step 5: Found 12 traces
+[2026-07-03T10:49:08Z] Step 6: Analyzing results
+[2026-07-03T10:49:08Z] Step 7: Generating final report
+[2026-07-03T10:49:08Z] Step 7: Test complete
+[2026-07-03T10:49:08Z] Report saved to /Users/adwit.sharma/kb_docs/local/reports/test_bizai_whatsapp_report.json
+[2026-07-03T10:49:08Z] COMPLETED

@@ -1,6 +1,6 @@
 {
   "cc_express": {
-    "timestamp": "2026-07-03T04:53:20.030350",
+    "timestamp": "2026-07-03T14:17:24.083451",
     "total_queries": 13,
     "answered": 11,
     "idk": 2,
@@ -349,32 +349,62 @@
     }
   },
   "standalone": {
-    "timestamp": "2026-07-03T04:53:20.036441",
-    "total_queries": 343,
-    "answered": 280,
-    "idk": 63,
-    "idk_rate": 18.4,
-    "answer_rate": 81.6,
-    "avg_confidence": 4.16,
-    "video_rate": 47.1,
+    "timestamp": "2026-07-03T14:17:24.093950",
+    "total_queries": 392,
+    "answered": 309,
+    "idk": 83,
+    "idk_rate": 21.2,
+    "answer_rate": 78.8,
+    "avg_confidence": 3.94,
+    "video_rate": 51.5,
     "modules": {
+      "Campaign Manager": {
+        "count": 32,
+        "answered": 26,
+        "idk": 6,
+        "avg_confidence": 3.82
+      },
       "CTX": {
-        "count": 12,
-        "answered": 5,
-        "idk": 7,
-        "avg_confidence": 1.84
+        "count": 16,
+        "answered": 6,
+        "idk": 10,
+        "avg_confidence": 1.55
+      },
+      "Channels": {
+        "count": 53,
+        "answered": 36,
+        "idk": 17,
+        "avg_confidence": 2.92
+      },
+      "General": {
+        "count": 61,
+        "answered": 52,
+        "idk": 9,
+        "avg_confidence": 0.75
+      },
+      "SuperAgent": {
+        "count": 5,
+        "answered": 2,
+        "idk": 3,
+        "avg_confidence": 2.71
+      },
+      "Bot Studio": {
+        "count": 136,
+        "answered": 117,
+        "idk": 19,
+        "avg_confidence": 5.74
+      },
+      "Agent Assist": {
+        "count": 53,
+        "answered": 43,
+        "idk": 10,
+        "avg_confidence": 5.19
       },
       "AI Admin": {
         "count": 8,
         "answered": 6,
         "idk": 2,
         "avg_confidence": 7.07
-      },
-      "Bot Studio": {
-        "count": 126,
-        "answered": 108,
-        "idk": 18,
-        "avg_confidence": 5.78
       },
       "Analytics": {
         "count": 9,
@@ -388,30 +418,6 @@
         "idk": 2,
         "avg_confidence": 0.91
       },
-      "Campaign Manager": {
-        "count": 29,
-        "answered": 26,
-        "idk": 3,
-        "avg_confidence": 4.11
-      },
-      "Channels": {
-        "count": 37,
-        "answered": 28,
-        "idk": 9,
-        "avg_confidence": 3.51
-      },
-      "General": {
-        "count": 49,
-        "answered": 43,
-        "idk": 6,
-        "avg_confidence": 0.51
-      },
-      "Agent Assist": {
-        "count": 51,
-        "answered": 41,
-        "idk": 10,
-        "avg_confidence": 5.12
-      },
       "Integrations": {
         "count": 8,
         "answered": 5,
@@ -424,12 +430,6 @@
         "idk": 0,
         "avg_confidence": 1.35
       },
-      "SuperAgent": {
-        "count": 3,
-        "answered": 2,
-        "idk": 1,
-        "avg_confidence": 4.32
-      },
       "Goals": {
         "count": 2,
         "answered": 2,
@@ -439,34 +439,46 @@
     },
     "intents": {
       "setup": {
-        "count": 227,
-        "answered": 174,
-        "idk": 53,
-        "answer_rate": 76.7
-      },
-      "troubleshooting": {
-        "count": 14,
-        "answered": 11,
-        "idk": 3,
-        "answer_rate": 78.6
+        "count": 262,
+        "answered": 194,
+        "idk": 68,
+        "answer_rate": 74.0
       },
       "definition": {
-        "count": 28,
-        "answered": 23,
-        "idk": 5,
-        "answer_rate": 82.1
+        "count": 38,
+        "answered": 28,
+        "idk": 10,
+        "answer_rate": 73.7
+      },
+      "page_lookup": {
+        "count": 20,
+        "answered": 19,
+        "idk": 1,
+        "answer_rate": 95.0
+      },
+      "schema": {
+        "count": 29,
+        "answered": 28,
+        "idk": 1,
+        "answer_rate": 96.6
+      },
+      "troubleshooting": {
+        "count": 15,
+        "answered": 12,
+        "idk": 3,
+        "answer_rate": 80.0
+      },
+      "overview": {
+        "count": 26,
+        "answered": 25,
+        "idk": 1,
+        "answer_rate": 96.2
       },
       "kb_error": {
         "count": 27,
         "answered": 27,
         "idk": 0,
         "answer_rate": 100.0
-      },
-      "overview": {
-        "count": 25,
-        "answered": 24,
-        "idk": 1,
-        "answer_rate": 96.0
       },
       "compare": {
         "count": 10,
@@ -480,12 +492,6 @@
         "idk": 1,
         "answer_rate": 83.3
       },
-      "page_lookup": {
-        "count": 14,
-        "answered": 13,
-        "idk": 1,
-        "answer_rate": 92.9
-      },
       "case_study": {
         "count": 5,
         "answered": 5,
@@ -498,12 +504,6 @@
         "idk": 1,
         "answer_rate": 83.3
       },
-      "schema": {
-        "count": 28,
-        "answered": 27,
-        "idk": 1,
-        "answer_rate": 96.4
-      },
       "unsupported": {
         "count": 2,
         "answered": 2,
@@ -512,6 +512,20 @@
       }
     },
     "users_internal": {
+      "naveen.verma@knowlarity.com": {
+        "count": 1,
+        "answered": 1,
+        "answer_rate": 100.0,
+        "avg_confidence": 1.95,
+        "video_pct": 100.0
+      },
+      "puru.chauhan@knowlarity.com": {
+        "count": 26,
+        "answered": 22,
+        "answer_rate": 84.6,
+        "avg_confidence": 5.65,
+        "video_pct": 76.9
+      },
       "pavankalyan.killari@gupshup.io": {
         "count": 4,
         "answered": 2,
@@ -574,13 +588,6 @@
         "answer_rate": 33.3,
         "avg_confidence": 1.93,
         "video_pct": 16.7
-      },
-      "puru.chauhan@knowlarity.com": {
-        "count": 22,
-        "answered": 18,
-        "answer_rate": 81.8,
-        "avg_confidence": 5.52,
-        "video_pct": 72.7
       },
       "ketan.thakur@gupshup.io": {
         "count": 2,
@@ -808,13 +815,45 @@
       }
     },
     "users_external": {
+      "hello@rapchai.com": {
+        "domain": "rapchai.com",
+        "count": 4,
+        "answered": 0,
+        "answer_rate": 0.0,
+        "avg_confidence": 0.31,
+        "video_pct": 0.0
+      },
+      "naidu@meraevents.com": {
+        "domain": "meraevents.com",
+        "count": 5,
+        "answered": 1,
+        "answer_rate": 20.0,
+        "avg_confidence": 0.41,
+        "video_pct": 20.0
+      },
       "marketing@upgradsot.com": {
         "domain": "upgradsot.com",
-        "count": 5,
-        "answered": 5,
-        "answer_rate": 100.0,
-        "avg_confidence": 7.74,
-        "video_pct": 100.0
+        "count": 15,
+        "answered": 13,
+        "answer_rate": 86.7,
+        "avg_confidence": 5.85,
+        "video_pct": 86.7
+      },
+      "Anonymous": {
+        "domain": "unknown",
+        "count": 57,
+        "answered": 23,
+        "answer_rate": 40.4,
+        "avg_confidence": 1.16,
+        "video_pct": 22.8
+      },
+      "admin@blessingmediaglobal.com": {
+        "domain": "blessingmediaglobal.com",
+        "count": 4,
+        "answered": 2,
+        "answer_rate": 50.0,
+        "avg_confidence": 1.31,
+        "video_pct": 0.0
       },
       "mr.yogendraptl@gmail.com": {
         "domain": "gmail.com",
@@ -854,14 +893,6 @@
         "answered": 4,
         "answer_rate": 100.0,
         "avg_confidence": 0.0,
-        "video_pct": 0.0
-      },
-      "Anonymous": {
-        "domain": "unknown",
-        "count": 16,
-        "answered": 10,
-        "answer_rate": 62.5,
-        "avg_confidence": 2.08,
         "video_pct": 0.0
       },
       "surgismartindia@gmail.com": {
@@ -1011,18 +1042,18 @@
     },
     "intent_multi": {
       "1": {
-        "count": 301,
-        "answered": 241,
-        "answer_rate": 80.1
+        "count": 346,
+        "answered": 266,
+        "answer_rate": 76.9
       },
       "2": {
-        "count": 36,
-        "answered": 33,
-        "answer_rate": 91.7
+        "count": 39,
+        "answered": 36,
+        "answer_rate": 92.3
       },
       "3": {
-        "count": 5,
-        "answered": 5,
+        "count": 6,
+        "answered": 6,
         "answer_rate": 100.0
       },
       "4": {
@@ -1033,29 +1064,39 @@
     },
     "intent_video": {
       "setup": {
-        "count": 227,
-        "video": 90,
-        "video_pct": 39.6
-      },
-      "troubleshooting": {
-        "count": 14,
-        "video": 8,
-        "video_pct": 57.1
+        "count": 262,
+        "video": 108,
+        "video_pct": 41.2
       },
       "definition": {
-        "count": 28,
-        "video": 14,
+        "count": 38,
+        "video": 19,
         "video_pct": 50.0
+      },
+      "page_lookup": {
+        "count": 20,
+        "video": 16,
+        "video_pct": 80.0
+      },
+      "schema": {
+        "count": 29,
+        "video": 5,
+        "video_pct": 17.2
+      },
+      "troubleshooting": {
+        "count": 15,
+        "video": 8,
+        "video_pct": 53.3
+      },
+      "overview": {
+        "count": 26,
+        "video": 24,
+        "video_pct": 92.3
       },
       "kb_error": {
         "count": 27,
         "video": 0,
         "video_pct": 0.0
-      },
-      "overview": {
-        "count": 25,
-        "video": 23,
-        "video_pct": 92.0
       },
       "compare": {
         "count": 10,
@@ -1067,11 +1108,6 @@
         "video": 5,
         "video_pct": 83.3
       },
-      "page_lookup": {
-        "count": 14,
-        "video": 11,
-        "video_pct": 78.6
-      },
       "case_study": {
         "count": 5,
         "video": 0,
@@ -1082,11 +1118,6 @@
         "video": 0,
         "video_pct": 0.0
       },
-      "schema": {
-        "count": 28,
-        "video": 4,
-        "video_pct": 14.3
-      },
       "unsupported": {
         "count": 2,
         "video": 0,
@@ -1095,9 +1126,9 @@
     },
     "daily": {
       "2026-07-03": {
-        "total": 1,
-        "answered": 1,
-        "idk": 0
+        "total": 50,
+        "answered": 30,
+        "idk": 20
       },
       "2026-07-02": {
         "total": 74,
@@ -1177,11 +1208,11 @@
     },
     "languages": {
       "en": {
-        "count": 332,
-        "answered": 271,
-        "idk": 61,
-        "answer_rate": 81.6,
-        "video_pct": 39.5
+        "count": 381,
+        "answered": 300,
+        "idk": 81,
+        "answer_rate": 78.7,
+        "video_pct": 41.5
       },
       "pt": {
         "count": 11,
@@ -1194,29 +1225,29 @@
     "idk_by_language": {
       "en": [
         {
-          "query": "change organisation name in console",
-          "module": "Overview",
+          "query": "How do I upload customers to Gupshup? CSV import contacts customers",
+          "module": "Campaign Manager",
+          "score": 0.65
+        },
+        {
+          "query": "How do I load my existing contacts in CSV to my database of customers",
+          "module": "Campaign Manager",
           "score": 0.6000000000000001
         },
         {
-          "query": "how do i change my org name",
-          "module": "Overview",
+          "query": "DLT SMS configuration in console where",
+          "module": "CTX",
+          "score": 0.6000000000000001
+        },
+        {
+          "query": "where can i setup my DLT sms",
+          "module": "Channels",
           "score": 0.55
         },
         {
-          "query": "When will WABA messaging move to unlimited messaging?",
-          "module": "Channels",
-          "score": 1.1
-        },
-        {
-          "query": "How to create a WhatsApp carousel template with dynamic variables and how does integration happen?",
-          "module": "Channels",
-          "score": 2.9
-        },
-        {
-          "query": "How to create a WhatsApp carousel template?",
-          "module": "Channels",
-          "score": 2.9
+          "query": "In Gupshup, for an interactive broadcast campaign, how do I make a quick reply click send an automat",
+          "module": "Campaign Manager",
+          "score": 1.8000000000000003
         }
       ],
       "pt": [
@@ -1234,100 +1265,100 @@
     },
     "idk_samples": [
       {
-        "query": "change organisation name in console",
-        "module": "Overview",
+        "query": "How do I upload customers to Gupshup? CSV import contacts customers",
+        "module": "Campaign Manager",
+        "score": 0.65,
+        "language": "en"
+      },
+      {
+        "query": "How do I load my existing contacts in CSV to my database of customers",
+        "module": "Campaign Manager",
         "score": 0.6000000000000001,
         "language": "en"
       },
       {
-        "query": "how do i change my org name",
-        "module": "Overview",
-        "score": 0.55,
-        "language": "en"
-      },
-      {
-        "query": "When will WABA messaging move to unlimited messaging?",
-        "module": "Channels",
-        "score": 1.1,
-        "language": "en"
-      },
-      {
-        "query": "How to create a WhatsApp carousel template with dynamic variables and how does integration happen?",
-        "module": "Channels",
-        "score": 2.9,
-        "language": "en"
-      },
-      {
-        "query": "How to create a WhatsApp carousel template?",
-        "module": "Channels",
-        "score": 2.9,
-        "language": "en"
-      },
-      {
-        "query": "Knowlarity Voice Stream node websocket metadata PCM Linear16 playAudio call transfer voice ai",
-        "module": "Channels",
-        "score": 1.4000000000000001,
-        "language": "en"
-      },
-      {
-        "query": "How do I use the API?",
-        "module": "Bot Studio",
-        "score": 0.55,
-        "language": "en"
-      },
-      {
-        "query": "How do I use the API?",
-        "module": "Bot Studio",
-        "score": 0.55,
-        "language": "en"
-      },
-      {
-        "query": "RFP-appropriate developer-level summary of Gupshup's documented approach for sending captured custom",
-        "module": "Integrations",
-        "score": 2.849999999999999,
-        "language": "en"
-      },
-      {
-        "query": "how do i add a tag or note to rto template reply to my shopify",
-        "module": "Bot Studio",
+        "query": "DLT SMS configuration in console where",
+        "module": "CTX",
         "score": 0.6000000000000001,
+        "language": "en"
+      },
+      {
+        "query": "where can i setup my DLT sms",
+        "module": "Channels",
+        "score": 0.55,
+        "language": "en"
+      },
+      {
+        "query": "In Gupshup, for an interactive broadcast campaign, how do I make a quick reply click send an automat",
+        "module": "Campaign Manager",
+        "score": 1.8000000000000003,
+        "language": "en"
+      },
+      {
+        "query": "What is WhatsApp API pricing?",
+        "module": "Channels",
+        "score": 0.8500000000000001,
+        "language": "en"
+      },
+      {
+        "query": "Explain BizAI architecture and components",
+        "module": "SuperAgent",
+        "score": 0.3,
+        "language": "en"
+      },
+      {
+        "query": "What is BizAI and what does it do?",
+        "module": "General",
+        "score": 0.0,
+        "language": "en"
+      },
+      {
+        "query": "Compare BizAI pricing with WhatsApp API pricing",
+        "module": "Channels",
+        "score": 0.8500000000000001,
+        "language": "en"
+      },
+      {
+        "query": "How does BizAI integrate with WhatsApp?",
+        "module": "CTX",
+        "score": 0.55,
         "language": "en"
       }
     ],
     "video_platforms": {
       "youtube": 0,
-      "demoforge": 130,
+      "demoforge": 157,
       "youtube_pct": 0.0,
       "demoforge_pct": 100.0
     },
     "demo_videos": {
+      "6a38bd8d9096c01ba76af5f0": {
+        "count": 28,
+        "title": "General Demo"
+      },
       "yjk0GJXl8v8": {
         "count": 21,
         "title": "Agent Assist Settings"
+      },
+      "6a433c867d620401bb6774c1": {
+        "count": 15,
+        "title": "Bot Studio"
       },
       "nAQEV9hy7kg": {
         "count": 12,
         "title": "Enterprise WhatsApp Extension"
       },
-      "6a38bd8d9096c01ba76af5f0": {
-        "count": 11,
-        "title": "General Demo"
+      "qV43fub35f8": {
+        "count": 10,
+        "title": "Gupshup Console Overview"
       },
-      "6a433c867d620401bb6774c1": {
-        "count": 9,
-        "title": "Bot Studio"
+      "cO21ibbcZnA": {
+        "count": 10,
+        "title": "Bot Studio: Building a Journey"
       },
       "6a4402a6f14e94517beb8474": {
         "count": 9,
         "title": "Campaign Manager Demo"
-      },
-      "cO21ibbcZnA": {
-        "count": 9,
-        "title": "Bot Studio: Building a Journey"
-      },
-      "qV43fub35f8": {
-        "count": 9,
-        "title": "Gupshup Console Overview"
       },
       "wKEhHxkgyD4": {
         "count": 8,
@@ -1353,6 +1384,10 @@
         "count": 5,
         "title": "Creating & Publishing Message Templates"
       },
+      "6a43f349f14e94517beb843f": {
+        "count": 4,
+        "title": "Agent Assist Demo"
+      },
       "LCxJK8IwzTk": {
         "count": 3,
         "title": "Analytics Dashboard"
@@ -1369,10 +1404,6 @@
         "count": 2,
         "title": "AI Admin Demo"
       },
-      "6a43f349f14e94517beb843f": {
-        "count": 2,
-        "title": "Agent Assist Demo"
-      },
       "y2OvmhV1aYM": {
         "count": 1,
         "title": "Personalize Module"
@@ -1384,7 +1415,7 @@
     },
     "youtube_videos": {},
     "trace_grouping": {
-      "total_correlation_groups": 40,
+      "total_correlation_groups": 64,
       "total_hierarchical_chains": 0,
       "multi_trace_queries": 1
     },
@@ -1643,6 +1674,20 @@
           "timestamp": "2026-07-02T17:25:07.795Z"
         },
         {
+          "id": "sess:marketing@upgradsot.com:143",
+          "length": 5,
+          "answered": 5,
+          "success_rate": 100.0,
+          "root_query": "How do I create a new journey trigger event in Journey Builder?",
+          "root_answered": true,
+          "root_confidence": 7.4,
+          "is_decomposed": true,
+          "avg_confidence": 7.21,
+          "avg_latency": 742.0,
+          "user": "marketing@upgradsot.com",
+          "timestamp": "2026-07-03T09:50:34.337Z"
+        },
+        {
           "id": "sess:ishwarnale14@gmail.com:9",
           "length": 4,
           "answered": 2,
@@ -1753,6 +1798,20 @@
           "avg_latency": 5973.0,
           "user": "yashas.reddy@gupshup.io",
           "timestamp": "2026-06-30T17:41:23.934Z"
+        },
+        {
+          "id": "sess:puru.chauhan@knowlarity.com:140",
+          "length": 4,
+          "answered": 4,
+          "success_rate": 100.0,
+          "root_query": "Which documented node should I use to collect text user input like name, city, product interest, and store it in variabl",
+          "root_answered": true,
+          "root_confidence": 5.7,
+          "is_decomposed": true,
+          "avg_confidence": 6.38,
+          "avg_latency": 695.0,
+          "user": "puru.chauhan@knowlarity.com",
+          "timestamp": "2026-07-03T07:31:03.159Z"
         },
         {
           "id": "sess:yashas.reddy@gupshup.io:10",
@@ -1977,6 +2036,34 @@
           "avg_latency": 401.0,
           "user": "mr.yogendraptl@gmail.com",
           "timestamp": "2026-07-02T15:00:41.341Z"
+        },
+        {
+          "id": "sess:admin@blessingmediaglobal.com:139",
+          "length": 3,
+          "answered": 2,
+          "success_rate": 66.7,
+          "root_query": "How do I set up Facebook and Instagram DM into my CRM platform in Gupshup? Need the documented flow for connecting Insta",
+          "root_answered": true,
+          "root_confidence": 2.15,
+          "is_decomposed": true,
+          "avg_confidence": 1.75,
+          "avg_latency": 703.0,
+          "user": "admin@blessingmediaglobal.com",
+          "timestamp": "2026-07-03T07:25:44.449Z"
+        },
+        {
+          "id": "sess:naidu@meraevents.com:145",
+          "length": 3,
+          "answered": 1,
+          "success_rate": 33.3,
+          "root_query": "where can i setup my DLT sms",
+          "root_answered": false,
+          "root_confidence": 0.55,
+          "is_decomposed": true,
+          "avg_confidence": 0.68,
+          "avg_latency": 400.0,
+          "user": "naidu@meraevents.com",
+          "timestamp": "2026-07-03T12:08:16.028Z"
         },
         {
           "id": "sess:ishwarnale14@gmail.com:5",
@@ -2341,6 +2428,48 @@
           "avg_latency": 702.0,
           "user": "gargi.upadhyay@gupshup.io",
           "timestamp": "2026-07-02T18:34:24.589Z"
+        },
+        {
+          "id": "sess:Anonymous:137",
+          "length": 2,
+          "answered": 1,
+          "success_rate": 50.0,
+          "root_query": "How to set up Facebook and Instagram DM in Gupshup Console? Include steps, prerequisites, and where to configure it.",
+          "root_answered": true,
+          "root_confidence": 1.25,
+          "is_decomposed": true,
+          "avg_confidence": 1.53,
+          "avg_latency": 2148.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T06:46:18.614Z"
+        },
+        {
+          "id": "sess:marketing@upgradsot.com:138",
+          "length": 2,
+          "answered": 2,
+          "success_rate": 100.0,
+          "root_query": "How can I create a new WhatsApp API / integrate WhatsApp for sending messages in Gupshup Console? Steps for onboarding n",
+          "root_answered": true,
+          "root_confidence": 4.15,
+          "is_decomposed": true,
+          "avg_confidence": 4.7,
+          "avg_latency": 830.0,
+          "user": "marketing@upgradsot.com",
+          "timestamp": "2026-07-03T07:07:38.220Z"
+        },
+        {
+          "id": "sess:hello@rapchai.com:146",
+          "length": 2,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "How do I load my existing contacts in CSV to my database of customers",
+          "root_answered": false,
+          "root_confidence": 0.6,
+          "is_decomposed": true,
+          "avg_confidence": 0.62,
+          "avg_latency": 374.0,
+          "user": "hello@rapchai.com",
+          "timestamp": "2026-07-03T12:35:39.998Z"
         },
         {
           "id": "sess:basavaraj@bullkingtimes.com:4",
@@ -3671,58 +3800,450 @@
           "avg_latency": 864.0,
           "user": "pavankalyan.killari@gupshup.io",
           "timestamp": "2026-07-03T03:33:48.573Z"
+        },
+        {
+          "id": "sess:marketing@upgradsot.com:136",
+          "length": 1,
+          "answered": 1,
+          "success_rate": 100.0,
+          "root_query": "Journey Builder shows 'An error occurred on client' when opening a journey. What are the documented causes and fixes? Jo",
+          "root_answered": true,
+          "root_confidence": 1.85,
+          "is_decomposed": false,
+          "avg_confidence": 1.85,
+          "avg_latency": 11669.0,
+          "user": "marketing@upgradsot.com",
+          "timestamp": "2026-07-03T05:23:21.396Z"
+        },
+        {
+          "id": "sess:Anonymous:141",
+          "length": 1,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "Invalid sales code received error during signup. What causes this and how do I fix it?",
+          "root_answered": false,
+          "root_confidence": 0.65,
+          "is_decomposed": false,
+          "avg_confidence": 0.65,
+          "avg_latency": 550.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T09:10:10.385Z"
+        },
+        {
+          "id": "sess:naveen.verma@knowlarity.com:142",
+          "length": 1,
+          "answered": 1,
+          "success_rate": 100.0,
+          "root_query": "In Bot Studio, how do I trigger a journey when a user clicks a WhatsApp template button and then ask questions one by on",
+          "root_answered": true,
+          "root_confidence": 1.95,
+          "is_decomposed": false,
+          "avg_confidence": 1.95,
+          "avg_latency": 822.0,
+          "user": "naveen.verma@knowlarity.com",
+          "timestamp": "2026-07-03T09:10:59.370Z"
+        },
+        {
+          "id": "corr:5d273e0f7ec0",
+          "length": 1,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "What is BizAI and what does it do?",
+          "root_answered": false,
+          "root_confidence": 0.0,
+          "is_decomposed": false,
+          "avg_confidence": 0.0,
+          "avg_latency": 1491.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:46:06.701Z"
+        },
+        {
+          "id": "corr:512b913addab",
+          "length": 1,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "Explain BizAI architecture and components",
+          "root_answered": false,
+          "root_confidence": 0.3,
+          "is_decomposed": false,
+          "avg_confidence": 0.3,
+          "avg_latency": 1720.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:46:09.253Z"
+        },
+        {
+          "id": "corr:7caa41c53232",
+          "length": 1,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "What makes Gupshup's BizAI different from Meta's? List the four value-add capabilities.",
+          "root_answered": false,
+          "root_confidence": 0.65,
+          "is_decomposed": false,
+          "avg_confidence": 0.65,
+          "avg_latency": 1979.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:46:12.069Z"
+        },
+        {
+          "id": "corr:61d7be3f93f2",
+          "length": 1,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "What are the BizAI API endpoints?",
+          "root_answered": false,
+          "root_confidence": 0.6,
+          "is_decomposed": false,
+          "avg_confidence": 0.6,
+          "avg_latency": 1556.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:46:14.422Z"
+        },
+        {
+          "id": "corr:47198cb8687b",
+          "length": 1,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "How do I onboard to BizAI?",
+          "root_answered": false,
+          "root_confidence": 0.55,
+          "is_decomposed": false,
+          "avg_confidence": 0.55,
+          "avg_latency": 1376.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:46:16.605Z"
+        },
+        {
+          "id": "corr:b59897d7bb16",
+          "length": 1,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "What is BizAI pricing?",
+          "root_answered": false,
+          "root_confidence": 0.3,
+          "is_decomposed": false,
+          "avg_confidence": 0.3,
+          "avg_latency": 1741.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:46:19.145Z"
+        },
+        {
+          "id": "corr:951fb56f2cb1",
+          "length": 1,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "What is WhatsApp API pricing?",
+          "root_answered": false,
+          "root_confidence": 0.85,
+          "is_decomposed": false,
+          "avg_confidence": 0.85,
+          "avg_latency": 1297.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:46:21.209Z"
+        },
+        {
+          "id": "corr:19c9aaf1fdf8",
+          "length": 1,
+          "answered": 1,
+          "success_rate": 100.0,
+          "root_query": "How do I use the WhatsApp API?",
+          "root_answered": true,
+          "root_confidence": 0.85,
+          "is_decomposed": false,
+          "avg_confidence": 0.85,
+          "avg_latency": 1981.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:46:24.031Z"
+        },
+        {
+          "id": "corr:dfb1a5d0e314",
+          "length": 1,
+          "answered": 1,
+          "success_rate": 100.0,
+          "root_query": "What is Meta Business Agent for WhatsApp?",
+          "root_answered": true,
+          "root_confidence": 3.4,
+          "is_decomposed": false,
+          "avg_confidence": 3.4,
+          "avg_latency": 1905.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:46:26.723Z"
+        },
+        {
+          "id": "corr:53a3db9b4c6c",
+          "length": 1,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "How does BizAI integrate with WhatsApp?",
+          "root_answered": false,
+          "root_confidence": 0.55,
+          "is_decomposed": false,
+          "avg_confidence": 0.55,
+          "avg_latency": 1294.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:46:30.181Z"
+        },
+        {
+          "id": "corr:7d66ef00060f",
+          "length": 1,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "Compare BizAI pricing with WhatsApp API pricing",
+          "root_answered": false,
+          "root_confidence": 0.85,
+          "is_decomposed": false,
+          "avg_confidence": 0.85,
+          "avg_latency": 1457.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:46:32.412Z"
+        },
+        {
+          "id": "corr:c8f808857731",
+          "length": 1,
+          "answered": 1,
+          "success_rate": 100.0,
+          "root_query": "What is the onboarding process for BizAI on WhatsApp?",
+          "root_answered": true,
+          "root_confidence": 4.85,
+          "is_decomposed": false,
+          "avg_confidence": 4.85,
+          "avg_latency": 1964.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:46:35.179Z"
+        },
+        {
+          "id": "corr:171f66b238be",
+          "length": 1,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "What is BizAI and what does it do?",
+          "root_answered": false,
+          "root_confidence": 0.0,
+          "is_decomposed": false,
+          "avg_confidence": 0.0,
+          "avg_latency": 1542.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:47:42.473Z"
+        },
+        {
+          "id": "corr:d0ee55d46b27",
+          "length": 1,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "Explain BizAI architecture and components",
+          "root_answered": false,
+          "root_confidence": 0.3,
+          "is_decomposed": false,
+          "avg_confidence": 0.3,
+          "avg_latency": 1162.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:47:44.410Z"
+        },
+        {
+          "id": "corr:c40745b5b7a6",
+          "length": 1,
+          "answered": 1,
+          "success_rate": 100.0,
+          "root_query": "What makes Gupshup's BizAI different from Meta's? List the four value-add capabilities.",
+          "root_answered": true,
+          "root_confidence": 2.15,
+          "is_decomposed": false,
+          "avg_confidence": 2.15,
+          "avg_latency": 1972.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:47:49.630Z"
+        },
+        {
+          "id": "corr:9434e26ddd3b",
+          "length": 1,
+          "answered": 1,
+          "success_rate": 100.0,
+          "root_query": "What are the BizAI API endpoints?",
+          "root_answered": true,
+          "root_confidence": 1.4,
+          "is_decomposed": false,
+          "avg_confidence": 1.4,
+          "avg_latency": 1854.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:47:52.333Z"
+        },
+        {
+          "id": "corr:61e9fbcaabd5",
+          "length": 1,
+          "answered": 1,
+          "success_rate": 100.0,
+          "root_query": "How do I onboard to BizAI?",
+          "root_answered": true,
+          "root_confidence": 0.6,
+          "is_decomposed": false,
+          "avg_confidence": 0.6,
+          "avg_latency": 1987.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:47:55.574Z"
+        },
+        {
+          "id": "corr:6272c852823e",
+          "length": 1,
+          "answered": 1,
+          "success_rate": 100.0,
+          "root_query": "What is BizAI pricing?",
+          "root_answered": true,
+          "root_confidence": 1.1,
+          "is_decomposed": false,
+          "avg_confidence": 1.1,
+          "avg_latency": 1778.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:47:58.087Z"
+        },
+        {
+          "id": "corr:9e0ef62464c0",
+          "length": 1,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "What is WhatsApp API pricing?",
+          "root_answered": false,
+          "root_confidence": 0.85,
+          "is_decomposed": false,
+          "avg_confidence": 0.85,
+          "avg_latency": 1205.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:47:59.969Z"
+        },
+        {
+          "id": "corr:d1bf316b62f9",
+          "length": 1,
+          "answered": 1,
+          "success_rate": 100.0,
+          "root_query": "How do I use the WhatsApp API?",
+          "root_answered": true,
+          "root_confidence": 0.85,
+          "is_decomposed": false,
+          "avg_confidence": 0.85,
+          "avg_latency": 1995.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:48:02.529Z"
+        },
+        {
+          "id": "corr:13d109cef634",
+          "length": 1,
+          "answered": 1,
+          "success_rate": 100.0,
+          "root_query": "What is Meta Business Agent for WhatsApp?",
+          "root_answered": true,
+          "root_confidence": 1.1,
+          "is_decomposed": false,
+          "avg_confidence": 1.1,
+          "avg_latency": 1867.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:48:05.628Z"
+        },
+        {
+          "id": "corr:cebccbd2723c",
+          "length": 1,
+          "answered": 1,
+          "success_rate": 100.0,
+          "root_query": "How does BizAI integrate with WhatsApp?",
+          "root_answered": true,
+          "root_confidence": 0.85,
+          "is_decomposed": false,
+          "avg_confidence": 0.85,
+          "avg_latency": 1625.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:48:09.175Z"
+        },
+        {
+          "id": "corr:eedaf69c37a2",
+          "length": 1,
+          "answered": 1,
+          "success_rate": 100.0,
+          "root_query": "Compare BizAI pricing with WhatsApp API pricing",
+          "root_answered": true,
+          "root_confidence": 1.4,
+          "is_decomposed": false,
+          "avg_confidence": 1.4,
+          "avg_latency": 1594.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:48:12.005Z"
+        },
+        {
+          "id": "corr:49dded58ec6c",
+          "length": 1,
+          "answered": 1,
+          "success_rate": 100.0,
+          "root_query": "What is the onboarding process for BizAI on WhatsApp?",
+          "root_answered": true,
+          "root_confidence": 4.85,
+          "is_decomposed": false,
+          "avg_confidence": 4.85,
+          "avg_latency": 1650.0,
+          "user": "Anonymous",
+          "timestamp": "2026-07-03T10:48:15.504Z"
+        },
+        {
+          "id": "sess:marketing@upgradsot.com:144",
+          "length": 1,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "In Gupshup, for an interactive broadcast campaign, how do I make a quick reply click send an automatic reply to the user",
+          "root_answered": false,
+          "root_confidence": 1.8,
+          "is_decomposed": false,
+          "avg_confidence": 1.8,
+          "avg_latency": 551.0,
+          "user": "marketing@upgradsot.com",
+          "timestamp": "2026-07-03T11:15:25.050Z"
         }
       ],
       "overview": {
-        "total_conversations": 163,
-        "single_turn": 95,
-        "multi_turn": 68,
-        "single_turn_pct": 58.3,
-        "multi_turn_pct": 41.7,
-        "avg_queries_per_conversation": 2.1,
+        "total_conversations": 198,
+        "single_turn": 123,
+        "multi_turn": 75,
+        "single_turn_pct": 62.1,
+        "multi_turn_pct": 37.9,
+        "avg_queries_per_conversation": 1.98,
         "max_queries": 11,
-        "total_queries": 343
+        "total_queries": 392
       },
       "success_by_length": {
         "1": {
-          "conversations": 95,
-          "avg_success_rate": 76.8
+          "conversations": 123,
+          "avg_success_rate": 70.7
         },
         "2": {
-          "conversations": 26,
-          "avg_success_rate": 80.8
+          "conversations": 29,
+          "avg_success_rate": 77.6
         },
         "3": {
-          "conversations": 16,
-          "avg_success_rate": 79.2
+          "conversations": 18,
+          "avg_success_rate": 75.9
         },
         "4+": {
-          "conversations": 26,
-          "avg_success_rate": 84.8
+          "conversations": 28,
+          "avg_success_rate": 85.9
         }
       },
       "root_vs_followup": {
         "root": {
-          "count": 163,
-          "answer_rate": 73.6,
-          "idk_rate": 26.4,
-          "avg_confidence": 3.05
+          "count": 198,
+          "answer_rate": 70.2,
+          "idk_rate": 29.8,
+          "avg_confidence": 2.8
         },
         "followup": {
-          "count": 180,
-          "answer_rate": 88.9,
-          "idk_rate": 11.1,
-          "avg_confidence": 5.17
+          "count": 194,
+          "answer_rate": 87.6,
+          "idk_rate": 12.4,
+          "avg_confidence": 5.11
         }
       },
       "decomposition_effectiveness": {
-        "total_decomposed": 68,
-        "all_success": 38,
-        "partial_success": 30,
-        "all_failed": 0,
-        "all_success_pct": 55.9,
-        "partial_success_pct": 44.1,
-        "all_failed_pct": 0.0
+        "total_decomposed": 75,
+        "all_success": 41,
+        "partial_success": 33,
+        "all_failed": 1,
+        "all_success_pct": 54.7,
+        "partial_success_pct": 44.0,
+        "all_failed_pct": 1.3
       }
     }
   },
@@ -3731,8 +4252,8 @@
     "ref_answer_rate": 0.0,
     "answer_delta": 0.0,
     "ccx_avg_confidence": 4.161538461538462,
-    "ref_avg_confidence": 3.835126931567329,
-    "confidence_delta": 0.326411529971133,
+    "ref_avg_confidence": 3.2818413729128015,
+    "confidence_delta": 0.8796970886256603,
     "low_confidence_flags": [
       {
         "id": "kb-kb_answer-fdccb13451594be1",

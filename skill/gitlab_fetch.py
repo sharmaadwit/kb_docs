@@ -13,7 +13,7 @@ def _get_secret(context, name: str):
         return None
     if value is None:
         return None
-    text = str(value).strip()
+    text = str(value).strip();[]
     return text or None
 
 

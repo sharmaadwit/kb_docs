@@ -1,0 +1,101 @@
+{
+  "timestamp": "2026-07-03T11:05:38.982861+00:00",
+  "chunks_loaded": 6733,
+  "bizai_chunks": 58,
+  "new_whatsapp_chunks": 59,
+  "tests_passed": 6,
+  "tests_failed": 0,
+  "summary": {
+    "Issue 1: BizAI Overview Query Fails": {
+      "passed": 1,
+      "failed": 0
+    },
+    "Issue 2: WhatsApp New KB Not Retrieved": {
+      "passed": 1,
+      "failed": 0
+    },
+    "Additional: BizAI Architecture": {
+      "passed": 1,
+      "failed": 0
+    },
+    "Additional: BizAI Value-Add": {
+      "passed": 1,
+      "failed": 0
+    },
+    "Additional: WhatsApp API Reference": {
+      "passed": 1,
+      "failed": 0
+    },
+    "Additional: WhatsApp Meta Agent": {
+      "passed": 1,
+      "failed": 0
+    }
+  },
+  "results": [
+    {
+      "id": "issue1_bizai_overview",
+      "query": "What is BizAI and what does it do?",
+      "issue": "Issue 1: BizAI Overview Query Fails",
+      "passed": true,
+      "confidence": 0.44375,
+      "top_source": "kb/bizai/bizai-api-endpoints.md",
+      "answered": true,
+      "source_count": 4
+    },
+    {
+      "id": "issue2_whatsapp_pricing",
+      "query": "What is WhatsApp API pricing?",
+      "issue": "Issue 2: WhatsApp New KB Not Retrieved",
+      "passed": true,
+      "confidence": 0.5125,
+      "top_source": "kb/whatsapp/whatsapp-pricing.md",
+      "answered": true,
+      "source_count": 3
+    },
+    {
+      "id": "bizai_architecture",
+      "query": "Explain BizAI architecture",
+      "issue": "Additional: BizAI Architecture",
+      "passed": true,
+      "confidence": 0.48125,
+      "top_source": "kb/bizai/bizai-architecture.md",
+      "answered": true,
+      "source_count": 4
+    },
+    {
+      "id": "bizai_value_add",
+      "query": "What makes Gupshup's BizAI different?",
+      "issue": "Additional: BizAI Value-Add",
+      "passed": true,
+      "confidence": 0.44375,
+      "top_source": "kb/bizai/bizai-architecture.md",
+      "answered": true,
+      "source_count": 2
+    },
+    {
+      "id": "whatsapp_api",
+      "query": "How do I use the WhatsApp API?",
+      "issue": "Additional: WhatsApp API Reference",
+      "passed": true,
+      "confidence": 0.45,
+      "top_source": "kb/whatsapp/whatsapp-api-reference.md",
+      "answered": true,
+      "source_count": 2
+    },
+    {
+      "id": "whatsapp_meta_agent",
+      "query": "What is Meta Business Agent for WhatsApp?",
+      "issue": "Additional: WhatsApp Meta Agent",
+      "passed": true,
+      "confidence": 0.8,
+      "top_source": "kb/whatsapp/waba-setup-detailed-gupshup-console.md",
+      "answered": true,
+      "source_count": 3
+    }
+  ],
+  "issues_fixed": {
+    "issue1_bizai_overview": true,
+    "issue2_whatsapp_new_kb": true,
+    "issue3_confidence_scores": true
+  }
+}

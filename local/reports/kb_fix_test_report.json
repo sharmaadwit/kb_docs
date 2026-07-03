@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-07-03T16:29:39.879853",
+  "passed": 2,
+  "failed": 2,
+  "results": [
+    {
+      "id": "bizai_overview",
+      "query": "What is BizAI and what does it do?",
+      "confidence": 0.44375,
+      "source_count": 4,
+      "top_source": "kb/bizai/bizai-api-endpoints.md",
+      "answered": true,
+      "passed": true
+    },
+    {
+      "id": "whatsapp_pricing",
+      "query": "What is WhatsApp API pricing?",
+      "confidence": 0.10625000000000001,
+      "source_count": 4,
+      "top_source": "kb/channels/whatsapp-business-api.md",
+      "answered": false,
+      "passed": false
+    },
+    {
+      "id": "bizai_architecture",
+      "query": "Explain BizAI architecture",
+      "confidence": 0.48125,
+      "source_count": 4,
+      "top_source": "kb/bizai/bizai-architecture.md",
+      "answered": true,
+      "passed": true
+    },
+    {
+      "id": "whatsapp_api",
+      "query": "How do I use WhatsApp API?",
+      "confidence": 0.10625000000000001,
+      "source_count": 1,
+      "top_source": "kb/channels/whatsapp-business-api.md",
+      "answered": true,
+      "passed": false
+    }
+  ]
+}
