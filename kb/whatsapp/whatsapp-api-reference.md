@@ -182,11 +182,11 @@ POST https://api.partner.com/webhooks/whatsapp
 ```
 
 **Status values:**
-- `accepted` — Message accepted by WhatsApp
-- `sent` — Delivered to phone
-- `delivered` — Read by recipient
-- `read` — Seen by recipient
-- `failed` — Delivery failed
+- `accepted` — Message accepted by WhatsApp's servers
+- `sent` — Successfully delivered to customer's phone
+- `delivered` — Message arrived on customer's device (not yet read)
+- `read` — Message has been read by customer
+- `failed` — Delivery failed (see error codes for reason)
 
 ---
 
