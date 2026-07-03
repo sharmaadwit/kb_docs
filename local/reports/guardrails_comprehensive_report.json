@@ -1,0 +1,360 @@
+{
+  "test_metadata": {
+    "total_queries": 20,
+    "execution_time_seconds": 62.68,
+    "trace_env": "LOCAL",
+    "timestamp": "2026-07-03T18:12:03.607108"
+  },
+  "queries_and_responses": [
+    {
+      "query": "What is BizAI and what are its key features?",
+      "category": "BizAI",
+      "answer_preview": "The documentation covers several BizAI topics. The most relevant pages are:\n- BizAI Reference Architecture\n- BizAI for Partners Overview\n- BizAI for Partners Pricing\n- BizAI for Partners API Endpoints\n\nAsk about a specific page or feature for detailed steps.\n\n---\n**Need more detail?** Reply with **m",
+      "confidence": 1.0,
+      "top_source": "kb/bizai/bizai-architecture.md",
+      "module_label": "BizAI",
+      "detected_module": "BizAI",
+      "expected_module": "BizAI",
+      "is_correct": true,
+      "trace_id": "kb-kb_answer-f81862f4aef742ce",
+      "execution_time_ms": 763.72,
+      "correlation_id": "54ab7f8e-da27-46b2-a4b5-dab14727c5a9"
+    },
+    {
+      "query": "How do I price BizAI agents?",
+      "category": "BizAI",
+      "answer_preview": "**BizAI Adds New Endpoints**\nExact path and steps\n- BizAI Reference Architecture\n- How BizAI Integrates with Your Partner API\n- BizAI Adds New Endpoints\n- On top of your existing integration, BizAI provides:\n- POST /agents Create and configure agents\n\n---\n**Need more detail?** Reply with **more deta",
+      "confidence": 1.0,
+      "top_source": "kb/bizai/bizai-architecture.md",
+      "module_label": "BizAI",
+      "detected_module": "BizAI",
+      "expected_module": "BizAI",
+      "is_correct": true,
+      "trace_id": "kb-kb_answer-6562e5a7eeff4160",
+      "execution_time_ms": 1274.19,
+      "correlation_id": "b992f016-5952-41d8-9a78-4413679c8705"
+    },
+    {
+      "query": "What is the BizAI architecture and value-add?",
+      "category": "BizAI",
+      "answer_preview": "**Gupshup BizAI Value-Add Capabilities**\nDefinition\n- Gupshup BizAI Value-Add Capabilities\n- Gupshup delivers differentiated value on top of Meta's BizAI API. These four capabilities are not available in Meta's raw APIs.\n- 1. Simplified Handoff\n- Seamless transition between automated BizAI agent and",
+      "confidence": 1.0,
+      "top_source": "kb/bizai/bizai-value-add.md",
+      "module_label": "BizAI",
+      "detected_module": "BizAI",
+      "expected_module": "BizAI",
+      "is_correct": true,
+      "trace_id": "kb-kb_answer-75aa1361cfc743e9",
+      "execution_time_ms": 1031.87,
+      "correlation_id": "23e97085-cc2e-451f-9177-3c2a670f0348"
+    },
+    {
+      "query": "How do I onboard a customer to BizAI?",
+      "category": "BizAI",
+      "answer_preview": "**Bizai Onboarding**\nExact path and steps\n- BizAI for Partners Onboarding\n- Prerequisites\n- Before onboarding to BizAI, you must have:\n- 1. Existing Gupshup Partner API integration\n- Valid auth token\n\n---\n**Need more detail?** Reply with **more detail**, **step by step**, or ask a specific follow-up",
+      "confidence": 1.0,
+      "top_source": "kb/bizai/bizai-onboarding.md",
+      "module_label": "BizAI",
+      "detected_module": "BizAI",
+      "expected_module": "BizAI",
+      "is_correct": true,
+      "trace_id": "kb-kb_answer-cab7729046b14a2f",
+      "execution_time_ms": 1053.01,
+      "correlation_id": "bb2915d1-cea9-4a30-99cf-90ec22698716"
+    },
+    {
+      "query": "What APIs does BizAI expose?",
+      "category": "BizAI",
+      "answer_preview": "**BizAI Adds New Endpoints**\nExact path and steps\n- BizAI Reference Architecture\n- How BizAI Integrates with Your Partner API\n- BizAI Adds New Endpoints\n- On top of your existing integration, BizAI provides:\n- POST /agents Create and configure agents\n\n---\n**Need more detail?** Reply with **more deta",
+      "confidence": 1.0,
+      "top_source": "kb/bizai/bizai-architecture.md",
+      "module_label": "BizAI",
+      "detected_module": "BizAI",
+      "expected_module": "BizAI",
+      "is_correct": true,
+      "trace_id": "kb-kb_answer-33bea0538bdf4042",
+      "execution_time_ms": 1195.34,
+      "correlation_id": "392980ba-1700-45a9-8a6b-1f2f37aa34be"
+    },
+    {
+      "query": "How do I build a custom agent in SuperAgent?",
+      "category": "SuperAgent",
+      "answer_preview": "**Step 1: Install the SuperAgent Chrome extension**\nExact path and steps\n- Enable Browser Agent\n- Enable extension mode\n- Step 1: Install the SuperAgent Chrome extension\n- Install the [Gupshup SuperAgent extension]((props) => ({\n- type: 'icon',\n\n---\n**Need more detail?** Reply with **more detail**, ",
+      "confidence": 1.0,
+      "top_source": "kb/superagent/guides/enable-browser-agent.md",
+      "module_label": "SuperAgent",
+      "detected_module": "SuperAgent",
+      "expected_module": "SuperAgent",
+      "is_correct": true,
+      "trace_id": "kb-kb_answer-95a6194d6962444c",
+      "execution_time_ms": 1267.29,
+      "correlation_id": "14a137b8-d259-4d89-94d5-0632171853ad"
+    },
+    {
+      "query": "What deployment options are available for SuperAgent?",
+      "category": "SuperAgent",
+      "answer_preview": "**Step 1: Install the SuperAgent Chrome extension**\nExact path and steps\n- Enable Browser Agent\n- Enable extension mode\n- Step 1: Install the SuperAgent Chrome extension\n- Install the [Gupshup SuperAgent extension]((props) => ({\n- type: 'icon',\n\n---\n**Need more detail?** Reply with **more detail**, ",
+      "confidence": 1.0,
+      "top_source": "kb/superagent/guides/enable-browser-agent.md",
+      "module_label": "SuperAgent",
+      "detected_module": "SuperAgent",
+      "expected_module": "SuperAgent",
+      "is_correct": true,
+      "trace_id": "kb-kb_answer-2c8e10a30a5145b1",
+      "execution_time_ms": 1203.31,
+      "correlation_id": "1b34be88-01e6-4317-af62-3aab2ce94d59"
+    },
+    {
+      "query": "How do I create and register custom skills?",
+      "category": "SuperAgent",
+      "answer_preview": "**Creating skills**\nExact path and steps\n- Skills\n- Creating skills\n- You or your team can create custom skills for any workflow. Enable the Build Skills & Recipes toggle in the chat input bar and ask the AI to create one for you. The AI will generate the `[internal artifact]` and `action.py` files ",
+      "confidence": 0.08125,
+      "top_source": "kb/superagent/concepts/skills.md",
+      "module_label": "SuperAgent",
+      "detected_module": "SuperAgent",
+      "expected_module": "SuperAgent",
+      "is_correct": true,
+      "trace_id": "kb-kb_answer-99dc8e631eb34959",
+      "execution_time_ms": 1127.95,
+      "correlation_id": "90554aa9-8b4e-4a11-8456-bc2dedc4de6f"
+    },
+    {
+      "query": "What third-party integrations does SuperAgent support?",
+      "category": "SuperAgent",
+      "answer_preview": "**SuperAgent for internal use cases \u2014 enablement guide**\n\n## 0) Applies to any external / third-party system\nThis guidance applies to **any system the customer already uses** \u2014 CRMs (HubSpot, Salesforce, Zoho, SAP, Dynamics), helpdesks / ticketing (Zendesk, Freshdesk, Jira, ServiceNow, Intercom), da",
+      "confidence": 0.45,
+      "top_source": "kb/integrations/api-integration-best-practices.md",
+      "module_label": "Integrations",
+      "detected_module": "General",
+      "expected_module": "SuperAgent",
+      "is_correct": false,
+      "trace_id": "kb-kb_answer-ea2c21213bbd4b7f",
+      "execution_time_ms": 1246.14,
+      "correlation_id": "124f9d56-18f8-4e87-9b28-b4393e980b39"
+    },
+    {
+      "query": "How do I set up agent automations?",
+      "category": "SuperAgent",
+      "answer_preview": "**Automations**\nExact path and steps\n- Agents\n- Automations\n- Automations are scheduled tasks tied to a specific agent. Open an agent, click Automate, and create a task \u2014 you set a prompt and a schedule (daily, weekly, or a custom cron pattern). The agent runs that task automatically at the times yo",
+      "confidence": 1.0,
+      "top_source": "kb/superagent/concepts/agents.md",
+      "module_label": "SuperAgent",
+      "detected_module": "SuperAgent",
+      "expected_module": "SuperAgent",
+      "is_correct": true,
+      "trace_id": "kb-kb_answer-a89698054c764b7e",
+      "execution_time_ms": 1199.02,
+      "correlation_id": "bbfefdbe-a25b-4726-97f8-2a41141be636"
+    },
+    {
+      "query": "How do I manage teams in Agent Assist?",
+      "category": "Agent Assist",
+      "answer_preview": "**Response Sent to Customers When the Agent Has Resolved the Chat**\nExact path and steps\n- Response Management: Auto Replies & Customer Satisfaction\n- Standard Responses\n- Responses When Chats Are Resolved\n- Response Sent to Customers When the Agent Has Resolved the Chat\n- Sent when an agent resolve",
+      "confidence": 1.0,
+      "top_source": "kb/agent-assist/response-management-auto-replies-and-customer-satisfaction.md",
+      "module_label": "Agent Assist",
+      "detected_module": "Agent Assist",
+      "expected_module": "Agent Assist",
+      "is_correct": true,
+      "trace_id": "kb-kb_answer-e9a87a6079a049c1",
+      "execution_time_ms": 1257.55,
+      "correlation_id": "714515c3-9ac4-48af-b920-bbd1e14eac3f"
+    },
+    {
+      "query": "How does conversation routing work?",
+      "category": "Agent Assist",
+      "answer_preview": "I don't know based on the current docs.",
+      "confidence": 0.07500000000000001,
+      "top_source": "kb/agent-assist/downloading-chat-transcripts-for-customer-conversations.md",
+      "module_label": "Agent Assist",
+      "detected_module": "Agent Assist",
+      "expected_module": "Agent Assist",
+      "is_correct": true,
+      "trace_id": "kb-kb_answer-4495ab026412477c",
+      "execution_time_ms": 467.34,
+      "correlation_id": "466efb39-7186-432e-8bac-76b5c117987f"
+    },
+    {
+      "query": "How do I access agent analytics and insights?",
+      "category": "Agent Assist",
+      "answer_preview": "**How to access sentiment analysis**\nExact path and steps\n- Sentiment Analysis\n- Procedure\n- How to access sentiment analysis\n- 1. Contact your Delivery team to activate the Custom Bot Analytics extension for your console project\n- 2. Once the extension is activated, all sentiment analysis data will",
+      "confidence": 0.45,
+      "top_source": "kb/bot-studio-analytics/sentiment-analysis.md",
+      "module_label": "Analytics",
+      "detected_module": "General",
+      "expected_module": "Agent Assist",
+      "is_correct": false,
+      "trace_id": "kb-kb_answer-0e1399d28873470c",
+      "execution_time_ms": 1227.98,
+      "correlation_id": "1fb22449-5833-424e-a2ab-b4846c04dd32"
+    },
+    {
+      "query": "How do I create a WhatsApp agent?",
+      "category": "WhatsApp",
+      "answer_preview": "I don't know based on the current docs.",
+      "confidence": 0.0,
+      "top_source": "No source",
+      "module_label": "WhatsApp",
+      "detected_module": "Unknown",
+      "expected_module": "WhatsApp",
+      "is_correct": true,
+      "trace_id": "kb-kb_answer-9f08e7b8bdce4f81",
+      "execution_time_ms": 454.62,
+      "correlation_id": "0376096c-4c51-4182-92bb-510c425e1a81"
+    },
+    {
+      "query": "How do I handle escalations in WhatsApp agent?",
+      "category": "WhatsApp",
+      "answer_preview": "I don't know based on the current docs.",
+      "confidence": 0.0,
+      "top_source": "No source",
+      "module_label": "WhatsApp",
+      "detected_module": "Unknown",
+      "expected_module": "WhatsApp",
+      "is_correct": true,
+      "trace_id": "kb-kb_answer-cd943ac6255a49cf",
+      "execution_time_ms": 457.91,
+      "correlation_id": "bd886ef0-0c04-4f3a-a9d5-a3acb3d5c9c7"
+    },
+    {
+      "query": "What are the capabilities of Meta Business Agent?",
+      "category": "WhatsApp",
+      "answer_preview": "I don't know based on the current docs.",
+      "confidence": 0.0,
+      "top_source": "No source",
+      "module_label": "WhatsApp",
+      "detected_module": "Unknown",
+      "expected_module": "WhatsApp",
+      "is_correct": true,
+      "trace_id": "kb-kb_answer-002d0ead887d4c35",
+      "execution_time_ms": 477.72,
+      "correlation_id": "f89333f5-d421-428e-998f-b7e6e64826e8"
+    },
+    {
+      "query": "What is an agent?",
+      "category": "Ambiguous",
+      "answer_preview": "**Agents**\nDefinition\n- Agents\n- Module: SuperAgent\n- An Agent is an AI assistant you build once and use everywhere. Give it a name, a purpose, the right skills, and a set of instructions \u2014 then deploy it in chat, on Slack, on WhatsApp, or via API. It always shows up ready for its job, with no re-ex",
+      "confidence": 1.0,
+      "top_source": "kb/superagent/concepts/agents.md",
+      "module_label": "SuperAgent",
+      "detected_module": "SuperAgent",
+      "expected_module": "General",
+      "is_correct": true,
+      "trace_id": "kb-kb_answer-b5811acb96de4b61",
+      "execution_time_ms": 1835.42,
+      "correlation_id": "cb02225d-9d21-49f7-9bed-1037df45cad6"
+    },
+    {
+      "query": "How do I deploy an agent?",
+      "category": "Ambiguous",
+      "answer_preview": "**Ways to deploy your agent**\nExact path and steps\n- Agents\n- Ways to deploy your agent\n- Every agent you create can be deployed in five different ways. Each surface has a different audience and a different set of capabilities:\n- | Interact with users | How to access | Audience | Connectors |\n- | --",
+      "confidence": 1.0,
+      "top_source": "kb/superagent/concepts/agents.md",
+      "module_label": "SuperAgent",
+      "detected_module": "SuperAgent",
+      "expected_module": "General",
+      "is_correct": true,
+      "trace_id": "kb-kb_answer-31a342be515c4c63",
+      "execution_time_ms": 1272.93,
+      "correlation_id": "63fae6df-0827-4d67-ad04-a4dda834a8ce"
+    },
+    {
+      "query": "Can I use an agent for WhatsApp?",
+      "category": "Ambiguous",
+      "answer_preview": "I don't know based on the current docs.",
+      "confidence": 0.0,
+      "top_source": "No source",
+      "module_label": "WhatsApp",
+      "detected_module": "Unknown",
+      "expected_module": "General",
+      "is_correct": true,
+      "trace_id": "kb-kb_answer-9b78df29e0904b06",
+      "execution_time_ms": 440.42,
+      "correlation_id": "1101b65e-f626-45fa-88b8-a82ed244927f"
+    },
+    {
+      "query": "Tell me about agents and pricing",
+      "category": "Ambiguous",
+      "answer_preview": "The documentation covers several SuperAgent topics. The most relevant pages are:\n- Agents\n- Create an Agent\n- Frequently Asked Questions\n- Getting Started\n\nAsk about a specific page or feature for detailed steps.\n\n---\n**Need more detail?** Reply with **more detail**, **step by step**, or ask a speci",
+      "confidence": 1.0,
+      "top_source": "kb/superagent/concepts/agents.md",
+      "module_label": "SuperAgent",
+      "detected_module": "SuperAgent",
+      "expected_module": "General",
+      "is_correct": true,
+      "trace_id": "kb-kb_answer-facf32b1bf624937",
+      "execution_time_ms": 882.72,
+      "correlation_id": "ca27614f-0a3f-4961-8dba-3be13eea8e8a"
+    }
+  ],
+  "module_routing_analysis": {
+    "total_correct": 18,
+    "total_incorrect": 2,
+    "accuracy_percent": 90.0,
+    "by_category": {
+      "bizai": {
+        "correct": 5,
+        "incorrect": 0,
+        "examples": []
+      },
+      "superagent": {
+        "correct": 4,
+        "incorrect": 1,
+        "examples": [
+          {
+            "query": "What third-party integrations does SuperAgent support?",
+            "expected": "SuperAgent",
+            "got": "General",
+            "source": "kb/integrations/api-integration-best-practices.md"
+          }
+        ]
+      },
+      "agent_assist": {
+        "correct": 2,
+        "incorrect": 1,
+        "examples": [
+          {
+            "query": "How do I access agent analytics and insights?",
+            "expected": "Agent Assist",
+            "got": "General",
+            "source": "kb/bot-studio-analytics/sentiment-analysis.md"
+          }
+        ]
+      },
+      "whatsapp": {
+        "correct": 3,
+        "incorrect": 0,
+        "examples": []
+      },
+      "ambiguous": {
+        "correct": 4,
+        "incorrect": 0,
+        "examples": []
+      }
+    }
+  },
+  "confusion_detection_verdict": {
+    "status": "PASS",
+    "cross_contamination_detected": false,
+    "examples_of_confusion": [
+      {
+        "query": "What third-party integrations does SuperAgent support?",
+        "expected": "SuperAgent",
+        "got": "General",
+        "source": "kb/integrations/api-integration-best-practices.md"
+      },
+      {
+        "query": "How do I access agent analytics and insights?",
+        "expected": "Agent Assist",
+        "got": "General",
+        "source": "kb/bot-studio-analytics/sentiment-analysis.md"
+      }
+    ],
+    "guardrails_working": true,
+    "confidence_in_routing": "MEDIUM"
+  },
+  "recommendations": [
+    "MODULE TUNING: Improve routing accuracy to 95%+. Review ambiguous query handling and module boundary definitions.",
+    "REVIEW AGENT_ASSIST: 67% accuracy. Check module detection logic and KB chunk scoring for this category."
+  ]
+}
