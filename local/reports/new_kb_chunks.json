@@ -15,7 +15,7 @@
     {
       "id": "chunk_001",
       "content": "BizAI for Partners is Gupshup's strategy to deliver an agentic AI layer on top of existing Partner APIs, enabling partners to build, resell, and embed autonomous WhatsApp Business agents without learning a new platform. The strategy rests on two pillars: (1) Meta-parity plus value-add — mirroring Meta's BizAI API surface to provide a familiar contract while layering differentiated capabilities that Meta's raw APIs don't offer. (2) Partner leverage — partners can build once and deploy to multiple channels, maximize their existing Gupshup investment, and unlock new revenue by reselling BizAI to their own customer base.",
-      "source": "BizAI for Partners — API Strategy White Paper (Draft 2026-06-30)",
+      "source": "BizAI for Partners — API Strategy White Paper (2026-06-30)",
       "module": "BizAI",
       "intent_keywords": ["bizai", "partner", "api", "strategy", "autonomous agent", "whatsapp"],
       "topic": "BizAI for Partners Strategy Overview",
@@ -24,7 +24,7 @@
     {
       "id": "chunk_002",
       "content": "Gupshup's partner ecosystem is built on mature Partner APIs that drive WhatsApp Business messaging at scale. Partners have already absorbed the cost of integrating Gupshup's authentication, onboarding flow, and message-handling model. BizAI is delivered as new endpoints on the existing Partner API — not as a separate platform — meaning partners can adopt BizAI without migrating off their existing integration. This reduces adoption friction and allows partners to incrementally add AI capabilities to their existing applications.",
-      "source": "BizAI for Partners — API Strategy White Paper (Draft 2026-06-30)",
+      "source": "BizAI for Partners — API Strategy White Paper (2026-06-30)",
       "module": "BizAI",
       "intent_keywords": ["partner", "api", "integration", "bizai", "whatsapp", "existing"],
       "topic": "Partner API Integration Strategy",
@@ -33,7 +33,7 @@
     {
       "id": "chunk_003",
       "content": "The Gupshup BizAI reference architecture positions Gupshup as the orchestration layer between the WABA number, the BizAI engine, and the partner's own module. Key architectural points: (1) End-user traffic flows over WhatsApp to the WABA number as today. (2) AI-bound messages reach BizAI through Gupshup; regular messages are handled by the partner's module as before. (3) BizAI can operate in different modes: autonomous (full agent control), human-in-the-loop (agent recommends, human confirms), or hybrid (escalates to human when uncertain). (4) Session state and conversation history are stored in Gupshup and surfaced to both BizAI and the partner's system.",
-      "source": "BizAI for Partners — API Strategy White Paper (Draft 2026-06-30)",
+      "source": "BizAI for Partners — API Strategy White Paper (2026-06-30)",
       "module": "BizAI",
       "intent_keywords": ["architecture", "bizai", "whatsapp", "waba", "orchestration", "modes"],
       "topic": "BizAI Reference Architecture",
@@ -42,7 +42,7 @@
     {
       "id": "chunk_004",
       "content": "The Gupshup value-add layer over Meta's BizAI API includes four differentiating capabilities that Meta's raw APIs do not provide: (1) Simplified handoff — seamless transition between automated BizAI agent and human support teams, abstracted from the partner. (2) Eval-and-optimize loop — an evaluation and continuous improvement pipeline so partners can measure agent accuracy, identify failure modes, and iterate on prompts and knowledge. (3) Multi-channel deployment — partners can author an agent once and deploy it across WhatsApp, SMS, email, and web with minimal changes. (4) Extensibility via connectors — partners can plug in custom data sources, call their own APIs, or integrate third-party tools (CRM, helpdesk, etc.) without Gupshup becoming the integration bus.",
-      "source": "BizAI for Partners — API Strategy White Paper (Draft 2026-06-30)",
+      "source": "BizAI for Partners — API Strategy White Paper (2026-06-30)",
       "module": "BizAI",
       "intent_keywords": ["bizai", "value-add", "handoff", "evaluation", "multichannel", "connectors"],
       "topic": "Gupshup BizAI Value-Add Capabilities",
@@ -96,7 +96,7 @@
     {
       "id": "chunk_010",
       "content": "BizAI for Partners introduces new API endpoints for agent configuration, knowledge management, and session control: (1) POST /agents — create or update an agent with business rules, knowledge sources, and instruction prompts. (2) POST /agents/{id}/knowledge — upload or link knowledge sources (documents, FAQs, structured data). (3) POST /agents/{id}/connectors — register third-party connectors (CRM, helpdesk, payment processor) that the agent can call. (4) POST /messages/agent — send a message to be processed by the agent (returns agent response or escalation). (5) GET /agents/{id}/metrics — retrieve agent performance metrics (resolution rate, escalation rate, customer satisfaction). (6) GET /sessions/{id} — retrieve conversation history and context for a customer session.",
-      "source": "BizAI for Partners — API Strategy White Paper (Draft 2026-06-30)",
+      "source": "BizAI for Partners — API Strategy White Paper (2026-06-30)",
       "module": "BizAI",
       "intent_keywords": ["bizai", "api", "endpoints", "agent", "knowledge", "connectors", "metrics"],
       "topic": "BizAI for Partners API Endpoints",
@@ -105,7 +105,7 @@
     {
       "id": "chunk_011",
       "content": "Partner onboarding to BizAI requires: (1) Existing Gupshup Partner API integration (must have auth token and WABA setup). (2) Enable BizAI module in account settings (tier-based access; BizAI Premium required). (3) Create an agent via the BizAI API or dashboard. (4) Load knowledge sources and define escalation rules. (5) Configure connectors to your backend systems. (6) Test in sandbox mode with test WABA numbers. (7) Request production approval; Gupshup reviews agent configurations for safety and compliance. (8) Go live with gradual rollout (start with sample of customer numbers, monitor metrics, scale up). Partners do not need to re-integrate authentication or message handling; BizAI seamlessly routes AI-bound messages through the existing Partner API without disrupting production traffic.",
-      "source": "BizAI for Partners — API Strategy White Paper (Draft 2026-06-30)",
+      "source": "BizAI for Partners — API Strategy White Paper (2026-06-30)",
       "module": "BizAI",
       "intent_keywords": ["bizai", "onboarding", "setup", "integration", "sandbox", "production"],
       "topic": "BizAI for Partners Onboarding Process",
@@ -114,7 +114,7 @@
     {
       "id": "chunk_012",
       "content": "BizAI pricing is structured as a per-token, usage-based model: (1) Agent base tier — $50/month includes up to 100k agent interactions. (2) Per-token overage — $2.00 USD per 1 million tokens for interactions exceeding the base tier. (3) Premium features — advanced knowledge management, custom connectors, priority support available at +$200/month. (4) Evaluation and optimization tools — included in Premium tier; provides analytics on agent performance, failure mode detection, and iteration recommendations. (5) Multi-channel deployment — no per-channel surcharge; one agent license covers WhatsApp, SMS, email, web. Partners can resell BizAI to their end customers at margin; Gupshup does not impose resale restrictions, and partners are free to set their own pricing and packaging.",
-      "source": "BizAI for Partners — API Strategy White Paper (Draft 2026-06-30)",
+      "source": "BizAI for Partners — API Strategy White Paper (2026-06-30)",
       "module": "BizAI",
       "intent_keywords": ["bizai", "pricing", "cost", "tier", "tokens", "licensing"],
       "topic": "BizAI for Partners Pricing and Licensing",
