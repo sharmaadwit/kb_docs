@@ -1,0 +1,112 @@
+================================================================================
+VIDEO MATCHING ANALYSIS QUICKSTART
+================================================================================
+
+WHAT IT DOES:
+  Fetches 20 recent kb_answer traces from Langfuse and analyzes whether
+  the attached video matches the module/intent of the user's query.
+
+FILE LOCATION:
+  /Users/adwit.sharma/kb_docs/local/scripts/analyze_video_matching.py
+
+REQUIREMENTS:
+  ✅ Python 3.7+
+  ✅ .env file with Langfuse credentials (LANGFUSE_HOST, PUBLIC_KEY, SECRET_KEY)
+  ✅ Network access to https://cloud.langfuse.com
+
+USAGE:
+
+  1. Basic run (prints JSON to console, saves to local/reports/):
+     python3 /Users/adwit.sharma/kb_docs/local/scripts/analyze_video_matching.py
+
+  2. View summary only:
+     python3 /Users/adwit.sharma/kb_docs/local/scripts/analyze_video_matching.py | jq '.summary'
+
+  3. View mismatches:
+     python3 /Users/adwit.sharma/kb_docs/local/scripts/analyze_video_matching.py | jq '.top_mismatches'
+
+  4. View recommendations:
+     python3 /Users/adwit.sharma/kb_docs/local/scripts/analyze_video_matching.py | jq '.recommendations'
+
+OUTPUT FILES:
+  Console: JSON report with full analysis
+  Saved:   /Users/adwit.sharma/kb_docs/local/reports/video_matching_analysis.json
+
+KEY METRICS:
+
+  video_attachment_rate_percent
+    → What % of kb_answer calls included a video
+    → Goal: >90%
+
+  module_video_matching_accuracy_percent
+    → What % of videos matched the query's module/intent
+    → Goal: >95%
+
+  top_mismatches
+    → Videos that don't match module (e.g., CTX module → "General Demo" video)
+    → Action: Fix video selection logic in kb_answer
+
+MODULE ALIGNMENT:
+
+  Bot Studio        → videos about bots, automation, conversations
+  CTX               → videos about context, customer data
+  AI Admin          → videos about AI settings, administration
+  Campaign Manager  → videos about campaigns, email, messaging
+  Personalize       → videos about personalization, segmentation
+
+TROUBLESHOOTING:
+
+  ❌ "LANGFUSE credentials not set"
+     → Check .env exists at /Users/adwit.sharma/kb_docs/.env
+     → Verify LANGFUSE_PUBLIC_KEY and LANGFUSE_SECRET_KEY are set
+
+  ❌ No traces returned
+     → Verify kb_answer traces exist in PROD_EXT environment
+     → Check network connectivity to cloud.langfuse.com
+     → Test credentials with: curl -u $PUB_KEY:$SEC_KEY https://cloud.langfuse.com/api/public/traces
+
+  ❌ Video platform mismatches
+     → Review kb_answer logic for video_platform assignment
+     → Ensure DemoForge integration populates platform correctly
+     → Check that video metadata serializes properly in traces
+
+EXAMPLE OUTPUT:
+
+  {
+    "summary": {
+      "total_traces_analyzed": 20,
+      "video_attachment_rate_percent": 90.0,
+      "module_video_matching_accuracy_percent": 88.89,
+      ...
+    },
+    "module_stats": {
+      "Bot Studio": { "accuracy": 100.0, ... },
+      "Campaign Manager": { "accuracy": 75.0, ... },
+      ...
+    },
+    "top_mismatches": [
+      {
+        "query": "How to email users?",
+        "module": "Campaign Manager",
+        "current_video": "General Demo",
+        "issue": "no_match"
+      },
+      ...
+    ],
+    "recommendations": [
+      "Video matching accuracy below 80%. Review selection logic.",
+      ...
+    ]
+  }
+
+NEXT STEPS:
+
+  1. Run the script to generate baseline
+  2. Review recommendations and top_mismatches
+  3. Fix kb_answer logic to improve matching
+  4. Re-run script to verify improvements
+  5. Set up scheduled runs for continuous monitoring
+
+================================================================================
+For full documentation, see: ANALYZE_VIDEO_MATCHING_README.md
+================================================================================

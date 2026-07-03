@@ -1,0 +1,347 @@
+/Users/adwit.sharma/kb_docs/local/scripts/test_video_matching.py:158: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  return datetime.utcnow().isoformat() + "Z"
+
+======================================================================
+VIDEO MATCHING TEST HARNESS - DemoForge Integration
+======================================================================
+Started: 2026-07-03T05:07:03.002702Z
+Total queries: 15
+Verbose mode: True
+
+
+======================================================================
+[1] BOT STUDIO - OVERVIEW
+======================================================================
+Query: What is Bot Studio and how do I use it?
+Description: Bot Studio overview - should demonstrate flow builder interface
+Correlation ID: video_match_bot_studio_overview_1_1783055223003_4faf0ee0
+Started: 2026-07-03T05:07:03.003116Z
+[LANGFUSE] Cannot ingest: missing_credentials: LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY
+
+✓ Query executed successfully
+  Status: success
+  Latency: 569.4ms
+  No video attached
+  Langfuse Trace: kb-kb_answer-4189698491b849bd
+
+======================================================================
+[2] BOT STUDIO - HOW_TO
+======================================================================
+Query: How do I create a bot using Bot Studio?
+Description: Bot Studio creation workflow
+Correlation ID: video_match_bot_studio_how_to_2_1783055223572_69f10883
+Started: 2026-07-03T05:07:03.572623Z
+[LANGFUSE] Cannot ingest: missing_credentials: LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY
+
+✓ Query executed successfully
+  Status: success
+  Latency: 326.2ms
+  No video attached
+  Langfuse Trace: kb-kb_answer-80d06a9cbd1845f4
+
+======================================================================
+[3] BOT STUDIO - HOW_TO
+======================================================================
+Query: How do I set up bot flows and integrate them?
+Description: Bot Studio advanced flows
+Correlation ID: video_match_bot_studio_how_to_3_1783055223898_a72f0ff8
+Started: 2026-07-03T05:07:03.898934Z
+[LANGFUSE] Cannot ingest: missing_credentials: LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY
+
+✓ Query executed successfully
+  Status: success
+  Latency: 296.9ms
+  No video attached
+  Langfuse Trace: kb-kb_answer-92cfc2b21dc74c4b
+
+======================================================================
+[4] CTX - OVERVIEW
+======================================================================
+Query: What is Click-to-Chat and how does it work?
+Description: CTX/Click-to-Chat overview for conversions
+Correlation ID: video_match_ctx_overview_4_1783055224195_4205733e
+Started: 2026-07-03T05:07:04.195966Z
+[LANGFUSE] Cannot ingest: missing_credentials: LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY
+
+✓ Query executed successfully
+  Status: success
+  Latency: 304.4ms
+  No video attached
+  Langfuse Trace: kb-kb_answer-15b52b71bf1d4032
+
+======================================================================
+[5] CTX - HOW_TO
+======================================================================
+Query: How do I implement Click-to-Chat on my website?
+Description: CTX implementation guide
+Correlation ID: video_match_ctx_how_to_5_1783055224500_a7be28d7
+Started: 2026-07-03T05:07:04.500431Z
+[LANGFUSE] Cannot ingest: missing_credentials: LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY
+
+✓ Query executed successfully
+  Status: success
+  Latency: 309.9ms
+  No video attached
+  Langfuse Trace: kb-kb_answer-517d0516062541c6
+
+======================================================================
+[6] CTX - SETUP
+======================================================================
+Query: How do I set up Click-to-Chat for lead generation?
+Description: CTX setup and configuration
+Correlation ID: video_match_ctx_setup_6_1783055224810_4642aa11
+Started: 2026-07-03T05:07:04.810431Z
+[LANGFUSE] Cannot ingest: missing_credentials: LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY
+
+✓ Query executed successfully
+  Status: success
+  Latency: 305.9ms
+  No video attached
+  Langfuse Trace: kb-kb_answer-0e41c7e838fc45bc
+
+======================================================================
+[7] AI ADMIN - OVERVIEW
+======================================================================
+Query: What is AI Admin and what can I do with it?
+Description: AI Admin overview
+Correlation ID: video_match_ai_admin_overview_7_1783055225116_e3aa9ec2
+Started: 2026-07-03T05:07:05.116317Z
+[LANGFUSE] Cannot ingest: missing_credentials: LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY
+
+✓ Query executed successfully
+  Status: success
+  Latency: 303.2ms
+  No video attached
+  Langfuse Trace: kb-kb_answer-b56dd2383a8d47e3
+
+======================================================================
+[8] AI ADMIN - HOW_TO
+======================================================================
+Query: How do I configure AI models in AI Admin?
+Description: AI Admin configuration
+Correlation ID: video_match_ai_admin_how_to_8_1783055225419_8f8fb962
+Started: 2026-07-03T05:07:05.419548Z
+[LANGFUSE] Cannot ingest: missing_credentials: LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY
+
+✓ Query executed successfully
+  Status: success
+  Latency: 311.2ms
+  No video attached
+  Langfuse Trace: kb-kb_answer-c33ccd1fd8384215
+
+======================================================================
+[9] AI ADMIN - SETUP
+======================================================================
+Query: How do I set up admin controls and permissions?
+Description: AI Admin security and permissions
+Correlation ID: video_match_ai_admin_setup_9_1783055225730_314a54eb
+Started: 2026-07-03T05:07:05.730779Z
+[LANGFUSE] Cannot ingest: missing_credentials: LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY
+
+✓ Query executed successfully
+  Status: success
+  Latency: 305.6ms
+  No video attached
+  Langfuse Trace: kb-kb_answer-f27676054b2140dc
+
+======================================================================
+[10] CAMPAIGN MANAGER - OVERVIEW
+======================================================================
+Query: What is Campaign Manager and how does it work?
+Description: Campaign Manager overview
+Correlation ID: video_match_campaign_manager_overview_10_1783055226036_56127aea
+Started: 2026-07-03T05:07:06.036396Z
+[LANGFUSE] Cannot ingest: missing_credentials: LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY
+
+✓ Query executed successfully
+  Status: success
+  Latency: 291.9ms
+  No video attached
+  Langfuse Trace: kb-kb_answer-ae2f21174d854763
+
+======================================================================
+[11] CAMPAIGN MANAGER - HOW_TO
+======================================================================
+Query: How do I create and execute a campaign in Gupshup?
+Description: Campaign Manager creation and execution
+Correlation ID: video_match_campaign_manager_how_to_11_1783055226328_d506d3a4
+Started: 2026-07-03T05:07:06.328385Z
+[LANGFUSE] Cannot ingest: missing_credentials: LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY
+
+✓ Query executed successfully
+  Status: success
+  Latency: 301.9ms
+  No video attached
+  Langfuse Trace: kb-kb_answer-af378e62c4c747f8
+
+======================================================================
+[12] CAMPAIGN MANAGER - SETUP
+======================================================================
+Query: How do I set up campaign scheduling and targeting?
+Description: Campaign Manager advanced setup
+Correlation ID: video_match_campaign_manager_setup_12_1783055226630_8db8434b
+Started: 2026-07-03T05:07:06.630367Z
+[LANGFUSE] Cannot ingest: missing_credentials: LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY
+
+✓ Query executed successfully
+  Status: success
+  Latency: 311.5ms
+  No video attached
+  Langfuse Trace: kb-kb_answer-467ffc98e2a54d9e
+
+======================================================================
+[13] PERSONALIZE - OVERVIEW
+======================================================================
+Query: What is the Personalize module and how does personalization work?
+Description: Personalize overview
+Correlation ID: video_match_personalize_overview_13_1783055226941_7b9eed1b
+Started: 2026-07-03T05:07:06.942010Z
+[LANGFUSE] Cannot ingest: missing_credentials: LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY
+
+✓ Query executed successfully
+  Status: success
+  Latency: 300.3ms
+  No video attached
+  Langfuse Trace: kb-kb_answer-df2b9610f83041fd
+
+======================================================================
+[14] PERSONALIZE - HOW_TO
+======================================================================
+Query: How do I personalize messages for different user segments?
+Description: Personalize user segmentation
+Correlation ID: video_match_personalize_how_to_14_1783055227242_10fa34ac
+Started: 2026-07-03T05:07:07.242404Z
+[LANGFUSE] Cannot ingest: missing_credentials: LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY
+
+✓ Query executed successfully
+  Status: success
+  Latency: 304.3ms
+  No video attached
+  Langfuse Trace: kb-kb_answer-1d13654c91684835
+
+======================================================================
+[15] PERSONALIZE - SETUP
+======================================================================
+Query: How do I set up dynamic content personalization rules?
+Description: Personalize dynamic rules setup
+Correlation ID: video_match_personalize_setup_15_1783055227546_2f9dc29d
+Started: 2026-07-03T05:07:07.546850Z
+[LANGFUSE] Cannot ingest: missing_credentials: LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY
+
+✓ Query executed successfully
+  Status: success
+  Latency: 307.7ms
+  No video attached
+  Langfuse Trace: kb-kb_answer-e5330718b6a6463a
+
+======================================================================
+SUMMARY
+======================================================================
+
+Queries executed: 15
+  ✓ Successful: 15
+  ✗ Failed: 0
+
+Video selection:
+  Queries with video attached: 0/15
+  Queries with DemoForge demo: 0/15
+
+Results by module:
+  AI Admin: 3 queries, 0 with video, 0 with DemoForge
+  Bot Studio: 3 queries, 0 with video, 0 with DemoForge
+  CTX: 3 queries, 0 with video, 0 with DemoForge
+  Campaign Manager: 3 queries, 0 with video, 0 with DemoForge
+  Personalize: 3 queries, 0 with video, 0 with DemoForge
+
+======================================================================
+CORRELATION IDs FOR LANGFUSE LOOKUP
+======================================================================
+
+To fetch traces in Langfuse, use:
+  lf traces --filter 'correlation_id=<ID>'
+
+Correlation IDs:
+
+✓ [1] Bot Studio / overview
+     Video: None
+     DemoForge: None
+   Correlation ID: video_match_bot_studio_overview_1_1783055223003_4faf0ee0
+
+✓ [2] Bot Studio / how_to
+     Video: None
+     DemoForge: None
+   Correlation ID: video_match_bot_studio_how_to_2_1783055223572_69f10883
+
+✓ [3] Bot Studio / how_to
+     Video: None
+     DemoForge: None
+   Correlation ID: video_match_bot_studio_how_to_3_1783055223898_a72f0ff8
+
+✓ [4] CTX / overview
+     Video: None
+     DemoForge: None
+   Correlation ID: video_match_ctx_overview_4_1783055224195_4205733e
+
+✓ [5] CTX / how_to
+     Video: None
+     DemoForge: None
+   Correlation ID: video_match_ctx_how_to_5_1783055224500_a7be28d7
+
+✓ [6] CTX / setup
+     Video: None
+     DemoForge: None
+   Correlation ID: video_match_ctx_setup_6_1783055224810_4642aa11
+
+✓ [7] AI Admin / overview
+     Video: None
+     DemoForge: None
+   Correlation ID: video_match_ai_admin_overview_7_1783055225116_e3aa9ec2
+
+✓ [8] AI Admin / how_to
+     Video: None
+     DemoForge: None
+   Correlation ID: video_match_ai_admin_how_to_8_1783055225419_8f8fb962
+
+✓ [9] AI Admin / setup
+     Video: None
+     DemoForge: None
+   Correlation ID: video_match_ai_admin_setup_9_1783055225730_314a54eb
+
+✓ [10] Campaign Manager / overview
+     Video: None
+     DemoForge: None
+   Correlation ID: video_match_campaign_manager_overview_10_1783055226036_56127aea
+
+✓ [11] Campaign Manager / how_to
+     Video: None
+     DemoForge: None
+   Correlation ID: video_match_campaign_manager_how_to_11_1783055226328_d506d3a4
+
+✓ [12] Campaign Manager / setup
+     Video: None
+     DemoForge: None
+   Correlation ID: video_match_campaign_manager_setup_12_1783055226630_8db8434b
+
+✓ [13] Personalize / overview
+     Video: None
+     DemoForge: None
+   Correlation ID: video_match_personalize_overview_13_1783055226941_7b9eed1b
+
+✓ [14] Personalize / how_to
+     Video: None
+     DemoForge: None
+   Correlation ID: video_match_personalize_how_to_14_1783055227242_10fa34ac
+
+✓ [15] Personalize / setup
+     Video: None
+     DemoForge: None
+   Correlation ID: video_match_personalize_setup_15_1783055227546_2f9dc29d
+
+======================================================================
+TEST COMPLETE
+======================================================================
+
+Next steps:
+  1. Check Langfuse dashboard for correlation IDs
+  2. Verify video selection matches module intent
+  3. Review DemoForge demo URLs and latency metrics

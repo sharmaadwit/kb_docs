@@ -28,7 +28,7 @@
               <option name="cwd" value="$PROJECT_DIR$" />
               <option name="model" value="claude-haiku-4-5" />
               <option name="permissionMode" value="acceptEdits" />
-              <option name="reasoningEffort" value="low" />
+              <option name="reasoningEffort" value="high" />
             </TabSessionState>
           </value>
         </entry>

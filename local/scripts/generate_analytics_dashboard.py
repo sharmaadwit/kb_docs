@@ -1590,38 +1590,7 @@ def generate_query_analytics_html(analysis: Dict[str, Any], segment_key: str) ->
                     </div>
                 </div>
             </div>
-            <div style="margin-top: 20px;">
-                <canvas id="videoPlatform_{ns}"></canvas>
-            </div>
         </div>
-        <script>
-            (function() {{
-                const youtube_count = {analysis.get('video_platforms', {}).get('youtube', 0)};
-                const demoforge_count = {analysis.get('video_platforms', {}).get('demoforge', 0)};
-                new Chart(document.getElementById('videoPlatform_{ns}'), {{
-                    type: 'doughnut',
-                    data: {{
-                        labels: ['YouTube', 'DemoForge'],
-                        datasets: [{{
-                            data: [youtube_count, demoforge_count],
-                            backgroundColor: ['#e74c3c', '#3498db'],
-                            borderColor: '#fff',
-                            borderWidth: 2
-                        }}]
-                    }},
-                    options: {{
-                        responsive: true, maintainAspectRatio: true,
-                        plugins: {{
-                            legend: {{
-                                position: 'bottom',
-                                labels: {{ color: '#333', font: {{ size: 12 }}, padding: 20 }}
-                            }},
-                            tooltip: {{ callbacks: {{ label: ctx => ctx.label + ': ' + ctx.parsed + ' videos' }} }}
-                        }}
-                    }}
-                }});
-            }})();
-        </script>
 
         <!-- DemoForge Coverage Report -->
         <div class="section">
