@@ -3969,6 +3969,18 @@ def _detect_module(query: str) -> str:
     ):
         return "SuperAgent"
 
+    # 5c. "skills" alone or "custom skills" -> SuperAgent (Priority 2 fix #3).
+    #     "How do I create and register custom skills?" must route to SuperAgent,
+    #     not fall through to General. "Skills" is a SuperAgent concept.
+    if "skill" in q:
+        return "SuperAgent"
+
+    # 5d. "routing" alone or without team context -> Agent Assist (Priority 2 fix #4).
+    #     "How does conversation routing work?" must route to Agent Assist,
+    #     not fall through to General. Routing is an Agent Assist feature.
+    if "routing" in q or "conversation routing" in q:
+        return "Agent Assist"
+
     # 6. Fall through to explicit module keyword map.
     for k, v in EXPLICIT_MODULES.items():
         if k in q:
