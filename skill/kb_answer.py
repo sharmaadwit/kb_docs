@@ -862,6 +862,11 @@ _TELEMETRY_ANSWER_PREVIEW = 400
 # ---------------------------------------------------------------------------
 
 EXPLICIT_MODULES = {
+    # Multi-word keys first so they win over generic single-word keys below.
+    "meta business agent": "WhatsApp",
+    "business agent": "WhatsApp",
+    "whatsapp agent": "WhatsApp",
+    "whatsapp ai agent": "WhatsApp",
     "agent assist": "Agent Assist",
     "bot studio": "Bot Studio",
     "goals": "Goals",
@@ -882,10 +887,12 @@ EXPLICIT_MODULES = {
     "superagent": "SuperAgent",
     "super agent": "SuperAgent",
     "super-agent": "SuperAgent",
-    "overview": "Overview",
     "extension": "Extension",
     "bizai": "BizAI",
     "whatsapp": "WhatsApp",
+    # 'overview' is intentionally LAST: it is a generic word that should only
+    # match when no more specific module key applies.
+    "overview": "Overview",
 }
 
 _OVERVIEW_DEPRIORITY_PATTERNS = [
@@ -3877,13 +3884,58 @@ def _load_chunks(context) -> List[Dict]:
 
 def _detect_module(query: str) -> str:
     q = (query or "").lower()
+    # 1. Existing shortcuts (unchanged, highest priority).
     if "campaign" in q:
         return "Campaign Manager"
     if "rcs" in q:
         return "Channels"
+
+    has_agent = "agent" in q
+
+    # 2. Deploy verbs + agent -> SuperAgent (R3).
+    #    "Deploy my agent to WhatsApp" must route to SuperAgent, not WhatsApp.
+    if has_agent and any(
+        verb in q
+        for verb in ("deploy", "embed", "publish", "launch", "go live")
+    ):
+        return "SuperAgent"
+
+    # 3. Meta / business agent phrasing -> WhatsApp (R1).
+    if "meta business agent" in q or "business agent" in q:
+        return "WhatsApp"
+
+    # 4. Channel-first agent phrasing (no deploy verb) -> WhatsApp (R4).
+    if "whatsapp agent" in q or "whatsapp ai agent" in q:
+        return "WhatsApp"
+
+    # 5. Carve-out: agent + template -> Agent Assist (R6 partial).
+    if has_agent and "template" in q:
+        return "Agent Assist"
+
+    # 5b. Build/skills verbs + agent -> SuperAgent (R2).
+    #     "How do I build an agent?" must route to SuperAgent instead of
+    #     falling through to General. Excludes channel-scoped phrasing so
+    #     WhatsApp/Meta/template intents keep their dedicated routing.
+    BUILD_VERBS = {
+        "build", "create", "make", "design", "configure an agent",
+        "set up an agent", "skills", "recipe", "recipes", "schedule task",
+    }
+    if (
+        has_agent
+        and any(verb in q for verb in BUILD_VERBS)
+        and not any(t in q for t in ("whatsapp", "waba", "meta", "template"))
+    ):
+        return "SuperAgent"
+
+    # 6. Fall through to explicit module keyword map.
     for k, v in EXPLICIT_MODULES.items():
         if k in q:
             return v
+
+    # 7. Low-confidence default: bare "agent" mentions -> SuperAgent (R8).
+    if has_agent:
+        return "SuperAgent"
+
     return "General"
 
 
@@ -5437,13 +5489,15 @@ def _score_chunk(
         # competitively with multi-word modules
         score += 3.0
 
-    # When the user explicitly names SuperAgent, keep results inside the module.
-    # SuperAgent shares generic vocabulary ("agent", "skills", "schedule", "task")
-    # with AI Admin / Agent Assist pages that carry large entity boosts, so without
-    # this, on-topic SuperAgent pages get buried. Guarded by the explicit-module
-    # signal, which only fires when the query literally mentions SuperAgent.
-    if explicit_module == "SuperAgent":
-        if _module_from_source(source) == "SuperAgent":
+    # When the user explicitly names an agent-family module, keep results inside
+    # that module. These modules share generic vocabulary ("agent", "skills",
+    # "schedule", "task", "template") with AI Admin / Agent Assist pages that
+    # carry large entity boosts, so without this, on-topic pages get buried.
+    # Guarded by the explicit-module signal, which only fires when the query
+    # literally routes to one of these scoped modules (R9).
+    STRICT_SCOPED_MODULES = {"SuperAgent", "WhatsApp", "BizAI", "Agent Assist"}
+    if explicit_module in STRICT_SCOPED_MODULES:
+        if _module_from_source(source) == explicit_module:
             score += 5.0
         else:
             score -= 4.0
