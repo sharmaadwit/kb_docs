@@ -15,8 +15,8 @@
               <option name="provider" value="claude" />
               <option name="sessionId" value="bf8b5c33-3789-44c7-a1c5-4e38c2e6177c" />
               <option name="cwd" value="$PROJECT_DIR$" />
-              <option name="model" value="claude-haiku-4-5" />
-              <option name="permissionMode" value="acceptEdits" />
+              <option name="model" value="claude-opus-4-8[1m]" />
+              <option name="permissionMode" value="bypassPermissions" />
             </TabSessionState>
           </value>
         </entry>

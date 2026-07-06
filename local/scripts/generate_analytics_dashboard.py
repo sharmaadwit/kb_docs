@@ -1749,7 +1749,10 @@ def generate_landing_snapshot(all_analysis: Dict[str, Any]) -> str:
             continue
         for email, d in analysis.get("users_external", {}).items():
             # Sales-facing: skip anonymous/unidentified traffic — not actionable leads
+            # Also skip internal test accounts (adwit.sharma@gupshup.io for testing)
             if not email or email.lower() == "anonymous" or "@" not in email:
+                continue
+            if email.lower() == "adwit.sharma@gupshup.io":
                 continue
             e = ext_agg.setdefault(email, {"domain": d.get("domain", ""), "count": 0, "answered": 0, "conf_sum": 0.0})
             e["count"] += d.get("count", 0)
