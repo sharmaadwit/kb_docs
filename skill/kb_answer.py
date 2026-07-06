@@ -7083,12 +7083,12 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
     params = _parse_parameters(parameters, **kwargs)
     query = _sanitize_kb_query(_extract_query(params))
 
-    # For local testing via Claude setup: default user_email to adwit.sharma@gupshup.io only in local-analysis environment
+    # For local testing: default user_email from USER_EMAIL env var when TRACE_ENV=LOCAL
     if not params.get("user_email"):
         import os
         trace_env = os.getenv("TRACE_ENV", "")
-        if trace_env == "local-analysis":
-            params["user_email"] = "adwit.sharma@gupshup.io"
+        if trace_env.upper() == "LOCAL":
+            params["user_email"] = os.getenv("USER_EMAIL", "adwit.sharma@gupshup.io")
     if not query:
         raise ValueError("query is required")
     original_query = query  # preserve user's original (pre-translation) text for telemetry
