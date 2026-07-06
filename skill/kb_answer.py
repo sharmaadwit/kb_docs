@@ -7083,8 +7083,12 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
     params = _parse_parameters(parameters, **kwargs)
     query = _sanitize_kb_query(_extract_query(params))
 
-    # Use user_email from params if provided, otherwise leave unset (don't default to test email)
-    # user_email should come from the calling context/API, not a fallback
+    # For local testing via Claude setup: default user_email to adwit.sharma@gupshup.io only in local-analysis environment
+    if not params.get("user_email"):
+        import os
+        trace_env = os.getenv("TRACE_ENV", "")
+        if trace_env == "local-analysis":
+            params["user_email"] = "adwit.sharma@gupshup.io"
     if not query:
         raise ValueError("query is required")
     original_query = query  # preserve user's original (pre-translation) text for telemetry
