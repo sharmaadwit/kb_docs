@@ -7083,11 +7083,8 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
     params = _parse_parameters(parameters, **kwargs)
     query = _sanitize_kb_query(_extract_query(params))
 
-    # Ensure user_email is set from environment if not provided
-    if not params.get("user_email"):
-        import os
-        default_email = os.getenv("USER_EMAIL", "adwit.sharma@gupshup.io")
-        params["user_email"] = default_email
+    # Use user_email from params if provided, otherwise leave unset (don't default to test email)
+    # user_email should come from the calling context/API, not a fallback
     if not query:
         raise ValueError("query is required")
     original_query = query  # preserve user's original (pre-translation) text for telemetry
