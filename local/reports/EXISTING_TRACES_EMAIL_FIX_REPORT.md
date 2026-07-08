@@ -1,8 +1,9 @@
 # Existing Traces Email Fix Report
 
-**Date**: 2026-07-09
-**Scope**: Live Langfuse traces, 2026-07-03 to 2026-07-09 (151 `kb_answer` traces fetched)
+**Date**: 2026-07-03 to 2026-07-08 (multiple rescans)
+**Scope**: Live Langfuse traces, 2026-07-03 to 2026-07-08 (151+ `kb_answer` traces across rescans)
 **Trigger**: `user_email` hardcoded fallback bug in `skill/kb_answer.py` (fixed separately, commit `49a88d5d`)
+**Note**: pollution seen on 2026-07-08 predates the code-fix `git pull` into the production `superagent` runtime — expected until that repo redeploys with the fixed code.
 
 ---
 
@@ -40,30 +41,35 @@ Resolved by exact `user_name` match with no conflicting candidate email anywhere
 | kb-kb_answer-918f56bce3e84b69 | Roneeta Basak | 567 | roneeta.basak@gupshup.io | ✅ (round 2, user-supplied) |
 | kb-kb_answer-5e5e9bf3449346f7 | Renan Mazoroski | 333 | renan.mazoroski@gupshup.io | ✅ (round 2, user-supplied) |
 | kb-kb_answer-8efa5a7bab1c4b14 | Renan Mazoroski | 333 | renan.mazoroski@gupshup.io | ✅ (round 2, user-supplied) |
+| kb-kb_answer-6252dd08e4cb41b5 | Roger Guimaraes | 423 | roger.guimaraes@gupshup.io | ✅ (round 3, newly found on rescan) |
+| kb-kb_answer-88ee9717cdde49f5 | harish | 30 | harishmanekscorpion@gmail.com | ✅ (round 4, waitlist export match, user-confirmed) |
 
 **Method**: Re-submitted a `trace-create` ingestion event with the same trace `id` (Langfuse upserts by ID), preserving original `input`/`output`/all other metadata, only overwriting `user_email` and top-level `userId`. All 12 verified via follow-up GET after ~10s propagation delay.
 
 ---
 
-## Not Found / Unresolvable (11 traces) — Reported, Not Patched ⚠️
+## Not Found / Unresolvable (9 traces) — Reported, Not Patched ⚠️
 
-Checked against: live trace history (151 traces + earlier 7-day export), all 3 internal maps, **and** `/Users/adwit.sharma/superagent-waitlist-funnel/output/waitlist_export.xlsx` (all 4 populated sheets: Daily_log, Master, ICP, Outreach_nurture — 1138+ leads).
-
-**Zero exact matches found in the waitlist export for any of the names below** — that funnel's leads don't overlap with these KB trace identities.
+Checked against: live trace history (151+ traces across multiple rescans), all 3 internal maps, **and** `/Users/adwit.sharma/superagent-waitlist-funnel/output/waitlist_export.xlsx` (all 7 sheets: Daily_log, Master, Funnel_summary, ICP_tags, Country_breakdown, ICP, Outreach_nurture — 1138+ leads).
 
 | user_name | userId | Traces | Why unresolved |
 |---|---|---|---|
 | accounts.youlab | 30 | 3 | No match in any source (traces, maps, or waitlist) |
-| harish | 30 | 1 | Only a weak email-substring hit in waitlist (`harishmanekscorpion@gmail.com`) — different person, rejected as unreliable. User confirmed no known email for this person. |
 | *(anonymous)* | 2 | 6 | `userId=2` is a shared CC Express anonymous-visitor bucket; existing records show **different random UUID placeholder addresses** per occurrence — no way to attribute this specific trace |
-| marketing | 30 | 1 | **Ambiguous** — this exact username has 3 conflicting emails in history (admin@reworks.in, hello@rapchai.com, marketing@upgradsot.com); genuinely a shared/generic login, unsafe to guess |
+| marketing | 30 | 1 | **Ambiguous** — this exact username has multiple conflicting emails in history (admin@reworks.in, hello@rapchai.com, marketing@upgradsot.com, plus many unrelated `marketing@...` addresses in the waitlist export); genuinely a shared/generic login, unsafe to guess |
 
-**Recommendation for these 11**: leave as-is until a more authoritative identity source is available (e.g. the actual product/console user table, not a marketing waitlist). Do not guess.
+**Recommendation for these 9**: leave as-is until a more authoritative identity source is available (e.g. the actual product/console user table, not a marketing waitlist). Do not guess.
 
 **Resolved in round 2 (user-supplied emails):**
 - Roneeta Basak → roneeta.basak@gupshup.io
 - Renan Mazoroski → renan.mazoroski@gupshup.io
-- Harish → confirmed no email available; left unresolved
+- Harish → initially reported as no known email; later resolved in round 4 (see below)
+
+**Resolved in round 3 (newly found on rescan):**
+- Roger Guimaraes (userId 423) → roger.guimaraes@gupshup.io — missed in the initial Jul3–Jul9 fetch, surfaced in a later full-window rescan (likely an ingestion/indexing delay at the time of the first query)
+
+**Resolved in round 4 (waitlist export match, 2026-07-08):**
+- harish (userId 30) → harishmanekscorpion@gmail.com — a fresh 2-day rescan turned up this trace again with the fallback email; re-checked `waitlist_export.xlsx` by exact `name`/`email` field match (not full-row text) and found **HARISH MANEK / harishmanekscorpion@gmail.com** as the only candidate, consistent across every sheet (Daily_log, Master, ICP_tags, ICP). User confirmed to proceed with this match. Patched via trace-create upsert, verified via GET.
 
 ---
 
@@ -80,6 +86,9 @@ Checked against: live trace history (151 traces + earlier 7-day export), all 3 i
 
 - `local/reports/all_traces_jul3_to_jul9.json` — raw Langfuse export used for this analysis (151 traces)
 - `local/reports/traces_to_patch.json` — the 9 resolved traces with before/after emails
+- `local/reports/all_traces_jul8_to_jul11.json`, `local/reports/all_traces_current.json` — rescan exports that surfaced the Roger Guimaraes trace
+- `local/reports/last2days_traces.json`, `local/reports/last2days_polluted.json` — 2-day rescan (2026-07-08) that surfaced the harish trace
+- `local/reports/harish_trace_before.json`, `local/reports/harish_trace_after.json` — before/after snapshots of the harish trace patch
 - This report
 
 ## Related

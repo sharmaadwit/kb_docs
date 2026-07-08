@@ -1,0 +1,79 @@
+[
+  {
+    "trace_id": "kb-kb_answer-dda7e5cde3a84a72",
+    "timestamp": "2026-07-08T11:32:26.712Z",
+    "user_id": "adwit.sharma@gupshup.io",
+    "user_name": null,
+    "user_email": "adwit.sharma@gupshup.io"
+  },
+  {
+    "trace_id": "kb-kb_answer-88ee9717cdde49f5",
+    "timestamp": "2026-07-08T10:56:25.130Z",
+    "user_id": "adwit.sharma@gupshup.io",
+    "user_name": "harish",
+    "user_email": "adwit.sharma@gupshup.io"
+  },
+  {
+    "trace_id": "kb-kb_answer-382fc2f97ad044bc",
+    "timestamp": "2026-07-08T10:29:56.538Z",
+    "user_id": "adwit.sharma@gupshup.io",
+    "user_name": null,
+    "user_email": "adwit.sharma@gupshup.io"
+  },
+  {
+    "trace_id": "kb-kb_answer-aa50a79879ca435a",
+    "timestamp": "2026-07-08T10:29:07.143Z",
+    "user_id": "adwit.sharma@gupshup.io",
+    "user_name": null,
+    "user_email": "adwit.sharma@gupshup.io"
+  },
+  {
+    "trace_id": "kb-kb_answer-1d397b505fc6455a",
+    "timestamp": "2026-07-08T07:36:24.173Z",
+    "user_id": "adwit.sharma@gupshup.io",
+    "user_name": null,
+    "user_email": "adwit.sharma@gupshup.io"
+  },
+  {
+    "trace_id": "kb-kb_answer-7247180e16e443af",
+    "timestamp": "2026-07-08T04:26:45.184Z",
+    "user_id": "adwit.sharma@gupshup.io",
+    "user_name": null,
+    "user_email": "adwit.sharma@gupshup.io"
+  },
+  {
+    "trace_id": "kb-kb_answer-413eb27633f64857",
+    "timestamp": "2026-07-07T13:13:09.436Z",
+    "user_id": "adwit.sharma@gupshup.io",
+    "user_name": null,
+    "user_email": "adwit.sharma@gupshup.io"
+  },
+  {
+    "trace_id": "kb-kb_answer-d82a22ee575a4f22",
+    "timestamp": "2026-07-07T07:10:42.604Z",
+    "user_id": "adwit.sharma@gupshup.io",
+    "user_name": "marketing",
+    "user_email": "adwit.sharma@gupshup.io"
+  },
+  {
+    "trace_id": "kb-kb_answer-eadd48c6c177459e",
+    "timestamp": "2026-07-07T06:45:21.212Z",
+    "user_id": "adwit.sharma@gupshup.io",
+    "user_name": "accounts.youlab",
+    "user_email": "adwit.sharma@gupshup.io"
+  },
+  {
+    "trace_id": "kb-kb_answer-efe2dda24ded44a6",
+    "timestamp": "2026-07-07T06:44:41.493Z",
+    "user_id": "adwit.sharma@gupshup.io",
+    "user_name": "accounts.youlab",
+    "user_email": "adwit.sharma@gupshup.io"
+  },
+  {
+    "trace_id": "kb-kb_answer-3436fb95e2bf4d1d",
+    "timestamp": "2026-07-07T06:44:20.754Z",
+    "user_id": "adwit.sharma@gupshup.io",
+    "user_name": "accounts.youlab",
+    "user_email": "adwit.sharma@gupshup.io"
+  }
+]
