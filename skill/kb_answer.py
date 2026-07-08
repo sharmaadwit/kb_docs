@@ -6821,7 +6821,12 @@ def _langfuse_user_context(
     if user_email:
         trace_user_id = user_email
     elif user_id_val is not None and str(user_id_val).strip():
-        trace_user_id = str(user_id_val).strip()
+        # Raw user_id alone can be a shared/account-level ID reused across
+        # distinct real people — pair it with user_name so different people
+        # on the same account don't collapse into one Langfuse identity.
+        uid = str(user_id_val).strip()
+        name = user_name.strip() if user_name else "unknown"
+        trace_user_id = f"acct:{uid}:{name}"
 
     meta_user = {
         "user_email": user_email,
