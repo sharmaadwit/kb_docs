@@ -37,12 +37,15 @@ Resolved by exact `user_name` match with no conflicting candidate email anywhere
 | kb-kb_answer-17505871f3d3467e | Joseph Cobbinah | 273 | joseph.cobbinah@gupshup.io | ✅ |
 | kb-kb_answer-1dad7c3edddc44e0 | Fernando Reynoso | 133 | fernando.reynoso@gupshup.io | ✅ |
 | kb-kb_answer-7761b9eb64b44b4b | Abhijit Chatterjee | 688 | abhijit.chatterjee@gupshup.io | ✅ |
+| kb-kb_answer-918f56bce3e84b69 | Roneeta Basak | 567 | roneeta.basak@gupshup.io | ✅ (round 2, user-supplied) |
+| kb-kb_answer-5e5e9bf3449346f7 | Renan Mazoroski | 333 | renan.mazoroski@gupshup.io | ✅ (round 2, user-supplied) |
+| kb-kb_answer-8efa5a7bab1c4b14 | Renan Mazoroski | 333 | renan.mazoroski@gupshup.io | ✅ (round 2, user-supplied) |
 
-**Method**: Re-submitted a `trace-create` ingestion event with the same trace `id` (Langfuse upserts by ID), preserving original `input`/`output`/all other metadata, only overwriting `user_email` and top-level `userId`. All 9 verified via follow-up GET after ~10s propagation delay.
+**Method**: Re-submitted a `trace-create` ingestion event with the same trace `id` (Langfuse upserts by ID), preserving original `input`/`output`/all other metadata, only overwriting `user_email` and top-level `userId`. All 12 verified via follow-up GET after ~10s propagation delay.
 
 ---
 
-## Not Found / Unresolvable (14 traces) — Reported, Not Patched ⚠️
+## Not Found / Unresolvable (11 traces) — Reported, Not Patched ⚠️
 
 Checked against: live trace history (151 traces + earlier 7-day export), all 3 internal maps, **and** `/Users/adwit.sharma/superagent-waitlist-funnel/output/waitlist_export.xlsx` (all 4 populated sheets: Daily_log, Master, ICP, Outreach_nurture — 1138+ leads).
 
@@ -51,13 +54,16 @@ Checked against: live trace history (151 traces + earlier 7-day export), all 3 i
 | user_name | userId | Traces | Why unresolved |
 |---|---|---|---|
 | accounts.youlab | 30 | 3 | No match in any source (traces, maps, or waitlist) |
-| Renan Mazoroski | 333 | 2 | No match in any source |
-| harish | 30 | 1 | Only a weak email-substring hit in waitlist (`harishmanekscorpion@gmail.com`) — different person, rejected as unreliable |
-| Roneeta Basak | 567 | 1 | No match in any source |
+| harish | 30 | 1 | Only a weak email-substring hit in waitlist (`harishmanekscorpion@gmail.com`) — different person, rejected as unreliable. User confirmed no known email for this person. |
 | *(anonymous)* | 2 | 6 | `userId=2` is a shared CC Express anonymous-visitor bucket; existing records show **different random UUID placeholder addresses** per occurrence — no way to attribute this specific trace |
 | marketing | 30 | 1 | **Ambiguous** — this exact username has 3 conflicting emails in history (admin@reworks.in, hello@rapchai.com, marketing@upgradsot.com); genuinely a shared/generic login, unsafe to guess |
 
-**Recommendation for these 14**: leave as-is until a more authoritative identity source is available (e.g. the actual product/console user table, not a marketing waitlist). Do not guess.
+**Recommendation for these 11**: leave as-is until a more authoritative identity source is available (e.g. the actual product/console user table, not a marketing waitlist). Do not guess.
+
+**Resolved in round 2 (user-supplied emails):**
+- Roneeta Basak → roneeta.basak@gupshup.io
+- Renan Mazoroski → renan.mazoroski@gupshup.io
+- Harish → confirmed no email available; left unresolved
 
 ---
 
