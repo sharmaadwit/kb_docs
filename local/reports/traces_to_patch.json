@@ -1,0 +1,74 @@
+[
+  {
+    "trace_id": "kb-kb_answer-ff620d77853c4447",
+    "user_name": "Ankit Kanwara",
+    "user_id": 181,
+    "correct_email": "ankit.kanwara@gupshup.io",
+    "current_email": "adwit.sharma@gupshup.io",
+    "timestamp": "2026-07-08T10:09:10.457Z"
+  },
+  {
+    "trace_id": "kb-kb_answer-17505871f3d3467e",
+    "user_name": "Joseph Cobbinah",
+    "user_id": 273,
+    "correct_email": "joseph.cobbinah@gupshup.io",
+    "current_email": "adwit.sharma@gupshup.io",
+    "timestamp": "2026-07-08T06:36:13.430Z"
+  },
+  {
+    "trace_id": "kb-kb_answer-1dad7c3edddc44e0",
+    "user_name": "Fernando Reynoso",
+    "user_id": 133,
+    "correct_email": "fernando.reynoso@gupshup.io",
+    "current_email": "adwit.sharma@gupshup.io",
+    "timestamp": "2026-07-07T20:46:44.499Z"
+  },
+  {
+    "trace_id": "kb-kb_answer-a7a273ae80a4485b",
+    "user_name": "manvendra_22",
+    "user_id": 30,
+    "correct_email": "admin@reworks.in",
+    "current_email": "adwit.sharma@gupshup.io",
+    "timestamp": "2026-07-07T14:32:39.946Z"
+  },
+  {
+    "trace_id": "kb-kb_answer-21bb357ebfd24342",
+    "user_name": "manvendra_22",
+    "user_id": 30,
+    "correct_email": "admin@reworks.in",
+    "current_email": "adwit.sharma@gupshup.io",
+    "timestamp": "2026-07-07T14:31:09.301Z"
+  },
+  {
+    "trace_id": "kb-kb_answer-79032d55f13f4ad6",
+    "user_name": "manvendra_22",
+    "user_id": 30,
+    "correct_email": "admin@reworks.in",
+    "current_email": "adwit.sharma@gupshup.io",
+    "timestamp": "2026-07-07T14:30:47.641Z"
+  },
+  {
+    "trace_id": "kb-kb_answer-33e3f27786504c19",
+    "user_name": "manvendra_22",
+    "user_id": 30,
+    "correct_email": "admin@reworks.in",
+    "current_email": "adwit.sharma@gupshup.io",
+    "timestamp": "2026-07-07T14:18:37.617Z"
+  },
+  {
+    "trace_id": "kb-kb_answer-7761b9eb64b44b4b",
+    "user_name": "Abhijit Chatterjee",
+    "user_id": 688,
+    "correct_email": "abhijit.chatterjee@gupshup.io",
+    "current_email": "adwit.sharma@gupshup.io",
+    "timestamp": "2026-07-07T11:16:13.171Z"
+  },
+  {
+    "trace_id": "kb-kb_answer-0791b341fd044a3e",
+    "user_name": "projectleads2026",
+    "user_id": 30,
+    "correct_email": "admin@reworks.in",
+    "current_email": "adwit.sharma@gupshup.io",
+    "timestamp": "2026-07-04T18:19:05.033Z"
+  }
+]
