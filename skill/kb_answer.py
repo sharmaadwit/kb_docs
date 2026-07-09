@@ -5613,6 +5613,11 @@ def _query_source_penalty_adjustment(q: str, source: str) -> float:
     """Negative score deltas when query semantics conflict with frequent mis-ranked sources."""
     s = source.lower()
     adj = 0.0
+    # Boost promotional restrictions document for policy/compliance/restriction questions
+    if "whatsapp-promotional-restrictions" in s:
+        policy_keywords = ("restrict", "compliance", "guidelines", "consent", "promotional", "allowed", "prohibited", "bulk", "spam", "multivitamin", "dietary", "supplement")
+        if any(k in q for k in policy_keywords):
+            adj += 12.0
     if ("queue" in q or "queued" in q) and "campaign" in q:
         if "personalize-enabled-campaign-manager" in s or "personalize/personalize-enabled" in s:
             adj -= 8.0
