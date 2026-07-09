@@ -7088,16 +7088,12 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
     params = _parse_parameters(parameters, **kwargs)
     query = _sanitize_kb_query(_extract_query(params))
 
-    # For local testing: default user_email from USER_EMAIL env var when TRACE_ENV=LOCAL.
-    # No hardcoded fallback — if USER_EMAIL isn't set, user_email stays unset rather
-    # than masking missing per-request data with a specific person's address.
+    # Default user_email from USER_EMAIL env var if not provided in params.
     if not params.get("user_email"):
         import os
-        trace_env = os.getenv("TRACE_ENV", "")
-        if trace_env.upper() == "LOCAL":
-            env_email = os.getenv("USER_EMAIL")
-            if env_email:
-                params["user_email"] = env_email
+        env_email = os.getenv("USER_EMAIL")
+        if env_email:
+            params["user_email"] = env_email
     if not query:
         raise ValueError("query is required")
     original_query = query  # preserve user's original (pre-translation) text for telemetry
