@@ -6826,13 +6826,29 @@ def _langfuse_user_context(
         if user_id_val is None:
             user_id_val = getattr(context, "user_id", None)
 
-    # Fallback for anonymous CC Express users (user_id == 2, no email): synthesize a
-    # per-session identity from session_id so distinct anonymous visitors stay distinct
-    # in Langfuse instead of all collapsing into acct:2:unknown. Enables repeat-visitor
-    # analytics. Only applies when no email was resolved and a session_id is present.
+    # Fallback for any anonymous user (no email resolved): synthesize a per-session
+    # identity from session_id so distinct anonymous visitors stay distinct instead of
+    # all collapsing into acct:N:unknown. Enables repeat-visitor analytics. Checks params
+    # (direct and nested dicts), then context attributes. Concierge authenticates as its
+    # own account (user_id=34) but doesn't forward session_id; this fallback will work
+    # once SuperAgent forwards session_id to skill params.
     synthesized_session_identity = False
-    if not user_email and str(user_id_val).strip() == "2":
+    if not user_email:
         session_id = params.get("session_id") or params.get("sessionId")
+
+        # Fallback: check nested dicts in params (metadata, context, tenant_context, user)
+        if not session_id and isinstance(params, dict):
+            for container_key in ("metadata", "context", "tenant_context", "user"):
+                container = params.get(container_key)
+                if isinstance(container, dict):
+                    session_id = container.get("session_id") or container.get("sessionId")
+                    if session_id:
+                        break
+
+        # Fallback: check context object attributes
+        if not session_id and context is not None:
+            session_id = getattr(context, "session_id", None) or getattr(context, "sessionId", None)
+
         if isinstance(session_id, str) and session_id.strip():
             user_email = f"sess:{session_id.strip()}@ccexpress.gupshup.io"
             synthesized_session_identity = True
