@@ -1,14 +1,20 @@
 {
   "cc_express": {
-    "timestamp": "2026-07-10T06:49:00.875202",
-    "total_queries": 18,
+    "timestamp": "2026-07-10T07:53:45.458091",
+    "total_queries": 20,
     "answered": 13,
-    "idk": 5,
-    "idk_rate": 27.8,
-    "answer_rate": 72.2,
-    "avg_confidence": 4.53,
+    "idk": 7,
+    "idk_rate": 35.0,
+    "answer_rate": 65.0,
+    "avg_confidence": 4.13,
     "video_rate": 84.6,
     "modules": {
+      "WhatsApp": {
+        "count": 3,
+        "answered": 0,
+        "idk": 3,
+        "avg_confidence": 0.73
+      },
       "Overview": {
         "count": 2,
         "answered": 1,
@@ -44,28 +50,22 @@
         "answered": 1,
         "idk": 0,
         "avg_confidence": 4.5
-      },
-      "WhatsApp": {
-        "count": 1,
-        "answered": 0,
-        "idk": 1,
-        "avg_confidence": 1.1
       }
     },
     "intents": {
       "setup": {
-        "count": 15,
+        "count": 17,
         "answered": 10,
-        "idk": 5,
+        "idk": 7,
+        "answer_rate": 58.8
+      },
+      "overview": {
+        "count": 3,
+        "answered": 2,
+        "idk": 1,
         "answer_rate": 66.7
       },
       "definition": {
-        "count": 2,
-        "answered": 2,
-        "idk": 0,
-        "answer_rate": 100.0
-      },
-      "overview": {
         "count": 2,
         "answered": 2,
         "idk": 0,
@@ -82,11 +82,11 @@
     "users_external": {
       "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io": {
         "domain": "ccexpress.gupshup.io",
-        "count": 15,
+        "count": 19,
         "answered": 5,
-        "answer_rate": 33.3,
-        "avg_confidence": 1.98,
-        "video_pct": 33.3
+        "answer_rate": 26.3,
+        "avg_confidence": 1.62,
+        "video_pct": 26.3
       },
       "visitor-5ceb5a5a-edea-4101-a6e1-939a32350630@ccexpress.gupshup.io": {
         "domain": "ccexpress.gupshup.io",
@@ -106,10 +106,15 @@
       }
     },
     "intent_multi": {
+      "2": {
+        "count": 1,
+        "answered": 0,
+        "answer_rate": 0.0
+      },
       "1": {
-        "count": 17,
+        "count": 18,
         "answered": 12,
-        "answer_rate": 70.6
+        "answer_rate": 66.7
       },
       "3": {
         "count": 1,
@@ -119,19 +124,19 @@
     },
     "intent_video": {
       "setup": {
-        "count": 15,
+        "count": 17,
         "video": 9,
-        "video_pct": 60.0
+        "video_pct": 52.9
+      },
+      "overview": {
+        "count": 3,
+        "video": 2,
+        "video_pct": 66.7
       },
       "definition": {
         "count": 2,
         "video": 1,
         "video_pct": 50.0
-      },
-      "overview": {
-        "count": 2,
-        "video": 2,
-        "video_pct": 100.0
       },
       "behavior": {
         "count": 1,
@@ -140,6 +145,16 @@
       }
     },
     "daily": {
+      "2026-07-10": {
+        "total": 1,
+        "answered": 0,
+        "idk": 1
+      },
+      "2026-07-09": {
+        "total": 1,
+        "answered": 0,
+        "idk": 1
+      },
       "2026-07-06": {
         "total": 8,
         "answered": 4,
@@ -163,15 +178,25 @@
     },
     "languages": {
       "en": {
-        "count": 18,
+        "count": 20,
         "answered": 13,
-        "idk": 5,
-        "answer_rate": 72.2,
-        "video_pct": 61.1
+        "idk": 7,
+        "answer_rate": 65.0,
+        "video_pct": 55.0
       }
     },
     "idk_by_language": {
       "en": [
+        {
+          "query": "How do I onboard an existing WABA account to Gupshup? Migration from another BSP or connecting an ex",
+          "module": "WhatsApp",
+          "score": 0.0
+        },
+        {
+          "query": "Documentation for WhatsApp API integration with Gupshup for a SaaS ISV using API only: setup, authen",
+          "module": "WhatsApp",
+          "score": 1.1
+        },
         {
           "query": "How do I check my CC Express tier (Starter or Pro) based on my app or console account? Where in the ",
           "module": "Overview",
@@ -186,20 +211,22 @@
           "query": "What is the rate limit for the Gupshup message sending API? For partner embedded onboarding flow and",
           "module": "General",
           "score": 0.0
-        },
-        {
-          "query": "Partner setup flow for a Tech Provider who wants to use Gupshup APIs and onboard customers from thei",
-          "module": "CTX",
-          "score": 0.9000000000000001
-        },
-        {
-          "query": "Can Gupshup support a WhatsApp chatbot for product info, product hierarchy, custom pricing by size, ",
-          "module": "WhatsApp",
-          "score": 1.1
         }
       ]
     },
     "idk_samples": [
+      {
+        "query": "How do I onboard an existing WABA account to Gupshup? Migration from another BSP or connecting an ex",
+        "module": "WhatsApp",
+        "score": 0.0,
+        "language": "en"
+      },
+      {
+        "query": "Documentation for WhatsApp API integration with Gupshup for a SaaS ISV using API only: setup, authen",
+        "module": "WhatsApp",
+        "score": 1.1,
+        "language": "en"
+      },
       {
         "query": "How do I check my CC Express tier (Starter or Pro) based on my app or console account? Where in the ",
         "module": "Overview",
@@ -378,22 +405,50 @@
           "avg_latency": 761.0,
           "user": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
           "timestamp": "2026-07-06T17:39:46.754Z"
+        },
+        {
+          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:9",
+          "length": 1,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "Documentation for WhatsApp API integration with Gupshup for a SaaS ISV using API only: setup, authentication, sending me",
+          "root_answered": false,
+          "root_confidence": 1.1,
+          "is_decomposed": false,
+          "avg_confidence": 1.1,
+          "avg_latency": 636.0,
+          "user": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
+          "timestamp": "2026-07-09T21:56:34.659Z"
+        },
+        {
+          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:10",
+          "length": 1,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "How do I onboard an existing WABA account to Gupshup? Migration from another BSP or connecting an existing WhatsApp Busi",
+          "root_answered": false,
+          "root_confidence": 0.0,
+          "is_decomposed": false,
+          "avg_confidence": 0.0,
+          "avg_latency": 579.0,
+          "user": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
+          "timestamp": "2026-07-10T07:20:04.355Z"
         }
       ],
       "overview": {
-        "total_conversations": 8,
-        "single_turn": 5,
+        "total_conversations": 10,
+        "single_turn": 7,
         "multi_turn": 3,
-        "single_turn_pct": 62.5,
-        "multi_turn_pct": 37.5,
-        "avg_queries_per_conversation": 2.25,
+        "single_turn_pct": 70.0,
+        "multi_turn_pct": 30.0,
+        "avg_queries_per_conversation": 2.0,
         "max_queries": 7,
-        "total_queries": 18
+        "total_queries": 20
       },
       "success_by_length": {
         "1": {
-          "conversations": 5,
-          "avg_success_rate": 80.0
+          "conversations": 7,
+          "avg_success_rate": 57.1
         },
         "2": {
           "conversations": 1,
@@ -410,10 +465,10 @@
       },
       "root_vs_followup": {
         "root": {
-          "count": 8,
-          "answer_rate": 75.0,
-          "idk_rate": 25.0,
-          "avg_confidence": 3.51
+          "count": 10,
+          "answer_rate": 60.0,
+          "idk_rate": 40.0,
+          "avg_confidence": 2.92
         },
         "followup": {
           "count": 10,
@@ -434,13 +489,13 @@
     }
   },
   "standalone": {
-    "timestamp": "2026-07-10T06:49:00.879238",
-    "total_queries": 327,
+    "timestamp": "2026-07-10T07:53:45.465180",
+    "total_queries": 326,
     "answered": 247,
-    "idk": 80,
-    "idk_rate": 24.5,
-    "answer_rate": 75.5,
-    "avg_confidence": 4.12,
+    "idk": 79,
+    "idk_rate": 24.2,
+    "answer_rate": 75.8,
+    "avg_confidence": 4.13,
     "video_rate": 65.6,
     "modules": {
       "SuperAgent": {
@@ -474,10 +529,10 @@
         "avg_confidence": 4.97
       },
       "WhatsApp": {
-        "count": 14,
+        "count": 13,
         "answered": 1,
-        "idk": 13,
-        "avg_confidence": 0.88
+        "idk": 12,
+        "avg_confidence": 0.86
       },
       "CTX": {
         "count": 15,
@@ -530,10 +585,10 @@
     },
     "intents": {
       "setup": {
-        "count": 231,
+        "count": 230,
         "answered": 167,
-        "idk": 64,
-        "answer_rate": 72.3
+        "idk": 63,
+        "answer_rate": 72.6
       },
       "refusal": {
         "count": 7,
@@ -887,14 +942,6 @@
         "avg_confidence": 3.06,
         "video_pct": 36.0
       },
-      "Anonymous": {
-        "domain": "unknown",
-        "count": 55,
-        "answered": 21,
-        "answer_rate": 38.2,
-        "avg_confidence": 1.19,
-        "video_pct": 23.6
-      },
       "paras.villis@technosport.in": {
         "domain": "technosport.in",
         "count": 5,
@@ -950,6 +997,14 @@
         "answer_rate": 86.7,
         "avg_confidence": 5.85,
         "video_pct": 86.7
+      },
+      "Anonymous": {
+        "domain": "unknown",
+        "count": 53,
+        "answered": 21,
+        "answer_rate": 39.6,
+        "avg_confidence": 1.22,
+        "video_pct": 24.5
       },
       "admin@blessingmediaglobal.com": {
         "domain": "blessingmediaglobal.com",
@@ -1090,9 +1145,9 @@
     },
     "intent_multi": {
       "1": {
-        "count": 288,
+        "count": 287,
         "answered": 211,
-        "answer_rate": 73.3
+        "answer_rate": 73.5
       },
       "2": {
         "count": 35,
@@ -1107,9 +1162,9 @@
     },
     "intent_video": {
       "setup": {
-        "count": 231,
+        "count": 230,
         "video": 120,
-        "video_pct": 51.9
+        "video_pct": 52.2
       },
       "refusal": {
         "count": 7,
@@ -1169,9 +1224,9 @@
         "idk": 2
       },
       "2026-07-09": {
-        "total": 8,
+        "total": 7,
         "answered": 3,
-        "idk": 5
+        "idk": 4
       },
       "2026-07-08": {
         "total": 7,
@@ -1246,11 +1301,11 @@
     },
     "languages": {
       "en": {
-        "count": 319,
+        "count": 318,
         "answered": 241,
-        "idk": 78,
-        "answer_rate": 75.5,
-        "video_pct": 49.8
+        "idk": 77,
+        "answer_rate": 75.8,
+        "video_pct": 50.0
       },
       "pt": {
         "count": 7,
@@ -1280,11 +1335,6 @@
           "score": 0.0
         },
         {
-          "query": "Documentation for WhatsApp API integration with Gupshup for a SaaS ISV using API only: setup, authen",
-          "module": "WhatsApp",
-          "score": 1.1
-        },
-        {
           "query": "Is promotion of multivitamin supplements allowed on WhatsApp Business account? Are there any restric",
           "module": "WhatsApp",
           "score": 0.0
@@ -1293,6 +1343,11 @@
           "query": "Does the Gupshup Console application support Single Sign-On (SSO) via SAML 2.0?",
           "module": "Overview",
           "score": 1.2000000000000002
+        },
+        {
+          "query": "How to find and download a recharge invoice in Gupshup Console Wallet after adding credits from the ",
+          "module": "Wallet",
+          "score": 0.9000000000000001
         }
       ],
       "pt": [
@@ -1319,12 +1374,6 @@
         "query": "WhatsApp template utility category changes to marketing on submit. Why does a utility template get s",
         "module": "WhatsApp",
         "score": 0.0,
-        "language": "en"
-      },
-      {
-        "query": "Documentation for WhatsApp API integration with Gupshup for a SaaS ISV using API only: setup, authen",
-        "module": "WhatsApp",
-        "score": 1.1,
         "language": "en"
       },
       {
@@ -1367,6 +1416,12 @@
         "query": "Questions to ask when meeting a CMO for the first time",
         "module": "Campaign Manager",
         "score": 0.6000000000000001,
+        "language": "en"
+      },
+      {
+        "query": "What strong points can Gupshup mention to clients regarding data security? Focus on documented secur",
+        "module": "Channels",
+        "score": 1.1500000000000001,
         "language": "en"
       }
     ],
@@ -1653,7 +1708,7 @@
           "timestamp": "2026-07-03T09:50:34.337Z"
         },
         {
-          "id": "sess:puru.chauhan@knowlarity.com:126",
+          "id": "sess:puru.chauhan@knowlarity.com:125",
           "length": 5,
           "answered": 5,
           "success_rate": 100.0,
@@ -3795,21 +3850,7 @@
           "timestamp": "2026-07-09T10:36:53.575Z"
         },
         {
-          "id": "sess:Anonymous:123",
-          "length": 1,
-          "answered": 0,
-          "success_rate": 0.0,
-          "root_query": "Documentation for WhatsApp API integration with Gupshup for a SaaS ISV using API only: setup, authentication, sending me",
-          "root_answered": false,
-          "root_confidence": 1.1,
-          "is_decomposed": false,
-          "avg_confidence": 1.1,
-          "avg_latency": 636.0,
-          "user": "Anonymous",
-          "timestamp": "2026-07-09T21:56:34.659Z"
-        },
-        {
-          "id": "sess:mis@digitalnest.in:124",
+          "id": "sess:mis@digitalnest.in:123",
           "length": 1,
           "answered": 0,
           "success_rate": 0.0,
@@ -3823,7 +3864,7 @@
           "timestamp": "2026-07-10T05:20:10.665Z"
         },
         {
-          "id": "sess:abhijit.chatterjee@gupshup.io:125",
+          "id": "sess:abhijit.chatterjee@gupshup.io:124",
           "length": 1,
           "answered": 0,
           "success_rate": 0.0,
@@ -3838,19 +3879,19 @@
         }
       ],
       "overview": {
-        "total_conversations": 169,
-        "single_turn": 110,
+        "total_conversations": 168,
+        "single_turn": 109,
         "multi_turn": 59,
-        "single_turn_pct": 65.1,
-        "multi_turn_pct": 34.9,
-        "avg_queries_per_conversation": 1.93,
+        "single_turn_pct": 64.9,
+        "multi_turn_pct": 35.1,
+        "avg_queries_per_conversation": 1.94,
         "max_queries": 13,
-        "total_queries": 327
+        "total_queries": 326
       },
       "success_by_length": {
         "1": {
-          "conversations": 110,
-          "avg_success_rate": 63.6
+          "conversations": 109,
+          "avg_success_rate": 64.2
         },
         "2": {
           "conversations": 25,
@@ -3867,10 +3908,10 @@
       },
       "root_vs_followup": {
         "root": {
-          "count": 169,
-          "answer_rate": 66.3,
-          "idk_rate": 33.7,
-          "avg_confidence": 2.89
+          "count": 168,
+          "answer_rate": 66.7,
+          "idk_rate": 33.3,
+          "avg_confidence": 2.9
         },
         "followup": {
           "count": 158,
@@ -3894,10 +3935,165 @@
     "ccx_answer_rate": 0.0,
     "ref_answer_rate": 0.0,
     "answer_delta": 0.0,
-    "ccx_avg_confidence": 3.0611111111111113,
-    "ref_avg_confidence": 2.3126893939393938,
-    "confidence_delta": 0.7484217171717176,
+    "ccx_avg_confidence": 2.7618750000000003,
+    "ref_avg_confidence": 2.3097404233870966,
+    "confidence_delta": 0.4521345766129037,
     "low_confidence_flags": [
+      {
+        "id": "kb-kb_answer-56f4e735e98c40e7",
+        "projectId": "cmmn9l5gq019kad07u4o41lxz",
+        "name": "kb_answer",
+        "timestamp": "2026-07-10T07:20:04.355Z",
+        "environment": "default",
+        "tags": [],
+        "bookmarked": false,
+        "release": null,
+        "version": null,
+        "userId": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
+        "sessionId": null,
+        "public": false,
+        "input": {
+          "query": "How do I onboard an existing WABA account to Gupshup? Migration from another BSP or connecting an existing WhatsApp Business Account. What are the steps and prerequisites?"
+        },
+        "output": {
+          "answer": "I don't know based on the current docs."
+        },
+        "metadata": {
+          "user_email": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
+          "user_name": null,
+          "user_id": 2,
+          "query": "How do I onboard an existing WABA account to Gupshup? Migration from another BSP or connecting an existing WhatsApp Business Account. What are the steps and prerequisites?",
+          "answer_preview": "I don't know based on the current docs.",
+          "release": 4,
+          "environment": "PROD",
+          "deployment_label": "kb-prod-agent",
+          "telemetry_partition": "PROD:kb-prod-agent",
+          "logic_version": "kb-answer-v2.1-hardened",
+          "prompt_version": null,
+          "model": "rules-runtime",
+          "temperature": 0,
+          "top_p": 1,
+          "query_family": "WhatsApp",
+          "module_label": "WhatsApp",
+          "module_source": "explicit",
+          "trace_env": "PROD",
+          "selected_answer_mode": "compare",
+          "answered": false,
+          "clarification_asked": false,
+          "unanswered": true,
+          "top_score": null,
+          "top_source": null,
+          "channel_type": "whatsapp",
+          "detected_product_original": null,
+          "source_count": 0,
+          "latency_ms": 579,
+          "intent": "compare",
+          "intent_labels": [
+            "setup",
+            "overview"
+          ],
+          "module": "WhatsApp",
+          "explicit_module": "WhatsApp",
+          "confidence": 0,
+          "failure_type": null,
+          "accuracy_label": null,
+          "accuracy_score": null,
+          "accuracy_source": null,
+          "correlation_id": null,
+          "parent_trace_id": null,
+          "decomposition_level": 0,
+          "is_sub_query": false,
+          "video_attached": false,
+          "video_channel": "kb_answer"
+        },
+        "createdAt": "2026-07-10T07:20:09.000Z",
+        "updatedAt": "2026-07-10T07:38:36.680Z",
+        "observations": [],
+        "scores": [],
+        "totalCost": 0,
+        "latency": 0,
+        "htmlPath": "/project/cmmn9l5gq019kad07u4o41lxz/traces/kb-kb_answer-56f4e735e98c40e7",
+        "externalId": null,
+        "_cc_express_signals": [
+          "email"
+        ]
+      },
+      {
+        "id": "kb-kb_answer-9698b8b31035454b",
+        "projectId": "cmmn9l5gq019kad07u4o41lxz",
+        "name": "kb_answer",
+        "timestamp": "2026-07-09T21:56:34.659Z",
+        "environment": "default",
+        "tags": [],
+        "bookmarked": false,
+        "release": null,
+        "version": null,
+        "userId": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
+        "sessionId": null,
+        "public": false,
+        "input": {
+          "query": "Documentation for WhatsApp API integration with Gupshup for a SaaS ISV using API only: setup, authentication, sending messages, receiving webhooks, templates, multi-tenant guidance."
+        },
+        "output": {
+          "answer": "I don't know based on the current docs."
+        },
+        "metadata": {
+          "user_email": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
+          "user_name": null,
+          "user_id": 2,
+          "query": "Documentation for WhatsApp API integration with Gupshup for a SaaS ISV using API only: setup, authentication, sending messages, receiving webhooks, templates, multi-tenant guidance.",
+          "answer_preview": "I don't know based on the current docs.",
+          "release": 4,
+          "environment": "PROD",
+          "deployment_label": "kb-prod-agent",
+          "telemetry_partition": "PROD:kb-prod-agent",
+          "logic_version": "kb-answer-v2.1-hardened",
+          "prompt_version": null,
+          "model": "rules-runtime",
+          "temperature": 0,
+          "top_p": 1,
+          "query_family": "WhatsApp",
+          "module_label": "WhatsApp",
+          "module_source": "explicit",
+          "trace_env": "PROD",
+          "selected_answer_mode": "setup",
+          "answered": false,
+          "clarification_asked": false,
+          "unanswered": true,
+          "top_score": 1.1,
+          "top_source": "kb/integrations/custom-integrations.md",
+          "channel_type": "whatsapp",
+          "detected_product_original": null,
+          "source_count": 4,
+          "latency_ms": 636,
+          "intent_labels": [
+            "setup"
+          ],
+          "explicit_module": "WhatsApp",
+          "confidence": 0.1375,
+          "failure_type": null,
+          "accuracy_label": null,
+          "accuracy_score": null,
+          "accuracy_source": null,
+          "correlation_id": null,
+          "parent_trace_id": null,
+          "decomposition_level": 0,
+          "is_sub_query": false,
+          "video_attached": false,
+          "video_channel": "kb_answer"
+        },
+        "createdAt": "2026-07-10T07:38:18.000Z",
+        "updatedAt": "2026-07-10T07:38:22.845Z",
+        "observations": [],
+        "scores": [],
+        "totalCost": 0,
+        "latency": 0,
+        "htmlPath": "/project/cmmn9l5gq019kad07u4o41lxz/traces/kb-kb_answer-9698b8b31035454b",
+        "externalId": null,
+        "_cc_express_signals": [
+          "email"
+        ]
+      },
       {
         "id": "kb-kb_answer-893fcc5c014548d3",
         "projectId": "cmmn9l5gq019kad07u4o41lxz",
