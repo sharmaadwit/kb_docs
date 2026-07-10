@@ -1,13 +1,17 @@
 {
   "ok": true,
-  "created_at": "2026-07-03T13:15:43.695388+00:00",
+  "created_at": "2026-07-10T07:14:51.162538+00:00",
   "docs_path": "kb",
   "excluded": [
     "kb/analytics"
   ],
   "md_files": 400,
-  "chunks": 6674,
+  "chunks": 6706,
   "docs": [
+    {
+      "path": "kb/Gupshup_Console_SSO support.md",
+      "chunks": 12
+    },
     {
       "path": "kb/agent-assist/about-agent-assist.md",
       "chunks": 3
@@ -327,6 +331,10 @@
     {
       "path": "kb/bizai/bizai-overview.md",
       "chunks": 3
+    },
+    {
+      "path": "kb/bizai/bizai-partner-api-white-paper.md",
+      "chunks": 41
     },
     {
       "path": "kb/bizai/bizai-pricing.md",
@@ -1599,14 +1607,6 @@
     {
       "path": "kb/superagent/guides/personalize.md",
       "chunks": 10
-    },
-    {
-      "path": "kb/superagent/guides/schedule-task.md",
-      "chunks": 10
-    },
-    {
-      "path": "kb/superagent/guides/submit-feedback.md",
-      "chunks": 11
     }
   ],
   "chunking": {
