@@ -1,13 +1,13 @@
 {
   "cc_express": {
-    "timestamp": "2026-07-10T07:53:45.458091",
-    "total_queries": 20,
-    "answered": 13,
-    "idk": 7,
-    "idk_rate": 35.0,
-    "answer_rate": 65.0,
-    "avg_confidence": 4.13,
-    "video_rate": 84.6,
+    "timestamp": "2026-07-10T07:59:29.012801",
+    "total_queries": 23,
+    "answered": 14,
+    "idk": 9,
+    "idk_rate": 39.1,
+    "answer_rate": 60.9,
+    "avg_confidence": 3.75,
+    "video_rate": 85.7,
     "modules": {
       "WhatsApp": {
         "count": 3,
@@ -50,14 +50,20 @@
         "answered": 1,
         "idk": 0,
         "avg_confidence": 4.5
+      },
+      "Channels": {
+        "count": 3,
+        "answered": 1,
+        "idk": 2,
+        "avg_confidence": 1.23
       }
     },
     "intents": {
       "setup": {
-        "count": 17,
-        "answered": 10,
-        "idk": 7,
-        "answer_rate": 58.8
+        "count": 20,
+        "answered": 11,
+        "idk": 9,
+        "answer_rate": 55.0
       },
       "overview": {
         "count": 3,
@@ -82,11 +88,11 @@
     "users_external": {
       "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io": {
         "domain": "ccexpress.gupshup.io",
-        "count": 19,
-        "answered": 5,
-        "answer_rate": 26.3,
-        "avg_confidence": 1.62,
-        "video_pct": 26.3
+        "count": 24,
+        "answered": 6,
+        "answer_rate": 25.0,
+        "avg_confidence": 1.44,
+        "video_pct": 25.0
       },
       "visitor-5ceb5a5a-edea-4101-a6e1-939a32350630@ccexpress.gupshup.io": {
         "domain": "ccexpress.gupshup.io",
@@ -112,9 +118,9 @@
         "answer_rate": 0.0
       },
       "1": {
-        "count": 18,
-        "answered": 12,
-        "answer_rate": 66.7
+        "count": 21,
+        "answered": 13,
+        "answer_rate": 61.9
       },
       "3": {
         "count": 1,
@@ -124,9 +130,9 @@
     },
     "intent_video": {
       "setup": {
-        "count": 17,
-        "video": 9,
-        "video_pct": 52.9
+        "count": 20,
+        "video": 10,
+        "video_pct": 50.0
       },
       "overview": {
         "count": 3,
@@ -170,6 +176,11 @@
         "answered": 0,
         "idk": 1
       },
+      "2026-07-03": {
+        "total": 3,
+        "answered": 1,
+        "idk": 2
+      },
       "2026-06-26": {
         "total": 8,
         "answered": 8,
@@ -178,11 +189,11 @@
     },
     "languages": {
       "en": {
-        "count": 20,
-        "answered": 13,
-        "idk": 7,
-        "answer_rate": 65.0,
-        "video_pct": 55.0
+        "count": 23,
+        "answered": 14,
+        "idk": 9,
+        "answer_rate": 60.9,
+        "video_pct": 52.2
       }
     },
     "idk_by_language": {
@@ -256,11 +267,23 @@
         "module": "WhatsApp",
         "score": 1.1,
         "language": "en"
+      },
+      {
+        "query": "Invalid sales code received error during signup. What causes this and how do I fix it?",
+        "module": "Channels",
+        "score": 0.6500000000000001,
+        "language": "en"
+      },
+      {
+        "query": "Instagram Facebook DM support embedded onboarding partner account data isolation Meta app review Gup",
+        "module": "Channels",
+        "score": 1.8000000000000003,
+        "language": "en"
       }
     ],
     "video_platforms": {
       "youtube": 0,
-      "demoforge": 11,
+      "demoforge": 12,
       "youtube_pct": 0.0,
       "demoforge_pct": 100.0
     },
@@ -280,6 +303,10 @@
       "6a4402a6f14e94517beb8474": {
         "count": 1,
         "title": "Campaign Manager Demo"
+      },
+      "qV43fub35f8": {
+        "count": 1,
+        "title": "Gupshup Console Overview"
       },
       "T35qJ0uTQhc": {
         "count": 1,
@@ -309,7 +336,7 @@
           "timestamp": "2026-06-26T07:10:52.612Z"
         },
         {
-          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:6",
+          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:8",
           "length": 4,
           "answered": 1,
           "success_rate": 25.0,
@@ -323,7 +350,21 @@
           "timestamp": "2026-07-06T12:58:18.170Z"
         },
         {
-          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:5",
+          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:3",
+          "length": 2,
+          "answered": 1,
+          "success_rate": 50.0,
+          "root_query": "How to set up Facebook and Instagram DM in Gupshup Console? Include steps, prerequisites, and where to configure it.",
+          "root_answered": true,
+          "root_confidence": 1.25,
+          "is_decomposed": true,
+          "avg_confidence": 1.53,
+          "avg_latency": 2148.0,
+          "user": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
+          "timestamp": "2026-07-03T06:46:18.614Z"
+        },
+        {
+          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:7",
           "length": 2,
           "answered": 1,
           "success_rate": 50.0,
@@ -351,7 +392,21 @@
           "timestamp": "2026-06-26T10:33:02.774Z"
         },
         {
-          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:3",
+          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:4",
+          "length": 1,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "Invalid sales code received error during signup. What causes this and how do I fix it?",
+          "root_answered": false,
+          "root_confidence": 0.65,
+          "is_decomposed": false,
+          "avg_confidence": 0.65,
+          "avg_latency": 550.0,
+          "user": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
+          "timestamp": "2026-07-03T09:10:10.385Z"
+        },
+        {
+          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:5",
           "length": 1,
           "answered": 0,
           "success_rate": 0.0,
@@ -365,7 +420,7 @@
           "timestamp": "2026-07-04T11:25:19.173Z"
         },
         {
-          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:4",
+          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:6",
           "length": 1,
           "answered": 1,
           "success_rate": 100.0,
@@ -379,7 +434,7 @@
           "timestamp": "2026-07-05T13:43:32.776Z"
         },
         {
-          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:7",
+          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:9",
           "length": 1,
           "answered": 1,
           "success_rate": 100.0,
@@ -393,7 +448,7 @@
           "timestamp": "2026-07-06T16:01:28.546Z"
         },
         {
-          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:8",
+          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:10",
           "length": 1,
           "answered": 1,
           "success_rate": 100.0,
@@ -407,7 +462,7 @@
           "timestamp": "2026-07-06T17:39:46.754Z"
         },
         {
-          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:9",
+          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:11",
           "length": 1,
           "answered": 0,
           "success_rate": 0.0,
@@ -421,7 +476,7 @@
           "timestamp": "2026-07-09T21:56:34.659Z"
         },
         {
-          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:10",
+          "id": "sess:visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io:12",
           "length": 1,
           "answered": 0,
           "success_rate": 0.0,
@@ -436,22 +491,22 @@
         }
       ],
       "overview": {
-        "total_conversations": 10,
-        "single_turn": 7,
-        "multi_turn": 3,
-        "single_turn_pct": 70.0,
-        "multi_turn_pct": 30.0,
-        "avg_queries_per_conversation": 2.0,
+        "total_conversations": 12,
+        "single_turn": 8,
+        "multi_turn": 4,
+        "single_turn_pct": 66.7,
+        "multi_turn_pct": 33.3,
+        "avg_queries_per_conversation": 1.92,
         "max_queries": 7,
-        "total_queries": 20
+        "total_queries": 23
       },
       "success_by_length": {
         "1": {
-          "conversations": 7,
-          "avg_success_rate": 57.1
+          "conversations": 8,
+          "avg_success_rate": 50.0
         },
         "2": {
-          "conversations": 1,
+          "conversations": 2,
           "avg_success_rate": 50.0
         },
         "3": {
@@ -465,38 +520,38 @@
       },
       "root_vs_followup": {
         "root": {
-          "count": 10,
-          "answer_rate": 60.0,
-          "idk_rate": 40.0,
-          "avg_confidence": 2.92
+          "count": 12,
+          "answer_rate": 58.3,
+          "idk_rate": 41.7,
+          "avg_confidence": 2.59
         },
         "followup": {
-          "count": 10,
-          "answer_rate": 70.0,
-          "idk_rate": 30.0,
-          "avg_confidence": 5.34
+          "count": 11,
+          "answer_rate": 63.6,
+          "idk_rate": 36.4,
+          "avg_confidence": 5.02
         }
       },
       "decomposition_effectiveness": {
-        "total_decomposed": 3,
+        "total_decomposed": 4,
         "all_success": 1,
-        "partial_success": 2,
+        "partial_success": 3,
         "all_failed": 0,
-        "all_success_pct": 33.3,
-        "partial_success_pct": 66.7,
+        "all_success_pct": 25.0,
+        "partial_success_pct": 75.0,
         "all_failed_pct": 0.0
       }
     }
   },
   "standalone": {
-    "timestamp": "2026-07-10T07:53:45.465180",
-    "total_queries": 326,
-    "answered": 247,
-    "idk": 79,
-    "idk_rate": 24.2,
-    "answer_rate": 75.8,
-    "avg_confidence": 4.13,
-    "video_rate": 65.6,
+    "timestamp": "2026-07-10T07:59:29.018383",
+    "total_queries": 323,
+    "answered": 246,
+    "idk": 77,
+    "idk_rate": 23.8,
+    "answer_rate": 76.2,
+    "avg_confidence": 4.16,
+    "video_rate": 65.4,
     "modules": {
       "SuperAgent": {
         "count": 5,
@@ -541,10 +596,10 @@
         "avg_confidence": 1.29
       },
       "Channels": {
-        "count": 50,
-        "answered": 32,
-        "idk": 18,
-        "avg_confidence": 2.53
+        "count": 47,
+        "answered": 31,
+        "idk": 16,
+        "avg_confidence": 2.62
       },
       "Overview": {
         "count": 11,
@@ -585,10 +640,10 @@
     },
     "intents": {
       "setup": {
-        "count": 230,
-        "answered": 167,
-        "idk": 63,
-        "answer_rate": 72.6
+        "count": 227,
+        "answered": 166,
+        "idk": 61,
+        "answer_rate": 73.1
       },
       "refusal": {
         "count": 7,
@@ -1000,11 +1055,11 @@
       },
       "Anonymous": {
         "domain": "unknown",
-        "count": 53,
-        "answered": 21,
-        "answer_rate": 39.6,
-        "avg_confidence": 1.22,
-        "video_pct": 24.5
+        "count": 48,
+        "answered": 20,
+        "answer_rate": 41.7,
+        "avg_confidence": 1.26,
+        "video_pct": 25.0
       },
       "admin@blessingmediaglobal.com": {
         "domain": "blessingmediaglobal.com",
@@ -1145,9 +1200,9 @@
     },
     "intent_multi": {
       "1": {
-        "count": 287,
-        "answered": 211,
-        "answer_rate": 73.5
+        "count": 284,
+        "answered": 210,
+        "answer_rate": 73.9
       },
       "2": {
         "count": 35,
@@ -1162,9 +1217,9 @@
     },
     "intent_video": {
       "setup": {
-        "count": 230,
-        "video": 120,
-        "video_pct": 52.2
+        "count": 227,
+        "video": 119,
+        "video_pct": 52.4
       },
       "refusal": {
         "count": 7,
@@ -1254,9 +1309,9 @@
         "idk": 4
       },
       "2026-07-03": {
-        "total": 61,
-        "answered": 41,
-        "idk": 20
+        "total": 58,
+        "answered": 40,
+        "idk": 18
       },
       "2026-07-02": {
         "total": 66,
@@ -1301,11 +1356,11 @@
     },
     "languages": {
       "en": {
-        "count": 318,
-        "answered": 241,
-        "idk": 77,
-        "answer_rate": 75.8,
-        "video_pct": 50.0
+        "count": 315,
+        "answered": 240,
+        "idk": 75,
+        "answer_rate": 76.2,
+        "video_pct": 50.2
       },
       "pt": {
         "count": 7,
@@ -1427,7 +1482,7 @@
     ],
     "video_platforms": {
       "youtube": 0,
-      "demoforge": 162,
+      "demoforge": 161,
       "youtube_pct": 0.0,
       "demoforge_pct": 100.0
     },
@@ -1468,13 +1523,13 @@
         "count": 5,
         "title": "Click-to-WhatsApp Ads (CTX) Setup"
       },
-      "qV43fub35f8": {
-        "count": 5,
-        "title": "Gupshup Console Overview"
-      },
       "bGCS4rp84EM": {
         "count": 4,
         "title": "SuperAgent Overview"
+      },
+      "qV43fub35f8": {
+        "count": 4,
+        "title": "Gupshup Console Overview"
       },
       "8JIgkvdCjZk": {
         "count": 3,
@@ -1526,7 +1581,7 @@
     "conversations": {
       "conversation_stats": [
         {
-          "id": "sess:admin@reworks.in:99",
+          "id": "sess:admin@reworks.in:97",
           "length": 13,
           "answered": 10,
           "success_rate": 76.9,
@@ -1568,7 +1623,7 @@
           "timestamp": "2026-07-02T07:04:20.526Z"
         },
         {
-          "id": "sess:hello@rapchai.com:93",
+          "id": "sess:hello@rapchai.com:91",
           "length": 9,
           "answered": 9,
           "success_rate": 100.0,
@@ -1694,7 +1749,7 @@
           "timestamp": "2026-07-02T17:25:07.795Z"
         },
         {
-          "id": "sess:marketing@upgradsot.com:89",
+          "id": "sess:marketing@upgradsot.com:87",
           "length": 5,
           "answered": 5,
           "success_rate": 100.0,
@@ -1708,7 +1763,7 @@
           "timestamp": "2026-07-03T09:50:34.337Z"
         },
         {
-          "id": "sess:puru.chauhan@knowlarity.com:125",
+          "id": "sess:puru.chauhan@knowlarity.com:123",
           "length": 5,
           "answered": 5,
           "success_rate": 100.0,
@@ -1792,7 +1847,7 @@
           "timestamp": "2026-06-30T17:41:23.934Z"
         },
         {
-          "id": "sess:puru.chauhan@knowlarity.com:86",
+          "id": "sess:puru.chauhan@knowlarity.com:85",
           "length": 4,
           "answered": 4,
           "success_rate": 100.0,
@@ -1806,7 +1861,7 @@
           "timestamp": "2026-07-03T07:31:03.159Z"
         },
         {
-          "id": "sess:admin@reworks.in:96",
+          "id": "sess:admin@reworks.in:94",
           "length": 4,
           "answered": 0,
           "success_rate": 0.0,
@@ -1820,7 +1875,7 @@
           "timestamp": "2026-07-04T18:19:04.098Z"
         },
         {
-          "id": "sess:henrique.proenca@gupshup.io:104",
+          "id": "sess:henrique.proenca@gupshup.io:102",
           "length": 4,
           "answered": 2,
           "success_rate": 50.0,
@@ -1834,7 +1889,7 @@
           "timestamp": "2026-07-06T16:08:35.920Z"
         },
         {
-          "id": "sess:admin@reworks.in:108",
+          "id": "sess:admin@reworks.in:106",
           "length": 4,
           "answered": 4,
           "success_rate": 100.0,
@@ -1974,7 +2029,7 @@
           "timestamp": "2026-07-02T15:00:41.341Z"
         },
         {
-          "id": "sess:admin@blessingmediaglobal.com:85",
+          "id": "sess:admin@blessingmediaglobal.com:84",
           "length": 3,
           "answered": 2,
           "success_rate": 66.7,
@@ -1988,7 +2043,7 @@
           "timestamp": "2026-07-03T07:25:44.449Z"
         },
         {
-          "id": "sess:naidu@meraevents.com:91",
+          "id": "sess:naidu@meraevents.com:89",
           "length": 3,
           "answered": 1,
           "success_rate": 33.3,
@@ -2240,21 +2295,7 @@
           "timestamp": "2026-07-02T18:34:24.589Z"
         },
         {
-          "id": "sess:Anonymous:83",
-          "length": 2,
-          "answered": 1,
-          "success_rate": 50.0,
-          "root_query": "How to set up Facebook and Instagram DM in Gupshup Console? Include steps, prerequisites, and where to configure it.",
-          "root_answered": true,
-          "root_confidence": 1.25,
-          "is_decomposed": true,
-          "avg_confidence": 1.53,
-          "avg_latency": 2148.0,
-          "user": "Anonymous",
-          "timestamp": "2026-07-03T06:46:18.614Z"
-        },
-        {
-          "id": "sess:marketing@upgradsot.com:84",
+          "id": "sess:marketing@upgradsot.com:83",
           "length": 2,
           "answered": 2,
           "success_rate": 100.0,
@@ -2268,7 +2309,7 @@
           "timestamp": "2026-07-03T07:07:38.220Z"
         },
         {
-          "id": "sess:hello@rapchai.com:92",
+          "id": "sess:hello@rapchai.com:90",
           "length": 2,
           "answered": 0,
           "success_rate": 0.0,
@@ -2282,7 +2323,7 @@
           "timestamp": "2026-07-03T12:35:39.998Z"
         },
         {
-          "id": "sess:admin@reworks.in:94",
+          "id": "sess:admin@reworks.in:92",
           "length": 2,
           "answered": 2,
           "success_rate": 100.0,
@@ -2296,7 +2337,7 @@
           "timestamp": "2026-07-03T13:38:29.688Z"
         },
         {
-          "id": "sess:admin@reworks.in:95",
+          "id": "sess:admin@reworks.in:93",
           "length": 2,
           "answered": 2,
           "success_rate": 100.0,
@@ -2310,7 +2351,7 @@
           "timestamp": "2026-07-04T03:26:53.485Z"
         },
         {
-          "id": "sess:renan.mazoroski@gupshup.io:109",
+          "id": "sess:renan.mazoroski@gupshup.io:107",
           "length": 2,
           "answered": 2,
           "success_rate": 100.0,
@@ -2324,7 +2365,7 @@
           "timestamp": "2026-07-07T14:43:44.539Z"
         },
         {
-          "id": "sess:paras.villis@technosport.in:118",
+          "id": "sess:paras.villis@technosport.in:116",
           "length": 2,
           "answered": 0,
           "success_rate": 0.0,
@@ -2338,7 +2379,7 @@
           "timestamp": "2026-07-09T06:36:47.779Z"
         },
         {
-          "id": "sess:pavankalyan.killari@gupshup.io:122",
+          "id": "sess:pavankalyan.killari@gupshup.io:120",
           "length": 2,
           "answered": 2,
           "success_rate": 100.0,
@@ -3192,21 +3233,7 @@
           "timestamp": "2026-07-03T05:23:21.396Z"
         },
         {
-          "id": "sess:Anonymous:87",
-          "length": 1,
-          "answered": 0,
-          "success_rate": 0.0,
-          "root_query": "Invalid sales code received error during signup. What causes this and how do I fix it?",
-          "root_answered": false,
-          "root_confidence": 0.65,
-          "is_decomposed": false,
-          "avg_confidence": 0.65,
-          "avg_latency": 550.0,
-          "user": "Anonymous",
-          "timestamp": "2026-07-03T09:10:10.385Z"
-        },
-        {
-          "id": "sess:naveen.verma@knowlarity.com:88",
+          "id": "sess:naveen.verma@knowlarity.com:86",
           "length": 1,
           "answered": 1,
           "success_rate": 100.0,
@@ -3556,7 +3583,7 @@
           "timestamp": "2026-07-03T10:48:15.504Z"
         },
         {
-          "id": "sess:marketing@upgradsot.com:90",
+          "id": "sess:marketing@upgradsot.com:88",
           "length": 1,
           "answered": 0,
           "success_rate": 0.0,
@@ -3570,7 +3597,7 @@
           "timestamp": "2026-07-03T11:15:25.050Z"
         },
         {
-          "id": "sess:bruno.montoro@gupshup.io:97",
+          "id": "sess:bruno.montoro@gupshup.io:95",
           "length": 1,
           "answered": 0,
           "success_rate": 0.0,
@@ -3584,7 +3611,7 @@
           "timestamp": "2026-07-05T00:54:49.795Z"
         },
         {
-          "id": "sess:admin@reworks.in:98",
+          "id": "sess:admin@reworks.in:96",
           "length": 1,
           "answered": 1,
           "success_rate": 100.0,
@@ -3598,7 +3625,7 @@
           "timestamp": "2026-07-05T05:50:42.168Z"
         },
         {
-          "id": "sess:admin@reworks.in:100",
+          "id": "sess:admin@reworks.in:98",
           "length": 1,
           "answered": 1,
           "success_rate": 100.0,
@@ -3612,7 +3639,7 @@
           "timestamp": "2026-07-06T05:39:16.580Z"
         },
         {
-          "id": "sess:admin@reworks.in:101",
+          "id": "sess:admin@reworks.in:99",
           "length": 1,
           "answered": 0,
           "success_rate": 0.0,
@@ -3626,7 +3653,7 @@
           "timestamp": "2026-07-06T06:49:42.652Z"
         },
         {
-          "id": "sess:admin@reworks.in:102",
+          "id": "sess:admin@reworks.in:100",
           "length": 1,
           "answered": 0,
           "success_rate": 0.0,
@@ -3640,7 +3667,7 @@
           "timestamp": "2026-07-06T10:07:30.900Z"
         },
         {
-          "id": "sess:hemanth.swamy@gupshup.io:103",
+          "id": "sess:hemanth.swamy@gupshup.io:101",
           "length": 1,
           "answered": 1,
           "success_rate": 100.0,
@@ -3654,7 +3681,7 @@
           "timestamp": "2026-07-06T11:42:02.269Z"
         },
         {
-          "id": "sess:rodrigo.girard@gupshup.io:105",
+          "id": "sess:rodrigo.girard@gupshup.io:103",
           "length": 1,
           "answered": 1,
           "success_rate": 100.0,
@@ -3668,7 +3695,7 @@
           "timestamp": "2026-07-06T18:45:44.164Z"
         },
         {
-          "id": "sess:nidhi.shridhar@gupshup.io:106",
+          "id": "sess:nidhi.shridhar@gupshup.io:104",
           "length": 1,
           "answered": 1,
           "success_rate": 100.0,
@@ -3682,7 +3709,7 @@
           "timestamp": "2026-07-07T03:44:56.801Z"
         },
         {
-          "id": "sess:abhijit.chatterjee@gupshup.io:107",
+          "id": "sess:abhijit.chatterjee@gupshup.io:105",
           "length": 1,
           "answered": 0,
           "success_rate": 0.0,
@@ -3696,7 +3723,7 @@
           "timestamp": "2026-07-07T11:16:13.171Z"
         },
         {
-          "id": "sess:fernando.reynoso@gupshup.io:110",
+          "id": "sess:fernando.reynoso@gupshup.io:108",
           "length": 1,
           "answered": 1,
           "success_rate": 100.0,
@@ -3710,7 +3737,7 @@
           "timestamp": "2026-07-07T20:46:44.499Z"
         },
         {
-          "id": "sess:joseph.cobbinah@gupshup.io:111",
+          "id": "sess:joseph.cobbinah@gupshup.io:109",
           "length": 1,
           "answered": 0,
           "success_rate": 0.0,
@@ -3724,7 +3751,7 @@
           "timestamp": "2026-07-08T06:36:13.430Z"
         },
         {
-          "id": "sess:roneeta.basak@gupshup.io:112",
+          "id": "sess:roneeta.basak@gupshup.io:110",
           "length": 1,
           "answered": 1,
           "success_rate": 100.0,
@@ -3738,7 +3765,7 @@
           "timestamp": "2026-07-08T10:02:45.812Z"
         },
         {
-          "id": "sess:ankit.kanwara@gupshup.io:113",
+          "id": "sess:ankit.kanwara@gupshup.io:111",
           "length": 1,
           "answered": 1,
           "success_rate": 100.0,
@@ -3752,7 +3779,7 @@
           "timestamp": "2026-07-08T10:09:10.457Z"
         },
         {
-          "id": "sess:harishmanekscorpion@gmail.com:114",
+          "id": "sess:harishmanekscorpion@gmail.com:112",
           "length": 1,
           "answered": 0,
           "success_rate": 0.0,
@@ -3766,7 +3793,7 @@
           "timestamp": "2026-07-08T10:56:25.130Z"
         },
         {
-          "id": "sess:roger.guimaraes@gupshup.io:115",
+          "id": "sess:roger.guimaraes@gupshup.io:113",
           "length": 1,
           "answered": 1,
           "success_rate": 100.0,
@@ -3780,7 +3807,7 @@
           "timestamp": "2026-07-08T13:50:51.371Z"
         },
         {
-          "id": "sess:projectleads2026@gmail.com:116",
+          "id": "sess:projectleads2026@gmail.com:114",
           "length": 1,
           "answered": 0,
           "success_rate": 0.0,
@@ -3794,7 +3821,7 @@
           "timestamp": "2026-07-08T18:38:17.570Z"
         },
         {
-          "id": "sess:roger.guimaraes@gupshup.io:117",
+          "id": "sess:roger.guimaraes@gupshup.io:115",
           "length": 1,
           "answered": 1,
           "success_rate": 100.0,
@@ -3808,7 +3835,7 @@
           "timestamp": "2026-07-08T19:28:59.008Z"
         },
         {
-          "id": "sess:mridul.kumawat@gupshup.io:119",
+          "id": "sess:mridul.kumawat@gupshup.io:117",
           "length": 1,
           "answered": 0,
           "success_rate": 0.0,
@@ -3822,7 +3849,7 @@
           "timestamp": "2026-07-09T09:37:54.854Z"
         },
         {
-          "id": "sess:dibakar.nath@gupshup.io:120",
+          "id": "sess:dibakar.nath@gupshup.io:118",
           "length": 1,
           "answered": 0,
           "success_rate": 0.0,
@@ -3836,7 +3863,7 @@
           "timestamp": "2026-07-09T09:39:07.827Z"
         },
         {
-          "id": "sess:paras.villis@technosport.in:121",
+          "id": "sess:paras.villis@technosport.in:119",
           "length": 1,
           "answered": 1,
           "success_rate": 100.0,
@@ -3850,7 +3877,7 @@
           "timestamp": "2026-07-09T10:36:53.575Z"
         },
         {
-          "id": "sess:mis@digitalnest.in:123",
+          "id": "sess:mis@digitalnest.in:121",
           "length": 1,
           "answered": 0,
           "success_rate": 0.0,
@@ -3864,7 +3891,7 @@
           "timestamp": "2026-07-10T05:20:10.665Z"
         },
         {
-          "id": "sess:abhijit.chatterjee@gupshup.io:124",
+          "id": "sess:abhijit.chatterjee@gupshup.io:122",
           "length": 1,
           "answered": 0,
           "success_rate": 0.0,
@@ -3879,23 +3906,23 @@
         }
       ],
       "overview": {
-        "total_conversations": 168,
-        "single_turn": 109,
-        "multi_turn": 59,
-        "single_turn_pct": 64.9,
-        "multi_turn_pct": 35.1,
-        "avg_queries_per_conversation": 1.94,
+        "total_conversations": 166,
+        "single_turn": 108,
+        "multi_turn": 58,
+        "single_turn_pct": 65.1,
+        "multi_turn_pct": 34.9,
+        "avg_queries_per_conversation": 1.95,
         "max_queries": 13,
-        "total_queries": 326
+        "total_queries": 323
       },
       "success_by_length": {
         "1": {
-          "conversations": 109,
-          "avg_success_rate": 64.2
+          "conversations": 108,
+          "avg_success_rate": 64.8
         },
         "2": {
-          "conversations": 25,
-          "avg_success_rate": 78.0
+          "conversations": 24,
+          "avg_success_rate": 79.2
         },
         "3": {
           "conversations": 11,
@@ -3908,26 +3935,26 @@
       },
       "root_vs_followup": {
         "root": {
-          "count": 168,
-          "answer_rate": 66.7,
-          "idk_rate": 33.3,
-          "avg_confidence": 2.9
+          "count": 166,
+          "answer_rate": 66.9,
+          "idk_rate": 33.1,
+          "avg_confidence": 2.93
         },
         "followup": {
-          "count": 158,
-          "answer_rate": 85.4,
-          "idk_rate": 14.6,
-          "avg_confidence": 5.44
+          "count": 157,
+          "answer_rate": 86.0,
+          "idk_rate": 14.0,
+          "avg_confidence": 5.46
         }
       },
       "decomposition_effectiveness": {
-        "total_decomposed": 59,
+        "total_decomposed": 58,
         "all_success": 34,
-        "partial_success": 22,
+        "partial_success": 21,
         "all_failed": 3,
-        "all_success_pct": 57.6,
-        "partial_success_pct": 37.3,
-        "all_failed_pct": 5.1
+        "all_success_pct": 58.6,
+        "partial_success_pct": 36.2,
+        "all_failed_pct": 5.2
       }
     }
   },
@@ -3935,9 +3962,9 @@
     "ccx_answer_rate": 0.0,
     "ref_answer_rate": 0.0,
     "answer_delta": 0.0,
-    "ccx_avg_confidence": 2.7618750000000003,
-    "ref_avg_confidence": 2.3097404233870966,
-    "confidence_delta": 0.4521345766129037,
+    "ccx_avg_confidence": 2.4217391304347826,
+    "ref_avg_confidence": 2.322857505070994,
+    "confidence_delta": 0.09888162536378875,
     "low_confidence_flags": [
       {
         "id": "kb-kb_answer-56f4e735e98c40e7",
@@ -4469,6 +4496,158 @@
         "totalCost": 0,
         "latency": 0,
         "htmlPath": "/project/cmmn9l5gq019kad07u4o41lxz/traces/kb-kb_answer-d6c4c202f1254743",
+        "externalId": null,
+        "_cc_express_signals": [
+          "email"
+        ]
+      },
+      {
+        "id": "kb-kb_answer-1e702707ba7f4975",
+        "projectId": "cmmn9l5gq019kad07u4o41lxz",
+        "name": "kb_answer",
+        "timestamp": "2026-07-03T09:10:10.385Z",
+        "environment": "default",
+        "tags": [],
+        "bookmarked": false,
+        "release": null,
+        "version": null,
+        "userId": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
+        "sessionId": null,
+        "public": false,
+        "input": {
+          "query": "Invalid sales code received error during signup. What causes this and how do I fix it?"
+        },
+        "output": {
+          "answer": "I don't know based on the current docs."
+        },
+        "metadata": {
+          "user_email": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
+          "user_name": null,
+          "user_id": 2,
+          "query": "Invalid sales code received error during signup. What causes this and how do I fix it?",
+          "answer_preview": "I don't know based on the current docs.",
+          "release": 4,
+          "environment": "PROD",
+          "deployment_label": "kb-prod-agent",
+          "telemetry_partition": "PROD:kb-prod-agent",
+          "logic_version": "kb-answer-v2.1-hardened",
+          "prompt_version": null,
+          "model": "rules-runtime",
+          "temperature": 0,
+          "top_p": 1,
+          "query_family": "General",
+          "module_label": "Channels",
+          "module_source": "inferred_from_top_source",
+          "trace_env": "PROD",
+          "selected_answer_mode": "setup",
+          "answered": false,
+          "clarification_asked": false,
+          "unanswered": true,
+          "top_score": 0.6500000000000001,
+          "top_source": "kb/channels/rcs-authentication.md",
+          "channel_type": "whatsapp",
+          "detected_product_original": null,
+          "source_count": 4,
+          "latency_ms": 550,
+          "intent_labels": [
+            "setup"
+          ],
+          "explicit_module": null,
+          "confidence": 0.08125000000000002,
+          "failure_type": null,
+          "accuracy_label": null,
+          "accuracy_score": null,
+          "accuracy_source": null,
+          "correlation_id": null,
+          "parent_trace_id": null,
+          "decomposition_level": 0,
+          "is_sub_query": false,
+          "video_attached": false,
+          "video_channel": "kb_answer"
+        },
+        "createdAt": "2026-07-03T09:10:11.000Z",
+        "updatedAt": "2026-07-10T07:57:30.215Z",
+        "observations": [],
+        "scores": [],
+        "totalCost": 0,
+        "latency": 0,
+        "htmlPath": "/project/cmmn9l5gq019kad07u4o41lxz/traces/kb-kb_answer-1e702707ba7f4975",
+        "externalId": null,
+        "_cc_express_signals": [
+          "email"
+        ]
+      },
+      {
+        "id": "kb-kb_answer-b39631122f524b34",
+        "projectId": "cmmn9l5gq019kad07u4o41lxz",
+        "name": "kb_answer",
+        "timestamp": "2026-07-03T06:50:16.059Z",
+        "environment": "default",
+        "tags": [],
+        "bookmarked": false,
+        "release": null,
+        "version": null,
+        "userId": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
+        "sessionId": null,
+        "public": false,
+        "input": {
+          "query": "Instagram Facebook DM support embedded onboarding partner account data isolation Meta app review Gupshup"
+        },
+        "output": {
+          "answer": "I don't know based on the current docs."
+        },
+        "metadata": {
+          "user_email": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
+          "user_name": null,
+          "user_id": 2,
+          "query": "Instagram Facebook DM support embedded onboarding partner account data isolation Meta app review Gupshup",
+          "answer_preview": "I don't know based on the current docs.",
+          "release": 4,
+          "environment": "PROD",
+          "deployment_label": "kb-prod-agent",
+          "telemetry_partition": "PROD:kb-prod-agent",
+          "logic_version": "kb-answer-v2.1-hardened",
+          "prompt_version": null,
+          "model": "rules-runtime",
+          "temperature": 0,
+          "top_p": 1,
+          "query_family": "Channels",
+          "module_label": "Channels",
+          "module_source": "explicit",
+          "trace_env": "PROD",
+          "selected_answer_mode": "setup",
+          "answered": false,
+          "clarification_asked": false,
+          "unanswered": true,
+          "top_score": 1.8000000000000003,
+          "top_source": "kb/channels/unlinking-your-instagram-account.md",
+          "channel_type": "instagram",
+          "detected_product_original": null,
+          "source_count": 4,
+          "latency_ms": 598,
+          "intent_labels": [
+            "setup"
+          ],
+          "explicit_module": "Channels",
+          "confidence": 0.22500000000000003,
+          "failure_type": null,
+          "accuracy_label": null,
+          "accuracy_score": null,
+          "accuracy_source": null,
+          "correlation_id": null,
+          "parent_trace_id": null,
+          "decomposition_level": 0,
+          "is_sub_query": false,
+          "video_attached": false,
+          "video_channel": "kb_answer"
+        },
+        "createdAt": "2026-07-03T06:50:17.000Z",
+        "updatedAt": "2026-07-10T07:57:30.876Z",
+        "observations": [],
+        "scores": [],
+        "totalCost": 0,
+        "latency": 0,
+        "htmlPath": "/project/cmmn9l5gq019kad07u4o41lxz/traces/kb-kb_answer-b39631122f524b34",
         "externalId": null,
         "_cc_express_signals": [
           "email"
