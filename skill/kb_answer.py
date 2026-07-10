@@ -6795,7 +6795,8 @@ def _langfuse_user_context(
     user_name: Optional[str] = None
     user_id_val: Any = None
 
-    for key in ("user_email", "userEmail"):
+    # Extract email: check all variants SuperAgent might send (confirmed: user_email_id via UAT test)
+    for key in ("user_email", "userEmail", "user_email_id", "userEmailId", "email", "email_id"):
         v = params.get(key)
         if isinstance(v, str) and v.strip():
             user_email = v.strip()
@@ -6812,9 +6813,12 @@ def _langfuse_user_context(
 
     if context is not None:
         if not user_email:
-            em = getattr(context, "user_email", None)
-            if isinstance(em, str) and em.strip():
-                user_email = em.strip()
+            # Try all email variants from context
+            for attr in ("user_email", "userEmail", "user_email_id", "userEmailId", "email"):
+                em = getattr(context, attr, None)
+                if isinstance(em, str) and em.strip():
+                    user_email = em.strip()
+                    break
         if not user_name:
             nm = getattr(context, "user_name", None)
             if isinstance(nm, str) and nm.strip():
@@ -7011,10 +7015,12 @@ def _send_langfuse(
     metadata["parent_trace_id"] = parent_trace_id
     metadata["decomposition_level"] = params.get("decomposition_level", 0) if params else 0
     metadata["is_sub_query"] = bool(parent_trace_id)
-    # TODO: Remove after CC Express email attribution fix is verified. Surfaces the
-    # raw SuperAgent parameter/context user-identity snapshot into Langfuse metadata.
-    if isinstance(params, dict) and params.get("__cc_debug") is not None:
-        metadata["cc_express_debug"] = params.get("__cc_debug")
+    # Add SuperAgent session/conversation/org context when available (useful for per-visitor analytics)
+    if isinstance(params, dict):
+        for key in ("session_id", "sessionId", "conversation_id", "conversationId", "domain", "org_id", "tenant_id", "account_id"):
+            val = params.get(key)
+            if val is not None:
+                metadata[key] = val
     if isinstance(video_meta, dict) and video_meta:
         metadata.update(video_meta)
     body = _build_langfuse_request(
@@ -7100,42 +7106,6 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
 
     # TODO: Remove this debug capture after CC Express email attribution fix is verified.
     # The skill sandbox forbids `import logging` (see _NoopLogger), so logger.warning()
-    # is a no-op and would not surface. Instead we snapshot the raw parameter/context
-    # user-identity fields and stash them on params under "__cc_debug"; _send_langfuse
-    # merges this into Langfuse trace metadata (key "cc_express_debug") where it can be
-    # queried via the Langfuse API. This is temporary telemetry, NOT a behavior change.
-    try:
-        _cc_email_keys = ("user_email", "userEmail", "user_email_id", "userEmailId", "email", "email_id")
-        _cc_user_keys = ("user_id", "userId", "user_name", "userName")
-        _cc_session_keys = ("session_id", "sessionId", "conversation_id", "conversationId")
-        _cc_org_keys = ("domain", "org_id", "orgId", "tenant_id", "tenantId", "account_id", "accountId")
-        _cc_ctx_attrs = (
-            "user_email", "userEmail", "user_email_id", "userEmailId", "email",
-            "user_id", "userId", "user_name", "userName",
-            "session_id", "sessionId", "conversation_id", "conversationId",
-            "domain", "org_id", "tenant_id", "account_id",
-        )
-        _cc_debug = {
-            "trace_id": correlation_id or parent_trace_id,
-            "params_keys": sorted(params.keys()) if isinstance(params, dict) else [],
-            "email_fields": {k: params.get(k) for k in _cc_email_keys if isinstance(params, dict) and k in params},
-            "user_id_fields": {k: params.get(k) for k in _cc_user_keys if isinstance(params, dict) and k in params},
-            "session_fields": {k: params.get(k) for k in _cc_session_keys if isinstance(params, dict) and k in params},
-            "org_fields": {k: params.get(k) for k in _cc_org_keys if isinstance(params, dict) and k in params},
-            "context_present": context is not None,
-            "context_fields": {
-                a: getattr(context, a, None)
-                for a in _cc_ctx_attrs
-                if context is not None and getattr(context, a, None) is not None
-            },
-        }
-        logger.warning(f"[KB_ANSWER_DEBUG] {_cc_debug}")  # no-op in sandbox; kept for parity
-        if isinstance(params, dict):
-            params["__cc_debug"] = _cc_debug
-    except Exception:
-        pass
-    # END temporary CC Express debug capture
-
     query = _sanitize_kb_query(_extract_query(params))
 
     # Default user_email from USER_EMAIL env var ONLY if no user identity is available.
@@ -7144,7 +7114,8 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
     # callers (SuperAgent, Azure Functions) pass the real user via context, and
     # params take priority over context inside _langfuse_user_context(), so an
     # env-injected params value would otherwise shadow the actual user.
-    if not (params.get("user_email") or params.get("userEmail")):
+    # Note: SuperAgent sends email as user_email_id; check all variants.
+    if not any(params.get(k) for k in ("user_email", "userEmail", "user_email_id", "userEmailId", "email", "email_id")):
         ctx_email = getattr(context, "user_email", None) if context is not None else None
         ctx_uid = getattr(context, "user_id", None) if context is not None else None
         ctx_has_identity = bool(
