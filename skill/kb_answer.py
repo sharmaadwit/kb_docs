@@ -6783,6 +6783,13 @@ def _apply_answer_policy(
 # Section 10 — Telemetry (Langfuse)
 # ---------------------------------------------------------------------------
 
+# Known mappings: system/anonymous user_id values to email attribution.
+# Used when a trace has user_id but no email in context (e.g., CC Express visitor).
+# Ensures all new traces for these accounts get correct email attribution at creation time.
+_KNOWN_UID_EMAIL_MAP: Dict[str, str] = {
+    "2": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
+}
+
 def _langfuse_user_context(
     context, params: Optional[Dict[str, Any]] = None,
 ) -> Tuple[Optional[str], Dict[str, Any]]:
@@ -6821,6 +6828,12 @@ def _langfuse_user_context(
                 user_name = nm.strip()
         if user_id_val is None:
             user_id_val = getattr(context, "user_id", None)
+
+    # If no email was found, try to map user_id to a known email (e.g., CC Express visitor).
+    if not user_email and user_id_val is not None:
+        mapped_email = _KNOWN_UID_EMAIL_MAP.get(str(user_id_val).strip())
+        if mapped_email:
+            user_email = mapped_email
 
     trace_user_id = ""
     if user_email:
