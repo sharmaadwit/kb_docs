@@ -1,0 +1,53 @@
+{
+  "time_range": [
+    "2026-06-25",
+    "2026-07-10"
+  ],
+  "target_email": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
+  "counts": {
+    "null_email": 3,
+    "has_email": 37
+  },
+  "fixed": [
+    {
+      "trace_id": "kb-kb_answer-1e702707ba7f4975",
+      "name": "kb_answer",
+      "old_userId": "2",
+      "new_email": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
+      "method": "ingestion"
+    },
+    {
+      "trace_id": "kb-kb_answer-b39631122f524b34",
+      "name": "kb_answer",
+      "old_userId": "2",
+      "new_email": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
+      "method": "ingestion"
+    },
+    {
+      "trace_id": "kb-kb_answer-ce63f69d29c74702",
+      "name": "kb_answer",
+      "old_userId": "2",
+      "new_email": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
+      "method": "ingestion"
+    }
+  ],
+  "failed": [],
+  "verification": {
+    "ok": 2,
+    "total": 3,
+    "traces": [
+      {
+        "trace_id": "kb-kb_answer-1e702707ba7f4975",
+        "fixed": false
+      },
+      {
+        "trace_id": "kb-kb_answer-b39631122f524b34",
+        "fixed": true
+      },
+      {
+        "trace_id": "kb-kb_answer-ce63f69d29c74702",
+        "fixed": true
+      }
+    ]
+  }
+}
