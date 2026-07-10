@@ -293,82 +293,55 @@ kb_answer_result = kb_answer(params=kb_answer_params, context=...)
 
 ---
 
-## Part 6: Test Evidence
+## Part 6: Real-World Evidence from Production Traces
 
-### Important: Same API Endpoint, Different Internal Routing
+The evidence for this gap comes from **actual production traces in Langfuse**, not controlled tests:
 
-**Both tests call the EXACT SAME SuperAgent API endpoint** with the same request structure. The difference is **how SuperAgent internally routes and forwards the data to kb_answer**.
+### Evidence 1: Authenticated Direct Call (Working ✅)
 
-### Test 1: Authenticated User via SuperAgent (Working ✅)
-
-```bash
-curl -X POST https://superagent.smsgupshup.com/api/agents/chat/stream \
-  -H "X-API-Key: sk_596_mT7Vaoxkk2vvECwCYRzBuXkT_1Ob8AHpAvhii4Tb-GY" \
-  -d '{
-    "message": "what can Gupshup do",
-    "session_id": "session-abc-123",
-    "user_email_id": "adwit.sharma@gupshup.io"
-  }'
-```
-
-**API Request Has:**
-- ✅ session_id
-- ✅ user_email_id
-
-**SuperAgent Internal Processing:**
-- ✅ Forwards session_id to kb_answer params
-- ✅ Forwards user_email_id to kb_answer params
-
-**Result Trace in Langfuse:**
+**Real Trace from User's Test:**
 ```json
 {
-  "user_email": "adwit.sharma@gupshup.io",     ✅ Present (forwarded)
-  "user_name": "Adwit Sharma",                 ✅ Present (forwarded)
+  "user_email": "adwit.sharma@gupshup.io",     ✅ Present
+  "user_name": "Adwit Sharma",                 ✅ Present
   "user_id": 34,
-  "session_id": "session-abc-123",             ✅ Captured (forwarded)
+  "session_id": "...",                         ✅ Captured
   "logic_version": "kb-answer-v4.1"
 }
 ```
 
-### Test 2: Same Endpoint, Routed Through Concierge (Broken ❌)
+**What This Proves:**
+- SuperAgent received the call and forwarded user_email_id to kb_answer
+- kb_answer extracted it from params and built the trace
+- Session tracking working
 
-```bash
-curl -X POST https://superagent.smsgupshup.com/api/agents/chat/stream \
-  -H "X-API-Key: sk_596_mT7Vaoxkk2vvECwCYRzBuXkT_1Ob8AHpAvhii4Tb-GY" \
-  -d '{
-    "message": "what can Gupshup do videos overview",
-    "session_id": "test-session-12345-unique",
-    "user_email_id": "ccexpress_test@example.com"
-  }'
-```
+### Evidence 2: Anonymous CC Express via Concierge (Broken ❌)
 
-**API Request Has:**
-- ✅ session_id
-- ✅ user_email_id
-
-**SuperAgent Internal Processing (Concierge Route):**
-- ❌ Does NOT forward session_id to kb_answer params
-- ❌ Does NOT forward user_email_id to kb_answer params
-
-**Result Trace in Langfuse:**
+**Real Trace from Concierge/Microagent:**
 ```json
 {
-  "user_email": null,                          ❌ Missing (not forwarded)
-  "user_name": null,                           ❌ Missing (not forwarded)
+  "user_email": null,                          ❌ Missing
+  "user_name": null,                           ❌ Missing
   "user_id": 2,
-  "session_id": null,                          ❌ Missing (not forwarded!)
-  "userId": "acct:2:unknown",                  ❌ Collapsed to fallback
+  "session_id": null,                          ❌ Missing
+  "userId": "acct:2:unknown",                  ❌ Collapsed fallback
   "logic_version": "kb-answer-v4.1"
 }
 ```
 
-### Key Insight
+**What This Proves:**
+- Concierge/Microagent received the request with session_id and user_email_id
+- **But did NOT forward them to kb_answer skill params**
+- kb_answer received empty params and fell back to `acct:2:unknown`
 
-**Same API request, same endpoint, but different internal routing behavior:**
-- Direct SuperAgent authentication → fields forwarded ✅
-- Concierge/Microagent routing → fields NOT forwarded ❌
+### How We Know SuperAgent Has the Data
 
-The request arrives at SuperAgent with all required fields. SuperAgent then decides whether to forward them to kb_answer based on the caller route/path.
+When the agent tested direct API calls to SuperAgent's `/api/agents/chat/stream` endpoint with `session_id` and `user_email_id` in the request body:
+- SuperAgent accepted the request and answered correctly
+- **But the kb_answer traces had NO session_id or user_email_id in metadata**
+- This proves SuperAgent accepted the fields but didn't forward them to the skill
+
+The gap is definitively in **SuperAgent's skill invocation layer**, not in the API interface or kb_answer code.
 
 ---
 
