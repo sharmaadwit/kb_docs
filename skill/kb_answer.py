@@ -6826,6 +6826,17 @@ def _langfuse_user_context(
         if user_id_val is None:
             user_id_val = getattr(context, "user_id", None)
 
+    # Fallback for anonymous CC Express users (user_id == 2, no email): synthesize a
+    # per-session identity from session_id so distinct anonymous visitors stay distinct
+    # in Langfuse instead of all collapsing into acct:2:unknown. Enables repeat-visitor
+    # analytics. Only applies when no email was resolved and a session_id is present.
+    synthesized_session_identity = False
+    if not user_email and str(user_id_val).strip() == "2":
+        session_id = params.get("session_id") or params.get("sessionId")
+        if isinstance(session_id, str) and session_id.strip():
+            user_email = f"sess:{session_id.strip()}@ccexpress.gupshup.io"
+            synthesized_session_identity = True
+
     trace_user_id = ""
     if user_email:
         trace_user_id = user_email
@@ -6842,6 +6853,10 @@ def _langfuse_user_context(
         "user_name": user_name,
         "user_id": user_id_val,
     }
+    if synthesized_session_identity:
+        # Mark that this identity was derived from session_id (anonymous CC Express),
+        # not a real email, so analytics can distinguish synthesized from authenticated.
+        meta_user["identity_source"] = "session_id"
     return (trace_user_id or None, meta_user)
 
 
