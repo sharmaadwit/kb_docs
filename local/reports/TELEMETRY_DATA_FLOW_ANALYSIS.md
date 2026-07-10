@@ -295,30 +295,42 @@ kb_answer_result = kb_answer(params=kb_answer_params, context=...)
 
 ## Part 6: Test Evidence
 
-### Test 1: Direct SuperAgent Call (Working ✅)
+### Important: Same API Endpoint, Different Internal Routing
+
+**Both tests call the EXACT SAME SuperAgent API endpoint** with the same request structure. The difference is **how SuperAgent internally routes and forwards the data to kb_answer**.
+
+### Test 1: Authenticated User via SuperAgent (Working ✅)
 
 ```bash
 curl -X POST https://superagent.smsgupshup.com/api/agents/chat/stream \
   -H "X-API-Key: sk_596_mT7Vaoxkk2vvECwCYRzBuXkT_1Ob8AHpAvhii4Tb-GY" \
   -d '{
     "message": "what can Gupshup do",
-    "session_id": "...",
+    "session_id": "session-abc-123",
     "user_email_id": "adwit.sharma@gupshup.io"
   }'
 ```
 
+**API Request Has:**
+- ✅ session_id
+- ✅ user_email_id
+
+**SuperAgent Internal Processing:**
+- ✅ Forwards session_id to kb_answer params
+- ✅ Forwards user_email_id to kb_answer params
+
 **Result Trace in Langfuse:**
 ```json
 {
-  "user_email": "adwit.sharma@gupshup.io",     ✅ Present
-  "user_name": "Adwit Sharma",                 ✅ Present
+  "user_email": "adwit.sharma@gupshup.io",     ✅ Present (forwarded)
+  "user_name": "Adwit Sharma",                 ✅ Present (forwarded)
   "user_id": 34,
-  "session_id": "...",                         ✅ Captured
+  "session_id": "session-abc-123",             ✅ Captured (forwarded)
   "logic_version": "kb-answer-v4.1"
 }
 ```
 
-### Test 2: Concierge Call (Broken ❌)
+### Test 2: Same Endpoint, Routed Through Concierge (Broken ❌)
 
 ```bash
 curl -X POST https://superagent.smsgupshup.com/api/agents/chat/stream \
@@ -330,19 +342,33 @@ curl -X POST https://superagent.smsgupshup.com/api/agents/chat/stream \
   }'
 ```
 
+**API Request Has:**
+- ✅ session_id
+- ✅ user_email_id
+
+**SuperAgent Internal Processing (Concierge Route):**
+- ❌ Does NOT forward session_id to kb_answer params
+- ❌ Does NOT forward user_email_id to kb_answer params
+
 **Result Trace in Langfuse:**
 ```json
 {
-  "user_email": null,                          ❌ Missing
-  "user_name": null,                           ❌ Missing
+  "user_email": null,                          ❌ Missing (not forwarded)
+  "user_name": null,                           ❌ Missing (not forwarded)
   "user_id": 2,
-  "session_id": null,                          ❌ Missing (but sent in API!)
-  "userId": "acct:2:unknown",                  ❌ Collapsed anonymous
+  "session_id": null,                          ❌ Missing (not forwarded!)
+  "userId": "acct:2:unknown",                  ❌ Collapsed to fallback
   "logic_version": "kb-answer-v4.1"
 }
 ```
 
-**Same request, different API → different forwarding behavior.**
+### Key Insight
+
+**Same API request, same endpoint, but different internal routing behavior:**
+- Direct SuperAgent authentication → fields forwarded ✅
+- Concierge/Microagent routing → fields NOT forwarded ❌
+
+The request arrives at SuperAgent with all required fields. SuperAgent then decides whether to forward them to kb_answer based on the caller route/path.
 
 ---
 
