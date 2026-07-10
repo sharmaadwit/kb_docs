@@ -1,0 +1,65 @@
+{
+  "test_results": [
+    {
+      "question": "Does Gupshup Console support Single Sign-On via SAML 2.0?",
+      "found_sso_content": false,
+      "has_sso_keywords": false,
+      "quality_score": 0,
+      "answer_snippet": "**What is Gupshup Console? \ud83d\ude80**\nExact path and steps\n- Welcome to Gupshup Console\n- What is Gupshup Console? \ud83d\ude80\n- Gupshup Console is your unified conversational messaging platform that brings together a",
+      "top_source": "kb/overview/welcome-to-gupshup-console.md",
+      "confidence": 0.15000000000000002,
+      "answered": true,
+      "passed": true
+    },
+    {
+      "question": "How do I set up SSO for Console?",
+      "found_sso_content": false,
+      "has_sso_keywords": false,
+      "quality_score": 0,
+      "answer_snippet": "**Assignment Enhancements in Console 7.0**\nExact path and steps\n- Assignment Enhancements in Console 7.0\n- Module: Agent Assist\n\n---\n**Need more detail?** Reply with **more detail**, **step by step**,",
+      "top_source": "kb/agent-assist/assignment-enhancements-in-console-7-0.md",
+      "confidence": 0.06875,
+      "answered": true,
+      "passed": true
+    },
+    {
+      "question": "What parameters are needed for SSO integration?",
+      "found_sso_content": false,
+      "has_sso_keywords": false,
+      "quality_score": 0,
+      "answer_snippet": "I don't know based on the current docs.",
+      "top_source": "kb/bot-studio/google-sheets-integration.md",
+      "confidence": 0.06875,
+      "answered": false,
+      "passed": false
+    },
+    {
+      "question": "How do I integrate Azure AD with Console?",
+      "found_sso_content": false,
+      "has_sso_keywords": false,
+      "quality_score": 0,
+      "answer_snippet": "I don't know based on the current docs.",
+      "top_source": "kb/agent-assist/assignment-enhancements-in-console-7-0.md",
+      "confidence": 0.06875,
+      "answered": false,
+      "passed": false
+    },
+    {
+      "question": "What certificate format is needed for SSO?",
+      "found_sso_content": false,
+      "has_sso_keywords": false,
+      "quality_score": 3,
+      "answer_snippet": "I don't know based on the current docs.",
+      "top_source": "kb/campaign-manager/creating-your-first-campaign.md",
+      "confidence": 0.0375,
+      "answered": false,
+      "passed": false
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 3,
+    "total": 5,
+    "avg_quality": 0.6
+  }
+}

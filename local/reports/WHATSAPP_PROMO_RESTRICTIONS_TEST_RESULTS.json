@@ -1,0 +1,177 @@
+================================================================================
+WhatsApp Promotional Restrictions - Policy Question Test
+================================================================================
+Testing document: kb/whatsapp-promotional-restrictions.md
+Questions: 5 high-level policy questions
+
+
+[1/5] Testing: Can I send promotional messages on WhatsApp Business?
+--------------------------------------------------------------------------------
+[LANGFUSE] Cannot ingest: missing_credentials: LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY
+Response OK: True
+Answer length: 556 chars
+Citations found: 0
+Quality Score: 4/10
+Answered: True
+Has policy info: True
+Direct answer: True
+Answer preview: **Before Sending Promotional Messages for Supplements**
+Exact path and steps
+- Verify user has actively consented to receive promotional messages
+- Ensure your product claims comply with local dietary supplement regulations (FDA, EFSA, etc.)
+- Use le...
+
+[2/5] Testing: Are there restrictions on dietary supplement promotion via WhatsApp?
+--------------------------------------------------------------------------------
+[LANGFUSE] Cannot ingest: missing_credentials: LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY
+Response OK: True
+Answer length: 1005 chars
+Citations found: 0
+Quality Score: 9/10
+Answered: True
+Has policy info: True
+Direct answer: True
+Answer preview: **Restrictions on Promotional Messages for Dietary Supplements**
+Exact path and steps
+- Based on WhatsApp guidelines, promotional messages for dietary supplements (including multivitamins) must comply with these restrictions:
+- 1. No Repeated Unwante...
+
+[3/5] Testing: Do I need user consent before sending promotional messages?
+--------------------------------------------------------------------------------
+[LANGFUSE] Cannot ingest: missing_credentials: LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY
+Response OK: True
+Answer length: 556 chars
+Citations found: 0
+Quality Score: 4/10
+Answered: True
+Has policy info: True
+Direct answer: True
+Answer preview: **Before Sending Promotional Messages for Supplements**
+Exact path and steps
+- Verify user has actively consented to receive promotional messages
+- Ensure your product claims comply with local dietary supplement regulations (FDA, EFSA, etc.)
+- Use le...
+
+[4/5] Testing: What types of content violate WhatsApp promotional guidelines?
+--------------------------------------------------------------------------------
+[LANGFUSE] Cannot ingest: missing_credentials: LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY
+Response OK: True
+Answer length: 851 chars
+Citations found: 0
+Quality Score: 9/10
+Answered: True
+Has policy info: True
+Direct answer: True
+Answer preview: **WhatsApp Promotional Message Restrictions**
+Exact path and steps
+- Module: WhatsApp
+- Source: [WhatsApp Messaging Guidelines](https://www.whatsapp.com/legal/messaging-guidelines) (Updated: February 16, 2024)
+- Based on WhatsApp guidelines, promotio...
+
+[5/5] Testing: Can I promote multivitamins on WhatsApp?
+--------------------------------------------------------------------------------
+[LANGFUSE] Cannot ingest: missing_credentials: LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY
+Response OK: True
+Answer length: 851 chars
+Citations found: 0
+Quality Score: 9/10
+Answered: True
+Has policy info: True
+Direct answer: True
+Answer preview: **WhatsApp Promotional Message Restrictions**
+Exact path and steps
+- Module: WhatsApp
+- Source: [WhatsApp Messaging Guidelines](https://www.whatsapp.com/legal/messaging-guidelines) (Updated: February 16, 2024)
+- Based on WhatsApp guidelines, promotio...
+
+================================================================================
+Test Results:
+================================================================================
+
+[PASS] Q1: Can I send promotional messages on WhatsApp Business?
+      Quality: 4/10
+      Snippet: **Before Sending Promotional Messages for Supplements**
+Exact path and steps
+- Verify user has actively consented to receive promotional messages
+- Ensure your product claims comply with local dietary supplement regulations (FDA, EFSA, etc.)
+- Use le...
+
+[PASS] Q2: Are there restrictions on dietary supplement promotion via WhatsApp?
+      Quality: 9/10
+      Snippet: **Restrictions on Promotional Messages for Dietary Supplements**
+Exact path and steps
+- Based on WhatsApp guidelines, promotional messages for dietary supplements (including multivitamins) must comply with these restrictions:
+- 1. No Repeated Unwante...
+
+[PASS] Q3: Do I need user consent before sending promotional messages?
+      Quality: 4/10
+      Snippet: **Before Sending Promotional Messages for Supplements**
+Exact path and steps
+- Verify user has actively consented to receive promotional messages
+- Ensure your product claims comply with local dietary supplement regulations (FDA, EFSA, etc.)
+- Use le...
+
+[PASS] Q4: What types of content violate WhatsApp promotional guidelines?
+      Quality: 9/10
+      Snippet: **WhatsApp Promotional Message Restrictions**
+Exact path and steps
+- Module: WhatsApp
+- Source: [WhatsApp Messaging Guidelines](https://www.whatsapp.com/legal/messaging-guidelines) (Updated: February 16, 2024)
+- Based on WhatsApp guidelines, promotio...
+
+[PASS] Q5: Can I promote multivitamins on WhatsApp?
+      Quality: 9/10
+      Snippet: **WhatsApp Promotional Message Restrictions**
+Exact path and steps
+- Module: WhatsApp
+- Source: [WhatsApp Messaging Guidelines](https://www.whatsapp.com/legal/messaging-guidelines) (Updated: February 16, 2024)
+- Based on WhatsApp guidelines, promotio...
+
+================================================================================
+Summary:
+================================================================================
+Passed: 5/5
+Failed: 0/5
+Average Quality: 7.00/10
+================================================================================
+
+JSON Output:
+{
+  "test_results": [
+    {
+      "question": "Can I send promotional messages on WhatsApp Business?",
+      "answered": true,
+      "quality": 4,
+      "snippet": "**Before Sending Promotional Messages for Supplements**\nExact path and steps\n- Verify user has actively consented to receive promotional messages\n- Ensure your product claims comply with local dietary supplement regulations (FDA, EFSA, etc.)\n- Use le..."
+    },
+    {
+      "question": "Are there restrictions on dietary supplement promotion via WhatsApp?",
+      "answered": true,
+      "quality": 9,
+      "snippet": "**Restrictions on Promotional Messages for Dietary Supplements**\nExact path and steps\n- Based on WhatsApp guidelines, promotional messages for dietary supplements (including multivitamins) must comply with these restrictions:\n- 1. No Repeated Unwante..."
+    },
+    {
+      "question": "Do I need user consent before sending promotional messages?",
+      "answered": true,
+      "quality": 4,
+      "snippet": "**Before Sending Promotional Messages for Supplements**\nExact path and steps\n- Verify user has actively consented to receive promotional messages\n- Ensure your product claims comply with local dietary supplement regulations (FDA, EFSA, etc.)\n- Use le..."
+    },
+    {
+      "question": "What types of content violate WhatsApp promotional guidelines?",
+      "answered": true,
+      "quality": 9,
+      "snippet": "**WhatsApp Promotional Message Restrictions**\nExact path and steps\n- Module: WhatsApp\n- Source: [WhatsApp Messaging Guidelines](https://www.whatsapp.com/legal/messaging-guidelines) (Updated: February 16, 2024)\n- Based on WhatsApp guidelines, promotio..."
+    },
+    {
+      "question": "Can I promote multivitamins on WhatsApp?",
+      "answered": true,
+      "quality": 9,
+      "snippet": "**WhatsApp Promotional Message Restrictions**\nExact path and steps\n- Module: WhatsApp\n- Source: [WhatsApp Messaging Guidelines](https://www.whatsapp.com/legal/messaging-guidelines) (Updated: February 16, 2024)\n- Based on WhatsApp guidelines, promotio..."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "avg_quality": 7.0
+  }
+}

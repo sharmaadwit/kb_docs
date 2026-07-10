@@ -7095,12 +7095,19 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
     params = _parse_parameters(parameters, **kwargs)
     query = _sanitize_kb_query(_extract_query(params))
 
-    # Default user_email from USER_EMAIL env var if not provided in params.
+    # Default user_email from USER_EMAIL env var ONLY if no user context is available.
+    # This env var is a fallback for local testing when no real user context exists.
+    # Do NOT override if context has user_email (production/external calls preserve actual user).
     if not params.get("user_email"):
-        import os
-        env_email = os.getenv("USER_EMAIL")
-        if env_email:
-            params["user_email"] = env_email
+        # Only use env fallback if context doesn't provide user_email
+        has_context_email = (context is not None and
+                            hasattr(context, "user_email") and
+                            context.user_email)
+        if not has_context_email:
+            import os
+            env_email = os.getenv("USER_EMAIL")
+            if env_email:
+                params["user_email"] = env_email
     if not query:
         raise ValueError("query is required")
     original_query = query  # preserve user's original (pre-translation) text for telemetry

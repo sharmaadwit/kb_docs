@@ -15,8 +15,8 @@
               <option name="provider" value="claude" />
               <option name="sessionId" value="bf8b5c33-3789-44c7-a1c5-4e38c2e6177c" />
               <option name="cwd" value="$PROJECT_DIR$" />
-              <option name="model" value="claude-opus-4-8[1m]" />
-              <option name="permissionMode" value="bypassPermissions" />
+              <option name="model" value="claude-haiku-4-5" />
+              <option name="permissionMode" value="acceptEdits" />
             </TabSessionState>
           </value>
         </entry>
@@ -26,7 +26,7 @@
               <option name="provider" value="claude" />
               <option name="sessionId" value="d279665f-038b-4479-bbb6-6363d9494e26" />
               <option name="cwd" value="$PROJECT_DIR$" />
-              <option name="model" value="claude-haiku-4-5" />
+              <option name="model" value="claude-sonnet-5" />
               <option name="permissionMode" value="acceptEdits" />
               <option name="reasoningEffort" value="high" />
             </TabSessionState>
