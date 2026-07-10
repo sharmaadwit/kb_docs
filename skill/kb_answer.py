@@ -7095,15 +7095,20 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
     params = _parse_parameters(parameters, **kwargs)
     query = _sanitize_kb_query(_extract_query(params))
 
-    # Default user_email from USER_EMAIL env var ONLY if no user context is available.
+    # Default user_email from USER_EMAIL env var ONLY if no user identity is available.
     # This env var is a fallback for local testing when no real user context exists.
-    # Do NOT override if context has user_email (production/external calls preserve actual user).
-    if not params.get("user_email"):
-        # Only use env fallback if context doesn't provide user_email
-        has_context_email = (context is not None and
-                            hasattr(context, "user_email") and
-                            context.user_email)
-        if not has_context_email:
+    # Do NOT override if params or context carry any user identity — production
+    # callers (SuperAgent, Azure Functions) pass the real user via context, and
+    # params take priority over context inside _langfuse_user_context(), so an
+    # env-injected params value would otherwise shadow the actual user.
+    if not (params.get("user_email") or params.get("userEmail")):
+        ctx_email = getattr(context, "user_email", None) if context is not None else None
+        ctx_uid = getattr(context, "user_id", None) if context is not None else None
+        ctx_has_identity = bool(
+            (isinstance(ctx_email, str) and ctx_email.strip())
+            or (ctx_uid is not None and str(ctx_uid).strip())
+        )
+        if not ctx_has_identity:
             import os
             env_email = os.getenv("USER_EMAIL")
             if env_email:
