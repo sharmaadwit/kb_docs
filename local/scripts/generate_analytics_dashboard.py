@@ -762,9 +762,11 @@ def partition_traces_by_product(traces):
     1. Email domain: *@ccexpress.gupshup.io (authentication-based)
     2. Query mention: "CC Express" explicitly in query text (user-stated preference)
     3. Detected product: detected_product_original == 'cc_express' (system detection)
+    4. Null/empty email: anonymous users with no email are treated as CC Express visitors
 
-    All three signals weighted equally — a trace needs >=1 signal to be tagged as CC Express.
-    This catches CC Express users who use normal email addresses but mention "CC Express" in queries.
+    All signals weighted equally — a trace needs >=1 signal to be tagged as CC Express.
+    This catches CC Express users who use normal email addresses but mention "CC Express" in queries,
+    and anonymous visitor sessions (null email) which are CC Express widget-embedded traffic.
 
     Returns both segments (Standalone + CC Express) always, even if empty.
     This ensures dashboard always shows comparison metrics.
@@ -774,6 +776,10 @@ def partition_traces_by_product(traces):
         if not email:
             return False
         return '@ccexpress.gupshup.io' in email.lower()
+
+    def is_null_email_anonymous(email):
+        """Signal 4: Null/empty email → anonymous visitor → treat as CC Express."""
+        return not email
 
     def is_cc_express_mention_in_query(query):
         """Signal 2: Check if query explicitly mentions 'CC Express'."""
@@ -812,6 +818,10 @@ def partition_traces_by_product(traces):
         if is_cc_express_detected_by_system(detected_product):
             signal_count += 1
             signals_detected.append('system_detection')
+
+        if is_null_email_anonymous(user_email):
+            signal_count += 1
+            signals_detected.append('null_email')
 
         # Tag as CC Express if any signal detected (>=1)
         # Traces can have: [email + query], [email + system], [query + system], or just [email] or [query] or [system]
