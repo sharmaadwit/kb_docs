@@ -3866,11 +3866,34 @@ def _load_chunks(context) -> List[Dict]:
         or f"{docs_root}/kb_chunks.jsonl"
     )
     raw = None
-    # Try remote first (via _kb_read_text)
+
+    # Step 1: Try GitLab (canonical source of truth)
     try:
-        raw = _kb_read_text(chunks_path, context)
-    except Exception as exc:
-        # Fallback to local file reading for development/testing
+        cfg = _kb_cfg(context)
+        if cfg.get("provider") == "gitlab" and cfg.get("project") and cfg.get("token"):
+            # Use gitlab_pull_files for consistent read-only fetch
+            host = _kb_secret(context, "KB_GITLAB_HOST") or "https://gitlab.com"
+            project = cfg.get("project")
+            token = cfg.get("token")
+            branch = _kb_secret(context, "KB_BRANCH") or "main"
+
+            url = f"{host.rstrip('/')}/api/v4/projects/{_kb_quote(project, safe='')}/repository/files/{_kb_quote(chunks_path, safe='')}/raw"
+            headers = {"PRIVATE-TOKEN": token}
+            resp = requests.get(url, headers=headers, params={"ref": branch}, timeout=30)
+            if resp.status_code == 200:
+                raw = resp.text
+    except Exception:
+        pass
+
+    # Step 2: Try remote via _kb_read_text (GitHub fallback)
+    if raw is None:
+        try:
+            raw = _kb_read_text(chunks_path, context)
+        except Exception:
+            pass
+
+    # Step 3: Fallback to local file reading for development/testing
+    if raw is None:
         try:
             # Try local paths: kb_chunks.jsonl in root, or {docs_root}/kb_chunks.jsonl
             local_paths = [
@@ -3887,9 +3910,9 @@ def _load_chunks(context) -> List[Dict]:
         except Exception:
             pass
 
-        # If still no raw content, raise the original error
-        if raw is None:
-            raise RuntimeError("Could not load knowledge base content") from exc
+    # If still no raw content, raise error
+    if raw is None:
+        raise RuntimeError("Could not load knowledge base content from GitLab, remote, or local fallback")
 
     items: List[Dict] = []
     for line in raw.splitlines():

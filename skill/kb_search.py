@@ -2062,14 +2062,72 @@ def _extract_query(params: Dict) -> str:
 
 
 def _load_chunks(context) -> List[Dict]:
+    """Load KB chunk records using the canonical GitLab-first fallback chain.
+
+    Chunks are canonical on GitLab. This mirrors kb_answer._load_chunks exactly so
+    all three skill entrypoints resolve chunks identically:
+
+      1. GitLab (source of truth)  — direct read-only raw file fetch.
+      2. Remote via ``_kb_read_text`` — honours KB_GIT_PROVIDER (GitHub raw fallback).
+      3. Local cache               — on-disk kb_chunks.jsonl for dev/testing only.
+
+    SuperAgent never writes chunks; kb_ingest regenerates them for testing and
+    sync_chunks_from_environments compares environments against the GitLab canon.
+    If every source is unavailable a clear RuntimeError is raised.
+    """
+    docs_path = (context.get_secret("GITHUB_DOCS_PATH") if context else None) or "kb"
+    docs_root = docs_path.strip("/")
     chunks_path = (
         (context.get_secret("GITHUB_KB_CHUNKS_PATH") if context else None)
-        or "kb/kb_chunks.jsonl"
+        or f"{docs_root}/kb_chunks.jsonl"
     )
+    raw = None
+
+    # Step 1: Try GitLab (canonical source of truth) via a direct read-only fetch.
     try:
-        raw = _kb_read_text(chunks_path, context)
-    except Exception as exc:
-        raise RuntimeError("Could not load knowledge base content") from exc
+        cfg = _kb_cfg(context)
+        if cfg.get("provider") == "gitlab" and cfg.get("project") and cfg.get("token"):
+            host = (_kb_secret(context, "KB_GITLAB_HOST") or "https://gitlab.com").rstrip("/")
+            project = _kb_gl_proj(cfg.get("project"))
+            branch = _kb_secret(context, "KB_BRANCH") or cfg.get("branch") or "main"
+            url = "%s/api/v4/projects/%s/repository/files/%s/raw" % (
+                host, project, _kb_quote(chunks_path, safe=""))
+            headers = {"PRIVATE-TOKEN": cfg.get("token")}
+            resp = requests.get(url, headers=headers, params={"ref": branch}, timeout=30)
+            if resp.status_code == 200:
+                raw = resp.text
+    except Exception:
+        pass
+
+    # Step 2: Try remote via _kb_read_text (honours provider; GitHub raw fallback).
+    if raw is None:
+        try:
+            raw = _kb_read_text(chunks_path, context)
+        except Exception:
+            pass
+
+    # Step 3: Fallback to local on-disk cache for development/testing.
+    if raw is None:
+        try:
+            import os
+            local_paths = [
+                "kb_chunks.jsonl",
+                chunks_path,
+                os.path.join(os.getcwd(), "kb_chunks.jsonl"),
+                os.path.join(os.getcwd(), chunks_path),
+            ]
+            for local_path in local_paths:
+                if os.path.isfile(local_path):
+                    with open(local_path, "r", encoding="utf-8") as f:
+                        raw = f.read()
+                    break
+        except Exception:
+            pass
+
+    if raw is None:
+        raise RuntimeError(
+            "Could not load knowledge base content from GitLab, remote, or local fallback")
+
     items: List[Dict] = []
     for line in raw.splitlines():
         line = line.strip()

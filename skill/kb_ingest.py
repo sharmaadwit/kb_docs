@@ -456,7 +456,25 @@ def _safe_path_segment(path: str, fallback: str) -> str:
 
 
 def kb_ingest(parameters: object = None, context=None, **kwargs) -> dict:
-    """Ingest markdown docs from the configured git repo, chunk them, and write index artifacts."""
+    """Ingest markdown docs from the configured git repo and REPORT chunk metadata.
+
+    IMPORTANT — chunks are NO LONGER written locally or to the repo by this skill.
+    Chunks are canonical on GitLab. This function is now read-only from GitLab's
+    perspective: it scans the docs, regenerates chunks in memory, and returns
+    metadata (counts, files scanned, chunking strategy, per-doc breakdown) so the
+    result can be compared against the canonical set — it does not persist anything.
+
+    New workflow:
+      * ``kb_ingest``                     — regenerates chunks in memory for testing
+                                            / verification and reports metadata only.
+      * ``sync_chunks_from_environments`` — compares environments against the GitLab
+                                            canonical chunks (the source of truth).
+      * kb_answer / kb_search             — load chunks via the GitLab-first fallback
+                                            chain (GitLab -> remote -> local cache).
+
+    To (re)publish canonical chunks, promote them through the sync/compare tooling
+    against GitLab; do NOT write kb_chunks.jsonl from here.
+    """
     if context is None:
         raise RuntimeError("Skill execution context is missing")
 
@@ -530,18 +548,35 @@ def kb_ingest(parameters: object = None, context=None, **kwargs) -> dict:
             },
         }
 
-        _write_file(chunks_out, "\n".join(chunks_lines) + "\n", "KB ingest: write chunks", context)
-        _write_file(index_out, json.dumps(index, indent=2), "KB ingest: write index", context)
+        # NOTE: Chunks are NOT written locally or to the repo anymore.
+        # Chunks are canonical on GitLab; kb_ingest is read-only from GitLab's
+        # perspective and only REPORTS what it would have generated. The write
+        # calls below are intentionally disabled — do not re-enable them here.
+        # Promotion of canonical chunks happens via sync_chunks_from_environments.
+        #
+        # _write_file(chunks_out, "\n".join(chunks_lines) + "\n", "KB ingest: write chunks", context)
+        # _write_file(index_out, json.dumps(index, indent=2), "KB ingest: write index", context)
     except Exception:
         return {"ok": False, "error": "Ingest failed"}
 
+    # Read-only report: metadata about the chunks that WOULD be generated.
+    # No files are written. ``chunks_written`` is always False by design.
     return {
         "ok": True,
         "docs_path": docs_path,
         "excluded": excluded,
         "md_files": len(md_files),
+        "files_scanned": len(md_files),
         "chunks": total_chunks,
-        "chunks_out": chunks_out,
-        "index_out": index_out,
+        "chunks_generated": total_chunks,
+        "chunks_written": False,
+        "canonical_source": "gitlab",
+        "note": (
+            "Chunks are canonical on GitLab and are NOT written by kb_ingest. "
+            "This is a read-only report; use sync_chunks_from_environments to "
+            "compare/promote against the GitLab canonical set."
+        ),
+        "would_write": {"chunks_out": chunks_out, "index_out": index_out},
+        "docs": doc_entries,
         "chunking": index["chunking"],
     }
