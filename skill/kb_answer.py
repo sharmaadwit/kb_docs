@@ -5551,8 +5551,16 @@ def _score_chunk(
     # literally routes to one of these scoped modules (R9).
     STRICT_SCOPED_MODULES = {"SuperAgent", "WhatsApp", "BizAI", "Agent Assist"}
     if explicit_module in STRICT_SCOPED_MODULES:
-        if _module_from_source(source) == explicit_module:
+        src_module = _module_from_source(source)
+        if src_module == explicit_module:
             score += 5.0
+        elif explicit_module == "WhatsApp":
+            # WhatsApp is a channel, not a module — its how-to content lives in
+            # Journey Builder, Bot Studio, templates (Agent Assist), and Integrations.
+            # Allow these adjacent modules without penalty; only penalize truly off-topic.
+            WHATSAPP_ADJACENT = {"Bot Studio", "Agent Assist", "Integrations", "Channels"}
+            if src_module not in WHATSAPP_ADJACENT:
+                score -= 4.0
         else:
             score -= 4.0
 
