@@ -446,6 +446,35 @@ def _write_file(path_in_repo: str, content: str, message: str, context) -> None:
     _kb_write_file(path_in_repo, content, message, context)
 
 
+def _write_local_file(path: str, content: str) -> str:
+    """Write chunk/index content to the LOCAL deployment filesystem (not the git remote).
+
+    kb_answer / kb_search resolve chunks via a GitLab-first fallback chain whose last
+    step reads an on-disk cache from these exact paths (see their ``_load_chunks``):
+
+        kb_chunks.jsonl                    (repo-relative)
+        {docs_root}/kb_chunks.jsonl        (e.g. kb/kb_chunks.jsonl)
+        os.getcwd()/kb_chunks.jsonl
+        os.getcwd()/{docs_root}/kb_chunks.jsonl
+
+    Writing here populates that per-environment local cache so retrieval keeps working
+    if GitLab (canonical) and the remote provider are both unreachable. Chunks stay
+    canonical on GitLab; this is a resilience cache only. Divergent chunk counts across
+    environments are acceptable — retrieval scoring is identical regardless of source.
+
+    Returns the absolute path written. Raises on failure so the caller can report it.
+    """
+    import os
+
+    abs_path = path if os.path.isabs(path) else os.path.join(os.getcwd(), path)
+    parent = os.path.dirname(abs_path)
+    if parent:
+        os.makedirs(parent, exist_ok=True)
+    with open(abs_path, "w", encoding="utf-8") as f:
+        f.write(content)
+    return abs_path
+
+
 def _safe_path_segment(path: str, fallback: str) -> str:
     p = (path or "").strip().strip("/")
     if not p or ".." in p or "\x00" in p:
@@ -456,24 +485,32 @@ def _safe_path_segment(path: str, fallback: str) -> str:
 
 
 def kb_ingest(parameters: object = None, context=None, **kwargs) -> dict:
-    """Ingest markdown docs from the configured git repo and REPORT chunk metadata.
+    """Ingest markdown docs from the configured git repo and write the LOCAL chunk cache.
 
-    IMPORTANT — chunks are NO LONGER written locally or to the repo by this skill.
-    Chunks are canonical on GitLab. This function is now read-only from GitLab's
-    perspective: it scans the docs, regenerates chunks in memory, and returns
-    metadata (counts, files scanned, chunking strategy, per-doc breakdown) so the
-    result can be compared against the canonical set — it does not persist anything.
+    Chunks remain CANONICAL on GitLab. kb_ingest does NOT push chunks to the git remote
+    (that is a manual admin promotion step). What it DOES do is scan the docs, regenerate
+    chunks, and write ``kb_chunks.jsonl`` / ``kb_index.json`` to this environment's LOCAL
+    deployment filesystem. That local cache is the last link in the retrieval fallback
+    chain used by kb_answer / kb_search:
 
-    New workflow:
-      * ``kb_ingest``                     — regenerates chunks in memory for testing
-                                            / verification and reports metadata only.
+        GitLab (canonical) -> remote provider -> local on-disk cache (written here)
+
+    So if GitLab is down and the remote provider is unreachable, retrieval still works
+    from the chunks kb_ingest wrote locally. If kb_ingest never ran on an environment,
+    retrieval simply falls back through GitLab -> remote and skips the (absent) cache.
+
+    Chunk divergence across environments (INT / PROD / PROD_EXT) is expected and is NOT
+    a problem: each environment regenerates its own local cache, and retrieval scoring is
+    identical regardless of which source served the chunks. GitLab stays the single
+    source of truth; the local cache is a per-environment resilience copy only.
+
+    Companion tooling:
+      * ``kb_ingest``                     — regenerates chunks AND writes the local cache;
+                                            returns metadata plus ``chunks_written``.
       * ``sync_chunks_from_environments`` — compares environments against the GitLab
                                             canonical chunks (the source of truth).
       * kb_answer / kb_search             — load chunks via the GitLab-first fallback
                                             chain (GitLab -> remote -> local cache).
-
-    To (re)publish canonical chunks, promote them through the sync/compare tooling
-    against GitLab; do NOT write kb_chunks.jsonl from here.
     """
     if context is None:
         raise RuntimeError("Skill execution context is missing")
@@ -548,20 +585,28 @@ def kb_ingest(parameters: object = None, context=None, **kwargs) -> dict:
             },
         }
 
-        # NOTE: Chunks are NOT written locally or to the repo anymore.
-        # Chunks are canonical on GitLab; kb_ingest is read-only from GitLab's
-        # perspective and only REPORTS what it would have generated. The write
-        # calls below are intentionally disabled — do not re-enable them here.
-        # Promotion of canonical chunks happens via sync_chunks_from_environments.
-        #
-        # _write_file(chunks_out, "\n".join(chunks_lines) + "\n", "KB ingest: write chunks", context)
-        # _write_file(index_out, json.dumps(index, indent=2), "KB ingest: write index", context)
+        # Write the LOCAL deployment cache (NOT the git remote). GitLab stays the
+        # canonical source; this populates the on-disk cache that is the final step
+        # of kb_answer / kb_search's GitLab-first fallback chain, so retrieval keeps
+        # working when GitLab and the remote provider are both unreachable.
+        # Canonical promotion to GitLab remains a manual admin step outside this skill.
+        chunks_written = False
+        write_error = None
+        written_paths = {}
+        try:
+            written_paths["chunks_out"] = _write_local_file(
+                chunks_out, "\n".join(chunks_lines) + "\n")
+            written_paths["index_out"] = _write_local_file(
+                index_out, json.dumps(index, indent=2))
+            chunks_written = True
+        except Exception as exc:  # noqa: BLE001
+            write_error = str(exc)
     except Exception:
         return {"ok": False, "error": "Ingest failed"}
 
-    # Read-only report: metadata about the chunks that WOULD be generated.
-    # No files are written. ``chunks_written`` is always False by design.
-    return {
+    # Report: metadata about the generated chunks plus confirmation of the local write.
+    # ``chunks_written`` is True once the on-disk cache has been written for this env.
+    result = {
         "ok": True,
         "docs_path": docs_path,
         "excluded": excluded,
@@ -569,14 +614,23 @@ def kb_ingest(parameters: object = None, context=None, **kwargs) -> dict:
         "files_scanned": len(md_files),
         "chunks": total_chunks,
         "chunks_generated": total_chunks,
-        "chunks_written": False,
+        "chunks_written": chunks_written,
         "canonical_source": "gitlab",
         "note": (
-            "Chunks are canonical on GitLab and are NOT written by kb_ingest. "
-            "This is a read-only report; use sync_chunks_from_environments to "
-            "compare/promote against the GitLab canonical set."
+            "Chunks are canonical on GitLab. kb_ingest wrote the LOCAL on-disk cache "
+            "(kb_chunks.jsonl / kb_index.json) for this environment so retrieval can "
+            "fall back to it if GitLab and the remote provider are unreachable. It does "
+            "NOT push to the git remote; use sync_chunks_from_environments to compare "
+            "environments against the GitLab canonical set for manual promotion."
         ),
+        "written_paths": written_paths,
         "would_write": {"chunks_out": chunks_out, "index_out": index_out},
         "docs": doc_entries,
         "chunking": index["chunking"],
     }
+    if write_error:
+        # Chunk generation succeeded but the local cache write failed. Surface this
+        # for debugging; retrieval will still work via GitLab -> remote fallback.
+        result["chunks_written"] = False
+        result["write_error"] = write_error
+    return result
