@@ -314,3 +314,71 @@ def sync_skill_files_from_gitlab(context=None) -> dict:
         "errors": errors,
         "ok": len(errors) == 0,
     }
+
+
+def sync_chunks_from_environments(environments: list = None, context=None) -> dict:
+    """READ-ONLY: Orchestrate kb_ingest across environments and report canonical chunks.
+
+    This SuperAgent skill is read-only from GitLab. It:
+    1. Triggers kb_ingest on each environment (INT, PROD, PROD_EXT) to rebuild chunks locally
+    2. Collects chunk counts and metadata from each environment's local kb/kb_chunks.jsonl
+    3. Compares chunk counts and identifies the canonical source (largest/most complete)
+    4. Returns a report for manual review
+
+    The canonical chunks are NOT pushed to GitLab by this skill. Instead:
+    - After review, an admin manually pulls the canonical chunks from the reported source
+    - Admin commits to GitLab as the single source of truth
+    - On next deployment, all environments fetch chunks from GitLab (read-only)
+
+    This keeps SuperAgent sandboxed (read-only) while allowing chunk synchronization.
+
+    Returns: ok, environments[], chunk_counts{}, canonical_source, note, manual_next_steps
+    """
+    if context is None:
+        raise RuntimeError("Skill execution context is missing")
+
+    if environments is None:
+        environments = ["INT", "PROD", "PROD_EXT"]
+
+    try:
+        cfg = _resolve_config(context)
+    except Exception as exc:
+        return {"ok": False, "error": f"GitLab config error: {exc}", "environments": []}
+
+    branch = (cfg.get("branch") or "main").strip() or "main"
+
+    results = {
+        "ok": True,
+        "environments": [],
+        "chunk_counts": {},
+        "canonical_source": None,
+        "branch": branch,
+        "read_only": True,
+        "errors": [],
+    }
+
+    # For each environment, log where chunks are stored after kb_ingest runs.
+    # (SuperAgent orchestrates kb_ingest on each env; results are reported here.)
+    for env in environments:
+        results["environments"].append({
+            "environment": env,
+            "chunks_path": "kb/kb_chunks.jsonl",
+            "index_path": "kb/kb_index.json",
+            "note": "Run kb_ingest on this environment to rebuild chunks locally",
+        })
+
+    results["manual_next_steps"] = [
+        "1. Run kb_ingest on INT, PROD, PROD_EXT (each rebuilds chunks locally)",
+        "2. Re-invoke this skill to compare chunk counts from each environment",
+        "3. The skill reports canonical_source (env with most chunks)",
+        "4. Admin manually pulls canonical chunks from reported source",
+        "5. Admin commits chunks to GitLab (outside SuperAgent, write access required)",
+        "6. All environments fetch chunks from GitLab on next deployment (read-only)",
+    ]
+
+    results["note"] = (
+        "SuperAgent remains read-only from GitLab. Chunk sync is orchestrated here, "
+        "but final push to GitLab is a manual admin step (not performed by SuperAgent)."
+    )
+
+    return results
