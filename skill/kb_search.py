@@ -2068,17 +2068,16 @@ def _load_chunks(context) -> List[Dict]:
     all three skill entrypoints resolve chunks identically:
 
       1. GitLab (source of truth)  — direct read-only raw file fetch.
-      2. Remote via ``_kb_read_text`` — honours KB_GIT_PROVIDER (GitHub raw fallback).
-      3. Local cache               — on-disk kb_chunks.jsonl for dev/testing only.
+      2. Local cache               — on-disk kb_chunks.jsonl for dev/testing only.
 
-    SuperAgent never writes chunks; kb_ingest regenerates them for testing and
-    sync_chunks_from_environments compares environments against the GitLab canon.
-    If every source is unavailable a clear RuntimeError is raised.
+    SuperAgent stays read-only from GitLab; kb_ingest regenerates chunks locally
+    for testing and sync_chunks_from_environments compares environments against
+    the GitLab canon. If every source is unavailable a clear RuntimeError is raised.
     """
-    docs_path = (context.get_secret("GITHUB_DOCS_PATH") if context else None) or "kb"
+    docs_path = _kb_secret(context, "GITHUB_DOCS_PATH") or "kb"
     docs_root = docs_path.strip("/")
     chunks_path = (
-        (context.get_secret("GITHUB_KB_CHUNKS_PATH") if context else None)
+        _kb_secret(context, "GITHUB_KB_CHUNKS_PATH")
         or f"{docs_root}/kb_chunks.jsonl"
     )
     raw = None
@@ -2099,14 +2098,7 @@ def _load_chunks(context) -> List[Dict]:
     except Exception:
         pass
 
-    # Step 2: Try remote via _kb_read_text (honours provider; GitHub raw fallback).
-    if raw is None:
-        try:
-            raw = _kb_read_text(chunks_path, context)
-        except Exception:
-            pass
-
-    # Step 3: Fallback to local on-disk cache for development/testing.
+    # Step 2: Fallback to local on-disk cache for development/testing.
     if raw is None:
         try:
             import os
@@ -2126,7 +2118,7 @@ def _load_chunks(context) -> List[Dict]:
 
     if raw is None:
         raise RuntimeError(
-            "Could not load knowledge base content from GitLab, remote, or local fallback")
+            "Could not load knowledge base content from GitLab or local fallback")
 
     items: List[Dict] = []
     for line in raw.splitlines():

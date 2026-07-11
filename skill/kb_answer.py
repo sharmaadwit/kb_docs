@@ -3859,10 +3859,10 @@ def _extract_query(params: Dict) -> str:
 
 
 def _load_chunks(context) -> List[Dict]:
-    docs_path = (context.get_secret("GITHUB_DOCS_PATH") if context else None) or "kb"
+    docs_path = _kb_secret(context, "GITHUB_DOCS_PATH") or "kb"
     docs_root = docs_path.strip("/")
     chunks_path = (
-        (context.get_secret("GITHUB_KB_CHUNKS_PATH") if context else None)
+        _kb_secret(context, "GITHUB_KB_CHUNKS_PATH")
         or f"{docs_root}/kb_chunks.jsonl"
     )
     raw = None
@@ -3885,14 +3885,7 @@ def _load_chunks(context) -> List[Dict]:
     except Exception:
         pass
 
-    # Step 2: Try remote via _kb_read_text (GitHub fallback)
-    if raw is None:
-        try:
-            raw = _kb_read_text(chunks_path, context)
-        except Exception:
-            pass
-
-    # Step 3: Fallback to local file reading for development/testing
+    # Step 2: Fallback to local file reading for development/testing
     if raw is None:
         try:
             # Try local paths: kb_chunks.jsonl in root, or {docs_root}/kb_chunks.jsonl
@@ -3912,7 +3905,7 @@ def _load_chunks(context) -> List[Dict]:
 
     # If still no raw content, raise error
     if raw is None:
-        raise RuntimeError("Could not load knowledge base content from GitLab, remote, or local fallback")
+        raise RuntimeError("Could not load knowledge base content from GitLab or local fallback")
 
     items: List[Dict] = []
     for line in raw.splitlines():
