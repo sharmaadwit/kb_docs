@@ -1,12 +1,12 @@
 {
   "ok": true,
-  "created_at": "2026-07-10T07:14:51.162538+00:00",
+  "created_at": "2026-07-11T14:50:19.403660+00:00",
   "docs_path": "kb",
   "excluded": [
     "kb/analytics"
   ],
   "md_files": 400,
-  "chunks": 6706,
+  "chunks": 6721,
   "docs": [
     {
       "path": "kb/Gupshup_Console_SSO support.md",
@@ -26,7 +26,7 @@
     },
     {
       "path": "kb/agent-assist/assignment-enhancements-in-console-7-0.md",
-      "chunks": 21
+      "chunks": 22
     },
     {
       "path": "kb/agent-assist/campaign-and-ctx-ad-preview.md",
@@ -86,7 +86,7 @@
     },
     {
       "path": "kb/agent-assist/insights-team-summary.md",
-      "chunks": 17
+      "chunks": 18
     },
     {
       "path": "kb/agent-assist/live-monitoring-dashboard-real-time-chat-analytics-and-performance-insights.md",
@@ -154,7 +154,7 @@
     },
     {
       "path": "kb/agent-assist/underlying-raw-data-for-chat-summary.md",
-      "chunks": 23
+      "chunks": 28
     },
     {
       "path": "kb/agent-assist/user-management-business-hours.md",
@@ -334,7 +334,7 @@
     },
     {
       "path": "kb/bizai/bizai-partner-api-white-paper.md",
-      "chunks": 41
+      "chunks": 44
     },
     {
       "path": "kb/bizai/bizai-pricing.md",
@@ -414,7 +414,7 @@
     },
     {
       "path": "kb/bot-studio/api-timeout-default-to-10-secs.md",
-      "chunks": 24
+      "chunks": 25
     },
     {
       "path": "kb/bot-studio/audio-node.md",
@@ -618,7 +618,7 @@
     },
     {
       "path": "kb/bot-studio/json-handler.md",
-      "chunks": 26
+      "chunks": 24
     },
     {
       "path": "kb/bot-studio/list-node.md",
@@ -682,7 +682,7 @@
     },
     {
       "path": "kb/bot-studio/prompt-nodes.md",
-      "chunks": 24
+      "chunks": 25
     },
     {
       "path": "kb/bot-studio/quick-reply.md",
@@ -790,7 +790,7 @@
     },
     {
       "path": "kb/campaign-manager/creating-a-new-campaign.md",
-      "chunks": 25
+      "chunks": 26
     },
     {
       "path": "kb/campaign-manager/creating-your-first-campaign.md",
@@ -1198,7 +1198,7 @@
     },
     {
       "path": "kb/channels/autoresponders.md",
-      "chunks": 28
+      "chunks": 29
     },
     {
       "path": "kb/channels/before-you-begin.md",
@@ -1266,7 +1266,7 @@
     },
     {
       "path": "kb/channels/rcs-faq.md",
-      "chunks": 15
+      "chunks": 16
     },
     {
       "path": "kb/channels/rcs-messaging-api.md",
@@ -1274,7 +1274,7 @@
     },
     {
       "path": "kb/channels/rcs-overview.md",
-      "chunks": 11
+      "chunks": 12
     },
     {
       "path": "kb/channels/rcs-quickstart.md",
@@ -1422,7 +1422,7 @@
     },
     {
       "path": "kb/integrations/clevertap-integration.md",
-      "chunks": 19
+      "chunks": 20
     },
     {
       "path": "kb/integrations/crm-integrations.md",
