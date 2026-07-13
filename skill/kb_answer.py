@@ -3143,13 +3143,14 @@ CONCEPT_REGISTRY: List[Dict] = [
         "id": "journey_builder_nodes",
         "aliases": [
             "journey builder nodes", "node types", "journey nodes", "builder nodes",
-            "script node", "text node", "journey node setup"
+            "script node", "text node", "journey node setup",
+            "journeys", "build journeys", "building journeys"
         ],
-        "keywords": ["journey builder", "nodes", "node types", "script", "text node"],
+        "keywords": ["journey builder", "nodes", "node types", "script", "text node", "journeys"],
         "source_boosts": {
-            "journey-builder-nodes-overview.md": 4.0,
-            "script-node-setup.md": 3.5,
-            "text-node-configuration.md": 3.5,
+            "nodes.md": 4.0,
+            "journey-building-patterns.md": 3.5,
+            "text-node.md": 3.0,
         },
         "source_penalties": {},
         "display": "Journey Builder Node Types",
@@ -4930,7 +4931,7 @@ _OVERVIEW_SIGNALS = [
 
 _MODULE_CAPABILITY_SIGNALS = (
     "what can", "what does", "what all", "what are",
-    "capabilit", "features", "feature set", "help with",
+    "capabilit", "features", "feature set", "help with", "help me",
     "use case", "use-case", "use cases", "demo", "show me",
     "tell me about", "overview", "get started", "getting started",
     "new to", "walk me through",
