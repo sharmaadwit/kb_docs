@@ -359,8 +359,6 @@ def analyze_traces(traces: List[Dict]) -> Dict[str, Any]:
 
     for trace in traces:
         meta = trace.get("metadata") or {}
-        if meta.get("user_email") == "adwit.sharma@gupshup.io":
-            continue
 
         total_queries += 1
         is_answered = meta.get("answered", False)
@@ -600,12 +598,10 @@ def analyze_conversations(traces: List[Dict], session_gap_minutes: int = 30) -> 
     the rest are FOLLOW-UPS. Conversations with more than one query are treated as
     DECOMPOSED (the user broke a goal into multiple sub-queries).
     """
-    # Normalize + sort traces chronologically, skipping the owner's own traffic.
+    # Normalize + sort traces chronologically.
     rows = []
     for t in traces:
         meta = t.get("metadata") or {}
-        if meta.get("user_email") == "adwit.sharma@gupshup.io":
-            continue
         rows.append((t, meta, _parse_ts(t)))
     rows.sort(key=lambda r: (r[2] or datetime.min))
 
@@ -756,42 +752,15 @@ def analyze_conversations(traces: List[Dict], session_gap_minutes: int = 30) -> 
 
 # CC EXPRESS FEATURE
 def partition_traces_by_product(traces):
-    """Partition traces by multi-signal CC Express detection (equal weight for all signals).
+    """Partition traces into CC Express vs Standalone.
 
-    CC Express users identified by ANY of these signals (equal probability):
-    1. Email domain: *@ccexpress.gupshup.io (authentication-based)
-    2. Query mention: "CC Express" explicitly in query text (user-stated preference)
-    3. Detected product: detected_product_original == 'cc_express' (system detection)
-    4. Null/empty email: anonymous users with no email are treated as CC Express visitors
-
-    All signals weighted equally — a trace needs >=1 signal to be tagged as CC Express.
-    This catches CC Express users who use normal email addresses but mention "CC Express" in queries,
-    and anonymous visitor sessions (null email) which are CC Express widget-embedded traffic.
+    CC Express = trace_env is PROD AND (user_email is null/empty OR user_email is on the
+    ccexpress.gupshup.io domain). Everything else (INT, PROD_EXT, or PROD with a real
+    non-ccexpress email) is Standalone.
 
     Returns both segments (Standalone + CC Express) always, even if empty.
     This ensures dashboard always shows comparison metrics.
     """
-    def is_cc_express_user_by_email(email):
-        """Signal 1: Check if email belongs to CC Express domain."""
-        if not email:
-            return False
-        return '@ccexpress.gupshup.io' in email.lower()
-
-    def is_null_email_anonymous(email):
-        """Signal 4: Null/empty email → anonymous visitor → treat as CC Express."""
-        return not email
-
-    def is_cc_express_mention_in_query(query):
-        """Signal 2: Check if query explicitly mentions 'CC Express'."""
-        if not query:
-            return False
-        query_norm = query.lower()
-        return 'cc express' in query_norm or 'ccexpress' in query_norm
-
-    def is_cc_express_detected_by_system(detected_product):
-        """Signal 3: Check if system detected CC Express as product."""
-        return detected_product == 'cc_express'
-
     segments = {
         'cc_express': [],
         'standalone': [],
@@ -800,35 +769,14 @@ def partition_traces_by_product(traces):
     for trace in traces:
         meta = trace.get('metadata', {})
         user_email = meta.get('user_email') or ''
-        query = meta.get('query') or ''
-        detected_product = meta.get('detected_product_original')
+        trace_env = meta.get('trace_env')
 
-        # Multi-signal detection (equal weight)
-        signal_count = 0
-        signals_detected = []
+        is_ccexpress = trace_env == 'PROD' and (
+            not user_email or '@ccexpress.gupshup.io' in user_email.lower()
+        )
 
-        if is_cc_express_user_by_email(user_email):
-            signal_count += 1
-            signals_detected.append('email')
-
-        if is_cc_express_mention_in_query(query):
-            signal_count += 1
-            signals_detected.append('query_mention')
-
-        if is_cc_express_detected_by_system(detected_product):
-            signal_count += 1
-            signals_detected.append('system_detection')
-
-        if is_null_email_anonymous(user_email):
-            signal_count += 1
-            signals_detected.append('null_email')
-
-        # Tag as CC Express if any signal detected (>=1)
-        # Traces can have: [email + query], [email + system], [query + system], or just [email] or [query] or [system]
-        if signal_count >= 1:
+        if is_ccexpress:
             segments['cc_express'].append(trace)
-            # Store signal sources in metadata for analysis (optional)
-            trace['_cc_express_signals'] = signals_detected
         else:
             segments['standalone'].append(trace)
 
@@ -1669,21 +1617,29 @@ def generate_query_analytics_html(analysis: Dict[str, Any], segment_key: str) ->
         <!-- Sample of Remaining IDK Queries -->
         <div class="section">
             <h2>❌ Sample of Remaining IDK Queries (By Language)</h2>
-            <div class="lang-tabs" id="lang-tabs-{ns}">
 """
     idk_by_lang = analysis.get("idk_by_language", {})
     lang_names = {"en": "English", "pt": "Portuguese", "es": "Spanish", "ar": "Arabic", "hi": "Hindi", "zh": "Chinese", "ja": "Japanese", "ko": "Korean"}
+
+    # CSS-only radio tabs: all inputs first, then the label bar, then content panels.
+    lang_group = f"langtab-{ns}"
     for i, (lang_code, _) in enumerate(sorted(idk_by_lang.items())):
+        tab_id = f"{lang_group}-{lang_code}"
+        checked = " checked" if i == 0 else ""
+        html += f'            <input type="radio" class="tab-input" name="{lang_group}" id="{tab_id}"{checked}>\n'
+
+    html += f"""            <div class="lang-tabs" id="lang-tabs-{ns}">
+"""
+    for lang_code, _ in sorted(idk_by_lang.items()):
+        tab_id = f"{lang_group}-{lang_code}"
         lang_name = lang_names.get(lang_code, lang_code.upper())
-        active_class = " active" if i == 0 else ""
-        html += f'                <button class="lang-tab{{active_class}}" onclick="showLangTab_{ns}(event, \'{{lang_code}}\')">{lang_name}</button>\n'
+        html += f'                <label class="lang-tab" for="{tab_id}">{lang_name}</label>\n'
 
     html += f"""            </div>
 """
-    for i, (lang_code, idk_list) in enumerate(sorted(idk_by_lang.items())):
-        lang_name = lang_names.get(lang_code, lang_code.upper())
-        active_class = " active" if i == 0 else ""
-        html += f"""            <div class="lang-content{{active_class}}" id="lang-{ns}-{{lang_code}}">
+    for lang_code, idk_list in sorted(idk_by_lang.items()):
+        tab_id = f"{lang_group}-{lang_code}"
+        html += f"""            <div class="lang-content" id="content-{tab_id}">
                 <table>
                     <thead>
                         <tr>
@@ -1716,6 +1672,15 @@ def generate_query_analytics_html(analysis: Dict[str, Any], segment_key: str) ->
             </div>
 """
 
+    # CSS-only tab wiring: per-tab :checked rules for label highlight + content visibility.
+    lang_tab_css = ""
+    for lang_code in sorted(idk_by_lang.keys()):
+        tab_id = f"{lang_group}-{lang_code}"
+        lang_tab_css += (
+            f'            #{tab_id}:checked ~ .lang-tabs label[for="{tab_id}"] {{ color: #667eea; border-bottom-color: #667eea; }}\n'
+            f'            #{tab_id}:checked ~ #content-{tab_id} {{ display: block; }}\n'
+        )
+
     html += f"""
             <section class="grouping-stats">
                 <h3>Trace Linking Analysis</h3>
@@ -1729,17 +1694,8 @@ def generate_query_analytics_html(analysis: Dict[str, Any], segment_key: str) ->
                 </div>
             </section>
         </div>
-        <script>
-            function showLangTab_{ns}(event, langCode) {{
-                const tabs = document.getElementById('lang-tabs-{ns}').querySelectorAll('.lang-tab');
-                tabs.forEach(t => t.classList.remove('active'));
-                event.target.classList.add('active');
-                // Hide all lang-content for this segment
-                document.querySelectorAll('[id^="lang-{ns}-"]').forEach(c => c.classList.remove('active'));
-                const target = document.getElementById('lang-{ns}-' + langCode);
-                if (target) target.classList.add('active');
-            }}
-        </script>
+        <style>
+{lang_tab_css}        </style>
 """
     return html
 
@@ -1759,10 +1715,7 @@ def generate_landing_snapshot(all_analysis: Dict[str, Any]) -> str:
             continue
         for email, d in analysis.get("users_external", {}).items():
             # Sales-facing: skip anonymous/unidentified traffic — not actionable leads
-            # Also skip internal test accounts (adwit.sharma@gupshup.io for testing)
             if not email or email.lower() == "anonymous" or "@" not in email:
-                continue
-            if email.lower() == "adwit.sharma@gupshup.io":
                 continue
             e = ext_agg.setdefault(email, {"domain": d.get("domain", ""), "count": 0, "answered": 0, "conf_sum": 0.0})
             e["count"] += d.get("count", 0)
@@ -1907,12 +1860,20 @@ def generate_html(all_analysis: Dict[str, Any], video_data: Dict[str, Any], pari
     # --- Build the first tab ID (the active one) ---
     first_seg = segment_order[0] if segment_order else 'standalone'
 
-    # Product pill buttons  # CC EXPRESS FEATURE
+    # Product pill radio inputs + labels  # CC EXPRESS FEATURE (CSS-only tabs)
+    product_pill_inputs = ''
     product_pill_buttons = ''
+    top_tab_css = ''
     for i, seg in enumerate(segment_order):
-        active = ' active' if i == 0 else ''
+        tab_id = f'top-{seg}'
+        checked = ' checked' if i == 0 else ''
         label = segment_icons.get(seg, '') + ' ' + segment_labels.get(seg, seg.title())
-        product_pill_buttons += f'            <button class="product-pill{active}" onclick="showProduct(event, \'{seg}\')">{label}</button>\n'
+        product_pill_inputs += f'        <input type="radio" class="tab-input" name="top-tab" id="{tab_id}"{checked}>\n'
+        product_pill_buttons += f'            <label class="product-pill" for="{tab_id}">{label}</label>\n'
+        top_tab_css += (
+            f'        #{tab_id}:checked ~ .product-pills label[for="{tab_id}"] {{ background: white; color: #667eea; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }}\n'
+            f'        #{tab_id}:checked ~ #panel-{seg} {{ display: block; }}\n'
+        )
 
     now_str = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
 
@@ -1980,19 +1941,21 @@ def generate_html(all_analysis: Dict[str, Any], video_data: Dict[str, Any], pari
         .data-source {{ background: rgba(255,255,255,0.1); padding: 12px; border-radius: 6px; margin-top: 10px; }}
         .chart-wrapper {{ height: 420px; margin: 20px 0; }}
 
+        /* CSS-only radio tabs: hide the actual radio inputs, labels are the visible UI */
+        .tab-input {{ display: none; }}
+
         /* CC EXPRESS FEATURE: Product pill selector */
         .product-pills {{
             display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap;
         }}
         .product-pill {{
-            padding: 12px 24px; cursor: pointer; background: rgba(255,255,255,0.15);
+            display: inline-block; padding: 12px 24px; cursor: pointer; background: rgba(255,255,255,0.15);
             border: none; border-radius: 24px; color: white; font-weight: 600;
             font-size: 1em; letter-spacing: 0.4px; transition: all 0.2s;
         }}
         .product-pill:hover {{ background: rgba(255,255,255,0.3); }}
-        .product-pill.active {{ background: white; color: #667eea; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }}
         .product-panel {{ display: none; }}
-        .product-panel.active {{ display: block; }}
+        /* per-segment :checked rules are emitted inline in the <style> block near the pills */
 
         /* CC EXPRESS FEATURE: Sub-tab navigation within each product */
         .sub-tabs {{
@@ -2000,22 +1963,20 @@ def generate_html(all_analysis: Dict[str, Any], video_data: Dict[str, Any], pari
             background: transparent; border-radius: 8px; padding: 4px;
         }}
         .sub-tab {{
-            flex: 1; padding: 12px 24px; cursor: pointer; background: rgba(255,255,255,0.12);
+            display: inline-block; flex: 1; padding: 12px 24px; cursor: pointer; background: rgba(255,255,255,0.12);
             border: none; border-radius: 8px; color: rgba(255,255,255,0.8); font-weight: 600;
             font-size: 0.95em; transition: all 0.3s; text-align: center;
         }}
         .sub-tab:hover {{ color: white; background: rgba(255,255,255,0.2); }}
-        .sub-tab.active {{ background: #10b981; color: white; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4); }}
         .sub-tab-content {{ display: none; }}
-        .sub-tab-content.active {{ display: block; }}
+        /* per-segment :checked rules are emitted inline in the <style> block near each sub-tab bar */
 
         /* IDK language tabs */
         .lang-tabs {{ display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 2px solid #e8e8e8; }}
-        .lang-tab {{ padding: 10px 16px; cursor: pointer; background: none; border: none; border-bottom: 3px solid transparent; color: #666; font-weight: 500; transition: all 0.2s; }}
-        .lang-tab.active {{ color: #667eea; border-bottom-color: #667eea; }}
+        .lang-tab {{ display: inline-block; padding: 10px 16px; cursor: pointer; background: none; border: none; border-bottom: 3px solid transparent; color: #666; font-weight: 500; transition: all 0.2s; }}
         .lang-tab:hover {{ color: #333; }}
         .lang-content {{ display: none; }}
-        .lang-content.active {{ display: block; }}
+        /* per-segment :checked rules are emitted inline in the <style> block near each lang-tab bar */
 
         /* Grouping stats */
         .grouping-stats {{ background: white; border-radius: 12px; padding: 24px; margin: 30px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }}
@@ -2035,33 +1996,46 @@ def generate_html(all_analysis: Dict[str, Any], video_data: Dict[str, Any], pari
 
         <!-- SALES LANDING SNAPSHOT: leads + topics surfaced above product tabs -->
 {landing_snapshot}
-        <!-- CC EXPRESS FEATURE: Product pill selector (replaces 2-button tab nav) -->
-        <div class="product-pills">
+        <!-- CC EXPRESS FEATURE: Product pill selector (CSS-only radio tabs, replaces onclick nav) -->
+{product_pill_inputs}        <div class="product-pills">
 {product_pill_buttons}        </div>
+        <style>
+{top_tab_css}        </style>
 """
 
     # CC EXPRESS FEATURE: Emit one panel per product
     for i, seg in enumerate(segment_order):
-        active = ' active' if i == 0 else ''
         summary_cards, conv_html, query_html, parity_html = segment_blocks[seg]
         ns = seg
         label = segment_labels.get(seg, seg.title())
 
+        sub_group = f"substab-{ns}"
+        conv_id = f"{sub_group}-conv"
+        query_id = f"{sub_group}-query"
+        sub_tab_css = (
+            f'            #{conv_id}:checked ~ .sub-tabs label[for="{conv_id}"] {{ background: #10b981; color: white; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4); }}\n'
+            f'            #{query_id}:checked ~ .sub-tabs label[for="{query_id}"] {{ background: #10b981; color: white; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4); }}\n'
+            f'            #{conv_id}:checked ~ #subtab-{ns}-conv {{ display: block; }}\n'
+            f'            #{query_id}:checked ~ #subtab-{ns}-query {{ display: block; }}\n'
+        )
+
         html += f"""
         <!-- CC EXPRESS FEATURE: product panel for {seg} -->
-        <div class="product-panel{active}" id="panel-{seg}">
+        <div class="product-panel" id="panel-{seg}">
 
             <!-- Product summary cards -->
 {summary_cards}
 
-            <!-- CC EXPRESS FEATURE: Sub-tab nav (Conversation Insights | Query Analytics) -->
+            <!-- CC EXPRESS FEATURE: Sub-tab nav (Conversation Insights | Query Analytics), CSS-only -->
+            <input type="radio" class="tab-input" name="{sub_group}" id="{conv_id}" checked>
+            <input type="radio" class="tab-input" name="{sub_group}" id="{query_id}">
             <div class="sub-tabs" id="sub-tabs-{ns}">
-                <button class="sub-tab active" onclick="showSubTab(event, '{ns}', 'conv')">💬 Conversation Insights</button>
-                <button class="sub-tab" onclick="showSubTab(event, '{ns}', 'query')">📊 Query Analytics</button>
+                <label class="sub-tab" for="{conv_id}">💬 Conversation Insights</label>
+                <label class="sub-tab" for="{query_id}">📊 Query Analytics</label>
             </div>
 
             <!-- Sub-tab: Conversation Insights -->
-            <div class="sub-tab-content active" id="subtab-{ns}-conv">
+            <div class="sub-tab-content" id="subtab-{ns}-conv">
 {conv_html}
             </div>
 
@@ -2069,6 +2043,8 @@ def generate_html(all_analysis: Dict[str, Any], video_data: Dict[str, Any], pari
             <div class="sub-tab-content" id="subtab-{ns}-query">
 {query_html}
             </div>
+            <style>
+{sub_tab_css}            </style>
 """
         # CC EXPRESS FEATURE: parity widget only in cc_express panel
         if parity_html:
@@ -2082,25 +2058,6 @@ def generate_html(all_analysis: Dict[str, Any], video_data: Dict[str, Any], pari
 
     html += f"""
         <!-- Global footer -->
-        <script>
-            // CC EXPRESS FEATURE: product pill switching
-            function showProduct(event, segKey) {{
-                document.querySelectorAll('.product-panel').forEach(p => p.classList.remove('active'));
-                document.querySelectorAll('.product-pill').forEach(b => b.classList.remove('active'));
-                document.getElementById('panel-' + segKey).classList.add('active');
-                event.target.classList.add('active');
-            }}
-
-            // CC EXPRESS FEATURE: two-level sub-tab switching
-            function showSubTab(event, ns, subKey) {{
-                const panel = document.getElementById('panel-' + ns);
-                panel.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
-                panel.querySelectorAll('.sub-tab-content').forEach(c => c.classList.remove('active'));
-                event.target.classList.add('active');
-                const target = document.getElementById('subtab-' + ns + '-' + subKey);
-                if (target) target.classList.add('active');
-            }}
-        </script>
 
         <div class="footer">
             <div class="data-source">
