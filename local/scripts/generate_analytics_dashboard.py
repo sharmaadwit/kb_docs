@@ -13,6 +13,37 @@ from collections import defaultdict
 from typing import Optional, Dict, List, Any
 import re
 
+# Known maintainer/test accounts. Their traffic is excluded from all headline
+# metrics (answer rate, IDK rate, confidence, conversation stats) but is still
+# surfaced separately in its own "Test/Maintainer Traffic" table, never silently
+# dropped.
+TEST_ACCOUNTS = {"adwit.sharma@gupshup.io"}
+
+
+def summarize_test_traffic(traces: List[Dict]) -> Dict[str, Any]:
+    """Lightweight summary of excluded test/maintainer traffic for transparency."""
+    count = len(traces)
+    answered = sum(1 for t in traces if (t.get("metadata") or {}).get("answered"))
+    idk = count - answered
+    conf_sum = sum((t.get("metadata") or {}).get("confidence") or 0 for t in traces)
+    samples = []
+    for t in traces[:10]:
+        meta = t.get("metadata") or {}
+        samples.append({
+            "query": (meta.get("query") or "").strip(),
+            "module": meta.get("module_label") or meta.get("module") or "",
+            "answered": bool(meta.get("answered")),
+        })
+    return {
+        "count": count,
+        "answered": answered,
+        "idk": idk,
+        "answer_rate": round(answered / count * 100, 1) if count else 0.0,
+        "avg_confidence": round(conf_sum / count, 2) if count else 0.0,
+        "samples": samples,
+    }
+
+
 def detect_language(text: str) -> str:
     """Detect language from text using character patterns and common words."""
     if not text:
@@ -1382,7 +1413,56 @@ def generate_query_analytics_html(analysis: Dict[str, Any], segment_key: str) ->
     html += """                </tbody>
             </table>
         </div>
+"""
 
+    # Test/maintainer traffic — excluded from all metrics above, shown separately.
+    tt = analysis.get("test_traffic") or {}
+    if tt.get("count"):
+        html += f"""
+        <!-- Test/Maintainer Traffic (excluded from all metrics above) -->
+        <div class="section">
+            <h2>🧪 Test / Maintainer Traffic <span style="font-size: 0.6em; color: #999; font-weight: 400;">(excluded from answer rate, IDK rate, confidence &amp; conversation stats above)</span></h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th class="numeric">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Total queries</td><td class="numeric">{tt['count']}</td></tr>
+                    <tr><td>Answered</td><td class="numeric">{tt['answered']}</td></tr>
+                    <tr><td>IDK</td><td class="numeric">{tt['idk']}</td></tr>
+                    <tr><td>Answer rate</td><td class="numeric">{tt['answer_rate']}%</td></tr>
+                    <tr><td>Avg confidence</td><td class="numeric">{tt['avg_confidence']}</td></tr>
+                </tbody>
+            </table>
+"""
+        if tt.get("samples"):
+            html += """            <table style="margin-top: 16px;">
+                <thead>
+                    <tr>
+                        <th>Sample Query</th>
+                        <th>Module</th>
+                        <th class="numeric">Answered</th>
+                    </tr>
+                </thead>
+                <tbody>
+"""
+            for s in tt["samples"]:
+                html += f"""                    <tr>
+                        <td>{s['query']}</td>
+                        <td>{s['module']}</td>
+                        <td class="numeric">{'✅' if s['answered'] else '❌'}</td>
+                    </tr>
+"""
+            html += """                </tbody>
+            </table>
+"""
+        html += """        </div>
+"""
+
+    html += """
         <!-- External Domain Users -->
         <div class="section">
             <h2>🌐 External Users</h2>
@@ -1944,16 +2024,17 @@ def generate_html(all_analysis: Dict[str, Any], video_data: Dict[str, Any], pari
         /* CSS-only radio tabs: hide the actual radio inputs, labels are the visible UI */
         .tab-input {{ display: none; }}
 
-        /* CC EXPRESS FEATURE: Product pill selector */
+        /* CC EXPRESS FEATURE: Product top-level tab bar */
         .product-pills {{
-            display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap;
+            display: flex; gap: 4px; margin-bottom: 24px; flex-wrap: wrap;
+            background: rgba(255,255,255,0.12); border-radius: 10px; padding: 4px;
         }}
         .product-pill {{
-            display: inline-block; padding: 12px 24px; cursor: pointer; background: rgba(255,255,255,0.15);
-            border: none; border-radius: 24px; color: white; font-weight: 600;
-            font-size: 1em; letter-spacing: 0.4px; transition: all 0.2s;
+            display: inline-block; padding: 12px 24px; cursor: pointer; background: transparent;
+            border: none; border-radius: 8px; color: rgba(255,255,255,0.85); font-weight: 600;
+            font-size: 1em; letter-spacing: 0.4px; transition: all 0.2s; text-align: center;
         }}
-        .product-pill:hover {{ background: rgba(255,255,255,0.3); }}
+        .product-pill:hover {{ color: white; background: rgba(255,255,255,0.15); }}
         .product-panel {{ display: none; }}
         /* per-segment :checked rules are emitted inline in the <style> block near the pills */
 
@@ -2112,11 +2193,25 @@ def main():
     # CC EXPRESS FEATURE: analyze each segment independently (reuse existing functions)
     all_analysis: Dict[str, Any] = {}
     for segment_key, segment_traces in segments.items():
-        print(f"📊 Analyzing segment '{segment_key}' ({len(segment_traces)} traces)...")
-        seg_analysis = analyze_traces(segment_traces)
+        # Split off known test/maintainer traffic so it never skews headline
+        # metrics (answer rate, IDK rate, confidence, conversation stats), but
+        # keep it available for a separate, clearly-labeled table.
+        real_traces = [
+            t for t in segment_traces
+            if (t.get("metadata") or {}).get("user_email") not in TEST_ACCOUNTS
+        ]
+        test_traces = [
+            t for t in segment_traces
+            if (t.get("metadata") or {}).get("user_email") in TEST_ACCOUNTS
+        ]
+
+        print(f"📊 Analyzing segment '{segment_key}' ({len(real_traces)} traces"
+              f"{f', {len(test_traces)} test-traffic excluded' if test_traces else ''})...")
+        seg_analysis = analyze_traces(real_traces)
+        seg_analysis['test_traffic'] = summarize_test_traffic(test_traces)
 
         print(f"💬 Analyzing conversations for '{segment_key}'...")
-        seg_analysis['conversations'] = analyze_conversations(segment_traces)
+        seg_analysis['conversations'] = analyze_conversations(real_traces)
         cv = seg_analysis['conversations']['overview']
         print(f"   Conversations: {cv['total_conversations']} | "
               f"single-turn: {cv['single_turn']} ({cv['single_turn_pct']}%) | "
