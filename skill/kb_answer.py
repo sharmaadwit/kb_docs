@@ -3283,10 +3283,24 @@ CONCEPT_REGISTRY: List[Dict] = [
             "cc express features",
             "cc express product",
             "what is cc express",
-            "cc express what included"
+            "cc express what included",
+            "cc express package",
+            "difference between cc express and console",
+            "difference between cc express and gupshup console",
+            "cc express and gupshup console",
+            "cc express vs console",
+            "cc express versus console",
+            "cc express vs conversation cloud",
+            "modules included in cc express",
+            "what modules are included in cc express",
+            "jb pro in cc express",
+            "jb pro available in cc express",
+            "developer mode in cc express",
+            "cc express wallet",
+            "cc express billing",
         ],
-        "keywords": ["cc express", "plan", "pricing", "include", "bundle"],
-        "source_boosts": {},
+        "keywords": ["cc express", "plan", "pricing", "include", "bundle", "console", "wallet", "jb pro"],
+        "source_boosts": {"cc-express-vs-conversation-cloud": 5.0},
         "display": "CC Express Plans & Pricing",
         "module": "Overview",
     },
@@ -3886,15 +3900,18 @@ def _load_chunks(context) -> List[Dict]:
     except Exception:
         pass
 
-    # Step 2: Fallback to local file reading for development/testing
+    # Step 2: Fallback to local file reading for development/testing.
+    # The correctly-scoped chunks_path (e.g. kb/kb_chunks.jsonl) is checked
+    # first — a bare root-level "kb_chunks.jsonl" is only used as a last
+    # resort, since a stale copy left at the repo root would otherwise
+    # silently shadow the real, correctly-ingested chunks file.
     if raw is None:
         try:
-            # Try local paths: kb_chunks.jsonl in root, or {docs_root}/kb_chunks.jsonl
             local_paths = [
-                "kb_chunks.jsonl",
                 chunks_path,
-                os.path.join(os.getcwd(), "kb_chunks.jsonl"),
                 os.path.join(os.getcwd(), chunks_path),
+                "kb_chunks.jsonl",
+                os.path.join(os.getcwd(), "kb_chunks.jsonl"),
             ]
             for local_path in local_paths:
                 if os.path.isfile(local_path):

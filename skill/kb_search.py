@@ -2099,14 +2099,18 @@ def _load_chunks(context) -> List[Dict]:
         pass
 
     # Step 2: Fallback to local on-disk cache for development/testing.
+    # The correctly-scoped chunks_path (e.g. kb/kb_chunks.jsonl) is checked
+    # first — a bare root-level "kb_chunks.jsonl" is only used as a last
+    # resort, since a stale copy left at the repo root would otherwise
+    # silently shadow the real, correctly-ingested chunks file.
     if raw is None:
         try:
             import os
             local_paths = [
-                "kb_chunks.jsonl",
                 chunks_path,
-                os.path.join(os.getcwd(), "kb_chunks.jsonl"),
                 os.path.join(os.getcwd(), chunks_path),
+                "kb_chunks.jsonl",
+                os.path.join(os.getcwd(), "kb_chunks.jsonl"),
             ]
             for local_path in local_paths:
                 if os.path.isfile(local_path):
