@@ -1,0 +1,528 @@
+: ping - 2026-07-10 11:44:30.998862+00:00
+
+data: {"type": "agent_start", "agent": "react", "label": "Thinking..."}
+
+: ping - 2026-07-10 11:44:31.999452+00:00
+
+data: {"type": "text_delta", "content": "Whats"}
+
+data: {"type": "text_delta", "content": "App"}
+
+data: {"type": "text_delta", "content": " features"}
+
+data: {"type": "text_delta", "content": " in"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "CC"}
+
+data: {"type": "text_delta", "content": " Express"}
+
+data: {"type": "text_delta", "content": " ("}
+
+data: {"type": "text_delta", "content": "G"}
+
+data: {"type": "text_delta", "content": "up"}
+
+data: {"type": "text_delta", "content": "sh"}
+
+data: {"type": "text_delta", "content": "up"}
+
+data: {"type": "text_delta", "content": ")**"}
+
+data: {"type": "text_delta", "content": " typically"}
+
+data: {"type": "text_delta", "content": " include"}
+
+data: {"type": "text_delta", "content": ":\n\n"}
+
+data: {"type": "text_delta", "content": "-"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "1"}
+
+data: {"type": "text_delta", "content": ":"}
+
+data: {"type": "text_delta", "content": "1"}
+
+data: {"type": "text_delta", "content": " and"}
+
+data: {"type": "text_delta", "content": " group"}
+
+data: {"type": "text_delta", "content": " messaging"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": ":"}
+
+data: {"type": "text_delta", "content": " send"}
+
+data: {"type": "text_delta", "content": " and"}
+
+data: {"type": "text_delta", "content": " receive"}
+
+data: {"type": "text_delta", "content": " messages"}
+
+data: {"type": "text_delta", "content": " via"}
+
+data: {"type": "text_delta", "content": " Whats"}
+
+data: {"type": "text_delta", "content": "App"}
+
+data: {"type": "text_delta", "content": ","}
+
+data: {"type": "text_delta", "content": " including"}
+
+data: {"type": "text_delta", "content": " automated"}
+
+data: {"type": "text_delta", "content": " conversations"}
+
+data: {"type": "text_delta", "content": ".\n"}
+
+data: {"type": "text_delta", "content": "-"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "Campaign"}
+
+data: {"type": "text_delta", "content": "s"}
+
+data: {"type": "text_delta", "content": " /"}
+
+data: {"type": "text_delta", "content": " broadcasts"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": ":"}
+
+data: {"type": "text_delta", "content": " send"}
+
+data: {"type": "text_delta", "content": " promo"}
+
+data: {"type": "text_delta", "content": " or"}
+
+data: {"type": "text_delta", "content": " utility"}
+
+data: {"type": "text_delta", "content": " updates"}
+
+data: {"type": "text_delta", "content": " to"}
+
+data: {"type": "text_delta", "content": " your"}
+
+data: {"type": "text_delta", "content": " contacts"}
+
+data: {"type": "text_delta", "content": " at"}
+
+data: {"type": "text_delta", "content": " scale"}
+
+data: {"type": "text_delta", "content": ".\n"}
+
+data: {"type": "text_delta", "content": "-"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "Chat"}
+
+data: {"type": "text_delta", "content": "bots"}
+
+data: {"type": "text_delta", "content": " ("}
+
+data: {"type": "text_delta", "content": "no"}
+
+data: {"type": "text_delta", "content": "-code"}
+
+data: {"type": "text_delta", "content": ")**"}
+
+data: {"type": "text_delta", "content": ":"}
+
+data: {"type": "text_delta", "content": " Bot"}
+
+data: {"type": "text_delta", "content": " Studio"}
+
+data: {"type": "text_delta", "content": "\u2013"}
+
+data: {"type": "text_delta", "content": "based"}
+
+data: {"type": "text_delta", "content": " flows"}
+
+data: {"type": "text_delta", "content": " for"}
+
+data: {"type": "text_delta", "content": " FAQs"}
+
+data: {"type": "text_delta", "content": ","}
+
+data: {"type": "text_delta", "content": " lead"}
+
+data: {"type": "text_delta", "content": " capture"}
+
+data: {"type": "text_delta", "content": ","}
+
+data: {"type": "text_delta", "content": " and"}
+
+data: {"type": "text_delta", "content": " guided"}
+
+data: {"type": "text_delta", "content": " journeys"}
+
+data: {"type": "text_delta", "content": ".\n"}
+
+data: {"type": "text_delta", "content": "-"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "Two"}
+
+data: {"type": "text_delta", "content": "-way"}
+
+data: {"type": "text_delta", "content": " support"}
+
+data: {"type": "text_delta", "content": " automation"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": ":"}
+
+data: {"type": "text_delta", "content": " def"}
+
+data: {"type": "text_delta", "content": "lect"}
+
+data: {"type": "text_delta", "content": " repetitive"}
+
+data: {"type": "text_delta", "content": " queries"}
+
+data: {"type": "text_delta", "content": ","}
+
+data: {"type": "text_delta", "content": " collect"}
+
+data: {"type": "text_delta", "content": " details"}
+
+data: {"type": "text_delta", "content": ","}
+
+data: {"type": "text_delta", "content": " and"}
+
+data: {"type": "text_delta", "content": " hand"}
+
+data: {"type": "text_delta", "content": " off"}
+
+data: {"type": "text_delta", "content": " to"}
+
+data: {"type": "text_delta", "content": " your"}
+
+data: {"type": "text_delta", "content": " team"}
+
+data: {"type": "text_delta", "content": " when"}
+
+data: {"type": "text_delta", "content": " needed"}
+
+data: {"type": "text_delta", "content": ".\n"}
+
+data: {"type": "text_delta", "content": "-"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "Templates"}
+
+data: {"type": "text_delta", "content": " +"}
+
+data: {"type": "text_delta", "content": " conversations"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": ":"}
+
+data: {"type": "text_delta", "content": " use"}
+
+data: {"type": "text_delta", "content": " approved"}
+
+data: {"type": "text_delta", "content": " Whats"}
+
+data: {"type": "text_delta", "content": "App"}
+
+data: {"type": "text_delta", "content": " templates"}
+
+data: {"type": "text_delta", "content": " for"}
+
+data: {"type": "text_delta", "content": " outbound"}
+
+: ping - 2026-07-10 11:44:32.999736+00:00
+
+data: {"type": "text_delta", "content": " messaging"}
+
+data: {"type": "text_delta", "content": " ("}
+
+data: {"type": "text_delta", "content": "then"}
+
+data: {"type": "text_delta", "content": " continue"}
+
+data: {"type": "text_delta", "content": " in"}
+
+data: {"type": "text_delta", "content": "-session"}
+
+data: {"type": "text_delta", "content": " as"}
+
+data: {"type": "text_delta", "content": " customers"}
+
+data: {"type": "text_delta", "content": " reply"}
+
+data: {"type": "text_delta", "content": ").\n"}
+
+data: {"type": "text_delta", "content": "-"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "Seg"}
+
+data: {"type": "text_delta", "content": "mentation"}
+
+data: {"type": "text_delta", "content": " &"}
+
+data: {"type": "text_delta", "content": " contact"}
+
+data: {"type": "text_delta", "content": " database"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": ":"}
+
+data: {"type": "text_delta", "content": " organize"}
+
+data: {"type": "text_delta", "content": " contacts"}
+
+data: {"type": "text_delta", "content": " and"}
+
+data: {"type": "text_delta", "content": " target"}
+
+data: {"type": "text_delta", "content": " the"}
+
+data: {"type": "text_delta", "content": " right"}
+
+data: {"type": "text_delta", "content": " audience"}
+
+data: {"type": "text_delta", "content": ".\n"}
+
+data: {"type": "text_delta", "content": "-"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "Web"}
+
+data: {"type": "text_delta", "content": "hooks"}
+
+data: {"type": "text_delta", "content": " /"}
+
+data: {"type": "text_delta", "content": " APIs"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": ":"}
+
+data: {"type": "text_delta", "content": " integrate"}
+
+data: {"type": "text_delta", "content": " Whats"}
+
+data: {"type": "text_delta", "content": "App"}
+
+data: {"type": "text_delta", "content": " messages"}
+
+data: {"type": "text_delta", "content": " with"}
+
+data: {"type": "text_delta", "content": " your"}
+
+data: {"type": "text_delta", "content": " CRM"}
+
+data: {"type": "text_delta", "content": "/help"}
+
+data: {"type": "text_delta", "content": "desk"}
+
+data: {"type": "text_delta", "content": ","}
+
+data: {"type": "text_delta", "content": " so"}
+
+data: {"type": "text_delta", "content": " events"}
+
+data: {"type": "text_delta", "content": " trigger"}
+
+data: {"type": "text_delta", "content": " actions"}
+
+data: {"type": "text_delta", "content": " in"}
+
+data: {"type": "text_delta", "content": " your"}
+
+data: {"type": "text_delta", "content": " systems"}
+
+data: {"type": "text_delta", "content": ".\n"}
+
+data: {"type": "text_delta", "content": "-"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "Analytics"}
+
+data: {"type": "text_delta", "content": " &"}
+
+data: {"type": "text_delta", "content": " conversation"}
+
+data: {"type": "text_delta", "content": " visibility"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": ":"}
+
+data: {"type": "text_delta", "content": " track"}
+
+data: {"type": "text_delta", "content": " delivery"}
+
+data: {"type": "text_delta", "content": " and"}
+
+data: {"type": "text_delta", "content": " engagement"}
+
+data: {"type": "text_delta", "content": " at"}
+
+data: {"type": "text_delta", "content": " the"}
+
+data: {"type": "text_delta", "content": " campaign"}
+
+data: {"type": "text_delta", "content": "/con"}
+
+data: {"type": "text_delta", "content": "versation"}
+
+data: {"type": "text_delta", "content": " level"}
+
+data: {"type": "text_delta", "content": ".\n"}
+
+data: {"type": "text_delta", "content": "-"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "Om"}
+
+data: {"type": "text_delta", "content": "nich"}
+
+data: {"type": "text_delta", "content": "annel"}
+
+data: {"type": "text_delta", "content": " on"}
+
+data: {"type": "text_delta", "content": " one"}
+
+data: {"type": "text_delta", "content": " platform"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": ":"}
+
+data: {"type": "text_delta", "content": " even"}
+
+data: {"type": "text_delta", "content": " if"}
+
+data: {"type": "text_delta", "content": " you"}
+
+data: {"type": "text_delta", "content": " start"}
+
+data: {"type": "text_delta", "content": " with"}
+
+data: {"type": "text_delta", "content": " Whats"}
+
+data: {"type": "text_delta", "content": "App"}
+
+data: {"type": "text_delta", "content": ","}
+
+data: {"type": "text_delta", "content": " you"}
+
+data: {"type": "text_delta", "content": " can"}
+
+data: {"type": "text_delta", "content": " add"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "R"}
+
+data: {"type": "text_delta", "content": "CS"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": " ("}
+
+data: {"type": "text_delta", "content": "and"}
+
+data: {"type": "text_delta", "content": " where"}
+
+data: {"type": "text_delta", "content": " relevant"}
+
+data: {"type": "text_delta", "content": ","}
+
+data: {"type": "text_delta", "content": " other"}
+
+data: {"type": "text_delta", "content": " channels"}
+
+data: {"type": "text_delta", "content": ")"}
+
+data: {"type": "text_delta", "content": " later"}
+
+data: {"type": "text_delta", "content": ".\n\n"}
+
+data: {"type": "text_delta", "content": "Quick"}
+
+data: {"type": "text_delta", "content": " question"}
+
+data: {"type": "text_delta", "content": ":"}
+
+data: {"type": "text_delta", "content": " are"}
+
+data: {"type": "text_delta", "content": " you"}
+
+data: {"type": "text_delta", "content": " looking"}
+
+data: {"type": "text_delta", "content": " to"}
+
+data: {"type": "text_delta", "content": " use"}
+
+data: {"type": "text_delta", "content": " Whats"}
+
+data: {"type": "text_delta", "content": "App"}
+
+data: {"type": "text_delta", "content": " mainly"}
+
+data: {"type": "text_delta", "content": " for"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "OTP"}
+
+data: {"type": "text_delta", "content": "/auth"}
+
+data: {"type": "text_delta", "content": "**,"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "transaction"}
+
+data: {"type": "text_delta", "content": "al"}
+
+data: {"type": "text_delta", "content": " alerts"}
+
+data: {"type": "text_delta", "content": "**,"}
+
+data: {"type": "text_delta", "content": " or"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "prom"}
+
+data: {"type": "text_delta", "content": "otional"}
+
+data: {"type": "text_delta", "content": " campaigns"}
+
+data: {"type": "text_delta", "content": "/support"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": "?"}
+
+: ping - 2026-07-10 11:44:34.000379+00:00
+
+data: {"type": "text_delta_finish", "role": "text", "content": "WhatsApp features in **CC Express (Gupshup)** typically include:\n\n- **1:1 and group messaging**: send and receive messages via WhatsApp, including automated conversations.\n- **Campaigns / broadcasts**: send promo or utility updates to your contacts at scale.\n- **Chatbots (no-code)**: Bot Studio\u2013based flows for FAQs, lead capture, and guided journeys.\n- **Two-way support automation**: deflect repetitive queries, collect details, and hand off to your team when needed.\n- **Templates + conversations**: use approved WhatsApp templates for outbound messaging (then continue in-session as customers reply).\n- **Segmentation & contact database**: organize contacts and target the right audience.\n- **Webhooks / APIs**: integrate WhatsApp messages with your CRM/helpdesk, so events trigger actions in your systems.\n- **Analytics & conversation visibility**: track delivery and engagement at the campaign/conversation level.\n- **Omnichannel on one platform**: even if you start with WhatsApp, you can add **RCS** (and where relevant, other channels) later.\n\nQuick question: are you looking to use WhatsApp mainly for **OTP/auth**, **transactional alerts**, or **promotional campaigns/support**?"}
+
+data: {"type": "agent_end", "agent": "react"}
+
+data: {"type": "done", "response": "WhatsApp features in **CC Express (Gupshup)** typically include:\n\n- **1:1 and group messaging**: send and receive messages via WhatsApp, including automated conversations.\n- **Campaigns / broadcasts**: send promo or utility updates to your contacts at scale.\n- **Chatbots (no-code)**: Bot Studio\u2013based flows for FAQs, lead capture, and guided journeys.\n- **Two-way support automation**: deflect repetitive queries, collect details, and hand off to your team when needed.\n- **Templates + conversations**: use approved WhatsApp templates for outbound messaging (then continue in-session as customers reply).\n- **Segmentation & contact database**: organize contacts and target the right audience.\n- **Webhooks / APIs**: integrate WhatsApp messages with your CRM/helpdesk, so events trigger actions in your systems.\n- **Analytics & conversation visibility**: track delivery and engagement at the campaign/conversation level.\n- **Omnichannel on one platform**: even if you start with WhatsApp, you can add **RCS** (and where relevant, other channels) later.\n\nQuick question: are you looking to use WhatsApp mainly for **OTP/auth**, **transactional alerts**, or **promotional campaigns/support**?", "conversation_id": 150588, "tool_calls": null, "content_blocks": [{"type": "text", "content": "WhatsApp features in **CC Express (Gupshup)** typically include:\n\n- **1:1 and group messaging**: send and receive messages via WhatsApp, including automated conversations.\n- **Campaigns / broadcasts**: send promo or utility updates to your contacts at scale.\n- **Chatbots (no-code)**: Bot Studio\u2013based flows for FAQs, lead capture, and guided journeys.\n- **Two-way support automation**: deflect repetitive queries, collect details, and hand off to your team when needed.\n- **Templates + conversations**: use approved WhatsApp templates for outbound messaging (then continue in-session as customers reply).\n- **Segmentation & contact database**: organize contacts and target the right audience.\n- **Webhooks / APIs**: integrate WhatsApp messages with your CRM/helpdesk, so events trigger actions in your systems.\n- **Analytics & conversation visibility**: track delivery and engagement at the campaign/conversation level.\n- **Omnichannel on one platform**: even if you start with WhatsApp, you can add **RCS** (and where relevant, other channels) later.\n\nQuick question: are you looking to use WhatsApp mainly for **OTP/auth**, **transactional alerts**, or **promotional campaigns/support**?"}], "total_time": 2.405, "input_tokens": 6530, "output_tokens": 260, "reasoning_tokens": null}
+

@@ -1,0 +1,15 @@
+{
+  "range": [
+    "2026-07-01T00:00:00Z",
+    "2026-07-10T08:00:00Z"
+  ],
+  "target_email": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
+  "counts": {
+    "ccexpress_null_email": 0,
+    "ccexpress_with_email": 0,
+    "other": 353
+  },
+  "fixed": [],
+  "failed": [],
+  "already_complete": []
+}

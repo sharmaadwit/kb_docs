@@ -1,0 +1,35 @@
+{
+  "total_null_email": 3,
+  "traces": [
+    {
+      "id": "kb-kb_answer-5d542e086ca94f43",
+      "timestamp": "2026-07-10T11:48:42.227Z",
+      "userId": "acct:34:unknown",
+      "user_id": 34,
+      "user_email": null,
+      "user_name": null,
+      "session_id": null,
+      "query": "According to the CC Express knowledge base documentation, what are the message template category guidelines?"
+    },
+    {
+      "id": "kb-kb_answer-53450fe9b0ca4bad",
+      "timestamp": "2026-07-10T11:48:31.824Z",
+      "userId": "acct:34:unknown",
+      "user_id": 34,
+      "user_email": null,
+      "user_name": null,
+      "session_id": null,
+      "query": "exact step-by-step documented procedure to configure a WhatsApp Business API sender in CC Express, with citations from help docs"
+    },
+    {
+      "id": "kb-kb_answer-626d429f4d3f425a",
+      "timestamp": "2026-07-10T11:37:41.013Z",
+      "userId": "acct:34:unknown",
+      "user_id": 34,
+      "user_email": null,
+      "user_name": null,
+      "session_id": null,
+      "query": "How do I set up integrations?"
+    }
+  ]
+}

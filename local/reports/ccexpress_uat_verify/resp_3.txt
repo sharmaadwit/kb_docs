@@ -1,0 +1,124 @@
+: ping - 2026-07-10 11:44:41.629172+00:00
+
+data: {"type": "agent_start", "agent": "react", "label": "Thinking..."}
+
+: ping - 2026-07-10 11:44:42.629214+00:00
+
+data: {"type": "text_delta", "content": "Which"}
+
+data: {"type": "text_delta", "content": " product"}
+
+data: {"type": "text_delta", "content": " are"}
+
+data: {"type": "text_delta", "content": " you"}
+
+data: {"type": "text_delta", "content": " using"}
+
+data: {"type": "text_delta", "content": " in"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "CC"}
+
+data: {"type": "text_delta", "content": " Express"}
+
+data: {"type": "text_delta", "content": " /"}
+
+data: {"type": "text_delta", "content": " G"}
+
+data: {"type": "text_delta", "content": "up"}
+
+data: {"type": "text_delta", "content": "sh"}
+
+data: {"type": "text_delta", "content": "up"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": " to"}
+
+data: {"type": "text_delta", "content": " add"}
+
+data: {"type": "text_delta", "content": " the"}
+
+data: {"type": "text_delta", "content": " phone"}
+
+data: {"type": "text_delta", "content": " number"}
+
+data: {"type": "text_delta", "content": "\u2014"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": "Whats"}
+
+data: {"type": "text_delta", "content": "App"}
+
+data: {"type": "text_delta", "content": " sender"}
+
+data: {"type": "text_delta", "content": " setup"}
+
+data: {"type": "text_delta", "content": "**,"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "Contact"}
+
+data: {"type": "text_delta", "content": " Database"}
+
+data: {"type": "text_delta", "content": "**,"}
+
+data: {"type": "text_delta", "content": " or"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "Integr"}
+
+data: {"type": "text_delta", "content": "ations"}
+
+data: {"type": "text_delta", "content": "/API"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": "?\n\n"}
+
+data: {"type": "text_delta", "content": "If"}
+
+data: {"type": "text_delta", "content": " you"}
+
+data: {"type": "text_delta", "content": " tell"}
+
+data: {"type": "text_delta", "content": " me"}
+
+data: {"type": "text_delta", "content": " that"}
+
+data: {"type": "text_delta", "content": " ("}
+
+data: {"type": "text_delta", "content": "and"}
+
+data: {"type": "text_delta", "content": " your"}
+
+data: {"type": "text_delta", "content": " country"}
+
+data: {"type": "text_delta", "content": "),"}
+
+data: {"type": "text_delta", "content": " I"}
+
+data: {"type": "text_delta", "content": "\u2019ll"}
+
+data: {"type": "text_delta", "content": " give"}
+
+data: {"type": "text_delta", "content": " the"}
+
+data: {"type": "text_delta", "content": " exact"}
+
+data: {"type": "text_delta", "content": " steps"}
+
+data: {"type": "text_delta", "content": "."}
+
+data: {"type": "text_delta", "content": "  \n\n"}
+
+data: {"type": "text_delta_finish", "role": "text", "content": "Which product are you using in **CC Express / Gupshup** to add the phone number\u2014**WhatsApp sender setup**, **Contact Database**, or **Integrations/API**?\n\nIf you tell me that (and your country), I\u2019ll give the exact steps."}
+
+data: {"type": "agent_end", "agent": "react"}
+
+data: {"type": "done", "response": "Which product are you using in **CC Express / Gupshup** to add the phone number\u2014**WhatsApp sender setup**, **Contact Database**, or **Integrations/API**?\n\nIf you tell me that (and your country), I\u2019ll give the exact steps.", "conversation_id": 150590, "tool_calls": null, "content_blocks": [{"type": "text", "content": "Which product are you using in **CC Express / Gupshup** to add the phone number\u2014**WhatsApp sender setup**, **Contact Database**, or **Integrations/API**?\n\nIf you tell me that (and your country), I\u2019ll give the exact steps."}], "total_time": 1.318, "input_tokens": 6532, "output_tokens": 89, "reasoning_tokens": null}
+

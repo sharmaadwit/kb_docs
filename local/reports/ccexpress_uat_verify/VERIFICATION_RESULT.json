@@ -1,0 +1,48 @@
+{
+  "verification_date": "2026-07-10T11:50:00Z",
+  "fix_commit": "725ed5b0",
+  "fix_commit_pushed_to_origin": false,
+  "origin_main_head": "961e6074",
+  "endpoint": "https://superagent.smsgupshup.com/api/agents/chat/stream",
+  "auth_header_used": "X-API-Key",
+  "required_body_fields": ["message", "user_email_id", "session_id"],
+  "result": "FIX NOT VERIFIED ON UAT - deployed code does not contain the fix",
+  "reason": "Commit 725ed5b0 is only in the local working tree; it is not pushed to origin and not deployed. UAT still runs release 4 / kb-prod-agent (pre-fix).",
+  "local_code_verification": "PASS - _langfuse_user_context extracts user_email_id and all variants; _send_langfuse merges session_id/org keys; debug code removed",
+  "live_uat_traces": [
+    {
+      "trace_id": "kb-kb_answer-53450fe9b0ca4bad",
+      "timestamp": "2026-07-10T11:48:31Z",
+      "sent_user_email_id": "ccexpress_test1@example.com",
+      "sent_session_id": "sess-kbforce-A-*",
+      "trace_userId": "acct:34:unknown",
+      "md_user_email": null,
+      "md_session_id": null,
+      "environment": "PROD",
+      "deployment_label": "kb-prod-agent",
+      "release": 4
+    },
+    {
+      "trace_id": "kb-kb_answer-5d542e086ca94f43",
+      "timestamp": "2026-07-10T11:48:42Z",
+      "sent_user_email_id": "ccexpress_test2@gupshup.io",
+      "sent_session_id": "sess-kbforce-B-*",
+      "trace_userId": "acct:34:unknown",
+      "md_user_email": null,
+      "md_session_id": null,
+      "environment": "PROD",
+      "deployment_label": "kb-prod-agent",
+      "release": 4
+    }
+  ],
+  "before_baseline_trace": {
+    "trace_id": "kb-kb_answer-a500be77fa504fd3",
+    "userId": "visitor-8cbe2c97-d8dd-4d5f-a9aa-ea01f087314e@ccexpress.gupshup.io",
+    "note": "old hardcoded visitor mapping, user_id=2, no session_id"
+  },
+  "observations": [
+    "First 3 test queries (WhatsApp features / Tell me about CC Express / add phone number) did NOT invoke the kb_answer skill at all (tool_calls empty); the agent answered from its own model. Re-ran with KB-forcing queries to exercise the skill path.",
+    "UAT agent authenticates as its own account user_id=34; it did not forward the client-supplied user_email_id into the skill params/context.",
+    "session_id was sent in every request body but did not surface in trace metadata (pre-fix code path)."
+  ]
+}

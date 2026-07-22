@@ -1,0 +1,582 @@
+: ping - 2026-07-10 11:44:35.393037+00:00
+
+data: {"type": "agent_start", "agent": "react", "label": "Thinking..."}
+
+: ping - 2026-07-10 11:44:36.393059+00:00
+
+: ping - 2026-07-10 11:44:37.393426+00:00
+
+data: {"type": "plan_update", "explanation": "Get a quick sense of your use case and region, then tailor a CC Express overview to your needs.", "items": [{"step": "Ask for your company website (for tailored details)", "status": "in_progress"}, {"step": "Learn your primary use case (OTP/auth, transactional, promos, support, etc.)", "status": "pending"}, {"step": "Share the best-fit CC Express capabilities + channel recommendations", "status": "pending"}]}
+
+data: {"type": "text_delta", "content": "CC"}
+
+data: {"type": "text_delta", "content": " Express"}
+
+data: {"type": "text_delta", "content": " is"}
+
+data: {"type": "text_delta", "content": " G"}
+
+data: {"type": "text_delta", "content": "up"}
+
+data: {"type": "text_delta", "content": "sh"}
+
+data: {"type": "text_delta", "content": "up"}
+
+data: {"type": "text_delta", "content": "\u2019s"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "con"}
+
+data: {"type": "text_delta", "content": "vers"}
+
+data: {"type": "text_delta", "content": "ational"}
+
+data: {"type": "text_delta", "content": "-commerce"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": " platform"}
+
+data: {"type": "text_delta", "content": " built"}
+
+data: {"type": "text_delta", "content": " to"}
+
+data: {"type": "text_delta", "content": " help"}
+
+data: {"type": "text_delta", "content": " brands"}
+
+data: {"type": "text_delta", "content": " and"}
+
+data: {"type": "text_delta", "content": " enterprises"}
+
+data: {"type": "text_delta", "content": " drive"}
+
+data: {"type": "text_delta", "content": " outcomes"}
+
+data: {"type": "text_delta", "content": " on"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "Whats"}
+
+data: {"type": "text_delta", "content": "App"}
+
+data: {"type": "text_delta", "content": ","}
+
+data: {"type": "text_delta", "content": " R"}
+
+data: {"type": "text_delta", "content": "CS"}
+
+data: {"type": "text_delta", "content": ","}
+
+: ping - 2026-07-10 11:44:38.393590+00:00
+
+data: {"type": "text_delta", "content": " and"}
+
+data: {"type": "text_delta", "content": " ("}
+
+data: {"type": "text_delta", "content": "only"}
+
+data: {"type": "text_delta", "content": " India"}
+
+data: {"type": "text_delta", "content": ")"}
+
+data: {"type": "text_delta", "content": " SMS"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": "\u2014"}
+
+data: {"type": "text_delta", "content": "with"}
+
+data: {"type": "text_delta", "content": " the"}
+
+data: {"type": "text_delta", "content": " core"}
+
+data: {"type": "text_delta", "content": " building"}
+
+data: {"type": "text_delta", "content": " blocks"}
+
+data: {"type": "text_delta", "content": " to"}
+
+data: {"type": "text_delta", "content": " go"}
+
+data: {"type": "text_delta", "content": " from"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "campaign"}
+
+data: {"type": "text_delta", "content": "s"}
+
+data: {"type": "text_delta", "content": " \u2192"}
+
+data: {"type": "text_delta", "content": " conversations"}
+
+data: {"type": "text_delta", "content": " \u2192"}
+
+data: {"type": "text_delta", "content": " conversions"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": ".\n\n"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": "What"}
+
+data: {"type": "text_delta", "content": " you"}
+
+data: {"type": "text_delta", "content": " can"}
+
+data: {"type": "text_delta", "content": " do"}
+
+data: {"type": "text_delta", "content": " with"}
+
+data: {"type": "text_delta", "content": " CC"}
+
+data: {"type": "text_delta", "content": " Express"}
+
+data: {"type": "text_delta", "content": "**\n"}
+
+data: {"type": "text_delta", "content": "-"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "Broadcast"}
+
+data: {"type": "text_delta", "content": " &"}
+
+data: {"type": "text_delta", "content": " campaigns"}
+
+data: {"type": "text_delta", "content": ":**"}
+
+data: {"type": "text_delta", "content": " run"}
+
+data: {"type": "text_delta", "content": " targeted"}
+
+data: {"type": "text_delta", "content": " promo"}
+
+data: {"type": "text_delta", "content": " and"}
+
+data: {"type": "text_delta", "content": " lifecycle"}
+
+data: {"type": "text_delta", "content": " messaging"}
+
+data: {"type": "text_delta", "content": " through"}
+
+data: {"type": "text_delta", "content": " Campaign"}
+
+data: {"type": "text_delta", "content": " Manager"}
+
+data: {"type": "text_delta", "content": "\n"}
+
+data: {"type": "text_delta", "content": "-"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "Convers"}
+
+data: {"type": "text_delta", "content": "ational"}
+
+data: {"type": "text_delta", "content": " flows"}
+
+data: {"type": "text_delta", "content": " &"}
+
+data: {"type": "text_delta", "content": " automation"}
+
+data: {"type": "text_delta", "content": ":**"}
+
+data: {"type": "text_delta", "content": " build"}
+
+data: {"type": "text_delta", "content": " experiences"}
+
+data: {"type": "text_delta", "content": " in"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "Bot"}
+
+data: {"type": "text_delta", "content": " Studio"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": " ("}
+
+data: {"type": "text_delta", "content": "and"}
+
+data: {"type": "text_delta", "content": " manage"}
+
+data: {"type": "text_delta", "content": " conversation"}
+
+data: {"type": "text_delta", "content": " logic"}
+
+data: {"type": "text_delta", "content": " via"}
+
+data: {"type": "text_delta", "content": " APIs"}
+
+data: {"type": "text_delta", "content": ")\n"}
+
+data: {"type": "text_delta", "content": "-"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "Two"}
+
+data: {"type": "text_delta", "content": "-way"}
+
+data: {"type": "text_delta", "content": " customer"}
+
+data: {"type": "text_delta", "content": " engagement"}
+
+data: {"type": "text_delta", "content": ":**"}
+
+data: {"type": "text_delta", "content": " support"}
+
+data: {"type": "text_delta", "content": " teams"}
+
+data: {"type": "text_delta", "content": " and"}
+
+data: {"type": "text_delta", "content": " automated"}
+
+data: {"type": "text_delta", "content": " assistants"}
+
+data: {"type": "text_delta", "content": " to"}
+
+data: {"type": "text_delta", "content": " handle"}
+
+data: {"type": "text_delta", "content": " inquiries"}
+
+data: {"type": "text_delta", "content": " and"}
+
+data: {"type": "text_delta", "content": " actions"}
+
+data: {"type": "text_delta", "content": "\n"}
+
+data: {"type": "text_delta", "content": "-"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "Integration"}
+
+data: {"type": "text_delta", "content": "-ready"}
+
+data: {"type": "text_delta", "content": ":**"}
+
+data: {"type": "text_delta", "content": " connect"}
+
+data: {"type": "text_delta", "content": " with"}
+
+data: {"type": "text_delta", "content": " your"}
+
+data: {"type": "text_delta", "content": " CRM"}
+
+data: {"type": "text_delta", "content": "/order"}
+
+data: {"type": "text_delta", "content": " systems"}
+
+data: {"type": "text_delta", "content": " using"}
+
+data: {"type": "text_delta", "content": " APIs"}
+
+data: {"type": "text_delta", "content": " /"}
+
+data: {"type": "text_delta", "content": " Integr"}
+
+data: {"type": "text_delta", "content": "ations"}
+
+data: {"type": "text_delta", "content": "\n"}
+
+data: {"type": "text_delta", "content": "-"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "Live"}
+
+data: {"type": "text_delta", "content": " chat"}
+
+data: {"type": "text_delta", "content": " +"}
+
+data: {"type": "text_delta", "content": " agent"}
+
+data: {"type": "text_delta", "content": " workflows"}
+
+data: {"type": "text_delta", "content": ":**"}
+
+data: {"type": "text_delta", "content": " for"}
+
+data: {"type": "text_delta", "content": " human"}
+
+data: {"type": "text_delta", "content": "-assisted"}
+
+data: {"type": "text_delta", "content": " support"}
+
+data: {"type": "text_delta", "content": " when"}
+
+data: {"type": "text_delta", "content": " needed"}
+
+data: {"type": "text_delta", "content": "\n"}
+
+data: {"type": "text_delta", "content": "-"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "R"}
+
+data: {"type": "text_delta", "content": "CS"}
+
+data: {"type": "text_delta", "content": " +"}
+
+data: {"type": "text_delta", "content": " trust"}
+
+data: {"type": "text_delta", "content": "/"}
+
+data: {"type": "text_delta", "content": "verification"}
+
+data: {"type": "text_delta", "content": " use"}
+
+data: {"type": "text_delta", "content": " cases"}
+
+data: {"type": "text_delta", "content": " ("}
+
+data: {"type": "text_delta", "content": "where"}
+
+data: {"type": "text_delta", "content": " supported"}
+
+data: {"type": "text_delta", "content": "):"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": " leverage"}
+
+data: {"type": "text_delta", "content": " R"}
+
+data: {"type": "text_delta", "content": "CS"}
+
+data: {"type": "text_delta", "content": " features"}
+
+data: {"type": "text_delta", "content": " alongside"}
+
+data: {"type": "text_delta", "content": " Whats"}
+
+data: {"type": "text_delta", "content": "App"}
+
+data: {"type": "text_delta", "content": " for"}
+
+data: {"type": "text_delta", "content": " higher"}
+
+data: {"type": "text_delta", "content": " engagement"}
+
+data: {"type": "text_delta", "content": "\n\n"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": "A"}
+
+data: {"type": "text_delta", "content": " key"}
+
+data: {"type": "text_delta", "content": " setup"}
+
+data: {"type": "text_delta", "content": " detail"}
+
+data: {"type": "text_delta", "content": ":**"}
+
+data: {"type": "text_delta", "content": " CC"}
+
+data: {"type": "text_delta", "content": " Express"}
+
+data: {"type": "text_delta", "content": " is"}
+
+data: {"type": "text_delta", "content": " designed"}
+
+data: {"type": "text_delta", "content": " for"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "mess"}
+
+data: {"type": "text_delta", "content": "aging"}
+
+data: {"type": "text_delta", "content": " outcomes"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": " ("}
+
+data: {"type": "text_delta", "content": "marketing"}
+
+data: {"type": "text_delta", "content": "/prom"}
+
+data: {"type": "text_delta", "content": "otional"}
+
+data: {"type": "text_delta", "content": ","}
+
+data: {"type": "text_delta", "content": " utility"}
+
+data: {"type": "text_delta", "content": "/auth"}
+
+data: {"type": "text_delta", "content": ","}
+
+data: {"type": "text_delta", "content": " support"}
+
+data: {"type": "text_delta", "content": "/"}
+
+data: {"type": "text_delta", "content": "automation"}
+
+: ping - 2026-07-10 11:44:39.393725+00:00
+
+data: {"type": "text_delta", "content": ","}
+
+data: {"type": "text_delta", "content": " transactional"}
+
+data: {"type": "text_delta", "content": " updates"}
+
+data: {"type": "text_delta", "content": ")."}
+
+data: {"type": "text_delta", "content": " It"}
+
+data: {"type": "text_delta", "content": "\u2019s"}
+
+data: {"type": "text_delta", "content": " not"}
+
+data: {"type": "text_delta", "content": " for"}
+
+data: {"type": "text_delta", "content": " web"}
+
+data: {"type": "text_delta", "content": "/"}
+
+data: {"type": "text_delta", "content": "Instagram"}
+
+data: {"type": "text_delta", "content": " or"}
+
+data: {"type": "text_delta", "content": " AI"}
+
+data: {"type": "text_delta", "content": " agent"}
+
+data: {"type": "text_delta", "content": " onboarding"}
+
+data: {"type": "text_delta", "content": " on"}
+
+data: {"type": "text_delta", "content": " CC"}
+
+data: {"type": "text_delta", "content": " Express"}
+
+data: {"type": "text_delta", "content": "\u2014"}
+
+data: {"type": "text_delta", "content": "those"}
+
+data: {"type": "text_delta", "content": " are"}
+
+data: {"type": "text_delta", "content": " on"}
+
+data: {"type": "text_delta", "content": " G"}
+
+data: {"type": "text_delta", "content": "up"}
+
+data: {"type": "text_delta", "content": "sh"}
+
+data: {"type": "text_delta", "content": "up"}
+
+data: {"type": "text_delta", "content": "\u2019s"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "Enterprise"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": " platform"}
+
+data: {"type": "text_delta", "content": ".\n\n"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": "One"}
+
+data: {"type": "text_delta", "content": " quick"}
+
+data: {"type": "text_delta", "content": " question"}
+
+data: {"type": "text_delta", "content": " so"}
+
+data: {"type": "text_delta", "content": " I"}
+
+data: {"type": "text_delta", "content": " can"}
+
+data: {"type": "text_delta", "content": " tailor"}
+
+data: {"type": "text_delta", "content": " this"}
+
+data: {"type": "text_delta", "content": ":**"}
+
+data: {"type": "text_delta", "content": "  \n"}
+
+data: {"type": "text_delta", "content": "What"}
+
+data: {"type": "text_delta", "content": "\u2019s"}
+
+data: {"type": "text_delta", "content": " your"}
+
+data: {"type": "text_delta", "content": " **"}
+
+data: {"type": "text_delta", "content": "company"}
+
+data: {"type": "text_delta", "content": " website"}
+
+data: {"type": "text_delta", "content": "**"}
+
+data: {"type": "text_delta", "content": "?"}
+
+data: {"type": "text_delta", "content": " ("}
+
+data: {"type": "text_delta", "content": "If"}
+
+data: {"type": "text_delta", "content": " you"}
+
+data: {"type": "text_delta", "content": " share"}
+
+data: {"type": "text_delta", "content": " it"}
+
+data: {"type": "text_delta", "content": ","}
+
+data: {"type": "text_delta", "content": " I"}
+
+data: {"type": "text_delta", "content": "\u2019ll"}
+
+data: {"type": "text_delta", "content": " tell"}
+
+data: {"type": "text_delta", "content": " you"}
+
+data: {"type": "text_delta", "content": " which"}
+
+data: {"type": "text_delta", "content": " CC"}
+
+data: {"type": "text_delta", "content": " Express"}
+
+data: {"type": "text_delta", "content": " paths"}
+
+data: {"type": "text_delta", "content": " usually"}
+
+data: {"type": "text_delta", "content": " fit"}
+
+data: {"type": "text_delta", "content": " your"}
+
+data: {"type": "text_delta", "content": " industry"}
+
+data: {"type": "text_delta", "content": " and"}
+
+data: {"type": "text_delta", "content": " message"}
+
+data: {"type": "text_delta", "content": " type"}
+
+data: {"type": "text_delta", "content": ".)"}
+
+data: {"type": "text_delta", "content": "  \n\n"}
+
+data: {"type": "text_delta_finish", "role": "text", "content": "CC Express is Gupshup\u2019s **conversational-commerce** platform built to help brands and enterprises drive outcomes on **WhatsApp, RCS, and (only India) SMS**\u2014with the core building blocks to go from **campaigns \u2192 conversations \u2192 conversions**.\n\n**What you can do with CC Express**\n- **Broadcast & campaigns:** run targeted promo and lifecycle messaging through Campaign Manager\n- **Conversational flows & automation:** build experiences in **Bot Studio** (and manage conversation logic via APIs)\n- **Two-way customer engagement:** support teams and automated assistants to handle inquiries and actions\n- **Integration-ready:** connect with your CRM/order systems using APIs / Integrations\n- **Live chat + agent workflows:** for human-assisted support when needed\n- **RCS + trust/verification use cases (where supported):** leverage RCS features alongside WhatsApp for higher engagement\n\n**A key setup detail:** CC Express is designed for **messaging outcomes** (marketing/promotional, utility/auth, support/automation, transactional updates). It\u2019s not for web/Instagram or AI agent onboarding on CC Express\u2014those are on Gupshup\u2019s **Enterprise** platform.\n\n**One quick question so I can tailor this:**  \nWhat\u2019s your **company website**? (If you share it, I\u2019ll tell you which CC Express paths usually fit your industry and message type.)"}
+
+data: {"type": "agent_end", "agent": "react"}
+
+data: {"type": "done", "response": "CC Express is Gupshup\u2019s **conversational-commerce** platform built to help brands and enterprises drive outcomes on **WhatsApp, RCS, and (only India) SMS**\u2014with the core building blocks to go from **campaigns \u2192 conversations \u2192 conversions**.\n\n**What you can do with CC Express**\n- **Broadcast & campaigns:** run targeted promo and lifecycle messaging through Campaign Manager\n- **Conversational flows & automation:** build experiences in **Bot Studio** (and manage conversation logic via APIs)\n- **Two-way customer engagement:** support teams and automated assistants to handle inquiries and actions\n- **Integration-ready:** connect with your CRM/order systems using APIs / Integrations\n- **Live chat + agent workflows:** for human-assisted support when needed\n- **RCS + trust/verification use cases (where supported):** leverage RCS features alongside WhatsApp for higher engagement\n\n**A key setup detail:** CC Express is designed for **messaging outcomes** (marketing/promotional, utility/auth, support/automation, transactional updates). It\u2019s not for web/Instagram or AI agent onboarding on CC Express\u2014those are on Gupshup\u2019s **Enterprise** platform.\n\n**One quick question so I can tailor this:**  \nWhat\u2019s your **company website**? (If you share it, I\u2019ll tell you which CC Express paths usually fit your industry and message type.)", "conversation_id": 150589, "tool_calls": null, "content_blocks": [{"type": "plan", "explanation": "Get a quick sense of your use case and region, then tailor a CC Express overview to your needs.", "items": [{"step": "Ask for your company website (for tailored details)", "status": "in_progress"}, {"step": "Learn your primary use case (OTP/auth, transactional, promos, support, etc.)", "status": "pending"}, {"step": "Share the best-fit CC Express capabilities + channel recommendations", "status": "pending"}]}, {"type": "text", "content": "CC Express is Gupshup\u2019s **conversational-commerce** platform built to help brands and enterprises drive outcomes on **WhatsApp, RCS, and (only India) SMS**\u2014with the core building blocks to go from **campaigns \u2192 conversations \u2192 conversions**.\n\n**What you can do with CC Express**\n- **Broadcast & campaigns:** run targeted promo and lifecycle messaging through Campaign Manager\n- **Conversational flows & automation:** build experiences in **Bot Studio** (and manage conversation logic via APIs)\n- **Two-way customer engagement:** support teams and automated assistants to handle inquiries and actions\n- **Integration-ready:** connect with your CRM/order systems using APIs / Integrations\n- **Live chat + agent workflows:** for human-assisted support when needed\n- **RCS + trust/verification use cases (where supported):** leverage RCS features alongside WhatsApp for higher engagement\n\n**A key setup detail:** CC Express is designed for **messaging outcomes** (marketing/promotional, utility/auth, support/automation, transactional updates). It\u2019s not for web/Instagram or AI agent onboarding on CC Express\u2014those are on Gupshup\u2019s **Enterprise** platform.\n\n**One quick question so I can tailor this:**  \nWhat\u2019s your **company website**? (If you share it, I\u2019ll tell you which CC Express paths usually fit your industry and message type.)"}], "total_time": 4.258, "input_tokens": 13173, "output_tokens": 426, "reasoning_tokens": null}
+
