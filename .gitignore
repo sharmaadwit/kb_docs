@@ -53,3 +53,6 @@ local/raw/*.json3
 local/raw/*.srt
 local/raw/*.vtt
 local/raw/video_meta.json
+
+# User email PII reports (local only — do not push)
+local/reports/top_users_gupshup_knowlarity.csv
