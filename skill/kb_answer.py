@@ -3305,6 +3305,33 @@ CONCEPT_REGISTRY: List[Dict] = [
         "module": "Overview",
     },
     {
+        "id": "tiktok_ads_onboarding",
+        "aliases": [
+            "tiktok ads",
+            "tiktok ads manager",
+            "bind tiktok ads",
+            "bind a tiktok ads account",
+            "connect tiktok ads",
+            "connect a tiktok ads account",
+            "tiktok ads account",
+            "tiktok business ad account",
+            "onboard tiktok ads manager",
+            "onboarding tiktok ads manager",
+            "ttam",
+            "click to whatsapp ad on ttam",
+            "click-to-whatsapp ad on ttam",
+            "tiktok lead gen",
+            "tiktok leads to whatsapp",
+        ],
+        "keywords": ["tiktok", "ttam", "ads manager", "bind", "connect", "lead"],
+        "source_boosts": {
+            "onboarding-tiktok-ads-manager-to-gupshup": 6.0,
+            "creating-a-click-to-whatsapp-ad-on-ttam": 6.0,
+        },
+        "display": "TikTok Ads Manager Onboarding",
+        "module": "Ctx",
+    },
+    {
         "id": "whatsapp_inbound_webhook",
         "aliases": [
             "whatsapp inbound webhook",
