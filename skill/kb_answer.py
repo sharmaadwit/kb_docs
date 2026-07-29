@@ -6922,6 +6922,28 @@ def _langfuse_user_context(
             user_email = f"sess:{session_id.strip()}@ccexpress.gupshup.io"
             synthesized_session_identity = True
 
+    # Fallback for callers that send neither email nor session_id, but do send
+    # executing_user_id (observed 2026-07-29 on PROD_EXT traffic where user_id
+    # is a shared/platform account like 30 — executing_user_id is the actual
+    # per-caller identifier). More specific than the acct:{user_id} fallback
+    # below, which would otherwise collapse many distinct callers into one.
+    synthesized_executing_user_identity = False
+    if not user_email:
+        executing_user_id = params.get("executing_user_id") or params.get("executingUserId")
+        if not executing_user_id and isinstance(params, dict):
+            for container_key in ("metadata", "context", "tenant_context", "user"):
+                container = params.get(container_key)
+                if isinstance(container, dict):
+                    executing_user_id = container.get("executing_user_id") or container.get("executingUserId")
+                    if executing_user_id:
+                        break
+        if not executing_user_id and context is not None:
+            executing_user_id = getattr(context, "executing_user_id", None) or getattr(context, "executingUserId", None)
+
+        if isinstance(executing_user_id, (str, int)) and str(executing_user_id).strip():
+            user_email = f"exec:{str(executing_user_id).strip()}@ccexpress.gupshup.io"
+            synthesized_executing_user_identity = True
+
     trace_user_id = ""
     synthesized_account_identity = False
     if user_email:
@@ -6949,6 +6971,8 @@ def _langfuse_user_context(
         # Mark that this identity was derived from session_id (anonymous CC Express),
         # not a real email, so analytics can distinguish synthesized from authenticated.
         meta_user["identity_source"] = "session_id"
+    elif synthesized_executing_user_identity:
+        meta_user["identity_source"] = "executing_user_id"
     elif synthesized_account_identity:
         meta_user["identity_source"] = "account_id"
     return (trace_user_id or None, meta_user)
@@ -7115,7 +7139,7 @@ def _send_langfuse(
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "logic_version": "kb-answer-v4.4",
+        "logic_version": "kb-answer-v4.5",
         "prompt_version": None,
         "model": "rules-runtime",
         "temperature": 0,
