@@ -6954,6 +6954,27 @@ def _langfuse_user_context(
     return (trace_user_id or None, meta_user)
 
 
+def _debug_identity_param_keys(context, params: Optional[Dict[str, Any]] = None) -> Optional[str]:
+    """TEMPORARY diagnostic (remove once PROD_EXT email-drop root cause is confirmed):
+    when no real email was resolved, capture only the *key names* SuperAgent sent
+    (never values, to avoid leaking PII into telemetry) so we can see whether the
+    email arrived under an unrecognized key or top-level params were empty/nested."""
+    params = params or {}
+    try:
+        top_keys = sorted(params.keys()) if isinstance(params, dict) else [f"<non-dict:{type(params).__name__}>"]
+        nested = params.get("parameters") if isinstance(params, dict) else None
+        if isinstance(nested, str):
+            try:
+                nested = json.loads(nested)
+            except Exception:
+                nested = f"<unparsed-json-str len={len(nested)}>"
+        nested_keys = sorted(nested.keys()) if isinstance(nested, dict) else (str(nested) if nested else None)
+        ctx_attrs = [a for a in ("user_email", "user_id", "user_name", "session_id", "sessionId") if context is not None and getattr(context, a, None) is not None]
+        return json.dumps({"top_keys": top_keys, "nested_parameters_keys": nested_keys, "context_attrs_present": ctx_attrs})
+    except Exception as e:
+        return f"<debug_capture_error: {type(e).__name__}>"
+
+
 def _build_langfuse_request(
     trace_name: str, trace_id: str, query: str, answer: str, metadata: Dict,
     trace_user_id: Optional[str] = None,
@@ -7064,6 +7085,12 @@ def _send_langfuse(
     unanswered = (not answered) and ("i don't know" in (answer or "").lower())
     identifiers = _telemetry_identifiers(context, params)
     trace_user_id, user_meta = _langfuse_user_context(context, params)
+    _identity_debug = None
+    if user_meta.get("identity_source") or not user_meta.get("user_email"):
+        # No real email resolved (only a synthesized/fallback identity, or none at all) —
+        # capture param key shape for root-causing PROD_EXT email drops. See
+        # _debug_identity_param_keys docstring; remove once root cause is confirmed.
+        _identity_debug = _debug_identity_param_keys(context, params)
     q_prev = query if len(query) <= _TELEMETRY_QUERY_PREVIEW else query[:_TELEMETRY_QUERY_PREVIEW] + "…"
     # Telemetry logs the user's ORIGINAL query (pre-translation). The translated
     # form is recorded as query_translated ONLY when translation changed the text,
@@ -7081,13 +7108,14 @@ def _send_langfuse(
         "user_email": user_meta.get("user_email"),
         "user_name": user_meta.get("user_name"),
         "user_id": user_meta.get("user_id"),
+        "identity_debug_param_keys": _identity_debug,
         "query": orig_prev,
         "answer_preview": a_prev,
         "release": identifiers.get("release"),
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "logic_version": "kb-answer-v4.3",
+        "logic_version": "kb-answer-v4.4",
         "prompt_version": None,
         "model": "rules-runtime",
         "temperature": 0,
