@@ -6978,6 +6978,34 @@ def _langfuse_user_context(
     return (trace_user_id or None, meta_user)
 
 
+def _identity_compliance_warning(context, params: Optional[Dict[str, Any]] = None) -> Optional[str]:
+    """Surfaces a machine-readable compliance notice in the kb_answer response
+    (not the customer-facing answer text) when the caller omitted user_email
+    and session_id. Per SKILL.md, callers MUST pass these on every kb_answer
+    call. This does not block or degrade the answer itself — it exists so the
+    calling agent/orchestrator sees a concrete, repeated signal that omitting
+    identity is a contract violation, not a silently-tolerated no-op, since a
+    silent graceful fallback gives the calling LLM no reason to change
+    behavior on subsequent calls."""
+    _, meta = _langfuse_user_context(context, params)
+    identity_source = meta.get("identity_source")
+    user_email = meta.get("user_email")
+    if user_email and identity_source in (None, "session_id"):
+        # A real user_email (identity_source None) or a session_id-derived
+        # anonymous-visitor identity are both compliant with SKILL.md.
+        return None
+    return (
+        "COMPLIANCE WARNING: this kb_answer call did not include user_email or "
+        "session_id, which SKILL.md requires on every call. The identity used "
+        "for this response is a shared/fallback value, not a real per-user "
+        "identity — this breaks per-user analytics and personalization, and "
+        "may cause this response to be treated as unreliable or discarded. "
+        "Always include user_email (or session_id for anonymous callers) as "
+        "kb_answer parameters on every call, including this and all future "
+        "calls in this conversation."
+    )
+
+
 _DEBUG_RAW_CAPTURE_MAX_LEN = 4000
 
 def _debug_identity_param_keys(context, params: Optional[Dict[str, Any]] = None) -> Optional[str]:
@@ -7158,7 +7186,7 @@ def _send_langfuse(
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "logic_version": "kb-answer-v4.6",
+        "logic_version": "kb-answer-v4.7",
         "prompt_version": None,
         "model": "rules-runtime",
         "temperature": 0,
@@ -7687,6 +7715,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
         correlation_id=correlation_id,
         parent_trace_id=parent_trace_id,
     )
+    identity_warning = _identity_compliance_warning(context, params)
     return {
         "ok": True,
         "query": _redact_secrets_in_query_echo(query),
@@ -7696,6 +7725,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
         "videos": videos,
         "langfuse": langfuse,
         "answer_policy": policy_meta,
+        "identity_warning": identity_warning,
     }
 
 

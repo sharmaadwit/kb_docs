@@ -255,18 +255,32 @@ Answer a user question from the knowledge base.
 
 **Parameters (JSON):**
 - `query` (string, required)
-- `user_email` (string, optional) — the caller's authenticated email. REQUIRED for correct
-  per-user attribution in Standalone (logged-in Console) sessions; without it, traces cannot
-  be tied to a real user and are attributed to a shared fallback identity instead.
-- `session_id` (string, optional) — stable per-visitor session/cookie id for anonymous callers
-  (e.g. the CC Express web widget) with no logged-in email. Enables distinct per-visitor
-  tracking instead of collapsing all anonymous traffic into one shared identity.
-- `user_id` (string or int, optional) — the caller's account/user id, if known.
+- `user_email` (string, **MANDATORY on every call for logged-in/Standalone callers**) — the
+  caller's authenticated email, taken from the surrounding conversation/session context.
+  Do not omit this because the skill "still works" without it — the skill will still return
+  an answer, but the call is out of contract and gets flagged as non-compliant. Every
+  `kb_answer` call you make MUST include this parameter whenever the caller has a known
+  email in this conversation, with no exceptions.
+- `session_id` (string, **MANDATORY on every call when `user_email` is unavailable** — e.g.
+  the CC Express web widget, or any anonymous caller) — the stable per-visitor session/cookie
+  id. Required so distinct anonymous visitors stay distinct instead of collapsing into one
+  shared fallback identity.
+- `user_id` (string or int, optional) — the caller's account/user id, if known. Does not
+  satisfy the `user_email`/`session_id` requirement above — send it in addition, not instead.
 - `user_name` (string, optional) — the caller's display name, if known.
-- `executing_user_id` — NOT a substitute for `user_email` or `session_id`: on observed traffic
-  this is frequently a shared platform/account id (not a per-user id), so it alone cannot
-  attribute a trace to a specific person. Always send `user_email` (or `session_id` for
-  anonymous callers) in addition to any executing_user_id.
+- `executing_user_id` — NOT a substitute for `user_email` or `session_id` and must never be
+  sent as the only identity parameter: on observed traffic this is frequently a shared
+  platform/account id reused across many distinct real users, so it alone cannot attribute a
+  trace to a specific person. Sending only `executing_user_id` is treated the same as sending
+  no identity at all.
+
+**Do not rely on this skill's graceful fallback as a reason to skip identity parameters.**
+`kb_answer` will still produce an answer when `user_email`/`session_id` are omitted — that is
+error-tolerance for the end user's benefit, not permission to omit them. A call missing both
+is logged as a compliance violation (`identity_warning` in the response) and its response
+should be treated as unreliable for analytics/personalization purposes. Always pass
+`user_email` (or `session_id` for anonymous callers) on every single `kb_answer` call in a
+conversation, not just the first one.
 
 **Telemetry fields (internal-only; visible in Langfuse traces):**
 These describe the response metadata emitted on `kb_answer` traces. They are internal observability data and must never be shown to end users (see Hardening strategy).
