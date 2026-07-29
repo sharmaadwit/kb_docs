@@ -6923,6 +6923,7 @@ def _langfuse_user_context(
             synthesized_session_identity = True
 
     trace_user_id = ""
+    synthesized_account_identity = False
     if user_email:
         trace_user_id = user_email
     elif user_id_val is not None and str(user_id_val).strip():
@@ -6932,6 +6933,12 @@ def _langfuse_user_context(
         uid = str(user_id_val).strip()
         name = user_name.strip() if user_name else "unknown"
         trace_user_id = f"acct:{uid}:{name}"
+        # Mirror into user_email so dashboards/analytics (which key off
+        # metadata.user_email) don't collapse these known-but-emailless
+        # callers into "Anonymous" — they have a real, stable identity,
+        # just not an email address.
+        user_email = trace_user_id
+        synthesized_account_identity = True
 
     meta_user = {
         "user_email": user_email,
@@ -6942,6 +6949,8 @@ def _langfuse_user_context(
         # Mark that this identity was derived from session_id (anonymous CC Express),
         # not a real email, so analytics can distinguish synthesized from authenticated.
         meta_user["identity_source"] = "session_id"
+    elif synthesized_account_identity:
+        meta_user["identity_source"] = "account_id"
     return (trace_user_id or None, meta_user)
 
 
@@ -7078,7 +7087,7 @@ def _send_langfuse(
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "logic_version": "kb-answer-v4.2",
+        "logic_version": "kb-answer-v4.3",
         "prompt_version": None,
         "model": "rules-runtime",
         "temperature": 0,
