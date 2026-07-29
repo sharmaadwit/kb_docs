@@ -255,6 +255,18 @@ Answer a user question from the knowledge base.
 
 **Parameters (JSON):**
 - `query` (string, required)
+- `user_email` (string, optional) — the caller's authenticated email. REQUIRED for correct
+  per-user attribution in Standalone (logged-in Console) sessions; without it, traces cannot
+  be tied to a real user and are attributed to a shared fallback identity instead.
+- `session_id` (string, optional) — stable per-visitor session/cookie id for anonymous callers
+  (e.g. the CC Express web widget) with no logged-in email. Enables distinct per-visitor
+  tracking instead of collapsing all anonymous traffic into one shared identity.
+- `user_id` (string or int, optional) — the caller's account/user id, if known.
+- `user_name` (string, optional) — the caller's display name, if known.
+- `executing_user_id` — NOT a substitute for `user_email` or `session_id`: on observed traffic
+  this is frequently a shared platform/account id (not a per-user id), so it alone cannot
+  attribute a trace to a specific person. Always send `user_email` (or `session_id` for
+  anonymous callers) in addition to any executing_user_id.
 
 **Telemetry fields (internal-only; visible in Langfuse traces):**
 These describe the response metadata emitted on `kb_answer` traces. They are internal observability data and must never be shown to end users (see Hardening strategy).
