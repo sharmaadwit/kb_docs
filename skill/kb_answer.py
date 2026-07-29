@@ -6864,21 +6864,44 @@ def _langfuse_user_context(
     user_name: Optional[str] = None
     user_id_val: Any = None
 
+    # SuperAgent sometimes nests the original skill-call args under a
+    # "parameters" key (observed on other skills in this SuperAgent org, e.g.
+    # interview_worker) instead of flattening them into the top-level params
+    # dict. Resolve it once (coercing a JSON string if needed) so every
+    # extraction below can fall back to it.
+    _nested_parameters = params.get("parameters") if isinstance(params, dict) else None
+    if isinstance(_nested_parameters, str):
+        try:
+            _nested_parameters = json.loads(_nested_parameters)
+        except Exception:
+            _nested_parameters = None
+    if not isinstance(_nested_parameters, dict):
+        _nested_parameters = None
+
+    def _pick(keys):
+        for key in keys:
+            v = params.get(key)
+            if isinstance(v, str) and v.strip():
+                return v.strip()
+        if _nested_parameters:
+            for key in keys:
+                v = _nested_parameters.get(key)
+                if isinstance(v, str) and v.strip():
+                    return v.strip()
+        return None
+
     # Extract email: check all variants SuperAgent might send (confirmed: user_email_id via UAT test)
-    for key in ("user_email", "userEmail", "user_email_id", "userEmailId", "email", "email_id"):
-        v = params.get(key)
-        if isinstance(v, str) and v.strip():
-            user_email = v.strip()
-            break
-    for key in ("user_name", "userName"):
-        v = params.get(key)
-        if isinstance(v, str) and v.strip():
-            user_name = v.strip()
-            break
+    user_email = _pick(("user_email", "userEmail", "user_email_id", "userEmailId", "email", "email_id"))
+    user_name = _pick(("user_name", "userName"))
     for key in ("user_id", "userId"):
         if key in params and params.get(key) is not None:
             user_id_val = params.get(key)
             break
+    if user_id_val is None and _nested_parameters:
+        for key in ("user_id", "userId"):
+            if key in _nested_parameters and _nested_parameters.get(key) is not None:
+                user_id_val = _nested_parameters.get(key)
+                break
 
     if context is not None:
         if not user_email:
@@ -6904,6 +6927,8 @@ def _langfuse_user_context(
     synthesized_session_identity = False
     if not user_email:
         session_id = params.get("session_id") or params.get("sessionId")
+        if not session_id and _nested_parameters:
+            session_id = _nested_parameters.get("session_id") or _nested_parameters.get("sessionId")
 
         # Fallback: check nested dicts in params (metadata, context, tenant_context, user)
         if not session_id and isinstance(params, dict):
@@ -6930,6 +6955,8 @@ def _langfuse_user_context(
     synthesized_executing_user_identity = False
     if not user_email:
         executing_user_id = params.get("executing_user_id") or params.get("executingUserId")
+        if not executing_user_id and _nested_parameters:
+            executing_user_id = _nested_parameters.get("executing_user_id") or _nested_parameters.get("executingUserId")
         if not executing_user_id and isinstance(params, dict):
             for container_key in ("metadata", "context", "tenant_context", "user"):
                 container = params.get(container_key)
@@ -7158,7 +7185,7 @@ def _send_langfuse(
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "logic_version": "kb-answer-v4.6",
+        "logic_version": "kb-answer-v4.8",
         "prompt_version": None,
         "model": "rules-runtime",
         "temperature": 0,
