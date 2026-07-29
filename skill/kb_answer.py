@@ -6978,23 +6978,41 @@ def _langfuse_user_context(
     return (trace_user_id or None, meta_user)
 
 
+_DEBUG_RAW_CAPTURE_MAX_LEN = 4000
+
 def _debug_identity_param_keys(context, params: Optional[Dict[str, Any]] = None) -> Optional[str]:
-    """TEMPORARY diagnostic (remove once PROD_EXT email-drop root cause is confirmed):
-    when no real email was resolved, capture only the *key names* SuperAgent sent
-    (never values, to avoid leaking PII into telemetry) so we can see whether the
-    email arrived under an unrecognized key or top-level params were empty/nested."""
+    """TEMPORARY diagnostic (remove once CC Express / PROD_EXT anonymous-user root
+    cause is fully closed out): when no real email was resolved, capture the FULL
+    raw params SuperAgent/microagent sent — values included, not just key names —
+    so we can see exactly what identity fields are (or aren't) arriving. No
+    redaction yet (explicit call: capture everything now, redact/reduce later).
+    Truncated to _DEBUG_RAW_CAPTURE_MAX_LEN to keep trace payloads bounded."""
     params = params or {}
     try:
-        top_keys = sorted(params.keys()) if isinstance(params, dict) else [f"<non-dict:{type(params).__name__}>"]
-        nested = params.get("parameters") if isinstance(params, dict) else None
+        raw_params = params if isinstance(params, dict) else {"<non-dict>": f"{type(params).__name__}: {params!r}"}
+        nested = raw_params.get("parameters")
         if isinstance(nested, str):
             try:
                 nested = json.loads(nested)
             except Exception:
-                nested = f"<unparsed-json-str len={len(nested)}>"
-        nested_keys = sorted(nested.keys()) if isinstance(nested, dict) else (str(nested) if nested else None)
-        ctx_attrs = [a for a in ("user_email", "user_id", "user_name", "session_id", "sessionId") if context is not None and getattr(context, a, None) is not None]
-        return json.dumps({"top_keys": top_keys, "nested_parameters_keys": nested_keys, "context_attrs_present": ctx_attrs})
+                nested = f"<unparsed-json-str len={len(nested)}: {nested[:500]}>"
+        ctx_attrs = {}
+        if context is not None:
+            for a in ("user_email", "user_id", "user_name", "session_id", "sessionId",
+                      "executing_user_id", "executingUserId", "org_id", "project_id",
+                      "tenant_id", "phone_number"):
+                v = getattr(context, a, None)
+                if v is not None:
+                    ctx_attrs[a] = v
+        payload = {
+            "raw_params": raw_params,
+            "nested_parameters_resolved": nested,
+            "context_attrs": ctx_attrs,
+        }
+        dumped = json.dumps(payload, default=str)
+        if len(dumped) > _DEBUG_RAW_CAPTURE_MAX_LEN:
+            dumped = dumped[:_DEBUG_RAW_CAPTURE_MAX_LEN] + f"...<truncated, full_len={len(dumped)}>"
+        return dumped
     except Exception as e:
         return f"<debug_capture_error: {type(e).__name__}>"
 
@@ -7132,6 +7150,7 @@ def _send_langfuse(
         "user_email": user_meta.get("user_email"),
         "user_name": user_meta.get("user_name"),
         "user_id": user_meta.get("user_id"),
+        "identity_source": user_meta.get("identity_source"),
         "identity_debug_param_keys": _identity_debug,
         "query": orig_prev,
         "answer_preview": a_prev,
@@ -7139,7 +7158,7 @@ def _send_langfuse(
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "logic_version": "kb-answer-v4.5",
+        "logic_version": "kb-answer-v4.6",
         "prompt_version": None,
         "model": "rules-runtime",
         "temperature": 0,
