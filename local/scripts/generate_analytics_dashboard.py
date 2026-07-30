@@ -1781,28 +1781,22 @@ def generate_query_analytics_html(analysis: Dict[str, Any], segment_key: str) ->
 
 
 def generate_landing_snapshot(all_analysis: Dict[str, Any]) -> str:
-    """Sales-facing landing snapshot: leads (external users) + topics (query families).
+    """Sales-facing landing snapshot: topics (query families) across all segments.
 
-    Aggregates across ALL product segments so sales sees every lead and every hot
-    topic the moment they land, before drilling into product-specific tabs.
+    NOTE: the external-users/leads table was removed 2026-07-30. SuperAgent's
+    VAPT-tightened PII rules now strip real user identity (email/session_id)
+    before it reaches this skill's traces — confirmed root cause, not a code
+    bug (see local/reports/superagent_identity_bug_report.md). Every "external"
+    identity in users_external is now a shared placeholder (exec:N@..., sess:
+    anon@...), so a leads-by-email table would be actively misleading. Internal
+    (@gupshup.io/@knowlarity.com) user tracking is unaffected and still shown
+    in the per-segment users_internal tables elsewhere in this dashboard.
     """
-    # --- Aggregate external users (leads) across all segments ---
-    ext_agg = {}  # email -> {domain, count, answered, conf_sum}
     mod_agg = {}  # module -> {count, answered, idk, conf_sum}
 
     for seg, analysis in all_analysis.items():
         if not isinstance(analysis, dict):
             continue
-        for email, d in analysis.get("users_external", {}).items():
-            # Sales-facing: skip anonymous/unidentified traffic — not actionable leads
-            if not email or email.lower() == "anonymous" or "@" not in email:
-                continue
-            e = ext_agg.setdefault(email, {"domain": d.get("domain", ""), "count": 0, "answered": 0, "conf_sum": 0.0})
-            e["count"] += d.get("count", 0)
-            e["answered"] += d.get("answered", 0)
-            e["conf_sum"] += d.get("avg_confidence", 0.0) * d.get("count", 0)
-            if d.get("domain"):
-                e["domain"] = d["domain"]
         for module, d in analysis.get("modules", {}).items():
             m = mod_agg.setdefault(module, {"count": 0, "answered": 0, "idk": 0, "conf_sum": 0.0})
             m["count"] += d.get("count", 0)
@@ -1810,29 +1804,7 @@ def generate_landing_snapshot(all_analysis: Dict[str, Any]) -> str:
             m["idk"] += d.get("idk", 0)
             m["conf_sum"] += d.get("avg_confidence", 0.0) * d.get("count", 0)
 
-    total_ext_queries = sum(e["count"] for e in ext_agg.values())
     total_mod_queries = sum(m["count"] for m in mod_agg.values())
-
-    # --- Leads table (external users) ---
-    ext_sorted = sorted(ext_agg.items(), key=lambda x: x[1]["count"], reverse=True)
-    if ext_sorted:
-        leads_rows = ""
-        for email, d in ext_sorted:
-            ans_rate = round(d["answered"] / d["count"] * 100, 1) if d["count"] > 0 else 0
-            avg_conf = round(d["conf_sum"] / d["count"], 2) if d["count"] > 0 else 0
-            ans_status = "status-good" if ans_rate >= 80 else ("status-warning" if ans_rate >= 50 else "status-critical")
-            bar_rgba = "rgba(46,204,113,0.35)" if ans_rate >= 80 else ("rgba(243,156,18,0.35)" if ans_rate >= 50 else "rgba(231,76,60,0.35)")
-            ans_bar = f"background: linear-gradient(to right, {bar_rgba} {ans_rate:.1f}%, transparent {ans_rate:.1f}%)"
-            leads_rows += f"""                    <tr>
-                        <td>{email}</td>
-                        <td>{d['domain']}</td>
-                        <td class="numeric">{d['count']}</td>
-                        <td class="numeric" style="{ans_bar}"><span class="{ans_status}">{ans_rate:.1f}%</span></td>
-                        <td class="numeric">{avg_conf}</td>
-                    </tr>
-"""
-    else:
-        leads_rows = '                    <tr><td colspan="5" style="text-align:center; color:#999;">No external leads in window</td></tr>\n'
 
     # --- Topics table (query families / modules) ---
     mod_sorted = sorted(mod_agg.items(), key=lambda x: x[1]["count"], reverse=True)
@@ -1853,25 +1825,9 @@ def generate_landing_snapshot(all_analysis: Dict[str, Any]) -> str:
         topics_rows = '                    <tr><td colspan="4" style="text-align:center; color:#999;">No topics in window</td></tr>\n'
 
     return f"""
-        <!-- SALES LANDING SNAPSHOT: leads + topics, all segments -->
-        <div class="section" style="border: 2px solid #10b981;">
-            <h2>🧲 Leads Snapshot — External Users (All Products)</h2>
-            <p style="color:#666; font-size:0.85em; margin-bottom:12px;">Every external user across all product segments in the last 15 days ({total_ext_queries} queries from {len(ext_agg)} leads).</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>User Email</th>
-                        <th>Domain</th>
-                        <th class="numeric">Queries</th>
-                        <th class="numeric">Answer Rate</th>
-                        <th class="numeric">Avg Confidence</th>
-                    </tr>
-                </thead>
-                <tbody>
-{leads_rows}                </tbody>
-            </table>
-        </div>
-
+        <!-- TOPICS SNAPSHOT: all segments. External-users leads table removed
+             2026-07-30 — SuperAgent PII scrubbing means all "external" identity
+             is now a placeholder; see generate_landing_snapshot() docstring. -->
         <div class="section" style="border: 2px solid #667eea;">
             <h2>🔥 Topics Snapshot — Query Family Analysis (All Products)</h2>
             <p style="color:#666; font-size:0.85em; margin-bottom:12px;">What leads are asking about, ranked by volume across all segments ({total_mod_queries} queries).</p>
