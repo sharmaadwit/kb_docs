@@ -7185,7 +7185,7 @@ def _send_langfuse(
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "logic_version": "kb-answer-v4.8",
+        "logic_version": "kb-answer-v4.9",
         "prompt_version": None,
         "model": "rules-runtime",
         "temperature": 0,
@@ -7621,8 +7621,19 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                 _df_fallback_reason = "overview_intent"
             else:
                 # Non-overview: try DemoForge first, then YouTube fallback.
+                # When the query didn't route to a specific module ("General"),
+                # infer one from the actual top evidence doc instead of always
+                # falling through to the generic "General Demo" mapping — the
+                # old `explicit_module or _module_from_source(top_source or "")`
+                # was dead code (explicit_module is never falsy; it defaults to
+                # "General") and top_source was never even defined in this scope.
+                _video_top_source = str(evidence[0].get("source") or "") if evidence else ""
+                _video_module = (
+                    explicit_module if explicit_module != "General"
+                    else (_module_from_source(_video_top_source) if _video_top_source else "General")
+                )
                 demoforge_demo = select_demoforge_demo(
-                    query=query, intent=intent, module=explicit_module or _module_from_source(top_source or ""), context=context,
+                    query=query, intent=intent, module=_video_module, context=context,
                 )
                 if demoforge_demo:
                     _df_demo_id = demoforge_demo.get("demo_id")
