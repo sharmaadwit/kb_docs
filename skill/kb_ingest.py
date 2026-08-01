@@ -173,7 +173,13 @@ def _list_md_files(docs_path: str, context) -> List[str]:
 
 
 _MAX_RAW_FILE_BYTES = 1_500_000
-_MAX_MD_FILES = 400
+# 2026-07-30: the KB grew past the old cap of 400 (417 files at the time of
+# fix) and the truncation was silent — _list_md_files sorts alphabetically,
+# so the cut always lands on whatever sorts last (kb/wallet/, kb/whatsapp/,
+# kb/workflows/ were entirely dropped from the index with zero warning).
+# Raised with real headroom; truncation (if it ever recurs) is now surfaced
+# in the ingest result instead of silently dropping content.
+_MAX_MD_FILES = 1000
 _MAX_CHUNKS_PER_FILE = 400
 _MAX_TOTAL_CHUNKS = 80_000
 
@@ -535,7 +541,9 @@ def kb_ingest(parameters: object = None, context=None, **kwargs) -> dict:
     except Exception:
         return {"ok": False, "error": "Could not list documentation files"}
 
+    truncated_files = []
     if len(md_files) > _MAX_MD_FILES:
+        truncated_files = md_files[_MAX_MD_FILES:]
         md_files = md_files[:_MAX_MD_FILES]
 
     chunks_lines = []
@@ -628,6 +636,12 @@ def kb_ingest(parameters: object = None, context=None, **kwargs) -> dict:
         "docs": doc_entries,
         "chunking": index["chunking"],
     }
+    if truncated_files:
+        # Surface truncation visibly instead of silently dropping content —
+        # this exact silence previously caused kb/wallet/, kb/whatsapp/, and
+        # kb/workflows/ to vanish from the index with no error anywhere.
+        result["md_files_truncated"] = True
+        result["md_files_dropped"] = truncated_files
     if write_error:
         # Chunk generation succeeded but the local cache write failed. Surface this
         # for debugging; retrieval will still work via GitLab -> remote fallback.
