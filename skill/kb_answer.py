@@ -4270,7 +4270,7 @@ def _answer_from_case_study_chunks(query: str, case_chunks: List[Dict]) -> Optio
         "answer": answer,
         "sources": sources,
         "_chunks": scored_top_matches,  # Include chunks for langfuse metadata
-        "confidence": min(1.0, max(0.0, (scored_top_matches[0].get("score", 0.0) / 8.0))) if scored_top_matches else 0.0
+        "confidence": _reported_confidence(query, scored_top_matches)
     }
 
 
@@ -5783,6 +5783,58 @@ def _query_overlap_score(query: str, chunk: Dict) -> float:
     return hits / max(len(set(tokens)), 1)
 
 
+# Minimum real query-token overlap required for the HIGH-SCORE BYPASS to trust a
+# boosted score as genuine support. A purely boost-driven chunk (entity
+# source_boost or strict-module boost) that shares almost no tokens with the
+# query must clear this before its >=3.0 score is treated as explicit support.
+BYPASS_MIN_QUERY_OVERLAP = 0.2
+
+
+def _query_has_scorable_tokens(query: str) -> bool:
+    """True when the query has >=1 distinctive token that _query_overlap_score can
+    actually score (len>=4). For short/acronym-only queries (e.g. "set up CTX",
+    "SSO?") overlap is 0.0 by construction and is NOT a reliable relevance signal,
+    so callers must not use it to BLOCK support — doing so would reject legitimate
+    acronym queries whose right doc happens to score via a (correct) boost."""
+    qn = _normalize_query_for_match(query)
+    return any(len(t) >= 4 for t in re.findall(r"[a-z0-9&+-]+", qn))
+
+
+def _bypass_relevance_ok(query: str, chunk: Dict) -> bool:
+    """Relevance gate for the HIGH-SCORE BYPASS. Requires real query-token overlap,
+    EXCEPT when the query has no scorable (>=4-char) tokens, where overlap can't
+    discriminate and we defer to the boosted score alone (baseline behavior)."""
+    if not _query_has_scorable_tokens(query):
+        return True
+    return _query_overlap_score(query, chunk) >= BYPASS_MIN_QUERY_OVERLAP
+
+
+def _reported_confidence(query: str, results: List[Dict]) -> float:
+    """Confidence reported in telemetry.
+
+    Previously this was raw ``top_score / 8.0``. But ``top_score`` sums unbounded,
+    unnormalized ranking boosts (explicit-module +3/+5, entity source_boosts up to
+    +6, hardcoded specials +12), so the number reflected how many boosts a
+    module/entity happened to carry, not how well the retrieved evidence matched
+    the query. That produced avg_confidence ~8.6 for boost-heavy modules vs ~0.41
+    for General.
+
+    We keep boosts for RANKING (results are already sorted by boosted score) but
+    report confidence as a blend of the normalized boosted score and a genuine
+    query-relevance signal (real query-token overlap with the top chunk), so the
+    reported number tracks evidence quality rather than boost mass.
+    """
+    if not results:
+        return 0.0
+    top = results[0]
+    score_component = min(1.0, max(0.0, top.get("score", 0.0) / 8.0))
+    relevance = _query_overlap_score(query, top)  # already in [0, 1]
+    # Blend: relevance dominates so boost-only matches can't report high confidence,
+    # but the (normalized, capped) score still contributes lexical-match signal.
+    confidence = 0.7 * relevance + 0.3 * score_component
+    return min(1.0, max(0.0, confidence))
+
+
 def _filter_by_explicit_module(scored: List[Dict], explicit_module: str) -> List[Dict]:
     if explicit_module == "General":
         return scored
@@ -6173,7 +6225,16 @@ def _has_explicit_support(
     # and all intent-specific logic. _select_evidence may reorder chunks (e.g. for
     # setup intent it prefers action-oriented rows), so evidence[0].score may not
     # reflect the top search score. Check ALL evidence items.
-    if evidence and any(e.get("score", 0.0) >= 3.0 for e in evidence):
+    #
+    # A score >= 3.0 can come purely from ranking boosts (entity source_boost up to
+    # +6, strict-module +5) with almost no real query-token overlap. Boosts are
+    # correct for RANKING but a high boosted score alone is NOT proof the evidence
+    # answers the query. Require the high-scoring chunk to ALSO share a minimum of
+    # real query tokens before we let it bypass the overlap/coverage gates below.
+    if evidence and any(
+        e.get("score", 0.0) >= 3.0 and _bypass_relevance_ok(query, e)
+        for e in evidence
+    ):
         return True
 
     if not evidence:
@@ -7185,7 +7246,7 @@ def _send_langfuse(
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "logic_version": "kb-answer-v4.9",
+        "logic_version": "kb-answer-v4.10",
         "prompt_version": None,
         "model": "rules-runtime",
         "temperature": 0,
@@ -7210,7 +7271,7 @@ def _send_langfuse(
         "intent_labels": intents,
         "module": module_label,
         "explicit_module": None if explicit_module == "General" else explicit_module,
-        "confidence": min(1.0, max(0.0, (results[0].get("score", 0.0) / 8.0))) if results else 0.0,
+        "confidence": _reported_confidence(query, results),
         "failure_type": None,
         "accuracy_label": None,
         "accuracy_score": None,
