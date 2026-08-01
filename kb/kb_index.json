@@ -1,12 +1,12 @@
 {
   "ok": true,
-  "created_at": "2026-07-21T12:54:51.386906+00:00",
+  "created_at": "2026-08-01T04:44:10.872340+00:00",
   "docs_path": "kb",
   "excluded": [
     "kb/analytics"
   ],
-  "md_files": 400,
-  "chunks": 6717,
+  "md_files": 417,
+  "chunks": 6884,
   "docs": [
     {
       "path": "kb/Gupshup_Console_SSO support.md",
@@ -1607,6 +1607,74 @@
     {
       "path": "kb/superagent/guides/manage-skills.md",
       "chunks": 14
+    },
+    {
+      "path": "kb/superagent/guides/personalize.md",
+      "chunks": 10
+    },
+    {
+      "path": "kb/superagent/guides/schedule-task.md",
+      "chunks": 10
+    },
+    {
+      "path": "kb/superagent/guides/submit-feedback.md",
+      "chunks": 11
+    },
+    {
+      "path": "kb/superagent/guides/use-channels.md",
+      "chunks": 11
+    },
+    {
+      "path": "kb/superagent/troubleshooting.md",
+      "chunks": 7
+    },
+    {
+      "path": "kb/superagent/welcome.md",
+      "chunks": 5
+    },
+    {
+      "path": "kb/wallet/wallet-overview.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/whatsapp/meta-business-agent.md",
+      "chunks": 9
+    },
+    {
+      "path": "kb/whatsapp/setup-whatsapp-business-account-waba-in-gupshup.md",
+      "chunks": 10
+    },
+    {
+      "path": "kb/whatsapp/waba-setup-detailed-gupshup-console.md",
+      "chunks": 14
+    },
+    {
+      "path": "kb/whatsapp/whatsapp-api-reference.md",
+      "chunks": 11
+    },
+    {
+      "path": "kb/whatsapp/whatsapp-pricing.md",
+      "chunks": 15
+    },
+    {
+      "path": "kb/whatsapp/whatsapp-promotional-restrictions.md",
+      "chunks": 13
+    },
+    {
+      "path": "kb/workflows/agent-assist-availability-vs-auto-replies.md",
+      "chunks": 8
+    },
+    {
+      "path": "kb/workflows/ctwa-to-bot-to-goals.md",
+      "chunks": 8
+    },
+    {
+      "path": "kb/workflows/variables-across-multiple-journeys.md",
+      "chunks": 12
+    },
+    {
+      "path": "kb/workflows/webhooks-to-delivery-analytics.md",
+      "chunks": 7
     }
   ],
   "chunking": {
