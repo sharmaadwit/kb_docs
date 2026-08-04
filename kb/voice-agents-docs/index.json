@@ -3,12 +3,97 @@
   "start_url": "https://voiceagents.gupshup.io/developer-docs",
   "max_depth": 2,
   "scraper": "applescript",
+  "structure": "split-by-topic",
   "documents": [
     {
-      "title": "Gupshup - AI Agents",
-      "url": "https://voiceagents.gupshup.io/developer-docs",
-      "file": "developer-docs.md",
-      "depth": 0
+      "title": "Platform Overview",
+      "file": "01-platform-overview.md",
+      "sections": ["Introduction", "Intended Audience", "Core Platform Capabilities"]
+    },
+    {
+      "title": "Authentication",
+      "file": "02-authentication.md",
+      "sections": ["Login Page", "Login Procedure"]
+    },
+    {
+      "title": "Dashboard",
+      "file": "03-dashboard.md",
+      "sections": ["Dashboard Overview", "Interface Layout", "Agent Creation Methods", "Agent Card Details", "Sidebar Navigation Reference"]
+    },
+    {
+      "title": "Agent Configuration",
+      "file": "04-agent-configuration.md",
+      "sections": ["Agent Tab", "Left Panel — Agent Configuration", "System Prompt Toolbar", "Right Panel — Voice & Language Settings", "Top Bar Actions"]
+    },
+    {
+      "title": "Agent Tools",
+      "file": "05-agent-tools.md",
+      "sections": ["Tools Tab", "Adding Custom Tools", "System Tools Reference", "Workspace Tools page"]
+    },
+    {
+      "title": "Knowledge Base",
+      "file": "06-knowledge-base.md",
+      "sections": ["Knowledge Base Tab", "Key Actions", "Configuration Procedure"]
+    },
+    {
+      "title": "Advanced Configuration",
+      "file": "07-advanced-configuration.md",
+      "sections": ["Advanced Tab", "Model Infrastructure Details"]
+    },
+    {
+      "title": "Testing Agents",
+      "file": "08-testing.md",
+      "sections": ["Test Agent Tab", "Editing an Existing Agent", "Test Analysis"]
+    },
+    {
+      "title": "AI Prompt Generator",
+      "file": "09-ai-prompt-generator.md",
+      "sections": ["Overview", "Input Methods", "Configuration Fields", "Generation Procedure"]
+    },
+    {
+      "title": "Analytics & Monitoring",
+      "file": "10-analytics.md",
+      "sections": ["Analytics Dashboard", "Filtering Options", "Dashboard Tabs", "Data Collection Card Types"]
+    },
+    {
+      "title": "Numbers Configuration",
+      "file": "11-numbers-configuration.md",
+      "sections": ["Phone Number Management", "Purchasing a Voice Plan", "Configured Numbers Table", "Configuration Procedure"]
+    },
+    {
+      "title": "Voice Creation",
+      "file": "12-voice-creation.md",
+      "sections": ["Voice Creation Studio", "Voice Creation Methods", "Voice Design Workflow", "My Created Voices"]
+    },
+    {
+      "title": "Integrations",
+      "file": "13-integrations.md",
+      "sections": ["Telephony Account Configuration", "PSTN Voice Account", "WhatsApp Voice Account", "Maintenance Procedure"]
+    },
+    {
+      "title": "Evaluation Framework",
+      "file": "14-evaluation-framework.md",
+      "sections": ["Evaluate Agent", "Evaluate Models", "Model Comparison"]
+    },
+    {
+      "title": "Scheduled Runs",
+      "file": "15-scheduled-runs.md",
+      "sections": ["Scheduled Test Runs", "Schedule Table Columns", "Creating a Scheduled Run"]
+    },
+    {
+      "title": "End-to-End Deployment Workflow",
+      "file": "16-deployment-workflow.md",
+      "sections": ["Overview", "Workflow Steps"]
+    },
+    {
+      "title": "Quick Reference & Terminology",
+      "file": "17-quick-reference.md",
+      "sections": ["Platform Navigation", "Key Terminology"]
+    },
+    {
+      "title": "Index",
+      "file": "index.md",
+      "description": "Table of contents and quick start guides"
     }
   ]
 }
