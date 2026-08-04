@@ -4,7 +4,6 @@
     <option name="tabNames">
       <map>
         <entry key="0" value="analytics agent" />
-        <entry key="1" value="code chnage agent" />
       </map>
     </option>
     <option name="tabSessions">
@@ -15,25 +14,13 @@
               <option name="provider" value="claude" />
               <option name="sessionId" value="bf8b5c33-3789-44c7-a1c5-4e38c2e6177c" />
               <option name="cwd" value="$PROJECT_DIR$" />
-              <option name="model" value="claude-haiku-4-5" />
-              <option name="permissionMode" value="acceptEdits" />
-            </TabSessionState>
-          </value>
-        </entry>
-        <entry key="1">
-          <value>
-            <TabSessionState>
-              <option name="provider" value="claude" />
-              <option name="sessionId" value="d279665f-038b-4479-bbb6-6363d9494e26" />
-              <option name="cwd" value="$PROJECT_DIR$" />
               <option name="model" value="claude-sonnet-5" />
-              <option name="permissionMode" value="acceptEdits" />
-              <option name="reasoningEffort" value="high" />
+              <option name="permissionMode" value="bypassPermissions" />
+              <option name="reasoningEffort" value="low" />
             </TabSessionState>
           </value>
         </entry>
       </map>
     </option>
-    <option name="tabCount" value="2" />
   </component>
 </project>
