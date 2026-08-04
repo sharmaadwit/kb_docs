@@ -1,0 +1,14 @@
+{
+  "scraped_at": "2026-08-04T11:44:42.834643",
+  "start_url": "https://voiceagents.gupshup.io/developer-docs",
+  "max_depth": 2,
+  "scraper": "applescript",
+  "documents": [
+    {
+      "title": "Gupshup - AI Agents",
+      "url": "https://voiceagents.gupshup.io/developer-docs",
+      "file": "developer-docs.md",
+      "depth": 0
+    }
+  ]
+}
