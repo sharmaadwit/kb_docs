@@ -5850,6 +5850,52 @@ def _filter_by_explicit_module(scored: List[Dict], explicit_module: str) -> List
     return scored
 
 
+def _filter_magnet_matches(query: str, scored: List[Dict]) -> List[Dict]:
+    """Remove retrieval magnets: chunks scoring high due to generic path tokens
+    with zero real content overlap.
+
+    Known magnets: CTX doc (console path), Instagram doc (account path).
+    These are real docs but over-match off-topic queries mentioning the same words.
+
+    Detection: if a chunk's entire lead score comes from path/heading tokens
+    that don't appear in the content text, suppress it (likely a magnet).
+    """
+    if not scored:
+        return scored
+
+    magnet_sources = {
+        "connecting-ad-to-bot-in-gupshup-console",  # console-heavy path
+        "unlinking-your-instagram-account",  # account-heavy path
+        "onboarding-tiktok-ads-manager",  # console in path, off-topic for generic console
+        "setup-whatsapp-business-account",  # account in path, off-topic for generic account
+    }
+
+    filtered = []
+    qn = _normalize_query_for_match(query)
+    query_tokens = set(re.findall(r"[a-z0-9&+-]+", qn))
+
+    for chunk in scored:
+        source = str(chunk.get("source") or "").lower()
+        text = str(chunk.get("text") or "").lower()
+
+        # Check if this is a known magnet source
+        is_magnet_source = any(slug in source for slug in magnet_sources)
+
+        if is_magnet_source and text:
+            # For magnet sources, verify that query tokens appear in content
+            text_tokens = set(re.findall(r"[a-z0-9&+-]+", text))
+            query_token_coverage = len(query_tokens & text_tokens) / len(query_tokens) if query_tokens else 0.0
+
+            # If <20% of query tokens appear in the content, likely a false match
+            # (e.g., "console" is only in the path/heading, not the actual content)
+            if query_token_coverage < 0.2:
+                continue  # Skip this magnet match
+
+        filtered.append(chunk)
+
+    return filtered
+
+
 def _is_action_oriented(line: str) -> bool:
     low = (line or "").lower()
     return any(term in low for term in [
@@ -7246,7 +7292,7 @@ def _send_langfuse(
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "logic_version": "kb-answer-v4.10",
+        "logic_version": "kb-answer-v4.11",
         "prompt_version": None,
         "model": "rules-runtime",
         "temperature": 0,
@@ -7598,6 +7644,12 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
             row["score"] = s
             scored.append(row)
     scored.sort(key=lambda x: x.get("score", 0.0), reverse=True)
+
+    # Filter out retrieval magnets: chunks where the entire score comes from
+    # generic path/heading tokens with zero real content overlap. These docs
+    # legitimately exist (CTX, Instagram, Account docs) but over-match off-topic
+    # queries that happen to mention the same generic words.
+    scored = _filter_magnet_matches(query, scored)
 
     evidence = _select_evidence(query, scored, intent, explicit_module)
     answer = _compose_answer(query, intent, entities, evidence, explicit_module)
