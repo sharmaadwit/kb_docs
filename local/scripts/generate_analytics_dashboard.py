@@ -150,6 +150,19 @@ def fetch_langfuse_traces(days: int = 7) -> Optional[List[Dict]]:
             print("⚠️  Langfuse credentials missing from env")
     except Exception as e:
         print(f"⚠️  REST API fetch failed: {e}")
+        # If rate-limited or unavailable, try cached traces
+        cache_path = "archive/local_reports/langfuse_traces_7day_offline.json"
+        if os.path.exists(cache_path):
+            print(f"📦 Falling back to cached traces from {cache_path}...")
+            try:
+                with open(cache_path, 'r') as f:
+                    data = json.load(f)
+                    traces = data if isinstance(data, list) else [data]
+                if traces:
+                    print(f"✅ Loaded {len(traces)} cached traces")
+                    return traces
+            except Exception as cache_err:
+                print(f"⚠️  Cache load failed: {cache_err}")
 
     # Method 2: Try Langfuse CLI
     try:
@@ -1925,9 +1938,9 @@ def generate_weekly_accuracy_report(weekly_data: Dict[str, Any]) -> str:
     wow = weekly_data.get("week_over_week_delta", 0)
     trend = weekly_data.get("trend", "N/A")
 
-    # Build weekly trend table
+    # Build weekly trend table - show ALL weeks
     rows = ""
-    for w in weeks[-8:]:  # Show last 8 weeks
+    for w in weeks:  # Show all available weeks
         rows += f"""
             <tr>
                 <td><strong>{w["week"]}</strong></td>
@@ -1940,7 +1953,7 @@ def generate_weekly_accuracy_report(weekly_data: Dict[str, Any]) -> str:
 
     html = f"""
             <div style="background: white; border-radius: 12px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 20px;">
-                <h2>📊 Weekly Accuracy Increment</h2>
+                <h2>📊 Weekly Accuracy Increment (All-Time)</h2>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px;">
                     <div style="background: #f0f4ff; padding: 16px; border-radius: 8px;">
                         <div style="font-size: 0.8em; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Current Week Answer Rate</div>
@@ -1960,7 +1973,7 @@ def generate_weekly_accuracy_report(weekly_data: Dict[str, Any]) -> str:
                     </div>
                 </div>
 
-                <h3 style="margin-top: 20px; margin-bottom: 12px;">📈 8-Week Trend</h3>
+                <h3 style="margin-top: 20px; margin-bottom: 12px;">📈 Complete Weekly Trend ({len(weeks)} weeks)</h3>
                 <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
                     <thead>
                         <tr style="background: #f9fafb; border-bottom: 2px solid #e5e7eb;">
@@ -2259,11 +2272,12 @@ def main():
     print("=" * 80)
     print()
 
-    traces = fetch_langfuse_traces(days=15) or []
+    # Fetch all-time data for weekly accuracy reporting (years worth of data)
+    traces = fetch_langfuse_traces(days=365*3) or []  # ~3 years of data
     live_count = len(traces)
 
     # Merge query traces exported to local NDJSON (union, dedupe by trace id).
-    ndjson_traces = load_ndjson_traces(days=15)
+    ndjson_traces = load_ndjson_traces(days=365*3)  # All-time for consistency
     by_id = {t.get("id"): t for t in traces if t.get("id")}
     no_id = [t for t in traces if not t.get("id")]
     added = 0
