@@ -1,6 +1,6 @@
 {
   "cc_express": {
-    "timestamp": "2026-08-07T05:28:23.290422",
+    "timestamp": "2026-08-07T08:11:17.310513",
     "total_queries": 212,
     "answered": 132,
     "idk": 80,
@@ -2786,20 +2786,32 @@
     }
   },
   "standalone": {
-    "timestamp": "2026-08-07T05:28:23.294001",
-    "total_queries": 219,
-    "answered": 170,
-    "idk": 49,
-    "idk_rate": 22.4,
-    "answer_rate": 77.6,
-    "avg_confidence": 5.93,
-    "video_rate": 70.0,
+    "timestamp": "2026-08-07T08:11:17.319034",
+    "total_queries": 227,
+    "answered": 176,
+    "idk": 51,
+    "idk_rate": 22.5,
+    "answer_rate": 77.5,
+    "avg_confidence": 6.1,
+    "video_rate": 68.8,
     "modules": {
       "Bot Studio": {
-        "count": 43,
-        "answered": 39,
-        "idk": 4,
-        "avg_confidence": 6.48
+        "count": 46,
+        "answered": 41,
+        "idk": 5,
+        "avg_confidence": 6.63
+      },
+      "General": {
+        "count": 14,
+        "answered": 9,
+        "idk": 5,
+        "avg_confidence": 1.44
+      },
+      "WhatsApp": {
+        "count": 59,
+        "answered": 46,
+        "idk": 13,
+        "avg_confidence": 5.5
       },
       "Analytics": {
         "count": 2,
@@ -2813,12 +2825,6 @@
         "idk": 1,
         "avg_confidence": 7.31
       },
-      "WhatsApp": {
-        "count": 55,
-        "answered": 42,
-        "idk": 13,
-        "avg_confidence": 4.81
-      },
       "Agent Assist": {
         "count": 26,
         "answered": 22,
@@ -2830,12 +2836,6 @@
         "answered": 1,
         "idk": 4,
         "avg_confidence": 4.68
-      },
-      "General": {
-        "count": 13,
-        "answered": 9,
-        "idk": 4,
-        "avg_confidence": 1.55
       },
       "SuperAgent": {
         "count": 12,
@@ -2888,16 +2888,22 @@
     },
     "intents": {
       "setup": {
-        "count": 180,
-        "answered": 141,
-        "idk": 39,
-        "answer_rate": 78.3
+        "count": 187,
+        "answered": 146,
+        "idk": 41,
+        "answer_rate": 78.1
+      },
+      "troubleshooting": {
+        "count": 8,
+        "answered": 5,
+        "idk": 3,
+        "answer_rate": 62.5
       },
       "overview": {
-        "count": 19,
-        "answered": 17,
+        "count": 20,
+        "answered": 18,
         "idk": 2,
-        "answer_rate": 89.5
+        "answer_rate": 90.0
       },
       "definition": {
         "count": 10,
@@ -2910,12 +2916,6 @@
         "answered": 10,
         "idk": 4,
         "answer_rate": 71.4
-      },
-      "troubleshooting": {
-        "count": 6,
-        "answered": 4,
-        "idk": 2,
-        "answer_rate": 66.7
       },
       "case_study": {
         "count": 6,
@@ -2944,11 +2944,11 @@
     },
     "users_internal": {
       "ankit.kanwara@gupshup.io": {
-        "count": 7,
-        "answered": 5,
-        "answer_rate": 71.4,
-        "avg_confidence": 5.26,
-        "video_pct": 57.1
+        "count": 11,
+        "answered": 9,
+        "answer_rate": 81.8,
+        "avg_confidence": 8.78,
+        "video_pct": 36.4
       },
       "yashas.reddy@gupshup.io": {
         "count": 14,
@@ -3176,6 +3176,22 @@
       }
     },
     "users_external": {
+      "sess:current-conversation@ccexpress.gupshup.io": {
+        "domain": "ccexpress.gupshup.io",
+        "count": 11,
+        "answered": 5,
+        "answer_rate": 45.5,
+        "avg_confidence": 4.94,
+        "video_pct": 36.4
+      },
+      "admin@geervanee.in": {
+        "domain": "geervanee.in",
+        "count": 2,
+        "answered": 0,
+        "answer_rate": 0.0,
+        "avg_confidence": 0.0,
+        "video_pct": 0.0
+      },
       "sess:supermarket-bot-setup-session@ccexpress.gupshup.io": {
         "domain": "ccexpress.gupshup.io",
         "count": 1,
@@ -3239,14 +3255,6 @@
         "answer_rate": 0.0,
         "avg_confidence": 5.85,
         "video_pct": 0.0
-      },
-      "sess:current-conversation@ccexpress.gupshup.io": {
-        "domain": "ccexpress.gupshup.io",
-        "count": 7,
-        "answered": 3,
-        "answer_rate": 42.9,
-        "avg_confidence": 3.96,
-        "video_pct": 28.6
       },
       "user@example.com": {
         "domain": "example.com",
@@ -3339,14 +3347,14 @@
     },
     "intent_multi": {
       "1": {
-        "count": 192,
-        "answered": 146,
-        "answer_rate": 76.0
+        "count": 198,
+        "answered": 151,
+        "answer_rate": 76.3
       },
       "2": {
-        "count": 25,
-        "answered": 22,
-        "answer_rate": 88.0
+        "count": 27,
+        "answered": 23,
+        "answer_rate": 85.2
       },
       "4": {
         "count": 1,
@@ -3361,14 +3369,19 @@
     },
     "intent_video": {
       "setup": {
-        "count": 180,
-        "video": 103,
-        "video_pct": 57.2
+        "count": 187,
+        "video": 105,
+        "video_pct": 56.1
+      },
+      "troubleshooting": {
+        "count": 8,
+        "video": 4,
+        "video_pct": 50.0
       },
       "overview": {
-        "count": 19,
+        "count": 20,
         "video": 15,
-        "video_pct": 78.9
+        "video_pct": 75.0
       },
       "definition": {
         "count": 10,
@@ -3379,11 +3392,6 @@
         "count": 14,
         "video": 4,
         "video_pct": 28.6
-      },
-      "troubleshooting": {
-        "count": 6,
-        "video": 3,
-        "video_pct": 50.0
       },
       "case_study": {
         "count": 6,
@@ -3408,9 +3416,9 @@
     },
     "daily": {
       "2026-08-07": {
-        "total": 4,
-        "answered": 3,
-        "idk": 1
+        "total": 12,
+        "answered": 9,
+        "idk": 3
       },
       "2026-08-06": {
         "total": 13,
@@ -3480,11 +3488,11 @@
     },
     "languages": {
       "en": {
-        "count": 206,
-        "answered": 162,
-        "idk": 44,
-        "answer_rate": 78.6,
-        "video_pct": 53.9
+        "count": 214,
+        "answered": 168,
+        "idk": 46,
+        "answer_rate": 78.5,
+        "video_pct": 52.8
       },
       "pt": {
         "count": 8,
@@ -3511,6 +3519,16 @@
     "idk_by_language": {
       "en": [
         {
+          "query": "I saved and deployed a Journey Builder bot, but when I enter the trigger on WhatsApp nothing happens",
+          "module": "Bot Studio",
+          "score": 8.45
+        },
+        {
+          "query": "Can an existing WhatsApp Business App number remain active in the WhatsApp Business App while also c",
+          "module": "General",
+          "score": 0.0
+        },
+        {
           "query": "How should I build a WhatsApp lead generation workflow in Journey Builder that captures name, compan",
           "module": "Bot Studio",
           "score": 8.1
@@ -3524,16 +3542,6 @@
           "query": "In Journey Builder, the Preview/Test button is not visible for my journey. How can I test a saved jo",
           "module": "Bot Studio",
           "score": 4.7
-        },
-        {
-          "query": "What retry logic should I implement for undelivered messages when using the Gupshup Proposed API? Pr",
-          "module": "General",
-          "score": 1.3
-        },
-        {
-          "query": "Does the Gupshup Proposed API support automatic retries for undelivered messages? Please confirm whe",
-          "module": "AI Admin",
-          "score": 1.0000000000000002
         }
       ],
       "es": [
@@ -3567,6 +3575,18 @@
       ]
     },
     "idk_samples": [
+      {
+        "query": "I saved and deployed a Journey Builder bot, but when I enter the trigger on WhatsApp nothing happens",
+        "module": "Bot Studio",
+        "score": 8.45,
+        "language": "en"
+      },
+      {
+        "query": "Can an existing WhatsApp Business App number remain active in the WhatsApp Business App while also c",
+        "module": "General",
+        "score": 0.0,
+        "language": "en"
+      },
       {
         "query": "How should I build a WhatsApp lead generation workflow in Journey Builder that captures name, compan",
         "module": "Bot Studio",
@@ -3614,29 +3634,17 @@
         "module": "Overview",
         "score": 0.7500000000000002,
         "language": "en"
-      },
-      {
-        "query": "In a Conversation Cloud / CC Express WhatsApp account, where do I get the API key if the account onl",
-        "module": "WhatsApp",
-        "score": 9.7,
-        "language": "en"
-      },
-      {
-        "query": "WhatsApp template approval error: \"The parameter 'method' is required. Please resend request.\" when ",
-        "module": "Analytics",
-        "score": 3.6,
-        "language": "en"
       }
     ],
     "video_platforms": {
       "youtube": 0,
-      "demoforge": 119,
+      "demoforge": 121,
       "youtube_pct": 0.0,
       "demoforge_pct": 100.0
     },
     "demo_videos": {
       "6a433c867d620401bb6774c1": {
-        "count": 31,
+        "count": 33,
         "title": "Bot Studio"
       },
       "nAQEV9hy7kg": {
@@ -3984,6 +3992,20 @@
           "timestamp": "2026-08-04T10:18:47.231Z"
         },
         {
+          "id": "sess:ankit.kanwara@gupshup.io:107",
+          "length": 4,
+          "answered": 4,
+          "success_rate": 100.0,
+          "root_query": "What are the Meta policies for WhatsApp and alchlo?",
+          "root_answered": true,
+          "root_confidence": 8.85,
+          "is_decomposed": true,
+          "avg_confidence": 14.94,
+          "avg_latency": 824.0,
+          "user": "ankit.kanwara@gupshup.io",
+          "timestamp": "2026-08-07T06:36:09.047Z"
+        },
+        {
           "id": "sess:acct:30:unknown:3",
           "length": 3,
           "answered": 2,
@@ -4066,6 +4088,20 @@
           "avg_latency": 794.0,
           "user": "marco.rosas@gupshup.io",
           "timestamp": "2026-08-05T18:29:31.424Z"
+        },
+        {
+          "id": "sess:sess:current-conversation@ccexpress.gupshup.io:109",
+          "length": 3,
+          "answered": 2,
+          "success_rate": 66.7,
+          "root_query": "I connected WhatsApp to a project, created a Journey Builder bot journey, and clicked Save and Deploy. How do I test the",
+          "root_answered": true,
+          "root_confidence": 9.0,
+          "is_decomposed": true,
+          "avg_confidence": 8.85,
+          "avg_latency": 681.0,
+          "user": "sess:current-conversation@ccexpress.gupshup.io",
+          "timestamp": "2026-08-07T07:17:18.577Z"
         },
         {
           "id": "sess:gunjan.gambhir@knowlarity.com:2",
@@ -5242,58 +5278,72 @@
           "avg_latency": 1116.0,
           "user": "sess:supermarket-bot-setup-session@ccexpress.gupshup.io",
           "timestamp": "2026-08-07T05:18:03.242Z"
+        },
+        {
+          "id": "sess:admin@geervanee.in:108",
+          "length": 1,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "Can an existing WhatsApp Business App number remain active in the WhatsApp Business App while also connected to Gupshup/",
+          "root_answered": false,
+          "root_confidence": 0.0,
+          "is_decomposed": false,
+          "avg_confidence": 0.0,
+          "avg_latency": 0.0,
+          "user": "admin@geervanee.in",
+          "timestamp": "2026-08-07T06:43:20.392Z"
         }
       ],
       "overview": {
-        "total_conversations": 106,
-        "single_turn": 62,
-        "multi_turn": 44,
-        "single_turn_pct": 58.5,
-        "multi_turn_pct": 41.5,
-        "avg_queries_per_conversation": 2.07,
+        "total_conversations": 109,
+        "single_turn": 63,
+        "multi_turn": 46,
+        "single_turn_pct": 57.8,
+        "multi_turn_pct": 42.2,
+        "avg_queries_per_conversation": 2.08,
         "max_queries": 12,
-        "total_queries": 219
+        "total_queries": 227
       },
       "success_by_length": {
         "1": {
-          "conversations": 62,
-          "avg_success_rate": 61.3
+          "conversations": 63,
+          "avg_success_rate": 60.3
         },
         "2": {
           "conversations": 22,
           "avg_success_rate": 86.4
         },
         "3": {
-          "conversations": 6,
-          "avg_success_rate": 77.8
+          "conversations": 7,
+          "avg_success_rate": 76.2
         },
         "4+": {
-          "conversations": 16,
-          "avg_success_rate": 83.3
+          "conversations": 17,
+          "avg_success_rate": 84.3
         }
       },
       "root_vs_followup": {
         "root": {
-          "count": 106,
-          "answer_rate": 69.8,
-          "idk_rate": 30.2,
-          "avg_confidence": 5.36
+          "count": 109,
+          "answer_rate": 69.7,
+          "idk_rate": 30.3,
+          "avg_confidence": 5.37
         },
         "followup": {
-          "count": 113,
-          "answer_rate": 85.0,
-          "idk_rate": 15.0,
-          "avg_confidence": 6.46
+          "count": 118,
+          "answer_rate": 84.7,
+          "idk_rate": 15.3,
+          "avg_confidence": 6.77
         }
       },
       "decomposition_effectiveness": {
-        "total_decomposed": 44,
-        "all_success": 28,
-        "partial_success": 14,
+        "total_decomposed": 46,
+        "all_success": 29,
+        "partial_success": 15,
         "all_failed": 2,
-        "all_success_pct": 63.6,
-        "partial_success_pct": 31.8,
-        "all_failed_pct": 4.5
+        "all_success_pct": 63.0,
+        "partial_success_pct": 32.6,
+        "all_failed_pct": 4.3
       }
     }
   },
@@ -5302,8 +5352,8 @@
     "ref_answer_rate": 0.0,
     "answer_delta": 0.0,
     "ccx_avg_confidence": 0.39300262038209516,
-    "ref_avg_confidence": 0.5157642884646461,
-    "confidence_delta": -0.1227616680825509,
+    "ref_avg_confidence": 0.5137750259464684,
+    "confidence_delta": -0.12077240556437324,
     "low_confidence_flags": [
       {
         "id": "kb-kb_answer-045b83094bf44c95",

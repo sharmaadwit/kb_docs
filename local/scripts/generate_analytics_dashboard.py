@@ -1847,8 +1847,141 @@ def generate_landing_snapshot(all_analysis: Dict[str, Any]) -> str:
 """
 
 
+def compute_weekly_accuracy_increment(traces: List[Dict]) -> Dict[str, Any]:
+    """Calculate accuracy (answer rate) changes week-over-week.
+
+    Returns dict with:
+      weekly_data: list of {week_iso, answer_rate, idk_rate, query_count, avg_confidence}
+      current_week: latest week's metrics
+      week_over_week_delta: change from previous week (pp)
+      trend: "📈 improving", "📉 declining", "➡️ stable"
+    """
+    if not traces:
+        return {}
+
+    # Group by ISO week
+    by_week = defaultdict(list)
+    for t in traces:
+        ts_str = t.get("timestamp", "")
+        if not ts_str:
+            continue
+        try:
+            dt = datetime.fromisoformat(ts_str.replace("Z", "+00:00")).replace(tzinfo=None)
+            week_iso = dt.strftime("%Y-W%V")  # ISO week format (2026-W32)
+            by_week[week_iso].append(t)
+        except Exception:
+            continue
+
+    if not by_week:
+        return {}
+
+    # Calculate metrics per week
+    weekly_data = []
+    for week_iso in sorted(by_week.keys()):
+        week_traces = by_week[week_iso]
+        answered = sum(1 for t in week_traces if (t.get("metadata") or {}).get("answered"))
+        total = len(week_traces)
+        answer_rate = (answered / total * 100) if total else 0.0
+        idk_rate = 100.0 - answer_rate
+        avg_conf = sum((t.get("metadata") or {}).get("confidence", 0) for t in week_traces) / total if total else 0.0
+
+        weekly_data.append({
+            "week": week_iso,
+            "answer_rate": round(answer_rate, 1),
+            "idk_rate": round(idk_rate, 1),
+            "query_count": total,
+            "avg_confidence": round(avg_conf, 2),
+        })
+
+    # Calculate WoW delta
+    current = weekly_data[-1] if weekly_data else {}
+    previous = weekly_data[-2] if len(weekly_data) > 1 else {}
+    wow_delta = (current.get("answer_rate", 0) - previous.get("answer_rate", 0)) if previous else 0.0
+
+    # Trend indicator
+    if wow_delta > 0.5:
+        trend = "📈 improving"
+    elif wow_delta < -0.5:
+        trend = "📉 declining"
+    else:
+        trend = "➡️ stable"
+
+    return {
+        "weekly_data": weekly_data,
+        "current_week": current,
+        "previous_week": previous,
+        "week_over_week_delta": round(wow_delta, 1),
+        "trend": trend,
+    }
+
+
+def generate_weekly_accuracy_report(weekly_data: Dict[str, Any]) -> str:
+    """Generate HTML for weekly accuracy increment report."""
+    if not weekly_data or not weekly_data.get("weekly_data"):
+        return ""
+
+    weeks = weekly_data["weekly_data"]
+    current = weekly_data.get("current_week", {})
+    wow = weekly_data.get("week_over_week_delta", 0)
+    trend = weekly_data.get("trend", "N/A")
+
+    # Build weekly trend table
+    rows = ""
+    for w in weeks[-8:]:  # Show last 8 weeks
+        rows += f"""
+            <tr>
+                <td><strong>{w["week"]}</strong></td>
+                <td>{w["query_count"]}</td>
+                <td><strong>{w["answer_rate"]:.1f}%</strong></td>
+                <td>{w["idk_rate"]:.1f}%</td>
+                <td>{w["avg_confidence"]:.2f}</td>
+            </tr>
+        """
+
+    html = f"""
+            <div style="background: white; border-radius: 12px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                <h2>📊 Weekly Accuracy Increment</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                    <div style="background: #f0f4ff; padding: 16px; border-radius: 8px;">
+                        <div style="font-size: 0.8em; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Current Week Answer Rate</div>
+                        <div style="font-size: 2.2em; font-weight: bold; color: #667eea;">{current.get("answer_rate", 0):.1f}%</div>
+                    </div>
+                    <div style="background: #f0fff4; padding: 16px; border-radius: 8px;">
+                        <div style="font-size: 0.8em; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Week-over-Week Change</div>
+                        <div style="font-size: 2.2em; font-weight: bold; color: {'#10b981' if wow >= 0 else '#ef4444'};">{wow:+.1f} pp</div>
+                    </div>
+                    <div style="background: #fef3f2; padding: 16px; border-radius: 8px;">
+                        <div style="font-size: 0.8em; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Trend</div>
+                        <div style="font-size: 1.5em; font-weight: bold; color: #667eea;">{trend}</div>
+                    </div>
+                    <div style="background: #f5f3ff; padding: 16px; border-radius: 8px;">
+                        <div style="font-size: 0.8em; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Current Week Volume</div>
+                        <div style="font-size: 2.2em; font-weight: bold; color: #667eea;">{current.get("query_count", 0)}</div>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 20px; margin-bottom: 12px;">📈 8-Week Trend</h3>
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
+                    <thead>
+                        <tr style="background: #f9fafb; border-bottom: 2px solid #e5e7eb;">
+                            <th style="text-align: left; padding: 12px; font-weight: 600;">Week</th>
+                            <th style="text-align: center; padding: 12px; font-weight: 600;">Queries</th>
+                            <th style="text-align: center; padding: 12px; font-weight: 600;">Answer Rate</th>
+                            <th style="text-align: center; padding: 12px; font-weight: 600;">IDK Rate</th>
+                            <th style="text-align: center; padding: 12px; font-weight: 600;">Avg Conf</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {rows}
+                    </tbody>
+                </table>
+            </div>
+    """
+    return html
+
+
 # CC EXPRESS FEATURE: main generate_html() now accepts all_analysis + video_data + parity
-def generate_html(all_analysis: Dict[str, Any], video_data: Dict[str, Any], parity: Optional[Dict]) -> str:
+def generate_html(all_analysis: Dict[str, Any], video_data: Dict[str, Any], parity: Optional[Dict], weekly_by_segment: Dict[str, Any] = None) -> str:
     """Generate comprehensive HTML with product-segmented tabs.
 
     all_analysis: dict keyed by segment ('standalone', 'cc_express', 'console').
@@ -1856,7 +1989,10 @@ def generate_html(all_analysis: Dict[str, Any], video_data: Dict[str, Any], pari
                   'conversations' (from analyze_conversations()) and '_traces'.
     video_data:   global video events (not segmented).
     parity:       output of compute_cc_express_parity(), or None.
+    weekly_by_segment: dict mapping segment names to weekly accuracy increment data.
     """
+    if weekly_by_segment is None:
+        weekly_by_segment = {}
 
     # CC EXPRESS FEATURE: display order + labels
     # Always show Standalone and CC Express, optionally Console if present
@@ -2063,6 +2199,9 @@ def generate_html(all_analysis: Dict[str, Any], video_data: Dict[str, Any], pari
             <!-- Product summary cards -->
 {summary_cards}
 
+            <!-- Weekly Accuracy Increment Report -->
+{generate_weekly_accuracy_report(weekly_by_segment.get(seg, {}))}
+
             <!-- CC EXPRESS FEATURE: Sub-tab nav (Conversation Insights | Query Analytics), CSS-only -->
             <input type="radio" class="tab-input" name="{sub_group}" id="{conv_id}" checked>
             <input type="radio" class="tab-input" name="{sub_group}" id="{query_id}">
@@ -2203,6 +2342,21 @@ def main():
     print(f"   Video deliveries (15d): {ve['total_deliveries']} | captions: {ve['captions_pct']}% "
           f"| fallback: {ve['fallback_pct']}% | latest event: {ve['latest_event_ts'] or 'n/a'}")
 
+    # Compute weekly accuracy increments for all segments
+    print(f"📊 Computing weekly accuracy increments...")
+    weekly_by_segment = {}
+    for segment_key, segment_traces in segments.items():
+        real_traces = [
+            t for t in segment_traces
+            if (t.get("metadata") or {}).get("user_email") not in TEST_ACCOUNTS
+        ]
+        weekly_data = compute_weekly_accuracy_increment(real_traces)
+        if weekly_data:
+            weekly_by_segment[segment_key] = weekly_data
+            if weekly_data.get('current_week'):
+                print(f"   [{segment_key}] current week: {weekly_data['current_week'].get('answer_rate', 0):.1f}% | "
+                      f"WoW: {weekly_data['week_over_week_delta']:+.1f} pp | {weekly_data['trend']}")
+
     # Print summary across all segments
     print(f"\n✅ Analysis complete:")
     for seg, analysis in all_analysis.items():
@@ -2217,7 +2371,7 @@ def main():
               f"{tg['total_hierarchical_chains']} hierarchical chains")
 
     print(f"\n🎨 Generating HTML dashboard with all reports...")
-    html = generate_html(all_analysis, video_data, parity)
+    html = generate_html(all_analysis, video_data, parity, weekly_by_segment)
 
     output_path = Path("/Users/adwit.sharma/kb_docs/local/reports/comprehensive_dashboard.html")
     output_path.parent.mkdir(parents=True, exist_ok=True)
