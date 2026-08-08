@@ -6,12 +6,76 @@ Uses cached or live Langfuse traces to generate all-time weekly trend HTML.
 
 import json
 import os
+import base64
+import ssl
+import urllib.request
+import urllib.parse
 from datetime import datetime, timedelta
 from collections import defaultdict
 from typing import Dict, Any, List, Optional
 
+def load_traces_from_langfuse(days: int = 365) -> Optional[List[Dict[str, Any]]]:
+    """Fetch traces from Langfuse API (all-time)."""
+    import urllib.request
+    import urllib.parse
+    import base64
+    import ssl
+
+    host = os.environ.get("LANGFUSE_HOST", "https://cloud.langfuse.com").rstrip("/")
+    pub = os.environ.get("LANGFUSE_PUBLIC_KEY", "")
+    sec = os.environ.get("LANGFUSE_SECRET_KEY", "")
+
+    if not pub or not sec:
+        return None
+
+    try:
+        import certifi
+        ssl_ctx = ssl.create_default_context(cafile=certifi.where())
+    except:
+        ssl_ctx = ssl.create_default_context()
+        ssl_ctx.check_hostname = False
+        ssl_ctx.verify_mode = ssl.CERT_NONE
+
+    try:
+        creds = base64.b64encode(f"{pub}:{sec}".encode()).decode()
+        headers = {"Authorization": f"Basic {creds}"}
+
+        from_date = (datetime.utcnow() - timedelta(days=days)).strftime("%Y-%m-%dT00:00:00Z")
+        all_traces = []
+        page = 1
+
+        while True:
+            params = urllib.parse.urlencode({"page": page, "limit": 100, "fromTimestamp": from_date})
+            url = f"{host}/api/public/traces?{params}"
+            req = urllib.request.Request(url, headers=headers)
+
+            with urllib.request.urlopen(req, timeout=30, context=ssl_ctx) as resp:
+                body = json.loads(resp.read())
+                batch = body.get("data", [])
+                all_traces.extend(batch)
+                meta = body.get("meta", {})
+                total = meta.get("totalItems", meta.get("total", len(all_traces)))
+
+                if not batch or len(all_traces) >= total:
+                    break
+                page += 1
+
+        if all_traces:
+            print(f"✅ Fetched {len(all_traces)} traces from Langfuse API")
+            return all_traces
+    except Exception as e:
+        print(f"⚠️  Langfuse fetch failed: {e}")
+
+    return None
+
 def load_traces() -> List[Dict[str, Any]]:
-    """Load traces from cache or Langfuse."""
+    """Load traces from Langfuse first, fall back to cache."""
+    # Try live Langfuse API first
+    traces = load_traces_from_langfuse(days=365*3)
+    if traces:
+        return traces
+
+    # Fall back to cache
     cache_path = "archive/local_reports/langfuse_traces_7day_offline.json"
     if os.path.exists(cache_path):
         print(f"📦 Loading traces from cache: {cache_path}")
@@ -23,6 +87,7 @@ def load_traces() -> List[Dict[str, Any]]:
             return traces
         except Exception as e:
             print(f"⚠️  Cache load failed: {e}")
+
     return []
 
 def compute_weekly_metrics(traces: List[Dict[str, Any]]) -> Dict[str, Any]:
