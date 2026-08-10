@@ -833,9 +833,11 @@ def compute_cc_express_parity(all_analysis):
     if 'cc_express' not in all_analysis:
         return None
 
-    ccx = all_analysis['cc_express']
+    ccx = all_analysis.get('cc_express')
     ref = all_analysis.get('console') or all_analysis.get('standalone')
-    if not ref:
+
+    # Skip parity computation if cc_express has no data
+    if not ccx or ccx.get('total_queries', 0) == 0 or not ref:
         return None
 
     ccx_answer_rate = (ccx.get('total_answered', 0) / ccx.get('total_queries', 1)) * 100
