@@ -2278,18 +2278,23 @@ def main():
     traces = fetch_langfuse_traces(days=365*3) or []  # ~3 years of data
     live_count = len(traces)
 
-    # Merge query traces exported to local NDJSON (union, dedupe by trace id).
-    ndjson_traces = load_ndjson_traces(days=365*3)  # All-time for consistency
-    by_id = {t.get("id"): t for t in traces if t.get("id")}
-    no_id = [t for t in traces if not t.get("id")]
-    added = 0
-    for t in ndjson_traces:
-        if t["id"] not in by_id:
-            by_id[t["id"]] = t
-            added += 1
-    traces = list(by_id.values()) + no_id
-    print(f"🔗 Merged traces: {live_count} live + {len(ndjson_traces)} NDJSON "
-          f"(+{added} unique) = {len(traces)} total after dedupe")
+    # Skip NDJSON merge if running in fast mode (for speed)
+    if os.environ.get("DASHBOARD_FAST_MODE", "").lower() in ("1", "true", "yes"):
+        print(f"⏭️  Fast mode: skipping NDJSON merge (using live traces only)")
+    else:
+        # Merge query traces exported to local NDJSON (union, dedupe by trace id).
+        print(f"🔗 Loading NDJSON traces...")
+        ndjson_traces = load_ndjson_traces(days=365*3)  # All-time for consistency
+        by_id = {t.get("id"): t for t in traces if t.get("id")}
+        no_id = [t for t in traces if not t.get("id")]
+        added = 0
+        for t in ndjson_traces:
+            if t["id"] not in by_id:
+                by_id[t["id"]] = t
+                added += 1
+        traces = list(by_id.values()) + no_id
+        print(f"🔗 Merged traces: {live_count} live + {len(ndjson_traces)} NDJSON "
+              f"(+{added} unique) = {len(traces)} total after dedupe")
 
     if not traces:
         print("❌ No trace data available. Cannot generate dashboard.")
@@ -2302,6 +2307,9 @@ def main():
     print(f"   Segments: {seg_summary}")
 
     # CC EXPRESS FEATURE: analyze each segment independently (reuse existing functions)
+    # FAST MODE: skip expensive conversation analysis (opt-in via env var)
+    fast_mode = os.environ.get("DASHBOARD_FAST_MODE", "").lower() in ("1", "true", "yes")
+
     all_analysis: Dict[str, Any] = {}
     for segment_key, segment_traces in segments.items():
         # Split off known test/maintainer traffic so it never skews headline
@@ -2321,16 +2329,20 @@ def main():
         seg_analysis = analyze_traces(real_traces)
         seg_analysis['test_traffic'] = summarize_test_traffic(test_traces)
 
-        print(f"💬 Analyzing conversations for '{segment_key}'...")
-        seg_analysis['conversations'] = analyze_conversations(real_traces)
-        cv = seg_analysis['conversations']['overview']
-        print(f"   Conversations: {cv['total_conversations']} | "
-              f"single-turn: {cv['single_turn']} ({cv['single_turn_pct']}%) | "
-              f"multi-turn: {cv['multi_turn']} ({cv['multi_turn_pct']}%) | "
-              f"avg q/conv: {cv['avg_queries_per_conversation']} | max: {cv['max_queries']}")
-        de = seg_analysis['conversations']['decomposition_effectiveness']
-        print(f"   Decomposed: {de['total_decomposed']} | all-success: {de['all_success_pct']}% | "
-              f"partial: {de['partial_success_pct']}% | all-failed: {de['all_failed_pct']}%")
+        if not fast_mode:
+            print(f"💬 Analyzing conversations for '{segment_key}'...")
+            seg_analysis['conversations'] = analyze_conversations(real_traces)
+            cv = seg_analysis['conversations']['overview']
+            print(f"   Conversations: {cv['total_conversations']} | "
+                  f"single-turn: {cv['single_turn']} ({cv['single_turn_pct']}%) | "
+                  f"multi-turn: {cv['multi_turn']} ({cv['multi_turn_pct']}%) | "
+                  f"avg q/conv: {cv['avg_queries_per_conversation']} | max: {cv['max_queries']}")
+            de = seg_analysis['conversations']['decomposition_effectiveness']
+            print(f"   Decomposed: {de['total_decomposed']} | all-success: {de['all_success_pct']}% | "
+                  f"partial: {de['partial_success_pct']}% | all-failed: {de['all_failed_pct']}%")
+        else:
+            print(f"   (Fast mode: skipping conversation analysis)")
+            seg_analysis['conversations'] = None
 
         seg_analysis['_traces'] = segment_traces
         all_analysis[segment_key] = seg_analysis
@@ -2360,13 +2372,20 @@ def main():
 
     # Compute weekly accuracy increments for all segments
     print(f"📊 Computing weekly accuracy increments...")
+    import sys; sys.stdout.flush()
     weekly_by_segment = {}
     for segment_key, segment_traces in segments.items():
+        print(f"   Processing {segment_key}...", file=sys.stderr)
+        sys.stderr.flush()
         real_traces = [
             t for t in segment_traces
             if (t.get("metadata") or {}).get("user_email") not in TEST_ACCOUNTS
         ]
+        print(f"   Filtered to {len(real_traces)} real traces", file=sys.stderr)
+        sys.stderr.flush()
         weekly_data = compute_weekly_accuracy_increment(real_traces)
+        print(f"   Weekly computation done", file=sys.stderr)
+        sys.stderr.flush()
         if weekly_data:
             weekly_by_segment[segment_key] = weekly_data
             if weekly_data.get('current_week'):
