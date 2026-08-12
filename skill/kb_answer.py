@@ -4,6 +4,7 @@ import time
 import unicodedata
 import uuid
 import base64
+import hashlib
 import os
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Tuple
@@ -6479,6 +6480,98 @@ PLATFORM_OVERVIEW_ANSWER = (
 )
 
 
+def _compose_consulting_answer(
+    query: str,
+    intent: str,
+    entities: List[Dict],
+    evidence: List[Dict],
+    explicit_module: str = "General",
+    confidence: float = 0.0,
+) -> str:
+    """Consulting-tone composer: diagnosis -> context -> options -> recommended -> follow-up.
+
+    Phase 1 pilot alternative to _compose_answer(). Pure function, no side
+    effects; falls back to the same IDK string as the standard path when
+    evidence is insufficient, so callers can treat both composers identically.
+    """
+    lines = _evidence_lines(evidence)
+    if not evidence or not lines:
+        return "I don't know based on the current docs."
+
+    if not _has_explicit_support(query, intent, evidence, lines, entities, explicit_module):
+        return "I don't know based on the current docs."
+
+    # --- 1. DIAGNOSIS ---
+    if intent in ("setup", "how_to"):
+        diagnosis = "To set this up, here's what you need to know."
+    elif intent == "troubleshooting":
+        diagnosis = "Let's figure out what's going on."
+    elif intent == "definition":
+        heading = str(evidence[0].get("heading") or "").strip()
+        diagnosis = f"Here's what **{heading}** means in this context." if heading else "Here's what this means."
+    elif intent == "compare":
+        diagnosis = "These are distinct features — let me walk through the key differences."
+    else:
+        diagnosis = "Here's what the documentation says about this."
+
+    # --- 2. CONTEXT (what depends on their setup) ---
+    # Dedupe on actual content, not just heading label: different evidence
+    # chunks can carry distinct headings ("Step 2...", "Steps", "Setup path")
+    # that all wrap the same underlying sentence. Keying on the first content
+    # line catches that case and avoids surfacing 2-3 "options" that repeat
+    # the same fact under different labels.
+    unique_paths = []  # list of (heading, first_line)
+    seen_bodies = set()
+    for c in evidence[:4]:
+        h = str(c.get("heading") or "").strip()
+        text_lines = [l for l in str(c.get("text") or "").splitlines() if _clean_line(l)]
+        first_line = _clean_line(text_lines[0]) if text_lines else ""
+        body_key = first_line.lower().strip()
+        if not body_key or body_key in seen_bodies:
+            continue
+        seen_bodies.add(body_key)
+        unique_paths.append((h or "Option", first_line))
+
+    is_multi_path = len(unique_paths) >= 2 and confidence < 0.7
+
+    context_lines = []
+    if is_multi_path:
+        context_lines.append("This can vary depending on your setup. The docs cover a few scenarios:")
+        for h, _ in unique_paths[:3]:
+            context_lines.append(f"- {h}")
+
+    # --- 3. OPTIONS OR DIRECT ANSWER ---
+    if is_multi_path:
+        body_parts = [f"**{h}**: {first_line}" for h, first_line in unique_paths[:3]]
+        body = "\n".join(body_parts)
+    else:
+        body = "\n".join(f"- {l}" for l in lines[:5])
+
+    # --- 4. RECOMMENDED (high confidence: surface the primary path) ---
+    recommended = ""
+    if confidence >= 0.6 and lines:
+        recommended = f"Most common case: {lines[0]}"
+
+    # --- 5. FOLLOW-UP (low confidence: ask for clarification) ---
+    follow_up = ""
+    if confidence < 0.5:
+        if explicit_module != "General":
+            follow_up = f"Tell me more about your specific {explicit_module} setup and I can tailor this further."
+        else:
+            follow_up = "Share more context about what you're trying to accomplish and I can be more specific."
+
+    parts = [diagnosis]
+    if context_lines:
+        parts.append("\n".join(context_lines))
+    parts.append(body)
+    if recommended:
+        parts.append(recommended)
+    if follow_up:
+        parts.append(follow_up)
+
+    return "\n\n".join(p for p in parts if p.strip())
+
+
 def _compose_answer(
     query: str,
     intent: str,
@@ -7412,6 +7505,90 @@ def _send_langfuse(
 
 
 # ---------------------------------------------------------------------------
+# Section 10b — Consulting-tone pilot routing (Phase 1: RCS + Bot Studio)
+# ---------------------------------------------------------------------------
+
+def _gate_module_for_consulting(query: str, explicit_module: str) -> str:
+    """Resolve the module label used ONLY for the consulting-tone feature-flag
+    gate and telemetry tag — never used for retrieval/scoring/routing.
+
+    _detect_module() has no distinct "RCS" module: RCS queries fall under
+    explicit_module == "Channels" (see _detect_module: `if "rcs" in q: return
+    "Channels"`), same bucket as every other non-RCS channel query. Pulling
+    RCS out via the existing keyword-based channel detector
+    (_detect_channel_from_query) lets the Phase 1 pilot target RCS traffic
+    specifically instead of accidentally gating on all of "Channels".
+
+    _detect_module() also checks `"campaign" in q` BEFORE the RCS check, so
+    campaign-flavored RCS queries (e.g. "should I use RCS for my campaign")
+    land in explicit_module == "Campaign Manager" instead of "Channels" and
+    would otherwise never reach the RCS check above. Since campaign-driven
+    traffic is exactly the traffic this pilot needs to see (it's the reason
+    RCS is the secondary/directional signal, not the primary gate), check
+    that bucket too rather than silently losing that RCS signal.
+    """
+    if explicit_module in ("Channels", "Campaign Manager") and _detect_channel_from_query(query) == "rcs":
+        return "RCS"
+    return explicit_module
+
+
+def _resolve_answer_mode(params: dict, query: str, explicit_module: str) -> str:
+    """Resolve answer generation mode (consulting or standard problem-solution).
+
+    Priority order:
+    1. Explicit param/env override (testing/debugging)
+    2. Master feature flag
+    3. Module-level gate (Phase 1: RCS + Bot Studio, tracked independently)
+    4. Deterministic 50/50 hash-based split per query
+
+    Env vars:
+    - KB_CONSULTING_TONE_ENABLED: "1" = master switch ON
+    - KB_CONSULTING_TONE_MODULES: "RCS,Bot Studio" = allowed gate modules (comma-separated)
+    - KB_CONSULTING_TONE_PCT: "50" = percent of eligible traffic in consulting mode
+    - KB_ANSWER_MODE: "consulting" | "standard" = force override (testing only)
+    """
+    explicit = (params or {}).get("answer_mode") or os.getenv("KB_ANSWER_MODE", "")
+    if explicit in ("consulting", "standard"):
+        return explicit
+
+    if not os.getenv("KB_CONSULTING_TONE_ENABLED", ""):
+        return "standard"
+
+    gate_module = _gate_module_for_consulting(query, explicit_module)
+    allowed_modules_str = os.getenv("KB_CONSULTING_TONE_MODULES", "RCS,Bot Studio")
+    allowed_modules = {m.strip() for m in allowed_modules_str.split(",")}
+    if gate_module not in allowed_modules:
+        return "standard"
+
+    split_pct = int(os.getenv("KB_CONSULTING_TONE_PCT", "50"))
+    digest = int(hashlib.md5(query.encode()).hexdigest(), 16)
+    return "consulting" if (digest % 100) < split_pct else "standard"
+
+
+def _route_answer_composer(
+    query: str,
+    intent: str,
+    entities: List[Dict],
+    evidence: List[Dict],
+    explicit_module: str,
+    params: dict,
+) -> Tuple[str, str]:
+    """Route to consulting-tone or problem-solution composer.
+
+    Returns (answer_text, answer_mode) where answer_mode is "consulting" or
+    "standard" — tagged into telemetry so Phase 1 dashboards can segment by
+    module and mode without touching the existing _compose_answer() path.
+    """
+    mode = _resolve_answer_mode(params, query, explicit_module)
+    if mode == "consulting":
+        conf = _reported_confidence(query, evidence)
+        answer = _compose_consulting_answer(query, intent, entities, evidence, explicit_module, conf)
+    else:
+        answer = _compose_answer(query, intent, entities, evidence, explicit_module)
+    return answer, mode
+
+
+# ---------------------------------------------------------------------------
 # Section 11 — Main entry point
 # ---------------------------------------------------------------------------
 
@@ -7652,8 +7829,10 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
     scored = _filter_magnet_matches(query, scored)
 
     evidence = _select_evidence(query, scored, intent, explicit_module)
-    answer = _compose_answer(query, intent, entities, evidence, explicit_module)
+    answer, answer_mode = _route_answer_composer(query, intent, entities, evidence, explicit_module, params)
     answer, policy_meta = _apply_answer_policy(answer, query, params)
+    policy_meta = dict(policy_meta or {})
+    policy_meta["answer_mode"] = answer_mode
     if case_chunks and _should_include_case_studies(query, intent, answer, explicit_module):
         matched_cases = _select_case_studies(query, case_chunks, explicit_module)
         considered = sum(
