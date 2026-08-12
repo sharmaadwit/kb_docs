@@ -1,0 +1,647 @@
+{
+  "export_timestamp": "2026-08-12T13:51:15.512832",
+  "data_range": "2026-07-13 to 2026-08-12",
+  "total_traces": 954,
+  "by_module": {
+    "Agent Assist": {
+      "count": 68,
+      "idk_count": 0,
+      "answer_count": 68,
+      "avg_confidence": 1.0,
+      "confidence_counts": {
+        "low_0_0.3": 17,
+        "medium_0.3_0.6": 20,
+        "high_0.6_0.9": 3,
+        "very_high_0.9_1.0": 28
+      },
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "Personalize": {
+      "count": 5,
+      "idk_count": 0,
+      "answer_count": 5,
+      "avg_confidence": 1.0,
+      "confidence_counts": {
+        "low_0_0.3": 2,
+        "medium_0.3_0.6": 3
+      },
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "Bot Studio": {
+      "count": 142,
+      "idk_count": 0,
+      "answer_count": 142,
+      "avg_confidence": 1.0,
+      "confidence_counts": {
+        "medium_0.3_0.6": 52,
+        "low_0_0.3": 44,
+        "high_0.6_0.9": 12,
+        "very_high_0.9_1.0": 34
+      },
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "WhatsApp": {
+      "count": 338,
+      "idk_count": 0,
+      "answer_count": 338,
+      "avg_confidence": 1.0,
+      "confidence_counts": {
+        "medium_0.3_0.6": 154,
+        "high_0.6_0.9": 38,
+        "very_high_0.9_1.0": 36,
+        "low_0_0.3": 110
+      },
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "Campaign Manager": {
+      "count": 61,
+      "idk_count": 0,
+      "answer_count": 61,
+      "avg_confidence": 1.0,
+      "confidence_counts": {
+        "medium_0.3_0.6": 27,
+        "low_0_0.3": 12,
+        "high_0.6_0.9": 15,
+        "very_high_0.9_1.0": 7
+      },
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "Channels": {
+      "count": 73,
+      "idk_count": 0,
+      "answer_count": 73,
+      "avg_confidence": 1.0,
+      "confidence_counts": {
+        "medium_0.3_0.6": 24,
+        "low_0_0.3": 20,
+        "very_high_0.9_1.0": 28,
+        "high_0.6_0.9": 1
+      },
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "Overview": {
+      "count": 32,
+      "idk_count": 0,
+      "answer_count": 32,
+      "avg_confidence": 1.0,
+      "confidence_counts": {
+        "low_0_0.3": 26,
+        "medium_0.3_0.6": 4,
+        "high_0.6_0.9": 2
+      },
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "General": {
+      "count": 83,
+      "idk_count": 0,
+      "answer_count": 83,
+      "avg_confidence": 1.0,
+      "confidence_counts": {
+        "medium_0.3_0.6": 10,
+        "low_0_0.3": 71,
+        "high_0.6_0.9": 2
+      },
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "Integrations": {
+      "count": 26,
+      "idk_count": 0,
+      "answer_count": 26,
+      "avg_confidence": 1.0,
+      "confidence_counts": {
+        "low_0_0.3": 10,
+        "medium_0.3_0.6": 9,
+        "high_0.6_0.9": 3,
+        "very_high_0.9_1.0": 4
+      },
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "Wallet": {
+      "count": 13,
+      "idk_count": 0,
+      "answer_count": 13,
+      "avg_confidence": 1.0,
+      "confidence_counts": {
+        "medium_0.3_0.6": 7,
+        "low_0_0.3": 6
+      },
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "BizAI": {
+      "count": 19,
+      "idk_count": 0,
+      "answer_count": 19,
+      "avg_confidence": 1.0,
+      "confidence_counts": {
+        "low_0_0.3": 11,
+        "very_high_0.9_1.0": 8
+      },
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "CTX": {
+      "count": 30,
+      "idk_count": 0,
+      "answer_count": 30,
+      "avg_confidence": 1.0,
+      "confidence_counts": {
+        "medium_0.3_0.6": 1,
+        "low_0_0.3": 29
+      },
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "SuperAgent": {
+      "count": 23,
+      "idk_count": 0,
+      "answer_count": 23,
+      "avg_confidence": 1.0,
+      "confidence_counts": {
+        "high_0.6_0.9": 1,
+        "medium_0.3_0.6": 4,
+        "very_high_0.9_1.0": 16,
+        "low_0_0.3": 2
+      },
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "Extension": {
+      "count": 2,
+      "idk_count": 0,
+      "answer_count": 2,
+      "avg_confidence": 1.0,
+      "confidence_counts": {
+        "medium_0.3_0.6": 1,
+        "low_0_0.3": 1
+      },
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "Analytics": {
+      "count": 5,
+      "idk_count": 0,
+      "answer_count": 5,
+      "avg_confidence": 1.0,
+      "confidence_counts": {
+        "low_0_0.3": 2,
+        "very_high_0.9_1.0": 1,
+        "medium_0.3_0.6": 2
+      },
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "AI Admin": {
+      "count": 29,
+      "idk_count": 0,
+      "answer_count": 29,
+      "avg_confidence": 1.0,
+      "confidence_counts": {
+        "low_0_0.3": 24,
+        "high_0.6_0.9": 1,
+        "medium_0.3_0.6": 2,
+        "very_high_0.9_1.0": 2
+      },
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "Workflows": {
+      "count": 2,
+      "idk_count": 0,
+      "answer_count": 2,
+      "avg_confidence": 1.0,
+      "confidence_counts": {
+        "low_0_0.3": 2
+      },
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "Goals": {
+      "count": 3,
+      "idk_count": 0,
+      "answer_count": 3,
+      "avg_confidence": 1.0,
+      "confidence_counts": {
+        "very_high_0.9_1.0": 3
+      },
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    }
+  },
+  "by_segment": {
+    "cc_express": {
+      "count": 297,
+      "idk_count": 0,
+      "answer_count": 297,
+      "avg_confidence": 0.0,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "standalone": {
+      "count": 657,
+      "idk_count": 0,
+      "answer_count": 657,
+      "avg_confidence": 0.0,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    }
+  },
+  "by_intent": {
+    "setup": {
+      "count": 653,
+      "idk_count": 0,
+      "answer_count": 653,
+      "avg_confidence": 0.0,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "overview": {
+      "count": 89,
+      "idk_count": 0,
+      "answer_count": 89,
+      "avg_confidence": 0.0,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "troubleshooting": {
+      "count": 33,
+      "idk_count": 0,
+      "answer_count": 33,
+      "avg_confidence": 0.0,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "definition": {
+      "count": 24,
+      "idk_count": 0,
+      "answer_count": 24,
+      "avg_confidence": 0.0,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "compare": {
+      "count": 69,
+      "idk_count": 0,
+      "answer_count": 69,
+      "avg_confidence": 0.0,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "refusal": {
+      "count": 34,
+      "idk_count": 0,
+      "answer_count": 34,
+      "avg_confidence": 0.0,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "template": {
+      "count": 5,
+      "idk_count": 0,
+      "answer_count": 5,
+      "avg_confidence": 0.0,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "schema": {
+      "count": 14,
+      "idk_count": 0,
+      "answer_count": 14,
+      "avg_confidence": 0.0,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "page_lookup": {
+      "count": 31,
+      "idk_count": 0,
+      "answer_count": 31,
+      "avg_confidence": 0.0,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "chain": {
+      "count": 2,
+      "idk_count": 0,
+      "answer_count": 2,
+      "avg_confidence": 0.0,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    }
+  },
+  "by_confidence_band": {
+    "low_0_0.3": {
+      "count": 389,
+      "idk_count": 0,
+      "answer_count": 389,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "medium_0.3_0.6": {
+      "count": 320,
+      "idk_count": 0,
+      "answer_count": 320,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "high_0.6_0.9": {
+      "count": 78,
+      "idk_count": 0,
+      "answer_count": 78,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    },
+    "very_high_0.9_1.0": {
+      "count": 167,
+      "idk_count": 0,
+      "answer_count": 167,
+      "answer_rate": 100.0,
+      "idk_rate": 0.0
+    }
+  },
+  "module_by_segment": {
+    "Agent Assist": {
+      "cc_express": {
+        "count": 15,
+        "idk_count": 0,
+        "answer_count": 15,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      },
+      "standalone": {
+        "count": 53,
+        "idk_count": 0,
+        "answer_count": 53,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      }
+    },
+    "Personalize": {
+      "cc_express": {
+        "count": 2,
+        "idk_count": 0,
+        "answer_count": 2,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      },
+      "standalone": {
+        "count": 3,
+        "idk_count": 0,
+        "answer_count": 3,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      }
+    },
+    "Bot Studio": {
+      "cc_express": {
+        "count": 43,
+        "idk_count": 0,
+        "answer_count": 43,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      },
+      "standalone": {
+        "count": 99,
+        "idk_count": 0,
+        "answer_count": 99,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      }
+    },
+    "WhatsApp": {
+      "cc_express": {
+        "count": 143,
+        "idk_count": 0,
+        "answer_count": 143,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      },
+      "standalone": {
+        "count": 195,
+        "idk_count": 0,
+        "answer_count": 195,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      }
+    },
+    "Campaign Manager": {
+      "standalone": {
+        "count": 49,
+        "idk_count": 0,
+        "answer_count": 49,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      },
+      "cc_express": {
+        "count": 12,
+        "idk_count": 0,
+        "answer_count": 12,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      }
+    },
+    "Channels": {
+      "cc_express": {
+        "count": 17,
+        "idk_count": 0,
+        "answer_count": 17,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      },
+      "standalone": {
+        "count": 56,
+        "idk_count": 0,
+        "answer_count": 56,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      }
+    },
+    "Overview": {
+      "standalone": {
+        "count": 25,
+        "idk_count": 0,
+        "answer_count": 25,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      },
+      "cc_express": {
+        "count": 7,
+        "idk_count": 0,
+        "answer_count": 7,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      }
+    },
+    "General": {
+      "cc_express": {
+        "count": 31,
+        "idk_count": 0,
+        "answer_count": 31,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      },
+      "standalone": {
+        "count": 52,
+        "idk_count": 0,
+        "answer_count": 52,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      }
+    },
+    "Integrations": {
+      "cc_express": {
+        "count": 6,
+        "idk_count": 0,
+        "answer_count": 6,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      },
+      "standalone": {
+        "count": 20,
+        "idk_count": 0,
+        "answer_count": 20,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      }
+    },
+    "Wallet": {
+      "cc_express": {
+        "count": 8,
+        "idk_count": 0,
+        "answer_count": 8,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      },
+      "standalone": {
+        "count": 5,
+        "idk_count": 0,
+        "answer_count": 5,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      }
+    },
+    "BizAI": {
+      "standalone": {
+        "count": 18,
+        "idk_count": 0,
+        "answer_count": 18,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      },
+      "cc_express": {
+        "count": 1,
+        "idk_count": 0,
+        "answer_count": 1,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      }
+    },
+    "CTX": {
+      "cc_express": {
+        "count": 3,
+        "idk_count": 0,
+        "answer_count": 3,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      },
+      "standalone": {
+        "count": 27,
+        "idk_count": 0,
+        "answer_count": 27,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      }
+    },
+    "SuperAgent": {
+      "cc_express": {
+        "count": 2,
+        "idk_count": 0,
+        "answer_count": 2,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      },
+      "standalone": {
+        "count": 21,
+        "idk_count": 0,
+        "answer_count": 21,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      }
+    },
+    "Extension": {
+      "cc_express": {
+        "count": 1,
+        "idk_count": 0,
+        "answer_count": 1,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      },
+      "standalone": {
+        "count": 1,
+        "idk_count": 0,
+        "answer_count": 1,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      }
+    },
+    "Analytics": {
+      "standalone": {
+        "count": 5,
+        "idk_count": 0,
+        "answer_count": 5,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      }
+    },
+    "AI Admin": {
+      "cc_express": {
+        "count": 4,
+        "idk_count": 0,
+        "answer_count": 4,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      },
+      "standalone": {
+        "count": 25,
+        "idk_count": 0,
+        "answer_count": 25,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      }
+    },
+    "Workflows": {
+      "cc_express": {
+        "count": 2,
+        "idk_count": 0,
+        "answer_count": 2,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      }
+    },
+    "Goals": {
+      "standalone": {
+        "count": 3,
+        "idk_count": 0,
+        "answer_count": 3,
+        "answer_rate": 100.0,
+        "idk_rate": 0.0
+      }
+    }
+  },
+  "aggregate": {
+    "count": 954,
+    "idk_count": 0,
+    "answer_count": 954,
+    "avg_confidence": 0.4313,
+    "answer_rate": 100.0,
+    "idk_rate": 0.0
+  }
+}
