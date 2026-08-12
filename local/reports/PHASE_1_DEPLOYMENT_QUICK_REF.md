@@ -35,24 +35,20 @@ git diff --stat HEAD~2 HEAD -- skill/kb_answer.py
 
 ---
 
-## Environment Variables for Test Deployment
+## Code-Level Configuration (No Env Vars Needed)
 
-Copy-paste into your test environment (e.g., `.env`, Docker secrets, etc.):
+Edit `skill/kb_answer.py` lines 17-23:
 
-```bash
-# Master switch: enable consulting-tone router
-export KB_CONSULTING_TONE_ENABLED=1
-
-# Module allowlist: only RCS + Bot Studio in Phase 1
-# (WhatsApp, Channels, Agent Assist excluded)
-export KB_CONSULTING_TONE_MODULES="RCS,Bot Studio"
-
-# Traffic split: 50/50 consulting vs control (A/B test)
-export KB_CONSULTING_TONE_PCT=50
-
-# Optional: force override for testing (testing only, don't use in prod)
-# export KB_ANSWER_MODE=consulting  # or "standard"
+```python
+CONSULTING_TONE_CONFIG = {
+    "enabled": True,              # ← Set to False to disable
+    "modules": {"RCS", "Bot Studio"},  # ← Module allowlist
+    "traffic_pct": 50,            # ← Percent in consulting mode (50 = A/B)
+    "force_mode": None,           # ← "consulting"/"standard"/None for testing
+}
 ```
+
+**That's it.** No skill secrets, no env vars, no deployment config. Just change these values in the code.
 
 ---
 
@@ -206,18 +202,36 @@ You'll know Phase 1 is working when:
 
 ---
 
+## To Deploy: 3 Simple Steps
+
+1. **Pull latest code**
+   ```bash
+   git pull gitlab main
+   ```
+
+2. **Edit config in skill/kb_answer.py (lines 17–23)**
+   ```python
+   CONSULTING_TONE_CONFIG = {
+       "enabled": True,  # ← Change this from False to True
+       ...
+   }
+   ```
+
+3. **Restart your skill service**
+   - Service loads new code with `enabled=True`
+   - All queries now route through consulting-tone router
+   - Langfuse starts tagging `answer_mode` field on traces
+
 ## Files You Need
 
 After `git pull` from GitLab:
 
-1. ✅ **skill/kb_answer.py** — the modified code (copy functions 6483–7588)
+1. ✅ **skill/kb_answer.py** — the modified code (lines 17–23: config dict, plus functions)
 2. ✅ **local/reports/BASELINE_PRE_PHASE1.md** — control baseline (954 traces, 30 days)
 3. ✅ **local/reports/baseline_metrics_pre_phase1.json** — raw data for dashboard
 4. ✅ **local/reports/PHASE_1_CODE_CHANGES.md** — detailed line-by-line reference
 5. ✅ **local/reports/PHASE_1_GATES_AND_MONITORING.md** — monitoring gates and thresholds
 
 ---
-
-**Ready to deploy:** `git pull gitlab main` then set env vars above
 
 **Questions?** Check `local/reports/PHASE_1_CODE_CHANGES.md` for detailed tracing reference
