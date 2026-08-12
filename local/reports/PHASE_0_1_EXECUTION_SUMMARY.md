@@ -115,28 +115,32 @@ Current answer generation is optimized for **single-turn accuracy** (definitive,
 
 **Expected deliverable:** Full code design with pseudo-code, line-by-line changes, testing approach
 
-### Pilot Design (RCS Module Only)
+### Pilot Design (RCS + Bot Studio, Revised 2026-08-11)
+
+**Revision note:** Originally scoped RCS-only. Revised same day because RCS traffic is campaign-driven — marketing pushes generate bursts of near-identical templated queries, which pollutes the engagement/accuracy signal. Bot Studio (60 queries/30d, 81.7% answer rate, 18.3% IDK — 2nd highest-volume module after WhatsApp) was added as the primary clean signal: organic traffic, real baseline, and naturally conditional queries that fit the consulting-tone shape well. WhatsApp (highest volume, 157/30d) is deliberately held back for Phase 2 — too business-critical to risk on an unproven approach. Gate decisions are driven primarily by Bot Studio; RCS is logged and reviewed directionally, not used alone for go/no-go.
 
 | Aspect | Design |
 |--------|--------|
 | **Duration** | 1 week |
-| **Scope** | RCS module only (new module, low risk) |
-| **Traffic split** | 50% consulting, 50% control (A/B test) |
-| **Success metric** | Engagement ≥20% lift, accuracy ≥65%, routing ≥90% |
-| **Rollback trigger** | Accuracy <62%, multi-turn flat, resolution <35% |
-| **Next gate** | If passing → scale to Channels, WhatsApp, Bot Studio (Phase 2) |
+| **Scope** | RCS + Bot Studio, tracked as independent signals (Bot Studio = primary gate, RCS = directional) |
+| **Traffic split** | 50% consulting, 50% control (A/B test), within each module |
+| **Success metric** | Bot Studio: engagement +20% lift, accuracy ≥76% (vs 81.7% baseline), routing ≥90% |
+| **Rollback trigger** | Bot Studio accuracy <72%, multi-turn flat, resolution <35% |
+| **Next gate** | If Bot Studio passing → scale to Channels, WhatsApp (Phase 2) |
 
-### Phase 1 Gates (Hard Stops)
+### Phase 1 Gates (Hard Stops — Bot Studio is primary signal)
 
 **Gate 1: Engagement Lift**
-- Target: Multi-turn % ≥ 9.6% (20% lift from 8%)
+- Target: Multi-turn % +20% relative lift over Bot Studio's own control-arm baseline
 - Measure: % conversations with 2+ turns
-- Rollback if: Stays ≤8.5% after 3 days
+- Rollback if: No lift over baseline after 3 days
+- RCS: logged directionally, not gated alone
 
 **Gate 2: Accuracy Hold**
-- Target: RCS accuracy ≥ 65% (acceptable 5pp regression)
+- Target: Bot Studio accuracy ≥ 76% (acceptable ~5.7pp regression from 81.7% baseline)
 - Measure: % helpful answers / total
-- Rollback if: <62% (below acceptable regression)
+- Rollback if: <72% (below acceptable regression)
+- RCS: no reliable baseline to gate against; watch for gross regression only
 
 **Gate 3: Consulting Effectiveness**
 - Target: Diagnostic questions → resolution ≥50%
@@ -293,7 +297,7 @@ ELSE:
 ### ⏳ Phase 1 (Consulting Tone) — READY FOR CODE
 - [x] Strategic design complete (framework, engagement drivers identified)
 - [x] Code design in progress (high-effort agent analyzing kb_answer.py)
-- [x] A/B test architecture designed (50/50 split, RCS module only)
+- [x] A/B test architecture designed (50/50 split, RCS + Bot Studio)
 - [x] Gates & monitoring dashboard prepared
 - [x] Rollback strategy defined
 - [ ] Code implementation (awaiting design completion)
@@ -323,7 +327,7 @@ ELSE:
    - If gates failing → Investigate, refine, retry
 
 ### Week 3-4
-7. **Phase 2: Scale consulting** (expand to Channels, WhatsApp, Bot Studio)
+7. **Phase 2: Scale consulting** (expand to Channels, WhatsApp)
 8. **Phase 3: Reframed P1** (calibrate IDK threshold with real data)
 9. **Monitor overall accuracy** (target: maintain ≥70%)
 
@@ -354,7 +358,7 @@ ELSE:
 ✅ **Week 1 (Now):** P2 articles live, Phase 1 design complete, pilot ready  
 ✅ **Week 2:** Consulting pilot running on RCS (50/50 split), gates monitoring  
 ✅ **Week 3:** Consulting gates passing, rolled out to 100% RCS traffic  
-✅ **Week 4:** Expanded to Channels, WhatsApp, Bot Studio (Phase 2)  
+✅ **Week 4:** Expanded to Channels, WhatsApp (Phase 2)  
 ✅ **Week 5:** Reframed P1 calibration complete (Phase 3)  
 ✅ **Week 6:** Full system stable at 70%+ accuracy, 25-40% engagement lift  
 

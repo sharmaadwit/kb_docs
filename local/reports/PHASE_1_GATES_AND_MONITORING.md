@@ -1,43 +1,61 @@
 # Phase 1: Consulting-Tone Pilot — Gates & Monitoring Dashboard
 
-**Date:** 2026-08-11 (Pre-pilot planning)  
+**Date:** 2026-08-11 (Pre-pilot planning, revised same day)  
 **Phase Duration:** 1 week  
-**Deployment:** RCS module only (A/B test 50/50 traffic)  
+**Deployment:** **Two modules, tracked as independent signals — RCS + Bot Studio** (A/B test 50/50 traffic within each)  
 **Status:** Ready to launch (awaiting code design completion)
+
+---
+
+## Why Two Modules, Tracked Separately
+
+RCS alone was the original plan, but RCS traffic is campaign-driven: marketing sends generate bursts of near-identical templated queries. That pollutes the engagement/accuracy signal — you'd be measuring campaign response, not consulting-tone effectiveness. Bot Studio (Journey Builder) was added as the primary clean signal:
+
+| Module | Volume (30d) | Answer Rate | IDK Rate | Role in Phase 1 |
+|---|---|---|---|---|
+| **Bot Studio** | 60 | 81.7% | 18.3% | **Primary gate signal** — organic traffic, real baseline, top-3 by volume |
+| **RCS** | Low, bursty | — (no stable baseline) | — | Secondary/directional signal — monitored, not used alone for go/no-go |
+
+**Gate decisions in this document are made per-module, using Bot Studio's baseline as the primary go/no-go signal.** RCS metrics are still logged and reviewed, but a good or bad RCS week alone does not trigger expansion or rollback — its traffic is too templated to trust in isolation. If RCS and Bot Studio disagree, investigate before deciding; don't average them together.
 
 ---
 
 ## Success Criteria & Gates
 
+Gates below are stated in terms of Bot Studio's real baseline (the trustworthy signal). Apply the same gate logic to RCS directionally, but weight Bot Studio's result more heavily in the go/no-go call.
+
 ### Hard Gates (Must Pass to Proceed to Phase 2)
 
 **Gate 1: Engagement Lift**
-- **Target:** Multi-turn conversation % ≥ 9.6% (20% lift from 8% baseline)
-- **Measure:** % of conversations with 2+ turns
-- **Current baseline:** ~8% (from dashboard)
-- **Success:** Consulting reduces single-turn conversations
-- **Trigger rollback if:** Multi-turn % stays ≤ 8.5% after 3 days
+- **Target:** Multi-turn conversation % ≥ 20% relative lift over each module's own baseline
+- **Measure:** % of conversations with 2+ turns, computed separately for Bot Studio and RCS
+- **Current baseline:** ~8% platform-wide (Bot Studio-specific baseline to be confirmed from Day 1 control-arm data, since it wasn't previously broken out)
+- **Success:** Consulting reduces single-turn conversations in Bot Studio (primary), directionally similar in RCS
+- **Trigger rollback (Bot Studio) if:** Multi-turn % shows no lift over its own baseline after 3 days
+- **RCS:** Log only; do not gate off RCS engagement alone (campaign bursts can fake a lift or mask one)
 
 **Gate 2: Accuracy Hold**
-- **Target:** RCS module accuracy ≥ 65% (acceptable 5pp regression from ~70% baseline)
+- **Target (Bot Studio):** Accuracy ≥ 76% (acceptable ~5.7pp regression from 81.7% baseline)
+- **Target (RCS):** Directional only — no reliable baseline to gate against; watch for gross regression (e.g., answer rate cut in half)
 - **Measure:** % of answers user marked as helpful / total answers
-- **Current baseline:** ~70% (RCS module)
-- **Success:** Consulting doesn't degrade accuracy below 65%
-- **Trigger rollback if:** Accuracy drops below 62% or continues declining after 2 days
+- **Success:** Consulting doesn't degrade Bot Studio accuracy below 76%
+- **Trigger rollback (Bot Studio) if:** Accuracy drops below 72% or continues declining after 2 days
+- **Trigger investigation (RCS) if:** Answer rate drops >15pp vs its own control arm that week
 
 **Gate 3: Consulting Question Effectiveness**
-- **Target:** Consulting questions → resolution ≥ 50%
+- **Target:** Consulting questions → resolution ≥ 50%, evaluated per-module
 - **Measure:** % of consulting question conversations that resolve without escalation
 - **Definition:** "Resolution" = user marks final answer as helpful, or stops asking within 2 turns
-- **Success:** Diagnostic questions actually help users
-- **Trigger rollback if:** Resolution rate < 35% (questions are friction, not value)
+- **Success:** Diagnostic questions actually help users — this should be clearest in Bot Studio, where questions are genuinely conditional ("which trigger type?", "webhook or native integration?")
+- **Trigger rollback (Bot Studio) if:** Resolution rate < 35% (questions are friction, not value)
+- **RCS:** Log resolution rate; low RCS resolution may just reflect templated queries that don't need clarification — don't rollback off this alone
 
 **Gate 4: Module Routing Stability**
-- **Target:** Module detection accuracy ≥ 90%
+- **Target:** Module detection accuracy ≥ 90%, for both RCS and Bot Studio queries
 - **Measure:** % of queries correctly routed to intended module
 - **Current baseline:** ~95%
-- **Success:** Consulting tone doesn't confuse module detection
-- **Trigger rollback if:** Routing accuracy drops below 88%
+- **Success:** Consulting tone doesn't confuse module detection for either module
+- **Trigger rollback if:** Routing accuracy drops below 88% for either module (this one DOES apply symmetrically — routing errors are a code-correctness signal, not a traffic-quality signal)
 
 ### Soft Gates (Monitor, but won't trigger rollback alone)
 
@@ -60,17 +78,37 @@
 
 ### Hourly Metrics (Real-time)
 
+Track each module's consulting vs. control arm independently — do not merge RCS and Bot Studio numbers.
+
 ```
-RCS Module (Consulting Tone - 50% traffic)
+Bot Studio (Consulting Tone - 50% traffic)  [PRIMARY SIGNAL]
 ├─ Queries processed: [count]
-├─ Answer rate: [%] (target ≥60%)
-├─ IDK rate: [%] (target ≤30%, expect slight increase initially)
-├─ Multi-turn %: [%] (target ≥9.6%)
+├─ Answer rate: [%] (target ≥76%, vs 81.7% baseline)
+├─ IDK rate: [%] (target ≤24%, vs 18.3% baseline)
+├─ Multi-turn %: [%] (target: +20% relative vs control arm)
 ├─ Avg confidence: [score] (monitor for major shifts)
 ├─ Response time: [ms] (target <2000ms)
 └─ Errors/timeouts: [count] (should be 0 or minimal)
 
-RCS Module (Control - Problem-Solution - 50% traffic)
+Bot Studio (Control - Problem-Solution - 50% traffic)
+├─ Queries processed: [count]
+├─ Answer rate: [%] (should track ~81.7% baseline)
+├─ IDK rate: [%]
+├─ Multi-turn %: [%] (this establishes the true baseline — not previously broken out per-module)
+├─ Avg confidence: [score]
+├─ Response time: [ms]
+└─ Errors/timeouts: [count]
+
+RCS (Consulting Tone - 50% traffic)  [SECONDARY / DIRECTIONAL]
+├─ Queries processed: [count] (expect low, bursty)
+├─ Answer rate: [%] (no reliable baseline — compare to its own control arm only)
+├─ IDK rate: [%]
+├─ Multi-turn %: [%]
+├─ Avg confidence: [score]
+├─ Response time: [ms]
+└─ Errors/timeouts: [count]
+
+RCS (Control - Problem-Solution - 50% traffic)
 ├─ Queries processed: [count]
 ├─ Answer rate: [%]
 ├─ IDK rate: [%]
@@ -79,14 +117,18 @@ RCS Module (Control - Problem-Solution - 50% traffic)
 ├─ Response time: [ms]
 └─ Errors/timeouts: [count]
 
-Comparison
-├─ Engagement lift: (Consulting multi-turn % - Control multi-turn %)
-├─ Accuracy delta: (Consulting answer rate - Control answer rate)
-├─ Routing accuracy: Module detection success %
-└─ Alert: Any metric crosses threshold?
+Comparison (per module, not blended)
+├─ Bot Studio engagement lift: (Consulting multi-turn % - Control multi-turn %)
+├─ Bot Studio accuracy delta: (Consulting answer rate - Control answer rate)
+├─ RCS engagement lift: (directional only)
+├─ RCS accuracy delta: (directional only)
+├─ Routing accuracy: Module detection success %, both modules
+└─ Alert: Any Bot Studio metric crosses threshold? (RCS crossing alone = investigate, not auto-rollback)
 ```
 
 ### Daily Summary (EOD)
+
+**Bot Studio (primary gate signal)**
 
 | Metric | Consulting | Control | Difference | Status |
 |--------|-----------|---------|-----------|--------|
@@ -95,6 +137,16 @@ Comparison
 | IDK rate | X% | Y% | ±Z% | ✅/⚠️/❌ |
 | Routing accuracy | X% | Y% | N/A | ✅/⚠️/❌ |
 | Avg satisfaction | X% | Y% | ±Z% | ℹ️ (monitor) |
+| Response time | Xms | Yms | ±Zms | ✅/⚠️ |
+
+**RCS (secondary / directional signal)**
+
+| Metric | Consulting | Control | Difference | Status |
+|--------|-----------|---------|-----------|--------|
+| Multi-turn % | X% | Y% | +Z% | ℹ️ (log, don't gate) |
+| Answer rate | X% | Y% | ±Z% | ℹ️ (log, don't gate) |
+| IDK rate | X% | Y% | ±Z% | ℹ️ (log, don't gate) |
+| Routing accuracy | X% | Y% | N/A | ✅/⚠️/❌ (this one gates) |
 | Response time | Xms | Yms | ±Zms | ✅/⚠️ |
 
 ---
@@ -122,8 +174,8 @@ Comparison
 - If accuracy stabilizes at 65-67%: acceptable for consulting trade-off; continue
 
 **Day 4-5:**
-- If all gates passing: expand sample to 100% of RCS traffic (move from 50/50 to 100% consulting)
-- If accuracy trending down: plan rollback; don't expand
+- If Bot Studio gates passing: expand sample to 100% of Bot Studio traffic (move from 50/50 to 100% consulting); use RCS data directionally to corroborate, not to drive the decision alone
+- If Bot Studio accuracy trending down: plan rollback for Bot Studio; don't expand. RCS accuracy trending down without a Bot Studio signal is not sufficient grounds for rollback on its own — investigate whether it's a campaign artifact first
 
 ---
 
@@ -153,6 +205,30 @@ Before launching Phase 1, test these queries against both old and new answer gen
 5. "Can I use RCS for customer support?"
    Expected old: Yes/No answer
    Expected new: Context check (depends on volume, support model...)
+```
+
+### Bot Studio-Specific Queries (Primary gate signal — should benefit most)
+
+```
+1. "How do I build a journey that sends different messages based on user response?"
+   Expected old: Generic conditional-routing steps
+   Expected new: Diagnostic (single condition or multiple? AND/OR logic?) → tailored pattern
+
+2. "What's the best way to collect a user's info across multiple steps?"
+   Expected old: Generic multi-step form steps
+   Expected new: Context-aware (depends whether you need to persist across sessions)
+
+3. "How do I handle API failures inside a journey?"
+   Expected old: Generic retry-logic steps
+   Expected new: Diagnostic (timeout vs 5xx vs invalid response?) → specific handling
+
+4. "Should I use buttons or free text for user responses?"
+   Expected old: Pros/cons list
+   Expected new: Diagnostic path (how many options? need exact parsing?) → recommendation
+
+5. "How do I prevent my bot from looping on the same question?"
+   Expected old: Generic loop-counter steps
+   Expected new: Context check (is this FAQ-repeat or a stuck decision node?) → targeted fix
 ```
 
 ### Quality Checks

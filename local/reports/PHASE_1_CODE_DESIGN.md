@@ -9,9 +9,20 @@
 
 ## Overview
 
-Implement consulting-tone answer generation alongside existing problem-solution framework using feature flag + A/B test approach. RCS module only, 50/50 traffic split.
+Implement consulting-tone answer generation alongside existing problem-solution framework using feature flag + A/B test approach. **Two-module pilot: RCS + Bot Studio**, 50/50 traffic split within each module.
 
 **Key insight:** The consulting tone is a **composer-layer change** only. No changes to retrieval, scoring, entity detection, or confidence calculation. The infrastructure for controlling this with environment variables already exists.
+
+**Why two modules (revised 2026-08-11):** RCS traffic is campaign-driven — marketing pushes send bursts of near-identical templated queries, which pollutes the engagement/accuracy signal (you're measuring campaign response, not consulting-tone effectiveness). Bot Studio was added as a second, cleaner signal:
+
+| Module | Volume (30d) | Answer Rate | IDK Rate | Traffic character |
+|---|---|---|---|---|
+| **RCS** | Low, bursty | — | — | Campaign-driven, templated, low diversity |
+| **Bot Studio** | 60 | 81.7% | 18.3% | Organic, top-3 by volume, high query diversity |
+| WhatsApp (excluded) | 157 | 68.8% | 31.2% | Highest volume but too high-stakes for Phase 1 |
+| Channels (considered, not picked) | 40 | 85.0% | 15.0% | Already high-performing, less "it depends" shape |
+
+Bot Studio queries are naturally conditional ("how do I build a flow for X" almost always has 2-3 valid paths depending on use case), which is exactly the shape consulting-tone's diagnosis → context → options → recommended structure is built for. It's also where the P2 content gap article (`bot-studio-journey-patterns.md`, 34 chunks) just shipped, so the pilot tests consulting-tone on freshly-improved evidence rather than stale gaps. WhatsApp is deliberately excluded from Phase 1 — highest volume and most business-critical, so it's held back for Phase 2 once the approach is proven on two lower-stakes modules.
 
 ---
 
@@ -169,13 +180,13 @@ def _resolve_answer_mode(params: dict, query: str, explicit_module: str) -> str:
     Priority order:
     1. Explicit param override (for testing/debugging)
     2. Master feature flag
-    3. Module-level gate (Phase 1: RCS only)
+    3. Module-level gate (Phase 1: RCS + Bot Studio)
     4. Deterministic 50/50 hash-based split per query
     5. Default: standard
     
     Environment variables:
     - KB_CONSULTING_TONE_ENABLED: "1" = master switch ON
-    - KB_CONSULTING_TONE_MODULES: "RCS,WhatsApp" = allowed modules (comma-separated)
+    - KB_CONSULTING_TONE_MODULES: "RCS,Bot Studio" = allowed modules (comma-separated)
     - KB_CONSULTING_TONE_PCT: "50" = percent of traffic in consulting mode
     - KB_ANSWER_MODE: "consulting" or "standard" = force override (testing only)
     
@@ -194,8 +205,8 @@ def _resolve_answer_mode(params: dict, query: str, explicit_module: str) -> str:
     if not os.getenv("KB_CONSULTING_TONE_ENABLED", ""):
         return "standard"
 
-    # 3. Module-level gate (Phase 1: RCS only)
-    allowed_modules_str = os.getenv("KB_CONSULTING_TONE_MODULES", "RCS")
+    # 3. Module-level gate (Phase 1: RCS + Bot Studio)
+    allowed_modules_str = os.getenv("KB_CONSULTING_TONE_MODULES", "RCS,Bot Studio")
     allowed_modules = {m.strip() for m in allowed_modules_str.split(",")}
     if explicit_module not in allowed_modules:
         return "standard"
@@ -292,7 +303,7 @@ This tags every answer in Langfuse so we can segment metrics by `answer_mode` in
 
 ```bash
 export KB_CONSULTING_TONE_ENABLED=1
-export KB_CONSULTING_TONE_MODULES=RCS
+export KB_CONSULTING_TONE_MODULES="RCS,Bot Studio"
 export KB_CONSULTING_TONE_PCT=50
 ```
 
@@ -519,7 +530,10 @@ A: Monitor `response_time_ms` in Langfuse. If consulting avg >2s vs standard <1.
 A: Hash-based split on query ensures same user asking same question always gets same answer type (consulting or standard). This is better than per-user split (avoids confusion).
 
 **Q: Can we expand to other modules before Phase 1 ends?**  
-A: Not recommended. Phase 1 goal is to prove concept on RCS (2% of traffic typically). If gates pass after 1 week, Phase 2 expands to Channels/WhatsApp. Expanding mid-week risks confounding variables.
+A: Not recommended. Phase 1 scope is fixed at RCS + Bot Studio. If gates pass after 1 week (evaluated per-module, not blended), Phase 2 expands to Channels/WhatsApp. Expanding mid-week risks confounding variables.
+
+**Q: Why track RCS and Bot Studio separately instead of blending the metrics?**  
+A: Different baselines (RCS has near-zero organic baseline; Bot Studio baseline is 81.7% answer rate / 18.3% IDK) and different traffic character (RCS is bursty/campaign-driven, Bot Studio is steady/organic). A blended number would let a good Bot Studio week mask a bad RCS week or vice versa. Gate decisions are made per-module.
 
 **Q: What if the new function crashes?**  
 A: It's wrapped in the existing try-except at answer composition layer. If it throws, answer returns IDK (safe degradation). Rollback by unsetting env var.
