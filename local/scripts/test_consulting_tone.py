@@ -14,6 +14,7 @@ from skill.kb_answer import (
     _compose_consulting_answer,
     _resolve_answer_mode,
     _gate_module_for_consulting,
+    CONSULTING_TONE_CONFIG,
 )
 
 
@@ -130,28 +131,28 @@ GATE_MODULE_CASES = [
 MODE_RESOLUTION_CASES = [
     {
         "name": "disabled_by_default_returns_standard",
-        "env": {},
+        "config": {"enabled": False, "modules": {"RCS", "Bot Studio"}, "traffic_pct": 50, "force_mode": None},
         "query": "how do I send an RCS campaign",
         "explicit_module": "Channels",
         "expect": "standard",
     },
     {
         "name": "enabled_but_module_not_in_allowlist_returns_standard",
-        "env": {"KB_CONSULTING_TONE_ENABLED": "1", "KB_CONSULTING_TONE_MODULES": "Bot Studio"},
+        "config": {"enabled": True, "modules": {"Bot Studio"}, "traffic_pct": 50, "force_mode": None},
         "query": "how do I send an RCS campaign",
         "explicit_module": "Channels",
         "expect": "standard",
     },
     {
         "name": "explicit_force_override_wins",
-        "env": {"KB_ANSWER_MODE": "consulting"},
+        "config": {"enabled": True, "modules": {"RCS", "Bot Studio"}, "traffic_pct": 50, "force_mode": "consulting"},
         "query": "anything",
         "explicit_module": "General",
         "expect": "consulting",
     },
     {
         "name": "deterministic_same_query_same_mode",
-        "env": {"KB_CONSULTING_TONE_ENABLED": "1", "KB_CONSULTING_TONE_MODULES": "Bot Studio", "KB_CONSULTING_TONE_PCT": "50"},
+        "config": {"enabled": True, "modules": {"Bot Studio"}, "traffic_pct": 50, "force_mode": None},
         "query": "how do I build a journey with conditional branching",
         "explicit_module": "Bot Studio",
         "expect": None,  # checked via repeat-call comparison below, not a fixed value
@@ -195,11 +196,12 @@ def run():
 
     for case in MODE_RESOLUTION_CASES:
         try:
-            saved = {}
-            for k in ("KB_ANSWER_MODE", "KB_CONSULTING_TONE_ENABLED", "KB_CONSULTING_TONE_MODULES", "KB_CONSULTING_TONE_PCT"):
-                saved[k] = os.environ.pop(k, None)
-            for k, v in case["env"].items():
-                os.environ[k] = v
+            # Save original config
+            saved_config = dict(CONSULTING_TONE_CONFIG)
+
+            # Apply test config
+            CONSULTING_TONE_CONFIG.clear()
+            CONSULTING_TONE_CONFIG.update(case["config"])
 
             if case["name"] == "deterministic_same_query_same_mode":
                 r1 = _resolve_answer_mode({}, case["query"], case["explicit_module"])
@@ -215,11 +217,9 @@ def run():
             print(f"FAIL mode:{case['name']}: {e}")
             failed += 1
         finally:
-            for k, v in saved.items():
-                if v is None:
-                    os.environ.pop(k, None)
-                else:
-                    os.environ[k] = v
+            # Restore original config
+            CONSULTING_TONE_CONFIG.clear()
+            CONSULTING_TONE_CONFIG.update(saved_config)
 
     print()
     print(f"Results: {passed} passed, {failed} failed")

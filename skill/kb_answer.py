@@ -13,6 +13,17 @@ import requests
 from urllib.parse import urlencode, quote as _kb_quote
 
 
+# --- Phase 1 Consulting-Tone Configuration ---
+# Toggle these values directly to enable/disable the pilot.
+# Change values here instead of managing env vars in deployment.
+CONSULTING_TONE_CONFIG = {
+    "enabled": True,  # Set to False to disable consulting-tone entirely
+    "modules": {"RCS", "Bot Studio"},  # Module allowlist for Phase 1 pilot
+    "traffic_pct": 50,  # Percent of eligible traffic in consulting mode (50 = A/B split)
+    "force_mode": None,  # Set to "consulting" or "standard" to force all traffic into one mode (testing only)
+}
+
+
 # --- BEGIN consolidated video/storage/analytics helpers (self-contained) ---
 class _NoopLogger:
     """Sandbox forbids importing `logging`; preserve logger.* call sites as no-ops."""
@@ -7536,31 +7547,38 @@ def _resolve_answer_mode(params: dict, query: str, explicit_module: str) -> str:
     """Resolve answer generation mode (consulting or standard problem-solution).
 
     Priority order:
-    1. Explicit param/env override (testing/debugging)
-    2. Master feature flag
+    1. Explicit param/config override (testing/debugging)
+    2. Master feature flag (CONSULTING_TONE_CONFIG["enabled"])
     3. Module-level gate (Phase 1: RCS + Bot Studio, tracked independently)
     4. Deterministic 50/50 hash-based split per query
 
-    Env vars:
-    - KB_CONSULTING_TONE_ENABLED: "1" = master switch ON
-    - KB_CONSULTING_TONE_MODULES: "RCS,Bot Studio" = allowed gate modules (comma-separated)
-    - KB_CONSULTING_TONE_PCT: "50" = percent of eligible traffic in consulting mode
-    - KB_ANSWER_MODE: "consulting" | "standard" = force override (testing only)
+    Config (CONSULTING_TONE_CONFIG at top of file):
+    - "enabled": True/False = master switch
+    - "modules": {"RCS", "Bot Studio"} = allowed gate modules (set)
+    - "traffic_pct": 50 = percent of eligible traffic in consulting mode
+    - "force_mode": "consulting"/"standard"/None = force override (testing only)
     """
-    explicit = (params or {}).get("answer_mode") or os.getenv("KB_ANSWER_MODE", "")
+    # Check for force override (testing)
+    if CONSULTING_TONE_CONFIG.get("force_mode") in ("consulting", "standard"):
+        return CONSULTING_TONE_CONFIG["force_mode"]
+
+    # Check for param override
+    explicit = (params or {}).get("answer_mode") or ""
     if explicit in ("consulting", "standard"):
         return explicit
 
-    if not os.getenv("KB_CONSULTING_TONE_ENABLED", ""):
+    # Check master flag
+    if not CONSULTING_TONE_CONFIG.get("enabled", False):
         return "standard"
 
+    # Module gate
     gate_module = _gate_module_for_consulting(query, explicit_module)
-    allowed_modules_str = os.getenv("KB_CONSULTING_TONE_MODULES", "RCS,Bot Studio")
-    allowed_modules = {m.strip() for m in allowed_modules_str.split(",")}
+    allowed_modules = CONSULTING_TONE_CONFIG.get("modules", {"RCS", "Bot Studio"})
     if gate_module not in allowed_modules:
         return "standard"
 
-    split_pct = int(os.getenv("KB_CONSULTING_TONE_PCT", "50"))
+    # Deterministic A/B split
+    split_pct = CONSULTING_TONE_CONFIG.get("traffic_pct", 50)
     digest = int(hashlib.md5(query.encode()).hexdigest(), 16)
     return "consulting" if (digest % 100) < split_pct else "standard"
 
