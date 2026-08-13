@@ -1,0 +1,149 @@
+{
+  "timestamp": "2026-08-13T10:21:14.147194",
+  "results": [
+    {
+      "query": "How do I prevent infinite loops in Bot Studio journeys?",
+      "answer_preview": "I couldn't find specific documentation for preventing recursive journey loops in Bot Studio. Could you provide more context\u2014are you asking about a **C",
+      "answer_length": 466,
+      "accuracy_score": 66.7,
+      "accuracy_status": "\u26a0\ufe0f  MEDIUM",
+      "matched_keywords": [
+        "loop",
+        "journey",
+        "condition",
+        "node"
+      ],
+      "missed_keywords": [
+        "infinite",
+        "prevention"
+      ],
+      "consulting_markers": {
+        "diagnosis": false,
+        "context": true,
+        "options": false,
+        "recommended": false,
+        "followup": false
+      },
+      "consulting_score": 20.0,
+      "paragraphs": 2,
+      "assessment": "\u274c POOR: Inaccurate answer without consulting structure"
+    },
+    {
+      "query": "How do I use conditional branching to route users in Bot Studio?",
+      "answer_preview": "**Reflecting on skill acquisition**\n\nI\u2019m thinking we need to focus on developing skills effectively. I should read up on what \u201cSKILL\u201d really means bef",
+      "answer_length": 4746,
+      "accuracy_score": 66.7,
+      "accuracy_status": "\u26a0\ufe0f  MEDIUM",
+      "matched_keywords": [
+        "conditional",
+        "branching",
+        "route",
+        "node"
+      ],
+      "missed_keywords": [
+        "decision",
+        "logic"
+      ],
+      "consulting_markers": {
+        "diagnosis": true,
+        "context": true,
+        "options": true,
+        "recommended": false,
+        "followup": false
+      },
+      "consulting_score": 60.0,
+      "paragraphs": 16,
+      "assessment": "\u274c RISKY: Consulting-tone dresses up inaccurate answer (false confidence)"
+    },
+    {
+      "query": "What are the best practices for multi-turn Bot Studio journeys?",
+      "answer_preview": "**Checking action mapping**\n\nI see that I can call `execute_action` and there's something about `kb_answer`. I need to check the SKILL.md file for act",
+      "answer_length": 3650,
+      "accuracy_score": 33.3,
+      "accuracy_status": "\u274c LOW",
+      "matched_keywords": [
+        "multi-turn",
+        "state"
+      ],
+      "missed_keywords": [
+        "context",
+        "session",
+        "memory",
+        "conversation"
+      ],
+      "consulting_markers": {
+        "diagnosis": true,
+        "context": false,
+        "options": true,
+        "recommended": false,
+        "followup": true
+      },
+      "consulting_score": 60.0,
+      "paragraphs": 13,
+      "assessment": "\u274c RISKY: Consulting-tone dresses up inaccurate answer (false confidence)"
+    },
+    {
+      "query": "How do I handle errors in Bot Studio API nodes?",
+      "answer_preview": "**Accessing skills information**\n\nI need to gather knowledge about skills. I\u2019m thinking of using the tools available, like `list_skills`, but I need a",
+      "answer_length": 3740,
+      "accuracy_score": 66.7,
+      "accuracy_status": "\u26a0\ufe0f  MEDIUM",
+      "matched_keywords": [
+        "error",
+        "api",
+        "retry",
+        "fallback"
+      ],
+      "missed_keywords": [
+        "handling",
+        "recovery"
+      ],
+      "consulting_markers": {
+        "diagnosis": true,
+        "context": true,
+        "options": true,
+        "recommended": false,
+        "followup": false
+      },
+      "consulting_score": 60.0,
+      "paragraphs": 12,
+      "assessment": "\u274c RISKY: Consulting-tone dresses up inaccurate answer (false confidence)"
+    },
+    {
+      "query": "How do I use webhooks to integrate external services?",
+      "answer_preview": "**Considering fallback procedures**\n\nI need to set up a general fallback to avoid retrying the same query. Maybe I should try using a semantic variant",
+      "answer_length": 1618,
+      "accuracy_score": 83.3,
+      "accuracy_status": "\u2705 HIGH",
+      "matched_keywords": [
+        "webhook",
+        "integration",
+        "external",
+        "api",
+        "event"
+      ],
+      "missed_keywords": [
+        "callback"
+      ],
+      "consulting_markers": {
+        "diagnosis": true,
+        "context": true,
+        "options": true,
+        "recommended": false,
+        "followup": false
+      },
+      "consulting_score": 60.0,
+      "paragraphs": 6,
+      "assessment": "\u2705 GOOD: Accurate answer with proper consulting structure"
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "high_accuracy": 1,
+    "medium_accuracy": 3,
+    "low_accuracy": 1,
+    "high_consulting": 4,
+    "false_confidence": 1,
+    "well_used_consulting": 1
+  }
+}
