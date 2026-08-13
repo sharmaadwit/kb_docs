@@ -1,0 +1,241 @@
+{
+  "phase": "live_validation",
+  "timestamp": "2026-08-13",
+  "kb_chunks_total": 7126,
+  "consulting_chunks_indexed": 75,
+  "queries_tested": 30,
+  "overall_accuracy": 72.46666666666667,
+  "false_confidence_cases": 6,
+  "by_topic": {
+    "Bot Studio": {
+      "accuracy": 78.0,
+      "false_confidence_cases": 1,
+      "results": [
+        {
+          "query": "How do I prevent infinite loops in Bot Studio jour",
+          "found": true,
+          "accuracy": 84,
+          "top_chunk": "Options: Four Prevention Strategies",
+          "false_confidence": false
+        },
+        {
+          "query": "How do I use conditional branching to route users?",
+          "found": true,
+          "accuracy": 93,
+          "top_chunk": "Options: Three Implementation Approaches",
+          "false_confidence": false
+        },
+        {
+          "query": "What are the best practices for multi-turn journey",
+          "found": true,
+          "accuracy": 75,
+          "top_chunk": "Set-up retargeting",
+          "false_confidence": false
+        },
+        {
+          "query": "When should I build a bot vs other solutions?",
+          "found": true,
+          "accuracy": 80,
+          "top_chunk": "Diagnosis: What's Your Routing Scenario?",
+          "false_confidence": false
+        },
+        {
+          "query": "How do I handle errors in Bot Studio API nodes?",
+          "found": true,
+          "accuracy": 96,
+          "top_chunk": "Options: Three Bot Design Approaches",
+          "false_confidence": false
+        },
+        {
+          "query": "What's the recommended pattern for sequential API ",
+          "found": true,
+          "accuracy": 60,
+          "top_chunk": "Diagnosis: What's Your Routing Scenario?",
+          "false_confidence": true
+        },
+        {
+          "query": "How do I design journeys for maximum reliability?",
+          "found": true,
+          "accuracy": 75,
+          "top_chunk": "Step-by-step configuration",
+          "false_confidence": false
+        },
+        {
+          "query": "What are the tradeoffs between retry strategies?",
+          "found": true,
+          "accuracy": 57,
+          "top_chunk": "Details",
+          "false_confidence": false
+        },
+        {
+          "query": "How do I test Bot Studio journeys before productio",
+          "found": true,
+          "accuracy": 88,
+          "top_chunk": "FAQ",
+          "false_confidence": false
+        },
+        {
+          "query": "How should I structure a complex journey with mult",
+          "found": true,
+          "accuracy": 72,
+          "top_chunk": "Options: Three Implementation Approaches",
+          "false_confidence": false
+        }
+      ]
+    },
+    "RCS": {
+      "accuracy": 73.5,
+      "false_confidence_cases": 1,
+      "results": [
+        {
+          "query": "When should we use RCS vs SMS for customer messagi",
+          "found": true,
+          "accuracy": 84,
+          "top_chunk": "Options: Three Fallback Strategies",
+          "false_confidence": false
+        },
+        {
+          "query": "What are the prerequisites for launching RCS in ou",
+          "found": true,
+          "accuracy": 72,
+          "top_chunk": "Diagnosis: What Problem Does Your Bot So",
+          "false_confidence": false
+        },
+        {
+          "query": "Should we start with manual setup (Path 1) or API-",
+          "found": true,
+          "accuracy": 76,
+          "top_chunk": "Options: Three Implementation Approaches",
+          "false_confidence": false
+        },
+        {
+          "query": "What's the best fallback strategy when RCS deliver",
+          "found": true,
+          "accuracy": 77,
+          "top_chunk": "Content",
+          "false_confidence": false
+        },
+        {
+          "query": "How do we set up RCS from scratch to production la",
+          "found": true,
+          "accuracy": 81,
+          "top_chunk": "Getting Started",
+          "false_confidence": false
+        },
+        {
+          "query": "What compliance requirements apply to RCS in our r",
+          "found": true,
+          "accuracy": 77,
+          "top_chunk": "Q8. What are the compliance requirements",
+          "false_confidence": false
+        },
+        {
+          "query": "How do we monitor RCS delivery and detect issues e",
+          "found": true,
+          "accuracy": 72,
+          "top_chunk": "Options: Three Implementation Approaches",
+          "false_confidence": false
+        },
+        {
+          "query": "What's the cost-benefit analysis of RCS vs SMS?",
+          "found": true,
+          "accuracy": 75,
+          "top_chunk": "Why Should I Use RCS?",
+          "false_confidence": false
+        },
+        {
+          "query": "How do we migrate from SMS-only to hybrid routing?",
+          "found": true,
+          "accuracy": 66,
+          "top_chunk": "Options: Three Bot Design Approaches",
+          "false_confidence": true
+        },
+        {
+          "query": "What are common mistakes when scaling RCS to 10K+/",
+          "found": true,
+          "accuracy": 55,
+          "top_chunk": "Starting Node :",
+          "false_confidence": false
+        }
+      ]
+    },
+    "Error Handling": {
+      "accuracy": 65.9,
+      "false_confidence_cases": 4,
+      "results": [
+        {
+          "query": "How do I choose between different retry strategies",
+          "found": true,
+          "accuracy": 65,
+          "top_chunk": "Options: Three Implementation Approaches",
+          "false_confidence": true
+        },
+        {
+          "query": "What's the difference between exponential backoff ",
+          "found": true,
+          "accuracy": 55,
+          "top_chunk": "FAQ",
+          "false_confidence": false
+        },
+        {
+          "query": "When should I use automatic fallback vs manual err",
+          "found": true,
+          "accuracy": 72,
+          "top_chunk": "Options: Three Fallback Strategies",
+          "false_confidence": false
+        },
+        {
+          "query": "How do I diagnose timeout issues in Bot Studio API",
+          "found": true,
+          "accuracy": 76,
+          "top_chunk": "Options: Three Bot Design Approaches",
+          "false_confidence": false
+        },
+        {
+          "query": "What's the production-ready error handling checkli",
+          "found": true,
+          "accuracy": 60,
+          "top_chunk": "Diagnosis: What's Causing Your Loop?",
+          "false_confidence": true
+        },
+        {
+          "query": "How do I implement smart retry logic without overw",
+          "found": true,
+          "accuracy": 60,
+          "top_chunk": "Options: Three Implementation Approaches",
+          "false_confidence": true
+        },
+        {
+          "query": "What monitoring and alerting should I set up for e",
+          "found": true,
+          "accuracy": 76,
+          "top_chunk": "Options: Three Implementation Approaches",
+          "false_confidence": false
+        },
+        {
+          "query": "How do I handle cascading failures across multiple",
+          "found": true,
+          "accuracy": 60,
+          "top_chunk": "Options: Three Implementation Approaches",
+          "false_confidence": true
+        },
+        {
+          "query": "What are the best practices for timeout configurat",
+          "found": true,
+          "accuracy": 75,
+          "top_chunk": "Best Practices",
+          "false_confidence": false
+        },
+        {
+          "query": "How do I balance resilience and complexity in erro",
+          "found": true,
+          "accuracy": 60,
+          "top_chunk": "Note: AI Agent is available in developer",
+          "false_confidence": false
+        }
+      ]
+    }
+  },
+  "gates_passed": 2,
+  "deployment_ready": false
+}
