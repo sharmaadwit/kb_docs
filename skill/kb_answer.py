@@ -7417,7 +7417,7 @@ def _send_langfuse(
         "detected_product_original": detected_product_original,
         "source_count": len(results),
         "latency_ms": latency_ms,
-        "intent": selected_answer_mode,
+        "intent": intent,
         "intent_labels": intents,
         "module": module_label,
         "explicit_module": None if explicit_module == "General" else explicit_module,
@@ -7571,13 +7571,16 @@ def _resolve_answer_mode(params: dict, query: str, explicit_module: str) -> str:
     if not CONSULTING_TONE_CONFIG.get("enabled", False):
         return "standard"
 
-    # Module gate
+    # Module gate: ONLY allow Phase 1 modules
     gate_module = _gate_module_for_consulting(query, explicit_module)
     allowed_modules = CONSULTING_TONE_CONFIG.get("modules", {"RCS", "Bot Studio"})
+
+    # CRITICAL: If module is not in allowlist, return standard immediately
+    # This prevents WhatsApp, SMS, etc. from getting consulting-tone
     if gate_module not in allowed_modules:
         return "standard"
 
-    # Deterministic A/B split
+    # Deterministic A/B split (only for Phase 1 modules that passed gate)
     split_pct = CONSULTING_TONE_CONFIG.get("traffic_pct", 50)
     digest = int(hashlib.md5(query.encode()).hexdigest(), 16)
     return "consulting" if (digest % 100) < split_pct else "standard"
