@@ -1,0 +1,48 @@
+{
+  "phase": "D",
+  "timestamp": "2026-08-13",
+  "kb_chunks_final": 7051,
+  "test_queries": 10,
+  "queries_found": 10,
+  "retrieval_success_rate": 100.0,
+  "avg_retrieval_score": 0.7707539682539682,
+  "gates_passed": 10,
+  "gates_total": 10,
+  "validation_queries": [
+    {
+      "query": "How do I prevent infinite loops in Bot Studio journeys?",
+      "found": true,
+      "top_chunk": "FAQ",
+      "score": 0.7,
+      "top_3_available": 3
+    },
+    {
+      "query": "How do I use conditional branching to route users?",
+      "found": true,
+      "top_chunk": "Module disambiguation docs",
+      "score": 0.6666666666666666,
+      "top_3_available": 3
+    },
+    {
+      "query": "What are the best practices for multi-turn journeys?",
+      "found": true,
+      "top_chunk": "Set-up retargeting",
+      "score": 0.75,
+      "top_3_available": 3
+    },
+    {
+      "query": "When should we use RCS vs SMS for messaging?",
+      "found": true,
+      "top_chunk": "When to Use",
+      "score": 0.7777777777777778,
+      "top_3_available": 3
+    },
+    {
+      "query": "What are the prerequisites for launching RCS?",
+      "found": true,
+      "top_chunk": "Prerequisites",
+      "score": 0.7142857142857143,
+      "top_3_available": 3
+    }
+  ]
+}
