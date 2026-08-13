@@ -8028,7 +8028,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
     latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
     langfuse = _send_langfuse(
         "kb_answer", query, answer, evidence, explicit_module,
-        intents_list, intent, False, latency_ms, context, params,
+        intents_list, answer_mode, False, latency_ms, context, params,
         video_meta=video_meta,
         channel_type=detected_channel,
         original_query=original_query,
