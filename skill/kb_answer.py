@@ -7417,7 +7417,7 @@ def _send_langfuse(
         "detected_product_original": detected_product_original,
         "source_count": len(results),
         "latency_ms": latency_ms,
-        "intent": intent,
+        "intent": intents[0] if intents else None,
         "intent_labels": intents,
         "module": module_label,
         "explicit_module": None if explicit_module == "General" else explicit_module,
