@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 2 Consulting Deployment Dashboard</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0f1419;
+            color: #e1e4e8;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #58a6ff;
+            border-bottom: 2px solid #58a6ff;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #79c0ff;
+            margin-top: 30px;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        .status-pass {
+            background: #238636;
+            color: white;
+        }
+        .status-warn {
+            background: #9e6a03;
+            color: white;
+        }
+        .status-info {
+            background: #0969da;
+            color: white;
+        }
+        .metric {
+            background: #161b22;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #58a6ff;
+            border-radius: 4px;
+        }
+        .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #79c0ff;
+        }
+        .metric-label {
+            font-size: 12px;
+            color: #8b949e;
+            margin-top: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #161b22;
+            margin: 15px 0;
+        }
+        th {
+            background: #0d1117;
+            padding: 10px;
+            text-align: left;
+            color: #79c0ff;
+            border-bottom: 2px solid #58a6ff;
+        }
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #30363d;
+        }
+        tr:hover {
+            background: #0d1117;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .card {
+            background: #161b22;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+        }
+        .timestamp {
+            color: #8b949e;
+            font-size: 12px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #30363d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Phase 2 Consulting Deployment Dashboard</h1>
+        <p>Real-time metrics after Phase 2 kb_ingest & chunk deployment</p>
+        
+        <div class="grid">
+            <div class="card">
+                <div class="metric-label">PHASE 2 STATUS</div>
+                <div class="metric-value">✅ DEPLOYED</div>
+                <div class="metric-label">14 consulting files | 104 chunks | Live</div>
+            </div>
+            <div class="card">
+                <div class="metric-label">KB CHUNKS</div>
+                <div class="metric-value">7,404</div>
+                <div class="metric-label">Phase 1 + Phase 2 indexed with embeddings</div>
+            </div>
+            <div class="card">
+                <div class="metric-label">CONSULTING ADOPTION</div>
+                <div class="metric-value">0/0</div>
+                <div class="metric-label">0.0% of queries routed to consulting</div>
+            </div>
+            <div class="card">
+                <div class="metric-label">PHASE 2 LIVE</div>
+                <div class="metric-value">0</div>
+                <div class="metric-label">Channels, Agent Assist, Campaign Manager queries</div>
+            </div>
+        </div>
+
+        <h2>Phase 2 Topics Deployment Status</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Topic</th>
+                    <th>Files</th>
+                    <th>Chunks</th>
+                    <th>Accuracy</th>
+                    <th>Live Queries</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Channels</strong></td>
+                    <td>5</td>
+                    <td>30</td>
+                    <td><span class="status-badge status-pass">90%</span></td>
+                    <td>0</td>
+                    <td><span class="status-badge status-pass">✅ LIVE</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Agent Assist</strong></td>
+                    <td>5</td>
+                    <td>54</td>
+                    <td><span class="status-badge status-pass">97.6%</span></td>
+                    <td>0</td>
+                    <td><span class="status-badge status-pass">✅ LIVE</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Campaign Manager</strong></td>
+                    <td>4</td>
+                    <td>20</td>
+                    <td><span class="status-badge status-pass">95.25%</span></td>
+                    <td>0</td>
+                    <td><span class="status-badge status-pass">✅ LIVE</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Session Tracking Readiness</h2>
+        <div class="metric">
+            <div class="metric-label">LANGFUSE MULTI-TURN TRACKING</div>
+            <div class="metric-value">✅ ENABLED</div>
+            <div class="metric-label">Session metadata added to skill/kb_answer.py for conversation analysis</div>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <div class="metric-label">Session ID Tracking</div>
+                <div style="color: #3fb950;">✅ Active</div>
+                <div class="metric-label">Grouping follow-ups by correlation_id</div>
+            </div>
+            <div class="card">
+                <div class="metric-label">Conversation Turn Numbering</div>
+                <div style="color: #3fb950;">✅ Active</div>
+                <div class="metric-label">Ordering queries by decomposition_level</div>
+            </div>
+            <div class="card">
+                <div class="metric-label">Parent Trace ID (Pending)</div>
+                <div style="color: #d29922;">⏳ Awaiting Client</div>
+                <div class="metric-label">SuperAgent team to pass parent_trace_id on follow-ups</div>
+            </div>
+        </div>
+
+        <h2>Engagement Predictions (Week 2 Validation Targets)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Target</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Multi-turn conversations per session</td>
+                    <td>+20% (consulting vs standard)</td>
+                    <td><span class="status-badge status-info">🎯 Measuring</span></td>
+                </tr>
+                <tr>
+                    <td>Session duration</td>
+                    <td>+30% (consulting vs standard)</td>
+                    <td><span class="status-badge status-info">🎯 Measuring</span></td>
+                </tr>
+                <tr>
+                    <td>Answer accuracy</td>
+                    <td>≥75% per topic</td>
+                    <td><span class="status-badge status-pass">94.3% avg (Phase 2 validation)</span></td>
+                </tr>
+                <tr>
+                    <td>False confidence cases</td>
+                    <td>&lt;3% (safe)</td>
+                    <td><span class="status-badge status-pass">✅ Low risk</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Deployment Checklist</h2>
+        <div class="metric">
+            <div style="margin: 10px 0;"><span class="status-badge status-pass">✅</span> Phase 2 consulting markdown files created (14 files)</div>
+            <div style="margin: 10px 0;"><span class="status-badge status-pass">✅</span> 104 chunks extracted and formatted</div>
+            <div style="margin: 10px 0;"><span class="status-badge status-pass">✅</span> Accuracy validation passed (94.3% average)</div>
+            <div style="margin: 10px 0;"><span class="status-badge status-pass">✅</span> kb_ingest executed (7,404 chunks indexed)</div>
+            <div style="margin: 10px 0;"><span class="status-badge status-pass">✅</span> Embeddings generated for Phase 2</div>
+            <div style="margin: 10px 0;"><span class="status-badge status-pass">✅</span> Session tracking metadata enabled</div>
+            <div style="margin: 10px 0;"><span class="status-badge status-pass">✅</span> Chunks pushed to GitLab & GitHub</div>
+            <div style="margin: 10px 0;"><span class="status-badge status-info">⏳</span> Week 2: Measure multi-turn engagement lift</div>
+            <div style="margin: 10px 0;"><span class="status-badge status-info">⏳</span> Phase 3: Decide expansion to SuperAgent, Goals, Integrations</div>
+        </div>
+
+        <h2>Next Steps</h2>
+        <div class="card">
+            <h3>🎯 Week 2 Validation (Immediate)</h3>
+            <ul>
+                <li>Monitor Langfuse for parent_trace_id chains (if SuperAgent implements)</li>
+                <li>Measure multi-turn conversation lengths by consulting mode</li>
+                <li>Validate engagement lift (+20% target)</li>
+                <li>Confirm accuracy ≥75% across Phase 2 topics</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>🚀 Phase 3 Planning (Week 2 Pending Results)</h3>
+            <ul>
+                <li>If Phase 2 validates (75%+ accuracy, +15% engagement)</li>
+                <li>Launch Phase 3: SuperAgent, Goals & Analytics, Integrations</li>
+                <li>Estimated timeline: 3-4 weeks to full 14-topic consulting coverage</li>
+            </ul>
+        </div>
+
+        <div class="timestamp">
+            Dashboard rebuilt: 2026-08-14T19:52:37.978056
+            <br>
+            Consulting Framework: Phase 2 Live (14 files, 7,404 chunks)
+            <br>
+            Next milestone: Week 2 engagement validation
+        </div>
+    </div>
+</body>
+</html>
