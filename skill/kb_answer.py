@@ -7444,6 +7444,9 @@ def _send_langfuse(
                 metadata[key] = val
     if isinstance(video_meta, dict) and video_meta:
         metadata.update(video_meta)
+    # Merge policy_meta into metadata for Langfuse telemetry
+    if policy_meta:
+        metadata.update(policy_meta)
     body = _build_langfuse_request(
         trace_name, trace_id, orig, answer, metadata, trace_user_id=trace_user_id,
         parent_trace_id=parent_trace_id,
