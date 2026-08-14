@@ -7433,6 +7433,9 @@ def _send_langfuse(
     metadata["parent_trace_id"] = parent_trace_id
     metadata["decomposition_level"] = params.get("decomposition_level", 0) if params else 0
     metadata["is_sub_query"] = bool(parent_trace_id)
+    metadata["session_id"] = correlation_id
+    metadata["conversation_turn_number"] = metadata.get("decomposition_level") or 0
+    metadata["trace_sequence"] = f"{correlation_id}:{metadata.get('decomposition_level') or 0}"
     # Add SuperAgent session/conversation/org context when available (useful for per-visitor analytics)
     if isinstance(params, dict):
         for key in ("session_id", "sessionId", "conversation_id", "conversationId", "domain", "org_id", "tenant_id", "account_id"):
