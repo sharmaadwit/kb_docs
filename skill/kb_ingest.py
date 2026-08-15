@@ -80,7 +80,7 @@ def _kb_read_text(path, context):
         headers = {"Accept": "application/json"}
         if cfg["token"]:
             headers["PRIVATE-TOKEN"] = cfg["token"]
-    r = requests.get(url, headers=headers, timeout=30)
+    r = requests.get(url, headers=headers, timeout=60)
     r.raise_for_status()
     return r.text
 
@@ -126,7 +126,7 @@ def _kb_list_dir(path, context):
         h = {"Accept": "application/vnd.github+json"}
         if cfg["token"]:
             h["Authorization"] = "Bearer " + cfg["token"]
-        r = requests.get(url, headers=h, params={"ref": cfg["branch"]}, timeout=30)
+        r = requests.get(url, headers=h, params={"ref": cfg["branch"]}, timeout=60)
         r.raise_for_status()
         items = r.json()
         if not isinstance(items, list):
@@ -139,7 +139,7 @@ def _kb_list_dir(path, context):
     if cfg["token"]:
         h["PRIVATE-TOKEN"] = cfg["token"]
     r = requests.get(url, headers=h,
-                     params={"path": path, "ref": cfg["branch"], "per_page": 100}, timeout=30)
+                     params={"path": path, "ref": cfg["branch"], "per_page": 100}, timeout=60)
     r.raise_for_status()
     items = r.json()
     if not isinstance(items, list):
