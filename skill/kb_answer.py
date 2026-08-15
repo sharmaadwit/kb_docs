@@ -7444,7 +7444,7 @@ def _send_langfuse(
                 metadata[key] = val
     if isinstance(video_meta, dict) and video_meta:
         metadata.update(video_meta)
-    # Merge policy_meta into metadata for Langfuse telemetry
+    # Merge policy_meta into metadata for Langfuse telemetry (answer_mode, case_studies, etc.)
     if policy_meta:
         metadata.update(policy_meta)
     body = _build_langfuse_request(
@@ -7621,6 +7621,7 @@ def _route_answer_composer(
 
 def kb_answer(parameters: object = None, context=None, correlation_id: Optional[str] = None, parent_trace_id: Optional[str] = None, **kwargs) -> dict:
     params = _parse_parameters(parameters, **kwargs)
+    policy_meta = {}  # Initialize early for use in Langfuse telemetry
 
     # TODO: Remove this debug capture after CC Express email attribution fix is verified.
     # The skill sandbox forbids `import logging` (see _NoopLogger), so logger.warning()
