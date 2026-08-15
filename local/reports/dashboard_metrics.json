@@ -1,0 +1,86 @@
+{
+  "timestamp": "2026-08-15T12:39:05.552883",
+  "total_traces": 100,
+  "metrics": {
+    "total_queries": 100,
+    "with_answer": 74,
+    "answer_rate": 74.0,
+    "with_session_id": 0,
+    "with_turn_number": 0,
+    "with_parent_trace": 0,
+    "avg_answer_length": 640.0,
+    "avg_confidence": 0.481
+  },
+  "by_module": {
+    "Bot Studio": {
+      "total": 51,
+      "answered": 41,
+      "rate": 80.4
+    },
+    "General": {
+      "total": 5,
+      "answered": 2,
+      "rate": 40.0
+    },
+    "Agent Assist": {
+      "total": 3,
+      "answered": 1,
+      "rate": 33.3
+    },
+    "AI Admin": {
+      "total": 2,
+      "answered": 1,
+      "rate": 50.0
+    },
+    "Campaign Manager": {
+      "total": 2,
+      "answered": 2,
+      "rate": 100.0
+    },
+    "SuperAgent": {
+      "total": 3,
+      "answered": 3,
+      "rate": 100.0
+    },
+    "WhatsApp": {
+      "total": 26,
+      "answered": 19,
+      "rate": 73.1
+    },
+    "Overview": {
+      "total": 1,
+      "answered": 1,
+      "rate": 100.0
+    },
+    "Channels": {
+      "total": 5,
+      "answered": 4,
+      "rate": 80.0
+    },
+    "Integrations": {
+      "total": 2,
+      "answered": 0,
+      "rate": 0.0
+    }
+  },
+  "by_mode": {
+    "consulting": {
+      "count": 0,
+      "avg_length": 0,
+      "avg_confidence": 0
+    },
+    "standard": {
+      "count": 0,
+      "avg_length": 0,
+      "avg_confidence": 0
+    },
+    "unknown": {
+      "count": 100
+    }
+  },
+  "session_tracking": {
+    "with_session_id": 33.0,
+    "with_turn_number": 9.0,
+    "with_parent_trace_id": 0
+  }
+}
