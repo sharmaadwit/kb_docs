@@ -1,12 +1,12 @@
 {
   "ok": true,
-  "created_at": "2026-08-01T04:44:10.872340+00:00",
+  "created_at": "2026-08-15T07:48:46.069073+00:00",
   "docs_path": "kb",
   "excluded": [
     "kb/analytics"
   ],
-  "md_files": 417,
-  "chunks": 6884,
+  "md_files": 466,
+  "chunks": 7813,
   "docs": [
     {
       "path": "kb/Gupshup_Console_SSO support.md",
@@ -393,6 +393,26 @@
       "chunks": 24
     },
     {
+      "path": "kb/bot-studio/agent-assist-fallback-to-rules.md",
+      "chunks": 34
+    },
+    {
+      "path": "kb/bot-studio/agent-assist-guardrails-checklist.md",
+      "chunks": 41
+    },
+    {
+      "path": "kb/bot-studio/agent-assist-hallucination-mitigation.md",
+      "chunks": 40
+    },
+    {
+      "path": "kb/bot-studio/agent-assist-prompt-design.md",
+      "chunks": 31
+    },
+    {
+      "path": "kb/bot-studio/agent-assist-readiness-diagnosis.md",
+      "chunks": 25
+    },
+    {
       "path": "kb/bot-studio/agent-transfer-node.md",
       "chunks": 19
     },
@@ -465,6 +485,18 @@
       "chunks": 19
     },
     {
+      "path": "kb/bot-studio/consulting-conditional-branching.md",
+      "chunks": 10
+    },
+    {
+      "path": "kb/bot-studio/consulting-loop-prevention.md",
+      "chunks": 10
+    },
+    {
+      "path": "kb/bot-studio/consulting-when-to-build.md",
+      "chunks": 10
+    },
+    {
       "path": "kb/bot-studio/controls-on-bot-studio-canvas.md",
       "chunks": 23
     },
@@ -519,6 +551,50 @@
     {
       "path": "kb/bot-studio/enhanced-list-node-dynamic.md",
       "chunks": 20
+    },
+    {
+      "path": "kb/bot-studio/error-handling-diagnosing-error-patterns.md",
+      "chunks": 25
+    },
+    {
+      "path": "kb/bot-studio/error-handling-diagnosis.md",
+      "chunks": 9
+    },
+    {
+      "path": "kb/bot-studio/error-handling-fallback-patterns.md",
+      "chunks": 45
+    },
+    {
+      "path": "kb/bot-studio/error-handling-fallback.md",
+      "chunks": 13
+    },
+    {
+      "path": "kb/bot-studio/error-handling-http-errors.md",
+      "chunks": 31
+    },
+    {
+      "path": "kb/bot-studio/error-handling-http.md",
+      "chunks": 11
+    },
+    {
+      "path": "kb/bot-studio/error-handling-production-checklist.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/bot-studio/error-handling-retry.md",
+      "chunks": 12
+    },
+    {
+      "path": "kb/bot-studio/error-handling-smart-retry.md",
+      "chunks": 42
+    },
+    {
+      "path": "kb/bot-studio/error-handling-timeout-recovery.md",
+      "chunks": 29
+    },
+    {
+      "path": "kb/bot-studio/error-handling-timeouts.md",
+      "chunks": 8
     },
     {
       "path": "kb/bot-studio/expression-library-in-journey-builder-canvas.md",
@@ -781,12 +857,28 @@
       "chunks": 16
     },
     {
+      "path": "kb/campaign-manager/campaign-ab-testing-framework.md",
+      "chunks": 11
+    },
+    {
       "path": "kb/campaign-manager/campaign-analytics.md",
       "chunks": 10
     },
     {
       "path": "kb/campaign-manager/campaign-listing-page.md",
       "chunks": 19
+    },
+    {
+      "path": "kb/campaign-manager/campaign-performance-monitoring.md",
+      "chunks": 9
+    },
+    {
+      "path": "kb/campaign-manager/campaign-segmentation-paths.md",
+      "chunks": 11
+    },
+    {
+      "path": "kb/campaign-manager/campaign-strategy-diagnosis.md",
+      "chunks": 6
     },
     {
       "path": "kb/campaign-manager/creating-a-new-campaign.md",
@@ -1205,6 +1297,26 @@
       "chunks": 25
     },
     {
+      "path": "kb/channels/channels-compliance-checklist.md",
+      "chunks": 11
+    },
+    {
+      "path": "kb/channels/channels-error-codes-by-platform.md",
+      "chunks": 13
+    },
+    {
+      "path": "kb/channels/channels-fallback-strategy.md",
+      "chunks": 12
+    },
+    {
+      "path": "kb/channels/channels-rate-limiting-strategy.md",
+      "chunks": 13
+    },
+    {
+      "path": "kb/channels/channels-routing-diagnosis.md",
+      "chunks": 11
+    },
+    {
       "path": "kb/channels/chat-aesthetics.md",
       "chunks": 30
     },
@@ -1265,6 +1377,10 @@
       "chunks": 39
     },
     {
+      "path": "kb/channels/rcs-fallback-strategy.md",
+      "chunks": 8
+    },
+    {
       "path": "kb/channels/rcs-faq.md",
       "chunks": 16
     },
@@ -1277,8 +1393,24 @@
       "chunks": 12
     },
     {
+      "path": "kb/channels/rcs-prerequisites-checklist.md",
+      "chunks": 11
+    },
+    {
       "path": "kb/channels/rcs-quickstart.md",
       "chunks": 15
+    },
+    {
+      "path": "kb/channels/rcs-readiness-diagnosis.md",
+      "chunks": 8
+    },
+    {
+      "path": "kb/channels/rcs-setup-comprehensive.md",
+      "chunks": 21
+    },
+    {
+      "path": "kb/channels/rcs-setup-paths.md",
+      "chunks": 8
     },
     {
       "path": "kb/channels/rcs-templates.md",
@@ -1327,6 +1459,26 @@
     {
       "path": "kb/channels/whatsapp-voice-overview-and-inbound-calls.md",
       "chunks": 15
+    },
+    {
+      "path": "kb/competitive intelligence/README.md",
+      "chunks": 6
+    },
+    {
+      "path": "kb/competitive intelligence/competitive-summary.md",
+      "chunks": 16
+    },
+    {
+      "path": "kb/competitive intelligence/customer-research-summary.md",
+      "chunks": 27
+    },
+    {
+      "path": "kb/competitive intelligence/messaging-angles.md",
+      "chunks": 26
+    },
+    {
+      "path": "kb/competitive intelligence/segment-positioning.md",
+      "chunks": 27
     },
     {
       "path": "kb/ctx/connecting-ad-to-bot-in-gupshup-console.md",
@@ -1537,6 +1689,18 @@
       "chunks": 18
     },
     {
+      "path": "kb/p2-content-gaps/bot-studio-journey-patterns.md",
+      "chunks": 36
+    },
+    {
+      "path": "kb/p2-content-gaps/multi-channel-strategy.md",
+      "chunks": 26
+    },
+    {
+      "path": "kb/p2-content-gaps/whatsapp-error-codes-guide.md",
+      "chunks": 20
+    },
+    {
       "path": "kb/personalize/about-personalize.md",
       "chunks": 6
     },
@@ -1551,6 +1715,26 @@
     {
       "path": "kb/personalize/salient-features.md",
       "chunks": 20
+    },
+    {
+      "path": "kb/rcs-messaging/holiday-marketing-rcs-campaigns.md",
+      "chunks": 41
+    },
+    {
+      "path": "kb/rcs-messaging/rcs-best-practices.md",
+      "chunks": 41
+    },
+    {
+      "path": "kb/rcs-messaging/rcs-feature-gallery.md",
+      "chunks": 41
+    },
+    {
+      "path": "kb/reseller-and-partner-programs/partner-program-overview.md",
+      "chunks": 7
+    },
+    {
+      "path": "kb/sms-and-otp/dlt-registration-guide.md",
+      "chunks": 10
     },
     {
       "path": "kb/superagent/concepts/agents.md",
@@ -1631,6 +1815,18 @@
     {
       "path": "kb/superagent/welcome.md",
       "chunks": 5
+    },
+    {
+      "path": "kb/verticals/education-bulk-messaging.md",
+      "chunks": 7
+    },
+    {
+      "path": "kb/verticals/healthcare-clinic-messaging.md",
+      "chunks": 7
+    },
+    {
+      "path": "kb/verticals/real-estate-messaging.md",
+      "chunks": 6
     },
     {
       "path": "kb/wallet/wallet-overview.md",
