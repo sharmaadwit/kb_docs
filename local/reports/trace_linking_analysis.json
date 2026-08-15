@@ -1,0 +1,22 @@
+{
+  "analysis_timestamp": "2026-08-15T13:20:03.374091",
+  "traces_analyzed": 50,
+  "parent_child_linking": {
+    "traces_with_parent_id": 0,
+    "percentage_with_parent": 0.0,
+    "linked_chains_found": 0,
+    "orphaned_children": 0,
+    "example_chains": []
+  },
+  "session_grouping": {
+    "unique_sessions": 9,
+    "traces_with_session_id": 14,
+    "percentage_with_session": 28.0,
+    "single_turn_sessions": 5,
+    "multi_turn_sessions": 4
+  },
+  "chronological_order": {
+    "parent_child_pairs_checked": 0,
+    "in_correct_order": 0
+  }
+}

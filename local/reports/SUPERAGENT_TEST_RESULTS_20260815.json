@@ -1,0 +1,81 @@
+{
+  "test_run": "Phase 2 SuperAgent KB Queries Test",
+  "test_date": "2026-08-15",
+  "test_timestamp": "2026-08-15T07:47:14Z to 2026-08-15T07:47:52Z",
+  "api_endpoint": "https://superagent.smsgupshup.com/api/agents/chat/stream",
+  "total_queries": 3,
+  "successful_queries": 3,
+  "success_rate": "100%",
+  "queries": [
+    {
+      "query_number": 1,
+      "topic": "RCS Channel Setup",
+      "query_text": "How do I set up RCS channel for WhatsApp in Gupshup?",
+      "session_id": "test-session-e6c8201c-523e-4967-b713-f7d3ee97a31e",
+      "stream_id": "test-stream-26f8bd2e-6ae1-43d7-8fa6-890161d82059",
+      "query_sent_timestamp": "2026-08-15T07:47:14Z",
+      "response_received_timestamp": "2026-08-15T07:47:16Z",
+      "http_status": 200,
+      "status_text": "OK",
+      "success": true,
+      "response_type": "Server-Sent Events (SSE) stream",
+      "response_events_captured": [
+        "agent_start (react agent, 'Thinking...')",
+        "tool_call (read_skill_file)",
+        "tool_result (skill documentation retrieval)"
+      ]
+    },
+    {
+      "query_number": 2,
+      "topic": "Agent Assist Guardrails",
+      "query_text": "What guardrails should I add to Agent Assist to prevent hallucinations?",
+      "session_id": "test-session-d1cad2d0-4002-4c49-a984-5781f1cbf94e",
+      "stream_id": "test-stream-97cdd67e-e50e-41f6-ad95-cbf9e65669c6",
+      "query_sent_timestamp": "2026-08-15T07:47:31Z",
+      "response_received_timestamp": "2026-08-15T07:47:32Z",
+      "http_status": 200,
+      "status_text": "OK",
+      "success": true,
+      "response_type": "Server-Sent Events (SSE) stream",
+      "response_events_captured": [
+        "agent_start (react agent, 'Thinking...')",
+        "ai_thinking_delta (reasoning stream)"
+      ]
+    },
+    {
+      "query_number": 3,
+      "topic": "Campaign Manager A/B Testing",
+      "query_text": "How do I create and run an A/B test in Campaign Manager?",
+      "session_id": "test-session-0cfa27d6-1285-487a-bf6a-8ce550c9c15a",
+      "stream_id": "test-stream-a0958d3a-cc5d-41e4-861c-35b92005eba5",
+      "query_sent_timestamp": "2026-08-15T07:47:52Z",
+      "response_received_timestamp": "2026-08-15T07:47:54Z",
+      "http_status": 200,
+      "status_text": "OK",
+      "success": true,
+      "response_type": "Server-Sent Events (SSE) stream",
+      "response_events_captured": [
+        "agent_start (react agent, 'Thinking...')",
+        "tool_call (list_skills)",
+        "tool_result (skills list retrieval)"
+      ]
+    }
+  ],
+  "summary": {
+    "all_queries_sent": true,
+    "all_queries_successful": true,
+    "http_200_responses": 3,
+    "http_error_responses": 0,
+    "total_time_elapsed": "38 seconds",
+    "response_format": "Server-Sent Events (SSE) streaming",
+    "agent_type": "react (agentic reasoning)",
+    "kb_integration_status": "Active - agent retrieving skill files and capabilities"
+  },
+  "test_notes": [
+    "All three Phase 2 KB queries sent successfully to SuperAgent",
+    "Responses received as Server-Sent Events (SSE) streams - expected behavior",
+    "Agent is properly invoking tools: read_skill_file, list_skills, and reasoning",
+    "User identity passed via user_email_id field",
+    "Session tracking enabled with unique session_id and stream_id per request"
+  ]
+}

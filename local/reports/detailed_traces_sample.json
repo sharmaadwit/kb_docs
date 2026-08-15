@@ -1,0 +1,410 @@
+[
+  {
+    "id": "kb-kb_answer-8adf9c2e5ade44e0",
+    "name": "kb_answer",
+    "timestamp": "2026-08-15 07:48:12.663000+00:00",
+    "input": {
+      "query": "Campaign Manager split-test experiment: how to set up two campaign variants, allocate audience, choose a winning version, and launch the test"
+    },
+    "output": {
+      "answer": "**4. Campaign Manager Access**\nExact path and steps\n- Creating Your First Campaign\n- Prerequisites \u2014 5 minutes\n- 4. Campaign Manager Access\n- \u2713 Your user account has \"Campaign Manager\" permission\n- \u2713 If you see Campaign Manager in left navigation \u2192 you have access\n\n---\n**Need more detail?** Reply with **more detail**, **step by step**, or ask a specific follow-up (fields, API payload, edge cases) and I\u2019ll expand on this topic.\n\n## Related success stories\n- **Leading company in the UAE \u2014 ctwa \u00b7 26% Conversions from** (Retail & D2C) \u2014 26% \u2014 Conversions from \u00b7 35K \u2014 New Leads in 3 \u2014 CTWA\n- **Leading automobile company in India \u2014 marketing** (Automotive) \u2014 2.4 Mn \u2014 + Total events 1 Mn+ Total \u2014 Marketing\n- **Leading automobile company in India \u2014 ai \u00b7 14.3% Increase in lead** (Automotive) \u2014 14.3% \u2014 Increase in lead \u00b7 10% \u2014 Lift in CPA \u2014 AI \u00b7 Engagement \u00b7 Marketing\n\n_Up to 3 relevant examples. Some stories are anonymized for confidential clients._\n\n**See it in action:** Campaign Manager Demo (Banking \u00b7 Head of Marketing)\nhttps://demoforge-ui.gupshup.io/shared/3deb4110-e216-4ef8-9082-d78c765ebc4a/autoplay"
+    },
+    "metadata": {
+      "user_email": "sess:anonymous-session@ccexpress.gupshup.io",
+      "user_name": null,
+      "user_id": 34,
+      "identity_source": "session_id",
+      "identity_debug_param_keys": {
+        "raw_params": {
+          "query": "Campaign Manager split-test experiment: how to set up two campaign variants, allocate audience, choose a winning version, and launch the test",
+          "session_id": "anonymous-session",
+          "executing_user_id": 34
+        },
+        "nested_parameters_resolved": null,
+        "context_attrs": {
+          "user_id": 34
+        }
+      },
+      "query": "Campaign Manager split-test experiment: how to set up two campaign variants, allocate audience, choose a winning version, and launch the test",
+      "answer_preview": "**4. Campaign Manager Access**\nExact path and steps\n- Creating Your First Campaign\n- Prerequisites \u2014 5 minutes\n- 4. Campaign Manager Access\n- \u2713 Your user account has \"Campaign Manager\" permission\n- \u2713 If you see Campaign Manager in left navigation \u2192 you have access\n\n---\n**Need more detail?** Reply with **more detail**, **step by step**, or ask a specific follow-up (fields, API payload, edge cases) \u2026",
+      "release": 4,
+      "environment": "PROD",
+      "deployment_label": "kb-prod-agent",
+      "telemetry_partition": "PROD:kb-prod-agent",
+      "logic_version": "kb-answer-v4.11",
+      "prompt_version": null,
+      "model": "rules-runtime",
+      "temperature": 0,
+      "top_p": 1,
+      "query_family": "Campaign Manager",
+      "module_label": "Campaign Manager",
+      "module_source": "explicit",
+      "trace_env": "PROD",
+      "selected_answer_mode": "standard",
+      "answered": true,
+      "clarification_asked": false,
+      "unanswered": false,
+      "top_score": 6.9,
+      "top_source": "kb/campaign-manager/creating-your-first-campaign.md",
+      "channel_type": "whatsapp",
+      "detected_product_original": null,
+      "source_count": 4,
+      "latency_ms": 5238,
+      "intent": "setup",
+      "intent_labels": [
+        "setup"
+      ],
+      "module": "Campaign Manager",
+      "explicit_module": "Campaign Manager",
+      "confidence": 0.3754166666666666,
+      "failure_type": null,
+      "accuracy_label": null,
+      "accuracy_score": null,
+      "accuracy_source": null,
+      "correlation_id": null,
+      "parent_trace_id": null,
+      "decomposition_level": 0,
+      "is_sub_query": false,
+      "session_id": "anonymous-session",
+      "conversation_turn_number": 0,
+      "trace_sequence": "None:0",
+      "video_attached": true,
+      "video_channel": "kb_answer",
+      "video_id": "6a4402a6f14e94517beb8474",
+      "video_title": "Campaign Manager Demo",
+      "video_start": null,
+      "video_end": null,
+      "video_source": null,
+      "video_fallback": false,
+      "video_lang": null,
+      "video_captions_on": false,
+      "video_appended_to_answer": true,
+      "video_platform": "demoforge",
+      "demoforge_demo_id": "6a4402a6f14e94517beb8474",
+      "demoforge_share_token": "3deb4110-e216-4ef8-9082-d78c765ebc4a",
+      "demoforge_api_latency_ms": 77
+    },
+    "tags": []
+  },
+  {
+    "id": "kb-kb_answer-de39d337e91a46e7",
+    "name": "kb_answer",
+    "timestamp": "2026-08-15 07:48:03.523000+00:00",
+    "input": {
+      "query": "How do I create and run an A/B test in Campaign Manager?"
+    },
+    "output": {
+      "answer": "I don't know based on the documentation provided. Ask me about a documented Gupshup Console capability and I'll help with that."
+    },
+    "metadata": {
+      "user_email": "sess:anonymous-session@ccexpress.gupshup.io",
+      "user_name": null,
+      "user_id": 34,
+      "identity_source": "session_id",
+      "identity_debug_param_keys": {
+        "raw_params": {
+          "query": "How do I create and run an A/B test in Campaign Manager?",
+          "session_id": "anonymous-session",
+          "executing_user_id": 34
+        },
+        "nested_parameters_resolved": null,
+        "context_attrs": {
+          "user_id": 34
+        }
+      },
+      "query": "How do I create and run an A/B test in Campaign Manager?",
+      "answer_preview": "I don't know based on the documentation provided. Ask me about a documented Gupshup Console capability and I'll help with that.",
+      "release": 4,
+      "environment": "PROD",
+      "deployment_label": "kb-prod-agent",
+      "telemetry_partition": "PROD:kb-prod-agent",
+      "logic_version": "kb-answer-v4.11",
+      "prompt_version": null,
+      "model": "rules-runtime",
+      "temperature": 0,
+      "top_p": 1,
+      "query_family": "General",
+      "module_label": "General",
+      "module_source": "default",
+      "trace_env": "PROD",
+      "selected_answer_mode": "refusal",
+      "answered": false,
+      "clarification_asked": false,
+      "unanswered": true,
+      "top_score": null,
+      "top_source": null,
+      "channel_type": "whatsapp",
+      "detected_product_original": null,
+      "source_count": 0,
+      "latency_ms": 0,
+      "intent": "refusal",
+      "intent_labels": [
+        "refusal"
+      ],
+      "module": "General",
+      "explicit_module": null,
+      "confidence": 0,
+      "failure_type": null,
+      "accuracy_label": null,
+      "accuracy_score": null,
+      "accuracy_source": null,
+      "correlation_id": null,
+      "parent_trace_id": null,
+      "decomposition_level": 0,
+      "is_sub_query": false,
+      "session_id": "anonymous-session",
+      "conversation_turn_number": 0,
+      "trace_sequence": "None:0"
+    },
+    "tags": []
+  },
+  {
+    "id": "kb-kb_answer-85a43a08d6404bb8",
+    "name": "kb_answer",
+    "timestamp": "2026-08-15 07:47:48.465000+00:00",
+    "input": {
+      "query": "Agent Assist hallucination prevention controls: grounding responses in approved knowledge, confidence thresholds, source citations, and human review"
+    },
+    "output": {
+      "answer": "**Others Canned Responses**\nExact path and steps\n- Others: Canned Responses\n- Reference (from source)\n- Details\n- Canned Responses Canned Responses is a feature in Agent Assist that allows agents to create and save template responses for common customer inquiries. These responses can be used to quickly respond to customers, saving time and effort.\n- To create a canned response, agents can type out the response they want to save in the chat window, highlight it, and then click the \"Add Canned Response\" button. They will be prompted to enter a name for the response, which will be used to identify it in the future. Further specify the category, channel, title, and body of the canned response. Once the response is saved, it can be accessed from the \"Canned Responses\" menu and quickly inserted into a chat by clicking on it.\n\n---\n**Need more detail?** Reply with **more detail**, **step by step**, or ask a specific follow-up (fields, API payload, edge cases) and I\u2019ll expand on this topic.\n\n**See it in action:** Agent Assist Demo (Contact Center \u00b7 VP of Support Team)\nhttps://demoforge-ui.gupshup.io/shared/3274e01c-6fa6-4789-bfa0-4abf6773fbf6/autoplay"
+    },
+    "metadata": {
+      "user_email": "sess:conversation-session@ccexpress.gupshup.io",
+      "user_name": null,
+      "user_id": 34,
+      "identity_source": "session_id",
+      "identity_debug_param_keys": {
+        "raw_params": {
+          "query": "Agent Assist hallucination prevention controls: grounding responses in approved knowledge, confidence thresholds, source citations, and human review",
+          "session_id": "conversation-session",
+          "executing_user_id": 34
+        },
+        "nested_parameters_resolved": null,
+        "context_attrs": {
+          "user_id": 34
+        }
+      },
+      "query": "Agent Assist hallucination prevention controls: grounding responses in approved knowledge, confidence thresholds, source citations, and human review",
+      "answer_preview": "**Others Canned Responses**\nExact path and steps\n- Others: Canned Responses\n- Reference (from source)\n- Details\n- Canned Responses Canned Responses is a feature in Agent Assist that allows agents to create and save template responses for common customer inquiries. These responses can be used to quickly respond to customers, saving time and effort.\n- To create a canned response, agents can type out\u2026",
+      "release": 4,
+      "environment": "PROD",
+      "deployment_label": "kb-prod-agent",
+      "telemetry_partition": "PROD:kb-prod-agent",
+      "logic_version": "kb-answer-v4.11",
+      "prompt_version": null,
+      "model": "rules-runtime",
+      "temperature": 0,
+      "top_p": 1,
+      "query_family": "Agent Assist",
+      "module_label": "Agent Assist",
+      "module_source": "explicit",
+      "trace_env": "PROD",
+      "selected_answer_mode": "standard",
+      "answered": true,
+      "clarification_asked": false,
+      "unanswered": false,
+      "top_score": 14.7,
+      "top_source": "kb/agent-assist/others-canned-responses.md",
+      "channel_type": "whatsapp",
+      "detected_product_original": null,
+      "source_count": 4,
+      "latency_ms": 691,
+      "intent": "setup",
+      "intent_labels": [
+        "setup"
+      ],
+      "module": "Agent Assist",
+      "explicit_module": "Agent Assist",
+      "confidence": 0.48666666666666664,
+      "failure_type": null,
+      "accuracy_label": null,
+      "accuracy_score": null,
+      "accuracy_source": null,
+      "correlation_id": null,
+      "parent_trace_id": null,
+      "decomposition_level": 0,
+      "is_sub_query": false,
+      "session_id": "conversation-session",
+      "conversation_turn_number": 0,
+      "trace_sequence": "None:0",
+      "video_attached": true,
+      "video_channel": "kb_answer",
+      "video_id": "6a43f349f14e94517beb843f",
+      "video_title": "Agent Assist Demo",
+      "video_start": null,
+      "video_end": null,
+      "video_source": null,
+      "video_fallback": false,
+      "video_lang": null,
+      "video_captions_on": false,
+      "video_appended_to_answer": true,
+      "video_platform": "demoforge",
+      "demoforge_demo_id": "6a43f349f14e94517beb843f",
+      "demoforge_share_token": "3274e01c-6fa6-4789-bfa0-4abf6773fbf6",
+      "demoforge_api_latency_ms": 67
+    },
+    "tags": []
+  },
+  {
+    "id": "kb-kb_answer-4dde24f37575402e",
+    "name": "kb_answer",
+    "timestamp": "2026-08-15 07:47:44.775000+00:00",
+    "input": {
+      "query": "What guardrails should I add to Agent Assist to prevent hallucinations?"
+    },
+    "output": {
+      "answer": "**User Management Users**\nExact path and steps\n- User Management: Users\n- Steps\n- 1. Open Agent Assist.\n- 2. Navigate to the settings tab located on the bottom left side of your Agent Assist dashboard.\n- 3. Click Save to apply changes.\n\n---\n**Need more detail?** Reply with **more detail**, **step by step**, or ask a specific follow-up (fields, API payload, edge cases) and I\u2019ll expand on this topic.\n\n**See it in action:** Agent Assist Demo (Contact Center \u00b7 VP of Support Team)\nhttps://demoforge-ui.gupshup.io/shared/3274e01c-6fa6-4789-bfa0-4abf6773fbf6/autoplay"
+    },
+    "metadata": {
+      "user_email": "sess:conversation-session@ccexpress.gupshup.io",
+      "user_name": null,
+      "user_id": 34,
+      "identity_source": "session_id",
+      "identity_debug_param_keys": {
+        "raw_params": {
+          "query": "What guardrails should I add to Agent Assist to prevent hallucinations?",
+          "session_id": "conversation-session",
+          "executing_user_id": 34
+        },
+        "nested_parameters_resolved": null,
+        "context_attrs": {
+          "user_id": 34
+        }
+      },
+      "query": "What guardrails should I add to Agent Assist to prevent hallucinations?",
+      "answer_preview": "**User Management Users**\nExact path and steps\n- User Management: Users\n- Steps\n- 1. Open Agent Assist.\n- 2. Navigate to the settings tab located on the bottom left side of your Agent Assist dashboard.\n- 3. Click Save to apply changes.\n\n---\n**Need more detail?** Reply with **more detail**, **step by step**, or ask a specific follow-up (fields, API payload, edge cases) and I\u2019ll expand on this topic\u2026",
+      "release": 4,
+      "environment": "PROD",
+      "deployment_label": "kb-prod-agent",
+      "telemetry_partition": "PROD:kb-prod-agent",
+      "logic_version": "kb-answer-v4.11",
+      "prompt_version": null,
+      "model": "rules-runtime",
+      "temperature": 0,
+      "top_p": 1,
+      "query_family": "Agent Assist",
+      "module_label": "Agent Assist",
+      "module_source": "explicit",
+      "trace_env": "PROD",
+      "selected_answer_mode": "standard",
+      "answered": true,
+      "clarification_asked": false,
+      "unanswered": false,
+      "top_score": 11.15,
+      "top_source": "kb/agent-assist/user-management-users.md",
+      "channel_type": "whatsapp",
+      "detected_product_original": null,
+      "source_count": 4,
+      "latency_ms": 709,
+      "intent": "setup",
+      "intent_labels": [
+        "setup"
+      ],
+      "module": "Agent Assist",
+      "explicit_module": "Agent Assist",
+      "confidence": 0.5,
+      "failure_type": null,
+      "accuracy_label": null,
+      "accuracy_score": null,
+      "accuracy_source": null,
+      "correlation_id": null,
+      "parent_trace_id": null,
+      "decomposition_level": 0,
+      "is_sub_query": false,
+      "session_id": "conversation-session",
+      "conversation_turn_number": 0,
+      "trace_sequence": "None:0",
+      "video_attached": true,
+      "video_channel": "kb_answer",
+      "video_id": "6a43f349f14e94517beb843f",
+      "video_title": "Agent Assist Demo",
+      "video_start": null,
+      "video_end": null,
+      "video_source": null,
+      "video_fallback": false,
+      "video_lang": null,
+      "video_captions_on": false,
+      "video_appended_to_answer": true,
+      "video_platform": "demoforge",
+      "demoforge_demo_id": "6a43f349f14e94517beb843f",
+      "demoforge_share_token": "3274e01c-6fa6-4789-bfa0-4abf6773fbf6",
+      "demoforge_api_latency_ms": 94
+    },
+    "tags": []
+  },
+  {
+    "id": "kb-kb_answer-8adecd6934bc4043",
+    "name": "kb_answer",
+    "timestamp": "2026-08-15 07:47:26.139000+00:00",
+    "input": {
+      "query": "How do I set up RCS channel for WhatsApp in Gupshup?"
+    },
+    "output": {
+      "answer": "To set this up, here's what you need to know.\n\n- RCS (Rich Communication Services) Overview\n- Definition\n- RCS (Rich Communication Services) is Gupshup's advanced messaging channel for capturing attention in the SMS inbox with rich, 2-way and engaging conversation. Built on the Dotgo RBM (Rich Business Messaging) platform, RCS is the natural upgrade path from SMS\u2014offering your brand visibility with verification badges, logo displays, and interactive messaging capabilities that drive higher engagement and ROI.\n- RCS enables brands to send rich media messages (images, videos, carousels), interactive suggestions (replies, action buttons, QR codes), and track delivery and engagement in real-time across 90+ global carriers and 2 billion+ RCS-enabled users.\n- Marketing value prop: Capture attention, drive engagement, reduce friction, and track ROI\u2014all in the familiar Messages app (Android) and iMessage (iPhone).\n\nMost common case: RCS (Rich Communication Services) Overview\n\n---\n**Need more detail?** Reply with **more detail**, **step by step**, or ask a specific follow-up (fields, API payload, edge cases) and I\u2019ll expand on this topic.\n\n## Related success stories\n- **Leading travel & hospitality company in India \u2014 marketing \u00b7 41.1% RCS Coverage** (Travel & Hospitality) \u2014 41.1% \u2014 RCS Coverage \u00b7 26.1% \u2014 Read Rate \u2014 Marketing \u00b7 RCS\n- **Leading consumer goods brand \u2014 ai** (CPG) \u2014 1.7K \u2014 Unique contacts and names \u00b7 44K \u2014 Conversational \u2014 AI \u00b7 CTWA \u00b7 Engagement\n- **Leading consumer goods brand \u2014 ai \u00b7 87% Increase in follow** (CPG) \u2014 87% \u2014 Increase in followers post \u00b7 420K \u2014 messages exchanged \u2014 AI \u00b7 Instagram \u00b7 Marketing\n\n_Up to 3 relevant examples. Some stories are anonymized for confidential clients._"
+    },
+    "metadata": {
+      "user_email": "sess:external-session-rcs-whatsapp-setup@ccexpress.gupshup.io",
+      "user_name": null,
+      "user_id": 34,
+      "identity_source": "session_id",
+      "identity_debug_param_keys": {
+        "raw_params": {
+          "query": "How do I set up RCS channel for WhatsApp in Gupshup?",
+          "session_id": "external-session-rcs-whatsapp-setup",
+          "executing_user_id": 34
+        },
+        "nested_parameters_resolved": null,
+        "context_attrs": {
+          "user_id": 34
+        }
+      },
+      "query": "How do I set up RCS channel for WhatsApp in Gupshup?",
+      "answer_preview": "To set this up, here's what you need to know.\n\n- RCS (Rich Communication Services) Overview\n- Definition\n- RCS (Rich Communication Services) is Gupshup's advanced messaging channel for capturing attention in the SMS inbox with rich, 2-way and engaging conversation. Built on the Dotgo RBM (Rich Business Messaging) platform, RCS is the natural upgrade path from SMS\u2014offering your brand visibility wit\u2026",
+      "release": 4,
+      "environment": "PROD",
+      "deployment_label": "kb-prod-agent",
+      "telemetry_partition": "PROD:kb-prod-agent",
+      "logic_version": "kb-answer-v4.11",
+      "prompt_version": null,
+      "model": "rules-runtime",
+      "temperature": 0,
+      "top_p": 1,
+      "query_family": "Channels",
+      "module_label": "Channels",
+      "module_source": "explicit",
+      "trace_env": "PROD",
+      "selected_answer_mode": "consulting",
+      "answered": true,
+      "clarification_asked": false,
+      "unanswered": false,
+      "top_score": 8.65,
+      "top_source": "kb/channels/rcs-overview.md",
+      "channel_type": "rcs",
+      "detected_product_original": null,
+      "source_count": 4,
+      "latency_ms": 1561,
+      "intent": "setup",
+      "intent_labels": [
+        "setup"
+      ],
+      "module": "Channels",
+      "explicit_module": "Channels",
+      "confidence": 0.7666666666666666,
+      "failure_type": null,
+      "accuracy_label": null,
+      "accuracy_score": null,
+      "accuracy_source": null,
+      "correlation_id": null,
+      "parent_trace_id": null,
+      "decomposition_level": 0,
+      "is_sub_query": false,
+      "session_id": "external-session-rcs-whatsapp-setup",
+      "conversation_turn_number": 0,
+      "trace_sequence": "None:0",
+      "video_attached": false,
+      "video_channel": "kb_answer",
+      "demoforge_fallback_reason": "no_demoforge_match"
+    },
+    "tags": []
+  }
+]

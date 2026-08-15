@@ -1,0 +1,402 @@
+[
+  {
+    "id": "t-kb-kb_answer-9b4eeed5d0a847c0",
+    "trace_id": "kb-kb_answer-9b4eeed5d0a847c0",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 14:20:48.153000+00:00",
+    "user_id": "adwit.sharma@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-57ae1cf1edbc4406",
+    "trace_id": "kb-kb_answer-57ae1cf1edbc4406",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 14:20:05.730000+00:00",
+    "user_id": "adwit.sharma@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-0bcabbedbdbf461a",
+    "trace_id": "kb-kb_answer-0bcabbedbdbf461a",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 14:15:50.581000+00:00",
+    "user_id": "joao.conceicao@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-ee3e3c73eb6d4b76",
+    "trace_id": "kb-kb_answer-ee3e3c73eb6d4b76",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 14:15:45.111000+00:00",
+    "user_id": "joao.conceicao@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-78b38747bcd641a6",
+    "trace_id": "kb-kb_answer-78b38747bcd641a6",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 14:15:33.203000+00:00",
+    "user_id": "joao.conceicao@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-2ecf1e9fb21b4be5",
+    "trace_id": "kb-kb_answer-2ecf1e9fb21b4be5",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 14:14:54.112000+00:00",
+    "user_id": "adwit.sharma@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-27f7abeb2d544e28",
+    "trace_id": "kb-kb_answer-27f7abeb2d544e28",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 14:14:54.100000+00:00",
+    "user_id": "adwit.sharma@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-b4166d0f0e9742e2",
+    "trace_id": "kb-kb_answer-b4166d0f0e9742e2",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 14:14:00.158000+00:00",
+    "user_id": "adwit.sharma@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-ac1112e16ec64e25",
+    "trace_id": "kb-kb_answer-ac1112e16ec64e25",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 14:13:40.546000+00:00",
+    "user_id": "adwit.sharma@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-5a63721184034832",
+    "trace_id": "kb-kb_answer-5a63721184034832",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 12:56:46.711000+00:00",
+    "user_id": "joao.conceicao@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-8348046c7c8347de",
+    "trace_id": "kb-kb_answer-8348046c7c8347de",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 12:56:23.601000+00:00",
+    "user_id": "joao.conceicao@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-7cdffbe0334c4692",
+    "trace_id": "kb-kb_answer-7cdffbe0334c4692",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 11:19:59.734000+00:00",
+    "user_id": "beerud@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-a2228f0e63144439",
+    "trace_id": "kb-kb_answer-a2228f0e63144439",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 11:19:51.336000+00:00",
+    "user_id": "beerud@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-43437f3b011c4546",
+    "trace_id": "kb-kb_answer-43437f3b011c4546",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 10:03:37.264000+00:00",
+    "user_id": "ankit.kanwara@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-a66943080f674b92",
+    "trace_id": "kb-kb_answer-a66943080f674b92",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 10:03:24.217000+00:00",
+    "user_id": "ankit.kanwara@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-dfdfcca84f614541",
+    "trace_id": "kb-kb_answer-dfdfcca84f614541",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 10:01:55.258000+00:00",
+    "user_id": "ankit.kanwara@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-a6f0366d32a7439d",
+    "trace_id": "kb-kb_answer-a6f0366d32a7439d",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 10:01:52.995000+00:00",
+    "user_id": "ankit.kanwara@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-15caf3390b8f43c6",
+    "trace_id": "kb-kb_answer-15caf3390b8f43c6",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 10:01:46.899000+00:00",
+    "user_id": "ankit.kanwara@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-dc2542597ca64f2a",
+    "trace_id": "kb-kb_answer-dc2542597ca64f2a",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 10:01:38.015000+00:00",
+    "user_id": "ankit.kanwara@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-c47d0fca4b1c400b",
+    "trace_id": "kb-kb_answer-c47d0fca4b1c400b",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 10:01:37.818000+00:00",
+    "user_id": "ankit.kanwara@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-be72a206fdec4420",
+    "trace_id": "kb-kb_answer-be72a206fdec4420",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 10:01:37.674000+00:00",
+    "user_id": "ankit.kanwara@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-92ba405415244b34",
+    "trace_id": "kb-kb_answer-92ba405415244b34",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 10:01:31.183000+00:00",
+    "user_id": "ankit.kanwara@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-7c3c2c99112d43ca",
+    "trace_id": "kb-kb_answer-7c3c2c99112d43ca",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 09:31:26.445000+00:00",
+    "user_id": "sess:current-conversation@ccexpress.gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-208a05c8f207414e",
+    "trace_id": "kb-kb_answer-208a05c8f207414e",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 09:23:45.547000+00:00",
+    "user_id": "ankit.kanwara@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-78039496efcb4316",
+    "trace_id": "kb-kb_answer-78039496efcb4316",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 09:23:19.562000+00:00",
+    "user_id": "ankit.kanwara@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-89f70d1fa3b2411b",
+    "trace_id": "kb-kb_answer-89f70d1fa3b2411b",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 08:48:12.603000+00:00",
+    "user_id": "abhijit.chatterjee@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-e120a892bf8f4673",
+    "trace_id": "kb-kb_answer-e120a892bf8f4673",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 08:48:07.255000+00:00",
+    "user_id": "abhijit.chatterjee@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-42964c55dec344d5",
+    "trace_id": "kb-kb_answer-42964c55dec344d5",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 08:42:10.651000+00:00",
+    "user_id": "sess:cc-express-anon-botstudio-access@ccexpress.gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-f05f0020c0e94e7a",
+    "trace_id": "kb-kb_answer-f05f0020c0e94e7a",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 08:40:48.718000+00:00",
+    "user_id": "sess:gupshup-console-access-denied-conversation@ccexpress.gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-ec78530e3e234fea",
+    "trace_id": "kb-kb_answer-ec78530e3e234fea",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 08:38:26.610000+00:00",
+    "user_id": "sess:cc-express-session-anonymous@ccexpress.gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-1a4ee87bf14441c7",
+    "trace_id": "kb-kb_answer-1a4ee87bf14441c7",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 08:33:59.552000+00:00",
+    "user_id": "sess:anonymous-session@ccexpress.gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-1a82a2b133204105",
+    "trace_id": "kb-kb_answer-1a82a2b133204105",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 07:29:41.317000+00:00",
+    "user_id": "exec:30@ccexpress.gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-01222d89b26a4666",
+    "trace_id": "kb-kb_answer-01222d89b26a4666",
+    "name": "kb_answer",
+    "start_time": "2026-08-14 05:53:59.039000+00:00",
+    "user_id": "ankit.kanwara@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-8fa2f2af1dfc4667",
+    "trace_id": "kb-kb_answer-8fa2f2af1dfc4667",
+    "name": "kb_answer",
+    "start_time": "2026-08-13 18:58:53.939000+00:00",
+    "user_id": "guilherme.garcia@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-766f21ea77fa4e7e",
+    "trace_id": "kb-kb_answer-766f21ea77fa4e7e",
+    "name": "kb_answer",
+    "start_time": "2026-08-13 18:57:40.430000+00:00",
+    "user_id": "guilherme.garcia@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-88aca681e9364a8f",
+    "trace_id": "kb-kb_answer-88aca681e9364a8f",
+    "name": "kb_answer",
+    "start_time": "2026-08-13 18:35:30.157000+00:00",
+    "user_id": "guilherme.garcia@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-f610906a262d48fa",
+    "trace_id": "kb-kb_answer-f610906a262d48fa",
+    "name": "kb_answer",
+    "start_time": "2026-08-13 18:26:18.283000+00:00",
+    "user_id": "sess:current-anonymous-session@ccexpress.gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-95cbda29b12949bf",
+    "trace_id": "kb-kb_answer-95cbda29b12949bf",
+    "name": "kb_answer",
+    "start_time": "2026-08-13 12:24:58.179000+00:00",
+    "user_id": "yashas.reddy@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-9a1cfe58daff4b95",
+    "trace_id": "kb-kb_answer-9a1cfe58daff4b95",
+    "name": "kb_answer",
+    "start_time": "2026-08-13 12:18:57.042000+00:00",
+    "user_id": "adwit.sharma@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  },
+  {
+    "id": "t-kb-kb_answer-89639750e5544843",
+    "trace_id": "kb-kb_answer-89639750e5544843",
+    "name": "kb_answer",
+    "start_time": "2026-08-13 12:17:09.051000+00:00",
+    "user_id": "adwit.sharma@gupshup.io",
+    "input": null,
+    "output": null,
+    "metadata": null
+  }
+]
