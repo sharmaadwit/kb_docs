@@ -7255,6 +7255,108 @@ def _debug_identity_param_keys(context, params: Optional[Dict[str, Any]] = None)
         return f"<debug_capture_error: {type(e).__name__}>"
 
 
+def _extract_real_session_id(context, params: Optional[Dict[str, Any]] = None) -> Optional[str]:
+    """Resolve the caller-provided session_id for turn-tracking telemetry, using the
+    same multi-level fallback as the anonymous-identity synthesis above: top-level
+    params, nested "parameters" dict/JSON-string, nested containers (metadata,
+    context, tenant_context, user), then context object attributes. This is
+    deliberately independent of correlation_id (which is generated fresh per-turn
+    and cannot represent a multi-turn session). Returns None when no real
+    session_id was found anywhere, so callers can fall back explicitly and mark
+    the provenance rather than silently reusing correlation_id."""
+    params = params or {}
+    session_id = params.get("session_id") or params.get("sessionId") if isinstance(params, dict) else None
+
+    if not session_id and isinstance(params, dict):
+        nested_parameters = params.get("parameters")
+        if isinstance(nested_parameters, str):
+            try:
+                nested_parameters = json.loads(nested_parameters)
+            except Exception:
+                nested_parameters = None
+        if isinstance(nested_parameters, dict):
+            session_id = nested_parameters.get("session_id") or nested_parameters.get("sessionId")
+
+    if not session_id and isinstance(params, dict):
+        for container_key in ("metadata", "context", "tenant_context", "user"):
+            container = params.get(container_key)
+            if isinstance(container, dict):
+                session_id = container.get("session_id") or container.get("sessionId")
+                if session_id:
+                    break
+
+    if not session_id and context is not None:
+        session_id = getattr(context, "session_id", None) or getattr(context, "sessionId", None)
+
+    if isinstance(session_id, str) and session_id.strip():
+        return session_id.strip()
+    if isinstance(session_id, int):
+        return str(session_id)
+    return None
+
+
+_TURN_NUMBER_FIELD_CANDIDATES = ("turn_number", "conversation_turn_number", "turn_index", "turn")
+
+
+def _extract_client_turn_number(context, params: Optional[Dict[str, Any]] = None) -> Optional[int]:
+    """Check params/context for an explicit turn-number field sent by the caller.
+    No confirmed SuperAgent field name exists yet, so several plausible names are
+    checked. Returns None (not 0, not decomposition_level) when the caller sent
+    nothing — conversation_turn_number is an internal sub-query counter and must
+    not be conflated with real multi-turn position, and a missing client field
+    should stay visible in telemetry rather than being masked by a fabricated
+    default."""
+    params = params or {}
+    raw = None
+
+    if isinstance(params, dict):
+        for key in _TURN_NUMBER_FIELD_CANDIDATES:
+            val = params.get(key)
+            if val is not None:
+                raw = val
+                break
+
+    if raw is None and isinstance(params, dict):
+        nested_parameters = params.get("parameters")
+        if isinstance(nested_parameters, str):
+            try:
+                nested_parameters = json.loads(nested_parameters)
+            except Exception:
+                nested_parameters = None
+        if isinstance(nested_parameters, dict):
+            for key in _TURN_NUMBER_FIELD_CANDIDATES:
+                val = nested_parameters.get(key)
+                if val is not None:
+                    raw = val
+                    break
+
+    if raw is None and isinstance(params, dict):
+        for container_key in ("metadata", "context", "tenant_context", "user"):
+            container = params.get(container_key)
+            if isinstance(container, dict):
+                for key in _TURN_NUMBER_FIELD_CANDIDATES:
+                    val = container.get(key)
+                    if val is not None:
+                        raw = val
+                        break
+                if raw is not None:
+                    break
+
+    if raw is None and context is not None:
+        for key in _TURN_NUMBER_FIELD_CANDIDATES:
+            val = getattr(context, key, None)
+            if val is not None:
+                raw = val
+                break
+
+    if raw is None:
+        return None
+    try:
+        return int(raw)
+    except (TypeError, ValueError):
+        return None
+
+
 def _build_langfuse_request(
     trace_name: str, trace_id: str, query: str, answer: str, metadata: Dict,
     trace_user_id: Optional[str] = None,
@@ -7432,10 +7534,35 @@ def _send_langfuse(
         metadata["query_translated"] = q_prev
     metadata["correlation_id"] = correlation_id
     metadata["parent_trace_id"] = parent_trace_id
+    metadata["parent_trace_id_provided"] = bool(parent_trace_id)
     metadata["decomposition_level"] = params.get("decomposition_level", 0) if params else 0
     metadata["is_sub_query"] = bool(parent_trace_id)
-    metadata["session_id"] = correlation_id
-    metadata["conversation_turn_number"] = metadata.get("decomposition_level") or 0
+
+    # session_id: prefer the real caller-provided session_id (survives across turns)
+    # over correlation_id (generated fresh per-turn, so it can't group a session).
+    # Only fall back to correlation_id when no real session_id was sent, and record
+    # which happened so trace consumers can tell a real session grouping from a
+    # per-turn stand-in.
+    real_session_id = _extract_real_session_id(context, params)
+    if real_session_id:
+        metadata["session_id"] = real_session_id
+        metadata["session_id_source"] = "client"
+    else:
+        metadata["session_id"] = correlation_id
+        metadata["session_id_source"] = "correlation_fallback"
+
+    # conversation_turn_number: only trust an explicit turn field sent by the
+    # caller. decomposition_level is a separate, internal sub-query-splitting
+    # counter and must not be reused here. When the caller sends nothing, leave
+    # this None (not 0) so the tracking gap stays visible instead of masked.
+    client_turn_number = _extract_client_turn_number(context, params)
+    if client_turn_number is not None:
+        metadata["conversation_turn_number"] = client_turn_number
+        metadata["turn_number_source"] = "client"
+    else:
+        metadata["conversation_turn_number"] = None
+        metadata["turn_number_source"] = "missing_client_support"
+
     metadata["trace_sequence"] = f"{correlation_id}:{metadata.get('decomposition_level') or 0}"
     # Add SuperAgent session/conversation/org context when available (useful for per-visitor analytics)
     if isinstance(params, dict):
