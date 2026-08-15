@@ -7,6 +7,7 @@ Includes: Global metrics, module analysis, intent distribution, user segmentatio
 
 import json
 import os
+import sys
 from pathlib import Path
 from datetime import datetime, timedelta
 from collections import defaultdict
@@ -149,20 +150,16 @@ def fetch_langfuse_traces(days: int = 7) -> Optional[List[Dict]]:
         else:
             print("⚠️  Langfuse credentials missing from env")
     except Exception as e:
-        print(f"⚠️  REST API fetch failed: {e}")
-        # If rate-limited or unavailable, try cached traces
-        cache_path = "archive/local_reports/langfuse_traces_7day_offline.json"
-        if os.path.exists(cache_path):
-            print(f"📦 Falling back to cached traces from {cache_path}...")
-            try:
-                with open(cache_path, 'r') as f:
-                    data = json.load(f)
-                    traces = data if isinstance(data, list) else [data]
-                if traces:
-                    print(f"✅ Loaded {len(traces)} cached traces")
-                    return traces
-            except Exception as cache_err:
-                print(f"⚠️  Cache load failed: {cache_err}")
+        print(f"❌ REST API fetch FAILED: {e}")
+        print(f"\n❌ MANDATORY LIVE DATA REQUIREMENT NOT MET")
+        print(f"   Dashboard generation requires live Langfuse data.")
+        print(f"   Cached fallback is disabled to ensure accuracy.")
+        print(f"\nAction required:")
+        print(f"   1. Check Langfuse API credentials in .env (LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY)")
+        print(f"   2. Verify network connectivity to Langfuse cloud")
+        print(f"   3. Check Langfuse API rate limits")
+        print(f"   4. Retry dashboard generation")
+        sys.exit(1)
 
     # Method 2: Try Langfuse CLI
     try:
@@ -178,29 +175,21 @@ def fetch_langfuse_traces(days: int = 7) -> Optional[List[Dict]]:
     except Exception as e:
         print(f"⚠️  CLI fetch failed: {e}")
 
-    # Method 3: Load local backup (marked as cached)
-    print("⚠️  Langfuse API unavailable, using cached backup (DATED DATA)")
-    backup_files = [
-        Path("/Users/adwit.sharma/kb_docs/local/reports/langfuse_traces_7day_offline.json"),
-        Path("/Users/adwit.sharma/kb_docs/local/reports/comprehensive_analytics.json"),
-    ]
-
-    for backup_file in backup_files:
-        if backup_file.exists():
-            try:
-                with open(backup_file) as f:
-                    data = json.load(f)
-                    if isinstance(data, dict):
-                        traces = data.get("traces", data.get("data", []))
-                    else:
-                        traces = data
-                    if traces:
-                        print(f"✅ Loaded {len(traces)} traces from cache: {backup_file.name}")
-                        return traces
-            except Exception as e:
-                print(f"❌ Failed to read {backup_file}: {e}")
-
-    print("❌ No trace data available")
+    # No fallback allowed - live data is mandatory
+    print(f"\n❌ MANDATORY LIVE DATA REQUIREMENT NOT MET")
+    print(f"   All methods to fetch live Langfuse traces have failed:")
+    print(f"   1. REST API (HTTP request) - failed")
+    print(f"   2. Langfuse CLI (lf export) - failed")
+    print(f"\n   Dashboard generation requires live data to ensure accuracy.")
+    print(f"   Cached data fallback is disabled.")
+    print(f"\nAction required:")
+    print(f"   1. Verify Langfuse API is accessible (LANGFUSE_HOST={os.getenv('LANGFUSE_HOST')})")
+    print(f"   2. Check credentials: LANGFUSE_PUBLIC_KEY and LANGFUSE_SECRET_KEY")
+    print(f"   3. Verify network connectivity to Langfuse cloud")
+    print(f"   4. Check Langfuse service status and rate limits")
+    print(f"   5. Run 'lf export traces --output json' to test CLI access")
+    print(f"\n   Retry dashboard generation after resolving connectivity issues.")
+    sys.exit(1)
     return None
 
 def load_ndjson_traces(days: int = 7) -> List[Dict]:

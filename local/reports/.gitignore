@@ -2,3 +2,5 @@
 state.json
 runs/
 dashboard/
+latest_langfuse_traces.json
+telemetry_structure_analysis.json
