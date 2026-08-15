@@ -7348,6 +7348,7 @@ def _send_langfuse(
     detected_product_original: Optional[str] = None,
     correlation_id: Optional[str] = None,
     parent_trace_id: Optional[str] = None,
+    policy_meta: Optional[Dict[str, Any]] = None,
 ) -> Dict:
     trace_id = f"kb-{trace_name}-{uuid.uuid4().hex[:16]}"
     top_source = results[0].get("source") if results else None
@@ -7445,7 +7446,7 @@ def _send_langfuse(
     if isinstance(video_meta, dict) and video_meta:
         metadata.update(video_meta)
     # Merge policy_meta into metadata for Langfuse telemetry (answer_mode, case_studies, etc.)
-    if policy_meta:
+    if policy_meta and isinstance(policy_meta, dict):
         metadata.update(policy_meta)
     body = _build_langfuse_request(
         trace_name, trace_id, orig, answer, metadata, trace_user_id=trace_user_id,
@@ -7672,6 +7673,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
             detected_product_original=detected_product_original,
             correlation_id=correlation_id,
             parent_trace_id=parent_trace_id,
+            policy_meta={},
         )
         return {
             "ok": True,
@@ -7692,6 +7694,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
             detected_product_original=detected_product_original,
             correlation_id=correlation_id,
             parent_trace_id=parent_trace_id,
+            policy_meta={},
         )
         return {
             "ok": True,
@@ -7712,6 +7715,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
             detected_product_original=detected_product_original,
             correlation_id=correlation_id,
             parent_trace_id=parent_trace_id,
+            policy_meta={},
         )
         return {
             "ok": True,
@@ -7732,6 +7736,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
             detected_product_original=detected_product_original,
             correlation_id=correlation_id,
             parent_trace_id=parent_trace_id,
+            policy_meta={},
         )
         return {
             "ok": True,
@@ -7752,6 +7757,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
             detected_product_original=detected_product_original,
             correlation_id=correlation_id,
             parent_trace_id=parent_trace_id,
+            policy_meta={},
         )
         return {
             "ok": True,
@@ -7772,6 +7778,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
             detected_product_original=detected_product_original,
             correlation_id=correlation_id,
             parent_trace_id=parent_trace_id,
+            policy_meta={},
         )
         return {
             "ok": True,
@@ -7794,6 +7801,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
             detected_product_original=detected_product_original,
             correlation_id=correlation_id,
             parent_trace_id=parent_trace_id,
+            policy_meta={},
         )
         return {
             "ok": False,
@@ -7832,7 +7840,8 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                 original_query=original_query,
                 correlation_id=correlation_id,
                 parent_trace_id=parent_trace_id,
-            )
+            policy_meta={},
+        )
             return {
                 "ok": True,
                 "query": _redact_secrets_in_query_echo(query),
@@ -8044,7 +8053,8 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
         original_query=original_query,
         correlation_id=correlation_id,
         parent_trace_id=parent_trace_id,
-    )
+            policy_meta={},
+        )
     return {
         "ok": True,
         "query": _redact_secrets_in_query_echo(query),
@@ -8099,6 +8109,7 @@ def kb_search(
             detected_product_original=detected_product_original,
             correlation_id=correlation_id,
             parent_trace_id=parent_trace_id,
+            policy_meta={},
         )
         return {
             "ok": True,
@@ -8120,6 +8131,7 @@ def kb_search(
             detected_product_original=detected_product_original,
             correlation_id=correlation_id,
             parent_trace_id=parent_trace_id,
+            policy_meta={},
         )
         return {
             "ok": False,
@@ -8157,7 +8169,8 @@ def kb_search(
         original_query=original_query,
         correlation_id=correlation_id,
         parent_trace_id=parent_trace_id,
-    )
+            policy_meta={},
+        )
 
     return {
         "ok": True,
