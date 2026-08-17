@@ -19,7 +19,7 @@ from urllib.parse import urlencode, quote as _kb_quote
 CONSULTING_TONE_CONFIG = {
     "enabled": True,  # Set to False to disable consulting-tone entirely
     "modules": {"RCS", "Bot Studio"},  # Module allowlist for Phase 1 pilot
-    "traffic_pct": 50,  # Percent of eligible traffic in consulting mode (50 = A/B split)
+    "traffic_pct": 75,  # Percent of eligible traffic in consulting mode (increased from 50 -> 75 after accuracy/engagement validation)
     "force_mode": None,  # Set to "consulting" or "standard" to force all traffic into one mode (testing only)
 }
 
@@ -7810,12 +7810,12 @@ def _resolve_answer_mode(params: dict, query: str, explicit_module: str) -> str:
     1. Explicit param/config override (testing/debugging)
     2. Master feature flag (CONSULTING_TONE_CONFIG["enabled"])
     3. Module-level gate (Phase 1: RCS + Bot Studio, tracked independently)
-    4. Deterministic 50/50 hash-based split per query
+    4. Deterministic hash-based split per query (traffic_pct% land in consulting)
 
     Config (CONSULTING_TONE_CONFIG at top of file):
     - "enabled": True/False = master switch
     - "modules": {"RCS", "Bot Studio"} = allowed gate modules (set)
-    - "traffic_pct": 50 = percent of eligible traffic in consulting mode
+    - "traffic_pct": 75 = percent of eligible traffic in consulting mode
     - "force_mode": "consulting"/"standard"/None = force override (testing only)
     """
     # Check for force override (testing)
