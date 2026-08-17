@@ -62,3 +62,6 @@ local/reports/superagent_capture.jsonl
 
 # Archived analysis reports & intermediate testing files (local only)
 local/archive/
+
+# Local Langfuse trace cache for dashboard incremental fetch (regenerable, do not commit)
+local/cache/

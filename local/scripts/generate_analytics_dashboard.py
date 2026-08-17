@@ -97,11 +97,51 @@ def _load_env():
             key, _, val = line.partition("=")
             os.environ.setdefault(key.strip(), val.strip())
 
-def fetch_langfuse_traces(days: int = 7) -> Optional[List[Dict]]:
-    """Fetch real traces from Langfuse API."""
-    print(f"🔄 Fetching Langfuse data for last {days} days...")
+CACHE_DIR = os.path.join(os.path.dirname(__file__), "..", "cache")
+TRACE_CACHE_PATH = os.path.join(CACHE_DIR, "langfuse_traces_cache.json")
+INITIAL_BACKFILL_DAYS = 90  # system has been live <2 months; no need for a 3-year pull
+INCREMENTAL_OVERLAP_HOURS = 6  # re-fetch a small overlap window to catch late-arriving traces
 
+
+def _load_trace_cache() -> Dict:
+    if os.path.exists(TRACE_CACHE_PATH):
+        try:
+            with open(TRACE_CACHE_PATH) as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {"last_fetch_max_timestamp": None, "traces": {}}
+
+
+def _save_trace_cache(cache: Dict) -> None:
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    with open(TRACE_CACHE_PATH, "w") as f:
+        json.dump(cache, f)
+
+
+def fetch_langfuse_traces(days: Optional[int] = None) -> Optional[List[Dict]]:
+    """Fetch traces from Langfuse, using a local cache + incremental fetch.
+
+    First run (no cache): backfills `days` if given, else INITIAL_BACKFILL_DAYS
+    (system has been live <2 months, so 90 days covers full history without a
+    wasteful multi-year pull).
+    Subsequent runs: fetches only traces since the last cached max timestamp
+    (minus a small overlap buffer), merges into the cache by trace id, and
+    returns the full merged set. This avoids re-fetching the entire history
+    (and tripping Langfuse rate limits) on every dashboard refresh.
+    """
     _load_env()
+    cache = _load_trace_cache()
+    has_cache = bool(cache.get("traces"))
+
+    if has_cache and cache.get("last_fetch_max_timestamp"):
+        last_ts = datetime.fromisoformat(cache["last_fetch_max_timestamp"].replace("Z", "+00:00"))
+        from_dt = last_ts - timedelta(hours=INCREMENTAL_OVERLAP_HOURS)
+        print(f"🔄 Incremental fetch: {len(cache['traces'])} traces cached, fetching new traces since {from_dt.isoformat()}...")
+    else:
+        backfill_days = days if days is not None else INITIAL_BACKFILL_DAYS
+        from_dt = datetime.utcnow() - timedelta(days=backfill_days)
+        print(f"🔄 No cache found — initial backfill for last {backfill_days} days...")
 
     # Method 1: Langfuse REST API (v2 traces endpoint)
     try:
@@ -124,8 +164,8 @@ def fetch_langfuse_traces(days: int = 7) -> Optional[List[Dict]]:
             creds  = base64.b64encode(f"{pub}:{sec}".encode()).decode()
             headers = {"Authorization": f"Basic {creds}", "Content-Type": "application/json"}
 
-            from_date = (datetime.utcnow() - timedelta(days=days)).strftime("%Y-%m-%dT00:00:00Z")
-            all_traces = []
+            from_date = from_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+            new_traces = []
             page = 1
 
             while True:
@@ -136,28 +176,44 @@ def fetch_langfuse_traces(days: int = 7) -> Optional[List[Dict]]:
                     body = json.loads(resp.read())
 
                 batch = body.get("data", [])
-                all_traces.extend(batch)
+                new_traces.extend(batch)
                 meta  = body.get("meta", {})
-                total = meta.get("totalItems", meta.get("total", len(all_traces)))
+                total = meta.get("totalItems", meta.get("total", len(new_traces)))
 
-                if not batch or len(all_traces) >= total:
+                if not batch or len(new_traces) >= total:
                     break
                 page += 1
 
-            if all_traces:
-                print(f"✅ Fetched {len(all_traces)} traces via Langfuse REST API")
-                return all_traces
+            print(f"✅ Fetched {len(new_traces)} new/updated traces via Langfuse REST API")
+
+            # Merge into cache by trace id (new data wins on conflict)
+            for t in new_traces:
+                tid = t.get("id")
+                if tid:
+                    cache["traces"][tid] = t
+
+            # Track max timestamp seen across cache for next incremental fetch
+            all_ts = [t.get("timestamp") for t in cache["traces"].values() if t.get("timestamp")]
+            if all_ts:
+                cache["last_fetch_max_timestamp"] = max(all_ts)
+
+            if cache["traces"]:
+                _save_trace_cache(cache)
+                merged = list(cache["traces"].values())
+                print(f"📦 Cache now holds {len(merged)} total traces ({TRACE_CACHE_PATH})")
+                return merged
         else:
             print("⚠️  Langfuse credentials missing from env")
     except Exception as e:
         print(f"❌ REST API fetch FAILED: {e}")
         print(f"\n❌ MANDATORY LIVE DATA REQUIREMENT NOT MET")
-        print(f"   Dashboard generation requires live Langfuse data.")
-        print(f"   Cached fallback is disabled to ensure accuracy.")
+        print(f"   Dashboard generation requires live Langfuse data to produce a NEW dashboard.")
+        print(f"   Not falling back to cache — the previously generated dashboard is already")
+        print(f"   built and hosted from that same cached data, so re-running would be wasted work.")
         print(f"\nAction required:")
         print(f"   1. Check Langfuse API credentials in .env (LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY)")
         print(f"   2. Verify network connectivity to Langfuse cloud")
-        print(f"   3. Check Langfuse API rate limits")
+        print(f"   3. Check Langfuse API rate limits — if rate-limited, wait and retry rather than re-running immediately")
         print(f"   4. Retry dashboard generation")
         sys.exit(1)
 
@@ -175,13 +231,12 @@ def fetch_langfuse_traces(days: int = 7) -> Optional[List[Dict]]:
     except Exception as e:
         print(f"⚠️  CLI fetch failed: {e}")
 
-    # No fallback allowed - live data is mandatory
     print(f"\n❌ MANDATORY LIVE DATA REQUIREMENT NOT MET")
     print(f"   All methods to fetch live Langfuse traces have failed:")
     print(f"   1. REST API (HTTP request) - failed")
     print(f"   2. Langfuse CLI (lf export) - failed")
-    print(f"\n   Dashboard generation requires live data to ensure accuracy.")
-    print(f"   Cached data fallback is disabled.")
+    print(f"\n   Not falling back to cache — the previously generated dashboard is already")
+    print(f"   built and hosted from that same cached data, so re-running would be wasted work.")
     print(f"\nAction required:")
     print(f"   1. Verify Langfuse API is accessible (LANGFUSE_HOST={os.getenv('LANGFUSE_HOST')})")
     print(f"   2. Check credentials: LANGFUSE_PUBLIC_KEY and LANGFUSE_SECRET_KEY")
@@ -2263,8 +2318,10 @@ def main():
     print("=" * 80)
     print()
 
-    # Fetch all-time data for weekly accuracy reporting (years worth of data)
-    traces = fetch_langfuse_traces(days=365*3) or []  # ~3 years of data
+    # Fetch all-time data for weekly accuracy reporting. Cached + incremental
+    # (see fetch_langfuse_traces) — initial backfill covers system lifetime
+    # (<2 months live), later runs only fetch what's new since last refresh.
+    traces = fetch_langfuse_traces() or []
     live_count = len(traces)
 
     # Skip NDJSON merge if running in fast mode (for speed)
@@ -2273,7 +2330,7 @@ def main():
     else:
         # Merge query traces exported to local NDJSON (union, dedupe by trace id).
         print(f"🔗 Loading NDJSON traces...")
-        ndjson_traces = load_ndjson_traces(days=365*3)  # All-time for consistency
+        ndjson_traces = load_ndjson_traces(days=INITIAL_BACKFILL_DAYS)  # All-time for consistency (system live <2 months)
         by_id = {t.get("id"): t for t in traces if t.get("id")}
         no_id = [t for t in traces if not t.get("id")]
         added = 0
