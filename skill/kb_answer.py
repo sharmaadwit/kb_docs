@@ -13,13 +13,22 @@ import requests
 from urllib.parse import urlencode, quote as _kb_quote
 
 
-# --- Phase 1 Consulting-Tone Configuration ---
+# --- Consulting-Tone Configuration ---
 # Toggle these values directly to enable/disable the pilot.
 # Change values here instead of managing env vars in deployment.
 CONSULTING_TONE_CONFIG = {
     "enabled": True,  # Set to False to disable consulting-tone entirely
-    "modules": {"RCS", "Bot Studio"},  # Module allowlist for Phase 1 pilot
-    "traffic_pct": 75,  # Percent of eligible traffic in consulting mode (increased from 50 -> 75 after accuracy/engagement validation)
+    # Module allowlist, mapping each gated module to its own traffic_pct
+    # (percent of eligible traffic for that module routed into consulting
+    # mode). Per-module split lets Phase 1 modules (validated, higher
+    # confidence) run at a different rate than newly-added Phase 2 modules.
+    "modules": {
+        "RCS": 75,          # Phase 1 - validated, increased 50 -> 75
+        "Bot Studio": 75,   # Phase 1 - validated, increased 50 -> 75
+        "Campaign Manager": 50,  # Phase 2 - KB-ready, starting at 50/50
+        "Agent Assist": 50,      # Phase 2 - KB-ready, starting at 50/50
+        "Channels": 50,           # Phase 2 - KB-ready, starting at 50/50
+    },
     "force_mode": None,  # Set to "consulting" or "standard" to force all traffic into one mode (testing only)
 }
 
@@ -7809,13 +7818,16 @@ def _resolve_answer_mode(params: dict, query: str, explicit_module: str) -> str:
     Priority order:
     1. Explicit param/config override (testing/debugging)
     2. Master feature flag (CONSULTING_TONE_CONFIG["enabled"])
-    3. Module-level gate (Phase 1: RCS + Bot Studio, tracked independently)
-    4. Deterministic hash-based split per query (traffic_pct% land in consulting)
+    3. Module-level gate (allowlisted modules only, each with its own split)
+    4. Deterministic hash-based split per query (that module's traffic_pct%
+       land in consulting)
 
     Config (CONSULTING_TONE_CONFIG at top of file):
     - "enabled": True/False = master switch
-    - "modules": {"RCS", "Bot Studio"} = allowed gate modules (set)
-    - "traffic_pct": 75 = percent of eligible traffic in consulting mode
+    - "modules": {"RCS": 75, "Bot Studio": 75, ...} = allowed gate modules,
+      each mapped to its own traffic_pct (percent of that module's eligible
+      traffic routed into consulting mode). Modules not in this dict always
+      get "standard".
     - "force_mode": "consulting"/"standard"/None = force override (testing only)
     """
     # Check for force override (testing)
@@ -7831,17 +7843,17 @@ def _resolve_answer_mode(params: dict, query: str, explicit_module: str) -> str:
     if not CONSULTING_TONE_CONFIG.get("enabled", False):
         return "standard"
 
-    # Module gate: ONLY allow Phase 1 modules
+    # Module gate: ONLY allow modules in the allowlist, each at its own split
     gate_module = _gate_module_for_consulting(query, explicit_module)
-    allowed_modules = CONSULTING_TONE_CONFIG.get("modules", {"RCS", "Bot Studio"})
+    allowed_modules = CONSULTING_TONE_CONFIG.get("modules", {"RCS": 75, "Bot Studio": 75})
 
     # CRITICAL: If module is not in allowlist, return standard immediately
     # This prevents WhatsApp, SMS, etc. from getting consulting-tone
     if gate_module not in allowed_modules:
         return "standard"
 
-    # Deterministic A/B split (only for Phase 1 modules that passed gate)
-    split_pct = CONSULTING_TONE_CONFIG.get("traffic_pct", 50)
+    # Deterministic A/B split, using THIS module's traffic_pct
+    split_pct = allowed_modules[gate_module]
     digest = int(hashlib.md5(query.encode()).hexdigest(), 16)
     return "consulting" if (digest % 100) < split_pct else "standard"
 
