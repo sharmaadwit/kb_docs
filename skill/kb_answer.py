@@ -4364,6 +4364,68 @@ def _case_study_metrics(text: str, limit: int = 3) -> List[str]:
     return out
 
 
+def _extract_best_practices(text: str, limit: int = 3) -> List[str]:
+    """Pull bullet lines from a '## Best Practices' (or '## X Best Practices')
+    section if the chunk's raw text contains one. Consulting-mode only —
+    purely additive engagement content, does not affect retrieval/scoring."""
+    m = re.search(r"##\s*(?:.*\s+)?Best Practices\s*\n(.*?)(?:\n## |\Z)", text, re.S | re.I)
+    if not m:
+        return []
+    out: List[str] = []
+    for line in m.group(1).splitlines():
+        line = line.strip()
+        if line.startswith("- "):
+            out.append(line[2:].strip())
+        if len(out) >= limit:
+            break
+    return out
+
+
+def _find_best_practices_for_evidence(
+    all_chunks: List[Dict], evidence: List[Dict],
+    entities: Optional[List[Dict]] = None, limit: int = 3,
+) -> List[str]:
+    """Look for a sibling 'Best Practices' chunk from the same source doc(s)
+    as the evidence already selected for this answer. Scans the full
+    already-loaded chunk set (no extra retrieval/network cost) rather than
+    the evidence chunks alone, since Best Practices is typically its own
+    section/chunk separate from the how-to steps that got selected.
+
+    Also checks the matched entities' source_boosts (canonical docs for that
+    concept) since a concept's Best Practices section often lives in a
+    different-but-related file than the one that scored top for retrieval
+    (e.g. api_node's evidence may come from api-node-http-status-code-
+    branching.md while its Best Practices live in api-node.md — both are
+    listed in the api_node concept's source_boosts)."""
+    evidence_sources = {str(e.get("source") or "") for e in evidence if e.get("source")}
+    boosted_slugs = set()
+    for e in (entities or []):
+        boosted_slugs.update((e.get("source_boosts") or {}).keys())
+    if not evidence_sources and not boosted_slugs:
+        return []
+    for c in all_chunks:
+        source = str(c.get("source") or "")
+        source_stem = source.rsplit("/", 1)[-1].rsplit(".", 1)[0]
+        if source not in evidence_sources and source_stem not in boosted_slugs:
+            continue
+        heading = str(c.get("heading") or "")
+        text = str(c.get("text") or "")
+        if "best practice" not in heading.lower() and "best practice" not in text.lower():
+            continue
+        found = _extract_best_practices(text, limit=limit)
+        if found:
+            return found
+        # Heading itself says "Best Practices" but body isn't in the
+        # "## Best Practices\n- ..." shape our regex expects — fall back to
+        # cleaned raw lines of that chunk directly.
+        if "best practice" in heading.lower():
+            lines = [_clean_line(l) for l in text.splitlines()]
+            lines = [l for l in lines if l]
+            if lines:
+                return lines[:limit]
+    return []
+
+
 def _case_study_capabilities(text: str, limit: int = 3) -> List[str]:
     m = re.search(r"## Gupshup capabilities used\s*\n(.*?)(?:\n## |\n\*\*|\Z)", text, re.S | re.I)
     if not m:
@@ -6491,6 +6553,49 @@ PLATFORM_OVERVIEW_ANSWER = (
 )
 
 
+def _related_feature_fitment(entities: List[Dict], evidence: Optional[List[Dict]] = None, limit: int = 2) -> str:
+    """Surface 1-2 related product capabilities via the CONCEPT_REGISTRY's
+    'related' cross-references, framed as an engagement hook. Consulting-mode
+    only — purely additive context, does not touch the answer's factual
+    content or retrieval/scoring.
+
+    Excludes related concepts whose canonical doc(s) are already covered by
+    the evidence shown in this answer — otherwise the "also connects with"
+    line can just repeat the same doc the answer already came from (e.g.
+    api_node's related list includes api_node_branching, whose canonical
+    doc IS the evidence source when that's what got retrieved)."""
+    if not entities:
+        return ""
+    evidence_stems = {
+        str(e.get("source") or "").rsplit("/", 1)[-1].rsplit(".", 1)[0]
+        for e in (evidence or []) if e.get("source")
+    }
+    seen_ids = {e.get("id") for e in entities if e.get("id")}
+    names: List[str] = []
+    for e in entities:
+        for rel_id in (e.get("related") or []):
+            if rel_id in seen_ids:
+                continue
+            seen_ids.add(rel_id)
+            rel = _CONCEPT_INDEX.get(rel_id)
+            if not rel:
+                continue
+            rel_slugs = set((rel.get("source_boosts") or {}).keys())
+            if rel_slugs and rel_slugs & evidence_stems:
+                continue  # already covered by the evidence shown, not "new"
+            display = rel.get("display") or rel.get("page_display") or rel_id
+            if display not in names:
+                names.append(display)
+            if len(names) >= limit:
+                break
+        if len(names) >= limit:
+            break
+    if not names:
+        return ""
+    joined = names[0] if len(names) == 1 else ", ".join(names[:-1]) + " and " + names[-1]
+    return f"This also connects well with **{joined}** — worth exploring if that's part of your setup."
+
+
 def _compose_consulting_answer(
     query: str,
     intent: str,
@@ -6498,12 +6603,20 @@ def _compose_consulting_answer(
     evidence: List[Dict],
     explicit_module: str = "General",
     confidence: float = 0.0,
+    best_practices: Optional[List[str]] = None,
 ) -> str:
-    """Consulting-tone composer: diagnosis -> context -> options -> recommended -> follow-up.
+    """Consulting-tone composer: diagnosis -> context -> options -> best practices
+    -> recommended -> fitment -> follow-up.
 
     Phase 1 pilot alternative to _compose_answer(). Pure function, no side
     effects; falls back to the same IDK string as the standard path when
     evidence is insufficient, so callers can treat both composers identically.
+
+    best_practices / fitment (via _related_feature_fitment) are purely
+    additive engagement content layered on top of the SAME evidence/entities
+    used by the standard path — they do not change retrieval, scoring, or
+    the underlying factual answer, only its presentation. Goal: increase
+    propensity to ask follow-up questions, per Phase 1/2 pilot design.
     """
     lines = _evidence_lines(evidence)
     if not evidence or not lines:
@@ -6558,12 +6671,21 @@ def _compose_consulting_answer(
     else:
         body = "\n".join(f"- {l}" for l in lines[:5])
 
-    # --- 4. RECOMMENDED (high confidence: surface the primary path) ---
+    # --- 4. BEST PRACTICES (from a sibling chunk of the same source docs) ---
+    best_practices_block = ""
+    if best_practices:
+        bp_lines = "\n".join(f"- {b}" for b in best_practices[:3])
+        best_practices_block = f"**Best practices:**\n{bp_lines}"
+
+    # --- 5. RECOMMENDED (high confidence: surface the primary path) ---
     recommended = ""
     if confidence >= 0.6 and lines:
         recommended = f"Most common case: {lines[0]}"
 
-    # --- 5. FOLLOW-UP (low confidence: ask for clarification) ---
+    # --- 6. FITMENT (related product capabilities, engagement hook) ---
+    fitment = _related_feature_fitment(entities, evidence)
+
+    # --- 7. FOLLOW-UP (low confidence: ask for clarification) ---
     follow_up = ""
     if confidence < 0.5:
         if explicit_module != "General":
@@ -6575,8 +6697,12 @@ def _compose_consulting_answer(
     if context_lines:
         parts.append("\n".join(context_lines))
     parts.append(body)
+    if best_practices_block:
+        parts.append(best_practices_block)
     if recommended:
         parts.append(recommended)
+    if fitment:
+        parts.append(fitment)
     if follow_up:
         parts.append(follow_up)
 
@@ -7727,17 +7853,27 @@ def _route_answer_composer(
     evidence: List[Dict],
     explicit_module: str,
     params: dict,
+    all_chunks: Optional[List[Dict]] = None,
 ) -> Tuple[str, str]:
     """Route to consulting-tone or problem-solution composer.
 
     Returns (answer_text, answer_mode) where answer_mode is "consulting" or
     "standard" — tagged into telemetry so Phase 1 dashboards can segment by
     module and mode without touching the existing _compose_answer() path.
+
+    all_chunks (the full already-loaded corpus, not just the selected
+    evidence) is only used in consulting mode, to look up a sibling
+    "Best Practices" chunk from the same source doc(s) as the evidence —
+    purely additive engagement content, no effect on standard mode.
     """
     mode = _resolve_answer_mode(params, query, explicit_module)
     if mode == "consulting":
         conf = _reported_confidence(query, evidence)
-        answer = _compose_consulting_answer(query, intent, entities, evidence, explicit_module, conf)
+        best_practices = _find_best_practices_for_evidence(all_chunks or [], evidence, entities) if all_chunks else []
+        answer = _compose_consulting_answer(
+            query, intent, entities, evidence, explicit_module, conf,
+            best_practices=best_practices,
+        )
     else:
         answer = _compose_answer(query, intent, entities, evidence, explicit_module)
     return answer, mode
@@ -7993,7 +8129,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
     scored = _filter_magnet_matches(query, scored)
 
     evidence = _select_evidence(query, scored, intent, explicit_module)
-    answer, answer_mode = _route_answer_composer(query, intent, entities, evidence, explicit_module, params)
+    answer, answer_mode = _route_answer_composer(query, intent, entities, evidence, explicit_module, params, all_chunks=chunks)
     answer, policy_meta = _apply_answer_policy(answer, query, params)
     policy_meta = dict(policy_meta or {})
     policy_meta["answer_mode"] = answer_mode
