@@ -4390,8 +4390,61 @@ def _extract_best_practices(text: str, limit: int = 3) -> List[str]:
     return out
 
 
+_CHANNEL_CONTENT_MARKERS = {
+    "rcs": ["rcs", "rich communication", "dotgo", "rbm"],
+    "whatsapp": ["whatsapp", "ctwa", "click-to-whatsapp", "click to whatsapp"],
+    "instagram": ["instagram"],
+    "sms": ["sms", "short message"],
+}
+
+_CHANNEL_FILENAME_PATTERNS = {
+    ch: re.compile(r"(^|/)" + re.escape(ch) + r"[-_]") for ch in _CHANNEL_CONTENT_MARKERS
+}
+
+
+def _channel_mismatched_content(
+    text: str, heading: str, source: str, query_channel: Optional[str],
+) -> bool:
+    """True if a chunk is clearly about a DIFFERENT specific channel than
+    the query is asking about. Generalizes beyond RCS: a WhatsApp-specific
+    practice (CTWA, WhatsApp thread mechanics) must not be presented as an
+    SMS best practice just because both live in the same general Campaign
+    Manager doc and share generic "campaign"/"best practices" vocabulary —
+    same failure mode as RCS content leaking into non-RCS queries, just for
+    a different channel pair.
+
+    Two signals, filename first: a chunk's SOURCE FILENAME (e.g.
+    "rcs-campaigns.md") is a far more reliable channel signal than scanning
+    body text for keyword presence — a chunk can be overwhelmingly about
+    one channel while still incidentally mentioning another in passing
+    (e.g. an RCS best-practices list noting "Include fallback SMS for
+    non-RCS devices" — that passing mention must not make the whole RCS
+    list look SMS-relevant to a naive keyword-presence check). Only when
+    the source filename carries no channel tag at all does this fall back
+    to checking whether the chunk's content mentions a specific channel
+    other than the query's and never mentions the query's channel."""
+    if not query_channel or query_channel not in _CHANNEL_CONTENT_MARKERS:
+        return False
+    source_lower = source.lower()
+    for ch, pattern in _CHANNEL_FILENAME_PATTERNS.items():
+        if pattern.search(source_lower):
+            return ch != query_channel
+
+    combined = (heading + " " + text).lower()
+    query_channel_present = any(kw in combined for kw in _CHANNEL_CONTENT_MARKERS[query_channel])
+    if query_channel_present:
+        return False
+    other_channels_present = any(
+        any(kw in combined for kw in kws)
+        for ch, kws in _CHANNEL_CONTENT_MARKERS.items()
+        if ch != query_channel
+    )
+    return other_channels_present
+
+
 def _find_best_practices_for_evidence(
-    all_chunks: List[Dict], evidence: List[Dict],
+    query: str, all_chunks: List[Dict], evidence: List[Dict],
+    explicit_module: str = "General",
     entities: Optional[List[Dict]] = None, limit: int = 3,
 ) -> List[str]:
     """Look for a sibling 'Best Practices' chunk from the same source doc(s)
@@ -4405,13 +4458,77 @@ def _find_best_practices_for_evidence(
     different-but-related file than the one that scored top for retrieval
     (e.g. api_node's evidence may come from api-node-http-status-code-
     branching.md while its Best Practices live in api-node.md — both are
-    listed in the api_node concept's source_boosts)."""
+    listed in the api_node concept's source_boosts).
+
+    When a query has weak/scattered evidence, _select_evidence can pull in
+    multiple DIFFERENT docs as "scenario options" (is_multi_path in the
+    consulting composer) — e.g. an SMS query surfacing both a general
+    campaign-best-practices doc AND rcs-campaigns.md as possible
+    interpretations. To avoid surfacing a topically-mismatched doc's content
+    (RCS media/CTA specifics presented as "SMS best practices" would
+    misattribute facts), every "best practice" candidate chunk is re-scored
+    against the ACTUAL query via _score_chunk — the same methodology used
+    for the main answer's evidence selection — and only the highest-scoring
+    candidate is used, not just the first one found in file order."""
     evidence_sources = {str(e.get("source") or "") for e in evidence if e.get("source")}
     boosted_slugs = set()
     for e in (entities or []):
         boosted_slugs.update((e.get("source_boosts") or {}).keys())
     if not evidence_sources and not boosted_slugs:
         return []
+
+    # SMS explicitly excluded: an exhaustive case-study review (94 files)
+    # confirmed there is currently ZERO genuine case-study-backed best-
+    # practices evidence for SMS anywhere in the KB — every SMS mention in
+    # the corpus is a negative baseline that brands moved AWAY from (see
+    # kb/campaign-manager/campaign-best-practices.md's own "What the
+    # Evidence Does NOT Support" section). Rather than rely on an imperfect
+    # per-chunk channel heuristic to avoid misattributing another channel's
+    # practices to SMS, this directly encodes that already-verified fact:
+    # never surface best-practices content for an SMS query until real SMS
+    # evidence exists.
+    if explicit_module in ("Campaign Manager", "Channels") and _detect_channel_from_query(query) == "sms":
+        return []
+
+    # Hard channel gate: generic keyword-overlap scoring alone isn't enough
+    # to prevent one channel's tactical detail (e.g. RCS media/size limits,
+    # or WhatsApp CTWA mechanics) from out-scoring a topically-correct-but-
+    # less-generic doc for a DIFFERENT channel's query — both share generic
+    # "best"/"practices"/"campaign" vocabulary regardless of which channel
+    # they're actually about. Only within Campaign Manager / Channels
+    # (where this cross-channel conflation risk exists): reject any
+    # candidate chunk whose own content is clearly about a different
+    # specific channel than the query asks about (see
+    # _channel_mismatched_content) — this must never present one channel's
+    # specifics as if they apply to another.
+    query_channel = (
+        _detect_channel_from_query(query)
+        if explicit_module in ("Campaign Manager", "Channels") else None
+    )
+
+    # Honor an explicit "no evidence for <channel>" disclaimer over any
+    # heuristic keyword/filename check. A doc can state outright that a
+    # channel isn't covered (e.g. campaign-best-practices.md's own "What
+    # the Evidence Does NOT Support" section on SMS) while still containing
+    # other sections whose individual bullets don't literally name a
+    # different channel (e.g. a generic "recover abandoned carts" bullet)
+    # and would otherwise slip past the channel-mismatch filter. If any
+    # candidate-source chunk explicitly disclaims the query's channel,
+    # that disclaimer is authoritative — don't extract from that doc at all
+    # for this channel, regardless of what any other chunk's score says.
+    if query_channel:
+        for c in all_chunks:
+            source = str(c.get("source") or "")
+            if source not in evidence_sources:
+                continue
+            text_lower = str(c.get("text") or "").lower()
+            if re.search(
+                rf"no evidence for {re.escape(query_channel)}|insufficient[^.]*evidence[^.]*{re.escape(query_channel)}",
+                text_lower,
+            ):
+                return []
+
+    candidates = []
     for c in all_chunks:
         source = str(c.get("source") or "")
         source_stem = source.rsplit("/", 1)[-1].rsplit(".", 1)[0]
@@ -4421,17 +4538,61 @@ def _find_best_practices_for_evidence(
         text = str(c.get("text") or "")
         if "best practice" not in heading.lower() and "best practice" not in text.lower():
             continue
+        if _channel_mismatched_content(text, heading, source, query_channel):
+            continue
+        score = _score_chunk(query, c, entities or [], explicit_module)
+        candidates.append((score, heading, text))
+
+    if not candidates:
+        return []
+    candidates.sort(key=lambda x: x[0], reverse=True)
+    if candidates[0][0] < MIN_CHUNK_SCORE:
+        return []
+
+    # Pass 1: prefer the highest-scoring chunk whose body is in the proper
+    # "## Best Practices\n- ..." shape. A doc's own title/overview chunk can
+    # superficially contain "best practice(s)" too (e.g. a page titled "X
+    # Best Practices (Evidence-Based)") without holding any real bullet
+    # content — checking every candidate in score order, not just the top
+    # one, avoids picking a shallow title chunk over a real bulleted
+    # section elsewhere in the same doc.
+    for _, _, text in candidates:
         found = _extract_best_practices(text, limit=limit)
         if found:
             return found
-        # Heading itself says "Best Practices" but body isn't in the
-        # "## Best Practices\n- ..." shape our regex expects — fall back to
-        # cleaned raw lines of that chunk directly.
-        if "best practice" in heading.lower():
-            lines = [_clean_line(l) for l in text.splitlines()]
-            lines = [l for l in lines if l]
-            if lines:
-                return lines[:limit]
+
+    # Pass 2: fallback for chunks belonging to a "best practice"-themed doc
+    # (checked against the chunk's full text, which includes the doc's
+    # prepended page title — e.g. a page titled "X Best Practices (Evidence-
+    # Based)" whose subsections use topical headings like "Lead Generation
+    # via CTWA Ads" rather than a literal "## Best Practices" heading) where
+    # the body isn't in the exact "## Best Practices\n- ..." shape our regex
+    # expects. Only accept lines that are genuinely bullet-shaped ("- ..." /
+    # numbered) — never dump raw headings or "**Field**: value" metadata
+    # lines as if they were practices (that's exactly what produced garbage
+    # like "Module: Campaign Manager" showing up as a "best practice").
+    for _, heading, text in candidates:
+        if "best practice" not in heading.lower() and "best practice" not in text.lower():
+            continue
+        bullet_lines = []
+        for raw_line in text.splitlines():
+            # Check bullet-shape on the RAW line first — _clean_line() strips
+            # leading "-"/"#"/"*" markers as part of its normal cleaning, so
+            # checking startswith("- ") AFTER cleaning can never match (this
+            # was a real bug: it silently produced zero bullet_lines for
+            # every genuinely-bulleted chunk, since the "- " prefix was
+            # already gone by the time it was checked).
+            stripped = raw_line.strip()
+            if not (stripped.startswith("- ") or re.match(r"^\d+[.)]\s", stripped)):
+                continue
+            line = _clean_line(raw_line)
+            if not line:
+                continue
+            bullet_lines.append(line)
+            if len(bullet_lines) >= limit:
+                break
+        if bullet_lines:
+            return bullet_lines
     return []
 
 
@@ -7881,7 +8042,7 @@ def _route_answer_composer(
     mode = _resolve_answer_mode(params, query, explicit_module)
     if mode == "consulting":
         conf = _reported_confidence(query, evidence)
-        best_practices = _find_best_practices_for_evidence(all_chunks or [], evidence, entities) if all_chunks else []
+        best_practices = _find_best_practices_for_evidence(query, all_chunks or [], evidence, explicit_module, entities) if all_chunks else []
         answer = _compose_consulting_answer(
             query, intent, entities, evidence, explicit_module, conf,
             best_practices=best_practices,
