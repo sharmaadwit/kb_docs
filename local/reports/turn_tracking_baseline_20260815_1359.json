@@ -1,0 +1,40 @@
+{
+  "generated_at": "2026-08-15T08:29:13.693617+00:00",
+  "baseline_label": "PRE-FIX",
+  "trace_name": "kb_answer",
+  "traces_fetched": 100,
+  "1_session_id_vs_correlation_id": {
+    "description": "Proxy for distinct real session vs current bug where session_id == correlation_id (both usually null pre-fix).",
+    "pct_traces_where_session_id_differs_from_correlation_id": 33.0,
+    "count_differ": 33,
+    "breakdown": {
+      "both_null": 67,
+      "session_id_only_correlation_id_null": 33,
+      "correlation_id_only_session_id_null": 0,
+      "both_present_and_equal": 0,
+      "both_present_and_different": 0
+    },
+    "caveat": "correlation_id was not populated on ANY of the sampled traces (0/100). All 'differ' cases are session_id-present/correlation_id-null, not two genuinely distinct populated IDs."
+  },
+  "2_parent_trace_id_set": {
+    "pct_traces_with_parent_trace_id_set": 0.0,
+    "count_set": 0,
+    "count_total": 100
+  },
+  "3_conversation_turn_number_distribution": {
+    "0": 23,
+    "null": 77
+  },
+  "4_approx_conversation_grouping": {
+    "method": "cluster by metadata.session_id (fallback top-level session_id), chained timestamp gaps <= 10 min",
+    "traces_with_no_session_id": 67,
+    "distinct_sessions_with_any_trace": 15,
+    "total_approx_conversations": 22,
+    "multi_turn_conversations_2plus": 7,
+    "first_position_answered_true_rate_pct": 71.43,
+    "later_position_answered_true_rate_pct": 81.82,
+    "first_position_n": 7,
+    "later_position_n": 11,
+    "note": "session_id is null/absent on nearly all pre-fix traces, so this grouping is expected to find few/no real multi-trace sessions. That itself is a baseline finding."
+  }
+}

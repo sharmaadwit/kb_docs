@@ -1,0 +1,34 @@
+[
+{
+  "query_number": 1,
+  "query": "How do I set up WhatsApp templates?",
+  "session_id": "test-session-3be38485-6b15-4497-81b5-01e335076006",
+  "stream_id": "test-stream-e4bbaf97-bf42-4cba-bc1f-4d68b159e9d0",
+  "query_timestamp": "2026-08-15T08:31:36Z",
+  "http_status": 200,
+  "success": true,
+  "response_preview": ": ping - 2026-08-15 08:31:38.009110+00:00  data: {\"type\": \"agent_start\", \"agent\": \"react\", \"label\": \"Thinking...\"}  : ping - 2026-08-15 08:31:39.009620+00:00  : ping - 2026-08-15 08:31:40.009823+00:00  : ping - 2026-08-15 08:31:41.011166+00:00  data: {\"type\": \"tool_call\", \"tool\": \"list_skills\", \"tool_call_id\": \"call_uqJWQVWHMzHk9wyUTLOCsLE2\", \"label\": \"Exploring available skills\", \"args\": {}}  : ping - 2026-08-15 08:31:42.016611+00:00  data: {\"type\": \"tool_result\", \"tool\": \"list_sk"
+}
+,
+{
+  "query_number": 2,
+  "query": "What is Bot Studio used for?",
+  "session_id": "test-session-348746ea-d0b9-4590-8991-f60c5d1bb846",
+  "stream_id": "test-stream-4bb31dcc-c440-44e3-8319-b09cf47b9112",
+  "query_timestamp": "2026-08-15T08:31:59Z",
+  "http_status": 200,
+  "success": true,
+  "response_preview": ": ping - 2026-08-15 08:32:00.709077+00:00  data: {\"type\": \"agent_start\", \"agent\": \"react\", \"label\": \"Thinking...\"}  : ping - 2026-08-15 08:32:01.711953+00:00  : ping - 2026-08-15 08:32:02.712562+00:00  data: {\"type\": \"tool_call\", \"tool\": \"read_skill_file\", \"tool_call_id\": \"call_GOL03YrFZVZBA3O8M0H3KrMU\", \"label\": \"Reading skill documentation\", \"args\": {}}  data: {\"type\": \"tool_result\", \"tool\": \"read_skill_file\", \"tool_call_id\": \"call_GOL03YrFZVZBA3O8M0H3KrMU\", \"label\": \"Reading skill d"
+}
+,
+{
+  "query_number": 3,
+  "query": "How do I check delivery reports?",
+  "session_id": "test-session-e0bae814-1933-4450-9e40-9589b0a58624",
+  "stream_id": "test-stream-7b41e62a-f0a3-41b2-bd2f-87249460f28e",
+  "query_timestamp": "2026-08-15T08:32:16Z",
+  "http_status": 200,
+  "success": true,
+  "response_preview": ": ping - 2026-08-15 08:32:17.389990+00:00  data: {\"type\": \"agent_start\", \"agent\": \"react\", \"label\": \"Thinking...\"}  : ping - 2026-08-15 08:32:18.390660+00:00  data: {\"type\": \"tool_call\", \"tool\": \"read_skill_file\", \"tool_call_id\": \"call_esiRpanViaCqAMGxzveItJ0B\", \"label\": \"Reading skill documentation\", \"args\": {}}  data: {\"type\": \"tool_result\", \"tool\": \"read_skill_file\", \"tool_call_id\": \"call_esiRpanViaCqAMGxzveItJ0B\", \"label\": \"Reading skill documentation\", \"result\": \"\", \"is_error\": fals"
+}
+]
