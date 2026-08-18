@@ -28,6 +28,7 @@ CONSULTING_TONE_CONFIG = {
         "Campaign Manager": 50,  # Phase 2 - KB-ready, starting at 50/50
         "Agent Assist": 50,      # Phase 2 - KB-ready, starting at 50/50
         "Channels": 50,           # Phase 2 - KB-ready, starting at 50/50
+        "WhatsApp": 50,            # Phase 2 - highest-volume module, KB-ready, starting at 50/50
     },
     "force_mode": None,  # Set to "consulting" or "standard" to force all traffic into one mode (testing only)
 }
@@ -3144,6 +3145,7 @@ CONCEPT_REGISTRY: List[Dict] = [
         "display": "WhatsApp Business Account Setup",
         "page_display": "WhatsApp Business Account Setup",
         "module": "WhatsApp",
+        "related": ["whatsapp_onboarding", "whatsapp_process"],
     },
     {
         "id": "whatsapp_onboarding",
@@ -3159,6 +3161,7 @@ CONCEPT_REGISTRY: List[Dict] = [
         "display": "WhatsApp Channel Onboarding",
         "page_display": "WhatsApp Channel Onboarding",
         "module": "WhatsApp",
+        "related": ["waba_setup", "whatsapp_process", "whatsapp_templates"],
     },
     {
         "id": "journey_builder_nodes",
@@ -3258,6 +3261,7 @@ CONCEPT_REGISTRY: List[Dict] = [
         "display": "WhatsApp End-to-End Process",
         "page_display": "WhatsApp Channel Overview & Setup",
         "module": "WhatsApp",
+        "related": ["waba_setup", "whatsapp_onboarding", "campaign_creation"],
     },
     {
         "id": "ai_admin_overview",
@@ -3404,6 +3408,7 @@ CONCEPT_REGISTRY: List[Dict] = [
         },
         "display": "WhatsApp Message Templates",
         "module": "General",
+        "related": ["whatsapp_onboarding", "template_window"],
     },
     {
         "id": "rcs_templates",
