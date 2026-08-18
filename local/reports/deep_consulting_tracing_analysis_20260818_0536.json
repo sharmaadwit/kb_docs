@@ -1,0 +1,88 @@
+{
+  "generated_at": "2026-08-18T05:36:15.739497+00:00",
+  "total_cached": 2469,
+  "post_fix": 73,
+  "per_module_adoption": {
+    "Bot Studio": {
+      "consulting": 9,
+      "standard": 6,
+      "other": 0,
+      "adoption_pct": 60.0,
+      "configured_pct": 75
+    },
+    "Agent Assist": {
+      "consulting": 1,
+      "standard": 10,
+      "other": 0,
+      "adoption_pct": 9.1,
+      "configured_pct": 50
+    },
+    "Channels": {
+      "consulting": 8,
+      "standard": 5,
+      "other": 0,
+      "adoption_pct": 61.5,
+      "configured_pct": 50
+    },
+    "SuperAgent": {
+      "consulting": 0,
+      "standard": 2,
+      "other": 0,
+      "adoption_pct": 0.0,
+      "configured_pct": null
+    },
+    "Overview": {
+      "consulting": 0,
+      "standard": 2,
+      "other": 0,
+      "adoption_pct": 0.0,
+      "configured_pct": null
+    },
+    "General": {
+      "consulting": 0,
+      "standard": 3,
+      "other": 0,
+      "adoption_pct": 0.0,
+      "configured_pct": null
+    },
+    "WhatsApp": {
+      "consulting": 0,
+      "standard": 5,
+      "other": 0,
+      "adoption_pct": 0.0,
+      "configured_pct": null
+    },
+    "Integrations": {
+      "consulting": 0,
+      "standard": 5,
+      "other": 0,
+      "adoption_pct": 0.0,
+      "configured_pct": null
+    },
+    "Campaign Manager": {
+      "consulting": 5,
+      "standard": 12,
+      "other": 0,
+      "adoption_pct": 29.4,
+      "configured_pct": 50
+    }
+  },
+  "engagement_coverage": {
+    "consulting_n": 23,
+    "best_practices_pct": 39.1,
+    "fitment_pct": 34.8,
+    "case_study_pct": 78.3,
+    "video_pct": 60.9
+  },
+  "answer_length": {
+    "consulting_avg": 1028.1304,
+    "standard_avg": 691.82
+  },
+  "accuracy": {
+    "consulting_answered_pct": 87.0,
+    "consulting_avg_conf": 0.5621,
+    "standard_answered_pct": 78.0,
+    "standard_avg_conf": 0.4966
+  },
+  "multi_turn_clusters": 5
+}
