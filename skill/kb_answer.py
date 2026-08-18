@@ -23,8 +23,8 @@ CONSULTING_TONE_CONFIG = {
     # mode). Per-module split lets Phase 1 modules (validated, higher
     # confidence) run at a different rate than newly-added Phase 2 modules.
     "modules": {
-        "RCS": 75,          # Phase 1 - validated, increased 50 -> 75
-        "Bot Studio": 75,   # Phase 1 - validated, increased 50 -> 75
+        "RCS": 100,         # Phase 1 - fully validated, 50 -> 75 -> 100
+        "Bot Studio": 100,  # Phase 1 - fully validated, 50 -> 75 -> 100
         "Campaign Manager": 50,  # Phase 2 - KB-ready, starting at 50/50
         "Agent Assist": 50,      # Phase 2 - KB-ready, starting at 50/50
         "Channels": 50,           # Phase 2 - KB-ready, starting at 50/50
@@ -7985,7 +7985,7 @@ def _resolve_answer_mode(params: dict, query: str, explicit_module: str) -> str:
 
     Config (CONSULTING_TONE_CONFIG at top of file):
     - "enabled": True/False = master switch
-    - "modules": {"RCS": 75, "Bot Studio": 75, ...} = allowed gate modules,
+    - "modules": {"RCS": 100, "Bot Studio": 100, ...} = allowed gate modules,
       each mapped to its own traffic_pct (percent of that module's eligible
       traffic routed into consulting mode). Modules not in this dict always
       get "standard".
