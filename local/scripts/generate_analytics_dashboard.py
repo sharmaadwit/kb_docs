@@ -1839,6 +1839,364 @@ def generate_query_analytics_html(analysis: Dict[str, Any], segment_key: str) ->
     return html
 
 
+def _is_real_email(email) -> bool:
+    if not email or not isinstance(email, str):
+        return False
+    e = email.strip().lower()
+    if e in ("", "unknown", "none") or e.startswith("sess:") or e.startswith("exec:"):
+        return False
+    return "@" in e
+
+
+def analyze_consulting_effectiveness(all_traces: List[Dict]) -> Dict[str, Any]:
+    """Consulting-mode adoption, accuracy, and engagement-content coverage.
+
+    Adoption is computed against the TRUE routing-time module
+    (skill._detect_module(query), what _resolve_answer_mode actually gates
+    on) rather than telemetry's post-hoc "module" label — those diverge
+    whenever a query is detected as "General" at routing time (correctly
+    gated to standard) but telemetry relabels it later from the top-scored
+    evidence source. Using the telemetry label produced systematically
+    wrong adoption numbers for every gated module (confirmed 2026-08-19:
+    Bot Studio at 100% traffic_pct showed 62.5% via the wrong method, 100.0%
+    via this one). See local/scripts/deep_consulting_tracing_analysis.py.
+    """
+    root = Path(__file__).resolve().parents[2]
+    sys.path.insert(0, str(root / "skill"))
+    import kb_answer as ka  # noqa: E402
+
+    configured = dict(ka.CONSULTING_TONE_CONFIG.get("modules", {}))
+
+    # Adoption specifically needs a RECENT window: traffic_pct has changed
+    # multiple times (Bot Studio/RCS 50->75->100%, WhatsApp added entirely),
+    # so all-time traces mix eras with different configured splits and
+    # produce a misleading blended adoption number (confirmed: unfiltered
+    # showed Bot Studio at 55% against a 100% target, purely from diluting
+    # with pre-100% history). Using "has the new turn-tracking fields" as
+    # the recency boundary is self-maintaining (auto-advances as the system
+    # evolves) rather than a hardcoded date that would need updating every
+    # time the config changes again.
+    recent = [
+        t for t in all_traces
+        if isinstance(t.get("metadata"), dict)
+        and any(f in t["metadata"] for f in ("session_id_source", "turn_number_source", "parent_trace_id_provided"))
+    ]
+
+    fixed = [
+        t for t in recent
+        if t["metadata"].get("selected_answer_mode") in ("consulting", "standard")
+        and t["metadata"].get("query")
+    ]
+
+    by_module: Dict[str, Dict[str, int]] = {}
+    for t in fixed:
+        meta = t["metadata"]
+        mod = ka._detect_module(meta["query"])
+        d = by_module.setdefault(mod, {"consulting": 0, "standard": 0})
+        d[meta["selected_answer_mode"]] += 1
+
+    module_rows = []
+    for mod, d in sorted(by_module.items(), key=lambda x: -(x[1]["consulting"] + x[1]["standard"])):
+        total = d["consulting"] + d["standard"]
+        adoption = round(100.0 * d["consulting"] / total, 1) if total else 0.0
+        cfg = configured.get(mod)
+        module_rows.append({
+            "module": mod, "total": total, "consulting": d["consulting"],
+            "adoption_pct": adoption, "configured_pct": cfg,
+            "delta_pp": round(adoption - cfg, 1) if cfg is not None else None,
+            "gated": mod in configured,
+        })
+
+    consulting = [t for t in fixed if t["metadata"]["selected_answer_mode"] == "consulting"]
+    standard = [t for t in fixed if t["metadata"]["selected_answer_mode"] == "standard"]
+
+    def _answered_pct(items):
+        if not items:
+            return None
+        n = sum(1 for i in items if i["metadata"].get("answered") is True)
+        return round(100.0 * n / len(items), 1)
+
+    def _avg_conf(items):
+        vals = [i["metadata"].get("confidence") for i in items if isinstance(i["metadata"].get("confidence"), (int, float))]
+        return round(sum(vals) / len(vals), 3) if vals else None
+
+    def _avg_len(items):
+        vals = [len((i.get("output") or {}).get("answer", "")) for i in items]
+        vals = [v for v in vals if v]
+        return round(sum(vals) / len(vals)) if vals else None
+
+    consulting_answers = [(t.get("output") or {}).get("answer", "") for t in consulting]
+    n_bp = sum(1 for a in consulting_answers if "**Best practices:**" in a)
+    n_fit = sum(1 for a in consulting_answers if "This also connects well with" in a)
+    n_cs = sum(1 for a in consulting_answers if "Related success stories" in a or "See it in action" in a)
+
+    return {
+        "module_rows": module_rows,
+        "consulting_n": len(consulting),
+        "standard_n": len(standard),
+        "consulting_answered_pct": _answered_pct(consulting),
+        "standard_answered_pct": _answered_pct(standard),
+        "consulting_avg_conf": _avg_conf(consulting),
+        "standard_avg_conf": _avg_conf(standard),
+        "consulting_avg_len": _avg_len(consulting),
+        "standard_avg_len": _avg_len(standard),
+        "best_practices_pct": round(100.0 * n_bp / len(consulting_answers), 1) if consulting_answers else None,
+        "fitment_pct": round(100.0 * n_fit / len(consulting_answers), 1) if consulting_answers else None,
+        "case_study_pct": round(100.0 * n_cs / len(consulting_answers), 1) if consulting_answers else None,
+    }
+
+
+def analyze_multiturn_tracking(all_traces: List[Dict]) -> Dict[str, Any]:
+    """Session/turn-tracking field coverage and real multi-turn conversation
+    clustering (real email + 10-minute proximity, since VAPT PII scrubbing
+    makes session_id unreliable for grouping — see memory:
+    superagent-pii-scrubbing). Honest about the accuracy-vs-depth signal:
+    prior checks found no consistent direction (weak/noisy), so this
+    reports the numbers without implying a causal story either way."""
+    fixed = [
+        t for t in all_traces
+        if isinstance(t.get("metadata"), dict)
+        and any(f in t["metadata"] for f in ("session_id_source", "turn_number_source", "parent_trace_id_provided"))
+    ]
+
+    by_env: Dict[str, Dict[str, int]] = {}
+    for t in fixed:
+        meta = t["metadata"]
+        env = meta.get("trace_env") or "unset"
+        d = by_env.setdefault(env, {"total": 0, "client_session": 0, "real_email": 0})
+        d["total"] += 1
+        if meta.get("session_id_source") == "client":
+            d["client_session"] += 1
+        if _is_real_email(meta.get("user_email")):
+            d["real_email"] += 1
+
+    env_rows = []
+    for env, d in sorted(by_env.items()):
+        env_rows.append({
+            "env": env, "total": d["total"],
+            "client_session_pct": round(100.0 * d["client_session"] / d["total"], 1) if d["total"] else 0,
+            "real_email_pct": round(100.0 * d["real_email"] / d["total"], 1) if d["total"] else 0,
+        })
+
+    real_email_traces = []
+    for t in fixed:
+        meta = t["metadata"]
+        if not _is_real_email(meta.get("user_email")):
+            continue
+        ts_raw = t.get("timestamp")
+        if isinstance(ts_raw, str):
+            try:
+                ts = datetime.fromisoformat(ts_raw.replace("Z", "+00:00"))
+            except ValueError:
+                continue
+        elif isinstance(ts_raw, datetime):
+            ts = ts_raw
+        else:
+            continue
+        real_email_traces.append({"ts": ts, "email": meta.get("user_email"), "meta": meta})
+
+    by_email: Dict[str, List[Dict]] = {}
+    for t in real_email_traces:
+        by_email.setdefault(t["email"], []).append(t)
+
+    clusters = []
+    for email, items in by_email.items():
+        items.sort(key=lambda x: x["ts"])
+        cluster = [items[0]]
+        for it in items[1:]:
+            if (it["ts"] - cluster[-1]["ts"]).total_seconds() <= 600:
+                cluster.append(it)
+            else:
+                clusters.append(cluster)
+                cluster = [it]
+        clusters.append(cluster)
+
+    multi = [c for c in clusters if len(c) >= 2]
+    first_pos = [c[0] for c in multi]
+    later_pos = [it for c in multi for it in c[1:]]
+
+    def _answered_pct(items):
+        if not items:
+            return None
+        n = sum(1 for i in items if i["meta"].get("answered") is True)
+        return round(100.0 * n / len(items), 1)
+
+    def _avg_conf(items):
+        vals = [i["meta"].get("confidence") for i in items if isinstance(i["meta"].get("confidence"), (int, float))]
+        return round(sum(vals) / len(vals), 3) if vals else None
+
+    return {
+        "env_rows": env_rows,
+        "unique_real_email_users": len(by_email),
+        "total_conversations": len(clusters),
+        "multi_turn_conversations": len(multi),
+        "single_turn_conversations": len(clusters) - len(multi),
+        "first_turn_n": len(first_pos),
+        "first_turn_answered_pct": _answered_pct(first_pos),
+        "first_turn_avg_conf": _avg_conf(first_pos),
+        "later_turn_n": len(later_pos),
+        "later_turn_answered_pct": _answered_pct(later_pos),
+        "later_turn_avg_conf": _avg_conf(later_pos),
+    }
+
+
+def generate_consulting_effectiveness_html(ce: Dict[str, Any], mt: Dict[str, Any]) -> str:
+    """Renders the consulting-mode effectiveness + multi-turn tracking section."""
+    module_rows_html = ""
+    for r in ce["module_rows"]:
+        if r["gated"]:
+            delta = r["delta_pp"]
+            delta_color = "#22c55e" if delta is not None and delta >= 0 else "#f59e0b"
+            delta_str = f'<span style="color:{delta_color}; font-weight:600;">{delta:+.1f}pp</span>' if delta is not None else "—"
+            cfg_str = f'{r["configured_pct"]}%'
+        else:
+            delta_str = '<span style="color:#94a3b8;">not gated</span>'
+            cfg_str = "—"
+        module_rows_html += f"""
+                    <tr>
+                        <td>{r['module']}</td>
+                        <td class="numeric">{r['total']}</td>
+                        <td class="numeric">{r['consulting']}</td>
+                        <td class="numeric"><strong>{r['adoption_pct']}%</strong></td>
+                        <td class="numeric">{cfg_str}</td>
+                        <td class="numeric">{delta_str}</td>
+                    </tr>
+"""
+
+    def _fmt(v, suffix=""):
+        return f"{v}{suffix}" if v is not None else "n/a"
+
+    len_delta = None
+    if ce["consulting_avg_len"] and ce["standard_avg_len"]:
+        len_delta = round(100.0 * (ce["consulting_avg_len"] - ce["standard_avg_len"]) / ce["standard_avg_len"], 1)
+
+    env_rows_html = ""
+    for r in mt["env_rows"]:
+        env_rows_html += f"""
+                    <tr>
+                        <td>{r['env']}</td>
+                        <td class="numeric">{r['total']}</td>
+                        <td class="numeric">{r['client_session_pct']}%</td>
+                        <td class="numeric">{r['real_email_pct']}%</td>
+                    </tr>
+"""
+
+    return f"""
+        <!-- CONSULTING MODE EFFECTIVENESS + MULTI-TURN TRACKING
+             Adoption uses true routing-time module detection, not telemetry's
+             post-hoc label (see analyze_consulting_effectiveness docstring).
+             Multi-turn accuracy signal is intentionally reported without a
+             causal claim — prior checks found no consistent direction. -->
+        <div class="section" style="border: 2px solid #8b5cf6;">
+            <h2>🎯 Consulting Mode Effectiveness</h2>
+            <p style="color:#666; font-size:0.85em; margin-bottom:16px;">
+                Accuracy and engagement impact of consulting-tone answers vs. standard, plus per-module
+                adoption vs. configured traffic split. Scoped to traces since the turn-tracking fix
+                (excludes older traffic from before the current traffic_pct config, which would otherwise
+                blend multiple historical splits into a misleading number). Adoption is measured against
+                the true routing-time module (what the code actually gates on), not the display label
+                shown elsewhere in this dashboard — those can diverge for broadly-phrased queries.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div style="background: #f5f3ff; padding: 16px; border-radius: 8px;">
+                    <div style="font-size: 0.8em; color: #666;">Answer Rate</div>
+                    <div style="font-size: 1.5em; font-weight: 700; color: #8b5cf6;">{_fmt(ce['consulting_answered_pct'], '%')}</div>
+                    <div style="font-size: 0.75em; color: #999;">vs standard {_fmt(ce['standard_answered_pct'], '%')}</div>
+                </div>
+                <div style="background: #f5f3ff; padding: 16px; border-radius: 8px;">
+                    <div style="font-size: 0.8em; color: #666;">Avg Confidence</div>
+                    <div style="font-size: 1.5em; font-weight: 700; color: #8b5cf6;">{_fmt(ce['consulting_avg_conf'])}</div>
+                    <div style="font-size: 0.75em; color: #999;">vs standard {_fmt(ce['standard_avg_conf'])}</div>
+                </div>
+                <div style="background: #f5f3ff; padding: 16px; border-radius: 8px;">
+                    <div style="font-size: 0.8em; color: #666;">Answer Length</div>
+                    <div style="font-size: 1.5em; font-weight: 700; color: #8b5cf6;">{'+' + str(len_delta) + '%' if len_delta is not None else 'n/a'}</div>
+                    <div style="font-size: 0.75em; color: #999;">{_fmt(ce['consulting_avg_len'])} vs {_fmt(ce['standard_avg_len'])} chars</div>
+                </div>
+                <div style="background: #f5f3ff; padding: 16px; border-radius: 8px;">
+                    <div style="font-size: 0.8em; color: #666;">Best Practices Coverage</div>
+                    <div style="font-size: 1.5em; font-weight: 700; color: #8b5cf6;">{_fmt(ce['best_practices_pct'], '%')}</div>
+                    <div style="font-size: 0.75em; color: #999;">of consulting-mode answers</div>
+                </div>
+                <div style="background: #f5f3ff; padding: 16px; border-radius: 8px;">
+                    <div style="font-size: 0.8em; color: #666;">Fitment Coverage</div>
+                    <div style="font-size: 1.5em; font-weight: 700; color: #8b5cf6;">{_fmt(ce['fitment_pct'], '%')}</div>
+                    <div style="font-size: 0.75em; color: #999;">of consulting-mode answers</div>
+                </div>
+                <div style="background: #f5f3ff; padding: 16px; border-radius: 8px;">
+                    <div style="font-size: 0.8em; color: #666;">Case Study Coverage</div>
+                    <div style="font-size: 1.5em; font-weight: 700; color: #8b5cf6;">{_fmt(ce['case_study_pct'], '%')}</div>
+                    <div style="font-size: 0.75em; color: #999;">of consulting-mode answers</div>
+                </div>
+            </div>
+
+            <h3 style="margin-bottom: 12px;">Per-Module Adoption vs Configured Split</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.9em; margin-bottom: 24px;">
+                <thead>
+                    <tr style="background: #f9fafb; border-bottom: 2px solid #e5e7eb;">
+                        <th style="text-align:left; padding:10px;">Module</th>
+                        <th style="text-align:center; padding:10px;">Traces</th>
+                        <th style="text-align:center; padding:10px;">Consulting</th>
+                        <th style="text-align:center; padding:10px;">Adoption</th>
+                        <th style="text-align:center; padding:10px;">Configured</th>
+                        <th style="text-align:center; padding:10px;">Delta</th>
+                    </tr>
+                </thead>
+                <tbody>{module_rows_html}
+                </tbody>
+            </table>
+
+            <h3 style="margin-bottom: 12px;">🔗 Multi-Turn Session Tracking</h3>
+            <p style="color:#666; font-size:0.85em; margin-bottom:16px;">
+                Real multi-turn conversations (real user identity, clustered by 10-minute proximity —
+                see memory: superagent-pii-scrubbing for why session_id alone can't be used for grouping).
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div style="background: #eff6ff; padding: 16px; border-radius: 8px;">
+                    <div style="font-size: 0.8em; color: #666;">Conversations Tracked</div>
+                    <div style="font-size: 1.5em; font-weight: 700; color: #3b82f6;">{mt['total_conversations']}</div>
+                    <div style="font-size: 0.75em; color: #999;">{mt['unique_real_email_users']} unique users</div>
+                </div>
+                <div style="background: #eff6ff; padding: 16px; border-radius: 8px;">
+                    <div style="font-size: 0.8em; color: #666;">Multi-Turn</div>
+                    <div style="font-size: 1.5em; font-weight: 700; color: #3b82f6;">{mt['multi_turn_conversations']}</div>
+                    <div style="font-size: 0.75em; color: #999;">vs {mt['single_turn_conversations']} single-turn</div>
+                </div>
+                <div style="background: #eff6ff; padding: 16px; border-radius: 8px;">
+                    <div style="font-size: 0.8em; color: #666;">First-Turn Answer Rate</div>
+                    <div style="font-size: 1.5em; font-weight: 700; color: #3b82f6;">{_fmt(mt['first_turn_answered_pct'], '%')}</div>
+                    <div style="font-size: 0.75em; color: #999;">n={mt['first_turn_n']}, conf={_fmt(mt['first_turn_avg_conf'])}</div>
+                </div>
+                <div style="background: #eff6ff; padding: 16px; border-radius: 8px;">
+                    <div style="font-size: 0.8em; color: #666;">Later-Turn Answer Rate</div>
+                    <div style="font-size: 1.5em; font-weight: 700; color: #3b82f6;">{_fmt(mt['later_turn_answered_pct'], '%')}</div>
+                    <div style="font-size: 0.75em; color: #999;">n={mt['later_turn_n']}, conf={_fmt(mt['later_turn_avg_conf'])}</div>
+                </div>
+            </div>
+            <p style="color:#999; font-size:0.75em; margin-bottom:20px; font-style:italic;">
+                Note: first-vs-later-turn accuracy has shown no consistent direction across repeated checks
+                (answer-rate and confidence deltas have pointed opposite ways in different samples) — reported
+                as observed data, not evidence that conversation depth causes better or worse accuracy.
+            </p>
+
+            <h3 style="margin-bottom: 12px;">Session Identity Coverage by Environment</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
+                <thead>
+                    <tr style="background: #f9fafb; border-bottom: 2px solid #e5e7eb;">
+                        <th style="text-align:left; padding:10px;">trace_env</th>
+                        <th style="text-align:center; padding:10px;">Traces</th>
+                        <th style="text-align:center; padding:10px;">Client session_id</th>
+                        <th style="text-align:center; padding:10px;">Real email</th>
+                    </tr>
+                </thead>
+                <tbody>{env_rows_html}
+                </tbody>
+            </table>
+        </div>
+    """
+
+
 def generate_landing_snapshot(all_analysis: Dict[str, Any]) -> str:
     """Sales-facing landing snapshot: topics (query families) across all segments.
 
@@ -2111,6 +2469,13 @@ def generate_html(all_analysis: Dict[str, Any], video_data: Dict[str, Any], pari
     # SALES LANDING SNAPSHOT: leads + topics aggregated across all segments
     landing_snapshot = generate_landing_snapshot(all_analysis)
 
+    # CONSULTING MODE EFFECTIVENESS + MULTI-TURN TRACKING: global, all raw traces across segments
+    all_raw_traces = [t for a in all_analysis.values() if isinstance(a, dict) for t in a.get('_traces', [])]
+    consulting_effectiveness_html = generate_consulting_effectiveness_html(
+        analyze_consulting_effectiveness(all_raw_traces),
+        analyze_multiturn_tracking(all_raw_traces),
+    )
+
     html = f"""<!DOCTYPE html>
 <html>
 <head>
@@ -2228,6 +2593,8 @@ def generate_html(all_analysis: Dict[str, Any], video_data: Dict[str, Any], pari
 
         <!-- SALES LANDING SNAPSHOT: leads + topics surfaced above product tabs -->
 {landing_snapshot}
+        <!-- CONSULTING MODE EFFECTIVENESS + MULTI-TURN TRACKING: global, above product tabs -->
+{consulting_effectiveness_html}
         <!-- CC EXPRESS FEATURE: Product pill selector (CSS-only radio tabs, replaces onclick nav) -->
 {product_pill_inputs}        <div class="product-pills">
 {product_pill_buttons}        </div>

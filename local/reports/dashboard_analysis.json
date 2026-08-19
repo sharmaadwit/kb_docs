@@ -1,11 +1,11 @@
 {
   "cc_express": {
-    "timestamp": "2026-08-19T17:50:26.484482",
-    "total_queries": 751,
+    "timestamp": "2026-08-19T18:05:38.265434",
+    "total_queries": 752,
     "answered": 463,
-    "idk": 288,
-    "idk_rate": 38.3,
-    "answer_rate": 61.7,
+    "idk": 289,
+    "idk_rate": 38.4,
+    "answer_rate": 61.6,
     "avg_confidence": 4.79,
     "video_rate": 56.6,
     "modules": {
@@ -16,10 +16,10 @@
         "avg_confidence": 7.58
       },
       "WhatsApp": {
-        "count": 294,
+        "count": 295,
         "answered": 168,
-        "idk": 126,
-        "avg_confidence": 5.86
+        "idk": 127,
+        "avg_confidence": 5.87
       },
       "Campaign Manager": {
         "count": 69,
@@ -150,10 +150,10 @@
         "answer_rate": 66.7
       },
       "schema": {
-        "count": 14,
+        "count": 15,
         "answered": 8,
-        "idk": 6,
-        "answer_rate": 57.1
+        "idk": 7,
+        "answer_rate": 53.3
       },
       "refusal": {
         "count": 36,
@@ -965,13 +965,21 @@
         "answer_rate": 100.0,
         "avg_confidence": 12.0,
         "video_pct": 0.0
+      },
+      "sess:cc-express-bruno-mibra@ccexpress.gupshup.io": {
+        "domain": "ccexpress.gupshup.io",
+        "count": 2,
+        "answered": 0,
+        "answer_rate": 0.0,
+        "avg_confidence": 4.55,
+        "video_pct": 0.0
       }
     },
     "intent_multi": {
       "1": {
-        "count": 645,
+        "count": 646,
         "answered": 396,
-        "answer_rate": 61.4
+        "answer_rate": 61.3
       },
       "2": {
         "count": 91,
@@ -1016,9 +1024,9 @@
         "video_pct": 27.8
       },
       "schema": {
-        "count": 14,
+        "count": 15,
         "video": 3,
-        "video_pct": 21.4
+        "video_pct": 20.0
       },
       "refusal": {
         "count": 36,
@@ -1278,9 +1286,9 @@
         "idk": 4
       },
       "2026-08-19": {
-        "total": 2,
+        "total": 3,
         "answered": 1,
-        "idk": 1
+        "idk": 2
       }
     },
     "languages": {
@@ -1292,11 +1300,11 @@
         "video_pct": 37.0
       },
       "pt": {
-        "count": 51,
+        "count": 52,
         "answered": 20,
-        "idk": 31,
-        "answer_rate": 39.2,
-        "video_pct": 11.8
+        "idk": 32,
+        "answer_rate": 38.5,
+        "video_pct": 11.5
       },
       "ar": {
         "count": 1,
@@ -6943,22 +6951,36 @@
           "avg_latency": 4332.0,
           "user": "sess:anonymous-wa-integration-questions@ccexpress.gupshup.io",
           "timestamp": "2026-08-19T10:54:32.517Z"
+        },
+        {
+          "id": "sess:sess:cc-express-bruno-mibra@ccexpress.gupshup.io:385",
+          "length": 1,
+          "answered": 0,
+          "success_rate": 0.0,
+          "root_query": "Como ativar o n\u00famero de destino +5511976470858 no sandbox do WhatsApp da Gupshup quando aparece o erro 'Number is inacti",
+          "root_answered": false,
+          "root_confidence": 9.1,
+          "is_decomposed": false,
+          "avg_confidence": 9.1,
+          "avg_latency": 760.0,
+          "user": "sess:cc-express-bruno-mibra@ccexpress.gupshup.io",
+          "timestamp": "2026-08-19T17:54:46.250Z"
         }
       ],
       "overview": {
-        "total_conversations": 384,
-        "single_turn": 268,
+        "total_conversations": 385,
+        "single_turn": 269,
         "multi_turn": 116,
-        "single_turn_pct": 69.8,
-        "multi_turn_pct": 30.2,
-        "avg_queries_per_conversation": 1.96,
+        "single_turn_pct": 69.9,
+        "multi_turn_pct": 30.1,
+        "avg_queries_per_conversation": 1.95,
         "max_queries": 54,
-        "total_queries": 751
+        "total_queries": 752
       },
       "success_by_length": {
         "1": {
-          "conversations": 268,
-          "avg_success_rate": 60.1
+          "conversations": 269,
+          "avg_success_rate": 59.9
         },
         "2": {
           "conversations": 64,
@@ -6975,10 +6997,10 @@
       },
       "root_vs_followup": {
         "root": {
-          "count": 384,
-          "answer_rate": 60.7,
-          "idk_rate": 39.3,
-          "avg_confidence": 5.33
+          "count": 385,
+          "answer_rate": 60.5,
+          "idk_rate": 39.5,
+          "avg_confidence": 5.34
         },
         "followup": {
           "count": 367,
@@ -6999,13 +7021,13 @@
     }
   },
   "standalone": {
-    "timestamp": "2026-08-19T17:50:26.502742",
-    "total_queries": 1343,
-    "answered": 948,
-    "idk": 395,
-    "idk_rate": 29.4,
-    "answer_rate": 70.6,
-    "avg_confidence": 4.82,
+    "timestamp": "2026-08-19T18:05:38.289195",
+    "total_queries": 1346,
+    "answered": 949,
+    "idk": 397,
+    "idk_rate": 29.5,
+    "answer_rate": 70.5,
+    "avg_confidence": 4.83,
     "video_rate": 57.9,
     "modules": {
       "Agent Assist": {
@@ -7015,10 +7037,10 @@
         "avg_confidence": 6.99
       },
       "WhatsApp": {
-        "count": 160,
-        "answered": 114,
-        "idk": 46,
-        "avg_confidence": 6.54
+        "count": 163,
+        "answered": 115,
+        "idk": 48,
+        "avg_confidence": 6.59
       },
       "General": {
         "count": 143,
@@ -7131,9 +7153,9 @@
         "answer_rate": 82.8
       },
       "setup": {
-        "count": 976,
-        "answered": 661,
-        "idk": 315,
+        "count": 978,
+        "answered": 662,
+        "idk": 316,
         "answer_rate": 67.7
       },
       "definition": {
@@ -7167,10 +7189,10 @@
         "answer_rate": 69.0
       },
       "schema": {
-        "count": 53,
+        "count": 54,
         "answered": 46,
-        "idk": 7,
-        "answer_rate": 86.8
+        "idk": 8,
+        "answer_rate": 85.2
       },
       "refusal": {
         "count": 23,
@@ -8873,18 +8895,26 @@
       },
       "ops@mibra.io": {
         "domain": "mibra.io",
-        "count": 2,
+        "count": 6,
         "answered": 2,
+        "answer_rate": 33.3,
+        "avg_confidence": 5.92,
+        "video_pct": 0.0
+      },
+      "experimentkt3@gmail.com": {
+        "domain": "gmail.com",
+        "count": 1,
+        "answered": 1,
         "answer_rate": 100.0,
-        "avg_confidence": 8.78,
+        "avg_confidence": 9.15,
         "video_pct": 0.0
       }
     },
     "intent_multi": {
       "1": {
-        "count": 1169,
-        "answered": 803,
-        "answer_rate": 68.7
+        "count": 1172,
+        "answered": 804,
+        "answer_rate": 68.6
       },
       "2": {
         "count": 149,
@@ -8909,9 +8939,9 @@
         "video_pct": 62.1
       },
       "setup": {
-        "count": 976,
+        "count": 978,
         "video": 408,
-        "video_pct": 41.8
+        "video_pct": 41.7
       },
       "definition": {
         "count": 151,
@@ -8939,9 +8969,9 @@
         "video_pct": 40.5
       },
       "schema": {
-        "count": 53,
+        "count": 54,
         "video": 14,
-        "video_pct": 26.4
+        "video_pct": 25.9
       },
       "refusal": {
         "count": 23,
@@ -9391,25 +9421,25 @@
         "idk": 3
       },
       "2026-08-19": {
-        "total": 44,
-        "answered": 38,
-        "idk": 6
+        "total": 47,
+        "answered": 39,
+        "idk": 8
       }
     },
     "languages": {
       "en": {
-        "count": 1292,
-        "answered": 925,
+        "count": 1293,
+        "answered": 926,
         "idk": 367,
         "answer_rate": 71.6,
         "video_pct": 41.4
       },
       "pt": {
-        "count": 43,
+        "count": 45,
         "answered": 19,
-        "idk": 24,
-        "answer_rate": 44.2,
-        "video_pct": 23.3
+        "idk": 26,
+        "answer_rate": 42.2,
+        "video_pct": 22.2
       },
       "es": {
         "count": 6,
@@ -11057,6 +11087,20 @@
           "avg_latency": 1323.0,
           "user": "suraj@glimzo.app",
           "timestamp": "2026-08-19T14:56:46.371Z"
+        },
+        {
+          "id": "sess:ops@mibra.io:643",
+          "length": 4,
+          "answered": 2,
+          "success_rate": 50.0,
+          "root_query": "WhatsApp sandbox: erro 'Number is inactive and not opted in'. Como fazer opt-in do n\u00famero de teste para receber mensagen",
+          "root_answered": true,
+          "root_confidence": 8.65,
+          "is_decomposed": true,
+          "avg_confidence": 8.89,
+          "avg_latency": 852.0,
+          "user": "ops@mibra.io",
+          "timestamp": "2026-08-19T17:37:52.730Z"
         },
         {
           "id": "sess:akhil.panicker@gupshup.io:6",
@@ -13479,20 +13523,6 @@
           "avg_latency": 602.0,
           "user": "aditya.yadav@gupshup.io",
           "timestamp": "2026-08-18T10:46:03.272Z"
-        },
-        {
-          "id": "sess:ops@mibra.io:643",
-          "length": 2,
-          "answered": 2,
-          "success_rate": 100.0,
-          "root_query": "WhatsApp sandbox: erro 'Number is inactive and not opted in'. Como fazer opt-in do n\u00famero de teste para receber mensagen",
-          "root_answered": true,
-          "root_confidence": 8.65,
-          "is_decomposed": true,
-          "avg_confidence": 8.78,
-          "avg_latency": 960.0,
-          "user": "ops@mibra.io",
-          "timestamp": "2026-08-19T17:37:52.730Z"
         },
         {
           "id": "sess:avinash.kumar@knowlarity.com:2",
@@ -19359,57 +19389,71 @@
           "avg_latency": 3114.0,
           "user": "marketing@grizha.kz",
           "timestamp": "2026-08-19T13:46:28.444Z"
+        },
+        {
+          "id": "sess:experimentkt3@gmail.com:644",
+          "length": 1,
+          "answered": 1,
+          "success_rate": 100.0,
+          "root_query": "How do I create and set up a WhatsApp API in Gupshup Console?",
+          "root_answered": true,
+          "root_confidence": 9.15,
+          "is_decomposed": false,
+          "avg_confidence": 9.15,
+          "avg_latency": 949.0,
+          "user": "experimentkt3@gmail.com",
+          "timestamp": "2026-08-19T18:03:46.504Z"
         }
       ],
       "overview": {
-        "total_conversations": 687,
-        "single_turn": 419,
+        "total_conversations": 688,
+        "single_turn": 420,
         "multi_turn": 268,
         "single_turn_pct": 61.0,
         "multi_turn_pct": 39.0,
-        "avg_queries_per_conversation": 1.95,
+        "avg_queries_per_conversation": 1.96,
         "max_queries": 17,
-        "total_queries": 1343
+        "total_queries": 1346
       },
       "success_by_length": {
         "1": {
-          "conversations": 419,
-          "avg_success_rate": 56.8
+          "conversations": 420,
+          "avg_success_rate": 56.9
         },
         "2": {
-          "conversations": 128,
-          "avg_success_rate": 71.1
+          "conversations": 127,
+          "avg_success_rate": 70.9
         },
         "3": {
           "conversations": 46,
           "avg_success_rate": 78.3
         },
         "4+": {
-          "conversations": 94,
-          "avg_success_rate": 77.4
+          "conversations": 95,
+          "avg_success_rate": 77.1
         }
       },
       "root_vs_followup": {
         "root": {
-          "count": 687,
-          "answer_rate": 61.1,
-          "idk_rate": 38.9,
-          "avg_confidence": 4.06
+          "count": 688,
+          "answer_rate": 61.2,
+          "idk_rate": 38.8,
+          "avg_confidence": 4.07
         },
         "followup": {
-          "count": 656,
-          "answer_rate": 80.5,
-          "idk_rate": 19.5,
-          "avg_confidence": 5.61
+          "count": 658,
+          "answer_rate": 80.2,
+          "idk_rate": 19.8,
+          "avg_confidence": 5.62
         }
       },
       "decomposition_effectiveness": {
         "total_decomposed": 268,
-        "all_success": 139,
-        "partial_success": 105,
+        "all_success": 138,
+        "partial_success": 106,
         "all_failed": 24,
-        "all_success_pct": 51.9,
-        "partial_success_pct": 39.2,
+        "all_success_pct": 51.5,
+        "partial_success_pct": 39.6,
         "all_failed_pct": 9.0
       }
     }
@@ -19418,9 +19462,9 @@
     "ccx_answer_rate": 0.0,
     "ref_answer_rate": 0.0,
     "answer_delta": 0.0,
-    "ccx_avg_confidence": 0.4652357541017165,
-    "ref_avg_confidence": 2.1337207211065925,
-    "confidence_delta": -1.668484967004876,
+    "ccx_avg_confidence": 0.46511575974785785,
+    "ref_avg_confidence": 2.131068485113199,
+    "confidence_delta": -1.665952725365341,
     "low_confidence_flags": [
       {
         "id": "kb-kb_answer-1cbf6b2487e24e08",
@@ -42486,6 +42530,99 @@
         "totalCost": 0,
         "latency": 0,
         "htmlPath": "/project/cmmn9l5gq019kad07u4o41lxz/traces/kb-kb_answer-0754d2cc1b524426",
+        "externalId": null
+      },
+      {
+        "id": "kb-kb_answer-a8a98c2d2f73488d",
+        "projectId": "cmmn9l5gq019kad07u4o41lxz",
+        "name": "kb_answer",
+        "timestamp": "2026-08-19T17:54:46.250Z",
+        "environment": "default",
+        "tags": [],
+        "bookmarked": false,
+        "release": null,
+        "version": null,
+        "userId": "sess:cc-express-bruno-mibra@ccexpress.gupshup.io",
+        "sessionId": null,
+        "public": false,
+        "input": {
+          "query": "Como ativar o n\u00famero de destino +5511976470858 no sandbox do WhatsApp da Gupshup quando aparece o erro 'Number is inactive and not opted in'? O Console mostra apenas exemplos de payload request/response, sem comando de opt-in. Qual \u00e9 o procedimento documentado para ativar o n\u00famero e testar mensagens?"
+        },
+        "output": {
+          "answer": "I don't know based on the current docs."
+        },
+        "metadata": {
+          "user_email": "sess:cc-express-bruno-mibra@ccexpress.gupshup.io",
+          "user_name": null,
+          "user_id": 2,
+          "identity_source": "session_id",
+          "identity_debug_param_keys": {
+            "raw_params": {
+              "query": "Como ativar o n\u00famero de destino +5511976470858 no sandbox do WhatsApp da Gupshup quando aparece o erro 'Number is inactive and not opted in'? O Console mostra apenas exemplos de payload request/response, sem comando de opt-in. Qual \u00e9 o procedimento documentado para ativar o n\u00famero e testar mensagens?",
+              "session_id": "cc-express-bruno-mibra",
+              "executing_user_id": 2
+            },
+            "nested_parameters_resolved": null,
+            "context_attrs": {
+              "user_id": 2
+            }
+          },
+          "query": "Como ativar o n\u00famero de destino +5511976470858 no sandbox do WhatsApp da Gupshup quando aparece o erro 'Number is inactive and not opted in'? O Console mostra apenas exemplos de payload request/response, sem comando de opt-in. Qual \u00e9 o procedimento documentado para ativar o n\u00famero e testar mensagens?",
+          "answer_preview": "I don't know based on the current docs.",
+          "release": 4,
+          "environment": "PROD",
+          "deployment_label": "kb-prod-agent",
+          "telemetry_partition": "PROD:kb-prod-agent",
+          "logic_version": "kb-answer-v4.11",
+          "prompt_version": null,
+          "model": "rules-runtime",
+          "temperature": 0,
+          "top_p": 1,
+          "query_family": "WhatsApp",
+          "module_label": "WhatsApp",
+          "module_source": "explicit",
+          "trace_env": "PROD",
+          "selected_answer_mode": "standard",
+          "answered": false,
+          "clarification_asked": false,
+          "unanswered": true,
+          "top_score": 9.1,
+          "top_source": "kb/whatsapp/waba-setup-detailed-gupshup-console.md",
+          "channel_type": "whatsapp",
+          "detected_product_original": null,
+          "source_count": 4,
+          "latency_ms": 760,
+          "intent": "schema",
+          "intent_labels": [
+            "schema"
+          ],
+          "module": "WhatsApp",
+          "explicit_module": "WhatsApp",
+          "confidence": 0.375,
+          "failure_type": null,
+          "accuracy_label": null,
+          "accuracy_score": null,
+          "accuracy_source": null,
+          "correlation_id": null,
+          "parent_trace_id": null,
+          "parent_trace_id_provided": false,
+          "decomposition_level": 0,
+          "is_sub_query": false,
+          "session_id": "cc-express-bruno-mibra",
+          "session_id_source": "client",
+          "conversation_turn_number": null,
+          "turn_number_source": "missing_client_support",
+          "trace_sequence": "None:0",
+          "video_attached": false,
+          "video_channel": "kb_answer"
+        },
+        "createdAt": "2026-08-19T17:54:47.000Z",
+        "updatedAt": "2026-08-19T17:54:51.830Z",
+        "observations": [],
+        "scores": [],
+        "totalCost": 0,
+        "latency": 0,
+        "htmlPath": "/project/cmmn9l5gq019kad07u4o41lxz/traces/kb-kb_answer-a8a98c2d2f73488d",
         "externalId": null
       }
     ]
