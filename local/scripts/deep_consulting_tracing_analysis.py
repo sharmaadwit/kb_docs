@@ -11,7 +11,9 @@ Goes beyond the summary in consulting_and_turn_tracking_analysis.py:
 
 Reads from the local trace cache (no live API calls).
 """
+import sys
 import json
+import re
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -21,11 +23,19 @@ REPORT_DIR = ROOT / "local" / "reports"
 
 NEW_FIELDS = ["session_id_source", "turn_number_source", "parent_trace_id_provided"]
 
-# Configured traffic_pct per module, from skill/kb_answer.py CONSULTING_TONE_CONFIG
-CONFIGURED_SPLIT = {
-    "RCS": 75, "Bot Studio": 75,
-    "Campaign Manager": 50, "Agent Assist": 50, "Channels": 50,
-}
+
+def _load_configured_split():
+    """Read CONSULTING_TONE_CONFIG['modules'] directly from skill/kb_answer.py
+    instead of hardcoding a copy here, which silently goes stale every time
+    the config changes (already happened once: this dict said RCS/Bot Studio
+    were at 75% and didn't mention WhatsApp at all, after both had already
+    been updated in the skill)."""
+    sys.path.insert(0, str(ROOT / "skill"))
+    import kb_answer as ka
+    return dict(ka.CONSULTING_TONE_CONFIG["modules"])
+
+
+CONFIGURED_SPLIT = _load_configured_split()
 
 
 def load_cache():
@@ -69,12 +79,28 @@ def main():
     print(f"Post-fix traces: {len(fixed)}\n")
 
     # --- Per-module adoption vs configured split ---
+    # Uses the TRUE routing-time module (_detect_module(query), the actual
+    # value _resolve_answer_mode gates on) rather than telemetry's "module"
+    # field. Those two differ whenever a query is detected as "General" at
+    # routing time (correctly gated to standard, unrelated to traffic_pct)
+    # but telemetry later relabels module post-hoc from the top-scored
+    # evidence source. Using telemetry's module as the denominator produces
+    # systematically wrong adoption rates for EVERY gated module, not just
+    # one — confirmed by re-checking Bot Studio at 100% traffic_pct: the
+    # telemetry-label method showed 62.5% adoption (looked like a bug), but
+    # the true-module method showed exactly 100% (matches config exactly).
+    sys.path.insert(0, str(ROOT / "skill"))
+    import kb_answer as ka
+
     print("=" * 70)
-    print("PER-MODULE CONSULTING ADOPTION vs CONFIGURED SPLIT")
+    print("PER-MODULE CONSULTING ADOPTION vs CONFIGURED SPLIT (true routing-time module)")
     print("=" * 70)
     by_module = {}
     for m in metas:
-        mod = m.get("module") or "unset"
+        q = m.get("query") or ""
+        if not q:
+            continue
+        mod = ka._detect_module(q)
         by_module.setdefault(mod, {"consulting": 0, "standard": 0, "other": 0})
         mode = m.get("selected_answer_mode")
         if mode == "consulting":

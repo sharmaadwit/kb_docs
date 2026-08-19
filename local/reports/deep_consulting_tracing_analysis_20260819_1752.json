@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-08-19T17:52:59.177525+00:00",
+  "total_cached": 2540,
+  "post_fix": 144,
+  "per_module_adoption": {
+    "Bot Studio": {
+      "consulting": 20,
+      "standard": 2,
+      "other": 0,
+      "adoption_pct": 90.9,
+      "configured_pct": 100
+    },
+    "Agent Assist": {
+      "consulting": 3,
+      "standard": 9,
+      "other": 1,
+      "adoption_pct": 23.1,
+      "configured_pct": 50
+    },
+    "Channels": {
+      "consulting": 10,
+      "standard": 6,
+      "other": 0,
+      "adoption_pct": 62.5,
+      "configured_pct": 50
+    },
+    "SuperAgent": {
+      "consulting": 0,
+      "standard": 2,
+      "other": 0,
+      "adoption_pct": 0.0,
+      "configured_pct": null
+    },
+    "General": {
+      "consulting": 1,
+      "standard": 29,
+      "other": 0,
+      "adoption_pct": 3.3,
+      "configured_pct": null
+    },
+    "WhatsApp": {
+      "consulting": 8,
+      "standard": 16,
+      "other": 3,
+      "adoption_pct": 29.6,
+      "configured_pct": 50
+    },
+    "Campaign Manager": {
+      "consulting": 11,
+      "standard": 16,
+      "other": 0,
+      "adoption_pct": 40.7,
+      "configured_pct": 50
+    },
+    "AI Admin": {
+      "consulting": 0,
+      "standard": 2,
+      "other": 0,
+      "adoption_pct": 0.0,
+      "configured_pct": null
+    },
+    "CTX": {
+      "consulting": 0,
+      "standard": 2,
+      "other": 0,
+      "adoption_pct": 0.0,
+      "configured_pct": null
+    },
+    "Goals": {
+      "consulting": 0,
+      "standard": 2,
+      "other": 0,
+      "adoption_pct": 0.0,
+      "configured_pct": null
+    },
+    "Wallet": {
+      "consulting": 0,
+      "standard": 0,
+      "other": 1,
+      "adoption_pct": 0.0,
+      "configured_pct": null
+    }
+  },
+  "engagement_coverage": {
+    "consulting_n": 53,
+    "best_practices_pct": 34.0,
+    "fitment_pct": 35.8,
+    "case_study_pct": 69.8,
+    "video_pct": 58.5
+  },
+  "answer_length": {
+    "consulting_avg": 1062.3396,
+    "standard_avg": 645.593
+  },
+  "accuracy": {
+    "consulting_answered_pct": 84.9,
+    "consulting_avg_conf": 0.5323,
+    "standard_answered_pct": 80.2,
+    "standard_avg_conf": 0.482
+  },
+  "multi_turn_clusters": 12
+}
