@@ -680,11 +680,22 @@ def analyze_conversations(traces: List[Dict], session_gap_minutes: int = 30) -> 
     the grouping key in priority order:
       1. metadata.correlation_id (explicit linkage, when telemetry provides it)
       2. trace.sessionId (Langfuse session linkage)
-      3. derived session: same user_email + time gap <= session_gap_minutes
+      3. derived session: same user_email + time gap <= session_gap_minutes,
+         ONLY for real (non-scrubbed) emails
 
     Within each conversation, the chronologically first query is the ROOT query;
     the rest are FOLLOW-UPS. Conversations with more than one query are treated as
     DECOMPOSED (the user broke a goal into multiple sub-queries).
+
+    Tier 3 requires a REAL email specifically because SuperAgent's VAPT PII
+    scrubbing replaces most user identity with generic shared placeholders
+    (e.g. "sess:anonymous-session@ccexpress.gupshup.io" - confirmed shared by
+    50+ distinct actual users). Grouping by that literal string as if it were
+    one stable identity falsely merges unrelated users' queries into fake
+    mega-conversations whenever two of them happen to query within the same
+    time window - this was the root cause of an implausible "54 queries in
+    one conversation" stat. Traces with scrubbed/placeholder identity now
+    each get their own single-query conversation instead of being merged.
     """
     # Normalize + sort traces chronologically.
     rows = []
@@ -705,13 +716,19 @@ def analyze_conversations(traces: List[Dict], session_gap_minutes: int = 30) -> 
             key = f"corr:{corr}"
         else:
             user = meta.get("user_email") or "Anonymous"
-            prev = last_seen.get(user)
-            if prev and dt and prev[0] and (dt - prev[0]) <= gap:
-                key = prev[1]
+            if _is_real_email(user):
+                prev = last_seen.get(user)
+                if prev and dt and prev[0] and (dt - prev[0]) <= gap:
+                    key = prev[1]
+                else:
+                    derived_counter += 1
+                    key = f"sess:{user}:{derived_counter}"
+                last_seen[user] = (dt, key)
             else:
+                # Scrubbed/placeholder identity - never merge across time,
+                # every trace is its own single-query conversation.
                 derived_counter += 1
-                key = f"sess:{user}:{derived_counter}"
-            last_seen[user] = (dt, key)
+                key = f"unmerged:{derived_counter}"
         conversations[key].append({
             "query": (meta.get("query") or "").strip(),
             "answered": bool(meta.get("answered", False)),
@@ -1667,31 +1684,17 @@ def generate_query_analytics_html(analysis: Dict[str, Any], segment_key: str) ->
             </table>
         </div>
 
-        <!-- Video Platform Split -->
-        <div class="section">
-            <h2>🎥 Video Platform Split (YouTube vs DemoForge)</h2>
-            <div class="grid">
-                <div class="card" style="border-left: 5px solid #e74c3c;">
-                    <div class="metric">
-                        <div class="metric-label">YouTube Videos</div>
-                        <div class="metric-value">{analysis.get('video_platforms', {}).get('youtube', 0)}</div>
-                        <div class="metric-unit">{analysis.get('video_platforms', {}).get('youtube_pct', 0)}%</div>
-                    </div>
-                </div>
-
-                <div class="card" style="border-left: 5px solid #3498db;">
-                    <div class="metric">
-                        <div class="metric-label">DemoForge Videos</div>
-                        <div class="metric-value">{analysis.get('video_platforms', {}).get('demoforge', 0)}</div>
-                        <div class="metric-unit">{analysis.get('video_platforms', {}).get('demoforge_pct', 0)}%</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- DemoForge Coverage Report -->
+        <!-- DemoForge Coverage Report (folds in the YouTube/DemoForge platform
+             split as a one-line caption instead of a separate 2-card section -
+             YouTube has shown 0% usage in every recent refresh, so a dedicated
+             split section was mostly dead visual weight). -->
         <div class="section">
             <h2>🎞️ DemoForge Coverage Report</h2>
+"""
+    vp = analysis.get('video_platforms', {})
+    html += f"""            <p style="color:#666; font-size:0.85em; margin-bottom:12px;">
+                Platform split: {vp.get('demoforge', 0)} DemoForge ({vp.get('demoforge_pct', 0)}%) vs {vp.get('youtube', 0)} YouTube ({vp.get('youtube_pct', 0)}%)
+            </p>
 """
     demo_videos = analysis.get("demo_videos", {})
     if demo_videos:
@@ -1720,14 +1723,18 @@ def generate_query_analytics_html(analysis: Dict[str, Any], segment_key: str) ->
 """
 
     html += f"""        </div>
+"""
 
+    # Top YouTube Videos: only rendered when there's actually data - YouTube
+    # usage has been 0 across every recent refresh, so an always-shown empty
+    # section was pure clutter. Auto-reappears if YouTube usage resumes.
+    youtube_videos = analysis.get("youtube_videos", {})
+    if youtube_videos:
+        html += f"""
         <!-- Top YouTube Videos -->
         <div class="section">
             <h2>📺 Top YouTube Videos (Last 10)</h2>
-"""
-    youtube_videos = analysis.get("youtube_videos", {})
-    if youtube_videos:
-        html += f"""            <table>
+            <table>
                 <thead>
                     <tr>
                         <th>Video ID</th>
@@ -1746,13 +1753,10 @@ def generate_query_analytics_html(analysis: Dict[str, Any], segment_key: str) ->
 """
         html += f"""                </tbody>
             </table>
-"""
-    else:
-        html += f"""            <p style="color: #999; text-align: center; padding: 40px 0;">No YouTube videos attached in this segment</p>
+        </div>
 """
 
-    html += f"""        </div>
-
+    html += f"""
         <!-- Sample of Remaining IDK Queries -->
         <div class="section">
             <h2>❌ Sample of Remaining IDK Queries (By Language)</h2>
