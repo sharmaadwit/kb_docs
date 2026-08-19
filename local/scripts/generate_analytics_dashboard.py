@@ -1248,34 +1248,6 @@ def generate_conversation_reports(conv: Dict[str, Any], segment_key: str = 'stan
             }})();
         </script>
 
-        <!-- Report 4: Decomposition Effectiveness -->
-        <div class="section">
-            <h2>🧩 Decomposition Effectiveness</h2>
-            <p style="color: #666; font-size: 0.9em; margin-bottom: 16px;">
-                Of {de['total_decomposed']} decomposed (multi-query) conversations, how many had
-                <strong>all</strong>, <strong>some</strong>, or <strong>none</strong> of their sub-queries answered.
-            </p>
-            <div class="chart-wrapper" style="height: 360px;"><canvas id="decompChart_{ns}"></canvas></div>
-        </div>
-        <script>
-            (function() {{
-                new Chart(document.getElementById('decompChart_{ns}'), {{
-                    type: 'doughnut',
-                    data: {{
-                        labels: ['All Answered ({de['all_success_pct']}%)', 'Partial ({de['partial_success_pct']}%)', 'All Failed ({de['all_failed_pct']}%)'],
-                        datasets: [{{
-                            data: [{de['all_success']}, {de['partial_success']}, {de['all_failed']}],
-                            backgroundColor: ['rgba(46,204,113,0.8)', 'rgba(243,156,18,0.8)', 'rgba(231,76,60,0.8)'],
-                            borderColor: ['#2ecc71', '#f39c12', '#e74c3c'], borderWidth: 2
-                        }}]
-                    }},
-                    options: {{
-                        responsive: true, maintainAspectRatio: false,
-                        plugins: {{ legend: {{ position: 'right', labels: {{ color: '#333', usePointStyle: true, padding: 18, font: {{ size: 13 }} }} }} }}
-                    }}
-                }});
-            }})();
-        </script>
 """
     return html
 
@@ -1314,7 +1286,44 @@ def generate_query_analytics_html(analysis: Dict[str, Any], segment_key: str) ->
     modules_sorted = sorted(analysis["modules"].items(), key=lambda x: x[1]["count"], reverse=True)
     intents_sorted = sorted(analysis["intents"].items(), key=lambda x: x[1]["count"], reverse=True)
     users_int_sorted = sorted(analysis["users_internal"].items(), key=lambda x: x[1]["count"], reverse=True)
-    users_ext_sorted = sorted(analysis["users_external"].items(), key=lambda x: x[1]["count"], reverse=True)
+
+    # External Users: real emails only (excludes VAPT-scrubbed placeholders
+    # like "sess:anonymous-session@ccexpress.gupshup.io", which are shared
+    # by dozens of distinct actual users - see memory: superagent-pii-
+    # scrubbing), last 15 days only, top 10 by volume. Computed fresh from
+    # raw traces rather than analysis["users_external"] (which is all-time,
+    # unfiltered by identity quality).
+    _ext_cutoff = datetime.utcnow() - timedelta(days=15)
+    _ext_agg: Dict[str, Dict[str, Any]] = defaultdict(lambda: {"count": 0, "answered": 0, "video": 0, "total_confidence": 0, "domain": ""})
+    for _t in analysis.get("_traces", []):
+        _meta = _t.get("metadata") or {}
+        _email = _meta.get("user_email") or ""
+        if not _is_real_email(_email) or "@gupshup.io" in _email or "@knowlarity.com" in _email:
+            continue
+        _ts = _parse_ts(_t)
+        if not _ts or _ts < _ext_cutoff:
+            continue
+        _d = _ext_agg[_email]
+        _d["count"] += 1
+        if _meta.get("answered"):
+            _d["answered"] += 1
+        _d["total_confidence"] += _meta.get("confidence") or 0
+        _d["domain"] = _email.split("@")[1] if "@" in _email else "unknown"
+        if _meta.get("video_attached"):
+            _d["video"] += 1
+    users_ext_sorted = sorted(
+        (
+            (email, {
+                "count": d["count"],
+                "answer_rate": round(100.0 * d["answered"] / d["count"], 1) if d["count"] else 0.0,
+                "avg_confidence": round(d["total_confidence"] / d["count"], 2) if d["count"] else 0.0,
+                "video_pct": round(100.0 * d["video"] / d["count"], 1) if d["count"] else 0.0,
+                "domain": d["domain"],
+            })
+            for email, d in _ext_agg.items()
+        ),
+        key=lambda x: -x[1]["count"],
+    )[:10]
     intent_multi_sorted = sorted(analysis["intent_multi"].items(), key=lambda x: x[0])
     intent_video_sorted = sorted(analysis["intent_video"].items(), key=lambda x: x[1]["count"], reverse=True)
 
@@ -1491,57 +1500,10 @@ def generate_query_analytics_html(analysis: Dict[str, Any], segment_key: str) ->
         </div>
 """
 
-    # Test/maintainer traffic — excluded from all metrics above, shown separately.
-    tt = analysis.get("test_traffic") or {}
-    if tt.get("count"):
-        html += f"""
-        <!-- Test/Maintainer Traffic (excluded from all metrics above) -->
-        <div class="section">
-            <h2>🧪 Test / Maintainer Traffic <span style="font-size: 0.6em; color: #999; font-weight: 400;">(excluded from answer rate, IDK rate, confidence &amp; conversation stats above)</span></h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Metric</th>
-                        <th class="numeric">Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Total queries</td><td class="numeric">{tt['count']}</td></tr>
-                    <tr><td>Answered</td><td class="numeric">{tt['answered']}</td></tr>
-                    <tr><td>IDK</td><td class="numeric">{tt['idk']}</td></tr>
-                    <tr><td>Answer rate</td><td class="numeric">{tt['answer_rate']}%</td></tr>
-                    <tr><td>Avg confidence</td><td class="numeric">{tt['avg_confidence']}</td></tr>
-                </tbody>
-            </table>
-"""
-        if tt.get("samples"):
-            html += """            <table style="margin-top: 16px;">
-                <thead>
-                    <tr>
-                        <th>Sample Query</th>
-                        <th>Module</th>
-                        <th class="numeric">Answered</th>
-                    </tr>
-                </thead>
-                <tbody>
-"""
-            for s in tt["samples"]:
-                html += f"""                    <tr>
-                        <td>{s['query']}</td>
-                        <td>{s['module']}</td>
-                        <td class="numeric">{'✅' if s['answered'] else '❌'}</td>
-                    </tr>
-"""
-            html += """                </tbody>
-            </table>
-"""
-        html += """        </div>
-"""
-
     html += """
-        <!-- External Domain Users -->
+        <!-- External Domain Users: real emails only, last 15 days, top 10 -->
         <div class="section">
-            <h2>🌐 External Users</h2>
+            <h2>🌐 External Users <span style="font-size: 0.6em; color: #999; font-weight: 400;">(top 10, real emails only, last 15 days)</span></h2>
             <table>
                 <thead>
                     <tr>
@@ -2135,22 +2097,6 @@ def generate_consulting_effectiveness_html(ce: Dict[str, Any], mt: Dict[str, Any
                 </div>
             </div>
 
-            <h3 style="margin-bottom: 12px;">Per-Module Adoption vs Configured Split</h3>
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.9em; margin-bottom: 24px;">
-                <thead>
-                    <tr style="background: #f9fafb; border-bottom: 2px solid #e5e7eb;">
-                        <th style="text-align:left; padding:10px;">Module</th>
-                        <th style="text-align:center; padding:10px;">Traces</th>
-                        <th style="text-align:center; padding:10px;">Consulting</th>
-                        <th style="text-align:center; padding:10px;">Adoption</th>
-                        <th style="text-align:center; padding:10px;">Configured</th>
-                        <th style="text-align:center; padding:10px;">Delta</th>
-                    </tr>
-                </thead>
-                <tbody>{module_rows_html}
-                </tbody>
-            </table>
-
             <h3 style="margin-bottom: 12px;">🔗 Multi-Turn Session Tracking</h3>
             <p style="color:#666; font-size:0.85em; margin-bottom:16px;">
                 Real multi-turn conversations (real user identity, clustered by 10-minute proximity —
@@ -2183,20 +2129,6 @@ def generate_consulting_effectiveness_html(ce: Dict[str, Any], mt: Dict[str, Any
                 (answer-rate and confidence deltas have pointed opposite ways in different samples) — reported
                 as observed data, not evidence that conversation depth causes better or worse accuracy.
             </p>
-
-            <h3 style="margin-bottom: 12px;">Session Identity Coverage by Environment</h3>
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
-                <thead>
-                    <tr style="background: #f9fafb; border-bottom: 2px solid #e5e7eb;">
-                        <th style="text-align:left; padding:10px;">trace_env</th>
-                        <th style="text-align:center; padding:10px;">Traces</th>
-                        <th style="text-align:center; padding:10px;">Client session_id</th>
-                        <th style="text-align:center; padding:10px;">Real email</th>
-                    </tr>
-                </thead>
-                <tbody>{env_rows_html}
-                </tbody>
-            </table>
         </div>
     """
 
