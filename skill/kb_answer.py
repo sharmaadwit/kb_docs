@@ -23,12 +23,17 @@ CONSULTING_TONE_CONFIG = {
     # mode). Per-module split lets Phase 1 modules (validated, higher
     # confidence) run at a different rate than newly-added Phase 2 modules.
     "modules": {
-        "RCS": 100,         # Phase 1 - fully validated, 50 -> 75 -> 100
-        "Bot Studio": 100,  # Phase 1 - fully validated, 50 -> 75 -> 100
-        "Campaign Manager": 50,  # Phase 2 - KB-ready, starting at 50/50
-        "Agent Assist": 50,      # Phase 2 - KB-ready, starting at 50/50
+        "RCS": 100,               # Phase 1 - fully validated, 50 -> 75 -> 100
+        "Bot Studio": 100,        # Phase 1 - fully validated, 50 -> 75 -> 100
+        "Campaign Manager": 100,  # Phase 2 - best accuracy of the cohort (IDK 15.5%/5.8%), 50 -> 100
+        "Agent Assist": 50,       # Phase 2 - adoption gap under investigation, held at 50/50
         "Channels": 50,           # Phase 2 - KB-ready, starting at 50/50
-        "WhatsApp": 50,            # Phase 2 - highest-volume module, KB-ready, starting at 50/50
+        "WhatsApp": 50,           # Phase 2 - highest-volume module, still accumulating post-launch data
+        "BizAI": 100,             # Anticipated volume growth - accuracy-safe by construction (same
+                                   # evidence/retrieval as standard mode) even though best-practices/
+                                   # fitment content isn't built yet (0 case-study coverage, 0
+                                   # CONCEPT_REGISTRY entities) - see turn-tracking-fix memory for why
+                                   # traffic_pct doesn't affect answer correctness.
     },
     "force_mode": None,  # Set to "consulting" or "standard" to force all traffic into one mode (testing only)
 }
