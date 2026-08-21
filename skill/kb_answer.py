@@ -1108,6 +1108,33 @@ MIN_EVIDENCE_SCORE_UNBOOSTED_MULTI = 0.8  # Lowered from 2.5 to allow fallback a
 # ---------------------------------------------------------------------------
 
 CONCEPT_REGISTRY: List[Dict] = [
+    # ---- BizAI ----
+    {
+        "id": "bizai_meta_business_agent",
+        "aliases": [
+            "bizai", "biz ai", "mba", "meta biz ai",
+            "meta business agent", "meta business ai",
+        ],
+        "keywords": ["bizai", "mba"],
+        "source_boosts": {
+            # kb/whatsapp/meta-business-agent.md physically lives outside
+            # kb/bizai/ (Meta's own naming for this exact capability), so it
+            # takes the -4.0 STRICT_SCOPED_MODULES cross-module penalty for
+            # BizAI-routed queries (see _score_chunk) - this boost needs to
+            # net positive after that penalty, not just be a normal boost.
+            "meta-business-agent": 7.0,
+            "bizai-overview": 5.0,
+            "bizai-onboarding": 5.0,
+            "bizai-api-endpoints": 4.0,
+            "bizai-architecture": 4.0,
+            "bizai-value-add": 4.0,
+            "bizai-pricing": 4.0,
+        },
+        "display": "Meta Business Agent (BizAI)",
+        "page_display": "Meta Business Agent",
+        "module": "BizAI",
+        "related": [],
+    },
     # ---- Bot Studio nodes ----
     {
         "id": "api_node",
@@ -4034,9 +4061,25 @@ def _detect_module(query: str) -> str:
     ):
         return "Agent Assist"
 
-    # 3. Meta / business agent phrasing -> WhatsApp (R1).
-    if "meta business agent" in q or "business agent" in q:
-        return "WhatsApp"
+    # 3. Meta / business agent phrasing -> BizAI (was R1: routed to WhatsApp;
+    #    changed 2026-08-20 per explicit confirmation that "MBA", "Meta Biz
+    #    Ai", "Meta Business Agent", "Meta Business AI" are the terms real
+    #    users say for BizAI specifically, not the WhatsApp channel setup
+    #    flow. The underlying doc (kb/whatsapp/meta-business-agent.md)
+    #    still physically lives under whatsapp/ - retrieval is chunk-based,
+    #    not folder-gated, so it's still found regardless of module label;
+    #    this only changes which module the consulting-mode gate sees.
+    #    "mba" specifically is word-boundary-matched (not a bare substring
+    #    check like the rest of this function) since it's only 3 letters -
+    #    confirmed low collision risk (9/7846 KB chunks contain "mba" as
+    #    ANY substring, none as a standalone word) but not worth the risk
+    #    of a bare "in q" check on something this short.
+    if (
+        "meta business agent" in q or "business agent" in q
+        or "meta biz ai" in q or "meta business ai" in q
+        or re.search(r"\bmba\b", q)
+    ):
+        return "BizAI"
 
     # 4. Channel-first agent phrasing (no deploy verb) -> WhatsApp (R4).
     if "whatsapp agent" in q or "whatsapp ai agent" in q:
