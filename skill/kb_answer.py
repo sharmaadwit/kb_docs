@@ -901,6 +901,11 @@ EXPLICIT_MODULES = {
     "business agent": "WhatsApp",
     "whatsapp agent": "WhatsApp",
     "whatsapp ai agent": "WhatsApp",
+    # "bizai" placed early (ahead of the Integrations brand keys below) so a
+    # query naming both BizAI and an integration partner (e.g. "clevertap
+    # events shown in bizai dashboard") still routes to BizAI, not
+    # Integrations - dict iteration returns on first substring match.
+    "bizai": "BizAI",
     "agent assist": "Agent Assist",
     "bot studio": "Bot Studio",
     "goals": "Goals",
@@ -937,7 +942,6 @@ EXPLICIT_MODULES = {
     "super agent": "SuperAgent",
     "super-agent": "SuperAgent",
     "extension": "Extension",
-    "bizai": "BizAI",
     "whatsapp": "WhatsApp",
     # 'overview' is intentionally LAST: it is a generic word that should only
     # match when no more specific module key applies.
