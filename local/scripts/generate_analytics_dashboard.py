@@ -143,48 +143,39 @@ def fetch_langfuse_traces(days: Optional[int] = None) -> Optional[List[Dict]]:
         from_dt = datetime.utcnow() - timedelta(days=backfill_days)
         print(f"🔄 No cache found — initial backfill for last {backfill_days} days...")
 
-    # Method 1: Langfuse REST API (v2 traces endpoint)
+    # Method 1: Langfuse v4 SDK typed client (api.trace.list) - replaces the
+    # old hand-rolled REST API + manual pagination/SSL-context/certifi
+    # workaround (v4 migration, 2026-08-21). Field names are preserved
+    # exactly via model_dump(mode="json") (camelCase + ISO-string timestamp,
+    # matching the old REST API shape byte-for-byte) so every downstream
+    # .get("timestamp")/.get("metadata") call in this file needs no changes.
     try:
-        import urllib.request, urllib.parse, base64, ssl
-        host   = os.environ.get("LANGFUSE_HOST", "https://cloud.langfuse.com").rstrip("/")
-        pub    = os.environ.get("LANGFUSE_PUBLIC_KEY", "")
-        sec    = os.environ.get("LANGFUSE_SECRET_KEY", "")
+        sys.path.insert(0, os.path.dirname(__file__))
+        from langfuse_client import get_client, list_traces as _sdk_list_traces
 
-        # Build a verified SSL context (macOS system Python often lacks a CA bundle).
-        try:
-            import certifi
-            ssl_ctx = ssl.create_default_context(cafile=certifi.where())
-        except Exception:
-            print("⚠️  certifi unavailable — falling back to unverified TLS (run: pip install certifi)")
-            ssl_ctx = ssl.create_default_context()
-            ssl_ctx.check_hostname = False
-            ssl_ctx.verify_mode = ssl.CERT_NONE
+        pub = os.environ.get("LANGFUSE_PUBLIC_KEY", "")
+        sec = os.environ.get("LANGFUSE_SECRET_KEY", "")
 
         if pub and sec:
-            creds  = base64.b64encode(f"{pub}:{sec}".encode()).decode()
-            headers = {"Authorization": f"Basic {creds}", "Content-Type": "application/json"}
-
-            from_date = from_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+            client = get_client()
             new_traces = []
             page = 1
+            page_limit = 100
 
             while True:
-                params = urllib.parse.urlencode({"page": page, "limit": 100, "fromTimestamp": from_date})
-                url = f"{host}/api/public/traces?{params}"
-                req = urllib.request.Request(url, headers=headers)
-                with urllib.request.urlopen(req, timeout=30, context=ssl_ctx) as resp:
-                    body = json.loads(resp.read())
-
-                batch = body.get("data", [])
+                res = client.api.trace.list(
+                    page=page, limit=page_limit, from_timestamp=from_dt,
+                    request_options={"timeout_in_seconds": 60},
+                )
+                batch = [t.model_dump(mode="json") for t in res.data]
                 new_traces.extend(batch)
-                meta  = body.get("meta", {})
-                total = meta.get("totalItems", meta.get("total", len(new_traces)))
+                total = getattr(res.meta, "total_items", None) or getattr(res.meta, "total", None) or len(new_traces)
 
                 if not batch or len(new_traces) >= total:
                     break
                 page += 1
 
-            print(f"✅ Fetched {len(new_traces)} new/updated traces via Langfuse REST API")
+            print(f"✅ Fetched {len(new_traces)} new/updated traces via Langfuse v4 SDK")
 
             # Merge into cache by trace id (new data wins on conflict)
             for t in new_traces:
@@ -205,7 +196,7 @@ def fetch_langfuse_traces(days: Optional[int] = None) -> Optional[List[Dict]]:
         else:
             print("⚠️  Langfuse credentials missing from env")
     except Exception as e:
-        print(f"❌ REST API fetch FAILED: {e}")
+        print(f"❌ Langfuse SDK fetch FAILED: {e}")
         print(f"\n❌ MANDATORY LIVE DATA REQUIREMENT NOT MET")
         print(f"   Dashboard generation requires live Langfuse data to produce a NEW dashboard.")
         print(f"   Not falling back to cache — the previously generated dashboard is already")
