@@ -905,7 +905,10 @@ EXPLICIT_MODULES = {
     "instagram": "Channels",
     "ctx": "CTX",
     "ctwa": "CTX",
-    "integrations": "Integrations",
+    "integration": "Integrations",  # substring of both "integration" and "integrations" - the
+                                     # plural-only "integrations" key never matched singular phrasing
+                                     # ("Shopify integration") since "integrations" isn't a substring
+                                     # of "integration"
     "ai admin": "AI Admin",
     "analytics": "Analytics",
     "bot studio analytics": "Bot Studio Analytics",
@@ -1134,6 +1137,43 @@ CONCEPT_REGISTRY: List[Dict] = [
         "page_display": "Meta Business Agent",
         "module": "BizAI",
         "related": [],
+    },
+    # ---- Third-party integration partners ----
+    # Real docs existed for all three but scored near/below MIN_CHUNK_SCORE
+    # (0.00-0.40) with zero entity boost - confirmed via direct retrieval
+    # trace 2026-08-20, e.g. clevertap-integration.md scored 0.00 for a
+    # query naming CleverTap directly. Not in STRICT_SCOPED_MODULES, so no
+    # cross-module penalty risk here (unlike BizAI) - a normal-sized boost
+    # is enough to make these win over higher-scoring-but-irrelevant docs.
+    {
+        "id": "shopify_integration",
+        "aliases": ["shopify", "shopify integration", "connect shopify", "shopify store"],
+        "keywords": ["shopify", "ecommerce", "store"],
+        "source_boosts": {"shopify-integration": 5.0},
+        "display": "Shopify Integration",
+        "page_display": "Shopify Integration",
+        "module": "Integrations",
+        "related": ["custom_integrations", "moengage_integration", "clevertap_integration"],
+    },
+    {
+        "id": "moengage_integration",
+        "aliases": ["moengage", "moengage integration", "connect moengage"],
+        "keywords": ["moengage"],
+        "source_boosts": {"moengage-integration": 5.0},
+        "display": "MoEngage Integration",
+        "page_display": "MoEngage Integration",
+        "module": "Integrations",
+        "related": ["custom_integrations", "clevertap_integration"],
+    },
+    {
+        "id": "clevertap_integration",
+        "aliases": ["clevertap", "clever tap", "clevertap integration", "connect clevertap"],
+        "keywords": ["clevertap"],
+        "source_boosts": {"clevertap-integration": 5.0},
+        "display": "CleverTap Integration",
+        "page_display": "CleverTap Integration",
+        "module": "Integrations",
+        "related": ["custom_integrations", "moengage_integration"],
     },
     # ---- Bot Studio nodes ----
     {
