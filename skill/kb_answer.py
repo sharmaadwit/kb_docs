@@ -26,14 +26,20 @@ CONSULTING_TONE_CONFIG = {
         "RCS": 100,               # Phase 1 - fully validated, 50 -> 75 -> 100
         "Bot Studio": 100,        # Phase 1 - fully validated, 50 -> 75 -> 100
         "Campaign Manager": 100,  # Phase 2 - best accuracy of the cohort (IDK 15.5%/5.8%), 50 -> 100
-        "Agent Assist": 50,       # Phase 2 - adoption gap under investigation, held at 50/50
-        "Channels": 50,           # Phase 2 - KB-ready, starting at 50/50
-        "WhatsApp": 50,           # Phase 2 - highest-volume module, still accumulating post-launch data
-        "BizAI": 100,             # Anticipated volume growth - accuracy-safe by construction (same
-                                   # evidence/retrieval as standard mode) even though best-practices/
-                                   # fitment content isn't built yet (0 case-study coverage, 0
-                                   # CONCEPT_REGISTRY entities) - see turn-tracking-fix memory for why
-                                   # traffic_pct doesn't affect answer correctness.
+        "Agent Assist": 75,       # Phase 2 - 50 -> 75 (2026-08-21); adoption-gap anomaly noted in
+                                   # multiple prior measurements, monitor after this bump
+        "Channels": 75,           # Phase 2 - KB-ready, 50 -> 75 (2026-08-21)
+        "WhatsApp": 75,           # Phase 2 - highest-volume module, 50 -> 75 (2026-08-21)
+        "BizAI": 50,              # Rolled back 100 -> 50 (2026-08-21) to match the standard new-module
+                                   # introduction tier now that real content prep (Meta Business Agent
+                                   # docs) is underway, consistent with how every other Phase 2 module
+                                   # started at 50/50 before graduating.
+        "Integrations": 50,       # New (2026-08-21) - retrieval gaps for Shopify/MoEngage/CleverTap
+                                   # fixed same day (see CONCEPT_REGISTRY entries), starting at 50/50
+        "AI Admin": 50,           # New (2026-08-21) - 35 real docs, substantial existing content.
+                                   # Note: billing/account queries seen in dashboard IDK stats under
+                                   # "AI Admin" route to explicit_module=General at the code level (see
+                                   # deep_consulting_tracing_analysis) - this gate doesn't affect them.
     },
     "force_mode": None,  # Set to "consulting" or "standard" to force all traffic into one mode (testing only)
 }
@@ -910,6 +916,18 @@ EXPLICIT_MODULES = {
                                      # ("Shopify integration") since "integrations" isn't a substring
                                      # of "integration"
     "ai admin": "AI Admin",
+    "workspace": "AI Admin",
+    "intent training": "AI Admin",
+    "intent and entity": "AI Admin",
+    "entity creation": "AI Admin",
+    "content training": "AI Admin",
+    "document training": "AI Admin",
+    "website training": "AI Admin",
+    "shopify": "Integrations",
+    "moengage": "Integrations",
+    "clevertap": "Integrations",
+    "webhook": "Integrations",
+    "crm integration": "Integrations",
     "analytics": "Analytics",
     "bot studio analytics": "Bot Studio Analytics",
     "workflows": "Workflows",
