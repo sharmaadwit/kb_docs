@@ -4088,6 +4088,27 @@ def _load_chunks(context) -> List[Dict]:
 
 def _detect_module(query: str) -> str:
     q = (query or "").lower()
+
+    # 0. Meta / business agent phrasing -> BizAI. Checked before the
+    #    "campaign"/"rcs" shortcuts below (moved 2026-08-21) because
+    #    queries like "Can Meta Business Agent send outbound marketing
+    #    campaigns?" were matching "campaign" first and routing to
+    #    Campaign Manager, producing an answer about Gupshup's own
+    #    campaign tooling for a question about Meta's product. This
+    #    phrasing is specific enough (multi-word or word-boundary "mba")
+    #    that it's safe to check ahead of the generic single-word shortcuts.
+    #    "mba" specifically is word-boundary-matched (not a bare substring
+    #    check like the rest of this function) since it's only 3 letters -
+    #    confirmed low collision risk (9/7846 KB chunks contain "mba" as
+    #    ANY substring, none as a standalone word) but not worth the risk
+    #    of a bare "in q" check on something this short.
+    if (
+        "meta business agent" in q or "business agent" in q
+        or "meta biz ai" in q or "meta business ai" in q
+        or re.search(r"\bmba\b", q)
+    ):
+        return "BizAI"
+
     # 1. Existing shortcuts (unchanged, highest priority).
     if "campaign" in q:
         return "Campaign Manager"
@@ -4122,26 +4143,6 @@ def _detect_module(query: str) -> str:
         or any(t in q for t in ("team", "routing")) and ("for" in q or "analytics" in q)
     ):
         return "Agent Assist"
-
-    # 3. Meta / business agent phrasing -> BizAI (was R1: routed to WhatsApp;
-    #    changed 2026-08-20 per explicit confirmation that "MBA", "Meta Biz
-    #    Ai", "Meta Business Agent", "Meta Business AI" are the terms real
-    #    users say for BizAI specifically, not the WhatsApp channel setup
-    #    flow. The underlying doc (kb/whatsapp/meta-business-agent.md)
-    #    still physically lives under whatsapp/ - retrieval is chunk-based,
-    #    not folder-gated, so it's still found regardless of module label;
-    #    this only changes which module the consulting-mode gate sees.
-    #    "mba" specifically is word-boundary-matched (not a bare substring
-    #    check like the rest of this function) since it's only 3 letters -
-    #    confirmed low collision risk (9/7846 KB chunks contain "mba" as
-    #    ANY substring, none as a standalone word) but not worth the risk
-    #    of a bare "in q" check on something this short.
-    if (
-        "meta business agent" in q or "business agent" in q
-        or "meta biz ai" in q or "meta business ai" in q
-        or re.search(r"\bmba\b", q)
-    ):
-        return "BizAI"
 
     # 4. Channel-first agent phrasing (no deploy verb) -> WhatsApp (R4).
     if "whatsapp agent" in q or "whatsapp ai agent" in q:
