@@ -1,6 +1,0 @@
-# Generated locally by generate_reports.py — do not commit
-state.json
-runs/
-dashboard/
-latest_langfuse_traces.json
-telemetry_structure_analysis.json
