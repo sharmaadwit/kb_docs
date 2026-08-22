@@ -2142,6 +2142,28 @@ def generate_consulting_effectiveness_html(ce: Dict[str, Any], mt: Dict[str, Any
                 </div>
             </div>
 
+            <h3 style="margin-bottom: 12px;">📊 Per-Module Adoption vs. Configured Split</h3>
+            <p style="color:#666; font-size:0.85em; margin-bottom:16px;">
+                Each module's own traffic since its own last traffic_pct change (see
+                CONSULTING_CONFIG_EPOCH) — not blended with traffic from before that module's
+                current split took effect.
+            </p>
+            <table style="width:100%; border-collapse:collapse; margin-bottom:24px;">
+                <thead>
+                    <tr style="border-bottom:2px solid #e5e7eb; text-align:left;">
+                        <th style="padding:8px;">Module</th>
+                        <th class="numeric" style="padding:8px;">Total</th>
+                        <th class="numeric" style="padding:8px;">Consulting</th>
+                        <th class="numeric" style="padding:8px;">Adoption</th>
+                        <th class="numeric" style="padding:8px;">Configured</th>
+                        <th class="numeric" style="padding:8px;">Delta</th>
+                    </tr>
+                </thead>
+                <tbody>
+{module_rows_html}
+                </tbody>
+            </table>
+
             <h3 style="margin-bottom: 12px;">🔗 Multi-Turn Session Tracking</h3>
             <p style="color:#666; font-size:0.85em; margin-bottom:16px;">
                 Real multi-turn conversations (real user identity, clustered by 10-minute proximity —
@@ -2174,6 +2196,26 @@ def generate_consulting_effectiveness_html(ce: Dict[str, Any], mt: Dict[str, Any
                 (answer-rate and confidence deltas have pointed opposite ways in different samples) — reported
                 as observed data, not evidence that conversation depth causes better or worse accuracy.
             </p>
+
+            <h3 style="margin-bottom: 12px;">🌐 Session/Identity Capture by Environment</h3>
+            <p style="color:#666; font-size:0.85em; margin-bottom:16px;">
+                Share of traces with a real client-provided session_id vs. a real (non-placeholder) user
+                email, by environment — see memory: superagent-pii-scrubbing for why these are often low
+                in PROD_EXT (VAPT PII stripping upstream, not a code bug here).
+            </p>
+            <table style="width:100%; border-collapse:collapse; margin-bottom:8px;">
+                <thead>
+                    <tr style="border-bottom:2px solid #e5e7eb; text-align:left;">
+                        <th style="padding:8px;">Environment</th>
+                        <th class="numeric" style="padding:8px;">Total</th>
+                        <th class="numeric" style="padding:8px;">Client Session ID</th>
+                        <th class="numeric" style="padding:8px;">Real Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+{env_rows_html}
+                </tbody>
+            </table>
         </div>
     """
 

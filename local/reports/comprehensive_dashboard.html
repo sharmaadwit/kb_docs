@@ -110,7 +110,7 @@
     <div class="container">
         <div class="header">
             <h1>📊 Comprehensive KB Analytics Dashboard</h1>
-            <p>Live Langfuse Telemetry • Last Updated: 2026-08-22 07:28:09 UTC</p>
+            <p>Live Langfuse Telemetry • Last Updated: 2026-08-22 07:49:45 UTC</p>
         </div>
 
         <!-- SALES LANDING SNAPSHOT: leads + topics surfaced above product tabs -->
@@ -300,6 +300,145 @@
                 </div>
             </div>
 
+            <h3 style="margin-bottom: 12px;">📊 Per-Module Adoption vs. Configured Split</h3>
+            <p style="color:#666; font-size:0.85em; margin-bottom:16px;">
+                Each module's own traffic since its own last traffic_pct change (see
+                CONSULTING_CONFIG_EPOCH) — not blended with traffic from before that module's
+                current split took effect.
+            </p>
+            <table style="width:100%; border-collapse:collapse; margin-bottom:24px;">
+                <thead>
+                    <tr style="border-bottom:2px solid #e5e7eb; text-align:left;">
+                        <th style="padding:8px;">Module</th>
+                        <th class="numeric" style="padding:8px;">Total</th>
+                        <th class="numeric" style="padding:8px;">Consulting</th>
+                        <th class="numeric" style="padding:8px;">Adoption</th>
+                        <th class="numeric" style="padding:8px;">Configured</th>
+                        <th class="numeric" style="padding:8px;">Delta</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>General</td>
+                        <td class="numeric">50</td>
+                        <td class="numeric">0</td>
+                        <td class="numeric"><strong>0.0%</strong></td>
+                        <td class="numeric">—</td>
+                        <td class="numeric"><span style="color:#94a3b8;">not gated</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Bot Studio</td>
+                        <td class="numeric">19</td>
+                        <td class="numeric">19</td>
+                        <td class="numeric"><strong>100.0%</strong></td>
+                        <td class="numeric">100%</td>
+                        <td class="numeric"><span style="color:#22c55e; font-weight:600;">+0.0pp</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>WhatsApp</td>
+                        <td class="numeric">11</td>
+                        <td class="numeric">11</td>
+                        <td class="numeric"><strong>100.0%</strong></td>
+                        <td class="numeric">75%</td>
+                        <td class="numeric"><span style="color:#22c55e; font-weight:600;">+25.0pp</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>SuperAgent</td>
+                        <td class="numeric">9</td>
+                        <td class="numeric">0</td>
+                        <td class="numeric"><strong>0.0%</strong></td>
+                        <td class="numeric">—</td>
+                        <td class="numeric"><span style="color:#94a3b8;">not gated</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Campaign Manager</td>
+                        <td class="numeric">3</td>
+                        <td class="numeric">3</td>
+                        <td class="numeric"><strong>100.0%</strong></td>
+                        <td class="numeric">100%</td>
+                        <td class="numeric"><span style="color:#22c55e; font-weight:600;">+0.0pp</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Channels</td>
+                        <td class="numeric">2</td>
+                        <td class="numeric">2</td>
+                        <td class="numeric"><strong>100.0%</strong></td>
+                        <td class="numeric">75%</td>
+                        <td class="numeric"><span style="color:#94a3b8;">insufficient data</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>CTX</td>
+                        <td class="numeric">2</td>
+                        <td class="numeric">0</td>
+                        <td class="numeric"><strong>0.0%</strong></td>
+                        <td class="numeric">—</td>
+                        <td class="numeric"><span style="color:#94a3b8;">not gated</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Goals</td>
+                        <td class="numeric">2</td>
+                        <td class="numeric">0</td>
+                        <td class="numeric"><strong>0.0%</strong></td>
+                        <td class="numeric">—</td>
+                        <td class="numeric"><span style="color:#94a3b8;">not gated</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Agent Assist</td>
+                        <td class="numeric">1</td>
+                        <td class="numeric">0</td>
+                        <td class="numeric"><strong>0.0%</strong></td>
+                        <td class="numeric">75%</td>
+                        <td class="numeric"><span style="color:#94a3b8;">insufficient data</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Integrations</td>
+                        <td class="numeric">1</td>
+                        <td class="numeric">0</td>
+                        <td class="numeric"><strong>0.0%</strong></td>
+                        <td class="numeric">50%</td>
+                        <td class="numeric"><span style="color:#94a3b8;">insufficient data</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Personalize</td>
+                        <td class="numeric">1</td>
+                        <td class="numeric">0</td>
+                        <td class="numeric"><strong>0.0%</strong></td>
+                        <td class="numeric">—</td>
+                        <td class="numeric"><span style="color:#94a3b8;">not gated</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Wallet</td>
+                        <td class="numeric">1</td>
+                        <td class="numeric">0</td>
+                        <td class="numeric"><strong>0.0%</strong></td>
+                        <td class="numeric">—</td>
+                        <td class="numeric"><span style="color:#94a3b8;">not gated</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>AI Admin</td>
+                        <td class="numeric">0</td>
+                        <td class="numeric">0</td>
+                        <td class="numeric"><strong>0.0%</strong></td>
+                        <td class="numeric">50%</td>
+                        <td class="numeric"><span style="color:#94a3b8;">insufficient data</span></td>
+                    </tr>
+
+                </tbody>
+            </table>
+
             <h3 style="margin-bottom: 12px;">🔗 Multi-Turn Session Tracking</h3>
             <p style="color:#666; font-size:0.85em; margin-bottom:16px;">
                 Real multi-turn conversations (real user identity, clustered by 10-minute proximity —
@@ -332,6 +471,47 @@
                 (answer-rate and confidence deltas have pointed opposite ways in different samples) — reported
                 as observed data, not evidence that conversation depth causes better or worse accuracy.
             </p>
+
+            <h3 style="margin-bottom: 12px;">🌐 Session/Identity Capture by Environment</h3>
+            <p style="color:#666; font-size:0.85em; margin-bottom:16px;">
+                Share of traces with a real client-provided session_id vs. a real (non-placeholder) user
+                email, by environment — see memory: superagent-pii-scrubbing for why these are often low
+                in PROD_EXT (VAPT PII stripping upstream, not a code bug here).
+            </p>
+            <table style="width:100%; border-collapse:collapse; margin-bottom:8px;">
+                <thead>
+                    <tr style="border-bottom:2px solid #e5e7eb; text-align:left;">
+                        <th style="padding:8px;">Environment</th>
+                        <th class="numeric" style="padding:8px;">Total</th>
+                        <th class="numeric" style="padding:8px;">Client Session ID</th>
+                        <th class="numeric" style="padding:8px;">Real Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>INT</td>
+                        <td class="numeric">2</td>
+                        <td class="numeric">0.0%</td>
+                        <td class="numeric">100.0%</td>
+                    </tr>
+
+                    <tr>
+                        <td>PROD</td>
+                        <td class="numeric">117</td>
+                        <td class="numeric">46.2%</td>
+                        <td class="numeric">24.8%</td>
+                    </tr>
+
+                    <tr>
+                        <td>PROD_EXT</td>
+                        <td class="numeric">123</td>
+                        <td class="numeric">7.3%</td>
+                        <td class="numeric">87.0%</td>
+                    </tr>
+
+                </tbody>
+            </table>
         </div>
     
         <!-- CC EXPRESS FEATURE: Product pill selector (CSS-only radio tabs, replaces onclick nav) -->
@@ -2753,7 +2933,7 @@
             <div class="data-source">
                 <strong>Data Source:</strong> Live Langfuse API (Real-time telemetry)
                 <br>
-                <strong>Dashboard Generated:</strong> 2026-08-22 07:28:09 UTC
+                <strong>Dashboard Generated:</strong> 2026-08-22 07:49:45 UTC
                 <br>
                 <strong>Coverage:</strong> Last 15 days of production queries
             </div>
