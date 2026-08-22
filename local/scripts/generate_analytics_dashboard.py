@@ -1805,6 +1805,41 @@ def _is_real_email(email) -> bool:
     return "@" in e
 
 
+# Per-module epoch (UTC, naive - matches _parse_ts() output) marking the exact
+# timestamp each module's CONSULTING_TONE_CONFIG["modules"][module] traffic_pct
+# was LAST CHANGED to its current value in skill/kb_answer.py. Derived from
+# `git log` timestamps of the commits that touched CONSULTING_TONE_CONFIG
+# (IST -> UTC, IST is UTC+5:30).
+#
+# WHY THIS EXISTS: a single global "recency" filter (any trace with the new
+# turn-tracking metadata fields) is NOT tight enough to compare adoption_pct
+# against the CURRENT config - it lets in traffic from before the most recent
+# per-module config bump, blending old-config and new-config traffic and
+# making adoption look "broken" for modules bumped today even though routing
+# is correct (proven 2026-08-22 by manually splitting Campaign Manager/
+# WhatsApp traffic at their exact commit timestamps). Each module needs its
+# OWN cutoff, not one shared cutoff.
+#
+# MAINTENANCE BURDEN: this is a MANUALLY-MAINTAINED parallel record, not
+# derived automatically from kb_answer.py. Whenever CONSULTING_TONE_CONFIG's
+# traffic_pct values change (or a module is added/removed) in
+# skill/kb_answer.py, this dict MUST be updated with the new commit's UTC
+# timestamp for that module, or adoption_pct for that module will silently go
+# stale (comparing against a mix of the old and new epoch instead of just the
+# new one).
+CONSULTING_CONFIG_EPOCH: Dict[str, datetime] = {
+    "RCS": datetime(2026, 8, 18, 8, 43, 1),              # 75->100, commit 08bd9efa
+    "Bot Studio": datetime(2026, 8, 18, 8, 43, 1),        # 75->100, commit 08bd9efa
+    "Campaign Manager": datetime(2026, 8, 21, 5, 27, 32),  # 50->100, commit 60b36939
+    "Agent Assist": datetime(2026, 8, 21, 6, 38, 46),     # 50->75, commit 6696a604
+    "Channels": datetime(2026, 8, 21, 6, 38, 46),         # 50->75, commit 6696a604
+    "WhatsApp": datetime(2026, 8, 21, 6, 38, 46),         # 50->75, commit 6696a604
+    "BizAI": datetime(2026, 8, 21, 6, 38, 46),            # 100->50 rollback, commit 6696a604
+    "Integrations": datetime(2026, 8, 21, 6, 38, 46),     # new @ 50, commit 6696a604
+    "AI Admin": datetime(2026, 8, 21, 6, 38, 46),         # new @ 50, commit 6696a604
+}
+
+
 def analyze_consulting_effectiveness(all_traces: List[Dict]) -> Dict[str, Any]:
     """Consulting-mode adoption, accuracy, and engagement-content coverage.
 
@@ -1849,19 +1884,35 @@ def analyze_consulting_effectiveness(all_traces: List[Dict]) -> Dict[str, Any]:
     for t in fixed:
         meta = t["metadata"]
         mod = ka._detect_module(meta["query"])
-        d = by_module.setdefault(mod, {"consulting": 0, "standard": 0})
+        epoch = CONSULTING_CONFIG_EPOCH.get(mod)
+        d = by_module.setdefault(mod, {"consulting": 0, "standard": 0, "excluded_pre_epoch": 0})
+        if epoch is not None:
+            ts = _parse_ts(t)
+            if ts is None or ts < epoch:
+                d["excluded_pre_epoch"] += 1
+                continue
         d[meta["selected_answer_mode"]] += 1
+
+    # Below this many post-epoch traces, adoption_pct/delta_pp are noise, not
+    # signal (e.g. 0/0 or 1/1 reads as a scary "0% vs 50% target" -100pp row
+    # that's indistinguishable from a genuine routing failure, when the real
+    # story is just "no post-epoch traffic has landed yet"). Flag it instead
+    # of rendering a misleading number.
+    MIN_TRACES_FOR_ADOPTION_SIGNAL = 3
 
     module_rows = []
     for mod, d in sorted(by_module.items(), key=lambda x: -(x[1]["consulting"] + x[1]["standard"])):
         total = d["consulting"] + d["standard"]
         adoption = round(100.0 * d["consulting"] / total, 1) if total else 0.0
         cfg = configured.get(mod)
+        insufficient_data = mod in configured and total < MIN_TRACES_FOR_ADOPTION_SIGNAL
         module_rows.append({
             "module": mod, "total": total, "consulting": d["consulting"],
             "adoption_pct": adoption, "configured_pct": cfg,
-            "delta_pp": round(adoption - cfg, 1) if cfg is not None else None,
+            "delta_pp": round(adoption - cfg, 1) if cfg is not None and not insufficient_data else None,
             "gated": mod in configured,
+            "traces_excluded_pre_epoch": d["excluded_pre_epoch"],
+            "insufficient_data": insufficient_data,
         })
 
     consulting = [t for t in fixed if t["metadata"]["selected_answer_mode"] == "consulting"]
@@ -2003,8 +2054,11 @@ def generate_consulting_effectiveness_html(ce: Dict[str, Any], mt: Dict[str, Any
     for r in ce["module_rows"]:
         if r["gated"]:
             delta = r["delta_pp"]
-            delta_color = "#22c55e" if delta is not None and delta >= 0 else "#f59e0b"
-            delta_str = f'<span style="color:{delta_color}; font-weight:600;">{delta:+.1f}pp</span>' if delta is not None else "—"
+            if r.get("insufficient_data"):
+                delta_str = '<span style="color:#94a3b8;">insufficient data</span>'
+            else:
+                delta_color = "#22c55e" if delta is not None and delta >= 0 else "#f59e0b"
+                delta_str = f'<span style="color:{delta_color}; font-weight:600;">{delta:+.1f}pp</span>' if delta is not None else "—"
             cfg_str = f'{r["configured_pct"]}%'
         else:
             delta_str = '<span style="color:#94a3b8;">not gated</span>'
