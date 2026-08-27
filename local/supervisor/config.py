@@ -55,7 +55,7 @@ class Settings(BaseSettings):
 
     # Paths
     reports_dir: Path = Field(
-        default=Path("local/reports"),
+        default=Path("local/supervisor/reports"),
         env="REPORTS_DIR"
     )
     cache_dir: Path = Field(

@@ -24,7 +24,7 @@ python3 -m local.supervisor.supervisor_agent --report
 ```
 
 Output:
-- Report: `local/reports/supervisor_<timestamp>.md`
+- Report: `local/supervisor/reports/supervisor_<timestamp>.md`
 - Logs: `local/supervisor/logs/supervisor_<timestamp>.log`
 - Cache: `local/cache/langfuse_traces_cache.json` (updated if new traces fetched)
 

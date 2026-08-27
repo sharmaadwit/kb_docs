@@ -20,7 +20,7 @@ services:
       LANGFUSE_HOST: ${LANGFUSE_HOST:-https://cloud.langfuse.com}
 
       # Paths
-      REPORTS_DIR: /app/local/reports
+      REPORTS_DIR: /app/local/supervisor/reports
       CACHE_DIR: /app/local/cache
       LOGS_DIR: /app/local/supervisor/logs
 
@@ -32,7 +32,7 @@ services:
       QWEN_TIMEOUT_SECONDS: ${QWEN_TIMEOUT_SECONDS:-60}
 
     volumes:
-      - ./local/reports:/app/local/reports
+      - ./local/supervisor/reports:/app/local/supervisor/reports
       - ./local/supervisor/logs:/app/local/supervisor/logs
       - ./local/cache:/app/local/cache
 

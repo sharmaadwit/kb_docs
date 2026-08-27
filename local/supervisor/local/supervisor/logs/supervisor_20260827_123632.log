@@ -1,0 +1,13 @@
+2026-08-27 12:36:32 [INFO] __main__:main:102: ================================================================================
+2026-08-27 12:36:32 [INFO] __main__:main:103: KB Supervisor Agent Starting
+2026-08-27 12:36:32 [INFO] __main__:main:104: Timestamp: 20260827_123632
+2026-08-27 12:36:32 [INFO] __main__:main:105: Config: max_gaps=10, min_severity=0.0
+2026-08-27 12:36:32 [INFO] __main__:main:106: ================================================================================
+2026-08-27 12:36:32 [INFO] __main__:main:113: STEP 1: Loading traces from cache and fetching new traces
+2026-08-27 12:36:32 [INFO] local.supervisor.utils.trace_loader:load_cache:47: Loaded cache: 0 traces
+2026-08-27 12:36:32 [INFO] __main__:main:123: Cache loaded: 0 traces
+2026-08-27 12:36:32 [INFO] local.supervisor.utils.trace_loader:fetch_new_traces:81: Fetching new traces from Langfuse (since 2026-08-27T12:36:15.889067+00:00)...
+2026-08-27 12:36:32 [WARNING] local.supervisor.utils.trace_loader:fetch_new_traces:82: Langfuse API integration not yet implemented. Using existing cache only.
+2026-08-27 12:36:32 [INFO] local.supervisor.utils.trace_loader:append_to_cache:113: Cache updated: 0 new traces appended (0 total)
+2026-08-27 12:36:32 [INFO] __main__:main:128: Total traces: 0
+2026-08-27 12:36:32 [WARNING] __main__:main:131: No traces found. Exiting.
