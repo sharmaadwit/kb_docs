@@ -23,8 +23,46 @@ class ReportGenerator:
         """
         self.qwen = qwen
 
+    def generate_fallback_recommendation(self, gap: Gap) -> str:
+        """Generate smart fallback recommendation based on gap analysis.
+
+        Args:
+            gap: Gap object with failure patterns.
+
+        Returns:
+            Actionable recommendation text.
+        """
+        # Analyze failure patterns to infer what's missing
+        failure_text = " ".join(gap.failure_examples[:5]).lower()
+
+        # Pattern matching for common KB gaps
+        if any(word in failure_text for word in ["price", "pricing", "cost", "fee", "rate", "charge"]):
+            return f"Add comprehensive pricing documentation to `kb/{gap.module.lower()}/{gap.intent.lower()}.md`. Include: regional rates, volume discounts, payment terms, and FAQ for common pricing questions."
+
+        if any(word in failure_text for word in ["setup", "install", "configure", "onboard", "enable", "activate"]):
+            return f"Expand setup/configuration guide in `kb/{gap.module.lower()}/{gap.intent.lower()}.md`. Add step-by-step instructions, prerequisites, troubleshooting, and common configuration scenarios."
+
+        if any(word in failure_text for word in ["api", "endpoint", "request", "response", "parameter", "payload"]):
+            return f"Update API reference documentation in `kb/{gap.module.lower()}/{gap.intent.lower()}.md`. Include: endpoint details, request/response formats, error codes, code examples, and authentication."
+
+        if any(word in failure_text for word in ["error", "fail", "bug", "issue", "timeout", "crash"]):
+            return f"Add troubleshooting and error handling section to `kb/{gap.module.lower()}/{gap.intent.lower()}.md`. Document common error codes, causes, and resolution steps."
+
+        if any(word in failure_text for word in ["limit", "quota", "rate", "maximum", "minimum", "constraint"]):
+            return f"Document limits and constraints in `kb/{gap.module.lower()}/{gap.intent.lower()}.md`. Specify: rate limits, size limits, quotas, thresholds, and workarounds."
+
+        if any(word in failure_text for word in ["feature", "capability", "support", "available", "work", "compatible"]):
+            return f"Add feature matrix/capability documentation to `kb/{gap.module.lower()}/{gap.intent.lower()}.md`. List supported features, versions, and platform compatibility."
+
+        if any(word in failure_text for word in ["how", "way", "method", "approach", "best practice"]):
+            return f"Add best practices and how-to guides to `kb/{gap.module.lower()}/{gap.intent.lower()}.md`. Include: common use cases, recommended approaches, and code patterns."
+
+        # Default fallback
+        failure_rate = (1 - gap.answer_rate) * 100
+        return f"Review and expand `kb/{gap.module.lower()}/{gap.intent.lower()}.md` to address {failure_rate:.0f}% of unanswered queries. Analyze sample failures to identify missing sections and add comprehensive documentation."
+
     def analyze_gap_with_qwen(self, gap: Gap, success_examples: List[str]) -> Dict[str, str]:
-        """Analyze gap using Qwen LLM.
+        """Analyze gap using Qwen LLM, with smart fallback recommendations.
 
         Args:
             gap: Gap object to analyze.
@@ -68,11 +106,11 @@ Example:
 
         response = self.qwen.call(prompt)
         if not response:
-            logger.warning(f"Qwen call failed for {gap.summary()}")
+            logger.warning(f"Qwen call failed for {gap.summary()}, using smart fallback")
             return {
-                "root_cause": "Unable to determine (LLM error)",
+                "root_cause": f"KB section missing or incomplete (based on {gap.failure_count} failures)",
                 "kb_gap": f"kb/{gap.module.lower()}/{gap.intent.lower()}.md",
-                "recommendation": "Manual review needed",
+                "recommendation": self.generate_fallback_recommendation(gap),
             }
 
         # Parse JSON response
@@ -84,11 +122,11 @@ Example:
                 "recommendation": analysis.get("recommendation", ""),
             }
         except json.JSONDecodeError:
-            logger.warning(f"Failed to parse Qwen JSON response: {response}")
+            logger.warning(f"Failed to parse Qwen JSON, using smart fallback: {response[:100]}")
             return {
-                "root_cause": response[:200],
+                "root_cause": f"KB section missing or incomplete (based on {gap.failure_count} failures)",
                 "kb_gap": f"kb/{gap.module.lower()}/{gap.intent.lower()}.md",
-                "recommendation": response,
+                "recommendation": self.generate_fallback_recommendation(gap),
             }
 
     def format_gap_section(self, gap_index: int, gap: Gap, analysis: Dict[str, str]) -> str:
