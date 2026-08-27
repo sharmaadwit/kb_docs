@@ -6,12 +6,12 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from config import Settings, ensure_directories, load_config
-from utils.qwen_interface import QwenInterface
-from utils.trace_loader import TraceLoader
-from utils.trace_analyzer import TraceAnalyzer
-from utils.gap_identifier import GapIdentifier
-from utils.report_generator import ReportGenerator
+from .config import Settings, ensure_directories, load_config
+from .utils.qwen_interface import QwenInterface
+from .utils.trace_loader import TraceLoader
+from .utils.trace_analyzer import TraceAnalyzer
+from .utils.gap_identifier import GapIdentifier
+from .utils.report_generator import ReportGenerator
 
 
 def setup_logging(logs_dir: Path, timestamp: str) -> logging.Logger:

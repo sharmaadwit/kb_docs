@@ -48,7 +48,7 @@ class TraceAnalyzer:
         """Analyze traces: group by (module, intent) and compute metrics.
 
         Args:
-            traces: List of trace dictionaries from TraceLoader.
+            traces: List of trace dictionaries from TraceLoader (from dashboard cache).
 
         Returns:
             List of Gap objects, ranked by answer_rate (ascending).
@@ -59,8 +59,11 @@ class TraceAnalyzer:
         groups: Dict[tuple, Dict] = {}
 
         for trace in traces:
-            module = trace.get("module", "Unknown")
-            intent = trace.get("intent", "Unknown")
+            # Extract fields from nested metadata (dashboard cache structure)
+            metadata = trace.get("metadata", {})
+            module = metadata.get("module_label", trace.get("module", "Unknown"))
+            intent = metadata.get("query_family", trace.get("intent", "Unknown"))
+
             key = (module, intent)
 
             if key not in groups:
@@ -74,18 +77,30 @@ class TraceAnalyzer:
                 }
 
             groups[key]["total"] += 1
-            answered = trace.get("answered", False)
-            confidence = trace.get("confidence", 0.0)
-            query = trace.get("query", "")
+
+            # answered field is in metadata
+            answered = metadata.get("answered", trace.get("answered", False))
+
+            # Extract confidence from output or metadata
+            output = trace.get("output", {})
+            confidence_score = output.get("confidence_score", 0.0)
+            if not confidence_score:
+                confidence_score = metadata.get("confidence_score", 0.0)
+
+            # Extract query from input
+            input_data = trace.get("input", {})
+            query = input_data.get("query", "")
 
             if answered:
                 groups[key]["success"] += 1
-                groups[key]["successes"].append(query)
+                if query:
+                    groups[key]["successes"].append(query)
             else:
                 groups[key]["failure"] += 1
-                groups[key]["failures"].append(query)
+                if query:
+                    groups[key]["failures"].append(query)
 
-            groups[key]["confidences"].append(confidence)
+            groups[key]["confidences"].append(confidence_score)
 
         # Convert to Gap objects
         gaps = []

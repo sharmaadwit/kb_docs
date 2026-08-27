@@ -3,7 +3,7 @@
 import logging
 from typing import List
 
-from trace_analyzer import Gap
+from .trace_analyzer import Gap
 
 logger = logging.getLogger(__name__)
 

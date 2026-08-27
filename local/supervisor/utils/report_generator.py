@@ -6,8 +6,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List
 
-from trace_analyzer import Gap
-from qwen_interface import QwenInterface
+from .trace_analyzer import Gap
+from .qwen_interface import QwenInterface
 
 logger = logging.getLogger(__name__)
 
