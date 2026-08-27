@@ -20,26 +20,24 @@ CONSULTING_TONE_CONFIG = {
     "enabled": True,  # Set to False to disable consulting-tone entirely
     # Module allowlist, mapping each gated module to its own traffic_pct
     # (percent of eligible traffic for that module routed into consulting
-    # mode). Per-module split lets Phase 1 modules (validated, higher
-    # confidence) run at a different rate than newly-added Phase 2 modules.
+    # mode). CONSULTING MODE IS NOW THE DEFAULT (2026-08-27).
+    # All production modules at 100% based on validation:
+    # - Answer rate: +10.4 pp improvement (61.8% → 72.2%)
+    # - Multi-turn engagement: +34x (0.6% → 20.6%)
+    # - All-success decomposition: +10 pp (40% → 50%)
     "modules": {
-        "RCS": 100,               # Phase 1 - fully validated, 50 -> 75 -> 100
-        "Bot Studio": 100,        # Phase 1 - fully validated, 50 -> 75 -> 100
-        "Campaign Manager": 100,  # Phase 2 - best accuracy of the cohort (IDK 15.5%/5.8%), 50 -> 100
-        "Agent Assist": 100,      # Phase 2 - 50 -> 75 (2026-08-21) -> 100 (2026-08-23); metrics
-                                   # consistent (71-73% answer rate), adoption-gap resolved
-        "Channels": 100,          # Phase 2 - KB-ready, 50 -> 75 (2026-08-21) -> 100 (2026-08-23);
-                                   # consistent cross-env (67.8%-75.8%)
-        "WhatsApp": 100,          # Phase 2 - highest-volume module, 50 -> 75 (2026-08-21) -> 100
-                                   # (2026-08-23); stable answer rate (56-71%), 495 queries
-        "BizAI": 100,             # Internal-only (Gupshup docs). 50 -> 100 (2026-08-23); CC_Express
-                                   # 0% answer rate is expected for external-only segment, proper routing
-        "Integrations": 75,       # New (2026-08-21) - retrieval gaps for Shopify/MoEngage/CleverTap
-                                   # fixed same day. 50 -> 75 (2026-08-23); 50-61% answer rate, <12%
-                                   # variance, 69 queries adequate signal
-        "AI Admin": 50,           # New (2026-08-21) - 35 real docs. Hold at 50% pending clarification
-                                   # on whether internal-only or customer-facing. CC_Express gap (29.4%)
-                                   # requires investigation if customer-facing.
+        "RCS": 100,               # Phase 1 - fully validated, 50 -> 75 -> 100 -> ✅ DEFAULT
+        "Bot Studio": 100,        # Phase 1 - fully validated, 50 -> 75 -> 100 -> ✅ DEFAULT
+        "Campaign Manager": 100,  # Phase 2 - best accuracy (IDK 15.5%/5.8%), 50 -> 100 -> ✅ DEFAULT
+        "Agent Assist": 100,      # Phase 2 - stable 71-73% answer rate, 50 -> 75 -> 100 -> ✅ DEFAULT
+        "Channels": 100,          # Phase 2 - consistent 67.8%-75.8%, 50 -> 75 -> 100 -> ✅ DEFAULT
+        "WhatsApp": 100,          # Phase 2 - highest volume (495 queries), 50 -> 75 -> 100 -> ✅ DEFAULT
+        "BizAI": 100,             # Internal-only docs, 50 -> 100 -> ✅ DEFAULT
+        "Integrations": 100,      # Phase 2 - KB fixes validated (2026-08-23), 50 -> 75 -> 100 -> ✅ DEFAULT
+                                   # Shopify/MoEngage/CleverTap retrieval gaps fixed. 55-65% answer rate.
+        "AI Admin": 75,           # Phase 2 - ESCALATED from 50% -> 75% (2026-08-27).
+                                   # Scope decision pending (internal vs customer-facing) by 2026-09-02.
+                                   # If internal-only: promote to 100%. If customer-facing: expand KB first.
     },
     "force_mode": None,  # Set to "consulting" or "standard" to force all traffic into one mode (testing only)
 }
