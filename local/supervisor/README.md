@@ -16,28 +16,33 @@ The supervisor agent:
 
 ## Quick Start
 
-### Via Docker (Recommended)
+### Direct Python (Recommended)
 
 ```bash
-cd local/supervisor
-docker-compose up --build supervisor-agent
+cd /Users/adwit.sharma/kb_docs
+python3 -m local.supervisor.supervisor_agent --report
 ```
 
 Output:
 - Report: `local/reports/supervisor_<timestamp>.md`
 - Logs: `local/supervisor/logs/supervisor_<timestamp>.log`
-- Cache: `local/cache/langfuse_traces_cache.json` (updated)
+- Cache: `local/cache/langfuse_traces_cache.json` (updated if new traces fetched)
 
-### Direct Python (No Docker)
+### Via Docker
+
+Docker image is pre-built and can be used for CI/CD or remote execution:
 
 ```bash
-python3 local/supervisor/supervisor_agent.py --report
+cd local/supervisor
+docker-compose run --rm supervisor-agent --report
 ```
+
+Note: Docker volume mounts work best when cache is pre-populated locally.
 
 ### Custom Options
 
 ```bash
-python3 local/supervisor/supervisor_agent.py --report --max-gaps 10 --min-severity 0.5
+python3 -m local.supervisor.supervisor_agent --report --max-gaps 10 --min-severity 0.5
 ```
 
 ## Configuration
