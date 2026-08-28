@@ -23,6 +23,17 @@ class ReportGenerator:
         """
         self.qwen = qwen
 
+    def is_pricing_query(self, failure_text: str) -> bool:
+        """Check if failure text contains pricing-related keywords.
+
+        Args:
+            failure_text: Lowercase failure query text.
+
+        Returns:
+            True if pricing-related, False otherwise.
+        """
+        return any(word in failure_text for word in ["price", "pricing", "cost", "fee", "discount", "subscription", "plan", "payment"])
+
     def generate_fallback_recommendation(self, gap: Gap) -> str:
         """Generate smart fallback recommendation based on gap analysis.
 
@@ -30,14 +41,14 @@ class ReportGenerator:
             gap: Gap object with failure patterns.
 
         Returns:
-            Actionable recommendation text.
+            Actionable recommendation text or sales signal notice.
         """
         # Analyze failure patterns to infer what's missing
         failure_text = " ".join(gap.failure_examples[:5]).lower()
 
-        # Pattern matching for common KB gaps
-        if any(word in failure_text for word in ["price", "pricing", "cost", "fee", "rate", "charge"]):
-            return f"Add comprehensive pricing documentation to `kb/{gap.module.lower()}/{gap.intent.lower()}.md`. Include: regional rates, volume discounts, payment terms, and FAQ for common pricing questions."
+        # Pricing queries are intentional signals, not KB gaps
+        if self.is_pricing_query(failure_text):
+            return f"[SALES SIGNAL] Forward to sales/deals team. This skill intentionally does not answer pricing questions — route for sales engagement."
 
         if any(word in failure_text for word in ["setup", "install", "configure", "onboard", "enable", "activate"]):
             return f"Expand setup/configuration guide in `kb/{gap.module.lower()}/{gap.intent.lower()}.md`. Add step-by-step instructions, prerequisites, troubleshooting, and common configuration scenarios."
@@ -48,7 +59,7 @@ class ReportGenerator:
         if any(word in failure_text for word in ["error", "fail", "bug", "issue", "timeout", "crash"]):
             return f"Add troubleshooting and error handling section to `kb/{gap.module.lower()}/{gap.intent.lower()}.md`. Document common error codes, causes, and resolution steps."
 
-        if any(word in failure_text for word in ["limit", "quota", "rate", "maximum", "minimum", "constraint"]):
+        if any(word in failure_text for word in ["limit", "quota", "maximum", "minimum", "constraint", "capacity"]):
             return f"Document limits and constraints in `kb/{gap.module.lower()}/{gap.intent.lower()}.md`. Specify: rate limits, size limits, quotas, thresholds, and workarounds."
 
         if any(word in failure_text for word in ["feature", "capability", "support", "available", "work", "compatible"]):
