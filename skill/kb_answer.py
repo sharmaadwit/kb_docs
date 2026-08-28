@@ -2440,6 +2440,67 @@ CONCEPT_REGISTRY: List[Dict] = [
         "related": ["prompt_node"],
     },
     {
+        "id": "ai_trigger_handover",
+        "aliases": [
+            "ai trigger", "ai trigger event", "hands over to an ai bot",
+            "hand over to an ai bot", "hand over context", "handover to ai bot",
+            "handover to an ai bot", "structured bot to ai bot",
+            "structured bot hands over", "bot to ai bot handover",
+            "rule bot to ai bot", "pass context to ai bot",
+            "pass context to an ai bot", "context handover to ai",
+            "ai bot receive context", "ai bot receive and use the answers",
+            "context collected by structured bot", "ai bot takeover",
+            "entity variable mapping ai trigger", "ai trained intent handover",
+            "trained intents trigger a journey", "intent based entities",
+            "entity to variable mapping",
+        ],
+        "keywords": ['entities', 'entity', 'intents', 'handover'],
+        "module_context": ["bot studio"],
+        "source_boosts": {"ai-trigger-event": 6.0, "manage-variables": 3.0},
+        "source_penalties": {},
+        "display": "AI Trigger Event",
+        "page_display": "AI Trigger Event",
+        "module": "Bot Studio",
+        "templates": {
+            "page_lookup": (
+                "Exact page\n- AI Trigger Event\nRelevant details\n"
+                "- AI Trigger (available with AI Recipe only) fires a journey when an intent trained in AI Admin is "
+                "detected, and it retains the context of that intent plus any entities mentioned in the user's message."
+            ),
+            "definition": (
+                "Exact page\n- AI Trigger Event\nRelevant details\n"
+                "- AI Trigger is a journey-trigger type (AI Recipe only) selected when intents are trained in AI "
+                "Admin; the journey fires when a specific intent is detected, and it is documented as the most "
+                "efficient way to trigger a journey because it retains the context of the intent and the entities "
+                "found in the user's input."
+            ),
+            "setup": (
+                "The documentation does not describe a dedicated 'handover' button between a structured bot and an "
+                "AI bot. The closest documented mechanism is AI Trigger plus variables:\n"
+                "\n"
+                "How collected context can reach the AI-triggered journey\n"
+                "- Store the answers the structured (rule-based) journey collects as `Local` or `Global` variables "
+                "in `Bot Studio -> Manage Variables`. Local variables persist for the session (until the "
+                "conversation ID resets, typically ~72 hours); Global variables persist against the user's channel "
+                "ID and don't clear automatically.\n"
+                "- Configure the next journey's start event as an `AI Trigger`, with intents trained in AI Admin. "
+                "When the AI Trigger fires, it retains the context of the detected intent and the entities present "
+                "in the user's message.\n"
+                "- Entity<>Variable mappings are tightly coupled: updating an entity's value updates the linked "
+                "variable and vice versa. That means values already captured as variables by the structured bot "
+                "remain available and can be referenced/mapped directly into nodes of the AI-triggered journey, "
+                "instead of being re-asked.\n"
+                "\n"
+                "What I could not verify from the available documentation\n"
+                "- There is no explicit 'takeover' or 'handover' node/API documented for structured-bot-to-AI-bot "
+                "transfer within the same platform; the above is the documented context-retention mechanism "
+                "(AI Trigger + variables), not a named handover feature."
+            ),
+        },
+        "compare_blurb": "Use AI Trigger with Local/Global variables when an AI-Admin-trained journey needs to pick up context collected earlier in the conversation.",
+        "related": ["ai_node", "manage_variables", "trigger_event"],
+    },
+    {
         "id": "sticky_journey",
         "aliases": [
             "sticky journey", "proactive persistent message",
@@ -7054,6 +7115,30 @@ def _compose_answer(
     # --- Single-entity template lookup (with score gate + alias gate) ---
     if entities and evidence:
         primary = entities[0]
+        # entities[0] is ranked by alias-match length (see _extract_entities),
+        # which can rank a different concept ahead of the one the top evidence
+        # chunk actually supports (e.g. two concepts both match the query, but
+        # phrasing shifts which alias is longest). If entities[0]'s
+        # source_boosts don't cover the top evidence source while another
+        # matched entity's do, prefer that entity so we don't skip a valid
+        # template and fall through to the stricter evidence-only path.
+        _top_source_for_primary = str(evidence[0].get("source") or "").lower()
+        if not any(
+            slug in _top_source_for_primary
+            for slug in primary.get("source_boosts", {})
+        ):
+            _supported = next(
+                (
+                    e for e in entities[1:]
+                    if any(
+                        slug in _top_source_for_primary
+                        for slug in e.get("source_boosts", {})
+                    )
+                ),
+                None,
+            )
+            if _supported is not None:
+                primary = _supported
         if (
             intent == "setup"
             and primary.get("id") == "prompt_node"
