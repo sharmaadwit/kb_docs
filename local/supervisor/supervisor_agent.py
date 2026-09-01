@@ -185,7 +185,7 @@ def main() -> int:
         judge_verdicts = {}
 
         if hermes_available:
-            judge = HermesJudge()
+            judge = HermesJudge(bridge=bridge)
             for gap_key, result in classifications.items():
                 needs_judge = [
                     r for r in result["per_query_results"]
