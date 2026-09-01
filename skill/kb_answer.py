@@ -7954,17 +7954,24 @@ def _send_langfuse(
 ) -> Dict:
     trace_id = f"kb-{trace_name}-{uuid.uuid4().hex[:16]}"
     top_source = results[0].get("source") if results else None
-    module_label = explicit_module if explicit_module != "General" else (
-        _module_from_source(top_source or "") if top_source else "General"
-    )
-    module_source = "explicit" if explicit_module != "General" else (
-        "inferred_from_top_source" if top_source else "default"
-    )
     answered = (
         bool(answer and answer.strip())
         and not clarification_asked
         and "i don't know" not in answer.lower()
     )
+    module_source = "explicit" if explicit_module != "General" else (
+        "inferred_from_top_source" if top_source else "default"
+    )
+    # For IDK responses, top-source inference is unreliable (the top doc is
+    # the retriever's best guess, not a doc the skill actually used). Fall back
+    # to "General" so downstream consumers (dashboard, supervisor) don't
+    # attribute failures to the wrong module.
+    if explicit_module != "General":
+        module_label = explicit_module
+    elif answered and top_source:
+        module_label = _module_from_source(top_source)
+    else:
+        module_label = "General"
     unanswered = (not answered) and ("i don't know" in (answer or "").lower())
     identifiers = _telemetry_identifiers(context, params)
     trace_user_id, user_meta = _langfuse_user_context(context, params)
