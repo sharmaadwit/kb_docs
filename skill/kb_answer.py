@@ -3088,6 +3088,23 @@ CONCEPT_REGISTRY: List[Dict] = [
     },
     # ---- IDK-fix routing concepts (boost the correct EXISTING page) ----
     {
+        "id": "console_navigation",
+        "aliases": [
+            "console login", "gupshup console login", "log in to console",
+            "how to access console", "where is console", "console link",
+            "console overview", "how to navigate console",
+            "find features in console", "console navigation",
+            "direct link to console", "console in product ui",
+            "how do i open console", "open gupshup console",
+            "where is console in product ui", "console login page",
+            "gupshup console overview", "navigate gupshup console",
+        ],
+        "keywords": ["console", "login", "navigate"],
+        "source_boosts": {"overview/console-navigation-guide": 6.0},
+        "display": "Gupshup Console Navigation",
+        "module": "Overview",
+    },
+    {
         "id": "console_roles",
         "aliases": [
             "console roles", "console role", "roles in gupshup console",
