@@ -1692,8 +1692,15 @@ CONCEPT_REGISTRY: List[Dict] = [
     },
     {
         "id": "whatsapp_flow",
-        "aliases": ["flow trigger", "launch a whatsapp flow", "whatsapp flow node"],
-        "keywords": ['flow', 'whatsapp'],
+        "aliases": [
+            "flow trigger", "launch a whatsapp flow", "whatsapp flow node",
+            "whatsapp flows", "whatsapp flows component", "flows component",
+            "flows screen", "navigate to next screen", "navigate to another screen",
+            "optin component", "opt in component", "on-click-action", "on click action",
+            "embedded link", "read more hypertext", "clickable text flow",
+            "whatsapp flows ui", "whatsapp flow screen", "whatsapp flow component",
+        ],
+        "keywords": ['flow', 'flows', 'whatsapp'],
         "module_context": ["journey builder", "whatsapp flow"],
         "source_boosts": {"whatsapp-flows": 8.0},
         "source_penalties": {"whatsapp-pricing": -4.0, "waba-setup-detailed": -4.0},
@@ -2173,6 +2180,32 @@ CONCEPT_REGISTRY: List[Dict] = [
         },
         "compare_blurb": "You need rich messaging with templates, media, and webhooks for global reach.",
         "related": ["whatsapp_business_api", "instagram", "webhooks"],
+    },
+
+    {
+        "id": "sms_registration",
+        "aliases": [
+            "sms registration", "register for sms", "register sms account",
+            "sms account registration", "sms account setup", "how to register for sms",
+            "register my account for sms", "register account for sms sending",
+            "sms sending registration", "sms dlt registration", "dlt registration",
+            "dlt registration guide", "register sms sender", "sms sender registration",
+            "enable sms sending", "set up sms", "sms setup", "activate sms",
+            "sms onboarding", "sms sender id", "sms tsp registration",
+            "register sms", "start sending sms", "send sms from gupshup",
+        ],
+        "keywords": ["sms", "dlt", "tsp", "registration", "sender"],
+        "module_context": ["channels", "sms"],
+        "source_boosts": {"dlt-registration-guide": 6.0},
+        "source_penalties": {
+            "unlinking-your-instagram-account": -5.0,
+            "rcs-overview": -2.0,
+            "rcs-quickstart": -2.0,
+        },
+        "display": "SMS Account Registration",
+        "page_display": "SMS DLT Registration",
+        "module": "Channels",
+        "related": ["rcs", "webhooks"],
     },
 
     # ---- Integrations ----
@@ -3339,6 +3372,31 @@ CONCEPT_REGISTRY: List[Dict] = [
         "page_display": "WhatsApp Channel Onboarding",
         "module": "WhatsApp",
         "related": ["waba_setup", "whatsapp_process", "whatsapp_templates"],
+    },
+    {
+        "id": "partner_program",
+        "aliases": [
+            "solution id", "partner credentials", "partner credential",
+            "partner program", "isv partner", "tech provider", "solution partner",
+            "gupshup partner", "partner onboarding", "reseller program",
+            "meta tech provider", "get solution id", "obtain solution id",
+            "partner registration", "partner portal", "partner api",
+            "whatsapp solution provider", "solution provider registration",
+        ],
+        "keywords": ["partner", "solution", "isv", "reseller", "credential"],
+        "source_boosts": {"reseller-and-partner-programs/partner-program-overview": 5.0},
+        "source_penalties": {
+            "waba-setup-detailed-gupshup-console": -3.0,
+            "setup-whatsapp-business-account-waba-in-gupshup": -3.0,
+        },
+        "display": "Gupshup Partner Program & Solution ID",
+        "page_display": "Gupshup Partner Program & Solution ID",
+        "module": "Channels",
+        "idk_note": (
+            "KB covers program tiers and application process only. "
+            "Step-by-step to obtain Meta Tech Provider Solution ID is not documented "
+            "— IDK and escalate to sales."
+        ),
     },
     {
         "id": "journey_builder_nodes",
