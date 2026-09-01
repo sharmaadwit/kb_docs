@@ -1554,10 +1554,12 @@ CONCEPT_REGISTRY: List[Dict] = [
         ],
         "keywords": ['transfer', 'handover', 'escalate', 'escalation'],
         "module_context": [],
-        "source_boosts": {"agent-transfer-node": 5.0, "chat-management-assignment-rules": 4.0},
+        "source_boosts": {"agent-transfer-node": 13.0, "chat-management-assignment-rules": 4.0},
         "source_penalties": {
             "agent-personality": -4.0,
             "response-management-auto-replies-and-customer-satisfaction": -5.0,
+            "superagent/concepts/agents": -5.0,
+            "superagent/guides/create-agent": -5.0,
         },
         "display": "Agent Transfer Node",
         "page_display": "Agent Transfer Node",
@@ -1693,8 +1695,8 @@ CONCEPT_REGISTRY: List[Dict] = [
         "aliases": ["flow trigger", "launch a whatsapp flow", "whatsapp flow node"],
         "keywords": ['flow', 'whatsapp'],
         "module_context": ["journey builder", "whatsapp flow"],
-        "source_boosts": {"whatsapp-flow": 4.0, "flow-trigger": 4.0},
-        "source_penalties": {},
+        "source_boosts": {"whatsapp-flows": 8.0},
+        "source_penalties": {"whatsapp-pricing": -4.0, "waba-setup-detailed": -4.0},
         "display": "WhatsApp Flow Node",
         "page_display": "WhatsApp Flow Node",
         "module": "Bot Studio",
@@ -4232,6 +4234,16 @@ def _detect_module(query: str) -> str:
     # 5. Carve-out: agent + template -> Agent Assist (R6 partial).
     if has_agent and "template" in q:
         return "Agent Assist"
+
+    # 5e. Agent Transfer Node is a Bot Studio concept — must resolve before the
+    #     generic "has_agent → SuperAgent" fallback (line 4271) eats it.
+    if "agent transfer" in q or "transfer node" in q:
+        return "Bot Studio"
+
+    # 5f. WhatsApp Flow Node is a Bot Studio / Journey Builder concept.
+    #     Must resolve before the EXPLICIT_MODULES "whatsapp" → WhatsApp mapping.
+    if "whatsapp flow" in q and ("node" in q or "journey" in q or "flow node" in q):
+        return "Bot Studio"
 
     # 5b. Build/skills verbs + agent -> SuperAgent (R2).
     #     "How do I build an agent?" must route to SuperAgent instead of
