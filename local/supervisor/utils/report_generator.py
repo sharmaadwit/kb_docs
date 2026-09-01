@@ -1,6 +1,5 @@
-"""Report generator - format markdown report and call Qwen for recommendations."""
+"""Report generator - format markdown report from gap classifications."""
 
-import json
 import logging
 from datetime import datetime, timezone
 from pathlib import Path
@@ -11,187 +10,177 @@ from .qwen_interface import QwenInterface
 
 logger = logging.getLogger(__name__)
 
+# Human-readable labels + one-line action guidance per category. Keeps the
+# per-gap rendering logic (format_gap_section) a lookup instead of a long
+# if/elif chain, and keeps the "what do I do about this" guidance in one
+# place instead of scattered across category-specific branches.
+_CATEGORY_LABELS = {
+    "ALREADY_FIXED": "✅ Already Fixed",
+    "CODE_GAP_ALIAS_CANDIDATE": "🔧 Code Gap — Alias Candidate",
+    "CODE_GAP_MISSING_CONCEPT": "🔧 Code Gap — Missing Concept Entry",
+    "CODE_GAP_NEEDS_INVESTIGATION": "🔎 Code Gap — Needs Investigation",
+    "CONTENT_GAP": "📄 Content Gap",
+    "OUT_OF_SCOPE_PRICING": "💰 Out of Scope — Pricing (Sales Signal)",
+    "OUT_OF_SCOPE_ACCOUNT_SUPPORT": "🔐 Out of Scope — Account/Support",
+    "MIXED": "⚠️ Mixed — Heterogeneous Gap",
+}
+
+_CATEGORY_ACTIONS = {
+    "ALREADY_FIXED": "No action needed — a prior fix already resolved this. Verify on next supervisor run that it stays fixed.",
+    "CODE_GAP_ALIAS_CANDIDATE": "Add the suggested aliases to the named CONCEPT_REGISTRY entry in skill/kb_answer.py, verify via the offline regression harness, then commit.",
+    "CODE_GAP_MISSING_CONCEPT": "Review the matched KB files below — likely needs a new CONCEPT_REGISTRY entry (not just aliases on an existing one).",
+    "CODE_GAP_NEEDS_INVESTIGATION": "Rule-based classification can't diagnose this — needs a code investigation agent (see Hermes judge verdict below, if available).",
+    "CONTENT_GAP": "No matching KB content found. Route to the KB content team — this is not a code fix.",
+    "OUT_OF_SCOPE_PRICING": "Forward to sales/deals team. This skill intentionally does not answer pricing questions.",
+    "OUT_OF_SCOPE_ACCOUNT_SUPPORT": "Route to account support — not a documentable KB topic (personal account recovery / OTP / login issues).",
+    "MIXED": "This gap groups multiple distinct problem types under one (module, intent) label — review the per-category breakdown below rather than treating it as one issue.",
+}
+
 
 class ReportGenerator:
-    """Generate markdown report with Qwen-powered gap analysis."""
+    """Generate markdown report from GapClassifier output."""
 
-    def __init__(self, qwen: QwenInterface) -> None:
+    def __init__(self, qwen: QwenInterface = None) -> None:
         """Initialize report generator.
 
         Args:
-            qwen: QwenInterface instance for LLM calls.
+            qwen: Unused by the current classification-driven report (kept
+                for backward compatibility / future optional LLM commentary).
         """
         self.qwen = qwen
 
-    def is_pricing_query(self, failure_text: str) -> bool:
-        """Check if failure text contains pricing-related keywords.
-
-        Args:
-            failure_text: Lowercase failure query text.
-
-        Returns:
-            True if pricing-related, False otherwise.
-        """
-        return any(word in failure_text for word in ["price", "pricing", "cost", "fee", "discount", "subscription", "plan", "payment"])
-
-    def generate_fallback_recommendation(self, gap: Gap) -> str:
-        """Generate smart fallback recommendation based on gap analysis.
-
-        Args:
-            gap: Gap object with failure patterns.
-
-        Returns:
-            Actionable recommendation text or sales signal notice.
-        """
-        # Analyze failure patterns to infer what's missing
-        failure_text = " ".join(gap.failure_examples[:5]).lower()
-
-        # Pricing queries are intentional signals, not KB gaps
-        if self.is_pricing_query(failure_text):
-            return f"[SALES SIGNAL] Forward to sales/deals team. This skill intentionally does not answer pricing questions — route for sales engagement."
-
-        if any(word in failure_text for word in ["setup", "install", "configure", "onboard", "enable", "activate"]):
-            return f"Expand setup/configuration guide in `kb/{gap.module.lower()}/{gap.intent.lower()}.md`. Add step-by-step instructions, prerequisites, troubleshooting, and common configuration scenarios."
-
-        if any(word in failure_text for word in ["api", "endpoint", "request", "response", "parameter", "payload"]):
-            return f"Update API reference documentation in `kb/{gap.module.lower()}/{gap.intent.lower()}.md`. Include: endpoint details, request/response formats, error codes, code examples, and authentication."
-
-        if any(word in failure_text for word in ["error", "fail", "bug", "issue", "timeout", "crash"]):
-            return f"Add troubleshooting and error handling section to `kb/{gap.module.lower()}/{gap.intent.lower()}.md`. Document common error codes, causes, and resolution steps."
-
-        if any(word in failure_text for word in ["limit", "quota", "maximum", "minimum", "constraint", "capacity"]):
-            return f"Document limits and constraints in `kb/{gap.module.lower()}/{gap.intent.lower()}.md`. Specify: rate limits, size limits, quotas, thresholds, and workarounds."
-
-        if any(word in failure_text for word in ["feature", "capability", "support", "available", "work", "compatible"]):
-            return f"Add feature matrix/capability documentation to `kb/{gap.module.lower()}/{gap.intent.lower()}.md`. List supported features, versions, and platform compatibility."
-
-        if any(word in failure_text for word in ["how", "way", "method", "approach", "best practice"]):
-            return f"Add best practices and how-to guides to `kb/{gap.module.lower()}/{gap.intent.lower()}.md`. Include: common use cases, recommended approaches, and code patterns."
-
-        # Default fallback
-        failure_rate = (1 - gap.answer_rate) * 100
-        return f"Review and expand `kb/{gap.module.lower()}/{gap.intent.lower()}.md` to address {failure_rate:.0f}% of unanswered queries. Analyze sample failures to identify missing sections and add comprehensive documentation."
-
-    def analyze_gap_with_qwen(self, gap: Gap, success_examples: List[str]) -> Dict[str, str]:
-        """Analyze gap using Qwen LLM, with smart fallback recommendations.
-
-        Args:
-            gap: Gap object to analyze.
-            success_examples: Examples of successful queries for comparison.
-
-        Returns:
-            Dictionary with 'root_cause', 'kb_gap', and 'recommendation' keys.
-        """
-        logger.info(f"Analyzing gap: {gap.summary()}")
-
-        # Build prompt for Qwen
-        failure_examples = "\n".join(f"  - {q}" for q in gap.failure_examples[:3])
-        success_exs = "\n".join(f"  - {q}" for q in success_examples[:3])
-
-        prompt = f"""Analyze this KB gap and provide recommendations.
-
-**Gap Details:**
-- Module: {gap.module}
-- Intent: {gap.intent}
-- Answer Rate: {gap.answer_rate*100:.1f}% ({gap.success_count}/{gap.total_count})
-- Failures: {gap.failure_count}
-
-**Failing Queries (examples):**
-{failure_examples}
-
-**Successful Queries (for reference):**
-{success_exs}
-
-**Task:**
-1. Identify the root cause (what's missing from the KB?)
-2. Specify the KB file/section that needs updating
-3. Provide actionable recommendations for the KB team
-
-Format your response as JSON with these keys:
-- root_cause (brief sentence)
-- kb_gap (file path, e.g., kb/module/intent.md)
-- recommendation (detailed, actionable steps)
-
-Example:
-{{"root_cause": "KB missing pricing section", "kb_gap": "kb/whatsapp/pricing.md", "recommendation": "Add regional pricing table..."}}"""
-
-        response = self.qwen.call(prompt)
-        if not response:
-            logger.warning(f"Qwen call failed for {gap.summary()}, using smart fallback")
-            return {
-                "root_cause": f"KB section missing or incomplete (based on {gap.failure_count} failures)",
-                "kb_gap": f"kb/{gap.module.lower()}/{gap.intent.lower()}.md",
-                "recommendation": self.generate_fallback_recommendation(gap),
-            }
-
-        # Parse JSON response
-        try:
-            analysis = json.loads(response)
-            return {
-                "root_cause": analysis.get("root_cause", ""),
-                "kb_gap": analysis.get("kb_gap", ""),
-                "recommendation": analysis.get("recommendation", ""),
-            }
-        except json.JSONDecodeError:
-            logger.warning(f"Failed to parse Qwen JSON, using smart fallback: {response[:100]}")
-            return {
-                "root_cause": f"KB section missing or incomplete (based on {gap.failure_count} failures)",
-                "kb_gap": f"kb/{gap.module.lower()}/{gap.intent.lower()}.md",
-                "recommendation": self.generate_fallback_recommendation(gap),
-            }
-
-    def format_gap_section(self, gap_index: int, gap: Gap, analysis: Dict[str, str]) -> str:
-        """Format markdown section for one gap.
+    def format_gap_section(
+        self,
+        gap_index: int,
+        gap: Gap,
+        classification: Dict[str, Any],
+        judge_verdict: Dict[str, Any] = None,
+    ) -> str:
+        """Format markdown section for one gap from its classification result.
 
         Args:
             gap_index: Gap number (1, 2, 3, etc.).
             gap: Gap object with metrics.
-            analysis: Analysis dict from Qwen (root_cause, kb_gap, recommendation).
+            classification: Result dict from GapClassifier.classify_gap()
+                (category, confidence, evidence, per_query_results).
+            judge_verdict: Optional Hermes judge result for
+                CODE_GAP_NEEDS_INVESTIGATION cases.
 
         Returns:
             Formatted markdown string.
         """
+        category = classification["category"]
+        label = _CATEGORY_LABELS.get(category, category)
+        action = _CATEGORY_ACTIONS.get(category, "Review manually.")
+
         section = f"""## Gap #{gap_index}: {gap.module} / {gap.intent}
 
 **Severity:** {gap.failure_count} failures, {gap.answer_rate*100:.1f}% answer rate
+
+**Classification:** {label} (confidence: {classification['confidence']})
 
 **Sample Failures:**
 """
         for query in gap.failure_examples[:3]:
             section += f"  - {query}\n"
 
-        section += f"""
-**Root Cause:** {analysis.get("root_cause", "N/A")}
+        if category == "MIXED":
+            breakdown = classification["evidence"]["category_breakdown"]
+            section += "\n**Category Breakdown:**\n"
+            for sub_category, queries in breakdown.items():
+                sub_label = _CATEGORY_LABELS.get(sub_category, sub_category)
+                section += f"  - {sub_label} ({len(queries)} sample{'s' if len(queries) != 1 else ''}):\n"
+                for q in queries:
+                    section += f"      - {q[:120]}\n"
+        else:
+            section += self._format_category_evidence(category, classification)
 
-**KB File:** `{analysis.get("kb_gap", "N/A")}`
+        if judge_verdict is not None:
+            section += "\n**Hermes Judge Verdict:**\n"
+            if judge_verdict.get("degraded"):
+                section += f"  - ⚠️ Degraded (Hermes unavailable): {judge_verdict['reasoning']}\n"
+            else:
+                section += f"  - Root cause: `{judge_verdict['root_cause']}` (confidence: {judge_verdict['confidence']:.0%})\n"
+                section += f"  - Reasoning: {judge_verdict['reasoning']}\n"
+                section += f"  - Suggested next step: {judge_verdict['suggested_next_step']}\n"
 
-**Recommendation:**
-{analysis.get("recommendation", "N/A")}
-
-"""
+        section += f"\n**Recommendation:** {action}\n\n"
         return section
+
+    def _format_category_evidence(self, category: str, classification: Dict[str, Any]) -> str:
+        """Render category-specific evidence from the first per-query result."""
+        per_query = classification.get("per_query_results", [])
+        if not per_query:
+            return ""
+        result = per_query[0]
+        evidence = result.get("evidence", {})
+        out = ""
+
+        if category == "ALREADY_FIXED":
+            out += f"\n**Evidence:** Re-running against current skill code now produces a real answer.\n"
+            out += f"  - Answer preview: {evidence.get('answer_preview', '')}\n"
+            out += f"  - Evidence sources: {', '.join(evidence.get('evidence_sources', [])) or 'none'}\n"
+
+        elif category == "CODE_GAP_ALIAS_CANDIDATE":
+            out += "\n**Near-Miss Concepts (alias candidates):**\n"
+            for concept in evidence.get("near_miss_concepts", []):
+                out += f"  - `{concept['concept_id']}` — matched keywords: {concept['matched_keywords']}\n"
+                out += f"    existing aliases (sample): {concept['existing_aliases_sample']}\n"
+
+        elif category == "CODE_GAP_MISSING_CONCEPT":
+            content_check = evidence.get("content_check", {})
+            out += f"\n**On-topic KB content found (no CONCEPT_REGISTRY entry claims it):**\n"
+            for m in content_check.get("matches", []):
+                out += f"  - `{m['source']}` (coverage: {m['coverage']:.0%}, matched terms: {m['matched_terms']})\n"
+
+        elif category == "CODE_GAP_NEEDS_INVESTIGATION":
+            out += f"\n**Evidence:** {evidence.get('reason', 'entities matched but answer is still IDK')}\n"
+            out += f"  - Module/Intent: {evidence.get('module')} / {evidence.get('intent')}\n"
+            out += f"  - Entities matched: {evidence.get('entities', [])}\n"
+            out += f"  - Evidence sources: {', '.join(evidence.get('evidence_sources', [])) or 'none'}\n"
+            out += f"  - Top score: {evidence.get('top_score')}\n"
+
+        elif category == "CONTENT_GAP":
+            content_check = evidence.get("content_check", {})
+            out += f"\n**Evidence:** No entity/keyword match and no on-topic KB content found.\n"
+            if content_check.get("checked_terms"):
+                out += f"  - Terms checked: {content_check['checked_terms']}\n"
+
+        elif category == "OUT_OF_SCOPE_PRICING":
+            out += f"\n**Matched pricing keywords:** {evidence.get('matched_keywords', [])}\n"
+
+        elif category == "OUT_OF_SCOPE_ACCOUNT_SUPPORT":
+            out += f"\n**Matched account/support phrases:** {evidence.get('matched_phrases', [])}\n"
+
+        return out
 
     def generate_report(
         self,
         gaps: List[Gap],
         traces: List[Dict[str, Any]],
         output_path: Path,
+        classifications: Dict[str, Dict[str, Any]] = None,
+        judge_verdicts: Dict[str, Dict[str, Any]] = None,
     ) -> str:
-        """Generate full markdown report with Qwen analysis.
+        """Generate full markdown report from gap classifications.
 
         Args:
             gaps: List of selected Gap objects.
             traces: Complete list of all traces (for metrics).
             output_path: Path to write report.
+            classifications: Dict of gap_id -> GapClassifier.classify_gap() result.
+            judge_verdicts: Dict of gap_id -> HermesJudge.judge_gap() result
+                (only present for gaps that needed judging).
 
         Returns:
             Full report text.
         """
         logger.info(f"Generating report ({len(gaps)} gaps)...")
+        classifications = classifications or {}
+        judge_verdicts = judge_verdicts or {}
 
         timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
-        # Summary section
         total_failures = sum(g.failure_count for g in gaps)
         total_successes = sum(g.success_count for g in gaps)
         overall_answer_rate = (
@@ -214,26 +203,39 @@ Example:
 
 """
 
+        if classifications:
+            category_counts: Dict[str, int] = {}
+            for result in classifications.values():
+                category_counts[result["category"]] = category_counts.get(result["category"], 0) + 1
+
+            report += "## Classification Summary\n\n"
+            for category, count in sorted(category_counts.items(), key=lambda x: -x[1]):
+                label = _CATEGORY_LABELS.get(category, category)
+                report += f"- **{label}:** {count} gap{'s' if count != 1 else ''}\n"
+            report += "\n"
+
         # Per-gap sections
         for i, gap in enumerate(gaps, 1):
-            # Get all success examples from traces for this gap
-            success_examples = gap.success_examples or [
-                t.get("query", "")
-                for t in traces
-                if t.get("module") == gap.module
-                and t.get("intent") == gap.intent
-                and t.get("answered", False)
-            ][:3]
+            gap_key = f"Gap #{i}"
+            classification = classifications.get(gap_key)
+            judge_verdict = judge_verdicts.get(gap_key)
 
-            analysis = self.analyze_gap_with_qwen(gap, success_examples)
-            gap_section = self.format_gap_section(i, gap, analysis)
-            report += gap_section
+            if classification is None:
+                # No classifier result available for this gap (shouldn't
+                # normally happen) — render a minimal fallback section.
+                report += f"## Gap #{i}: {gap.module} / {gap.intent}\n\n"
+                report += f"**Severity:** {gap.failure_count} failures, {gap.answer_rate*100:.1f}% answer rate\n\n"
+                report += "**Classification:** unavailable\n\n"
+                continue
+
+            report += self.format_gap_section(i, gap, classification, judge_verdict)
 
         # Metrics section
-        modules_affected = {}
+        modules_affected: Dict[str, Dict[str, int]] = {}
         for trace in traces:
-            module = trace.get("module", "Unknown")
-            answered = trace.get("answered", False)
+            metadata = trace.get("metadata", {})
+            module = metadata.get("module_label", trace.get("module", "Unknown"))
+            answered = metadata.get("answered", trace.get("answered", False))
             if module not in modules_affected:
                 modules_affected[module] = {"success": 0, "total": 0}
             modules_affected[module]["total"] += 1
@@ -252,21 +254,16 @@ Example:
             )
             report += f"  - {module}: {module_rate:.1f}% answer rate ({counts['success']}/{counts['total']})\n"
 
-        report += f"""
-## Action Items
-
-"""
+        report += "\n## Action Items\n\n"
         for i, gap in enumerate(gaps, 1):
-            report += f"  - [ ] Gap #{i}: {gap.module} team - Review and implement recommendations\n"
+            gap_key = f"Gap #{i}"
+            classification = classifications.get(gap_key)
+            category = classification["category"] if classification else "unavailable"
+            label = _CATEGORY_LABELS.get(category, category)
+            report += f"  - [ ] Gap #{i}: {gap.module} / {gap.intent} — {label}\n"
 
-        report += f"""
----
+        report += f"\n---\n\n**Local Logs:** `local/supervisor/logs/supervisor_*.log`\n\n"
 
-**Local Logs:** `local/supervisor/logs/supervisor_*.log`
-
-"""
-
-        # Write report
         try:
             output_path.parent.mkdir(parents=True, exist_ok=True)
             with open(output_path, "w") as f:

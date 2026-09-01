@@ -12,6 +12,10 @@ from .utils.trace_loader import TraceLoader
 from .utils.trace_analyzer import TraceAnalyzer
 from .utils.gap_identifier import GapIdentifier
 from .utils.report_generator import ReportGenerator
+from .utils.skill_pipeline_bridge import SkillPipelineBridge
+from .utils.gap_classifier import GapClassifier, ALREADY_FIXED, CODE_GAP_NEEDS_INVESTIGATION
+from .utils.hermes_judge import HermesJudge, is_hermes_available
+from .utils.proposals_writer import ProposalsWriter
 
 
 def setup_logging(logs_dir: Path, timestamp: str) -> logging.Logger:
@@ -147,8 +151,86 @@ def main() -> int:
         )
         logger.info(f"Selected {len(selected_gaps)} gaps for detailed analysis")
 
+        # Step 3.5: Classify each gap against the REAL skill pipeline (NEW)
+        #
+        # Replaces the old kb_searcher/rag_diagnostician keyword-scoring
+        # diagnosis (which produced a uniform, miscalibrated "RETRIEVAL 85%"
+        # verdict on every gap). GapClassifier re-runs each gap's failure
+        # queries through the actual skill/kb_answer.py pipeline (via
+        # SkillPipelineBridge) and classifies by what really happened:
+        # ALREADY_FIXED, CODE_GAP_ALIAS_CANDIDATE, CODE_GAP_MISSING_CONCEPT,
+        # CODE_GAP_NEEDS_INVESTIGATION, CONTENT_GAP, OUT_OF_SCOPE_PRICING,
+        # OUT_OF_SCOPE_ACCOUNT_SUPPORT, or MIXED (heterogeneous gap).
+        logger.info("STEP 3.5: Classifying gaps against the real skill pipeline")
+        bridge = SkillPipelineBridge()
+        classifier = GapClassifier(bridge)
+
+        classifications = {}
+        for i, gap in enumerate(selected_gaps, 1):
+            gap_key = f"Gap #{i}"
+            logger.info(f"  Classifying {gap.module}/{gap.intent}...")
+            result = classifier.classify_gap(gap.failure_examples, max_samples=3)
+            classifications[gap_key] = result
+            logger.info(f"    {gap_key}: {result['category']} (confidence={result['confidence']})")
+
+        # Step 3.6: Defer hard/ambiguous cases to the Hermes LLM judge (NEW)
+        #
+        # Only CODE_GAP_NEEDS_INVESTIGATION samples get a judge call — these
+        # are cases where a rule genuinely can't diagnose the root cause
+        # (entities matched but the answer is still IDK, e.g. the entities[0]
+        # composition-bug pattern found earlier this session). Checks once
+        # whether Hermes is even available before attempting any calls.
+        hermes_available = is_hermes_available()
+        logger.info(f"STEP 3.6: Hermes judge availability: {hermes_available}")
+        judge_verdicts = {}
+
+        if hermes_available:
+            judge = HermesJudge()
+            for gap_key, result in classifications.items():
+                needs_judge = [
+                    r for r in result["per_query_results"]
+                    if r["category"] == CODE_GAP_NEEDS_INVESTIGATION
+                ]
+                if not needs_judge:
+                    continue
+                sample = needs_judge[0]
+                gap = selected_gaps[int(gap_key.split("#")[1]) - 1]
+                gap_summary = {
+                    "module": gap.module,
+                    "intent": gap.intent,
+                    "failure_examples": [sample["query"]],
+                    "entities_matched": sample["evidence"].get("entities", []),
+                    "evidence_sources": sample["evidence"].get("evidence_sources", []),
+                    "current_answer_preview": (sample["evidence"].get("answer") or "")[:300],
+                    "deterministic_classification": sample["category"],
+                }
+                logger.info(f"  Judging {gap_key} ({gap.module}/{gap.intent})...")
+                verdict = judge.judge_gap(gap_summary)
+                judge_verdicts[gap_key] = verdict
+                if verdict.get("degraded"):
+                    logger.warning(f"    {gap_key}: judge degraded — {verdict['reasoning']}")
+                else:
+                    logger.info(f"    {gap_key}: {verdict['root_cause']} (confidence={verdict['confidence']})")
+        else:
+            logger.info("  Hermes not available — skipping judge calls for this run")
+
+        # Step 3.7: Write actionable gaps to Hermes Kanban board
+        logger.info("STEP 3.7: Writing actionable gaps to Kanban board")
+        from .utils.kanban_writer import KanbanWriter
+        kanban = KanbanWriter()
+        kanban_task_ids = {}
+        for i, gap in enumerate(selected_gaps, 1):
+            gap_key = f"Gap #{i}"
+            classification = classifications.get(gap_key, {})
+            task_ids = kanban.write_gap_tasks(i, gap, classification)
+            if task_ids:
+                kanban_task_ids[gap_key] = task_ids
+                logger.info(f"  {gap_key}: created {len(task_ids)} kanban task(s): {task_ids}")
+            else:
+                logger.info(f"  {gap_key}: no kanban task (category: {classification.get('category')})")
+
         # Step 4: Generate report
-        logger.info("STEP 4: Generating report with Qwen analysis")
+        logger.info("STEP 4: Generating report with gap classifications")
         qwen = QwenInterface(
             base_url=config.anthropic_base_url,
             auth_token=config.anthropic_auth_token,
@@ -160,11 +242,27 @@ def main() -> int:
 
         generator = ReportGenerator(qwen)
         report_path = config.reports_dir / f"supervisor_{timestamp}.md"
-        report_text = generator.generate_report(selected_gaps, all_traces, report_path)
+        report_text = generator.generate_report(
+            selected_gaps,
+            all_traces,
+            report_path,
+            classifications=classifications,
+            judge_verdicts=judge_verdicts,
+        )
+
+        # Step 5: Write proposals document
+        logger.info("STEP 5: Writing proposals document")
+        proposals_writer = ProposalsWriter(
+            output_dir=Path("local/supervisor/proposals")
+        )
+        tasks = proposals_writer.load_tasks()
+        proposals_path = proposals_writer.write_document(tasks)
+        logger.info(f"  Proposals written to: {proposals_path}")
 
         logger.info("=" * 80)
         logger.info("KB Supervisor Agent Completed Successfully")
         logger.info(f"Report: {report_path}")
+        logger.info(f"Proposals: {proposals_path}")
         logger.info(f"Logs: {config.logs_dir / f'supervisor_{timestamp}.log'}")
         logger.info("=" * 80)
 
@@ -176,6 +274,7 @@ def main() -> int:
         print(f"✓ New traces: {len(new_traces)}")
         print(f"✓ Gaps identified: {len(selected_gaps)}")
         print(f"✓ Report: {report_path}")
+        print(f"✓ Proposals: {proposals_path}  ← review & edit, then tell Claude 'apply proposals'")
         print(f"✓ Logs: {config.logs_dir / f'supervisor_{timestamp}.log'}")
         print("=" * 80 + "\n")
 
