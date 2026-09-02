@@ -218,16 +218,40 @@ def main() -> int:
         logger.info("STEP 3.7: Writing actionable gaps to Kanban board")
         from .utils.kanban_writer import KanbanWriter
         kanban = KanbanWriter()
-        kanban_task_ids = {}
+        archived = kanban.clear_board()
+        logger.info(f"  Cleared {archived} stale task(s) from board")
+        kanban_task_pairs = {}  # gap_key -> [(task_id, sub_category)]
         for i, gap in enumerate(selected_gaps, 1):
             gap_key = f"Gap #{i}"
             classification = classifications.get(gap_key, {})
-            task_ids = kanban.write_gap_tasks(i, gap, classification)
-            if task_ids:
-                kanban_task_ids[gap_key] = task_ids
-                logger.info(f"  {gap_key}: created {len(task_ids)} kanban task(s): {task_ids}")
+            pairs = kanban.write_gap_tasks(i, gap, classification)
+            if pairs:
+                kanban_task_pairs[gap_key] = pairs
+                task_ids = [p[0] for p in pairs]
+                logger.info(f"  {gap_key}: created {len(pairs)} kanban task(s): {task_ids}")
             else:
                 logger.info(f"  {gap_key}: no kanban task (category: {classification.get('category')})")
+
+        # Step 3.8: Enrich kanban tasks with classification findings and judge verdicts
+        logger.info("STEP 3.8: Enriching kanban tasks with findings")
+        for gap_key, pairs in kanban_task_pairs.items():
+            gap_idx = int(gap_key.split("#")[1]) - 1
+            gap = selected_gaps[gap_idx]
+            classification = classifications.get(gap_key, {})
+            judge_verdict = judge_verdicts.get(gap_key)
+            for task_id, sub_category in pairs:
+                finding = kanban.build_finding(
+                    sub_category=sub_category,
+                    gap=gap,
+                    classification=classification,
+                    judge_verdict=judge_verdict,
+                )
+                if finding:
+                    ok = kanban.post_hermes_finding(task_id, finding)
+                    if ok:
+                        logger.info(f"  Posted finding to {task_id} ({sub_category}, conf={finding.get('confidence')})")
+                    else:
+                        logger.warning(f"  Failed to post finding to {task_id}")
 
         # Step 4: Generate report
         logger.info("STEP 4: Generating report with gap classifications")
