@@ -37,6 +37,9 @@ local/reports/*
 # local-only per this policy going forward)
 kb/analytics/
 
+# Internal implementation/consulting docs (local use only)
+CONSULTING_MODE_*.md
+
 # YouTube auth + transcript build intermediates (never commit; secrets/raw)
 cookies.txt
 **/cookies.txt
