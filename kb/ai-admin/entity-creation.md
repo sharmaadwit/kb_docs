@@ -1,110 +1,59 @@
-source_url: https://console-docs.gupshup.io/docs/intent-description
+> Source: https://console-docs.gupshup.io/docs/entity-creation
+> Last updated: 2026-09-11
 
-<!-- kb-golden:v10 -->
-# Entity Creation
+Intents and Named Entity Recognition (NER) are key tasks when leveraging a Language Model for zero-shot predictions. Effective names are crucial to ensure the language model understands the inputs better and performs tasks optimally. 
 
-**Module**: Ai Admin
+Here are some guidelines that can help you come up with better names for Intents and NERs:
 
-## Definition
-An "entity" refers to a specific piece of information within a user's input or utterance. Essentially, it's like a key detail or variable that the AI needs to understand to provide a relevant response or take appropriate action. For example, if someone says, "Book a flight to Paris on Saturday," the entities in this utterance would likely be "Paris" (the destination) and "Saturday" (the date).
+1. **Use Clear and Descriptive Names:** Make sure the name represents the task or intention clearly. This makes it easier for the model to predict the right outcome based on the intent's name.
 
-## Procedure
-### Exact UI path
-Gupshup Console → Ai Admin → Entity Creation
+Example: Use "book\_flight\_ticket" instead of "task\_1" for an intent that is meant to book flight tickets.
 
-### Prerequisites
-- Access to **Gupshup Console → Ai Admin → Entity Creation** in Gupshup Console.
+2. **Keep it simple:** Choose descriptive names that reflect the intent or named entity being targeted. Avoid using complex or ambiguous terms that may confuse the model.
 
-### Fields to configure
-- Name of Entity, choose the type of Entity between Global or
-- any further details for the Entity being created
+Example: Instead of naming an intent "do\_something\_with\_weather\_today," consider a simpler and clearer name like "get\_weather\_forecast."
 
-### Steps
-1. Open Gupshup Console.
-2. Go to the Description section and change the description as per the redefined piece of information that needs to be extracted.
-3. Click on the Entities tab on Workspace and click on Create Entity button to create an Entity.
-4. Provide the Name of Entity, choose the type of Entity between Global or Intent related Entity, provide a short description of the Entity, and link with the Intents already created.
-5. Click on "Additional Parameters" to add any further details for the Entity being created.
-6. Click on the Entity that you want to edit from the List of Entities that got created which can be found in the Types of Entity dropdown.
-7. Click on Type of Entity* dropdown to change the Entity type from Intent-Related Entity to Global Entity.
-8. Click on Associate Intents dropdown to associate the entity with the pre-created Intents.
-9. Click on the Save button to save the Entity edited.
+3. **Keep it short:** Try to keep your intent and NER names short but meaningful. It's easier for the model to comprehend and reduces chances of errors. 
 
-### Validation / where to check
-- Run a quick test and confirm the expected behavior appears in the target module/UI.
+Example: Instead of naming an intent "banking.product-account-number", consider a simpler and shorter name like "account-number".
 
-### Troubleshooting
-- Regex is a regular expression that can also be specified in certain use cases to perform text-based tasks like validating user inputs. For Example: Accepting only 10 digit phone numbers from user input.
+Example: Instead of using "DetermineTimeZoneInGivenLocation", you can simply use "GetTimeZone".
 
-### Save / publish / deploy behavior
-- Click **Save** (or **Save & Deploy**) to apply changes.
+4. **Avoid Ambiguity:** The names of intent and NER should not be ambiguous to prevent confusion for the language model. 
 
-### Setup path
-- Go to the Description section and change the description as per the redefined piece of information that needs to be extracted.
+Example: "order\_food" is a better name for intent rather than "order" because "order" could mean anything (e.g., to order a taxi, or to rank something).
 
-## Options / variants
-- No explicit UI variants/toggles were identified in the source for this page.
+5. **Be Consistent:** Establish a naming convention and stick to it. If you're using camelCase, stick to it throughout. Inconsistency might confuse the model, especially with capital letters. 
 
-## Field mapping / schemas
-- No explicit payload/schema details were identified in the source for this page.
+Example: "BookFlightTicket" or "book\_flight\_ticket" is better than "bookflightticket".
 
-## Field/payload examples
-- No explicit payload examples were identified in the source.
+6. **Be Domain Specific:** If your project is domain-specific, include that information where possible. 
 
-## Cross-module workflow docs
-- Identify the upstream module where this is configured and the downstream module where the outcome is verified.
+Example: If an intent is specifically designed to predict weather conditions, you could name it "predict\_weather\_condition" instead of a vague "result\_prediction".
 
-## Module disambiguation docs
-- Distinguish this page from adjacent modules/settings before troubleshooting elsewhere.
+Example: If building a travel-related assistant, naming an intent "book\_flight" or "find\_hotels" provides better clarity than generic names like "flight" or "hotel"
 
-## Reference (from source)
-<!-- procedural:v2 -->
-# Entity Creation
+7. **Use specific action verbs**: Incorporate action words in intent names to clearly convey the purpose or action the user wants the model to perform. This helps the model understand the intent more accurately.
 
-**Module**: Ai Admin
+Example: Instead of naming an intent "weather," use verbs like "check\_weather" or "get\_weather"
 
-## Overview
-An "entity" refers to a specific piece of information within a user's input or utterance. Essentially, it's like a key detail or variable that the AI needs to understand to provide a relevant response or take appropriate action. For example, if someone says, "Book a flight to Paris on Saturday," the entities in this utterance would likely be "Paris" (the destination) and "Saturday" (the date).
+8. **Avoid overlapping names**: Ensure that the names chosen for different intents or NERs are unique and do not overlap in meaning. Overlapping names can lead to ambiguity and confusion during prediction.
 
-## When to use
-_Add the primary scenarios and personas._
+Example: If there is an intent named "get\_weather\_forecast" and another named "check\_weather", it may be confusing for the model to distinguish between the two
 
-## Setup path
-- Go to the Description section and change the description as per the redefined piece of information that needs to be extracted.
+**More NER specific Guidelines:**\
+NER, Named Entity Recognition, is a subtask of information extraction in Natural Language Processing (NLP) that identifies named entities within a text such as Person, Location, Organization, Date, Time, Percent, Money, etc.
 
-## Step-by-step configuration
-An "entity" refers to a specific piece of information within a user's input or utterance. Essentially, it's like a key detail or variable that the AI needs to understand to provide a relevant response or take appropriate action. For example, if someone says, "Book a flight to Paris on Saturday," the entities in this utterance would likely be "Paris" (the destination) and "Saturday" (the date).
+1. **Follow convention:** Typically, it is good practice to use verbs for intents and proper nouns for NERs. Please note that the custom NER should conform to the definition of a named entity: They are things in the real world that can be defined by a name, number, or some other kind of identifier.
 
-By identifying and understanding entities, AI systems can better grasp the meaning behind user requests and respond accurately.
+Example: Expecting language model to predict prepositions (from, to, in, at etc.), verbs/adverbs (find, tell, get, temporarily, permanently, etc.), adjectives (good, new, first, last, long, sweet, bad etc.) as named entities is not ideal (though it is not a limitation). 
 
-The Entities screen on the workspace in the AI Admin section of Bot Studio lets users create an Entity to extract specific pieces of information as per the Intent created.
+2. **Excluded from NER:** Any abstract concept or entity which does not have a definite identifier or cannot be categorized under any known category may not be captured correctly in an NER task. 
 
-# Creating an Entity in a Workspace.
+Example: emotions, thoughts, ideas, etc.
 
-Empty Entity Screen
+3. **Consider Entity Types:** When naming entities, include the type of entities you are considering. 
 
-- Click on the Entities tab on Workspace and click on Create Entity button to create an Entity.
-- Provide the Name of Entity, choose the type of Entity between Global or Intent related Entity, provide a short description of the Entity, and link with the Intents already created.
-- Click on "Additional Parameters" to add any further details for the Entity being created.
-- The Additional Parameters section is optional where the user will be able to provide some more parameters for the entity that is being created.
-- The Sample Values is where the user will be able to add a value or a synonym for a particular term being used in the Entity. For example: Entity Airline can have sample values such as Indigo, Air India, Spice Jet, and Vistara.
-- The Extended Values is a part of the validations section. Every term has a root value and an extended value. Here the root value can be specified along with its extended values. For Example: Entity Destination City will have Root Value Mumbai and Extended Values Bombay, BOM, and Navi Mumbai.
-- Regex is a regular expression that can also be specified in certain use cases to perform text-based tasks like validating user inputs. For Example: Accepting only 10 digit phone numbers from user input.
-Entity Editing:The Entities created can be edited by changing the Description, Type of Entity, and the respective values that were added in Additional Parameters.
+Example: If you are trying to recognize the model of cars, use "car\_model" instead of just "model" to make it clear that the language model should be recognizing models of cars and not any other models like laptop models, washing machine models etc.
 
-- Click on the Entity that you want to edit from the List of Entities that got created which can be found in the Types of Entity dropdown.
-- Click on Type of Entity* dropdown to change the Entity type from Intent-Related Entity to Global Entity.
-- Go to the Description section and change the description as per the redefined piece of information that needs to be extracted.
-- Click on Associate Intents dropdown to associate the entity with the pre-created Intents.
-- Change the values in the Additional Parameters as per the revised use case.
-- Click on the Save button to save the Entity edited.
-
-## Business hours vs after-hours behavior
-_Not applicable / not specified._
-
-## Save/publish behavior
-Key notes found in source:
-
-- - Click on the Save button to save the Entity edited.
-
-**Last updated (from source)**: Updated 10 months ago
+Remember, the names of intents or NERs are for the model's understanding and comprehension. The better and more intuitive your names are, the more accurately your model can perform tasks.
