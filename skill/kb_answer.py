@@ -35,9 +35,9 @@ CONSULTING_TONE_CONFIG = {
         "BizAI": 100,             # Internal-only docs, 50 -> 100 -> ✅ DEFAULT
         "Integrations": 100,      # Phase 2 - KB fixes validated (2026-08-23), 50 -> 75 -> 100 -> ✅ DEFAULT
                                    # Shopify/MoEngage/CleverTap retrieval gaps fixed. 55-65% answer rate.
-        "AI Admin": 75,           # Phase 2 - ESCALATED from 50% -> 75% (2026-08-27).
-                                   # Scope decision pending (internal vs customer-facing) by 2026-09-02.
-                                   # If internal-only: promote to 100%. If customer-facing: expand KB first.
+        "AI Admin": 100,          # Phase 2 - promoted to 100% (2026-09-14).
+                                   # Scope decision resolved: treat same as other modules.
+                                   # 75% -> 100% -> ✅ DEFAULT
     },
     "force_mode": None,  # Set to "consulting" or "standard" to force all traffic into one mode (testing only)
 }
