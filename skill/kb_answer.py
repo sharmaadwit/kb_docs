@@ -3647,7 +3647,7 @@ CONCEPT_REGISTRY: List[Dict] = [
             "multi tenant whatsapp",
             "provision whatsapp numbers",
         ],
-        "keywords": ["cc express", "plan", "pricing", "include", "bundle", "console", "wallet", "jb pro", "gupshup"],
+        "keywords": ["cc express", "plan", "pricing", "include", "bundle", "console", "wallet", "jb pro"],
         "source_boosts": {"cc-express-vs-conversation-cloud": 5.0},
         "display": "CC Express Plans & Pricing",
         "module": "Overview",
