@@ -2837,7 +2837,7 @@ CONCEPT_REGISTRY: List[Dict] = [
         "keywords": ['window', 'template', 'expires'],
         "module_context": ["agent assist"],
         "source_boosts": {"sending-templates-after-the-24-hour-window": 6.0},
-        "source_penalties": {},
+        "source_penalties": {"waba-setup-detailed-gupshup-console": -4.0},
         "display": "Sending Templates After 24-Hour Window",
         "page_display": "Sending Templates After the 24-Hour Window",
         "module": "Agent Assist",
@@ -3313,12 +3313,15 @@ CONCEPT_REGISTRY: List[Dict] = [
         "id": "custom_integrations",
         "aliases": [
             "custom integrations", "custom connector", "custom integration setup",
-            "create custom integration", "webhook integration", "external integration"
+            "create custom integration", "webhook integration", "external integration",
+            "webhooks", "webhook setup", "webhook testing", "peoplestrong integration",
         ],
         "keywords": ["custom", "integrations", "connector", "webhook", "external"],
         "source_boosts": {
             "custom-integrations.md": 4.5,
             "manage-api.md": 2.0,
+            "webhook-setup-and-testing.md": 3.5,
+            "peoplestrong-integration.md": 3.0,
         },
         "source_penalties": {},
         "display": "Custom Integrations & Webhooks",
@@ -3352,6 +3355,8 @@ CONCEPT_REGISTRY: List[Dict] = [
             "whatsapp-onboarding-and-setup.md": 3.5,
             "ctxa-waba-setup.md": 3.0,
             "meta-waba-activation.md": 3.0,
+            "waba-setup-detailed-gupshup-console": 5.0,
+            "setup-whatsapp-business-account-waba-in-gupshup": 3.0,
         },
         "source_penalties": {},
         "display": "WhatsApp Business Account Setup",
@@ -3417,23 +3422,6 @@ CONCEPT_REGISTRY: List[Dict] = [
         "display": "Journey Builder Node Types",
         "page_display": "Journey Builder Node Types",
         "module": "Journey Builder",
-    },
-    {
-        "id": "custom_integrations",
-        "aliases": [
-            "custom integrations", "webhooks", "webhook setup", "custom integration",
-            "integration setup", "webhook testing", "peoplestrong integration"
-        ],
-        "keywords": ["custom", "integrations", "webhooks", "webhook", "integration"],
-        "source_boosts": {
-            "custom-integrations.md": 4.5,
-            "webhook-setup-and-testing.md": 3.5,
-            "peoplestrong-integration.md": 3.0,
-        },
-        "source_penalties": {},
-        "display": "Custom Integrations & Webhooks",
-        "page_display": "Custom Integrations & Webhooks",
-        "module": "Integrations",
     },
     {
         "id": "chat_history",
