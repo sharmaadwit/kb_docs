@@ -8055,7 +8055,7 @@ def _build_otlp_request(
         _attr("langfuse.trace.output", json.dumps({"answer": answer})),
     ]
     if trace_env:
-        attrs.append(_attr("langfuse.trace.environment", trace_env))
+        attrs.append(_attr("langfuse.environment", trace_env))
     if trace_user_id:
         attrs.append(_attr("langfuse.trace.user_id", trace_user_id))
     if parent_trace_id:
