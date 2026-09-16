@@ -8050,7 +8050,7 @@ def _build_otlp_request(
     attrs = [
         _attr("langfuse.trace.id", otlp_trace_id),   # must be 32-char hex UUID
         _attr("langfuse.trace.name", trace_name),
-        _attr("langfuse.trace.input", json.dumps({"query": query})),
+        _attr("langfuse.trace.input", json.dumps({"query": query, "_meta": metadata})),
         _attr("langfuse.trace.output", json.dumps({"answer": answer})),
     ]
     if trace_user_id:
