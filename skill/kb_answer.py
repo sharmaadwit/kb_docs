@@ -5136,44 +5136,27 @@ def _emit_langfuse_event(
             "parent_trace_id": parent_trace_id,
         }
         metadata.update(payload or {})
-        event_id = f"evt-{uuid.uuid4().hex[:24]}"
         trace_id = f"kb-{event_name}-{uuid.uuid4().hex[:16]}"
-        timestamp = _utc_now_iso()
-        body: Dict[str, Any] = {
-            "id": trace_id,
-            "timestamp": timestamp,
-            "name": event_name,
-            "input": {},
-            "output": {},
-            "metadata": metadata,
-        }
-        if trace_user_id:
-            body["userId"] = trace_user_id
-        if parent_trace_id:
-            body["parentTraceId"] = parent_trace_id
-        request_body = {
-            "batch": [
-                {
-                    "id": event_id,
-                    "timestamp": timestamp,
-                    "type": "trace-create",
-                    "body": body,
-                }
-            ]
-        }
+        request_body = _build_otlp_request(
+            event_name, trace_id, "", "", metadata,
+            trace_user_id=trace_user_id,
+            parent_trace_id=parent_trace_id,
+        )
         host = context.get_secret("LANGFUSE_HOST") if context else None
         public_key = context.get_secret("LANGFUSE_PUBLIC_KEY") if context else None
         secret_key = context.get_secret("LANGFUSE_SECRET_KEY") if context else None
         if not (host and public_key and secret_key):
             result["error"] = "missing_credentials"
             return result
-        endpoint = host.rstrip("/") + "/api/public/ingestion"
+        endpoint = host.rstrip("/") + "/api/public/otel/v1/traces"
         auth_raw = f"{public_key}:{secret_key}"
         auth_value = "Basic " + base64.b64encode(auth_raw.encode("utf-8")).decode("utf-8")
         headers = {
             "Authorization": auth_value,
             "Content-Type": "application/json",
             "User-Agent": "superagent-product-kb-answer",
+            "x-langfuse-sdk-name": "python",
+            "x-langfuse-public-key": public_key,
         }
         result["ingestion_attempted"] = True
         result["trace_id"] = trace_id
@@ -8032,34 +8015,72 @@ def _extract_client_turn_number(context, params: Optional[Dict[str, Any]] = None
         return None
 
 
-def _build_langfuse_request(
+def _build_otlp_request(
     trace_name: str, trace_id: str, query: str, answer: str, metadata: Dict,
     trace_user_id: Optional[str] = None,
     parent_trace_id: Optional[str] = None,
 ) -> Dict:
-    event_id = f"evt-{uuid.uuid4().hex[:24]}"
-    event_timestamp = _utc_now_iso()
-    body: Dict[str, Any] = {
-        "id": trace_id,
-        "timestamp": event_timestamp,
-        "name": trace_name,
-        "input": {"query": query},
-        "output": {"answer": answer},
-        "metadata": metadata,
-    }
+    """Build OTLP/JSON body for Langfuse v2 ingestion (POST /api/public/otel/v1/traces).
+
+    Uses langfuse.observation.metadata.* so all metadata fields appear in
+    obs.metadata when fetching via GET /api/public/v2/observations.
+    """
+    now_ns = int(time.time() * 1e9)
+    latency_ns = int(metadata.get("latency_ms") or 0) * 1_000_000
+    otlp_trace_id = uuid.uuid4().hex           # 32 hex chars (16 bytes)
+    otlp_span_id = uuid.uuid4().hex[:16]       # 16 hex chars (8 bytes)
+
+    def _av(value):
+        if value is None:
+            return None
+        if isinstance(value, bool):
+            return {"boolValue": value}
+        if isinstance(value, int):
+            return {"intValue": str(value)}
+        if isinstance(value, float):
+            return {"doubleValue": value}
+        if isinstance(value, (dict, list)):
+            return {"stringValue": json.dumps(value)}
+        return {"stringValue": str(value)}
+
+    def _attr(key, value):
+        v = _av(value)
+        return {"key": key, "value": v} if v is not None else None
+
+    attrs = [
+        _attr("langfuse.trace.id", trace_id),
+        _attr("langfuse.trace.name", trace_name),
+        _attr("langfuse.trace.input", json.dumps({"query": query})),
+        _attr("langfuse.trace.output", json.dumps({"answer": answer})),
+    ]
     if trace_user_id:
-        body["userId"] = trace_user_id
+        attrs.append(_attr("langfuse.trace.user_id", trace_user_id))
     if parent_trace_id:
-        body["parentTraceId"] = parent_trace_id
+        attrs.append(_attr("langfuse.trace.parent_observation_id", parent_trace_id))
+    for k, v in metadata.items():
+        if v is not None:
+            attrs.append(_attr(f"langfuse.observation.metadata.{k}", v))
+    attrs = [a for a in attrs if a is not None]
+
     return {
-        "batch": [
-            {
-                "id": event_id,
-                "timestamp": event_timestamp,
-                "type": "trace-create",
-                "body": body,
-            }
-        ]
+        "resourceSpans": [{
+            "resource": {"attributes": [
+                {"key": "service.name", "value": {"stringValue": "superagent-product-kb-answer"}},
+            ]},
+            "scopeSpans": [{
+                "scope": {"name": trace_name},
+                "spans": [{
+                    "traceId": otlp_trace_id,
+                    "spanId": otlp_span_id,
+                    "name": trace_name,
+                    "kind": 1,
+                    "startTimeUnixNano": str(now_ns - latency_ns),
+                    "endTimeUnixNano": str(now_ns),
+                    "attributes": attrs,
+                    "status": {"code": 1},
+                }],
+            }],
+        }],
     }
 
 
@@ -8257,7 +8278,7 @@ def _send_langfuse(
     # Merge policy_meta into metadata for Langfuse telemetry (answer_mode, case_studies, etc.)
     if policy_meta and isinstance(policy_meta, dict):
         metadata.update(policy_meta)
-    body = _build_langfuse_request(
+    body = _build_otlp_request(
         trace_name, trace_id, orig, answer, metadata, trace_user_id=trace_user_id,
         parent_trace_id=parent_trace_id,
     )
@@ -8270,15 +8291,15 @@ def _send_langfuse(
     error = None
     ingestion_ok = False
     if host and public_key and secret_key:
-        # Debug: Log that we have credentials (without exposing secrets)
-        # print(f"[LANGFUSE] Credentials found, endpoint will be: {host.rstrip('/')}/api/public/ingestion", flush=True)
-        endpoint = host.rstrip("/") + "/api/public/ingestion"
+        endpoint = host.rstrip("/") + "/api/public/otel/v1/traces"
         auth_raw = f"{public_key}:{secret_key}"
         auth_value = "Basic " + base64.b64encode(auth_raw.encode("utf-8")).decode("utf-8")
         headers = {
             "Authorization": auth_value,
             "Content-Type": "application/json",
             "User-Agent": "superagent-product-kb-answer",
+            "x-langfuse-sdk-name": "python",
+            "x-langfuse-public-key": public_key,
         }
         try:
             resp = requests.post(endpoint, headers=headers, json=body, timeout=30)
