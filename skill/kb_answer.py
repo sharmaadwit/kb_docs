@@ -8027,7 +8027,7 @@ def _build_otlp_request(
     """
     now_ns = int(time.time() * 1e9)
     latency_ns = int(metadata.get("latency_ms") or 0) * 1_000_000
-    otlp_trace_id = uuid.uuid4().hex           # 32 hex chars (16 bytes)
+    otlp_trace_id = uuid.uuid4().hex           # 32 hex chars — valid UUID for langfuse.trace.id
     otlp_span_id = uuid.uuid4().hex[:16]       # 16 hex chars (8 bytes)
 
     def _av(value):
@@ -8048,7 +8048,7 @@ def _build_otlp_request(
         return {"key": key, "value": v} if v is not None else None
 
     attrs = [
-        _attr("langfuse.trace.id", trace_id),
+        _attr("langfuse.trace.id", otlp_trace_id),   # must be 32-char hex UUID
         _attr("langfuse.trace.name", trace_name),
         _attr("langfuse.trace.input", json.dumps({"query": query})),
         _attr("langfuse.trace.output", json.dumps({"answer": answer})),
@@ -8057,6 +8057,8 @@ def _build_otlp_request(
         attrs.append(_attr("langfuse.trace.user_id", trace_user_id))
     if parent_trace_id:
         attrs.append(_attr("langfuse.trace.parent_observation_id", parent_trace_id))
+    if trace_id:
+        attrs.append(_attr("langfuse.observation.metadata.kb_trace_id", trace_id))
     for k, v in metadata.items():
         if v is not None:
             attrs.append(_attr(f"langfuse.observation.metadata.{k}", v))
