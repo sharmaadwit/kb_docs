@@ -895,15 +895,16 @@ _TELEMETRY_ANSWER_PREVIEW = 400
 
 EXPLICIT_MODULES = {
     # Multi-word keys first so they win over generic single-word keys below.
-    "meta business agent": "WhatsApp",
-    "business agent": "WhatsApp",
+    # BizAI synonyms: all user-facing names for Meta's Business Agent product.
+    "meta business agent": "BizAI",
+    "meta business ai": "BizAI",
+    "meta biz ai": "BizAI",
+    "meta bizai": "BizAI",
+    "business agent": "BizAI",
+    "biz ai": "BizAI",
+    "bizai": "BizAI",
     "whatsapp agent": "WhatsApp",
     "whatsapp ai agent": "WhatsApp",
-    # "bizai" placed early (ahead of the Integrations brand keys below) so a
-    # query naming both BizAI and an integration partner (e.g. "clevertap
-    # events shown in bizai dashboard") still routes to BizAI, not
-    # Integrations - dict iteration returns on first substring match.
-    "bizai": "BizAI",
     "agent assist": "Agent Assist",
     "bot studio": "Bot Studio",
     "goals": "Goals",
@@ -4334,6 +4335,7 @@ def _detect_module(query: str) -> str:
     if (
         "meta business agent" in q or "business agent" in q
         or "meta biz ai" in q or "meta business ai" in q
+        or "meta bizai" in q or "biz ai" in q
         or re.search(r"\bmba\b", q)
     ):
         return "BizAI"
