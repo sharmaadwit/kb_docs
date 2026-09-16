@@ -8054,8 +8054,6 @@ def _build_otlp_request(
         _attr("langfuse.trace.input", json.dumps({"query": query, "_meta": metadata})),
         _attr("langfuse.trace.output", json.dumps({"answer": answer})),
     ]
-    if trace_env:
-        attrs.append(_attr("langfuse.environment", trace_env))
     if trace_user_id:
         attrs.append(_attr("langfuse.trace.user_id", trace_user_id))
     if parent_trace_id:
@@ -8067,11 +8065,15 @@ def _build_otlp_request(
             attrs.append(_attr(f"langfuse.observation.metadata.{k}", v))
     attrs = [a for a in attrs if a is not None]
 
+    resource_attrs = [
+        {"key": "service.name", "value": {"stringValue": "superagent-product-kb-answer"}},
+    ]
+    if trace_env:
+        resource_attrs.append({"key": "langfuse.environment", "value": {"stringValue": trace_env}})
+
     return {
         "resourceSpans": [{
-            "resource": {"attributes": [
-                {"key": "service.name", "value": {"stringValue": "superagent-product-kb-answer"}},
-            ]},
+            "resource": {"attributes": resource_attrs},
             "scopeSpans": [{
                 "scope": {"name": trace_name},
                 "spans": [{
