@@ -8047,12 +8047,15 @@ def _build_otlp_request(
         v = _av(value)
         return {"key": key, "value": v} if v is not None else None
 
+    trace_env = metadata.get("trace_env") or metadata.get("environment")
     attrs = [
         _attr("langfuse.trace.id", otlp_trace_id),   # must be 32-char hex UUID
         _attr("langfuse.trace.name", trace_name),
         _attr("langfuse.trace.input", json.dumps({"query": query, "_meta": metadata})),
         _attr("langfuse.trace.output", json.dumps({"answer": answer})),
     ]
+    if trace_env:
+        attrs.append(_attr("langfuse.trace.environment", trace_env))
     if trace_user_id:
         attrs.append(_attr("langfuse.trace.user_id", trace_user_id))
     if parent_trace_id:
