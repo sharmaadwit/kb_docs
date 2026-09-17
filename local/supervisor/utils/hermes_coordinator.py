@@ -18,6 +18,7 @@ full depth: max queries, full KB inventory, full doc snippets, deep reasoning.
 import json
 import logging
 import os
+import re
 import subprocess
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -30,6 +31,56 @@ _PROFILE = "kb-supervisor"
 _ENV = {**os.environ, "PATH": f"/Users/adwit.sharma/.local/bin:{os.environ.get('PATH', '')}"}
 
 _VALID_BUCKETS = {"HAS_DOCS_FAILS", "NO_DOCS_IN_SCOPE", "OUT_OF_SCOPE", "NOISE"}
+
+# ---------------------------------------------------------------------------
+# KB chunk search
+# ---------------------------------------------------------------------------
+
+_CHUNKS_CACHE: Optional[List[Dict]] = None
+_KB_CHUNKS_PATH = Path(__file__).resolve().parents[3] / "kb" / "kb_chunks.jsonl"
+
+
+def _tokenize(text: str) -> set:
+    return set(re.findall(r"[a-z0-9]+", text.lower()))
+
+
+def _search_kb_chunks(query_tokens: set, top_k: int = 5) -> List[Dict]:
+    """Search kb/kb_chunks.jsonl by token overlap, returning top_k results."""
+    global _CHUNKS_CACHE
+    if _CHUNKS_CACHE is None:
+        chunks = []
+        try:
+            with open(_KB_CHUNKS_PATH, "r", encoding="utf-8") as fh:
+                for line in fh:
+                    line = line.strip()
+                    if line:
+                        try:
+                            chunks.append(json.loads(line))
+                        except json.JSONDecodeError:
+                            pass
+        except FileNotFoundError:
+            logger.debug("kb_chunks.jsonl not found at %s", _KB_CHUNKS_PATH)
+        _CHUNKS_CACHE = chunks
+
+    if not _CHUNKS_CACHE or not query_tokens:
+        return []
+
+    scored = []
+    for chunk in _CHUNKS_CACHE:
+        text = chunk.get("text") or chunk.get("content") or ""
+        chunk_tokens = _tokenize(text)
+        score = len(query_tokens & chunk_tokens) / max(len(query_tokens), 1)
+        if score > 0:
+            source = chunk.get("source") or chunk.get("file") or chunk.get("path") or ""
+            scored.append({
+                "source": source,
+                "score": score,
+                "snippet": text[:120],
+            })
+
+    scored.sort(key=lambda x: x["score"], reverse=True)
+    return scored[:top_k]
+
 
 _DEGRADED = {
     "bucket": "HAS_DOCS_FAILS",
@@ -127,6 +178,28 @@ class GapWorker:
 
         output_path = str(self.output_dir / f"worker_{task_id}.json")
 
+        # ── KB chunk search (pre-computed) ───────────────────────────────────
+        all_query_tokens: set = set()
+        for q in (gap.failure_examples or [])[:15]:
+            all_query_tokens |= _tokenize(q)
+        kb_chunks = _search_kb_chunks(all_query_tokens, top_k=5)
+
+        kb_search_section = "## Local KB Search Results (pre-computed before judge runs)\n"
+        kb_search_section += "These docs scored highest against this gap's query tokens.\n"
+        kb_search_section += "Use this as ground truth for whether relevant docs exist:\n\n"
+        if kb_chunks:
+            for ch in kb_chunks:
+                kb_search_section += f"  score={ch['score']:.2f}  {ch['source']}\n"
+                kb_search_section += f"              \"{ch['snippet']}\"\n"
+            top_score = kb_chunks[0]["score"]
+            if top_score > 0.4:
+                kb_search_section += "\nNOTE: High-scoring docs found — verify carefully before calling NO_DOCS_IN_SCOPE."
+            elif top_score < 0.2:
+                kb_search_section += "\nNOTE: No strong KB matches found — NO_DOCS_IN_SCOPE likely correct."
+        else:
+            kb_search_section += "  (No results — kb_chunks.jsonl unavailable or no token overlap found)\n"
+            kb_search_section += "\nNOTE: No strong KB matches found — NO_DOCS_IN_SCOPE likely correct."
+
         json_schema = json.dumps({
             "bucket": "HAS_DOCS_FAILS | NO_DOCS_IN_SCOPE | OUT_OF_SCOPE | NOISE",
             "confidence": "high | medium | low",
@@ -179,6 +252,8 @@ PRIMARY EVIDENCE. Shows exactly what happened for each query in the live skill:
 
 {pipeline_signal}
 
+{kb_search_section}
+
 ## KB File Inventory (title + section headings)
 {kb_inventory}
 
@@ -207,6 +282,9 @@ For each conclusion you reached:
    section headings match the query topic. Did you miss a doc?
 3. If you said OUT_OF_SCOPE: are any IDK queries genuinely about a Gupshup product?
 4. Check: are there ANSWERED queries mixed in? Those should not count as failures.
+5. The local KB search found these docs (from Turn 1 context). If you called
+   NO_DOCS_IN_SCOPE but a high-scoring doc exists above, you must explain why it
+   doesn't cover the queries before confirming that bucket.
 
 After challenging, state your final verdict with high confidence.
 Name the single bucket. Explain what evidence you're basing it on."""

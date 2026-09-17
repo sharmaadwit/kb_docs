@@ -10,6 +10,7 @@ Module mismatches are surfaced per-gap so proposals can flag routing bugs.
 """
 
 import logging
+import re
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -52,6 +53,50 @@ def _skill_module(query: str) -> Tuple[Optional[str], Optional[str]]:
     except Exception as exc:
         logger.debug("_skill_module failed for query %r: %s", query[:60], exc)
         return None, None
+
+
+def _cluster_queries(
+    queries: List[str],
+    min_gap_size: int = 8,
+    max_clusters: int = 3,
+    split_threshold: float = 0.15,
+) -> List[List[str]]:
+    """Greedy Jaccard clustering of queries. Returns list of clusters.
+
+    Only meaningful if len(queries) >= min_gap_size. If the gap is too small,
+    returns a single cluster containing all queries (no split).
+    """
+    if len(queries) < min_gap_size:
+        return [queries]
+
+    def _tok(s: str) -> set:
+        return set(re.findall(r"[a-z0-9]+", s.lower()))
+
+    def _jaccard(a: set, b: set) -> float:
+        if not a and not b:
+            return 1.0
+        union = a | b
+        return len(a & b) / len(union) if union else 0.0
+
+    token_sets = [_tok(q) for q in queries]
+    clusters: List[List[int]] = []  # list of index lists
+
+    for idx, toks in enumerate(token_sets):
+        if not clusters:
+            clusters.append([idx])
+            continue
+        # Find nearest cluster by average Jaccard to cluster members
+        best_cluster, best_sim = -1, -1.0
+        for ci, cluster in enumerate(clusters):
+            sim = sum(_jaccard(toks, token_sets[j]) for j in cluster) / len(cluster)
+            if sim > best_sim:
+                best_sim, best_cluster = sim, ci
+        if best_sim >= split_threshold or len(clusters) >= max_clusters:
+            clusters[best_cluster].append(idx)
+        else:
+            clusters.append([idx])
+
+    return [[queries[i] for i in c] for c in clusters]
 
 
 @dataclass
@@ -189,8 +234,46 @@ class TraceAnalyzer:
             )
             gaps.append(gap)
 
+        # ── Pass 3: sub-gap splitting for large, diverse gaps ─────────────────
+        split_gaps: List[Gap] = []
+        for gap in gaps:
+            examples = gap.failure_examples or []
+            if len(examples) < 8:
+                split_gaps.append(gap)
+                continue
+            clusters = _cluster_queries(examples)
+            if len(clusters) <= 1:
+                split_gaps.append(gap)
+                continue
+            logger.info(
+                "Split %s/%s into %d sub-gaps", gap.module, gap.intent, len(clusters)
+            )
+            total_queries = len(examples)
+            for i, cluster in enumerate(clusters):
+                ratio = len(cluster) / total_queries if total_queries > 0 else 0.0
+                sub_failure = max(1, round(gap.failure_count * ratio))
+                sub_total = max(sub_failure, round(gap.total_count * ratio))
+                sub_success = sub_total - sub_failure
+                sub_gap = Gap(
+                    module=gap.module,
+                    intent=f"{gap.intent}__{i}",
+                    total_count=sub_total,
+                    success_count=sub_success,
+                    failure_count=sub_failure,
+                    answer_rate=gap.answer_rate,
+                    avg_confidence=gap.avg_confidence,
+                    failure_examples=cluster,
+                    success_examples=gap.success_examples,
+                    trace_module=gap.trace_module,
+                    module_mismatch=gap.module_mismatch,
+                    mismatch_detail=gap.mismatch_detail,
+                    no_concept_match_count=round(gap.no_concept_match_count * ratio),
+                )
+                split_gaps.append(sub_gap)
+        gaps = split_gaps
+
         self.gaps = gaps
-        logger.info("Identified %d unique (module, intent) combinations", len(gaps))
+        logger.info("Identified %d unique (module, intent) combinations (after sub-gap splitting)", len(gaps))
         mismatches = [g for g in gaps if g.module_mismatch]
         if mismatches:
             logger.warning("%d gap(s) have skill/trace module mismatch — trace labels were unreliable", len(mismatches))
