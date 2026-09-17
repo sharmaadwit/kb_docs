@@ -82,10 +82,18 @@ Every agent can be called from your own app, script, or automation using an API 
 
 **Endpoints:**
 
-- `POST /api/agents/chat` — non-streaming; returns a single JSON response
-- `POST /api/agents/chat/stream` — Server-Sent Events stream for real-time responses
+- `POST /api/agents/chat` — non-streaming; returns a single JSON response with `model` and `usage`
+- `POST /api/agents/chat/stream` — Server-Sent Events stream; the final `done` event includes `model` and nested `usage`
 
-**Required fields in the request body:** `message`, `session_id`, `user_email_id` (the end-user's email). Optional: `conversation_id` (continue a thread), `model`, `tenant_context`.
+**Required fields in the request body:** `message`, `session_id`, `user_email_id` (the end-user's email). Optional: `conversation_id` (continue a thread), `model` (public `sa-*` alias — raw internal model IDs are rejected), `tenant_context`.
+
+Billable model IDs and pricing are shared separately as a static JSON catalog (for example `sa-1.4`, `sa-1.4-mini`, `sa-1.6-terra`, `sa-1.6-luna`).
+
+Responses expose a public model alias (e.g. `sa-1.4-mini`) and structured token usage: `usage.input_tokens`, `usage.output_tokens`, `usage.cached_input_tokens`, and `usage.cache_write_tokens`. Intent-classifier tokens from dynamic routing are billed separately and are not included in this usage block.
+
+> [!INFO]
+> **Reconcile against `billable_cost_usd`, not token maths**
+> Every response also carries `billable_cost_usd` — the authoritative charge for that turn. Token counts alone will not reproduce it: `cache_write_tokens` bill at a premium over the base input rate, and models with a context threshold switch to higher above-threshold rates that the static catalog does not carry. Treat the catalog as a pre-call estimate and `billable_cost_usd` as the figure of record.
 
 > [!WARNING]
 > **Save your API key immediately**
