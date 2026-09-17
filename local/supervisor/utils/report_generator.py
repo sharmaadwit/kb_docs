@@ -146,6 +146,11 @@ class ReportGenerator:
             "> These gaps need new KB documents. Prioritized by failure volume and user impact.",
             "",
         ]
+        if not create_docs:
+            report_lines += [
+                "**No Create Docs gaps this run.** All in-scope IDK failures are covered by existing KB docs — retrieval or keyword fixes (if any) are in Fix Now above.",
+                "",
+            ]
         for gap, verdict in create_docs:
             priority = (verdict.get("doc_priority") or "medium").upper()
             doc_to_create = verdict.get("doc_to_create") or f"kb/{gap.module.lower()}/{gap.intent.lower()}.md"
@@ -170,14 +175,22 @@ class ReportGenerator:
         report_lines += [
             "## Ignored — Out of Scope / Noise",
             "",
-            "| Gap | Failures | Reason |",
-            "|---|---|---|",
         ]
-        for gap, bucket, reason in ignored:
-            reason_str = str(reason).replace("|", "/")
-            report_lines.append(f"| {gap.module} / {gap.intent} | {gap.failure_count} | {bucket} — {reason_str} |")
-        report_lines.append("")
-        report_lines.append("*The skill is correct to return IDK for these. No action needed.*")
+        if not ignored:
+            report_lines += [
+                "**No ignored gaps this run.** Every gap analyzed was either actionable (Fix Now / Create Docs) or filtered deterministically before reaching the judge.",
+                "",
+            ]
+        else:
+            report_lines += [
+                "| Gap | Failures | Reason |",
+                "|---|---|---|",
+            ]
+            for gap, bucket, reason in ignored:
+                reason_str = str(reason).replace("|", "/")
+                report_lines.append(f"| {gap.module} / {gap.intent} | {gap.failure_count} | {bucket} — {reason_str} |")
+            report_lines.append("")
+            report_lines.append("*The skill is correct to return IDK for these. No action needed.*")
         report_lines.append("")
 
         report = "\n".join(report_lines)
