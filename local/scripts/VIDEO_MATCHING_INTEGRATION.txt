@@ -1,0 +1,214 @@
+================================================================================
+VIDEO MATCHING ANALYSIS — INTEGRATION GUIDE
+================================================================================
+
+ARCHITECTURE:
+
+  KB_ANSWER (skill/kb_answer.py)
+      ↓ emits traces with video metadata
+      ↓
+  LANGFUSE (https://cloud.langfuse.com)
+      ↓ stores traces with metadata
+      ↓
+  ANALYZE_VIDEO_MATCHING.PY (local/scripts/)
+      ↓ fetches traces + analyzes matching
+      ↓
+  DASHBOARD (local/reports/comprehensive_dashboard.html)
+      ↓ displays video attachment metrics
+      ↓
+  RECOMMENDATIONS
+      ↓ inform kb_answer improvements
+
+SCRIPT ENTRY POINTS:
+
+  Standalone execution:
+    python3 local/scripts/analyze_video_matching.py
+
+  From dashboard refresh:
+    bash local/scripts/refresh_dashboard.sh
+    (calls analyze_video_matching as part of full analytics suite)
+
+  From other scripts:
+    import analyze_video_matching as avm
+    traces = avm.fetch_kb_answer_traces(limit=50)
+    analysis = avm.analyze_video_matching(traces)
+
+DATA FLOW:
+
+  1. fetch_kb_answer_traces(limit)
+     → HTTP GET /api/public/traces?name=kb_answer&limit=N
+     → Returns list of recent kb_answer execution traces
+
+  2. extract_trace_data(trace)
+     → Extracts query, module_label, video_title, video_platform, etc.
+     → Normalizes nested metadata from trace output
+
+  3. check_video_module_match(module, video_title, video_platform)
+     → Validates platform match (expected vs. actual)
+     → Checks video_title for module keywords
+     → Returns confidence score (0.0-1.0)
+
+  4. analyze_video_matching(traces)
+     → Aggregates all traces
+     → Calculates summary statistics
+     → Identifies top mismatches
+     → Generates recommendations
+
+  5. Output JSON
+     → Stdout for piping/CI integration
+     → File: local/reports/video_matching_analysis.json
+
+METRICS TRACKED:
+
+  ✓ video_attachment_rate_percent
+    How many kb_answer calls included a video
+
+  ✓ module_video_matching_accuracy_percent
+    Of the videos attached, what % matched the module
+
+  ✓ per_module_accuracy
+    Accuracy broken down by Bot Studio, CTX, Campaign Manager, etc.
+
+  ✓ avg_confidence_per_module
+    Average matching confidence (0-1) for each module
+
+  ✓ top_mismatches
+    Videos that don't align with module (with details for fixing)
+
+INTEGRATION WITH KB ANSWER:
+
+  Current kb_answer logic (skill/kb_answer.py):
+    1. User asks query
+    2. Extract module_label from query
+    3. Retrieve relevant KB articles
+    4. Fetch video metadata (if available)
+    5. Append video to answer
+    6. Emit trace with metadata
+
+  What analyze_video_matching monitors:
+    → Is the video's platform correct?
+    → Does video title match module keywords?
+    → Are there systematic mismatches?
+
+  How to use feedback:
+    1. Run analyze_video_matching
+    2. Review top_mismatches
+    3. If pattern found (e.g., CTX always gets wrong video):
+       → Update video selection logic in kb_answer
+       → Add module-specific video routing
+       → Improve video_platform assignment
+    4. Re-run analysis to verify fix
+
+SCHEDULED MONITORING:
+
+  To set up automated runs:
+
+    # Via cron (once per day at 6 AM UTC):
+    0 6 * * * python3 /Users/adwit.sharma/kb_docs/local/scripts/analyze_video_matching.py >> /var/log/kb_video_matching.log 2>&1
+
+    # Via supervisor (continuous):
+    [program:kb-video-matching]
+    command=python3 /Users/adwit.sharma/kb_docs/local/scripts/analyze_video_matching.py
+    autostart=true
+    autorestart=true
+    startsecs=10
+    stdout_logfile=/var/log/kb_video_matching.log
+
+  Output is saved to:
+    → /Users/adwit.sharma/kb_docs/local/reports/video_matching_analysis.json
+
+DASHBOARD INTEGRATION:
+
+  The comprehensive KB dashboard (generate_analytics_dashboard.py) can import:
+    → video_matching_analysis.json
+    → Display module-level accuracy
+    → Show video attachment trends
+    → Highlight improvement areas
+
+  To integrate:
+    1. Update generate_analytics_dashboard.py to load video_matching_analysis.json
+    2. Add video matching section to dashboard HTML
+    3. Display top mismatches as alerts
+    4. Track accuracy trends over time
+
+SAMPLE USAGE IN SCRIPT:
+
+  from pathlib import Path
+  import json
+  import analyze_video_matching as avm
+
+  # Fetch recent traces
+  traces = avm.fetch_kb_answer_traces(limit=50)
+
+  # Analyze
+  result = avm.analyze_video_matching(traces)
+
+  # Extract specific metrics
+  accuracy = result["summary"]["module_video_matching_accuracy_percent"]
+  print(f"Current accuracy: {accuracy:.1f}%")
+
+  # Check for module-specific issues
+  for module, stats in result["module_stats"].items():
+      if stats["accuracy"] < 80:
+          print(f"⚠️ {module}: {stats['accuracy']:.1f}% accuracy")
+
+  # Get actionable recommendations
+  for rec in result["recommendations"]:
+      print(f"→ {rec}")
+
+TESTING & VALIDATION:
+
+  Local test without Langfuse:
+    1. Create mock trace data (see test fixtures below)
+    2. Run: python3 -c "
+      import analyze_video_matching as avm
+      mock_traces = [...]  # define test data
+      result = avm.analyze_video_matching(mock_traces)
+      print(result)
+    "
+
+  Verify accuracy calculation:
+    Expected: 100% when all videos match modules
+    Expected: 0% when no videos match modules
+    Expected: 50% when half match
+
+  Verify confidence scoring:
+    Platform match only: 0.5 confidence
+    Title marker only: 0.5 confidence
+    Both: 1.0 confidence (matches=true)
+    Neither: 0.0 confidence (matches=false)
+
+DEPENDENCIES:
+
+  ✓ Python 3.7+
+  ✓ urllib (stdlib)
+  ✓ json (stdlib)
+  ✓ ssl (stdlib)
+  ✓ ssl.cert*i (optional, for TLS verification)
+
+  No external pip packages required!
+
+TROUBLESHOOTING INTEGRATION:
+
+  If video_matching_analysis.json doesn't load in dashboard:
+    1. Verify script runs standalone: python3 analyze_video_matching.py
+    2. Check output JSON format: jq . local/reports/video_matching_analysis.json
+    3. Ensure file permissions: chmod 644 local/reports/video_matching_analysis.json
+
+  If metrics look wrong:
+    1. Verify kb_answer is emitting video metadata
+    2. Check Langfuse trace output structure
+    3. Run with: python3 analyze_video_matching.py | jq '.traces[0]' (inspect first trace)
+
+  If accuracy is always 0%:
+    1. Check module_label is being set in kb_answer
+    2. Verify video_title is populated
+    3. Check module name matches MODULE_KEYWORDS dict
+
+================================================================================
+Quick Links:
+  - Main script: /Users/adwit.sharma/kb_docs/local/scripts/analyze_video_matching.py
+  - Full docs:   /Users/adwit.sharma/kb_docs/local/scripts/ANALYZE_VIDEO_MATCHING_README.md
+  - Quick ref:   /Users/adwit.sharma/kb_docs/local/scripts/VIDEO_MATCHING_QUICKSTART.txt
+  - Output:      /Users/adwit.sharma/kb_docs/local/reports/video_matching_analysis.json
+================================================================================

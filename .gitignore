@@ -32,6 +32,14 @@ local/*
 !local/reports/
 local/reports/*
 !local/reports/comprehensive_dashboard.html
+!local/scripts/
+!local/supervisor/
+local/supervisor/logs/
+local/supervisor/judge_outputs/
+local/supervisor/context/
+local/supervisor/__pycache__/
+local/supervisor/utils/__pycache__/
+local/supervisor/tests/__pycache__/
 
 # Usage telemetry (auto-committed externally to kb/analytics/ historically;
 # local-only per this policy going forward)

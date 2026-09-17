@@ -1,0 +1,141 @@
+================================================================================
+QUICK START: Test Video Matching Across Modules
+================================================================================
+
+CREATED: /Users/adwit.sharma/kb_docs/local/scripts/test_video_matching.py
+STATUS: Ready to run (not executed yet)
+
+================================================================================
+COMMAND: Basic Test Run
+================================================================================
+
+cd /Users/adwit.sharma/kb_docs
+python3 local/scripts/test_video_matching.py
+
+Output: Summary of video matching results and Langfuse correlation IDs
+
+================================================================================
+COMMAND: Verbose Test Run (detailed per-query output)
+================================================================================
+
+python3 local/scripts/test_video_matching.py --verbose
+
+Output: Detailed results for each of 15 test queries
+
+================================================================================
+COMMAND: Test Run with JSON Report
+================================================================================
+
+python3 local/scripts/test_video_matching.py --verbose --output-file local/reports/video_matching_results.json
+
+Output:
+  - Console output (verbose)
+  - JSON file: local/reports/video_matching_results.json
+
+================================================================================
+WHAT THE SCRIPT TESTS
+================================================================================
+
+15 queries across 5 modules:
+
+1. Bot Studio (3 queries)
+   - Overview
+   - How-to: create bot
+   - How-to: setup flows
+
+2. CTX / Click-to-Chat (3 queries)
+   - Overview
+   - How-to: implement
+   - Setup: lead generation
+
+3. AI Admin (3 queries)
+   - Overview
+   - How-to: configure models
+   - Setup: permissions
+
+4. Campaign Manager (3 queries)
+   - Overview
+   - How-to: create campaign
+   - Setup: scheduling
+
+5. Personalize (3 queries)
+   - Overview
+   - How-to: personalize messages
+   - Setup: dynamic rules
+
+================================================================================
+EXPECTED OUTPUT
+================================================================================
+
+Script will print:
+
+  1. Per-query execution (if --verbose)
+     - Status (✓ success or ✗ error)
+     - Latency in ms
+     - Video attached (title + platform)
+     - DemoForge demo name (if matched)
+     - Langfuse trace ID
+
+  2. Summary statistics
+     - Total queries executed
+     - Success rate
+     - Videos attached count
+     - DemoForge demos matched count
+     - Breakdown by module
+
+  3. Correlation IDs for Langfuse lookup
+     - Format: video_match_<module>_<intent>_<index>_<timestamp>_<suffix>
+     - Use for: lf traces --filter 'correlation_id=<ID>'
+
+================================================================================
+VERIFICATION STEPS
+================================================================================
+
+After running the script:
+
+1. Check console output for "✓ Successful: 15"
+2. Note correlation IDs for Langfuse lookup
+3. Log into Langfuse dashboard (https://cloud.langfuse.com)
+4. Search traces by correlation_id to verify video selection
+5. Check video_platform and demoforge_demo_name fields match module intent
+
+================================================================================
+FILES CREATED
+================================================================================
+
+/Users/adwit.sharma/kb_docs/local/scripts/test_video_matching.py
+  - Main test script (executable)
+  - 14KB, ~430 lines
+
+/Users/adwit.sharma/kb_docs/local/scripts/TEST_VIDEO_MATCHING_README.md
+  - Full documentation
+  - Usage examples
+  - Output format reference
+  - Troubleshooting guide
+
+/Users/adwit.sharma/kb_docs/local/scripts/QUICKSTART_VIDEO_MATCHING.txt
+  - This file
+
+================================================================================
+NOTES
+================================================================================
+
+- Script uses MockContext to avoid needing PROD_EXT access
+- Calls kb_answer skill directly (local Python function)
+- Generates real Langfuse traces (trace_env=local)
+- Each query gets unique correlation_id for easy lookup
+- DemoForge video selection is tested via real API calls
+- Requires .env file with LANGFUSE_* and DEMOFORGE_* credentials
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+1. Run: python3 local/scripts/test_video_matching.py --verbose
+2. Copy correlation IDs
+3. Check Langfuse dashboard for traces
+4. Verify video selection matches module intent
+5. Review any fallbacks or errors
+6. Iterate on select_video() if needed
+
+================================================================================
