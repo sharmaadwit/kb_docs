@@ -135,7 +135,7 @@ class GapWorker:
             "root_cause": "keyword_gap | routing_miss | retrieval_rank | content_thin | answer_quality | null",
             "keywords_to_add": ["specific missing term from IDK queries"],
             "doc_to_create": "kb/module/filename.md or null",
-            "doc_outline": "full markdown outline or null",
+            "doc_outline": null,
             "doc_priority": "high | medium | low | null",
             "reason_ignored": "explanation if OUT_OF_SCOPE or NOISE, else null",
             "per_query_notes": {"query_prefix": "IDK|ANSWERED — one-line diagnosis"},
@@ -222,8 +222,6 @@ Name the single bucket. Explain what evidence you're basing it on."""
         t3_prompt = f"""Based on your analysis and challenge, produce the final verdict.
 
 Requirements:
-- doc_outline (if NO_DOCS_IN_SCOPE): write a FULL, DETAILED markdown outline based on
-  the actual failing queries — include specific sections that would answer those queries.
 - keywords_to_add (if HAS_DOCS_FAILS): list the EXACT terms from the IDK queries that
   are absent from the matching doc's headings/keywords — not generic terms.
 - reasoning: reference specific query results and doc evidence from the pipeline signal.

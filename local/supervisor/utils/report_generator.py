@@ -1,4 +1,4 @@
-"""Report generator - produce a 3-section supervisor markdown report from 4-bucket verdicts."""
+"""Report generator — single-table supervisor report from 4-bucket verdicts."""
 
 import logging
 from datetime import datetime, timezone
@@ -11,9 +11,22 @@ from .gap_classifier import OUT_OF_SCOPE_GENERAL, NOISE
 
 logger = logging.getLogger(__name__)
 
+_BUCKET_LABEL = {
+    "HAS_DOCS_FAILS": "Fix Now",
+    "NO_DOCS_IN_SCOPE": "Create Docs",
+    "OUT_OF_SCOPE": "Ignored",
+    "NOISE": "Ignored",
+}
+
+
+def _cell(text: str, max_len: int = 80) -> str:
+    """Truncate and strip newlines for a table cell."""
+    text = str(text or "").replace("\n", " ").replace("|", "/").strip()
+    return text[:max_len] + "…" if len(text) > max_len else text
+
 
 class ReportGenerator:
-    """Generate a 3-section markdown supervisor report from pre-computed verdicts."""
+    """Generate a single-table supervisor report from pre-computed verdicts."""
 
     def __init__(self, qwen: QwenInterface) -> None:
         self.qwen = qwen
@@ -26,18 +39,6 @@ class ReportGenerator:
         classifications: Dict[str, Any] = None,
         judge_verdicts: Dict[str, Any] = None,
     ) -> str:
-        """Generate the 3-section supervisor report.
-
-        Args:
-            gaps: List of selected Gap objects.
-            traces: Complete list of all traces (unused in body, kept for signature compat).
-            output_path: Path to write report.
-            classifications: gap_key -> classify_gap() result dict.
-            judge_verdicts: gap_key -> judge_gap_4bucket() result dict.
-
-        Returns:
-            Full report text.
-        """
         logger.info(f"Generating report ({len(gaps)} gaps)...")
 
         classifications = classifications or {}
@@ -45,157 +46,110 @@ class ReportGenerator:
 
         timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
-        # Route each gap into its bucket
-        fix_now = []       # HAS_DOCS_FAILS
-        create_docs = []   # NO_DOCS_IN_SCOPE
-        ignored = []       # OUT_OF_SCOPE or NOISE
+        rows = []  # (gap, bucket, verdict)
 
         for gap in gaps:
             gap_key = f"{gap.module}/{gap.intent}"
-            verdict = judge_verdicts.get(gap_key)
+            verdict = judge_verdicts.get(gap_key) or {}
             if verdict:
                 bucket = verdict.get("bucket", "")
             else:
-                # Fall back to classifications
                 cat = classifications.get(gap_key, {}).get("category", "")
                 if cat in (OUT_OF_SCOPE_GENERAL, NOISE, "OUT_OF_SCOPE_PRICING",
                            "OUT_OF_SCOPE_ACCOUNT_SUPPORT"):
                     bucket = "OUT_OF_SCOPE"
                 else:
-                    bucket = "HAS_DOCS_FAILS"  # default — actionable
+                    bucket = "HAS_DOCS_FAILS"
+            rows.append((gap, bucket, verdict))
 
-            if bucket == "HAS_DOCS_FAILS":
-                fix_now.append((gap, verdict or {}))
-            elif bucket == "NO_DOCS_IN_SCOPE":
-                create_docs.append((gap, verdict or {}))
-            else:
-                reason = ""
-                if verdict:
-                    reason = verdict.get("reason_ignored") or verdict.get("reasoning") or bucket
-                else:
-                    reason = classifications.get(gap_key, {}).get("category", bucket)
-                ignored.append((gap, bucket, reason))
+        # Sort: Fix Now first, then Create Docs by failure count, then Ignored
+        bucket_order = {"HAS_DOCS_FAILS": 0, "NO_DOCS_IN_SCOPE": 1, "OUT_OF_SCOPE": 2, "NOISE": 2}
+        rows.sort(key=lambda r: (bucket_order.get(r[1], 9), -r[0].failure_count))
 
-        # Build report
-        report_lines = [
+        fix_now_count   = sum(1 for _, b, _ in rows if b == "HAS_DOCS_FAILS")
+        create_count    = sum(1 for _, b, _ in rows if b == "NO_DOCS_IN_SCOPE")
+        ignored_count   = sum(1 for _, b, _ in rows if b in ("OUT_OF_SCOPE", "NOISE"))
+
+        lines = [
             f"# KB Supervisor Report — {timestamp}",
             "",
             "## Summary",
-            f"- **Gaps analyzed:** {len(gaps)}",
-            f"- **Fix Now (code changes):** {len(fix_now)} gaps — keywords/routing additions that unblock existing docs",
-            f"- **Create Docs:** {len(create_docs)} gaps — in-scope topics with no KB coverage",
-            f"- **Ignored:** {len(ignored)} gaps (out of scope / noise)",
+            f"| | Count |",
+            f"|---|---|",
+            f"| Gaps analyzed | {len(gaps)} |",
+            f"| Fix Now (keyword / routing fix in code) | {fix_now_count} |",
+            f"| Create Docs (missing KB coverage) | {create_count} |",
+            f"| Ignored (out of scope / noise) | {ignored_count} |",
             "",
             "---",
             "",
+            "## Gaps",
+            "",
+            "| # | Gap | Failures | Bucket | Priority | Recommendation | Top failing query |",
+            "|---|---|---|---|---|---|---|",
         ]
 
-        # Section 1: Fix Now
-        report_lines += [
-            "## Fix Now — Queries Failing Despite Existing Docs",
-            "",
-            "> These gaps have KB coverage. The skill is IDKing due to keyword gaps, routing misses, or retrieval rank.",
-            "> Action: add the suggested keywords to EXPLICIT_MODULES or CONCEPT_REGISTRY in kb_answer.py.",
-            "",
-        ]
-        if not fix_now:
-            report_lines += [
-                "**No Fix Now gaps this run.** All IDK failures are either missing KB docs or out of scope — no keyword/routing fixes needed in code.",
-                "",
-            ]
-        for i, (gap, verdict) in enumerate(fix_now, 1):
-            matching_doc = verdict.get("matching_doc") or "unknown"
-            root_cause = verdict.get("root_cause") or "unknown"
-            keywords = verdict.get("keywords_to_add") or []
-            sample_queries = (gap.failure_examples or [])[:5]
+        for i, (gap, bucket, verdict) in enumerate(rows, 1):
+            label = _BUCKET_LABEL.get(bucket, bucket)
+            priority = (verdict.get("doc_priority") or "—").upper()
 
-            report_lines.append(
-                f"### Gap #{i}: {gap.module} / {gap.intent} — {gap.failure_count} failures "
-                f"({gap.answer_rate:.1%} answer rate)"
-            )
-            report_lines.append(f"**Matching KB doc:** `{matching_doc}`")
-            report_lines.append(f"**Root cause:** {root_cause}")
-            if keywords:
-                report_lines.append("**Suggested keywords to add:**")
-                for kw in keywords:
-                    report_lines.append(f'- `"{kw}"`')
-            else:
-                # Fall back to per_query_notes if judge gave us them
-                per_query_notes = verdict.get("per_query_notes") or {}
-                if per_query_notes:
-                    report_lines.append("**Per-query diagnosis:**")
-                    for q_prefix, note in per_query_notes.items():
-                        report_lines.append(f"- `{q_prefix}`: {note}")
+            if bucket == "HAS_DOCS_FAILS":
+                keywords = verdict.get("keywords_to_add") or []
+                matching_doc = verdict.get("matching_doc") or "?"
+                if keywords:
+                    recommendation = f"Add keywords to kb_answer.py: {', '.join(f'`{k}`' for k in keywords[:3])}"
                 else:
-                    report_lines.append("**Note:** Judge could not identify specific keywords. "
-                                        "Manual investigation of retrieved docs recommended.")
-            report_lines.append("")
-            report_lines.append("**Reasoning:** " + (verdict.get("reasoning") or ""))
-            report_lines.append("")
-            report_lines.append("**Sample failing queries:**")
-            for q in sample_queries:
-                report_lines.append(f'- "{q}"')
-            report_lines.append("")
-            report_lines.append("---")
-            report_lines.append("")
+                    recommendation = f"Investigate retrieval for `{matching_doc}`"
 
-        # Section 2: Create Docs
-        report_lines += [
-            "## Create Docs — In-Scope Gaps with No KB Coverage",
-            "",
-            "> These gaps need new KB documents. Prioritized by failure volume and user impact.",
-            "",
-        ]
-        if not create_docs:
-            report_lines += [
-                "**No Create Docs gaps this run.** All in-scope IDK failures are covered by existing KB docs — retrieval or keyword fixes (if any) are in Fix Now above.",
-                "",
-            ]
-        for gap, verdict in create_docs:
-            priority = (verdict.get("doc_priority") or "medium").upper()
-            doc_to_create = verdict.get("doc_to_create") or f"kb/{gap.module.lower()}/{gap.intent.lower()}.md"
-            doc_outline = verdict.get("doc_outline") or "*(no outline generated)*"
-            sample_queries = (gap.failure_examples or [])[:5]
+            elif bucket == "NO_DOCS_IN_SCOPE":
+                doc_path = verdict.get("doc_to_create") or f"kb/{gap.module.lower()}/{gap.intent.lower()}.md"
+                recommendation = f"Create `{doc_path}`"
 
-            report_lines.append(
-                f"### [Priority: {priority}] {gap.module} / {gap.intent} — {gap.failure_count} failures"
+            else:
+                reason = (verdict.get("reason_ignored") or verdict.get("reasoning")
+                          or classifications.get(f"{gap.module}/{gap.intent}", {}).get("category", bucket))
+                recommendation = _cell(reason, 60)
+                priority = "—"
+
+            top_query = _cell((gap.failure_examples or ["?"])[0], 70)
+
+            lines.append(
+                f"| {i} | {gap.module} / {gap.intent} | {gap.failure_count} "
+                f"({gap.answer_rate:.0%}) | {label} | {priority} "
+                f"| {_cell(recommendation, 80)} | {top_query} |"
             )
-            report_lines.append(f"**Suggested file:** `{doc_to_create}`")
-            report_lines.append("**Sample queries:**")
-            for q in sample_queries:
-                report_lines.append(f'- "{q}"')
-            report_lines.append("")
-            report_lines.append("**Outline:**")
-            report_lines.append(doc_outline)
-            report_lines.append("")
-            report_lines.append("---")
-            report_lines.append("")
 
-        # Section 3: Ignored
-        report_lines += [
-            "## Ignored — Out of Scope / Noise",
-            "",
-        ]
-        if not ignored:
-            report_lines += [
-                "**No ignored gaps this run.** Every gap analyzed was either actionable (Fix Now / Create Docs) or filtered deterministically before reaching the judge.",
-                "",
-            ]
-        else:
-            report_lines += [
-                "| Gap | Failures | Reason |",
-                "|---|---|---|",
-            ]
-            for gap, bucket, reason in ignored:
-                reason_str = str(reason).replace("|", "/")
-                report_lines.append(f"| {gap.module} / {gap.intent} | {gap.failure_count} | {bucket} — {reason_str} |")
-            report_lines.append("")
-            report_lines.append("*The skill is correct to return IDK for these. No action needed.*")
-        report_lines.append("")
+        lines += ["", "---", ""]
 
-        report = "\n".join(report_lines)
+        # Detail section — one block per actionable gap, no outlines
+        actionable = [(i+1, g, b, v) for i, (g, b, v) in enumerate(rows) if b in ("HAS_DOCS_FAILS", "NO_DOCS_IN_SCOPE")]
+        if actionable:
+            lines += ["## Detail — Actionable Gaps", ""]
+            for idx, gap, bucket, verdict in actionable:
+                label = _BUCKET_LABEL[bucket]
+                lines.append(f"### #{idx} {gap.module} / {gap.intent} — {label}")
+                lines.append("")
 
-        # Determine write path — use timestamp-based filename if output_path is generic
+                if bucket == "HAS_DOCS_FAILS":
+                    lines.append(f"**Matching doc:** `{verdict.get('matching_doc') or '?'}`")
+                    lines.append(f"**Root cause:** {verdict.get('root_cause') or verdict.get('reasoning') or '?'}")
+                    keywords = verdict.get("keywords_to_add") or []
+                    if keywords:
+                        lines.append(f"**Keywords to add:** {', '.join(f'`{k}`' for k in keywords)}")
+                else:
+                    doc_path = verdict.get("doc_to_create") or f"kb/{gap.module.lower()}/{gap.intent.lower()}.md"
+                    lines.append(f"**Create:** `{doc_path}`")
+                    lines.append(f"**Why missing:** {verdict.get('reasoning') or '?'}")
+
+                lines.append("")
+                lines.append("**Failing queries:**")
+                for q in (gap.failure_examples or [])[:5]:
+                    lines.append(f'- "{_cell(q, 120)}"')
+                lines.append("")
+
+        report = "\n".join(lines)
+
+        # Write
         ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
         if output_path is None:
             _REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -205,8 +159,7 @@ class ReportGenerator:
 
         try:
             output_path.parent.mkdir(parents=True, exist_ok=True)
-            with open(output_path, "w") as f:
-                f.write(report)
+            output_path.write_text(report, encoding="utf-8")
             logger.info(f"Report written to {output_path}")
         except IOError as e:
             logger.error(f"Failed to write report: {e}")
