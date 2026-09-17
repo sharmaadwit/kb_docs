@@ -98,6 +98,11 @@ class ReportGenerator:
             "> Action: add the suggested keywords to EXPLICIT_MODULES or CONCEPT_REGISTRY in kb_answer.py.",
             "",
         ]
+        if not fix_now:
+            report_lines += [
+                "**No Fix Now gaps this run.** All IDK failures are either missing KB docs or out of scope — no keyword/routing fixes needed in code.",
+                "",
+            ]
         for i, (gap, verdict) in enumerate(fix_now, 1):
             matching_doc = verdict.get("matching_doc") or "unknown"
             root_cause = verdict.get("root_cause") or "unknown"
