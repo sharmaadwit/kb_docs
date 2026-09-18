@@ -16,6 +16,7 @@ _BUCKET_LABEL = {
     "NO_DOCS_IN_SCOPE": "Create Docs",
     "OUT_OF_SCOPE": "Ignored",
     "NOISE": "Ignored",
+    "UNKNOWN": "⚠ Judge Failed",
 }
 
 
@@ -62,13 +63,14 @@ class ReportGenerator:
                     bucket = "HAS_DOCS_FAILS"
             rows.append((gap, bucket, verdict))
 
-        # Sort: Fix Now first, then Create Docs by failure count, then Ignored
-        bucket_order = {"HAS_DOCS_FAILS": 0, "NO_DOCS_IN_SCOPE": 1, "OUT_OF_SCOPE": 2, "NOISE": 2}
+        # Sort: Fix Now first, then Create Docs by failure count, then Ignored, then Unknown last
+        bucket_order = {"HAS_DOCS_FAILS": 0, "NO_DOCS_IN_SCOPE": 1, "OUT_OF_SCOPE": 2, "NOISE": 2, "UNKNOWN": 3}
         rows.sort(key=lambda r: (bucket_order.get(r[1], 9), -r[0].failure_count))
 
         fix_now_count   = sum(1 for _, b, _ in rows if b == "HAS_DOCS_FAILS")
         create_count    = sum(1 for _, b, _ in rows if b == "NO_DOCS_IN_SCOPE")
         ignored_count   = sum(1 for _, b, _ in rows if b in ("OUT_OF_SCOPE", "NOISE"))
+        unknown_count   = sum(1 for _, b, _ in rows if b == "UNKNOWN")
 
         lines = [
             f"# KB Supervisor Report — {timestamp}",
@@ -80,6 +82,10 @@ class ReportGenerator:
             f"| Fix Now (keyword / routing fix in code) | {fix_now_count} |",
             f"| Create Docs (missing KB coverage) | {create_count} |",
             f"| Ignored (out of scope / noise) | {ignored_count} |",
+            *(
+                [f"| ⚠ Judge failed (worker error / timeout) | {unknown_count} |"]
+                if unknown_count else []
+            ),
             "",
             "---",
             "",
@@ -105,6 +111,10 @@ class ReportGenerator:
                 doc_path = verdict.get("doc_to_create") or f"kb/{gap.module.lower()}/{gap.intent.lower()}.md"
                 recommendation = f"Create `{doc_path}`"
 
+            elif bucket == "UNKNOWN":
+                recommendation = _cell(verdict.get("reasoning") or "worker error / timeout — rerun to retry", 80)
+                priority = "—"
+
             else:
                 reason = (verdict.get("reason_ignored") or verdict.get("reasoning")
                           or classifications.get(f"{gap.module}/{gap.intent}", {}).get("category", bucket))
@@ -122,7 +132,8 @@ class ReportGenerator:
         lines += ["", "---", ""]
 
         # Detail section — one block per actionable gap, no outlines
-        actionable = [(i+1, g, b, v) for i, (g, b, v) in enumerate(rows) if b in ("HAS_DOCS_FAILS", "NO_DOCS_IN_SCOPE")]
+        actionable = [(i+1, g, b, v) for i, (g, b, v) in enumerate(rows)
+                      if b in ("HAS_DOCS_FAILS", "NO_DOCS_IN_SCOPE")]
         if actionable:
             lines += ["## Detail — Actionable Gaps", ""]
             for idx, gap, bucket, verdict in actionable:

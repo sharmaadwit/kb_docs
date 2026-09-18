@@ -225,7 +225,7 @@ class TraceAnalyzer:
                 failure_count=g["failure"],
                 answer_rate=g["success"] / g["total"] if g["total"] > 0 else 0.0,
                 avg_confidence=avg_conf,
-                failure_examples=g["failures"][:5],
+                failure_examples=g["failures"][:20],
                 success_examples=g["successes"][:3],
                 trace_module=dominant_trace_module,
                 module_mismatch=mismatch,

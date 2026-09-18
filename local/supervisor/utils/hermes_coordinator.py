@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 _PROFILE = "kb-supervisor"
 _ENV = {**os.environ, "PATH": f"/Users/adwit.sharma/.local/bin:{os.environ.get('PATH', '')}"}
 
-_VALID_BUCKETS = {"HAS_DOCS_FAILS", "NO_DOCS_IN_SCOPE", "OUT_OF_SCOPE", "NOISE"}
+_VALID_BUCKETS = {"HAS_DOCS_FAILS", "NO_DOCS_IN_SCOPE", "OUT_OF_SCOPE", "NOISE", "UNKNOWN"}
 
 # ---------------------------------------------------------------------------
 # KB chunk search
@@ -83,7 +83,7 @@ def _search_kb_chunks(query_tokens: set, top_k: int = 5) -> List[Dict]:
 
 
 _DEGRADED = {
-    "bucket": "HAS_DOCS_FAILS",
+    "bucket": "UNKNOWN",
     "confidence": "low",
     "reasoning": "worker failed — degraded",
     "matching_doc": None,
