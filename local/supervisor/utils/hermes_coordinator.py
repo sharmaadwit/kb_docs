@@ -208,7 +208,7 @@ class GapWorker:
             "root_cause": "keyword_gap | routing_miss | retrieval_rank | content_thin | answer_quality | null",
             "keywords_to_add": ["specific missing term from IDK queries"],
             "doc_to_create": "kb/module/filename.md or null",
-            "doc_outline": null,
+            "doc_outline": None,
             "doc_priority": "high | medium | low | null",
             "reason_ignored": "explanation if OUT_OF_SCOPE or NOISE, else null",
             "per_query_notes": {"query_prefix": "IDK|ANSWERED — one-line diagnosis"},
