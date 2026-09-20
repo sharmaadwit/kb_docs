@@ -459,10 +459,28 @@ No prose, no markdown fences. Only JSON."""
 
     def _single_shot_fallback(self, output_path: str, context_prompt: str,
                                json_schema: str, gap_key: str, task_id: str) -> Dict[str, Any]:
-        """Fallback: single hermes -z call if conv turns fail."""
+        """Fallback: single hermes -z call if conv turns fail.
+
+        Hermes writes to stdout, not files — capture stdout and write the file ourselves.
+        """
         logger.info("  worker[%s] single-shot fallback for %s", task_id, gap_key)
-        prompt = f"{context_prompt}\n\nWrite ONLY valid JSON to: {output_path}\n{json_schema}\nNo prose, no fences."
-        _hermes_single(prompt, timeout=300)
+        prompt = f"{context_prompt}\n\nRespond with ONLY valid JSON matching this schema. No prose, no markdown fences:\n{json_schema}"
+        stdout = _hermes_single(prompt, timeout=300)
+        if stdout.strip():
+            # Strip markdown fences if present
+            text = stdout.strip()
+            if text.startswith("```"):
+                text = "\n".join(
+                    ln for ln in text.splitlines()
+                    if not ln.startswith("```")
+                ).strip()
+            # Write to the expected output file so _parse_output can read it
+            try:
+                Path(output_path).parent.mkdir(parents=True, exist_ok=True)
+                Path(output_path).write_text(text, encoding="utf-8")
+                logger.info("  worker[%s] single-shot wrote %d bytes to %s", task_id, len(text), output_path)
+            except Exception as exc:
+                logger.warning("  worker[%s] failed to write single-shot output: %s", task_id, exc)
         return self._parse_output(output_path, gap_key, task_id)
 
 
