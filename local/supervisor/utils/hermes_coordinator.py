@@ -265,11 +265,11 @@ class GapWorker:
                 kb_search_section += f"              \"{ch['snippet']}\"\n"
             top_score = kb_chunks[0]["score"]
             if top_score > 0.35:
-                kb_search_section += "\nNOTE: High-scoring docs found — strong evidence KB coverage exists. PREFER HAS_DOCS_FAILS + keyword/routing fix over NO_DOCS_IN_SCOPE. Only call NO_DOCS_IN_SCOPE if you can explicitly prove the retrieved doc does NOT cover the query topic."
+                kb_search_section += "\nNOTE: High-scoring docs found — PREFER HAS_DOCS_FAILS. Only call NO_DOCS_IN_SCOPE if you can prove the doc doesn't cover the queries."
             elif top_score > 0.2:
-                kb_search_section += "\nNOTE: Medium-scoring docs found — a related doc exists. Before concluding NO_DOCS_IN_SCOPE, ask: would adding keywords to kb_answer.py routing ensure these queries reach this doc? If yes → HAS_DOCS_FAILS (root_cause=keyword_gap or routing_miss)."
+                kb_search_section += "\nNOTE: Medium-scoring docs found — check if keyword/routing fix would work before calling NO_DOCS_IN_SCOPE."
             else:
-                kb_search_section += "\nNOTE: No strong KB matches found — NO_DOCS_IN_SCOPE likely correct."
+                kb_search_section += "\nNOTE: No strong KB matches — NO_DOCS_IN_SCOPE likely correct."
         else:
             kb_search_section += "  (No results — kb_chunks.jsonl unavailable or no token overlap found)\n"
             kb_search_section += "\nNOTE: No strong KB matches found — NO_DOCS_IN_SCOPE likely correct."
@@ -299,28 +299,15 @@ Integrations, AI Admin, Personalize, Wallet, Goals.
 {_SKILL_CONTEXT_PREAMBLE}
 
 ## Your Task
-Analyze this gap and determine which of 4 buckets it belongs to.
-**IMPORTANT: Evaluate in this order — stop at the first bucket that fits.**
+Classify this gap into ONE bucket. Evaluate in this order:
 
-  1. OUT_OF_SCOPE   — Not about Gupshup products, OR pricing/billing queries,
-                     OR general knowledge, OR most queries already ANSWERED.
-                     Action: ignore.
-
-  2. NOISE          — Malformed, too short, test traffic.
-                     Action: ignore.
-
-  3. HAS_DOCS_FAILS — A KB doc exists that COVERS this topic (even partially),
-                     but the skill IDKed due to keyword gaps or routing miss.
-                     Fix: add keywords or fix routing in kb_answer.py.
-                     **This is PREFERRED over creating new docs. If any existing
-                     doc is even partially relevant, exhaust HAS_DOCS_FAILS first.**
-
-  4. NO_DOCS_IN_SCOPE — Legitimate Gupshup product question, no KB doc exists
-                     AND no existing doc could be made to cover it with routing fixes.
-                     Fix: create a new KB document.
-                     **Only reach this bucket if you've confirmed no existing doc covers
-                     the topic. Doc creation requires multiple teams — recommend it only
-                     when routing/keyword fixes genuinely cannot solve the gap.**
+  OUT_OF_SCOPE     — Not a Gupshup product question, pricing/billing, general knowledge,
+                     or most queries already ANSWERED.
+  NOISE            — Malformed, too short, test traffic.
+  HAS_DOCS_FAILS   — A relevant KB doc exists but the skill IDKed (keyword/routing miss).
+                     PREFER this over NO_DOCS_IN_SCOPE — it's a faster fix.
+  NO_DOCS_IN_SCOPE — Legitimate question, no existing doc covers it even with routing.
+                     Only use this if HAS_DOCS_FAILS is genuinely impossible.
 
 ## Gap Details
 Module: {gap.module}
@@ -361,43 +348,25 @@ Think step by step. Analyze each IDK query individually. Name the specific docs 
         logger.debug("  worker[%s] turn 1 complete (session=%s)", task_id, sid)
 
         # ── Turn 2: Adversarial Challenge ────────────────────────────────────
-        t2_prompt = f"""Now challenge your own analysis from Turn 1. Be adversarial.
+        t2_prompt = f"""Challenge your Turn 1 analysis. Be adversarial.
 
-**PRIORITY CHECK — run this FIRST before anything else:**
-Could any existing KB doc answer these queries if the right keywords were added to
-kb_answer.py routing? Routing/keyword fixes are FASTER than creating new docs (no
-multi-team coordination needed). Only conclude NO_DOCS_IN_SCOPE if you can state
-clearly WHY no existing doc covers the topic even with better routing.
+FIRST: Could an existing KB doc answer these queries with better keywords/routing?
+Keyword fixes are faster than creating new docs. Only call NO_DOCS_IN_SCOPE if
+you can prove NO existing doc covers the topic even with routing improvements.
 
-For each conclusion you reached:
-1. If you said NO_DOCS_IN_SCOPE:
-   a. Re-scan the KB inventory for any file whose section headings touch the query topic.
-   b. Check the local KB search results — even a medium-scoring doc (0.2+) may cover
-      the topic. If it does, switch to HAS_DOCS_FAILS + keyword_gap / routing_miss.
-   c. Ask: if a user got routed to the best matching doc, would it partially answer them?
-      If YES → HAS_DOCS_FAILS is the right bucket.
-   d. Only keep NO_DOCS_IN_SCOPE if no existing doc covers the core query, even partially.
-2. If you said HAS_DOCS_FAILS: verify the retrieved doc actually covers the query.
-   Look for ⚠ FALSE-POSITIVE RETRIEVAL flags. If present AND no other doc covers it
-   → switch to NO_DOCS_IN_SCOPE.
-3. If you said OUT_OF_SCOPE: are any IDK queries genuinely about a Gupshup product?
-4. Check: are there ANSWERED queries mixed in? Those should not count as failures.
-5. Are any of these queries about PRICING (cost, price, per-message rate, billing,
-   plan tiers, tariffs, fee, mensalidade, tarifa, custo)? If yes → OUT_OF_SCOPE.
-   Pricing is intentionally refused by design as a sales signal. Do NOT create pricing docs.
-6. Are any queries asking for a product demo, walkthrough, or overview video?
-   Video content already exists in kb/video_manifest.json (18 topics covered).
-   If the query IDKed and a matching video exists → HAS_DOCS_FAILS (root_cause=routing_miss).
-7. Does the skill have a principled reason to REFUSE these queries — general
-   knowledge (geography, sports, jokes), internal infrastructure alerts, or
-   pure competitor comparisons with no Gupshup product angle? If yes → OUT_OF_SCOPE.
-8. For Bot Studio/API Node/variables/database queries: kb/bot-studio/manage-variables.md
-   covers storing user input, kb/bot-studio/api-node.md covers external API/database
-   calls. A ⚠ FALSE-POSITIVE RETRIEVAL flag means the WRONG doc was retrieved —
-   NOT that no doc exists. Check whether a different existing doc covers the topic.
+1. If NO_DOCS_IN_SCOPE: re-scan KB inventory. Any file with matching section headings?
+   Even a medium-scoring KB search result (0.2+) → try HAS_DOCS_FAILS instead.
+2. If HAS_DOCS_FAILS: check for ⚠ FALSE-POSITIVE RETRIEVAL flags. If present AND
+   no other doc covers the topic → switch to NO_DOCS_IN_SCOPE.
+3. If OUT_OF_SCOPE: are any IDK queries genuinely about a Gupshup product?
+4. ANSWERED queries do not count as failures.
+5. PRICING queries → always OUT_OF_SCOPE (sales signal, never create pricing docs).
+6. Demo/video queries → check kb/video_manifest.json (18 topics) → HAS_DOCS_FAILS if match.
+7. General knowledge, infrastructure alerts, off-topic → OUT_OF_SCOPE.
+8. Bot Studio DB/variable queries: manage-variables.md + api-node.md may cover them.
+   ⚠ FALSE-POSITIVE = wrong doc retrieved, not missing doc.
 
-After challenging, state your final verdict with high confidence.
-Name the single bucket. Explain what evidence you're basing it on."""
+State final verdict with one bucket and your evidence."""
 
         sid, t2_out = _hermes_turn(t2_prompt, sid, timeout_per_turn)
         if not sid:
@@ -539,11 +508,15 @@ class HermesCoordinator:
                 for gap in gaps
             }
 
-        # 1. Post all gaps to kanban and record task IDs
-        logger.info("  coordinator: posting %d gaps to kanban board", len(gaps))
+        # 1. Post all gaps to kanban and record task IDs (skip pre-classified)
+        gaps_to_judge = [g for g in gaps if not g.pre_classified_bucket]
+        skipped = len(gaps) - len(gaps_to_judge)
+        if skipped:
+            logger.info("  coordinator: skipping %d pre-classified gaps (pricing/coexistence)", skipped)
+        logger.info("  coordinator: posting %d gaps to kanban board", len(gaps_to_judge))
         self.kanban.clear_board()
         task_ids: Dict[str, str] = {}  # gap_key -> task_id
-        for idx, gap in enumerate(gaps):
+        for idx, gap in enumerate(gaps_to_judge):
             old_key = f"Gap #{idx + 1}"
             classification = classifications.get(old_key, {})
             task_id = self._post_gap_task(idx + 1, gap, classification)
@@ -554,13 +527,13 @@ class HermesCoordinator:
 
         # 2. Fan out workers in parallel
         logger.info("  coordinator: spinning up %d workers (max_workers=%d)",
-                    len(gaps), max_workers)
+                    len(gaps_to_judge), max_workers)
 
         four_bucket_verdicts: Dict[str, Any] = {}
 
         with ThreadPoolExecutor(max_workers=max_workers) as pool:
             future_to_gap: dict = {}
-            for idx, gap in enumerate(gaps):
+            for idx, gap in enumerate(gaps_to_judge):
                 old_key = f"Gap #{idx + 1}"
                 classification = classifications.get(old_key, {})
                 gap_key = f"{gap.module}/{gap.intent}"
