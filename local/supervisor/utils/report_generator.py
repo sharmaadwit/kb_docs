@@ -51,16 +51,21 @@ class ReportGenerator:
 
         for gap in gaps:
             gap_key = f"{gap.module}/{gap.intent}"
-            verdict = judge_verdicts.get(gap_key) or {}
-            if verdict:
-                bucket = verdict.get("bucket", "")
+            # Pre-classified gaps (pricing, coexistence) bypass the judge entirely
+            if gap.pre_classified_bucket:
+                bucket = gap.pre_classified_bucket
+                verdict = {"bucket": bucket, "reason_ignored": gap.intent.replace("_", " ") + " — pre-classified by trace analyzer"}
             else:
-                cat = classifications.get(gap_key, {}).get("category", "")
-                if cat in (OUT_OF_SCOPE_GENERAL, NOISE, "OUT_OF_SCOPE_PRICING",
-                           "OUT_OF_SCOPE_ACCOUNT_SUPPORT"):
-                    bucket = "OUT_OF_SCOPE"
+                verdict = judge_verdicts.get(gap_key) or {}
+                if verdict:
+                    bucket = verdict.get("bucket", "")
                 else:
-                    bucket = "HAS_DOCS_FAILS"
+                    cat = classifications.get(gap_key, {}).get("category", "")
+                    if cat in (OUT_OF_SCOPE_GENERAL, NOISE, "OUT_OF_SCOPE_PRICING",
+                               "OUT_OF_SCOPE_ACCOUNT_SUPPORT"):
+                        bucket = "OUT_OF_SCOPE"
+                    else:
+                        bucket = "HAS_DOCS_FAILS"
             rows.append((gap, bucket, verdict))
 
         # Sort: Fix Now first, then Create Docs by failure count, then Ignored, then Unknown last

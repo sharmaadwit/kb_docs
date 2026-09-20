@@ -33,6 +33,77 @@ _ENV = {**os.environ, "PATH": f"/Users/adwit.sharma/.local/bin:{os.environ.get('
 _VALID_BUCKETS = {"HAS_DOCS_FAILS", "NO_DOCS_IN_SCOPE", "OUT_OF_SCOPE", "NOISE", "UNKNOWN"}
 
 # ---------------------------------------------------------------------------
+# Skill context preamble — injected into every Turn 1 prompt
+# ---------------------------------------------------------------------------
+
+_SKILL_CONTEXT_PREAMBLE = """## Skill Context & Principles
+
+### What this skill answers
+The Gupshup Guide answers questions about Gupshup Console products only:
+  - WhatsApp Business API / WABA setup, templates, flows, sandbox, inbound webhooks
+  - Bot Studio / Journey Builder (same product — Journey Builder IS Bot Studio)
+    Docs live in kb/bot-studio/: journey-builder-setup.md, journey-builder-nodes.md,
+    consulting-loop-prevention.md (infinite loops), consulting-conditional-branching.md,
+    consulting-when-to-build.md, manage-variables.md, api-node.md, manage-api.md
+  - Campaign Manager, RCS, SMS/DLT, Instagram, Viber, Telegram
+  - Integrations (webhooks, Shopify, MoEngage, CleverTap, custom integrations)
+  - SuperAgent, Agent Assist, AI Admin, Personalize, Wallet, Goals, CTX
+  - CC Express (silent alias for Gupshup Console — same features)
+
+### What the skill REFUSES by design (these are NOT KB gaps — do NOT recommend docs)
+
+1. PRICING QUERIES — bucket=OUT_OF_SCOPE always
+   The skill intentionally does NOT answer pricing. Pricing IDK is a sales signal.
+   Applies to: cost, price, pricing, per-message rate, plan tiers, billing, tariffs,
+   monthly fee, mensalidade, mensualidad, tarifa, custo, costo, charges, fees.
+   reason_ignored="pricing queries refused by design — sales signal"
+   EXCEPTION: BizAI pricing IS answered (BizAI pricing docs are boosted in the skill).
+
+2. GENERAL KNOWLEDGE / OFF-TOPIC — bucket=OUT_OF_SCOPE
+   Anything not about Gupshup products: geography, sports, jokes, food, weather,
+   competitor-only questions (Salesforce, HubSpot, Zoho), personal queries.
+   reason_ignored="general knowledge / off-topic — not a Gupshup product question"
+
+3. INTERNAL INFRASTRUCTURE ALERTS — bucket=OUT_OF_SCOPE
+   AWS alerts, OpenSearch node storage warnings, internal monitoring events.
+   These are IT issues, not product questions.
+   reason_ignored="internal infrastructure alert — not a product question"
+
+4. COMPETITOR COMPARISONS — evaluate carefully
+   "Gupshup vs Kaleyra vs ValueFirst": if there is a genuine Gupshup product question
+   embedded, classify as NO_DOCS_IN_SCOPE. If purely competitor comparison with no
+   Gupshup angle, classify OUT_OF_SCOPE.
+
+### Video & demo content (check BEFORE calling NO_DOCS_IN_SCOPE for demo/walkthrough queries)
+The skill has a video manifest at kb/video_manifest.json covering 18 product topics:
+  Gupshup Console Overview, Message Templates, Campaign Manager, Bot Studio Journey,
+  Agent Assist Overview, Click-to-WhatsApp Ads (CTX), Personalize Module,
+  Analytics Dashboard, SuperAgent Overview, WhatsApp Flows, Bot Studio Journey Analytics,
+  AI Admin Agentic AI Journeys, Goals in Bot Studio, Agent Assist Analytics,
+  Agent Assist Settings, Enterprise WhatsApp Extension, Enterprise SMS Extension, RCS Extension.
+If a query asks for a "demo", "walkthrough", "show me how", "overview video", "how does X work"
+AND a matching video exists → bucket=HAS_DOCS_FAILS, root_cause=routing_miss,
+matching_doc=kb/video_manifest.json. Do NOT create a new doc for demo/video queries.
+
+### Consulting mode (check BEFORE calling NO_DOCS_IN_SCOPE for build/architecture queries)
+The skill has consulting-mode docs at:
+  kb/bot-studio/consulting-conditional-branching.md
+  kb/bot-studio/consulting-loop-prevention.md
+  kb/bot-studio/consulting-when-to-build.md
+Queries like "how do I build X", "when should I use X vs Y", "what approach for X",
+"prevent infinite loops" are answered by consulting docs.
+If such a query IDKed → bucket=HAS_DOCS_FAILS, root_cause=routing_miss. Do NOT create new docs.
+
+### Bot Studio variable/API/database docs (already exist — verify before NO_DOCS_IN_SCOPE)
+  kb/bot-studio/manage-variables.md — storing user input in variables
+  kb/bot-studio/api-node.md — calling external APIs/databases from bots
+  kb/bot-studio/manage-api.md — managing API configurations
+A FALSE-POSITIVE RETRIEVAL flag means the LIVE skill retrieved the WRONG doc — NOT
+that no doc exists. If the topic is covered by a different existing doc, classify
+HAS_DOCS_FAILS with root_cause=routing_miss, NOT NO_DOCS_IN_SCOPE.
+"""
+
+# ---------------------------------------------------------------------------
 # KB chunk search
 # ---------------------------------------------------------------------------
 
@@ -192,8 +263,8 @@ class GapWorker:
                 kb_search_section += f"  score={ch['score']:.2f}  {ch['source']}\n"
                 kb_search_section += f"              \"{ch['snippet']}\"\n"
             top_score = kb_chunks[0]["score"]
-            if top_score > 0.4:
-                kb_search_section += "\nNOTE: High-scoring docs found — verify carefully before calling NO_DOCS_IN_SCOPE."
+            if top_score > 0.35:
+                kb_search_section += "\nNOTE: High-scoring docs found — strong evidence KB coverage exists. Do NOT call NO_DOCS_IN_SCOPE without explicitly explaining why these docs fail to cover the queries."
             elif top_score < 0.2:
                 kb_search_section += "\nNOTE: No strong KB matches found — NO_DOCS_IN_SCOPE likely correct."
         else:
@@ -221,6 +292,8 @@ The Gupshup Guide answers questions ONLY about Gupshup's products:
 WhatsApp Business API, Bot Studio, Campaign Manager, SuperAgent, Agent Assist,
 CTX, BizAI/Meta Business Agent, Channels (RCS, Instagram, Viber, Telegram),
 Integrations, AI Admin, Personalize, Wallet, Goals.
+
+{_SKILL_CONTEXT_PREAMBLE}
 
 ## Your Task
 Analyze this gap and determine which of 4 buckets it belongs to:
@@ -285,6 +358,22 @@ For each conclusion you reached:
 5. The local KB search found these docs (from Turn 1 context). If you called
    NO_DOCS_IN_SCOPE but a high-scoring doc exists above, you must explain why it
    doesn't cover the queries before confirming that bucket.
+6. Are any of these queries about PRICING (cost, price, per-message rate, billing,
+   plan tiers, tariffs, fee, mensalidade, tarifa, custo)? If yes, the correct bucket
+   is OUT_OF_SCOPE — pricing is intentionally refused by design as a sales signal.
+   Do NOT recommend creating pricing docs.
+7. Are any queries asking for a product demo, walkthrough, or overview video?
+   Video content already exists in kb/video_manifest.json (18 topics covered).
+   If the query IDKed and a matching video exists, the correct bucket is
+   HAS_DOCS_FAILS (root_cause=routing_miss), NOT NO_DOCS_IN_SCOPE.
+8. Does the skill have a principled reason to REFUSE these queries — general
+   knowledge (geography, sports, jokes), internal infrastructure alerts, or
+   pure competitor comparisons with no Gupshup product angle? If yes, OUT_OF_SCOPE.
+9. For Bot Studio/API Node/variables/database queries: kb/bot-studio/manage-variables.md
+   covers storing user input, kb/bot-studio/api-node.md covers external API/database
+   calls. A ⚠ FALSE-POSITIVE RETRIEVAL flag means the wrong doc was retrieved —
+   NOT that no doc exists. Check whether an existing doc covers the topic before
+   calling NO_DOCS_IN_SCOPE.
 
 After challenging, state your final verdict with high confidence.
 Name the single bucket. Explain what evidence you're basing it on."""

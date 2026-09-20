@@ -55,6 +55,83 @@ def _skill_module(query: str) -> Tuple[Optional[str], Optional[str]]:
         return None, None
 
 
+# ── Pre-classification keyword sets ──────────────────────────────────────────
+# FIX 1: Pricing query detection
+PRICING_KEYWORDS: frozenset = frozenset({
+    "price", "prices", "priced", "pricing",
+    "cost", "costs", "costing",
+    "rate", "rates",
+    "charge", "charges",
+    "fee", "fees",
+    "billing", "bill", "invoice",
+    "plan", "plans",
+    "subscription", "subscriptions",
+    "tariff", "tariffs",
+    "tarifa", "tarifas",
+    "valor",
+    "precio", "precios",
+    "costo", "costos",
+    "custo", "custos",
+    "mensalidad", "mensualidad",
+    "preço",
+    "cobr",
+    "pagar",
+    "mensual", "monthly",
+    "recharge",
+    "per message",
+    "per session",
+})
+
+# Tokens that indicate the query is about a *product feature* even if a
+# pricing keyword also appears (e.g. "how to create a campaign plan").
+_PRICING_EXCLUSION_TOKENS: frozenset = frozenset({
+    "bot", "studio", "campaign", "flow", "webhook", "template",
+    "button", "node", "journey", "integration", "setup", "configure",
+})
+
+
+def _is_pricing_query(query: str) -> bool:
+    """Return True if query is primarily asking about pricing/cost.
+
+    Detects multi-word phrases ("per message", "per session") as well as
+    single tokens.  Excludes queries that contain product-feature tokens
+    alongside a pricing word (e.g. "pricing of the API node in Bot Studio").
+    """
+    q_lower = query.lower()
+    # Multi-word phrase check first
+    if "per message" in q_lower or "per session" in q_lower:
+        return True
+    toks = set(re.findall(r"[a-z0-9]+", q_lower))
+    if not (toks & PRICING_KEYWORDS):
+        return False
+    # Guard: don't capture product-feature questions that mention cost in passing
+    return not bool(toks & _PRICING_EXCLUSION_TOKENS)
+
+
+# FIX 2: WhatsApp Coexistence query detection
+COEXISTENCE_KEYWORDS: frozenset = frozenset({
+    "coexistence", "coexistência", "coexistencia",
+    "3-month", "3 month", "three month",
+    "existing number", "migrate number", "number migration",
+    "whatsapp business app to api",
+})
+
+
+def _is_coexistence_query(query: str) -> bool:
+    """Return True if query is about WhatsApp number coexistence / migration."""
+    q_lower = query.lower()
+    # Multi-word phrases
+    for phrase in (
+        "3-month", "3 month", "three month",
+        "existing number", "migrate number", "number migration",
+        "whatsapp business app to api",
+    ):
+        if phrase in q_lower:
+            return True
+    toks = set(re.findall(r"[a-z0-9]+", q_lower))
+    return bool(toks & COEXISTENCE_KEYWORDS)
+
+
 def _cluster_queries(
     queries: List[str],
     min_gap_size: int = 8,
@@ -119,6 +196,10 @@ class Gap:
     mismatch_detail: str = ""           # e.g. "trace=AI Admin, skill=Channels"
     no_concept_match_count: int = 0      # Queries with no entity match (pure BM25)
 
+    # Pre-classification: set by Pass 0 for pricing / coexistence gaps so the
+    # coordinator can skip full Hermes analysis and emit the bucket directly.
+    pre_classified_bucket: str = ""      # e.g. "OUT_OF_SCOPE" — empty = not pre-classified
+
     def __post_init__(self) -> None:
         if self.total_count > 0 and self.answer_rate == 0:
             self.answer_rate = self.success_count / self.total_count
@@ -144,11 +225,94 @@ class TraceAnalyzer:
         logger.info("Analyzing %d traces (skill pipeline re-routing: %s)...",
                     len(traces), "ON" if _SKILL_AVAILABLE else "OFF — trace labels only")
 
-        # ── Pass 1: collect per-query routing decisions ───────────────────────
-        # key = (skill_module, intent) — ground truth from current code
+        # Shared groups dict — populated by Pass 0, then Pass 1
         groups: Dict[tuple, Dict] = {}
 
-        for trace in traces:
+        # ── Pass 0: pre-classify pricing and coexistence traces ──────────────
+        # Scan ALL traces first for known OUT_OF_SCOPE categories.  Matching
+        # *unanswered* traces are routed into canonical synthetic keys and
+        # removed from regular grouping so they never scatter across modules.
+        # FIX 3 & 4 per diagnosis.
+        _PRE_CLASSIFIED_KEYS: Dict[tuple, str] = {
+            ("Pricing", "pricing"): "OUT_OF_SCOPE",
+            ("WhatsApp", "coexistence"): "OUT_OF_SCOPE",
+        }
+        # Set of trace indices that were consumed by Pass 0
+        _pass0_consumed: set = set()
+
+        for _idx, trace in enumerate(traces):
+            meta = trace.get("metadata") or {}
+            answered = bool(meta.get("answered") or trace.get("answered", False))
+            if answered:
+                continue  # answered traces never pre-classified as gaps
+            query = (
+                meta.get("query")
+                or (trace.get("input") or {}).get("query")
+                or trace.get("query", "")
+            )
+            if not query:
+                continue
+
+            if _is_pricing_query(query):
+                _pass0_consumed.add(_idx)
+                key = ("Pricing", "pricing")
+            elif _is_coexistence_query(query):
+                _pass0_consumed.add(_idx)
+                key = ("WhatsApp", "coexistence")
+            else:
+                continue
+
+            confidence = (
+                meta.get("top_score")
+                or meta.get("confidence")
+                or trace.get("confidence", 0.0)
+            )
+            trace_module = (
+                meta.get("module_label")
+                or meta.get("module")
+                or trace.get("module", "Unknown")
+            )
+
+            if key not in groups:
+                groups[key] = {
+                    "total": 0,
+                    "success": 0,
+                    "failure": 0,
+                    "confidences": [],
+                    "failures": [],
+                    "successes": [],
+                    "seen_failures": set(),
+                    "seen_successes": set(),
+                    "trace_modules": {},
+                    "no_concept_count": 0,
+                    "pre_classified_bucket": _PRE_CLASSIFIED_KEYS[key],
+                }
+
+            groups[key]["total"] += 1
+            groups[key]["failure"] += 1
+            groups[key]["confidences"].append(confidence)
+            tm = groups[key]["trace_modules"]
+            tm[trace_module] = tm.get(trace_module, 0) + 1
+            if query not in groups[key]["seen_failures"]:
+                groups[key]["seen_failures"].add(query)
+                groups[key]["failures"].append(query)
+
+        if _pass0_consumed:
+            logger.info(
+                "Pass 0: pre-classified %d traces (pricing=%d, coexistence=%d)",
+                len(_pass0_consumed),
+                len(groups.get(("Pricing", "pricing"), {}).get("failures", [])),
+                len(groups.get(("WhatsApp", "coexistence"), {}).get("failures", [])),
+            )
+
+        # ── Pass 1: collect per-query routing decisions ───────────────────────
+        # key = (skill_module, intent) — ground truth from current code
+        # (traces already consumed by Pass 0 are skipped)
+        for _idx, trace in enumerate(traces):
+            # Skip traces already bucketed by Pass 0
+            if _idx in _pass0_consumed:
+                continue
+
             meta = trace.get("metadata") or {}
             trace_module = meta.get("module_label") or meta.get("module") or trace.get("module", "Unknown")
             intents = meta.get("intent_labels") or []
@@ -180,6 +344,7 @@ class TraceAnalyzer:
                     "seen_successes": set(),
                     "trace_modules": {},      # {trace_module: count}
                     "no_concept_count": 0,
+                    "pre_classified_bucket": "",  # empty = not pre-classified
                 }
 
             groups[key]["total"] += 1
@@ -231,6 +396,7 @@ class TraceAnalyzer:
                 module_mismatch=mismatch,
                 mismatch_detail=mismatch_detail,
                 no_concept_match_count=g["no_concept_count"],
+                pre_classified_bucket=g.get("pre_classified_bucket", ""),
             )
             gaps.append(gap)
 
@@ -238,6 +404,11 @@ class TraceAnalyzer:
         split_gaps: List[Gap] = []
         for gap in gaps:
             examples = gap.failure_examples or []
+            # Never split pre-classified gaps — they must stay consolidated so
+            # the coordinator emits a single OUT_OF_SCOPE verdict.
+            if gap.pre_classified_bucket:
+                split_gaps.append(gap)
+                continue
             if len(examples) < 8:
                 split_gaps.append(gap)
                 continue
@@ -268,6 +439,7 @@ class TraceAnalyzer:
                     module_mismatch=gap.module_mismatch,
                     mismatch_detail=gap.mismatch_detail,
                     no_concept_match_count=round(gap.no_concept_match_count * ratio),
+                    pre_classified_bucket="",  # sub-gaps inherit no pre-classification
                 )
                 split_gaps.append(sub_gap)
         gaps = split_gaps
