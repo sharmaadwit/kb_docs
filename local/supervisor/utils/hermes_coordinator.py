@@ -240,7 +240,8 @@ class GapWorker:
 
         # Build shared context once
         pipeline_signal = self.judge._build_pipeline_signal(self.classification)
-        kb_inventory = self.judge._build_kb_inventory()
+        # Filter inventory to gap module + general — full inventory is ~26k tokens and causes timeouts
+        kb_inventory = self.judge._build_kb_inventory(module_filter=gap.module)
         det_verdict = self.classification.get("category", "unknown")
         det_confidence = self.classification.get("confidence", "unknown")
         failing_queries = "\n".join(

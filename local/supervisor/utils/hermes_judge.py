@@ -938,12 +938,46 @@ class HermesJudge:
 
         return self._single_shot_judge(gap_summary, output_path, env, timeout)
 
-    def _build_kb_inventory(self) -> str:
-        """Build KB inventory with top-level title + all ## section headings per file."""
+    def _build_kb_inventory(self, module_filter: str = "") -> str:
+        """Build KB inventory with top-level title + all ## section headings per file.
+
+        If module_filter is given, only include files under the matching module folder
+        plus the overview/ and troubleshooting/ folders (always relevant).
+        Full inventory is ~26k tokens and causes Hermes timeouts on large prompts.
+        """
         kb_dir = Path(__file__).resolve().parents[3] / "kb"
+
+        # Map common module names → kb subfolder names
+        _MODULE_FOLDER = {
+            "WhatsApp": ["whatsapp"],
+            "Bot Studio": ["bot-studio"],
+            "Journey Builder": ["bot-studio"],
+            "Channels": ["channels", "rcs-messaging", "sms-and-otp"],
+            "Integrations": ["integrations"],
+            "Campaign Manager": ["campaign-manager"],
+            "AI Admin": ["ai-admin"],
+            "Agent Assist": ["agent-assist"],
+            "SuperAgent": ["superagent"],
+            "General": ["overview"],
+            "Overview": ["overview"],
+        }
+        always_include = {"overview", "troubleshooting"}
+        module_folders = set(always_include)
+        if module_filter:
+            for key, folders in _MODULE_FOLDER.items():
+                if key.lower() in module_filter.lower() or module_filter.lower() in key.lower():
+                    module_folders.update(folders)
+            # Also add the raw module name lowercased as a folder guess
+            module_folders.add(module_filter.lower().replace(" ", "-"))
+
         lines = []
         for md_file in sorted(kb_dir.rglob("*.md")):
             rel = md_file.relative_to(kb_dir)
+            # Apply module filter: skip files not in relevant folders
+            if module_filter:
+                top_folder = rel.parts[0] if rel.parts else ""
+                if top_folder not in module_folders:
+                    continue
             title = ""
             subheadings: List[str] = []
             try:
