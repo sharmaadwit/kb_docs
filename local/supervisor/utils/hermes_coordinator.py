@@ -265,8 +265,10 @@ class GapWorker:
                 kb_search_section += f"              \"{ch['snippet']}\"\n"
             top_score = kb_chunks[0]["score"]
             if top_score > 0.35:
-                kb_search_section += "\nNOTE: High-scoring docs found — strong evidence KB coverage exists. Do NOT call NO_DOCS_IN_SCOPE without explicitly explaining why these docs fail to cover the queries."
-            elif top_score < 0.2:
+                kb_search_section += "\nNOTE: High-scoring docs found — strong evidence KB coverage exists. PREFER HAS_DOCS_FAILS + keyword/routing fix over NO_DOCS_IN_SCOPE. Only call NO_DOCS_IN_SCOPE if you can explicitly prove the retrieved doc does NOT cover the query topic."
+            elif top_score > 0.2:
+                kb_search_section += "\nNOTE: Medium-scoring docs found — a related doc exists. Before concluding NO_DOCS_IN_SCOPE, ask: would adding keywords to kb_answer.py routing ensure these queries reach this doc? If yes → HAS_DOCS_FAILS (root_cause=keyword_gap or routing_miss)."
+            else:
                 kb_search_section += "\nNOTE: No strong KB matches found — NO_DOCS_IN_SCOPE likely correct."
         else:
             kb_search_section += "  (No results — kb_chunks.jsonl unavailable or no token overlap found)\n"
@@ -297,16 +299,28 @@ Integrations, AI Admin, Personalize, Wallet, Goals.
 {_SKILL_CONTEXT_PREAMBLE}
 
 ## Your Task
-Analyze this gap and determine which of 4 buckets it belongs to:
+Analyze this gap and determine which of 4 buckets it belongs to.
+**IMPORTANT: Evaluate in this order — stop at the first bucket that fits.**
 
-  HAS_DOCS_FAILS   — KB doc exists AND covers this topic AND was retrieved, but skill IDKed.
+  1. OUT_OF_SCOPE   — Not about Gupshup products, OR pricing/billing queries,
+                     OR general knowledge, OR most queries already ANSWERED.
+                     Action: ignore.
+
+  2. NOISE          — Malformed, too short, test traffic.
+                     Action: ignore.
+
+  3. HAS_DOCS_FAILS — A KB doc exists that COVERS this topic (even partially),
+                     but the skill IDKed due to keyword gaps or routing miss.
                      Fix: add keywords or fix routing in kb_answer.py.
-  NO_DOCS_IN_SCOPE — Legitimate Gupshup product question, no KB doc exists.
+                     **This is PREFERRED over creating new docs. If any existing
+                     doc is even partially relevant, exhaust HAS_DOCS_FAILS first.**
+
+  4. NO_DOCS_IN_SCOPE — Legitimate Gupshup product question, no KB doc exists
+                     AND no existing doc could be made to cover it with routing fixes.
                      Fix: create a new KB document.
-  OUT_OF_SCOPE     — Not about Gupshup products, OR most queries already ANSWERED.
-                     Action: ignore.
-  NOISE            — Malformed, too short, test traffic.
-                     Action: ignore.
+                     **Only reach this bucket if you've confirmed no existing doc covers
+                     the topic. Doc creation requires multiple teams — recommend it only
+                     when routing/keyword fixes genuinely cannot solve the gap.**
 
 ## Gap Details
 Module: {gap.module}
@@ -349,32 +363,38 @@ Think step by step. Analyze each IDK query individually. Name the specific docs 
         # ── Turn 2: Adversarial Challenge ────────────────────────────────────
         t2_prompt = f"""Now challenge your own analysis from Turn 1. Be adversarial.
 
+**PRIORITY CHECK — run this FIRST before anything else:**
+Could any existing KB doc answer these queries if the right keywords were added to
+kb_answer.py routing? Routing/keyword fixes are FASTER than creating new docs (no
+multi-team coordination needed). Only conclude NO_DOCS_IN_SCOPE if you can state
+clearly WHY no existing doc covers the topic even with better routing.
+
 For each conclusion you reached:
-1. If you said HAS_DOCS_FAILS: verify the retrieved doc actually covers the query.
-   Look for ⚠ FALSE-POSITIVE RETRIEVAL flags. If present → switch to NO_DOCS_IN_SCOPE.
-2. If you said NO_DOCS_IN_SCOPE: scan the KB inventory carefully for any file whose
-   section headings match the query topic. Did you miss a doc?
+1. If you said NO_DOCS_IN_SCOPE:
+   a. Re-scan the KB inventory for any file whose section headings touch the query topic.
+   b. Check the local KB search results — even a medium-scoring doc (0.2+) may cover
+      the topic. If it does, switch to HAS_DOCS_FAILS + keyword_gap / routing_miss.
+   c. Ask: if a user got routed to the best matching doc, would it partially answer them?
+      If YES → HAS_DOCS_FAILS is the right bucket.
+   d. Only keep NO_DOCS_IN_SCOPE if no existing doc covers the core query, even partially.
+2. If you said HAS_DOCS_FAILS: verify the retrieved doc actually covers the query.
+   Look for ⚠ FALSE-POSITIVE RETRIEVAL flags. If present AND no other doc covers it
+   → switch to NO_DOCS_IN_SCOPE.
 3. If you said OUT_OF_SCOPE: are any IDK queries genuinely about a Gupshup product?
 4. Check: are there ANSWERED queries mixed in? Those should not count as failures.
-5. The local KB search found these docs (from Turn 1 context). If you called
-   NO_DOCS_IN_SCOPE but a high-scoring doc exists above, you must explain why it
-   doesn't cover the queries before confirming that bucket.
-6. Are any of these queries about PRICING (cost, price, per-message rate, billing,
-   plan tiers, tariffs, fee, mensalidade, tarifa, custo)? If yes, the correct bucket
-   is OUT_OF_SCOPE — pricing is intentionally refused by design as a sales signal.
-   Do NOT recommend creating pricing docs.
-7. Are any queries asking for a product demo, walkthrough, or overview video?
+5. Are any of these queries about PRICING (cost, price, per-message rate, billing,
+   plan tiers, tariffs, fee, mensalidade, tarifa, custo)? If yes → OUT_OF_SCOPE.
+   Pricing is intentionally refused by design as a sales signal. Do NOT create pricing docs.
+6. Are any queries asking for a product demo, walkthrough, or overview video?
    Video content already exists in kb/video_manifest.json (18 topics covered).
-   If the query IDKed and a matching video exists, the correct bucket is
-   HAS_DOCS_FAILS (root_cause=routing_miss), NOT NO_DOCS_IN_SCOPE.
-8. Does the skill have a principled reason to REFUSE these queries — general
+   If the query IDKed and a matching video exists → HAS_DOCS_FAILS (root_cause=routing_miss).
+7. Does the skill have a principled reason to REFUSE these queries — general
    knowledge (geography, sports, jokes), internal infrastructure alerts, or
-   pure competitor comparisons with no Gupshup product angle? If yes, OUT_OF_SCOPE.
-9. For Bot Studio/API Node/variables/database queries: kb/bot-studio/manage-variables.md
+   pure competitor comparisons with no Gupshup product angle? If yes → OUT_OF_SCOPE.
+8. For Bot Studio/API Node/variables/database queries: kb/bot-studio/manage-variables.md
    covers storing user input, kb/bot-studio/api-node.md covers external API/database
-   calls. A ⚠ FALSE-POSITIVE RETRIEVAL flag means the wrong doc was retrieved —
-   NOT that no doc exists. Check whether an existing doc covers the topic before
-   calling NO_DOCS_IN_SCOPE.
+   calls. A ⚠ FALSE-POSITIVE RETRIEVAL flag means the WRONG doc was retrieved —
+   NOT that no doc exists. Check whether a different existing doc covers the topic.
 
 After challenging, state your final verdict with high confidence.
 Name the single bucket. Explain what evidence you're basing it on."""
