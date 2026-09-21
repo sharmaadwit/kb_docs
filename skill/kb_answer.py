@@ -3660,6 +3660,8 @@ CONCEPT_REGISTRY: List[Dict] = [
             "provision whatsapp numbers",
             "what plan should i buy",
             "which plan for bot studio",
+            "integrate whatsapp with bot studio",
+            "plan for whatsapp bot",
             "cc express setup",
             "set up cc express",
             "cc express otp india",
