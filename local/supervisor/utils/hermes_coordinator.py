@@ -280,6 +280,7 @@ class GapWorker:
             "reasoning": "paragraph referencing specific query results and doc evidence",
             "matching_doc": "kb/path/to/doc.md or null",
             "root_cause": "keyword_gap | routing_miss | retrieval_rank | content_thin | answer_quality | null",
+            "doc_evidence": "REQUIRED for HAS_DOCS_FAILS: direct quote from matching_doc proving it covers the query. null for other buckets.",
             "keywords_to_add": ["specific missing term from IDK queries"],
             "doc_to_create": "kb/module/filename.md or null",
             "doc_outline": None,
@@ -333,10 +334,12 @@ PRIMARY EVIDENCE. Shows exactly what happened for each query in the live skill:
 {kb_inventory}
 
 ## Key Rules
-- HAS_DOCS_FAILS ONLY if: (a) query is IDK AND (b) retrieved doc COVERS the topic (no ⚠ flag)
-- If ⚠ FALSE-POSITIVE RETRIEVAL appears → doc doesn't cover it → NO_DOCS_IN_SCOPE
+- HAS_DOCS_FAILS ONLY if: (a) query is IDK AND (b) a doc COVERS the topic AND (c) doc is NOT marked ⚠ NOT INGESTED
+- ⚠ NOT INGESTED docs → skill cannot retrieve them → do NOT recommend routing to them → use NO_DOCS_IN_SCOPE
+- If ⚠ FALSE-POSITIVE RETRIEVAL appears → doc doesn't cover it → look for another doc or NO_DOCS_IN_SCOPE
 - If most queries show [ANSWERED] → gap is not real → OUT_OF_SCOPE
-- For HAS_DOCS_FAILS: give SPECIFIC keywords from the IDK queries that are absent in the doc
+- For HAS_DOCS_FAILS: REQUIRED — provide doc_evidence: a direct quote from the matching doc
+  that proves it covers the query. If you cannot quote it, you cannot call HAS_DOCS_FAILS.
 
 Think step by step. Analyze each IDK query individually. Name the specific docs and why."""
 
@@ -356,8 +359,12 @@ you can prove NO existing doc covers the topic even with routing improvements.
 
 1. If NO_DOCS_IN_SCOPE: re-scan KB inventory. Any file with matching section headings?
    Even a medium-scoring KB search result (0.2+) → try HAS_DOCS_FAILS instead.
-2. If HAS_DOCS_FAILS: check for ⚠ FALSE-POSITIVE RETRIEVAL flags. If present AND
-   no other doc covers the topic → switch to NO_DOCS_IN_SCOPE.
+   But SKIP any file marked ⚠ NOT INGESTED — the skill cannot retrieve it.
+2. If HAS_DOCS_FAILS:
+   a. Is matching_doc marked ⚠ NOT INGESTED? If yes → switch to NO_DOCS_IN_SCOPE.
+   b. Check for ⚠ FALSE-POSITIVE RETRIEVAL flags. If present AND no other doc covers it
+      → switch to NO_DOCS_IN_SCOPE.
+   c. Can you quote a passage from the doc that answers the query? If not → NO_DOCS_IN_SCOPE.
 3. If OUT_OF_SCOPE: are any IDK queries genuinely about a Gupshup product?
 4. ANSWERED queries do not count as failures.
 5. PRICING queries → always OUT_OF_SCOPE (sales signal, never create pricing docs).

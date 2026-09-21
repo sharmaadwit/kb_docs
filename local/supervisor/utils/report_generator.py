@@ -149,6 +149,9 @@ class ReportGenerator:
                 if bucket == "HAS_DOCS_FAILS":
                     lines.append(f"**Matching doc:** `{verdict.get('matching_doc') or '?'}`")
                     lines.append(f"**Root cause:** {verdict.get('root_cause') or verdict.get('reasoning') or '?'}")
+                    doc_evidence = verdict.get("doc_evidence")
+                    if doc_evidence:
+                        lines.append(f"**Doc evidence:** \"{_cell(doc_evidence, 200)}\"")
                     keywords = verdict.get("keywords_to_add") or []
                     if keywords:
                         lines.append(f"**Keywords to add:** {', '.join(f'`{k}`' for k in keywords)}")

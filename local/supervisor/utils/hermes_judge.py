@@ -938,14 +938,42 @@ class HermesJudge:
 
         return self._single_shot_judge(gap_summary, output_path, env, timeout)
 
+    @staticmethod
+    def _load_ingested_sources() -> set:
+        """Return set of source path stems present in kb_chunks.jsonl.
+
+        These are the ONLY docs the skill can retrieve. Files on disk but absent
+        from this set are invisible to the skill regardless of keyword routing.
+        """
+        chunks_path = Path(__file__).resolve().parents[3] / "kb" / "kb_chunks.jsonl"
+        sources: set = set()
+        try:
+            for line in chunks_path.read_text(errors="ignore").splitlines():
+                if not line.strip():
+                    continue
+                import json as _json
+                try:
+                    obj = _json.loads(line)
+                    src = obj.get("source") or obj.get("path") or ""
+                    if src:
+                        sources.add(src.replace("kb/", "").replace("\\", "/"))
+                except Exception:
+                    pass
+        except Exception:
+            pass
+        return sources
+
     def _build_kb_inventory(self, module_filter: str = "") -> str:
         """Build KB inventory with top-level title + all ## section headings per file.
 
         If module_filter is given, only include files under the matching module folder
         plus the overview/ and troubleshooting/ folders (always relevant).
         Full inventory is ~26k tokens and causes Hermes timeouts on large prompts.
+        Files NOT in kb_chunks.jsonl are marked [NOT INGESTED] — the skill cannot
+        retrieve them regardless of keyword routing.
         """
         kb_dir = Path(__file__).resolve().parents[3] / "kb"
+        ingested = self._load_ingested_sources()
 
         # Map common module names → kb subfolder names
         _MODULE_FOLDER = {
@@ -988,7 +1016,11 @@ class HermesJudge:
                         subheadings.append(line[3:].strip())
             except Exception:
                 pass
-            entry = f"  kb/{rel}  —  {title}" if title else f"  kb/{rel}"
+            rel_str = str(rel).replace("\\", "/")
+            # Check if this file is ingested into kb_chunks.jsonl
+            is_ingested = any(rel_str in s or s in rel_str for s in ingested) if ingested else True
+            tag = "" if is_ingested else "  ⚠ NOT INGESTED — skill cannot retrieve this file"
+            entry = f"  kb/{rel}  —  {title}{tag}" if title else f"  kb/{rel}{tag}"
             if subheadings:
                 entry += f"  [sections: {' | '.join(subheadings[:6])}]"
             lines.append(entry)
