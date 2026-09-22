@@ -3817,6 +3817,47 @@ CONCEPT_REGISTRY: List[Dict] = [
         "display": "Extensions Overview",
         "module": "Extension",
     },
+    {
+        "id": "whatsapp_coexistence",
+        "aliases": [
+            "coexistence",
+            "alongside gupshup",
+            "meta app alongside",
+            "subscribed alongside",
+            "forward webhooks to crm",
+            "shared waba access",
+            "waba coexistence",
+            "embedded onboarding error could not verify",
+            "could not share whatsapp business account with partners",
+            "existing webhook receiver",
+        ],
+        "keywords": ["coexistence", "webhook forwarding", "meta app", "existing crm"],
+        "source_boosts": {
+            "whatsapp-coexistence-and-webhook-forwarding": 9.0,
+        },
+        "display": "WhatsApp Coexistence & Webhook Forwarding",
+        "module": "Channels",
+    },
+    {
+        "id": "password_reset",
+        "aliases": [
+            "forgot password",
+            "reset password",
+            "unable to login",
+            "recover access",
+            "recover account",
+            "password recovery",
+            "login issue console",
+            "can't login gupshup",
+            "cannot login gupshup",
+        ],
+        "keywords": ["forgot password", "reset password", "recover access", "login issue"],
+        "source_boosts": {
+            "overview/reset-password": 9.0,
+        },
+        "display": "Password Reset",
+        "module": "Overview",
+    },
 ]
 
 # Pre-build lookup by id
@@ -4364,6 +4405,17 @@ def _load_chunks(context) -> List[Dict]:
 
 def _detect_module(query: str) -> str:
     q = (query or "").lower()
+
+    # -1. WhatsApp coexistence / webhook forwarding -> Channels (must precede
+    #     the generic "webhook" → Integrations path below).
+    if (
+        "alongside gupshup" in q
+        or "coexistence" in q
+        or ("whatsapp" in q and "webhook forwarding" in q)
+        or "could not share whatsapp business account with partners" in q
+        or "embedded onboarding error" in q
+    ):
+        return "Channels"
 
     # 0. Meta / business agent phrasing -> BizAI. Checked before the
     #    "campaign"/"rcs" shortcuts below (moved 2026-08-21) because
