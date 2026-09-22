@@ -92,6 +92,13 @@ def main() -> int:
         default=0.0,
         help="Minimum severity score to include (default: 0.0)",
     )
+    parser.add_argument(
+        "--days",
+        type=int,
+        default=14,
+        help="Only analyze traces from the last N days (default: 14). "
+             "Use 0 to analyze all traces.",
+    )
 
     args = parser.parse_args()
 
@@ -114,7 +121,8 @@ def main() -> int:
     logger.info("=" * 80)
     logger.info("KB Supervisor Agent Starting")
     logger.info(f"Timestamp: {timestamp}")
-    logger.info(f"Config: max_gaps={args.max_gaps}, min_severity={args.min_severity}")
+    days_label = f"last {args.days} days" if args.days > 0 else "all time"
+    logger.info(f"Config: max_gaps={args.max_gaps}, min_severity={args.min_severity}, window={days_label}")
     logger.info("=" * 80)
 
     try:
@@ -137,10 +145,28 @@ def main() -> int:
         new_traces = trace_loader.fetch_new_traces(last_timestamp)
         trace_loader.append_to_cache(new_traces)
         all_traces = trace_loader.get_all_traces()
-        logger.info(f"Total traces: {len(all_traces)}")
+        logger.info(f"Total traces in cache: {len(all_traces)}")
+
+        # Filter to recent window so fixed gaps don't keep reappearing
+        if args.days > 0:
+            cutoff = datetime.now(timezone.utc) - timedelta(days=args.days)
+            filtered = []
+            for t in all_traces:
+                ts_str = t.get("timestamp") or t.get("createdAt") or ""
+                try:
+                    ts = datetime.fromisoformat(ts_str.replace("Z", "+00:00"))
+                    if ts >= cutoff:
+                        filtered.append(t)
+                except (ValueError, AttributeError):
+                    filtered.append(t)  # keep traces with unparseable timestamps
+            logger.info(
+                f"Recency filter: keeping {len(filtered)}/{len(all_traces)} traces "
+                f"from last {args.days} days (since {cutoff.strftime('%Y-%m-%d')})"
+            )
+            all_traces = filtered
 
         if not all_traces:
-            logger.warning("No traces found. Exiting.")
+            logger.warning("No traces found in window. Exiting.")
             return 0
 
         # Step 2: Analyze traces
@@ -265,6 +291,7 @@ def main() -> int:
             report_path,
             classifications=classifications,
             judge_verdicts=four_bucket_verdicts,
+            trace_window_days=args.days,
         )
 
         logger.info("=" * 80)

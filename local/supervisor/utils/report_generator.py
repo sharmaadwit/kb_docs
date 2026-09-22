@@ -39,6 +39,7 @@ class ReportGenerator:
         output_path: Path,
         classifications: Dict[str, Any] = None,
         judge_verdicts: Dict[str, Any] = None,
+        trace_window_days: int = 0,
     ) -> str:
         logger.info(f"Generating report ({len(gaps)} gaps)...")
 
@@ -46,6 +47,7 @@ class ReportGenerator:
         judge_verdicts = judge_verdicts or {}
 
         timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+        window_label = f"last {trace_window_days} days" if trace_window_days > 0 else "all time"
 
         rows = []  # (gap, bucket, verdict)
 
@@ -78,7 +80,7 @@ class ReportGenerator:
         unknown_count   = sum(1 for _, b, _ in rows if b == "UNKNOWN")
 
         lines = [
-            f"# KB Supervisor Report — {timestamp}",
+            f"# KB Supervisor Report — {timestamp}  |  Traces: {window_label}  |  N={len(traces)}",
             "",
             "## Summary",
             f"| | Count |",
