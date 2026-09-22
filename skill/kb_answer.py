@@ -1212,8 +1212,12 @@ CONCEPT_REGISTRY: List[Dict] = [
             "integrate with api", "call my api", "hit my api",
             "api from journey", "connect to my backend",
             "pass user data to api", "send user data to backend",
+            "technical presales overview", "integration patterns",
+            "custom integrations gupshup", "http methods authentication",
+            "request payloads response mapping", "inbound callbacks",
+            "webhook endpoint validation", "gupshup apis integrations",
         ],
-        "keywords": ['api', 'crm', 'backend', 'endpoint', 'rest'],
+        "keywords": ['api', 'crm', 'backend', 'endpoint', 'rest', 'presales', 'integration patterns'],
         "module_context": ["journey builder", "bot studio"],
         "source_boosts": {"api-node": 3.0, "api-node-http-status-code-branching": 1.5, "kb/integrations/webhook-setup.md": 6.0},
         "source_penalties": {
@@ -3524,9 +3528,12 @@ CONCEPT_REGISTRY: List[Dict] = [
         "aliases": [
             "message delivery status", "message sent delivered", "whatsapp message status",
             "delivery status", "message status check", "sent delivered status",
-            "check message status", "delivery receipt"
+            "check message status", "delivery receipt",
+            "hold node timezone", "hold node specific time", "campaign hold local time",
+            "wait until specified time", "scheduled hold", "time-based campaign hold",
+            "automated campaign hold timezone",
         ],
-        "keywords": ["delivery", "status", "sent", "delivered", "message status"],
+        "keywords": ["delivery", "status", "sent", "delivered", "message status", "hold node", "hold timezone"],
         "source_boosts": {
             "webhooks-to-delivery-analytics.md": 4.0,
             "sending-an-automated-campaign.md": 3.0,
@@ -3717,9 +3724,12 @@ CONCEPT_REGISTRY: List[Dict] = [
             "whatsapp inbound enabled",
             "enable inbound webhook",
             "inbound message webhook",
-            "webhook event configuration"
+            "webhook event configuration",
+            "message history", "conversation logs", "view message history",
+            "view delivered messages", "failed messages log", "whatsapp message log",
+            "gupshup message history", "message inbox history",
         ],
-        "keywords": ["whatsapp", "inbound", "webhook", "event", "enabled"],
+        "keywords": ["whatsapp", "inbound", "webhook", "event", "enabled", "message history", "conversation logs"],
         "source_boosts": {
             "channels/inbound-messages-and-events": 3.0,
             "channels/whatsapp": 2.0
