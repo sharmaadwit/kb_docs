@@ -3795,6 +3795,28 @@ CONCEPT_REGISTRY: List[Dict] = [
         "display": "TTL-based Agent Mapping",
         "module": "Agent Assist",
     },
+    {
+        "id": "extension_overview",
+        "aliases": [
+            "what is extension",
+            "what is gupshup extension",
+            "extension of sms",
+            "sms extension",
+            "extension of whatsapp",
+            "enterprise whatsapp extension",
+            "enterprise sms extension",
+            "rcs extension",
+            "how does extension work",
+            "gupshup extension setup",
+            "add extension",
+        ],
+        "keywords": ["extension", "sms extension", "enterprise extension", "rcs extension"],
+        "source_boosts": {
+            "extension/overview-of-extensions": 5.0,
+        },
+        "display": "Extensions Overview",
+        "module": "Extension",
+    },
 ]
 
 # Pre-build lookup by id

@@ -464,13 +464,18 @@ No prose, no markdown fences. Only JSON."""
         prompt = f"{context_prompt}\n\nRespond with ONLY valid JSON matching this schema. No prose, no markdown fences:\n{json_schema}"
         stdout = _hermes_single(prompt, timeout=300)
         if stdout.strip():
-            # Strip markdown fences if present
             text = stdout.strip()
+            # Strip markdown fences
             if text.startswith("```"):
                 text = "\n".join(
                     ln for ln in text.splitlines()
                     if not ln.startswith("```")
                 ).strip()
+            # Extract first {...} JSON object — handles prose before/after JSON
+            import re as _re
+            m = _re.search(r'\{.*\}', text, _re.DOTALL)
+            if m:
+                text = m.group(0)
             # Write to the expected output file so _parse_output can read it
             try:
                 Path(output_path).parent.mkdir(parents=True, exist_ok=True)
