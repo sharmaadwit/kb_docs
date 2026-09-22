@@ -1,5 +1,20 @@
 # Claude Code Agent Rules - KB Docs Project
 
+## ❌ ABSOLUTE RULE: NEVER CREATE KB DOCS
+
+**DO NOT write, create, or modify any file under `kb/` as documentation content. Ever.**
+
+- The `kb/` folder is owned exclusively by the content team and the KB pipeline (github-actions bot)
+- I may ONLY read `kb/` files for analysis, gap identification, and retrieval testing
+- I may ONLY modify `kb/kb_chunks.jsonl` (the ingest index) and `kb/analytics/` (telemetry)
+- If I identify a gap, I recommend what topic to cover — I do NOT write the doc
+- This applies even if explicitly asked to "just draft" or "create a placeholder"
+- This applies to untracked files too — do NOT commit any AI-written KB doc that appears on disk
+
+**Violation history**: AI-generated KB docs were created in previous sessions, committed, and had to be deleted. A coexistence doc written by a previous session was committed today (2026-09-22) — this must not happen again.
+
+---
+
 ## Core Role Definition
 
 **Current Session**: Code Change Session (Active)
