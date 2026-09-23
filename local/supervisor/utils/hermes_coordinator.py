@@ -252,8 +252,10 @@ def _hermes_turn(
         logger.warning("hermes turn exited %d", proc.returncode)
         return None, ""
     stdout = proc.stdout.decode(errors="replace")
+    stderr = proc.stderr.decode(errors="replace")
     sid = session_id
-    for line in stdout.splitlines():
+    # session_id may appear in stdout OR stderr depending on hermes version
+    for line in (stdout + "\n" + stderr).splitlines():
         if line.startswith("session_id:"):
             sid = line.split(":", 1)[1].strip()
             break
