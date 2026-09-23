@@ -341,6 +341,20 @@ PRIMARY EVIDENCE. Shows exactly what happened for each query in the live skill:
 - For HAS_DOCS_FAILS: REQUIRED — provide doc_evidence: a direct quote from the matching doc
   that proves it covers the query. If you cannot quote it, you cannot call HAS_DOCS_FAILS.
 
+## ⚠ Critical: Per-Query Independence
+When a gap has MULTIPLE failing queries, each query may need a DIFFERENT classification.
+Do NOT assume one matched doc covers all queries in the group.
+For each IDK query, independently ask: "Would this specific matched doc, if retrieved, answer THIS specific query?"
+If different queries in the group need different docs (or one has no doc), SPLIT them:
+  - identify which queries are HAS_DOCS_FAILS vs which are NO_DOCS_IN_SCOPE
+  - only apply HAS_DOCS_FAILS to queries where the doc genuinely answers them
+
+## ⚠ Critical: Concept Redundancy Check
+Before proposing new aliases/keywords, check if an existing concept already handles this:
+- If a concept already boosts the matched doc, the root cause may be a SCORING issue, not missing aliases
+- Check: does the CONCEPT_REGISTRY context show any concept with source_boost on the matching doc?
+- If yes: diagnose WHY it's still IDKing (score floor, wrong module detection) rather than adding redundant aliases
+
 Think step by step. Analyze each IDK query individually. Name the specific docs and why."""
 
         sid, t1_out = _hermes_turn(t1_prompt, None, timeout_per_turn)
@@ -365,6 +379,13 @@ you can prove NO existing doc covers the topic even with routing improvements.
    b. Check for ⚠ FALSE-POSITIVE RETRIEVAL flags. If present AND no other doc covers it
       → switch to NO_DOCS_IN_SCOPE.
    c. Can you quote a passage from the doc that answers the query? If not → NO_DOCS_IN_SCOPE.
+   d. CONTENT GAP CHECK: Does the doc contain the SPECIFIC information the query asks for?
+      Sharing a keyword or topic area is NOT enough — the doc must contain the actual answer.
+      Example: query asks "does hold node support timezone?" → doc must explicitly say yes/no/how.
+      If the doc only shares the general topic but lacks the specific answer → NO_DOCS_IN_SCOPE.
+   e. REDUNDANCY CHECK: Does any existing CONCEPT_REGISTRY concept already boost this doc?
+      If yes, adding more keywords may be redundant. Diagnose WHY the concept isn't scoring
+      high enough (module mismatch, floor issue, low chunk overlap) rather than duplicating aliases.
 3. If OUT_OF_SCOPE: are any IDK queries genuinely about a Gupshup product?
 4. ANSWERED queries do not count as failures.
 5. PRICING queries → always OUT_OF_SCOPE (sales signal, never create pricing docs).
@@ -388,6 +409,12 @@ State final verdict with one bucket and your evidence."""
 Requirements:
 - keywords_to_add (if HAS_DOCS_FAILS): list the EXACT terms from the IDK queries that
   are absent from the matching doc's headings/keywords — not generic terms.
+  ALIAS SUBSTRING CHECK: every proposed alias MUST be a contiguous substring of at least
+  one failing query (after lowercasing). If a phrase is not literally IN the query text,
+  it will never match via the alias mechanism — do not propose it.
+  Non-English queries: propose aliases in the same language as the failing query.
+- per_query_classification: for each IDK query, independently state its bucket if different
+  from the group verdict (e.g. query 1 = HAS_DOCS_FAILS, query 2 = NO_DOCS_IN_SCOPE).
 - reasoning: reference specific query results and doc evidence from the pipeline signal.
 - per_query_notes: one line per query explaining why it IDKs or answers.
 
