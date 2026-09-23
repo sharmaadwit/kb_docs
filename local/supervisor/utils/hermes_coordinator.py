@@ -104,6 +104,54 @@ HAS_DOCS_FAILS with root_cause=routing_miss, NOT NO_DOCS_IN_SCOPE.
 """
 
 # ---------------------------------------------------------------------------
+# Deployed fixes log
+# ---------------------------------------------------------------------------
+
+_DEPLOYED_FIXES_PATH = Path(__file__).resolve().parents[1] / "deployed_fixes.json"
+
+
+def _load_deployed_fixes() -> str:
+    """Load deployed_fixes.json and format as a prompt section for the judge.
+
+    Returns a string ready for injection into Turn 1 prompt. The judge uses
+    this to avoid re-flagging gaps that are already fixed in production — the
+    old trace data still shows failures even after a fix ships.
+    """
+    try:
+        with open(_DEPLOYED_FIXES_PATH) as f:
+            data = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return ""
+
+    fixes = data.get("fixes", [])
+    if not fixes:
+        return ""
+
+    lines = ["## ⚠ Already-Deployed Fixes — DO NOT re-flag these as new gaps"]
+    lines.append(
+        "The following gaps have ALREADY been fixed in skill/kb_answer.py and deployed.\n"
+        "Historical traces still show failures (the fix ships after the trace), so you WILL\n"
+        "see old IDK results for these queries. IGNORE them — they are not new gaps.\n"
+        "Only flag a gap as Fix Now if it DIFFERS from the queries listed below.\n"
+    )
+    for fix in fixes:
+        if not fix.get("queries_fixed"):
+            # revert/no-fix entries — still useful context
+            lines.append(
+                f"- [{fix['fix_id']}] {fix['gap_signature']}: {fix['description']}"
+                + (f" (NOTE: {fix['note']})" if fix.get("note") else "")
+            )
+            continue
+        queries_str = "; ".join(f'"{q[:80]}"' for q in fix["queries_fixed"])
+        lines.append(
+            f"- [{fix['fix_id']} {fix['deployed_at']}] {fix['gap_signature']}: "
+            f"{fix['description']}\n"
+            f"  Fixed queries: {queries_str}"
+        )
+    return "\n".join(lines)
+
+
+# ---------------------------------------------------------------------------
 # KB chunk search
 # ---------------------------------------------------------------------------
 
@@ -289,6 +337,9 @@ class GapWorker:
             "per_query_notes": {"query_prefix": "IDK|ANSWERED — one-line diagnosis"},
         }, indent=2)
 
+        # ── Build deployed fixes context (injected into Turn 1) ─────────────
+        deployed_fixes_section = _load_deployed_fixes()
+
         # ── Turn 1: Deep Analysis ────────────────────────────────────────────
         t1_prompt = f"""You are a KB gap analysis agent for the Gupshup Guide skill.
 
@@ -298,6 +349,8 @@ CTX, BizAI/Meta Business Agent, Channels (RCS, Instagram, Viber, Telegram),
 Integrations, AI Admin, Personalize, Wallet, Goals.
 
 {_SKILL_CONTEXT_PREAMBLE}
+
+{deployed_fixes_section}
 
 ## Your Task
 Classify this gap into ONE bucket. Evaluate in this order:

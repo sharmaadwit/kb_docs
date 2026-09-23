@@ -1,6 +1,7 @@
 """KB Supervisor Agent - Main CLI entry point."""
 
 import argparse
+import json
 import logging
 import sys
 from datetime import datetime, timezone, timedelta
@@ -63,6 +64,50 @@ def setup_logging(logs_dir: Path, timestamp: str) -> logging.Logger:
     logger.addHandler(file_handler)
 
     return logging.getLogger(__name__)
+
+
+_DEPLOYED_FIXES_PATH = Path(__file__).resolve().parent / "deployed_fixes.json"
+
+
+def log_deployed_fix(
+    fix_id: str,
+    gap_signature: str,
+    description: str,
+    queries_fixed: list,
+    fix_type: str,
+    commit: str = "",
+    verified_ans: bool = True,
+    note: str = "",
+) -> None:
+    """Append a new entry to deployed_fixes.json.
+
+    Call this after applying a skill fix and verifying queries now return ANS.
+    The judge reads this file to avoid re-flagging already-fixed gaps.
+    """
+    try:
+        with open(_DEPLOYED_FIXES_PATH) as f:
+            data = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        data = {"_readme": "Log of deployed skill fixes.", "fixes": []}
+
+    entry = {
+        "fix_id": fix_id,
+        "deployed_at": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+        "commit": commit,
+        "description": description,
+        "gap_signature": gap_signature,
+        "queries_fixed": queries_fixed,
+        "fix_type": fix_type,
+        "verified_ans": verified_ans,
+    }
+    if note:
+        entry["note"] = note
+
+    data["fixes"].append(entry)
+    with open(_DEPLOYED_FIXES_PATH, "w") as f:
+        json.dump(data, f, indent=2)
+
+    logging.getLogger(__name__).info("Logged fix %s → %s", fix_id, gap_signature)
 
 
 def main() -> int:
