@@ -301,7 +301,7 @@ def main() -> int:
                     gaps=coordinator_gaps,
                     classifications=coordinator_classifications,
                     all_traces=all_traces,
-                    max_workers=min(len(coordinator_gaps), 8),
+                    max_workers=min(len(coordinator_gaps), 3),
                 )
                 four_bucket_verdicts.update(coord_verdicts)
                 for gap_key, verdict in coord_verdicts.items():
