@@ -110,6 +110,15 @@ HAS_DOCS_FAILS with root_cause=routing_miss, NOT NO_DOCS_IN_SCOPE.
 _DEPLOYED_FIXES_PATH = Path(__file__).resolve().parents[1] / "deployed_fixes.json"
 
 
+def _load_deployed_fixes_data() -> list:
+    """Return raw list of fix entries from deployed_fixes.json."""
+    try:
+        with open(_DEPLOYED_FIXES_PATH) as f:
+            return json.load(f).get("fixes", [])
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
+
+
 def _load_deployed_fixes() -> str:
     """Load deployed_fixes.json and format as a prompt section for the judge.
 
@@ -337,9 +346,6 @@ class GapWorker:
             "per_query_notes": {"query_prefix": "IDK|ANSWERED — one-line diagnosis"},
         }, indent=2)
 
-        # ── Build deployed fixes context (injected into Turn 1) ─────────────
-        deployed_fixes_section = _load_deployed_fixes()
-
         # ── Turn 1: Deep Analysis ────────────────────────────────────────────
         t1_prompt = f"""You are a KB gap analysis agent for the Gupshup Guide skill.
 
@@ -349,8 +355,6 @@ CTX, BizAI/Meta Business Agent, Channels (RCS, Instagram, Viber, Telegram),
 Integrations, AI Admin, Personalize, Wallet, Goals.
 
 {_SKILL_CONTEXT_PREAMBLE}
-
-{deployed_fixes_section}
 
 ## Your Task
 Classify this gap into ONE bucket. Evaluate in this order:
@@ -394,19 +398,9 @@ PRIMARY EVIDENCE. Shows exactly what happened for each query in the live skill:
 - For HAS_DOCS_FAILS: REQUIRED — provide doc_evidence: a direct quote from the matching doc
   that proves it covers the query. If you cannot quote it, you cannot call HAS_DOCS_FAILS.
 
-## ⚠ Critical: Per-Query Independence
-When a gap has MULTIPLE failing queries, each query may need a DIFFERENT classification.
-Do NOT assume one matched doc covers all queries in the group.
-For each IDK query, independently ask: "Would this specific matched doc, if retrieved, answer THIS specific query?"
-If different queries in the group need different docs (or one has no doc), SPLIT them:
-  - identify which queries are HAS_DOCS_FAILS vs which are NO_DOCS_IN_SCOPE
-  - only apply HAS_DOCS_FAILS to queries where the doc genuinely answers them
-
-## ⚠ Critical: Concept Redundancy Check
-Before proposing new aliases/keywords, check if an existing concept already handles this:
-- If a concept already boosts the matched doc, the root cause may be a SCORING issue, not missing aliases
-- Check: does the CONCEPT_REGISTRY context show any concept with source_boost on the matching doc?
-- If yes: diagnose WHY it's still IDKing (score floor, wrong module detection) rather than adding redundant aliases
+## Additional rules
+- Each IDK query is independent — a gap with 2 queries may need 2 different verdicts. If query 1 has a matching doc but query 2 does not, classify query 1 as HAS_DOCS_FAILS and query 2 as NO_DOCS_IN_SCOPE. Do not force both under the same bucket.
+- Before proposing new aliases, check CONCEPT_REGISTRY context: if a concept already boosts the target doc, the problem may be scoring/floor, not a missing alias. Diagnose root cause rather than duplicating aliases.
 
 Think step by step. Analyze each IDK query individually. Name the specific docs and why."""
 
@@ -432,13 +426,8 @@ you can prove NO existing doc covers the topic even with routing improvements.
    b. Check for ⚠ FALSE-POSITIVE RETRIEVAL flags. If present AND no other doc covers it
       → switch to NO_DOCS_IN_SCOPE.
    c. Can you quote a passage from the doc that answers the query? If not → NO_DOCS_IN_SCOPE.
-   d. CONTENT GAP CHECK: Does the doc contain the SPECIFIC information the query asks for?
-      Sharing a keyword or topic area is NOT enough — the doc must contain the actual answer.
-      Example: query asks "does hold node support timezone?" → doc must explicitly say yes/no/how.
-      If the doc only shares the general topic but lacks the specific answer → NO_DOCS_IN_SCOPE.
-   e. REDUNDANCY CHECK: Does any existing CONCEPT_REGISTRY concept already boost this doc?
-      If yes, adding more keywords may be redundant. Diagnose WHY the concept isn't scoring
-      high enough (module mismatch, floor issue, low chunk overlap) rather than duplicating aliases.
+   d. Does the doc contain the SPECIFIC answer (not just the topic area)? If not → NO_DOCS_IN_SCOPE.
+   e. Does an existing CONCEPT_REGISTRY concept already boost this doc? If yes, root cause is scoring/floor, not missing aliases.
 3. If OUT_OF_SCOPE: are any IDK queries genuinely about a Gupshup product?
 4. ANSWERED queries do not count as failures.
 5. PRICING queries → always OUT_OF_SCOPE (sales signal, never create pricing docs).
@@ -460,14 +449,9 @@ State final verdict with one bucket and your evidence."""
         t3_prompt = f"""Based on your analysis and challenge, produce the final verdict.
 
 Requirements:
-- keywords_to_add (if HAS_DOCS_FAILS): list the EXACT terms from the IDK queries that
-  are absent from the matching doc's headings/keywords — not generic terms.
-  ALIAS SUBSTRING CHECK: every proposed alias MUST be a contiguous substring of at least
-  one failing query (after lowercasing). If a phrase is not literally IN the query text,
-  it will never match via the alias mechanism — do not propose it.
-  Non-English queries: propose aliases in the same language as the failing query.
-- per_query_classification: for each IDK query, independently state its bucket if different
-  from the group verdict (e.g. query 1 = HAS_DOCS_FAILS, query 2 = NO_DOCS_IN_SCOPE).
+- keywords_to_add (if HAS_DOCS_FAILS): EXACT terms lifted from the IDK query text itself
+  (substring-matchable). Non-English queries: include same-language terms.
+- per_query_notes: one line per query — if queries need different buckets, say so explicitly.
 - reasoning: reference specific query results and doc evidence from the pipeline signal.
 - per_query_notes: one line per query explaining why it IDKs or answers.
 
@@ -600,7 +584,40 @@ class HermesCoordinator:
                 for gap in gaps
             }
 
-        # 1. Post all gaps to kanban and record task IDs (skip pre-classified)
+        four_bucket_verdicts: Dict[str, Any] = {}
+
+        # 1. Pre-filter already-fixed gaps before sending to workers
+        deployed_fixes = _load_deployed_fixes_data()
+        fixed_signatures = {f["gap_signature"] for f in deployed_fixes if f.get("queries_fixed")}
+        fixed_queries: set = set()
+        for f in deployed_fixes:
+            for q in f.get("queries_fixed", []):
+                fixed_queries.add(q[:60].lower())  # prefix match
+
+        def _gap_is_already_fixed(gap) -> bool:
+            gap_key = f"{gap.module}/{gap.intent}"
+            if gap_key in fixed_signatures:
+                # Only skip if ALL failing queries are covered by the fix
+                gap_qs = {(q or "")[:60].lower() for q in (gap.failure_examples or [])}
+                if gap_qs and gap_qs.issubset(fixed_queries):
+                    return True
+            return False
+
+        gaps_pre_fixed = [g for g in gaps if _gap_is_already_fixed(g)]
+        for g in gaps_pre_fixed:
+            gap_key = f"{g.module}/{g.intent}"
+            four_bucket_verdicts[gap_key] = {
+                **_DEGRADED,
+                "bucket": "OUT_OF_SCOPE",
+                "confidence": "high",
+                "reasoning": "Pre-filtered: all failing queries already fixed per deployed_fixes.json",
+                "degraded": False,
+            }
+            logger.info("  coordinator: pre-filtered already-fixed gap: %s", gap_key)
+
+        gaps = [g for g in gaps if not _gap_is_already_fixed(g)]
+
+        # 2. Post all gaps to kanban and record task IDs (skip pre-classified)
         gaps_to_judge = [g for g in gaps if not g.pre_classified_bucket]
         skipped = len(gaps) - len(gaps_to_judge)
         if skipped:
@@ -620,8 +637,6 @@ class HermesCoordinator:
         # 2. Fan out workers in parallel
         logger.info("  coordinator: spinning up %d workers (max_workers=%d)",
                     len(gaps_to_judge), max_workers)
-
-        four_bucket_verdicts: Dict[str, Any] = {}
 
         with ThreadPoolExecutor(max_workers=max_workers) as pool:
             future_to_gap: dict = {}
