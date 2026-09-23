@@ -406,8 +406,12 @@ Think step by step. Analyze each IDK query individually. Name the specific docs 
 
         sid, t1_out = _hermes_turn(t1_prompt, None, timeout_per_turn)
         if not sid:
-            logger.warning("  worker[%s] turn 1 failed, falling back to single-shot", task_id)
-            return self._single_shot_fallback(output_path, t1_prompt, json_schema, gap_key, task_id)
+            # Retry once before giving up — transient hermes failures are common
+            logger.warning("  worker[%s] turn 1 failed, retrying once", task_id)
+            sid, t1_out = _hermes_turn(t1_prompt, None, timeout_per_turn)
+        if not sid:
+            logger.error("  worker[%s] turn 1 failed after retry — marking DEGRADED (no single-shot fallback)", task_id)
+            return {**_DEGRADED, "reasoning": "turn 1 failed after retry"}
 
         logger.debug("  worker[%s] turn 1 complete (session=%s)", task_id, sid)
 
@@ -440,8 +444,11 @@ State final verdict with one bucket and your evidence."""
 
         sid, t2_out = _hermes_turn(t2_prompt, sid, timeout_per_turn)
         if not sid:
-            logger.warning("  worker[%s] turn 2 failed, using turn 1 output for conclusion", task_id)
-            t2_out = t1_out  # fall through to turn 3 with turn 1 context
+            logger.warning("  worker[%s] turn 2 failed, retrying once", task_id)
+            sid, t2_out = _hermes_turn(t2_prompt, sid, timeout_per_turn)
+        if not sid:
+            logger.error("  worker[%s] turn 2 failed after retry — marking DEGRADED", task_id)
+            return {**_DEGRADED, "reasoning": "turn 2 failed after retry"}
 
         logger.debug("  worker[%s] turn 2 complete", task_id)
 
@@ -463,8 +470,11 @@ No prose, no markdown fences. Only JSON."""
 
         sid, t3_out = _hermes_turn(t3_prompt, sid, timeout_per_turn)
         if not sid:
-            logger.warning("  worker[%s] turn 3 failed, single-shot fallback", task_id)
-            return self._single_shot_fallback(output_path, t1_prompt, json_schema, gap_key, task_id)
+            logger.warning("  worker[%s] turn 3 failed, retrying once", task_id)
+            sid, t3_out = _hermes_turn(t3_prompt, sid, timeout_per_turn)
+        if not sid:
+            logger.error("  worker[%s] turn 3 failed after retry — marking DEGRADED", task_id)
+            return {**_DEGRADED, "reasoning": "turn 3 failed after retry"}
 
         logger.debug("  worker[%s] turn 3 complete", task_id)
 
