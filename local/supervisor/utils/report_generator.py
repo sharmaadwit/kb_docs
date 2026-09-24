@@ -113,9 +113,18 @@ class ReportGenerator:
             priority = (verdict.get("doc_priority") or "—").upper()
 
             if bucket == "HAS_DOCS_FAILS":
+                action_type = verdict.get("action_type") or "ADD_KEYWORD"
                 keywords = verdict.get("keywords_to_add") or []
                 matching_doc = verdict.get("matching_doc") or "?"
-                if keywords:
+                boost_rec = verdict.get("boost_recommendation") or {}
+                telemetry_gap = verdict.get("telemetry_gap")
+                if action_type == "RAISE_SOURCE_BOOST" and boost_rec:
+                    recommendation = (f"Raise source_boost for `{boost_rec.get('source','?')}` "
+                                      f"in concept `{boost_rec.get('concept','?')}`: "
+                                      f"{boost_rec.get('current_boost','?')} → {boost_rec.get('recommended_boost','?')}")
+                elif action_type == "IMPROVE_TELEMETRY" and telemetry_gap:
+                    recommendation = f"Add telemetry: {_cell(telemetry_gap, 70)}"
+                elif keywords:
                     recommendation = f"Add keywords to kb_answer.py: {', '.join(f'`{k}`' for k in keywords[:3])}"
                 else:
                     recommendation = f"Investigate retrieval for `{matching_doc}`"
@@ -163,17 +172,31 @@ class ReportGenerator:
                 lines.append("")
 
                 if bucket == "HAS_DOCS_FAILS":
+                    action_type = verdict.get("action_type") or "ADD_KEYWORD"
+                    lines.append(f"**Action:** `{action_type}`")
                     lines.append(f"**Matching doc:** `{verdict.get('matching_doc') or '?'}`")
                     lines.append(f"**Root cause:** {verdict.get('root_cause') or verdict.get('reasoning') or '?'}")
+                    if verdict.get("stale_trace"):
+                        lines.append("**⚠ Stale trace:** skill answers this query now — gap may already be fixed")
                     concept = verdict.get("concept_target")
                     if concept:
                         lines.append(f"**Concept target:** `{concept}`")
                     doc_evidence = verdict.get("doc_evidence")
                     if doc_evidence:
                         lines.append(f"**Doc evidence:** \"{_cell(doc_evidence, 200)}\"")
+                    boost_rec = verdict.get("boost_recommendation")
+                    if boost_rec and action_type == "RAISE_SOURCE_BOOST":
+                        lines.append(
+                            f"**Boost fix:** raise `{boost_rec.get('source','?')}` boost "
+                            f"in concept `{boost_rec.get('concept','?')}` from "
+                            f"`{boost_rec.get('current_boost','?')}` → `{boost_rec.get('recommended_boost','?')}`"
+                        )
                     keywords = verdict.get("keywords_to_add") or []
-                    if keywords:
+                    if keywords and action_type == "ADD_KEYWORD":
                         lines.append(f"**Keywords to add:** {', '.join(f'`{k}`' for k in keywords)}")
+                    telemetry_gap = verdict.get("telemetry_gap")
+                    if telemetry_gap and action_type == "IMPROVE_TELEMETRY":
+                        lines.append(f"**Telemetry to add:** {telemetry_gap}")
 
                 elif bucket == "LANGUAGE_COVERAGE_GAP":
                     lines.append(f"**Matching doc:** `{verdict.get('matching_doc') or '?'}`")

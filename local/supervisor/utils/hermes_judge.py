@@ -1047,8 +1047,24 @@ class HermesJudge:
             entities = ev.get("entities") or ev.get("near_miss_concepts") or []
             sources = ev.get("evidence_sources") or []
             score = ev.get("top_score", 0)
+            score_vs_floor = ev.get("score_vs_floor")
+            concept_matched = ev.get("concept_matched")
+            near_misses = ev.get("near_misses") or []
+            answered_now = ev.get("answered_now")
+
             lines.append(f"  [{status}] {q}")
-            lines.append(f"    category={cat} | entities={entities[:2]} | top_score={score:.2f}")
+            diag = f"category={cat} | entities={entities[:2]} | top_score={score:.2f}"
+            if score_vs_floor is not None:
+                floor_label = f"+{score_vs_floor:.2f}" if score_vs_floor >= 0 else f"{score_vs_floor:.2f}"
+                diag += f" | score_vs_floor={floor_label}"
+            if concept_matched:
+                diag += f" | concept={concept_matched}"
+            if answered_now is True:
+                diag += " | answered_now=true ⚠ STALE"
+            lines.append(f"    {diag}")
+            if near_misses:
+                nm_ids = [nm.get("concept_id","?") for nm in near_misses[:3]]
+                lines.append(f"    near_misses (1 keyword hit, blocked by 2-hit gate): {nm_ids}")
             if sources:
                 lines.append(f"    retrieved: {sources[:2]}")
                 # Grab first 400 chars of the top retrieved doc + relevance check

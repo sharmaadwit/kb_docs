@@ -212,11 +212,18 @@ def _search_kb_chunks(query_tokens: set, top_k: int = 5) -> List[Dict]:
 
 _DEGRADED = {
     "bucket": "UNKNOWN",
+    "action_type": None,
     "confidence": "low",
+    "stale_trace": False,
     "reasoning": "worker failed — degraded",
     "matching_doc": None,
     "root_cause": None,
+    "doc_evidence": None,
     "keywords_to_add": [],
+    "boost_recommendation": None,
+    "language_mappings": [],
+    "concept_target": None,
+    "telemetry_gap": None,
     "doc_to_create": None,
     "doc_outline": None,
     "doc_priority": None,
@@ -335,14 +342,18 @@ class GapWorker:
 
         json_schema = json.dumps({
             "bucket": "HAS_DOCS_FAILS | NO_DOCS_IN_SCOPE | OUT_OF_SCOPE | NOISE | LANGUAGE_COVERAGE_GAP",
+            "action_type": "ADD_KEYWORD | RAISE_SOURCE_BOOST | ADD_LANGUAGE_MAPPING | CREATE_DOC | IMPROVE_TELEMETRY | OUT_OF_SCOPE | NOISE",
             "confidence": "high | medium | low",
-            "reasoning": "paragraph referencing specific query results and doc evidence",
+            "stale_trace": "true if answered_now=true but trace shows IDK — gap may already be fixed; false otherwise",
+            "reasoning": "paragraph referencing specific query results, score_vs_floor, and doc evidence",
             "matching_doc": "kb/path/to/doc.md or null",
-            "root_cause": "keyword_gap | routing_miss | retrieval_rank | content_thin | answer_quality | language_gap | null",
+            "root_cause": "keyword_gap | source_boost_too_low | routing_miss | retrieval_rank | content_thin | answer_quality | language_gap | insufficient_telemetry | null",
             "doc_evidence": "REQUIRED for HAS_DOCS_FAILS: direct quote from matching_doc proving it covers the query. null for other buckets.",
             "keywords_to_add": ["specific missing term from IDK queries — English only"],
+            "boost_recommendation": {"concept": "concept_id", "source": "kb/path/doc.md", "current_boost": 1.0, "recommended_boost": 2.5},
             "language_mappings": [{"term": "non-English phrase from query", "english": "English equivalent", "language": "pt|es|hi|ar"}],
             "concept_target": "CONCEPT_REGISTRY concept name to add keywords/mappings to, or 'NEW: <name>' if missing",
+            "telemetry_gap": "description of what Langfuse metadata field(s) would help diagnose this if current data is insufficient — null if data is sufficient",
             "doc_to_create": "kb/module/filename.md or null",
             "doc_outline": None,
             "doc_priority": "high | medium | low | null",
@@ -351,7 +362,10 @@ class GapWorker:
         }, indent=2)
 
         # ── Turn 1: Deep Analysis ────────────────────────────────────────────
-        t1_prompt = f"""You are a KB gap analysis agent for the Gupshup Guide skill.
+        t1_prompt = f"""You are a KB gap diagnostic agent for the Gupshup Guide skill.
+You reason across THREE tiers of evidence before recommending a fix. Most junior tools
+jump straight to "add keywords" — you don't. You look at traces, then skill code state,
+then ask whether the data is even sufficient to diagnose the root cause.
 
 The Gupshup Guide answers questions ONLY about Gupshup's products:
 WhatsApp Business API, Bot Studio, Campaign Manager, SuperAgent, Agent Assist,
@@ -360,26 +374,53 @@ Integrations, AI Admin, Personalize, Wallet, Goals.
 
 {_SKILL_CONTEXT_PREAMBLE}
 
-## Your Task
-Classify this gap into ONE bucket. Evaluate in this order:
+## THREE-TIER DIAGNOSTIC REASONING (work through these in order)
 
-  OUT_OF_SCOPE          — Not a Gupshup product question, pricing/billing, general knowledge,
-                          or most queries already ANSWERED.
+### Tier 1 — Trace Signal
+Read the Per-Query Pipeline Results below.
+  - What did the skill retrieve for each IDK query?
+  - Did it retrieve the WRONG doc (⚠ FALSE-POSITIVE RETRIEVAL)?
+  - Did it retrieve nothing at all (score ≈ 0)?
+  - Is score_vs_floor positive (score above MIN_CHUNK_SCORE=0.3) or negative (below floor)?
+  - Were queries actually ANSWERED in the current run (answered_now=true)?
+    → If answered_now=true for most queries, the gap is STALE — mark stale_trace=true.
+
+### Tier 2 — Skill Code State
+Read the CONCEPT_REGISTRY context, source_boosts, near_misses, and score_vs_floor.
+  - Did a concept match (entities=[concept_id])? If yes → check if source_boosts includes the target doc.
+    → If doc is NOT in source_boosts → root_cause=routing_miss → action_type=ADD_KEYWORD or RAISE_SOURCE_BOOST
+    → If doc IS in source_boosts but score_vs_floor < -0.1 → root_cause=source_boost_too_low → action_type=RAISE_SOURCE_BOOST
+  - Were there near_misses (concepts with 1 keyword hit, blocked by the 2-hit gate)?
+    → A near_miss with the right concept → root_cause=keyword_gap → action_type=ADD_KEYWORD
+  - No concept matched at all (entities=[]) and score ≈ 0 → CONCEPT_REGISTRY has no alias for this query
+    → action_type=ADD_KEYWORD to an existing concept, or CREATE_DOC if coverage is missing
+
+### Tier 3 — Telemetry Gap
+If after Tiers 1 and 2 you STILL cannot determine root cause with confidence:
+  - What specific Langfuse metadata field would resolve the ambiguity?
+    Examples: "concept_matched field missing — can't tell if concept routed or not"
+              "score_vs_floor not logged — can't tell if doc retrieved but below threshold"
+              "floor_used not logged — can't tell if floor was recently changed"
+  - Set action_type=IMPROVE_TELEMETRY and describe exactly what field to add in telemetry_gap.
+  - Do NOT invent a keyword fix when you don't have enough data to know it would work.
+
+## Bucket → Action Type mapping
+  OUT_OF_SCOPE   → action_type=OUT_OF_SCOPE
+  NOISE          → action_type=NOISE
+  LANGUAGE_COVERAGE_GAP → action_type=ADD_LANGUAGE_MAPPING
+  HAS_DOCS_FAILS, root_cause=keyword_gap or routing_miss → action_type=ADD_KEYWORD
+  HAS_DOCS_FAILS, root_cause=source_boost_too_low → action_type=RAISE_SOURCE_BOOST
+    (set boost_recommendation: {{concept, source, current_boost, recommended_boost}})
+  HAS_DOCS_FAILS, insufficient data after all tiers → action_type=IMPROVE_TELEMETRY
+  NO_DOCS_IN_SCOPE → action_type=CREATE_DOC
+
+## Classification buckets
+  OUT_OF_SCOPE          — Pricing/billing, non-Gupshup, or most queries ANSWERED.
   NOISE                 — Malformed, too short, test traffic.
-  LANGUAGE_COVERAGE_GAP — Query is in a non-English language AND a relevant KB doc exists AND
-                          the English equivalent of the query WOULD route correctly. The fix is
-                          adding phrase mappings to _MULTILINGUAL_TERMS in skill/kb_answer.py,
-                          NOT adding keywords to CONCEPT_REGISTRY.
-                          Use this when: the doc covers the topic, but the foreign-language
-                          phrasing has no entry in _MULTILINGUAL_TERMS so the router never
-                          sees the right English terms.
-  HAS_DOCS_FAILS        — A relevant KB doc exists and the query is in English (or language
-                          translation is already covered), but the skill IDKed due to a
-                          keyword/routing miss in CONCEPT_REGISTRY.
-                          PREFER this over NO_DOCS_IN_SCOPE — it's a faster fix.
-  NO_DOCS_IN_SCOPE      — Legitimate question, no existing doc covers it even with routing.
-                          Only use this if HAS_DOCS_FAILS and LANGUAGE_COVERAGE_GAP are
-                          genuinely impossible.
+  LANGUAGE_COVERAGE_GAP — Non-English query, doc exists, but phrase not in _MULTILINGUAL_TERMS.
+  HAS_DOCS_FAILS        — Doc exists, query is English (or language handled), skill IDKed.
+                          Use Tier 2 to determine action_type (ADD_KEYWORD vs RAISE_SOURCE_BOOST vs IMPROVE_TELEMETRY).
+  NO_DOCS_IN_SCOPE      — No KB coverage exists even with routing. Last resort.
 
 ## Gap Details
 Module: {gap.module}
@@ -584,11 +625,18 @@ No prose, no markdown fences. Only JSON."""
 
         return {
             "bucket": parsed.get("bucket"),
+            "action_type": parsed.get("action_type"),
             "confidence": parsed.get("confidence", "low"),
+            "stale_trace": bool(parsed.get("stale_trace")),
             "reasoning": parsed.get("reasoning", ""),
             "matching_doc": parsed.get("matching_doc"),
             "root_cause": parsed.get("root_cause"),
+            "doc_evidence": parsed.get("doc_evidence"),
             "keywords_to_add": parsed.get("keywords_to_add") or [],
+            "boost_recommendation": parsed.get("boost_recommendation"),
+            "language_mappings": parsed.get("language_mappings") or [],
+            "concept_target": parsed.get("concept_target"),
+            "telemetry_gap": parsed.get("telemetry_gap"),
             "doc_to_create": parsed.get("doc_to_create"),
             "doc_outline": parsed.get("doc_outline"),
             "doc_priority": parsed.get("doc_priority"),

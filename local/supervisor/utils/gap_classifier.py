@@ -216,7 +216,17 @@ class GapClassifier:
                 "evidence": {"matched_phrases": [p for p in ACCOUNT_SUPPORT_PHRASES if p in query.lower()]},
             }
 
-        result = self.bridge.run_query(query)
+        result = self.bridge.run_query_with_signal(query)
+
+        # Diagnostic fields from run_query_with_signal — injected into every evidence dict
+        _diag = {
+            "top_score": result.get("top_score", 0),
+            "score_vs_floor": result.get("score_vs_floor"),
+            "concept_matched": result.get("concept_matched"),
+            "near_misses": result.get("near_misses") or [],
+            "answered_now": result.get("answered_now", False),
+            "evidence_sources": result.get("evidence_sources") or [],
+        }
 
         if not result["is_idk"]:
             has_evidence = bool(result["evidence_sources"])
@@ -263,7 +273,7 @@ class GapClassifier:
                         "answer_preview": (result["answer"] or "")[:300],
                         "module": result["module"],
                         "entities": result["entities"],
-                        "evidence_sources": result["evidence_sources"],
+                        **_diag,
                     },
                 }
             # Non-IDK text, but evidence is missing or too weak to trust —
@@ -308,10 +318,8 @@ class GapClassifier:
                               "Needs a deeper investigation agent, not a rule.",
                     "module": result["module"],
                     "intent": result["intent"],
-                    "entities": result["entities"],
-                    "evidence_sources": result["evidence_sources"],
-                    "top_score": result["top_score"],
                     "answer": result["answer"],
+                    **_diag,
                 },
             }
 
