@@ -1055,7 +1055,10 @@ class HermesJudge:
             lines.append(f"  [{status}] {q}")
             diag = f"category={cat} | entities={entities[:2]} | top_score={score:.2f}"
             if score_vs_floor is not None:
-                floor_label = f"+{score_vs_floor:.2f}" if score_vs_floor >= 0 else f"{score_vs_floor:.2f}"
+                if isinstance(score_vs_floor, (int, float)):
+                    floor_label = f"+{score_vs_floor:.2f}" if score_vs_floor >= 0 else f"{score_vs_floor:.2f}"
+                else:
+                    floor_label = str(score_vs_floor)
                 diag += f" | score_vs_floor={floor_label}"
             if concept_matched:
                 diag += f" | concept={concept_matched}"
