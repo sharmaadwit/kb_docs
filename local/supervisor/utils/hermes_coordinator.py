@@ -435,6 +435,16 @@ Before adding a keyword, ask: would this term match unrelated queries?
 - Terms already present in another concept's aliases → REJECT — would create routing conflicts.
 - Valid keywords are: specific product terms, error message substrings, feature names the user typed.
 
+### Rule 6 — Never recommend non-English keywords
+SuperAgent normalises and translates ALL queries before they reach kb_answer. The skill only sees
+English text. Adding Portuguese, Spanish, Hindi, or any other language keywords to CONCEPT_REGISTRY
+is always wrong — they will NEVER be matched because routing happens on the translated query.
+- If a failing query is in Portuguese/Spanish/Hindi/etc.: the language is NOT the root cause.
+- Diagnose what the English translation would be, then check if the English keyword/doc is missing.
+- The correct fix type for non-English IDKs is one of: content_thin (doc exists but lacks depth),
+  routing_miss (English keyword missing from the concept), or NO_DOCS_IN_SCOPE (no doc at all).
+- Do NOT include any non-English strings in keywords_to_add.
+
 Think step by step. Analyze each IDK query individually. Name the specific docs and concept targets."""
 
         sid, t1_out = _hermes_turn(t1_prompt, None, timeout_per_turn)
