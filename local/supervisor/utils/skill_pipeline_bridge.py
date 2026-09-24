@@ -116,84 +116,6 @@ class SkillPipelineBridge:
         }
 
     # ------------------------------------------------------------------
-    def run_query_with_signal(self, query: str) -> dict:
-        """run_query extended with diagnostic signals for the 3-tier judge.
-
-        Extra fields returned:
-          score_vs_floor     — top_score minus MIN_CHUNK_SCORE (negative = below floor)
-          concept_matched    — concept_id of first matched entity, or None
-          source_boosts_for_concept — source_boosts dict of matched concept, or {}
-          near_misses        — concepts that got 1 keyword hit (just below the 2-hit gate)
-          guardrail_fired    — True if guardrail short-circuited the query
-          answered_now       — True if the skill answered (not IDK) right now
-          top_source         — source path of highest-scoring evidence chunk
-        """
-        guardrail = kb._guardrail_answer(query)
-        if guardrail:
-            return {
-                "module": "General",
-                "intent": "refusal",
-                "entities": [],
-                "evidence_sources": [],
-                "top_score": 0,
-                "score_vs_floor": 0,
-                "concept_matched": None,
-                "source_boosts_for_concept": {},
-                "near_misses": [],
-                "guardrail_fired": True,
-                "answered_now": not _is_idk(guardrail),
-                "top_source": None,
-                "answer": guardrail,
-                "is_idk": _is_idk(guardrail),
-            }
-
-        chunks = self.chunks
-        explicit_module = kb._detect_module(query)
-        entities = kb._extract_entities(query)
-        intent = kb._classify_intent(query, entities)
-
-        floor = getattr(kb, "MIN_CHUNK_SCORE", 0.3)
-        scored = []
-        for c in chunks:
-            s = kb._score_chunk(query, c, entities, explicit_module)
-            if s > 0:
-                row = dict(c)
-                row["score"] = s
-                scored.append(row)
-        scored.sort(key=lambda x: x.get("score", 0.0), reverse=True)
-
-        evidence = kb._select_evidence(query, scored, intent, explicit_module)
-        answer = kb._compose_answer(query, intent, entities, evidence, explicit_module)
-
-        top_score = round(evidence[0].get("score", 0), 2) if evidence else (
-            round(scored[0].get("score", 0), 2) if scored else 0
-        )
-        top_source = (evidence[0].get("source") if evidence else
-                      (scored[0].get("source") if scored else None))
-
-        concept_matched = entities[0]["id"] if entities else None
-        source_boosts = self.get_concept_source_boosts(concept_matched) if concept_matched else {}
-
-        near_misses = [] if entities else self.check_near_miss_concepts(query)
-
-        return {
-            "module": explicit_module,
-            "intent": intent,
-            "entities": [e["id"] for e in entities],
-            "evidence_sources": [e.get("source") for e in evidence],
-            "top_score": top_score,
-            "score_vs_floor": round(top_score - floor, 2),
-            "concept_matched": concept_matched,
-            "source_boosts_for_concept": source_boosts,
-            "near_misses": near_misses,
-            "guardrail_fired": False,
-            "answered_now": not _is_idk(answer),
-            "top_source": top_source,
-            "answer": answer,
-            "is_idk": _is_idk(answer),
-        }
-
-    # ------------------------------------------------------------------
     def _normalize_tokens(self, query: str) -> set:
         """Normalize+tokenize a query the same way the real pipeline does."""
         normalize_fn = getattr(kb, "_normalize_query_for_match", None)
@@ -216,6 +138,110 @@ class SkillPipelineBridge:
                 return concept.get("source_boosts", {})
         return {}
 
+    # ------------------------------------------------------------------
+    def run_query_with_signal(self, query: str) -> dict:
+        """Run the full pipeline and enrich the result with Tier-1 diagnostic signal.
+
+        Returns everything run_query() returns, plus:
+          top_score       float  — retrieval score of the top-ranked doc
+          top_source      str    — source path of the top-ranked doc (or "")
+          confidence      float  — skill confidence (0-1) via _reported_confidence
+          failure_type    str|None — "idk" / "guardrail" / "no_evidence" / None
+          guardrail_fired bool   — True when _guardrail_answer fired
+          answered_now    bool   — True when the skill returned a non-IDK answer
+          score_vs_floor  str    — "above_floor" / "below_floor" / "unknown"
+          concept_matched str|None — first entity id matched, or None
+        """
+        # ---- guardrail short-circuit ----
+        guardrail_text = kb._guardrail_answer(query)
+        if guardrail_text:
+            return {
+                "module": "General",
+                "intent": "refusal",
+                "entities": [],
+                "evidence_sources": [],
+                "top_score": 0.0,
+                "top_source": "",
+                "confidence": 0.0,
+                "failure_type": "guardrail",
+                "guardrail_fired": True,
+                "answered_now": False,
+                "score_vs_floor": "unknown",
+                "concept_matched": None,
+                "answer": guardrail_text,
+                "is_idk": _is_idk(guardrail_text),
+            }
+
+        # ---- normal pipeline ----
+        chunks = self.chunks
+        explicit_module = kb._detect_module(query)
+        entities = kb._extract_entities(query)
+        intent = kb._classify_intent(query, entities)
+
+        scored = []
+        threshold = getattr(kb, "MIN_CHUNK_SCORE", 0.0)
+        for c in chunks:
+            s = kb._score_chunk(query, c, entities, explicit_module)
+            if threshold > 0 and s < threshold:
+                continue
+            elif threshold == 0 and s <= 0:
+                continue
+            row = dict(c)
+            row["score"] = s
+            scored.append(row)
+        scored.sort(key=lambda x: x.get("score", 0.0), reverse=True)
+
+        evidence = kb._select_evidence(query, scored, intent, explicit_module)
+        answer = kb._compose_answer(query, intent, entities, evidence, explicit_module)
+
+        top_score = round(evidence[0].get("score", 0.0), 4) if evidence else 0.0
+        top_source = str(evidence[0].get("source") or "") if evidence else ""
+
+        # confidence via the real helper (uses all scored_top_matches)
+        confidence_fn = getattr(kb, "_reported_confidence", None)
+        if confidence_fn and scored:
+            confidence = round(confidence_fn(query, scored[:5]), 4)
+        else:
+            confidence = 0.0
+
+        floor = getattr(kb, "MIN_CHUNK_SCORE", None)
+        if floor is None or top_score == 0.0:
+            score_vs_floor = "unknown"
+        elif top_score >= floor:
+            score_vs_floor = "above_floor"
+        else:
+            score_vs_floor = "below_floor"
+
+        is_idk = _is_idk(answer)
+        answered_now = bool(answer and answer.strip()) and not is_idk
+
+        if is_idk and not evidence:
+            failure_type = "no_evidence"
+        elif is_idk:
+            failure_type = "idk"
+        else:
+            failure_type = None
+
+        concept_matched = entities[0]["id"] if entities else None
+
+        return {
+            "module": explicit_module,
+            "intent": intent,
+            "entities": [e["id"] for e in entities],
+            "evidence_sources": [e.get("source") for e in evidence],
+            "top_score": top_score,
+            "top_source": top_source,
+            "confidence": confidence,
+            "failure_type": failure_type,
+            "guardrail_fired": False,
+            "answered_now": answered_now,
+            "score_vs_floor": score_vs_floor,
+            "concept_matched": concept_matched,
+            "answer": answer,
+            "is_idk": is_idk,
+        }
+
+    # ------------------------------------------------------------------
     def check_near_miss_concepts(self, query: str) -> list:
         """Find concepts that got exactly 1 keyword hit for this query — the
         boundary case blocked by _extract_entities' Pass 2 "< 2 hits" gate
