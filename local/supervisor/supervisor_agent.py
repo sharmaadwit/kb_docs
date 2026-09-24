@@ -13,7 +13,6 @@ from .utils.trace_loader import TraceLoader
 from .utils.trace_analyzer import TraceAnalyzer
 from .utils.gap_identifier import GapIdentifier
 from .utils.report_generator import ReportGenerator
-from .utils.skill_pipeline_bridge import SkillPipelineBridge
 from .utils.gap_classifier import (
     GapClassifier,
     OUT_OF_SCOPE_GENERAL,
@@ -230,30 +229,36 @@ def main() -> int:
         )
         logger.info(f"Selected {len(selected_gaps)} gaps for detailed analysis")
 
-        # Step 3.5: Classify each gap against the REAL skill pipeline (NEW)
+        # Step 3.5: Classify each gap from Langfuse trace metadata (isolated — no live skill)
         #
-        # Replaces the old kb_searcher/rag_diagnostician keyword-scoring
-        # diagnosis (which produced a uniform, miscalibrated "RETRIEVAL 85%"
-        # verdict on every gap). GapClassifier re-runs each gap's failure
-        # queries through the actual skill/kb_answer.py pipeline (via
-        # SkillPipelineBridge) and classifies by what really happened:
-        # ALREADY_FIXED, CODE_GAP_ALIAS_CANDIDATE, CODE_GAP_MISSING_CONCEPT,
-        # CODE_GAP_NEEDS_INVESTIGATION, CONTENT_GAP, OUT_OF_SCOPE_PRICING,
-        # OUT_OF_SCOPE_ACCOUNT_SUPPORT, or MIXED (heterogeneous gap).
-        logger.info("STEP 3.5: Classifying gaps against the real skill pipeline")
-        bridge = SkillPipelineBridge()
-        classifier = GapClassifier(bridge)
+        # Source of truth: what Langfuse recorded (top_score, top_source, answered,
+        # confidence, failure_type). No queries are re-run against skill/kb_answer.py.
+        logger.info("STEP 3.5: Classifying gaps from Langfuse trace metadata")
+        classifier = GapClassifier()
+
+        # Build a query → trace lookup from all_traces so classify_gap gets per-query metadata
+        query_to_trace_meta: dict = {}
+        for t in all_traces:
+            m = t.get("metadata") or {}
+            q = m.get("query") or (t.get("input") or {}).get("query") or ""
+            if q:
+                query_to_trace_meta[q] = m
+                query_to_trace_meta[q[:100]] = m
 
         classifications = {}
         for i, gap in enumerate(selected_gaps, 1):
             gap_key = f"Gap #{i}"
             logger.info(f"  Classifying {gap.module}/{gap.intent}...")
-            result = classifier.classify_gap(gap.failure_examples, max_samples=10)
+            # Pass matching traces so classifier can read per-query metadata
+            gap_traces = [{"metadata": query_to_trace_meta.get(q) or query_to_trace_meta.get(q[:100]) or {}}
+                          for q in (gap.failure_examples or [])]
+            result = classifier.classify_gap(gap.failure_examples, max_samples=10,
+                                             traces_for_gap=gap_traces)
             classifications[gap_key] = result
             logger.info(f"    {gap_key}: {result['category']} (confidence={result['confidence']})")
 
         hermes_available = is_hermes_available()
-        judge = HermesJudge(bridge=bridge) if hermes_available else None
+        judge = HermesJudge() if hermes_available else None
         logger.info(f"STEP 3.6: Hermes availability: {hermes_available} — skipping single-shot judge, routing all gaps to coordinator")
 
         # Step 3.65 — 4-bucket classification via multi-agent Hermes coordinator.

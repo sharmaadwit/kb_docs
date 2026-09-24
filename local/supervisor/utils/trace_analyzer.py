@@ -1,58 +1,22 @@
-"""Trace analyzer — group failures by (module, intent), re-deriving module from
-the actual skill pipeline rather than trusting the downstream trace label.
+"""Trace analyzer — group Langfuse trace failures by (module, intent).
 
-Why: the trace's module_label is whatever kb_answer.py decided at runtime.
-That decision can be wrong (stale CONCEPT_REGISTRY, no concept match, BM25
-noise). If the supervisor trusts the trace label, every downstream judgment
-inherits that error. We re-run _detect_module + _extract_entities on each
-failing query against the *current* code and use that as ground truth.
-Module mismatches are surfaced per-gap so proposals can flag routing bugs.
+Source of truth: Langfuse trace metadata only.
+The trace's `module` field is what kb_answer decided at runtime — that IS the
+ground truth for what actually happened in production. We do NOT re-run the
+skill pipeline here; doing so would pollute the analysis with current code
+state rather than what was live when the trace was recorded.
+
+Isolation principle: the supervisor is a read-only analysis loop over telemetry.
+It never executes skill code or calls any live endpoint.
 """
 
 import logging
 import re
-import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 logger = logging.getLogger(__name__)
-
-# ── Skill pipeline import ─────────────────────────────────────────────────────
-_SKILL_ROOT = str(Path(__file__).parents[3])
-if _SKILL_ROOT not in sys.path:
-    sys.path.insert(0, _SKILL_ROOT)
-
-try:
-    from skill import kb_answer as _kb
-    _detect_module = getattr(_kb, "_detect_module", None)
-    _extract_entities = getattr(_kb, "_extract_entities", None)
-    _SKILL_AVAILABLE = _detect_module is not None and _extract_entities is not None
-    if not _SKILL_AVAILABLE:
-        logger.warning("kb_answer._detect_module/_extract_entities not importable — falling back to trace label")
-except Exception as exc:
-    _SKILL_AVAILABLE = False
-    logger.warning("Could not import skill.kb_answer: %s — falling back to trace label", exc)
-
-
-def _skill_module(query: str) -> Tuple[Optional[str], Optional[str]]:
-    """Re-derive (module, concept_id) by running the actual skill pipeline.
-
-    Returns (module, concept_id) or (None, None) if skill unavailable / no match.
-    """
-    if not _SKILL_AVAILABLE or not query:
-        return None, None
-    try:
-        entities = _extract_entities(query)
-        if entities:
-            e = entities[0]
-            return e.get("module"), e.get("id")
-        # No concept matched — use _detect_module as fallback
-        result = _detect_module(query)
-        return result.get("module") if isinstance(result, dict) else str(result), None
-    except Exception as exc:
-        logger.debug("_skill_module failed for query %r: %s", query[:60], exc)
-        return None, None
 
 
 # ── Pre-classification keyword sets ──────────────────────────────────────────
@@ -180,7 +144,7 @@ def _cluster_queries(
 class Gap:
     """A KB gap: failing (module, intent) bucket with evidence."""
 
-    module: str                          # Ground-truth module from skill pipeline
+    module: str                          # Module from Langfuse trace metadata
     intent: str
     total_count: int
     success_count: int
@@ -222,8 +186,7 @@ class TraceAnalyzer:
         self.gaps: List[Gap] = []
 
     def analyze(self, traces: List[Dict]) -> List[Gap]:
-        logger.info("Analyzing %d traces (skill pipeline re-routing: %s)...",
-                    len(traces), "ON" if _SKILL_AVAILABLE else "OFF — trace labels only")
+        logger.info("Analyzing %d traces (source: Langfuse metadata only)...", len(traces))
 
         # Shared groups dict — populated by Pass 0, then Pass 1
         groups: Dict[tuple, Dict] = {}
@@ -283,16 +246,12 @@ class TraceAnalyzer:
                     "successes": [],
                     "seen_failures": set(),
                     "seen_successes": set(),
-                    "trace_modules": {},
-                    "no_concept_count": 0,
                     "pre_classified_bucket": _PRE_CLASSIFIED_KEYS[key],
                 }
 
             groups[key]["total"] += 1
             groups[key]["failure"] += 1
             groups[key]["confidences"].append(confidence)
-            tm = groups[key]["trace_modules"]
-            tm[trace_module] = tm.get(trace_module, 0) + 1
             if query not in groups[key]["seen_failures"]:
                 groups[key]["seen_failures"].add(query)
                 groups[key]["failures"].append(query)
@@ -305,32 +264,22 @@ class TraceAnalyzer:
                 len(groups.get(("WhatsApp", "coexistence"), {}).get("failures", [])),
             )
 
-        # ── Pass 1: collect per-query routing decisions ───────────────────────
-        # key = (skill_module, intent) — ground truth from current code
-        # (traces already consumed by Pass 0 are skipped)
+        # ── Pass 1: group traces by (module, intent) from trace metadata ────────
+        # Source of truth: Langfuse metadata only. No live skill execution.
         for _idx, trace in enumerate(traces):
             # Skip traces already bucketed by Pass 0
             if _idx in _pass0_consumed:
                 continue
 
             meta = trace.get("metadata") or {}
-            trace_module = meta.get("module_label") or meta.get("module") or trace.get("module", "Unknown")
+            trace_module = meta.get("module") or meta.get("module_label") or trace.get("module", "Unknown")
             intents = meta.get("intent_labels") or []
             intent = intents[0] if intents else (meta.get("intent") or trace.get("intent", "Unknown"))
             query = meta.get("query") or (trace.get("input") or {}).get("query") or trace.get("query", "")
             answered = bool(meta.get("answered") or trace.get("answered", False))
             confidence = meta.get("top_score") or meta.get("confidence") or trace.get("confidence", 0.0)
 
-            # Re-derive module from actual skill code
-            skill_mod, concept_id = _skill_module(query) if not answered else (None, None)
-            # For answered traces use trace label (skill got it right)
-            # For failed traces use skill re-derivation (trace label may be stale/wrong)
-            if answered or not _SKILL_AVAILABLE:
-                effective_module = trace_module
-            else:
-                effective_module = skill_mod or trace_module
-
-            key = (effective_module, intent)
+            key = (trace_module, intent)
 
             if key not in groups:
                 groups[key] = {
@@ -342,17 +291,10 @@ class TraceAnalyzer:
                     "successes": [],
                     "seen_failures": set(),
                     "seen_successes": set(),
-                    "trace_modules": {},      # {trace_module: count}
-                    "no_concept_count": 0,
                     "pre_classified_bucket": "",  # empty = not pre-classified
                 }
 
             groups[key]["total"] += 1
-            tm = groups[key]["trace_modules"]
-            tm[trace_module] = tm.get(trace_module, 0) + 1
-
-            if not answered and concept_id is None and _SKILL_AVAILABLE:
-                groups[key]["no_concept_count"] += 1
 
             if answered:
                 groups[key]["success"] += 1
@@ -367,23 +309,14 @@ class TraceAnalyzer:
 
             groups[key]["confidences"].append(confidence)
 
-        # ── Pass 2: build Gap objects, flag routing mismatches ────────────────
+        # ── Pass 2: build Gap objects ─────────────────────────────────────────
         gaps = []
-        for (skill_module, intent), g in groups.items():
+        for (module, intent), g in groups.items():
             avg_conf = (sum(g["confidences"]) / len(g["confidences"])
                         if g["confidences"] else 0.0)
 
-            # Dominant trace module for this group
-            dominant_trace_module = max(g["trace_modules"], key=g["trace_modules"].get) if g["trace_modules"] else skill_module
-            mismatch = (dominant_trace_module != skill_module and _SKILL_AVAILABLE
-                        and skill_module not in (None, "Unknown"))
-            mismatch_detail = f"trace={dominant_trace_module}, skill={skill_module}" if mismatch else ""
-
-            if mismatch:
-                logger.warning("Module routing mismatch in gap %s/%s: %s", skill_module, intent, mismatch_detail)
-
             gap = Gap(
-                module=skill_module,
+                module=module,
                 intent=intent,
                 total_count=g["total"],
                 success_count=g["success"],
@@ -392,10 +325,10 @@ class TraceAnalyzer:
                 avg_confidence=avg_conf,
                 failure_examples=g["failures"][:20],
                 success_examples=g["successes"][:3],
-                trace_module=dominant_trace_module,
-                module_mismatch=mismatch,
-                mismatch_detail=mismatch_detail,
-                no_concept_match_count=g["no_concept_count"],
+                trace_module=module,
+                module_mismatch=False,
+                mismatch_detail="",
+                no_concept_match_count=0,
                 pre_classified_bucket=g.get("pre_classified_bucket", ""),
             )
             gaps.append(gap)

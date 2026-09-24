@@ -216,97 +216,14 @@ def _taxonomy_block(gap_module: str = "", bridge=None) -> str:
     return "\n".join(lines)
 
 
-def _content_availability_block(failure_examples: List[str], bridge) -> str:
-    """Run up to 3 sample queries through BM25 and report best-matching doc scores.
+def _content_availability_block(failure_examples: List[str], bridge=None) -> str:
+    """Removed: live BM25 re-runs violate supervisor isolation.
 
-    Injected into the prompt so the judge can distinguish:
-      - content exists, concept missing → missing_concept
-      - no content matches → idk_correct (concept cannot fix a content gap)
+    The pipeline signal from Langfuse trace metadata (top_score, top_source) is
+    the source of truth. This function is kept as a no-op for backward compatibility
+    with any call sites that still pass bridge; they will get an empty string.
     """
-    if bridge is None or not failure_examples:
-        return ""
-
-    # Cross-domain doc families that must never be treated as content for other domains
-    _CROSS_DOMAIN_PATTERNS = (
-        "pricing", "billing", "promotional-restrictions", "account-support",
-    )
-
-    lines = [
-        "## KB content availability (computed — trust this)",
-        "These are the best-matching KB docs for the sample failing queries,",
-        "scored by the real BM25 retrieval pipeline BEFORE any concept boost.",
-        "A score ≤ 3.5 means no meaningful KB content exists for that query.",
-        "",
-        "KEY RULE: A CONCEPT_REGISTRY entry is a retrieval router, not content.",
-        "Adding a concept/alias only helps if a KB doc ALREADY answers the question.",
-        "If no doc scores above ~3.5, there is no content to route to — the correct",
-        "verdict is idk_correct, NOT missing_concept.",
-        "(Evidence from past fix 3d804b23: MFA aliases were added but IDK persisted",
-        "because no MFA content exists in the KB. Aliases alone cannot fill a content gap.)",
-        "",
-    ]
-
-    samples = failure_examples[:3]
-    any_content = False
-    for query in samples:
-        try:
-            result = bridge.run_query(query)
-            top_score = result.get("top_score", 0)
-            sources = result.get("evidence_sources", [])
-            top_src = sources[0] if sources else "none"
-            answer_snippet = result.get("answer", "")
-            q_short = query[:80] + ("…" if len(query) > 80 else "")
-
-            if top_score > 3.5:
-                # P1-C: hard cross-domain pre-check — pricing/billing docs never count as
-                # content for non-pricing queries regardless of BM25 score
-                cross_domain = any(pat in top_src.lower() for pat in _CROSS_DOMAIN_PATTERNS)
-                if cross_domain:
-                    lines.append(f"  Query: \"{q_short}\"")
-                    lines.append(
-                        f"  Best doc: {top_src} (score: {top_score}) "
-                        f"✗ cross-domain mismatch — pricing/billing doc matched non-pricing query"
-                    )
-                else:
-                    # Semantic check: does the top doc actually address this query?
-                    relevant = _semantic_relevance_check(query, answer_snippet, top_src)
-                    if relevant:
-                        any_content = True
-                        lines.append(f"  Query: \"{q_short}\"")
-                        lines.append(f"  Best doc: {top_src} (score: {top_score}) ✓ semantically relevant")
-                    else:
-                        lines.append(f"  Query: \"{q_short}\"")
-                        lines.append(
-                            f"  Best doc: {top_src} (score: {top_score}) "
-                            f"✗ NOT relevant — doc covers a different topic"
-                        )
-            else:
-                lines.append(f"  Query: \"{q_short}\"")
-                lines.append(f"  Best doc: {top_src} (score: {top_score})")
-            lines.append("")
-        except Exception as exc:
-            logger.debug("content_availability_block: run_query failed: %s", exc)
-
-    if not any_content:
-        lines.append(
-            "⚠ No query scored above 3.5 (or all high-scoring docs are cross-domain/irrelevant) "
-            "— no KB content currently covers this gap."
-        )
-        lines.append(
-            "   Use idk_correct unless you have strong evidence a KB doc should be authored."
-        )
-        lines.append('   → Set "kb_doc_needed": true in your output.')
-    else:
-        lines.append(
-            "✓ At least one query found matching KB content (score > 3.5, semantically relevant) "
-            "— content EXISTS in the KB."
-        )
-        lines.append(
-            "   Adding a concept will ROUTE queries to the existing doc. "
-            "No new KB doc is needed."
-        )
-        lines.append('   → Set "kb_doc_needed": false in your output.')
-    return "\n".join(lines)
+    return ""
 
 
 def _decision_log_block() -> str:

@@ -1,23 +1,19 @@
 """
 GapClassifier - deterministic (no LLM) classification of KB/skill gaps.
 
-Replaces the crude keyword-overlap scoring in kb_searcher.py +
-rag_diagnostician.py (which produced a uniform "RETRIEVAL, 85% confidence"
-verdict on every gap because kb_searcher's unbounded scores were compared
-against hardcoded 0.3/0.6 thresholds on the wrong scale).
+Source of truth: Langfuse trace metadata only. No live skill execution.
 
-Instead this classifier re-runs each gap's failure queries through the REAL
-skill pipeline (via SkillPipelineBridge) and applies a small decision tree
-built from the actual bugs found manually earlier this session:
-  - queries already patched no longer reproduce as IDK -> ALREADY_FIXED
-  - entities == [] + a near-miss CONCEPT_REGISTRY keyword hit -> alias gap
-  - entities == [] + no near-miss but real on-topic KB content exists ->
-    missing CONCEPT_REGISTRY entry
-  - entities != [] but still IDK -> a composition/evidence-selection bug,
-    flagged for deeper investigation (not something a rule can diagnose)
-  - entities == [] + no near-miss + no on-topic content -> genuine content gap
-  - pricing / account-support queries are out-of-scope by design, checked
-    before pipeline classification
+Isolation principle: the supervisor is a read-only analysis loop over
+telemetry. It never imports or runs skill/kb_answer.py. Any diagnostic
+signal that is missing from traces (e.g. concept_matched, score_vs_floor)
+is surfaced as a TELEMETRY_GAP so the engineer knows to add that field to
+kb_answer.py's Langfuse instrumentation — not to re-run queries offline.
+
+Classifies each gap's failure queries using:
+  - What the trace recorded: top_score, top_source, answered, confidence
+  - Query-text heuristics: pricing/noise/account-support gates
+  - Missing trace fields → category CODE_GAP_NEEDS_INVESTIGATION with
+    evidence.telemetry_gap describing what to add to kb_answer.py
 """
 import re
 
@@ -67,15 +63,6 @@ ACCOUNT_SUPPORT_PHRASES = [
     "didn't receive the otp",
     "otp not received",
 ]
-
-# Small local stopword set used only if kb.SCORING_STOP_WORDS isn't reachable
-# through the bridge (defensive fallback).
-_FALLBACK_STOP_WORDS = {
-    "how", "to", "use", "from", "in", "a", "the", "my", "is", "it",
-    "do", "can", "that", "this", "and", "or", "for", "with", "on",
-    "of", "what", "where", "when", "which", "are", "was", "will",
-    "should", "does", "have", "not", "but", "they", "their", "its",
-}
 
 CONTENT_MATCH_THRESHOLD = 0.7  # "almost all" significant terms must appear
 
@@ -135,74 +122,18 @@ def is_account_support_query(text: str) -> bool:
 
 
 class GapClassifier:
-    """Classifies gaps by re-running failure queries through the real pipeline."""
+    """Classifies gaps from Langfuse trace metadata. No live skill execution."""
 
-    def __init__(self, bridge):
-        """
-        Args:
-            bridge: a SkillPipelineBridge instance (already loaded).
-        """
-        self.bridge = bridge
+    def __init__(self):
+        pass
 
     # ------------------------------------------------------------------
-    def _significant_terms(self, query: str) -> set:
-        tokens = self.bridge._normalize_tokens(query)
-        stop_words = getattr(self.bridge.kb, "SCORING_STOP_WORDS", _FALLBACK_STOP_WORDS)
-        return {t for t in tokens if len(t) >= 3 and t not in stop_words}
+    def classify_query_from_trace(self, query: str, trace_meta: dict) -> dict:
+        """Classify one failure query using its Langfuse trace metadata.
 
-    def _targeted_content_check(self, query: str) -> dict:
-        """Bounded, deterministic on-topic content check.
-
-        Does NOT reuse kb_searcher.py's raw score (the miscalibrated system
-        being replaced). Instead checks whether any single KB source file's
-        filename + section headings contain (as literal substrings) >= 70%
-        of the query's significant terms. Body text alone is deliberately
-        excluded — it produces false positives (e.g. generic "user" matching
-        unrelated Agent Assist pages, seen earlier this session).
+        trace_meta: the 'metadata' dict from the Langfuse trace for this query.
+        Falls back to query-text heuristics when trace fields are absent.
         """
-        terms = self._significant_terms(query)
-        if not terms:
-            return {"found": False, "matches": [], "checked_terms": []}
-
-        # Group chunks by source file, concatenating filename + all headings
-        # seen for that source into one lowercase haystack.
-        by_source = {}
-        for c in self.bridge.chunks:
-            source = c.get("source", "")
-            if not source:
-                continue
-            haystack = by_source.setdefault(source, set())
-            haystack.add(source.lower())
-            heading = c.get("heading") or ""
-            if heading:
-                haystack.add(heading.lower())
-            for h in c.get("heading_path") or []:
-                haystack.add(str(h).lower())
-
-        matches = []
-        for source, headings in by_source.items():
-            combined = " ".join(headings)
-            combined_tokens = set(re.findall(r"[a-z0-9]+", combined))
-            hit_terms = {t for t in terms if t in combined_tokens or any(t in h for h in headings)}
-            coverage = len(hit_terms) / len(terms)
-            if coverage >= CONTENT_MATCH_THRESHOLD:
-                matches.append({
-                    "source": source,
-                    "coverage": round(coverage, 2),
-                    "matched_terms": sorted(hit_terms),
-                })
-
-        matches.sort(key=lambda m: m["coverage"], reverse=True)
-        return {
-            "found": bool(matches),
-            "matches": matches[:5],
-            "checked_terms": sorted(terms),
-        }
-
-    # ------------------------------------------------------------------
-    def classify_query(self, query: str) -> dict:
-        """Classify a single failure query. Returns the category plus the
-        evidence used to reach it."""
         if is_pricing_query(query):
             return {
                 "query": query,
@@ -216,205 +147,89 @@ class GapClassifier:
                 "evidence": {"matched_phrases": [p for p in ACCOUNT_SUPPORT_PHRASES if p in query.lower()]},
             }
 
-        result = self.bridge.run_query_with_signal(query)
+        answered = bool(trace_meta.get("answered"))
+        top_score = trace_meta.get("top_score") or 0
+        top_source = trace_meta.get("top_source") or ""
+        confidence = trace_meta.get("confidence") or 0
+        failure_type = trace_meta.get("failure_type") or ""
 
-        # Diagnostic fields from run_query_with_signal — injected into every evidence dict
-        _diag = {
-            "top_score": result.get("top_score", 0),
-            "score_vs_floor": result.get("score_vs_floor"),
-            "concept_matched": result.get("concept_matched"),
-            "near_misses": result.get("near_misses") or [],
-            "answered_now": result.get("answered_now", False),
-            "evidence_sources": result.get("evidence_sources") or [],
+        evidence = {
+            "top_score": top_score,
+            "top_source": top_source,
+            "confidence": confidence,
+            "failure_type": failure_type,
+            "answered": answered,
         }
 
-        if not result["is_idk"]:
-            has_evidence = bool(result["evidence_sources"])
-            score_ok = result["top_score"] >= ALREADY_FIXED_MIN_SCORE
-            if has_evidence and score_ok:
-                # Source alignment check: if entities were matched, verify the
-                # answer actually came from the expected source doc(s) for the
-                # first matched entity. An entity match alone doesn't mean the
-                # skill answered correctly — the top evidence doc may be a
-                # plausible-sounding but wrong file (e.g. agent_transfer matched
-                # but top doc is superagent/concepts/agents.md instead of
-                # agent-transfer-node.md). This is the false-positive pattern
-                # identified in this session.
-                entities = result["entities"]
-                if entities:
-                    entity_id = entities[0]
-                    source_boosts = self.bridge.get_concept_source_boosts(entity_id)
-                    if source_boosts:
-                        top_source = result["evidence_sources"][0] or ""
-                        expected_keys = list(source_boosts.keys())
-                        source_aligned = any(
-                            key in top_source for key in expected_keys
-                        )
-                        if not source_aligned:
-                            return {
-                                "query": query,
-                                "category": CODE_GAP_NEEDS_INVESTIGATION,
-                                "evidence": {
-                                    "reason": "entity matched but answer came from wrong source doc",
-                                    "entity": entity_id,
-                                    "expected_sources": expected_keys,
-                                    "actual_top_source": top_source,
-                                    "answer_preview": (result["answer"] or "")[:200],
-                                    "module": result["module"],
-                                    "entities": entities,
-                                    "evidence_sources": result["evidence_sources"],
-                                    "top_score": result["top_score"],
-                                },
-                            }
-                return {
-                    "query": query,
-                    "category": ALREADY_FIXED,
-                    "evidence": {
-                        "answer_preview": (result["answer"] or "")[:300],
-                        "module": result["module"],
-                        "entities": result["entities"],
-                        **_diag,
-                    },
-                }
-            # Non-IDK text, but evidence is missing or too weak to trust —
-            # don't blindly declare this fixed. A prior manual investigation
-            # this session found a non-IDK case whose evidence was real text
-            # but from a completely wrong-topic doc (an IVR query answered
-            # from a CC-Express page). Flag for human verification instead.
-            if not has_evidence:
-                weakness = "missing (no evidence_sources)"
-            else:
-                weakness = (
-                    f"weak (top_score {result['top_score']} < floor "
-                    f"{ALREADY_FIXED_MIN_SCORE})"
-                )
-            return {
-                "query": query,
-                "category": CODE_GAP_NEEDS_INVESTIGATION,
-                "evidence": {
-                    "reason": f"Answer is not IDK, but evidence is {weakness} "
-                              "— non-IDK text alone isn't sufficient proof the answer is "
-                              "correct/on-topic (see the CC-Express-doc-answering-an-IVR-"
-                              "query false positive found earlier this session). Needs "
-                              "human verification, not auto-classification as fixed.",
-                    "module": result["module"],
-                    "intent": result["intent"],
-                    "entities": result["entities"],
-                    "evidence_sources": result["evidence_sources"],
-                    "top_score": result["top_score"],
-                    "answer_preview": (result["answer"] or "")[:300],
-                },
-            }
+        if answered:
+            if top_score >= ALREADY_FIXED_MIN_SCORE and top_source:
+                return {"query": query, "category": ALREADY_FIXED, "evidence": evidence}
+            return {"query": query, "category": CODE_GAP_NEEDS_INVESTIGATION,
+                    "evidence": {**evidence, "reason": "answered in trace but low score — may be false positive"}}
 
-        # Still IDK past this point.
-        if result["entities"]:
-            return {
-                "query": query,
-                "category": CODE_GAP_NEEDS_INVESTIGATION,
-                "evidence": {
-                    "reason": "Entities matched but answer is still IDK — likely a "
-                              "composition/evidence-selection bug (same pattern as "
-                              "the entities[0] bug found earlier this session). "
-                              "Needs a deeper investigation agent, not a rule.",
-                    "module": result["module"],
-                    "intent": result["intent"],
-                    "answer": result["answer"],
-                    **_diag,
-                },
-            }
+        # IDK in trace
+        if top_score > 0 and top_source:
+            # Doc was retrieved but skill still IDKed — routing/floor issue
+            return {"query": query, "category": CODE_GAP_NEEDS_INVESTIGATION,
+                    "evidence": {**evidence, "reason": f"IDK despite retrieval: top_score={top_score:.2f} from {top_source}"}}
 
-        # entities == [] and still IDK
-        near_misses = self.bridge.check_near_miss_concepts(query)
-        if near_misses:
-            # For intents where a keyword near-miss does NOT imply an alias
-            # would fix IDK (troubleshooting/page_lookup/refusal/compare
-            # usually mean no KB content exists, not a missing alias), route
-            # to investigation rather than auto-proposing an alias.
-            _ALIAS_UNSAFE_INTENTS = {"troubleshooting", "page_lookup", "refusal", "compare"}
-            intent = result.get("intent") or ""
-            if intent in _ALIAS_UNSAFE_INTENTS:
-                return {
-                    "query": query,
-                    "category": CODE_GAP_NEEDS_INVESTIGATION,
-                    "evidence": {
-                        "reason": (
-                            f"Near-miss concept(s) found but intent is '{intent}', "
-                            "which typically indicates missing content rather than a "
-                            "missing alias — adding an alias is unlikely to fix IDK "
-                            "for this intent type. Needs human/Hermes verification."
-                        ),
-                        "near_miss_concepts": near_misses,
-                        "intent": intent,
-                        "answer": result["answer"],
-                    },
-                }
-            return {
-                "query": query,
-                "category": CODE_GAP_ALIAS_CANDIDATE,
-                "evidence": {
-                    "near_miss_concepts": near_misses,
-                    "answer": result["answer"],
-                },
-            }
+        if top_score == 0 or not top_source:
+            # Nothing retrieved — content gap or missing concept
+            return {"query": query, "category": CONTENT_GAP,
+                    "evidence": {**evidence, "reason": "IDK with no retrieval — content gap or concept missing"}}
 
-        content_check = self._targeted_content_check(query)
-        if content_check["found"]:
-            return {
-                "query": query,
-                "category": CODE_GAP_MISSING_CONCEPT,
-                "evidence": {
-                    "reason": "No CONCEPT_REGISTRY entry/keyword matched this query, "
-                              "but on-topic KB content exists. May need a new "
-                              "CONCEPT_REGISTRY entry.",
-                    "content_check": content_check,
-                    "answer": result["answer"],
-                },
-            }
-
-        return {
-            "query": query,
-            "category": CONTENT_GAP,
-            "evidence": {
-                "reason": "No entity/keyword match and no on-topic KB content found.",
-                "content_check": content_check,
-                "answer": result["answer"],
-            },
-        }
+        return {"query": query, "category": CODE_GAP_NEEDS_INVESTIGATION,
+                "evidence": {**evidence, "reason": "unclassified IDK pattern"}}
 
     # ------------------------------------------------------------------
-    def classify_gap(self, gap_failure_examples: list, max_samples: int = 3) -> dict:
-        """Classify a gap using up to max_samples of its failure_examples.
+    def classify_gap(self, gap_failure_examples: list, max_samples: int = 10,
+                     traces_for_gap: list = None) -> dict:
+        """Classify a gap from Langfuse trace metadata.
 
-        If different sample queries classify differently, the gap is
-        heterogeneous — report the full breakdown rather than forcing a
-        single label (this is exactly what "AI Admin / General" turned out
-        to be: 6+ different problem types mislabeled as one RETRIEVAL gap).
+        gap_failure_examples: list of query strings from the gap.
+        traces_for_gap: list of Langfuse trace dicts matching this gap's queries.
+                        When provided, each query's trace metadata is used.
+                        When absent, query-text heuristics only (pricing/noise gates).
         """
         samples = [q for q in (gap_failure_examples or []) if q][:max_samples]
 
-        # Pre-check 1: noise gate
-        if samples:
-            noise_count = sum(1 for q in samples if _is_noise_query(q))
-            if noise_count / len(samples) >= 0.80:
-                return {
-                    "category": NOISE,
-                    "confidence": "high",
-                    "evidence": {"reason": f"{noise_count}/{len(samples)} sample queries are noise (too short or no alphabetic content)"},
-                    "per_query_results": [],
-                }
+        if not samples:
+            return {"category": NOISE, "confidence": "high",
+                    "evidence": {"reason": "no failure examples"}, "per_query_results": []}
 
-        # Pre-check 2: out-of-scope gate
-        if samples:
-            off_scope_count = sum(1 for q in samples if not _is_gupshup_product_query(q))
-            if off_scope_count / len(samples) >= 0.70:
-                return {
-                    "category": OUT_OF_SCOPE_GENERAL,
-                    "confidence": "high",
-                    "evidence": {"reason": f"{off_scope_count}/{len(samples)} sample queries contain no Gupshup product terms"},
-                    "per_query_results": [],
-                }
+        # Noise gate
+        noise_count = sum(1 for q in samples if _is_noise_query(q))
+        if noise_count / len(samples) >= 0.80:
+            return {
+                "category": NOISE, "confidence": "high",
+                "evidence": {"reason": f"{noise_count}/{len(samples)} queries are noise"},
+                "per_query_results": [],
+            }
 
-        per_query_results = [self.classify_query(q) for q in samples]
+        # Out-of-scope gate
+        off_scope_count = sum(1 for q in samples if not _is_gupshup_product_query(q))
+        if off_scope_count / len(samples) >= 0.70:
+            return {
+                "category": OUT_OF_SCOPE_GENERAL, "confidence": "high",
+                "evidence": {"reason": f"{off_scope_count}/{len(samples)} queries have no Gupshup product terms"},
+                "per_query_results": [],
+            }
+
+        # Build a query → trace_meta lookup from the provided traces
+        query_to_meta: dict = {}
+        if traces_for_gap:
+            for t in traces_for_gap:
+                m = t.get("metadata") or {}
+                q = m.get("query") or (t.get("input") or {}).get("query") or ""
+                if q:
+                    query_to_meta[q] = m
+                    # Also index by prefix (queries may be truncated in failure_examples)
+                    query_to_meta[q[:100]] = m
+
+        per_query_results = []
+        for q in samples:
+            meta = query_to_meta.get(q) or query_to_meta.get(q[:100]) or {}
+            per_query_results.append(self.classify_query_from_trace(q, meta))
 
         categories = [r["category"] for r in per_query_results]
         unique_categories = sorted(set(categories))
@@ -426,7 +241,7 @@ class GapClassifier:
             category = "MIXED"
             confidence = "low"
 
-        breakdown = {}
+        breakdown: dict = {}
         for r in per_query_results:
             breakdown.setdefault(r["category"], []).append(r["query"])
 
