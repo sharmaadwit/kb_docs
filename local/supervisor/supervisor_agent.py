@@ -23,6 +23,7 @@ from .utils.gap_classifier import (
 from .utils.hermes_judge import HermesJudge, is_hermes_available
 from .utils.hermes_coordinator import HermesCoordinator
 from .utils.kanban_writer import KanbanWriter
+from .utils import isolation_guard
 
 
 def setup_logging(logs_dir: Path, timestamp: str) -> logging.Logger:
@@ -150,12 +151,20 @@ def main() -> int:
         parser.print_help()
         return 0
 
+    # Enforce isolation BEFORE any network-capable code runs.
+    # Strips Langfuse SDK env vars and patches socket/urllib to hard-block
+    # calls to Langfuse write endpoints and SuperAgent/skill hosts.
+    isolation_guard.enforce()
+
     # Load configuration
     try:
         config = load_config()
     except Exception as e:
         print(f"Failed to load configuration: {e}")
         return 1
+
+    # Verify no Langfuse SDK write client or skill/kb_answer snuck in transitively.
+    isolation_guard.check_sys_modules()
 
     # Set up logging
     IST = timezone(timedelta(hours=5, minutes=30))
