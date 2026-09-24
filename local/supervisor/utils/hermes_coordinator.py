@@ -456,7 +456,7 @@ Decision tree for non-English IDK queries:
 2. Doc exists. Is the foreign phrase already mapped in _MULTILINGUAL_TERMS? YES → HAS_DOCS_FAILS
    (routing/keyword miss in CONCEPT_REGISTRY, not language).
 3. Doc exists. Foreign phrase NOT in _MULTILINGUAL_TERMS → LANGUAGE_COVERAGE_GAP.
-   - Populate `language_mappings`: [{"term": "regra de janela de 24 horas", "english": "24-hour messaging window", "language": "pt"}]
+   - Populate `language_mappings`: [{{"term": "regra de janela de 24 horas", "english": "24-hour messaging window", "language": "pt"}}]
    - Set `concept_target` to the concept that should route to the doc.
    - Do NOT put any non-English strings in `keywords_to_add`.
    - The fix is extending _MULTILINGUAL_TERMS in skill/kb_answer.py, not CONCEPT_REGISTRY.
