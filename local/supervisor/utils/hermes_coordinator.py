@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 _PROFILE = "kb-supervisor"
 _ENV = {**os.environ, "PATH": f"/Users/adwit.sharma/.local/bin:{os.environ.get('PATH', '')}"}
 
-_VALID_BUCKETS = {"HAS_DOCS_FAILS", "NO_DOCS_IN_SCOPE", "OUT_OF_SCOPE", "NOISE", "UNKNOWN"}
+_VALID_BUCKETS = {"HAS_DOCS_FAILS", "NO_DOCS_IN_SCOPE", "OUT_OF_SCOPE", "NOISE", "UNKNOWN", "LANGUAGE_COVERAGE_GAP"}
 
 # ---------------------------------------------------------------------------
 # Skill context preamble — injected into every Turn 1 prompt
@@ -334,13 +334,15 @@ class GapWorker:
             kb_search_section += "\nNOTE: No strong KB matches found — NO_DOCS_IN_SCOPE likely correct."
 
         json_schema = json.dumps({
-            "bucket": "HAS_DOCS_FAILS | NO_DOCS_IN_SCOPE | OUT_OF_SCOPE | NOISE",
+            "bucket": "HAS_DOCS_FAILS | NO_DOCS_IN_SCOPE | OUT_OF_SCOPE | NOISE | LANGUAGE_COVERAGE_GAP",
             "confidence": "high | medium | low",
             "reasoning": "paragraph referencing specific query results and doc evidence",
             "matching_doc": "kb/path/to/doc.md or null",
-            "root_cause": "keyword_gap | routing_miss | retrieval_rank | content_thin | answer_quality | null",
+            "root_cause": "keyword_gap | routing_miss | retrieval_rank | content_thin | answer_quality | language_gap | null",
             "doc_evidence": "REQUIRED for HAS_DOCS_FAILS: direct quote from matching_doc proving it covers the query. null for other buckets.",
-            "keywords_to_add": ["specific missing term from IDK queries"],
+            "keywords_to_add": ["specific missing term from IDK queries — English only"],
+            "language_mappings": [{"term": "non-English phrase from query", "english": "English equivalent", "language": "pt|es|hi|ar"}],
+            "concept_target": "CONCEPT_REGISTRY concept name to add keywords/mappings to, or 'NEW: <name>' if missing",
             "doc_to_create": "kb/module/filename.md or null",
             "doc_outline": None,
             "doc_priority": "high | medium | low | null",
@@ -361,13 +363,23 @@ Integrations, AI Admin, Personalize, Wallet, Goals.
 ## Your Task
 Classify this gap into ONE bucket. Evaluate in this order:
 
-  OUT_OF_SCOPE     — Not a Gupshup product question, pricing/billing, general knowledge,
-                     or most queries already ANSWERED.
-  NOISE            — Malformed, too short, test traffic.
-  HAS_DOCS_FAILS   — A relevant KB doc exists but the skill IDKed (keyword/routing miss).
-                     PREFER this over NO_DOCS_IN_SCOPE — it's a faster fix.
-  NO_DOCS_IN_SCOPE — Legitimate question, no existing doc covers it even with routing.
-                     Only use this if HAS_DOCS_FAILS is genuinely impossible.
+  OUT_OF_SCOPE          — Not a Gupshup product question, pricing/billing, general knowledge,
+                          or most queries already ANSWERED.
+  NOISE                 — Malformed, too short, test traffic.
+  LANGUAGE_COVERAGE_GAP — Query is in a non-English language AND a relevant KB doc exists AND
+                          the English equivalent of the query WOULD route correctly. The fix is
+                          adding phrase mappings to _MULTILINGUAL_TERMS in skill/kb_answer.py,
+                          NOT adding keywords to CONCEPT_REGISTRY.
+                          Use this when: the doc covers the topic, but the foreign-language
+                          phrasing has no entry in _MULTILINGUAL_TERMS so the router never
+                          sees the right English terms.
+  HAS_DOCS_FAILS        — A relevant KB doc exists and the query is in English (or language
+                          translation is already covered), but the skill IDKed due to a
+                          keyword/routing miss in CONCEPT_REGISTRY.
+                          PREFER this over NO_DOCS_IN_SCOPE — it's a faster fix.
+  NO_DOCS_IN_SCOPE      — Legitimate question, no existing doc covers it even with routing.
+                          Only use this if HAS_DOCS_FAILS and LANGUAGE_COVERAGE_GAP are
+                          genuinely impossible.
 
 ## Gap Details
 Module: {gap.module}
@@ -435,15 +447,19 @@ Before adding a keyword, ask: would this term match unrelated queries?
 - Terms already present in another concept's aliases → REJECT — would create routing conflicts.
 - Valid keywords are: specific product terms, error message substrings, feature names the user typed.
 
-### Rule 6 — Never recommend non-English keywords
-SuperAgent normalises and translates ALL queries before they reach kb_answer. The skill only sees
-English text. Adding Portuguese, Spanish, Hindi, or any other language keywords to CONCEPT_REGISTRY
-is always wrong — they will NEVER be matched because routing happens on the translated query.
-- If a failing query is in Portuguese/Spanish/Hindi/etc.: the language is NOT the root cause.
-- Diagnose what the English translation would be, then check if the English keyword/doc is missing.
-- The correct fix type for non-English IDKs is one of: content_thin (doc exists but lacks depth),
-  routing_miss (English keyword missing from the concept), or NO_DOCS_IN_SCOPE (no doc at all).
-- Do NOT include any non-English strings in keywords_to_add.
+### Rule 6 — Non-English queries → use LANGUAGE_COVERAGE_GAP, never add foreign keywords to CONCEPT_REGISTRY
+SuperAgent normalises queries before kb_answer, but the skill also has a _MULTILINGUAL_TERMS phrase
+table that maps foreign phrases to English before retrieval. CONCEPT_REGISTRY keywords are English-only.
+
+Decision tree for non-English IDK queries:
+1. Does a KB doc exist that covers the topic? NO → NO_DOCS_IN_SCOPE (content gap, language irrelevant).
+2. Doc exists. Is the foreign phrase already mapped in _MULTILINGUAL_TERMS? YES → HAS_DOCS_FAILS
+   (routing/keyword miss in CONCEPT_REGISTRY, not language).
+3. Doc exists. Foreign phrase NOT in _MULTILINGUAL_TERMS → LANGUAGE_COVERAGE_GAP.
+   - Populate `language_mappings`: [{"term": "regra de janela de 24 horas", "english": "24-hour messaging window", "language": "pt"}]
+   - Set `concept_target` to the concept that should route to the doc.
+   - Do NOT put any non-English strings in `keywords_to_add`.
+   - The fix is extending _MULTILINGUAL_TERMS in skill/kb_answer.py, not CONCEPT_REGISTRY.
 
 Think step by step. Analyze each IDK query individually. Name the specific docs and concept targets."""
 
@@ -481,6 +497,8 @@ you can prove NO existing doc covers the topic even with routing improvements.
 3. If OUT_OF_SCOPE: are any IDK queries genuinely about a Gupshup product?
 4. ANSWERED queries do not count as failures.
 5. PRICING queries → always OUT_OF_SCOPE (sales signal, never create pricing docs).
+5b. LANGUAGE_COVERAGE_GAP: re-check — did you populate language_mappings with the specific
+    non-English phrase → English mapping? If language_mappings is empty, this bucket is incomplete.
 6. Demo/video queries → check kb/video_manifest.json (18 topics) → HAS_DOCS_FAILS if match.
 7. General knowledge, infrastructure alerts, off-topic → OUT_OF_SCOPE.
 8. Bot Studio DB/variable queries: manage-variables.md + api-node.md may cover them.

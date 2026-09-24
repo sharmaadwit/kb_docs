@@ -14,6 +14,7 @@ logger = logging.getLogger(__name__)
 _BUCKET_LABEL = {
     "HAS_DOCS_FAILS": "Fix Now",
     "NO_DOCS_IN_SCOPE": "Create Docs",
+    "LANGUAGE_COVERAGE_GAP": "Add Language",
     "OUT_OF_SCOPE": "Ignored",
     "NOISE": "Ignored",
     "UNKNOWN": "⚠ Judge Failed",
@@ -70,11 +71,12 @@ class ReportGenerator:
                         bucket = "HAS_DOCS_FAILS"
             rows.append((gap, bucket, verdict))
 
-        # Sort: Fix Now first, then Create Docs by failure count, then Ignored, then Unknown last
-        bucket_order = {"HAS_DOCS_FAILS": 0, "NO_DOCS_IN_SCOPE": 1, "OUT_OF_SCOPE": 2, "NOISE": 2, "UNKNOWN": 3}
+        # Sort: Fix Now first, then Add Language, then Create Docs, then Ignored, then Unknown last
+        bucket_order = {"HAS_DOCS_FAILS": 0, "LANGUAGE_COVERAGE_GAP": 1, "NO_DOCS_IN_SCOPE": 2, "OUT_OF_SCOPE": 3, "NOISE": 3, "UNKNOWN": 4}
         rows.sort(key=lambda r: (bucket_order.get(r[1], 9), -r[0].failure_count))
 
         fix_now_count   = sum(1 for _, b, _ in rows if b == "HAS_DOCS_FAILS")
+        lang_count      = sum(1 for _, b, _ in rows if b == "LANGUAGE_COVERAGE_GAP")
         create_count    = sum(1 for _, b, _ in rows if b == "NO_DOCS_IN_SCOPE")
         ignored_count   = sum(1 for _, b, _ in rows if b in ("OUT_OF_SCOPE", "NOISE"))
         unknown_count   = sum(1 for _, b, _ in rows if b == "UNKNOWN")
@@ -87,6 +89,10 @@ class ReportGenerator:
             f"|---|---|",
             f"| Gaps analyzed | {len(gaps)} |",
             f"| Fix Now (keyword / routing fix in code) | {fix_now_count} |",
+            *(
+                [f"| Add Language (extend _MULTILINGUAL_TERMS) | {lang_count} |"]
+                if lang_count else []
+            ),
             f"| Create Docs (missing KB coverage) | {create_count} |",
             f"| Ignored (out of scope / noise) | {ignored_count} |",
             *(
@@ -114,6 +120,14 @@ class ReportGenerator:
                 else:
                     recommendation = f"Investigate retrieval for `{matching_doc}`"
 
+            elif bucket == "LANGUAGE_COVERAGE_GAP":
+                mappings = verdict.get("language_mappings") or []
+                if mappings:
+                    sample = mappings[0]
+                    recommendation = f"Add to _MULTILINGUAL_TERMS: `{sample.get('term','?')}` → `{sample.get('english','?')}`"
+                else:
+                    recommendation = "Extend _MULTILINGUAL_TERMS in skill/kb_answer.py"
+
             elif bucket == "NO_DOCS_IN_SCOPE":
                 doc_path = verdict.get("doc_to_create") or f"kb/{gap.module.lower()}/{gap.intent.lower()}.md"
                 recommendation = f"Create `{doc_path}`"
@@ -140,7 +154,7 @@ class ReportGenerator:
 
         # Detail section — one block per actionable gap, no outlines
         actionable = [(i+1, g, b, v) for i, (g, b, v) in enumerate(rows)
-                      if b in ("HAS_DOCS_FAILS", "NO_DOCS_IN_SCOPE")]
+                      if b in ("HAS_DOCS_FAILS", "LANGUAGE_COVERAGE_GAP", "NO_DOCS_IN_SCOPE")]
         if actionable:
             lines += ["## Detail — Actionable Gaps", ""]
             for idx, gap, bucket, verdict in actionable:
@@ -151,12 +165,31 @@ class ReportGenerator:
                 if bucket == "HAS_DOCS_FAILS":
                     lines.append(f"**Matching doc:** `{verdict.get('matching_doc') or '?'}`")
                     lines.append(f"**Root cause:** {verdict.get('root_cause') or verdict.get('reasoning') or '?'}")
+                    concept = verdict.get("concept_target")
+                    if concept:
+                        lines.append(f"**Concept target:** `{concept}`")
                     doc_evidence = verdict.get("doc_evidence")
                     if doc_evidence:
                         lines.append(f"**Doc evidence:** \"{_cell(doc_evidence, 200)}\"")
                     keywords = verdict.get("keywords_to_add") or []
                     if keywords:
                         lines.append(f"**Keywords to add:** {', '.join(f'`{k}`' for k in keywords)}")
+
+                elif bucket == "LANGUAGE_COVERAGE_GAP":
+                    lines.append(f"**Matching doc:** `{verdict.get('matching_doc') or '?'}`")
+                    lines.append(f"**Root cause:** language_gap — foreign phrase not in _MULTILINGUAL_TERMS")
+                    concept = verdict.get("concept_target")
+                    if concept:
+                        lines.append(f"**Concept target:** `{concept}`")
+                    mappings = verdict.get("language_mappings") or []
+                    if mappings:
+                        lines.append(f"**Mappings to add to `_MULTILINGUAL_TERMS` in `skill/kb_answer.py`:**")
+                        for m in mappings:
+                            lang = m.get("language", "?")
+                            lines.append(f'  - `"{m.get("term","?")}"` → `"{m.get("english","?")}"` ({lang})')
+                    else:
+                        lines.append("**Mappings to add:** (judge did not specify — investigate manually)")
+
                 else:
                     doc_path = verdict.get("doc_to_create") or f"kb/{gap.module.lower()}/{gap.intent.lower()}.md"
                     lines.append(f"**Create:** `{doc_path}`")
