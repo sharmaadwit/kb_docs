@@ -401,10 +401,41 @@ PRIMARY EVIDENCE. Shows exactly what happened for each query in the live skill:
   that proves it covers the query. If you cannot quote it, you cannot call HAS_DOCS_FAILS.
 
 ## Additional rules
-- Each IDK query is independent — a gap with 2 queries may need 2 different verdicts. If query 1 has a matching doc but query 2 does not, classify query 1 as HAS_DOCS_FAILS and query 2 as NO_DOCS_IN_SCOPE. Do not force both under the same bucket.
-- Before proposing new aliases, check CONCEPT_REGISTRY context: if a concept already boosts the target doc, the problem may be scoring/floor, not a missing alias. Diagnose root cause rather than duplicating aliases.
 
-Think step by step. Analyze each IDK query individually. Name the specific docs and why."""
+### Rule 1 — Each query is independent (no bundling)
+A gap may contain queries that need DIFFERENT verdicts. Classify EACH query on its own:
+- If query A has a doc that covers it AND query B does not → query A = HAS_DOCS_FAILS, query B = NO_DOCS_IN_SCOPE.
+- Do NOT force all queries into one bucket to produce a single recommendation.
+- If the queries map to 3 different topics, say so. The final bucket should reflect the MAJORITY of IDK queries, and per_query_notes must call out every outlier.
+
+### Rule 2 — Identify the CONCEPT_REGISTRY concept, not just the doc
+Keywords attach to CONCEPT_REGISTRY concepts, not to markdown files directly. For HAS_DOCS_FAILS:
+- Name the concept (e.g., `whatsapp_templates`, `custom_integrations`) whose `source_boosts` already includes or should include the target doc.
+- If NO existing concept boosts the target doc, the fix is CREATE a new concept — say so explicitly.
+- Do NOT recommend keyword additions without naming the concept target.
+- If you can't identify a concept target, HAS_DOCS_FAILS is not valid → use NO_DOCS_IN_SCOPE instead.
+
+### Rule 3 — root_cause=routing_miss requires the doc to COVER the topic
+routing_miss is only valid if the doc CONTAINS the answer. Checklist:
+- Quote a passage that answers the query. If you cannot quote it → it's a content gap (NO_DOCS_IN_SCOPE), NOT routing_miss.
+- If the doc only covers a related topic area but not the specific question → NO_DOCS_IN_SCOPE.
+- matching_doc="?" is never valid for HAS_DOCS_FAILS. If you don't know which doc covers it → NO_DOCS_IN_SCOPE.
+
+### Rule 4 — Pricing / sales / internal-process queries → always OUT_OF_SCOPE
+Do not recommend keyword fixes for:
+- Pricing, billing, cost, volume discounts, deal desk, discount approval processes
+- Internal processes (deal approval, BSUID, token cost definitions for sales)
+- Queries about contacting support / account registration WITHOUT a product context
+These are sales signals / by-design IDK. Keyword patching cannot substitute for a sales response.
+
+### Rule 5 — Reject generic keywords that would pollute multiple concepts
+Before adding a keyword, ask: would this term match unrelated queries?
+- Single generic words (`callbacks`, `logs`, `testing`, `payments`) → REJECT — too broad.
+- Full sentences verbatim from queries → REJECT — no user types them exactly that way.
+- Terms already present in another concept's aliases → REJECT — would create routing conflicts.
+- Valid keywords are: specific product terms, error message substrings, feature names the user typed.
+
+Think step by step. Analyze each IDK query individually. Name the specific docs and concept targets."""
 
         sid, t1_out = _hermes_turn(t1_prompt, None, timeout_per_turn)
         if not sid:
@@ -434,6 +465,9 @@ you can prove NO existing doc covers the topic even with routing improvements.
    c. Can you quote a passage from the doc that answers the query? If not → NO_DOCS_IN_SCOPE.
    d. Does the doc contain the SPECIFIC answer (not just the topic area)? If not → NO_DOCS_IN_SCOPE.
    e. Does an existing CONCEPT_REGISTRY concept already boost this doc? If yes, root cause is scoring/floor, not missing aliases.
+   f. Did you name the CONCEPT_REGISTRY concept to add keywords to? If not → the recommendation is incomplete; identify it or switch to NO_DOCS_IN_SCOPE.
+   g. Are the proposed keywords specific (exact product terms / error substrings) or generic (single common words, full sentences)? Generic keywords → reject them and find specific ones.
+3b. If HAS_DOCS_FAILS with multiple queries: re-check each query independently. Are 2+ queries actually about DIFFERENT topics? If yes → the gap is bundled incorrectly → split per_query_notes clearly and mark the outlier queries as NO_DOCS_IN_SCOPE or OUT_OF_SCOPE.
 3. If OUT_OF_SCOPE: are any IDK queries genuinely about a Gupshup product?
 4. ANSWERED queries do not count as failures.
 5. PRICING queries → always OUT_OF_SCOPE (sales signal, never create pricing docs).
@@ -460,9 +494,14 @@ State final verdict with one bucket and your evidence."""
 Requirements:
 - keywords_to_add (if HAS_DOCS_FAILS): EXACT terms lifted from the IDK query text itself
   (substring-matchable). Non-English queries: include same-language terms.
+  REJECT: single generic words, full verbatim query sentences, terms already in another concept's aliases.
+- concept_target: name the CONCEPT_REGISTRY concept to add keywords to (e.g., "whatsapp_templates").
+  If no existing concept boosts the target doc → write "NEW: <suggested_concept_name>".
+  If you cannot identify a concept target → you MUST use NO_DOCS_IN_SCOPE, not HAS_DOCS_FAILS.
+- root_cause: only use routing_miss if you can quote the doc passage that answers the query.
+  If the doc covers the topic area but not the specific question → use content_thin or null.
 - per_query_notes: one line per query — if queries need different buckets, say so explicitly.
 - reasoning: reference specific query results and doc evidence from the pipeline signal.
-- per_query_notes: one line per query explaining why it IDKs or answers.
 
 Write ONLY valid JSON to the file: {output_path}
 Schema:
