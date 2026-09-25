@@ -23,9 +23,102 @@ import subprocess
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 logger = logging.getLogger(__name__)
+
+# ---------------------------------------------------------------------------
+# Grounding: real KB docs and real concept IDs — built once at import time.
+# Used by _validate_verdict() to catch hallucinated doc paths / concept names.
+# ---------------------------------------------------------------------------
+_REPO_ROOT = Path(__file__).resolve().parents[3]
+_KB_ROOT = _REPO_ROOT / "kb"
+_SKILL_FILE = _REPO_ROOT / "skill" / "kb_answer.py"
+
+
+def _load_real_kb_docs() -> Set[str]:
+    """Return set of relative paths (e.g. 'kb/channels/rcs-api-reference.md') that exist on disk."""
+    if not _KB_ROOT.exists():
+        return set()
+    return {
+        str(p.relative_to(_REPO_ROOT))
+        for p in _KB_ROOT.rglob("*.md")
+        if p.is_file()
+    }
+
+
+def _load_real_concept_ids() -> Set[str]:
+    """Return set of concept IDs defined in skill/kb_answer.py."""
+    if not _SKILL_FILE.exists():
+        return set()
+    ids: Set[str] = set()
+    for line in _SKILL_FILE.read_text(encoding="utf-8").splitlines():
+        m = re.search(r'"id"\s*:\s*"([^"]+)"', line)
+        if m:
+            ids.add(m.group(1))
+    return ids
+
+
+# Loaded once — supervisor runs are single-process, so this is safe.
+_REAL_KB_DOCS: Set[str] = _load_real_kb_docs()
+_REAL_CONCEPT_IDS: Set[str] = _load_real_concept_ids()
+
+
+def _validate_verdict(verdict: Dict[str, Any], gap_key: str) -> Dict[str, Any]:
+    """Deterministic post-processing guard: override hallucinated verdicts.
+
+    Rules (applied in order):
+    1. If action_type is ADD_KEYWORD/ADD_ALIAS/RAISE_SOURCE_BOOST AND the
+       matching_doc does not exist on disk → override to CREATE_DOC.
+    2. If action_type is ADD_KEYWORD/ADD_ALIAS AND the concept_target does not
+       exist in CONCEPT_REGISTRY → clear concept_target, override to CREATE_DOC
+       (adding keywords to a non-existent concept is meaningless).
+    3. Log every override so there is a clear audit trail.
+
+    Never touches OUT_OF_SCOPE, NOISE, CREATE_DOC, IMPROVE_TELEMETRY, or
+    MARK_RESOLVED verdicts — those don't depend on a real doc/concept.
+    """
+    action = verdict.get("action_type") or ""
+    bucket = verdict.get("bucket") or ""
+
+    # Only validate verdicts that claim a doc/concept fix exists
+    if action not in ("ADD_KEYWORD", "ADD_ALIAS", "RAISE_SOURCE_BOOST"):
+        return verdict
+
+    doc = (verdict.get("matching_doc") or "").strip().lstrip("/")
+    concept = (verdict.get("concept_target") or "").strip()
+
+    overrides: list = []
+
+    # Rule 1: doc must exist on disk
+    if doc and doc not in _REAL_KB_DOCS:
+        overrides.append(f"matching_doc='{doc}' NOT found on disk")
+
+    # Rule 2: concept must exist in CONCEPT_REGISTRY
+    if concept and concept not in _REAL_CONCEPT_IDS:
+        overrides.append(f"concept_target='{concept}' NOT in CONCEPT_REGISTRY")
+
+    if not overrides:
+        return verdict  # grounded — accept as-is
+
+    # Override to CREATE_DOC — the judge hallucinated a fix that can't be applied
+    override_note = "; ".join(overrides)
+    logger.warning(
+        "  grounding check FAILED for %s [%s → %s]: %s → overriding to CREATE_DOC",
+        gap_key, action, bucket, override_note,
+    )
+    overridden = dict(verdict)
+    overridden["action_type"] = "CREATE_DOC"
+    overridden["bucket"] = "NO_DOCS_IN_SCOPE"
+    overridden["confidence"] = "low"
+    overridden["grounding_override"] = True
+    overridden["grounding_override_reason"] = override_note
+    overridden["reasoning"] = (
+        f"[GROUNDING OVERRIDE] Judge recommended {action} but {override_note}. "
+        f"Original reasoning: {verdict.get('reasoning', '')}"
+    )
+    return overridden
+
 
 _PROFILE = "kb-supervisor"
 _ENV = {**os.environ, "PATH": f"/Users/adwit.sharma/.local/bin:{os.environ.get('PATH', '')}"}
@@ -874,9 +967,11 @@ class HermesCoordinator:
                 gap, gap_key = future_to_gap[future]
                 try:
                     verdict = future.result()
+                    verdict = _validate_verdict(verdict, gap_key)
                     four_bucket_verdicts[gap_key] = verdict
-                    logger.info("  coordinator: %s → %s (%s)",
-                                gap_key, verdict.get("bucket"), verdict.get("confidence"))
+                    grounding_flag = " [GROUNDING OVERRIDE]" if verdict.get("grounding_override") else ""
+                    logger.info("  coordinator: %s → %s (%s)%s",
+                                gap_key, verdict.get("bucket"), verdict.get("confidence"), grounding_flag)
                 except Exception as exc:
                     logger.warning("  coordinator: worker error for %s: %s", gap_key, exc)
                     four_bucket_verdicts[gap_key] = {
