@@ -380,10 +380,53 @@ class ReportGenerator:
                     # Fallback for any unhandled action_type
                     lines.append(f"**Root cause:** {verdict.get('reasoning') or verdict.get('reason') or '?'}")
 
+                # Split failing queries into "addressed by this fix" vs stragglers.
+                # per_query_results from gap_classifier has per-query OUT_OF_SCOPE/NOISE
+                # verdicts for queries that slipped through the gap-level gate.
+                gap_key_for_cls = f"{gap.module}/{gap.intent}"
+                old_gap_key = None
+                if classifications:
+                    # Try both key formats
+                    for k, v in classifications.items():
+                        if isinstance(v, dict) and v.get("per_query_results"):
+                            pqr = v["per_query_results"]
+                            pqr_queries = {r.get("query", "") for r in pqr}
+                            if any(q in pqr_queries for q in (gap.failure_examples or [])):
+                                old_gap_key = k
+                                break
+
+                per_query_map: dict = {}
+                if old_gap_key and classifications:
+                    for r in classifications.get(old_gap_key, {}).get("per_query_results", []):
+                        per_query_map[r.get("query", "")] = r.get("category", "")
+
+                _OOS_CATS = {
+                    "OUT_OF_SCOPE_PRICING", "OUT_OF_SCOPE_ACCOUNT_SUPPORT",
+                    "OUT_OF_SCOPE_INTERNAL_OPS", "out_of_scope_general",
+                    "noise", "NOISE", "ALREADY_FIXED",
+                }
+
+                addressed = []
+                stragglers = []
+                for q in (gap.failure_examples or [])[:8]:
+                    cat = per_query_map.get(q, "")
+                    if cat in _OOS_CATS:
+                        stragglers.append((q, cat))
+                    else:
+                        addressed.append(q)
+
                 lines.append("")
-                lines.append("**Failing queries:**")
-                for q in (gap.failure_examples or [])[:5]:
+                lines.append("**Failing queries (addressed by this fix):**")
+                shown = addressed[:5] if addressed else [(gap.failure_examples or ["?"])[0]]
+                for q in shown:
                     lines.append(f'- "{_cell(q, 120)}"')
+
+                if stragglers:
+                    lines.append("")
+                    lines.append("**Stragglers (unrelated — investigate separately):**")
+                    for q, cat in stragglers[:4]:
+                        lines.append(f'- "{_cell(q, 120)}" ← `{cat}`')
+
                 lines.append("")
 
         report = "\n".join(lines)

@@ -27,6 +27,7 @@ CODE_GAP_NEEDS_INVESTIGATION = "CODE_GAP_NEEDS_INVESTIGATION"
 CONTENT_GAP = "CONTENT_GAP"
 OUT_OF_SCOPE_PRICING = "OUT_OF_SCOPE_PRICING"
 OUT_OF_SCOPE_ACCOUNT_SUPPORT = "OUT_OF_SCOPE_ACCOUNT_SUPPORT"
+OUT_OF_SCOPE_INTERNAL_OPS = "OUT_OF_SCOPE_INTERNAL_OPS"
 OUT_OF_SCOPE_GENERAL = "out_of_scope_general"
 NOISE = "noise"
 
@@ -63,6 +64,42 @@ ACCOUNT_SUPPORT_PHRASES = [
     "didn't receive the otp",
     "otp not received",
 ]
+
+# Internal Gupshup business-process queries — employees asking about internal
+# sales ops, HR, deal approval workflows. These are NEVER documentable KB topics
+# and must not be treated as product gaps. Single-word guards are avoided to
+# prevent false positives on product questions that mention approval or process.
+INTERNAL_OPS_PHRASES = [
+    # Deal desk / sales approval
+    "deal desk",
+    "deal desk approval",
+    "submit a deal",
+    "deal approval",
+    "approval above",
+    "approval for a discount",
+    "discount above",
+    "above 20%",
+    "above 15%",
+    "above 10%",
+    "discount request",
+    "special pricing approval",
+    # Internal escalation / HR
+    "internal escalation",
+    "internal process",
+    "who do i contact internally",
+    "internal team to contact",
+    "escalate internally",
+    # Legal / compliance internal ops (not product)
+    "legal approval",
+    "compliance sign-off",
+    "nda process",
+]
+
+
+def is_internal_ops_query(text: str) -> bool:
+    low = (text or "").lower()
+    return any(phrase in low for phrase in INTERNAL_OPS_PHRASES)
+
 
 CONTENT_MATCH_THRESHOLD = 0.7  # "almost all" significant terms must appear
 
@@ -146,6 +183,14 @@ class GapClassifier:
                 "category": OUT_OF_SCOPE_ACCOUNT_SUPPORT,
                 "evidence": {"matched_phrases": [p for p in ACCOUNT_SUPPORT_PHRASES if p in query.lower()]},
             }
+        if is_internal_ops_query(query):
+            matched = [p for p in INTERNAL_OPS_PHRASES if p in query.lower()]
+            return {
+                "query": query,
+                "category": OUT_OF_SCOPE_INTERNAL_OPS,
+                "evidence": {"matched_phrases": matched,
+                             "reason": "internal Gupshup business process — not a documentable KB topic"},
+            }
 
         answered = bool(trace_meta.get("answered"))
         top_score = trace_meta.get("top_score") or 0
@@ -203,6 +248,18 @@ class GapClassifier:
             return {
                 "category": NOISE, "confidence": "high",
                 "evidence": {"reason": f"{noise_count}/{len(samples)} queries are noise"},
+                "per_query_results": [],
+            }
+
+        # Internal-ops gate — catches employee queries about internal business
+        # processes (deal desk, discount approvals, HR) before the product-term gate.
+        # These often contain Gupshup product terms incidentally and would slip
+        # through the general out-of-scope check.
+        internal_ops_count = sum(1 for q in samples if is_internal_ops_query(q))
+        if internal_ops_count / len(samples) >= 0.50:
+            return {
+                "category": OUT_OF_SCOPE_INTERNAL_OPS, "confidence": "high",
+                "evidence": {"reason": f"{internal_ops_count}/{len(samples)} queries are internal business-process queries"},
                 "per_query_results": [],
             }
 

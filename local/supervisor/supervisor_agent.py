@@ -19,6 +19,7 @@ from .utils.gap_classifier import (
     NOISE,
     OUT_OF_SCOPE_PRICING,
     OUT_OF_SCOPE_ACCOUNT_SUPPORT,
+    OUT_OF_SCOPE_INTERNAL_OPS,
 )
 from .utils.hermes_judge import HermesJudge, is_hermes_available
 from .utils.hermes_coordinator import HermesCoordinator
@@ -289,7 +290,8 @@ def main() -> int:
             gap_key = f"{gap.module}/{gap.intent}"
             old_key = f"Gap #{idx + 1}"
             cat = classifications.get(old_key, {}).get("category", "")
-            if cat in (OUT_OF_SCOPE_PRICING, OUT_OF_SCOPE_ACCOUNT_SUPPORT, OUT_OF_SCOPE_GENERAL, NOISE):
+            if cat in (OUT_OF_SCOPE_PRICING, OUT_OF_SCOPE_ACCOUNT_SUPPORT,
+                       OUT_OF_SCOPE_INTERNAL_OPS, OUT_OF_SCOPE_GENERAL, NOISE):
                 four_bucket_verdicts[gap_key] = {
                     "bucket": "OUT_OF_SCOPE",
                     "confidence": "high",
