@@ -35,6 +35,14 @@ _REPO_ROOT = Path(__file__).resolve().parents[3]
 _KB_ROOT = _REPO_ROOT / "kb"
 _SKILL_FILE = _REPO_ROOT / "skill" / "kb_answer.py"
 
+# Terms too generic to contribute to doc-coverage signal
+_COVERAGE_STOPWORDS = frozenset({
+    "the", "a", "an", "is", "in", "on", "at", "to", "for", "of", "and", "or",
+    "how", "what", "where", "when", "why", "can", "do", "does", "did", "i",
+    "my", "me", "we", "you", "it", "this", "that", "with", "from", "are",
+    "get", "find", "use", "using", "gupshup", "via", "not", "its", "any",
+})
+
 
 def _load_real_kb_docs() -> Set[str]:
     """Return set of relative paths (e.g. 'kb/channels/rcs-api-reference.md') that exist on disk."""
@@ -64,7 +72,47 @@ _REAL_KB_DOCS: Set[str] = _load_real_kb_docs()
 _REAL_CONCEPT_IDS: Set[str] = _load_real_concept_ids()
 
 
-def _validate_verdict(verdict: Dict[str, Any], gap_key: str) -> Dict[str, Any]:
+def _query_is_english(text: str) -> bool:
+    """Return True if the query is predominantly ASCII (English) text."""
+    words = re.findall(r'\b[a-zA-Z]{3,}\b', text)
+    if not words:
+        return False
+    return sum(1 for w in words if all(ord(c) < 128 for c in w)) / len(words) >= 0.7
+
+
+def _doc_covers_queries(doc_path_str: str, queries: List[str]) -> bool:
+    """Return True if the doc has meaningful term overlap with the failing queries.
+
+    Only checks English queries — non-English queries have low ASCII overlap
+    by nature and would produce false negatives.
+
+    Threshold: at least 40% of English queries must have 25%+ term overlap
+    with the doc text. If no English queries → skip check (return True).
+    """
+    doc_path = _REPO_ROOT / doc_path_str
+    if not doc_path.exists():
+        return False  # already caught by Rule 1
+
+    doc_text = doc_path.read_text(encoding="utf-8", errors="ignore").lower()
+    english_queries = [q for q in (queries or []) if q and _query_is_english(q)]
+    if not english_queries:
+        return True  # all non-English — can't evaluate coverage, don't override
+
+    covered = 0
+    for query in english_queries[:8]:
+        terms = [t.lower() for t in re.findall(r'\b[a-zA-Z]{3,}\b', query)
+                 if t.lower() not in _COVERAGE_STOPWORDS]
+        if not terms:
+            continue
+        hits = sum(1 for t in terms if t in doc_text)
+        if hits / len(terms) >= 0.25:
+            covered += 1
+
+    return covered / len(english_queries) >= 0.40
+
+
+def _validate_verdict(verdict: Dict[str, Any], gap_key: str,
+                      queries: Optional[List[str]] = None) -> Dict[str, Any]:
     """Deterministic post-processing guard: override hallucinated verdicts.
 
     Rules (applied in order):
@@ -97,6 +145,16 @@ def _validate_verdict(verdict: Dict[str, Any], gap_key: str) -> Dict[str, Any]:
     # Rule 2: concept must exist in CONCEPT_REGISTRY
     if concept and concept not in _REAL_CONCEPT_IDS:
         overrides.append(f"concept_target='{concept}' NOT in CONCEPT_REGISTRY")
+
+    # Rule 3: doc must actually cover the failing queries (English queries only).
+    # Catches "wrong-but-existing" docs — judge picked a real doc that doesn't
+    # answer the queries. Only runs when doc passed Rule 1 (exists on disk).
+    if not overrides and doc and doc in _REAL_KB_DOCS and queries:
+        if not _doc_covers_queries(doc, queries):
+            overrides.append(
+                f"matching_doc='{doc}' has insufficient term overlap with the failing queries "
+                f"— doc likely covers a different topic"
+            )
 
     if not overrides:
         return verdict  # grounded — accept as-is
@@ -628,7 +686,8 @@ Keyword fixes are faster than creating new docs. Only call NO_DOCS_IN_SCOPE if
 you can prove NO existing doc covers the topic even with routing improvements.
 
 1. If NO_DOCS_IN_SCOPE: re-scan KB inventory. Any file with matching section headings?
-   Even a medium-scoring KB search result (0.2+) → try HAS_DOCS_FAILS instead.
+   A medium-scoring KB search result (0.2+) is a HINT only — you still need a direct
+   quote proving the doc answers the specific query. If no quote exists → stay NO_DOCS_IN_SCOPE.
    But SKIP any file marked ⚠ NOT INGESTED — the skill cannot retrieve it.
 2. If HAS_DOCS_FAILS:
    a. Is matching_doc marked ⚠ NOT INGESTED? If yes → switch to NO_DOCS_IN_SCOPE.
@@ -967,7 +1026,8 @@ class HermesCoordinator:
                 gap, gap_key = future_to_gap[future]
                 try:
                     verdict = future.result()
-                    verdict = _validate_verdict(verdict, gap_key)
+                    verdict = _validate_verdict(verdict, gap_key,
+                                                queries=gap.failure_examples)
                     four_bucket_verdicts[gap_key] = verdict
                     grounding_flag = " [GROUNDING OVERRIDE]" if verdict.get("grounding_override") else ""
                     logger.info("  coordinator: %s → %s (%s)%s",
