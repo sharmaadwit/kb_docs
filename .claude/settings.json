@@ -1,3 +1,17 @@
 {
-  "model": "haiku"
+  "model": "haiku",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "CMD=$(jq -r '.tool_input.command'); if echo \"$CMD\" | grep -qE 'git[[:space:]]+add' && echo \"$CMD\" | grep -qE 'kb/[^ ]*\\.md'; then echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"BLOCKED: Staging kb/*.md is forbidden. KB docs are owned by the content team pipeline only.\"}}'; exit 0; fi",
+            "statusMessage": "Checking KB doc protection..."
+          }
+        ]
+      }
+    ]
+  }
 }
