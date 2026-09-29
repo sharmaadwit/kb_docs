@@ -9219,10 +9219,26 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
         if v and (v.get("url") or (v.get("type") == "demoforge" and v.get("share_url")))
     ]
     video = videos[0] if videos else None
+    # Pull cross-sell out of answer before video is appended so it can be
+    # re-attached after the video link (cross-sell is the last thing shown).
+    _CROSS_SELL_SENTINEL = "---\n**Other Gupshup customers"
+    _cross_sell_extracted = ""
+    if _CROSS_SELL_SENTINEL in answer:
+        _cs_idx = answer.index(_CROSS_SELL_SENTINEL)
+        _cs_block = answer[_cs_idx:]
+        _cs_next = _cs_block.find("\n---", len("---\n"))
+        _cross_sell_extracted = _cs_block[:_cs_next].strip() if _cs_next != -1 else _cs_block.strip()
+        # Remove from answer (will be re-appended after video)
+        answer = (answer[:_cs_idx] + ("\n\n" + _cs_block[_cs_next:].strip() if _cs_next != -1 else "")).strip()
+
     video_appended = False
     if videos:
         answer = _append_videos_section(answer, videos)
         video_appended = True
+
+    # Re-append cross-sell after video so it's always the last visible block
+    if _cross_sell_extracted:
+        answer = answer.rstrip() + "\n\n" + _cross_sell_extracted
     try:
         # video_telemetry_metadata() emits the full original shape plus
         # video_platform + demoforge_* fields for DemoForge videos (single source
@@ -9267,17 +9283,8 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
         parent_trace_id=parent_trace_id,
         policy_meta=policy_meta,
     )
-    # Also expose cross-sell as a standalone field so callers that rewrite the
-    # answer (e.g. SuperAgent LLM layer) can append it verbatim as a footer
-    # after their own rewrite. Direct-to-skill callers read the full answer
-    # string as-is and get the block naturally; cross_sell is additive only.
-    _CROSS_SELL_SENTINEL = "---\n**Other Gupshup customers"
-    cross_sell_text = ""
-    if _CROSS_SELL_SENTINEL in answer:
-        idx = answer.index(_CROSS_SELL_SENTINEL)
-        block_content = answer[idx:]
-        next_sep = block_content.find("\n---", len("---\n"))
-        cross_sell_text = block_content[:next_sep].strip() if next_sep != -1 else block_content.strip()
+    # cross_sell field: already extracted above before video append
+    cross_sell_text = _cross_sell_extracted
 
     return {
         "ok": True,
