@@ -7350,6 +7350,97 @@ def _related_feature_fitment(entities: List[Dict], evidence: Optional[List[Dict]
     return f"This also connects well with **{joined}** — worth exploring if that's part of your setup."
 
 
+def _cross_sell_block(explicit_module: str, case_chunks: List[Dict]) -> str:
+    """Pick one case study from a *different* module/product than the current one
+    and surface it as a FOMO cross-sell line.  Only called when confidence >= 0.7.
+
+    Groups chunks by source file so the Module/Industry metadata (only present
+    in the header chunk) is shared across all chunks from the same doc.
+    Selects the entry with the strongest outcome metric from a different product."""
+    if not case_chunks:
+        return ""
+    current_mod = (explicit_module or "General").lower()
+
+    # Group chunks by source; extract metadata from whichever chunk has it
+    by_source: Dict[str, Dict] = {}
+    for chunk in case_chunks:
+        src = str(chunk.get("source") or "")
+        text = str(chunk.get("text") or "")
+        entry = by_source.setdefault(src, {"texts": [], "module": "", "industry": ""})
+        entry["texts"].append(text)
+        if not entry["module"]:
+            entry["module"] = _case_study_field(text, "Module")
+        if not entry["industry"]:
+            entry["industry"] = _case_study_field(text, "Industry")
+
+    candidates: List[Dict] = []
+    for src, entry in by_source.items():
+        mod_line = entry["module"].lower()
+        # Skip if case study's primary module matches the current context
+        if current_mod != "general" and current_mod in mod_line:
+            continue
+        combined = "\n".join(entry["texts"])
+        metrics = _case_study_metrics(combined, limit=1)
+        if not metrics:
+            continue
+        candidates.append({
+            "metric": metrics[0],
+            "module": entry["module"],
+            "industry": entry["industry"],
+            "text": combined,
+        })
+
+    if not candidates:
+        return ""
+
+    # Prefer anonymized entries (contain "Leading" in company name)
+    anon = [c for c in candidates if "leading" in c["text"].lower()[:200]]
+    pool = anon if anon else candidates
+
+    # Drop metrics that look truncated (description part is too short/empty)
+    for c in pool:
+        parts = c["metric"].split("—", 1)
+        desc = parts[1].strip() if len(parts) > 1 else ""
+        c["_metric_ok"] = len(desc.split()) >= 3  # must have at least 3 words after the dash
+
+    pool = [c for c in pool if c.get("_metric_ok")] or pool
+
+    def _metric_weight(c: Dict) -> int:
+        m = c["metric"]
+        if re.search(r'\d+[Xx×]', m):
+            return 2
+        if re.search(r'\d+%', m):
+            return 1
+        return 0
+    pool.sort(key=_metric_weight, reverse=True)
+    best = pool[0]
+
+    industry = best["industry"] or "enterprise"
+    mod_line = best["module"]
+    other_product = ""
+    for part in mod_line.split(","):
+        part = part.strip()
+        if part and part.lower() != current_mod:
+            other_product = part
+            break
+    if not other_product:
+        return ""
+
+    metric = best["metric"]
+    # Clean metric: strip trailing/leading whitespace, truncate after 50 chars
+    metric = metric.strip()
+    if len(metric) > 50:
+        metric = metric[:50].rstrip(" —") + "…"
+    ind_lower = industry.lower()
+    article = "an" if ind_lower[0] in "aeiou" else "a"
+    return (
+        f"---\n"
+        f"**Other Gupshup customers in {industry} also use {other_product}** — "
+        f"{article} {ind_lower} company achieved *{metric}*. "
+        f"Worth exploring if you're looking to expand beyond your current setup."
+    )
+
+
 def _compose_consulting_answer(
     query: str,
     intent: str,
@@ -7358,6 +7449,7 @@ def _compose_consulting_answer(
     explicit_module: str = "General",
     confidence: float = 0.0,
     best_practices: Optional[List[str]] = None,
+    case_chunks: Optional[List[Dict]] = None,
 ) -> str:
     """Consulting-tone composer: diagnosis -> context -> options -> best practices
     -> recommended -> fitment -> follow-up.
@@ -7439,7 +7531,12 @@ def _compose_consulting_answer(
     # --- 6. FITMENT (related product capabilities, engagement hook) ---
     fitment = _related_feature_fitment(entities, evidence)
 
-    # --- 7. FOLLOW-UP (low confidence: ask for clarification) ---
+    # --- 7. CROSS-SELL (high confidence only: FOMO case study from a different product) ---
+    cross_sell = ""
+    if confidence >= 0.7:
+        cross_sell = _cross_sell_block(explicit_module, case_chunks or [])
+
+    # --- 8. FOLLOW-UP (low confidence: ask for clarification) ---
     follow_up = ""
     if confidence < 0.5:
         if explicit_module != "General":
@@ -7457,6 +7554,8 @@ def _compose_consulting_answer(
         parts.append(recommended)
     if fitment:
         parts.append(fitment)
+    if cross_sell:
+        parts.append(cross_sell)
     if follow_up:
         parts.append(follow_up)
 
@@ -8687,6 +8786,7 @@ def _route_answer_composer(
     explicit_module: str,
     params: dict,
     all_chunks: Optional[List[Dict]] = None,
+    case_chunks: Optional[List[Dict]] = None,
 ) -> Tuple[str, str]:
     """Route to consulting-tone or problem-solution composer.
 
@@ -8698,6 +8798,8 @@ def _route_answer_composer(
     evidence) is only used in consulting mode, to look up a sibling
     "Best Practices" chunk from the same source doc(s) as the evidence —
     purely additive engagement content, no effect on standard mode.
+
+    case_chunks are passed through to consulting mode for cross-sell block.
     """
     mode = _resolve_answer_mode(params, query, explicit_module)
     if mode == "consulting":
@@ -8706,6 +8808,7 @@ def _route_answer_composer(
         answer = _compose_consulting_answer(
             query, intent, entities, evidence, explicit_module, conf,
             best_practices=best_practices,
+            case_chunks=case_chunks,
         )
     else:
         answer = _compose_answer(query, intent, entities, evidence, explicit_module)
@@ -8962,10 +9065,11 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
     scored = _filter_magnet_matches(query, scored)
 
     evidence = _select_evidence(query, scored, intent, explicit_module)
-    answer, answer_mode = _route_answer_composer(query, intent, entities, evidence, explicit_module, params, all_chunks=chunks)
+    answer, answer_mode = _route_answer_composer(query, intent, entities, evidence, explicit_module, params, all_chunks=chunks, case_chunks=case_chunks)
     answer, policy_meta = _apply_answer_policy(answer, query, params)
     policy_meta = dict(policy_meta or {})
     policy_meta["answer_mode"] = answer_mode
+    policy_meta["cross_sell_attached"] = "---\n**Other Gupshup customers" in answer
     if case_chunks and _should_include_case_studies(query, intent, answer, explicit_module):
         matched_cases = _select_case_studies(query, case_chunks, explicit_module)
         considered = sum(
@@ -9149,8 +9253,8 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
         original_query=original_query,
         correlation_id=correlation_id,
         parent_trace_id=parent_trace_id,
-            policy_meta={},
-        )
+        policy_meta=policy_meta,
+    )
     return {
         "ok": True,
         "query": _redact_secrets_in_query_echo(query),
