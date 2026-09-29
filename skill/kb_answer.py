@@ -9255,10 +9255,28 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
         parent_trace_id=parent_trace_id,
         policy_meta=policy_meta,
     )
+    # Extract cross-sell block as a standalone field so callers can append it
+    # verbatim after their own answer rewrite, bypassing LLM reformatting.
+    # The block is bounded by its opening sentinel and the next "---" separator.
+    _CROSS_SELL_SENTINEL = "---\n**Other Gupshup customers"
+    cross_sell_text = ""
+    if _CROSS_SELL_SENTINEL in answer:
+        idx = answer.index(_CROSS_SELL_SENTINEL)
+        block_content = answer[idx:]
+        # Find closing separator if present (next --- after the block body)
+        next_sep = block_content.find("\n---", len("---\n"))
+        if next_sep != -1:
+            cross_sell_text = block_content[:next_sep].strip()
+            answer = (answer[:idx] + "\n\n" + block_content[next_sep:]).strip()
+        else:
+            cross_sell_text = block_content.strip()
+            answer = answer[:idx].strip()
+
     return {
         "ok": True,
         "query": _redact_secrets_in_query_echo(query),
         "answer": answer,
+        "cross_sell": cross_sell_text,
         "citations": [],
         "video": video,
         "videos": videos,
