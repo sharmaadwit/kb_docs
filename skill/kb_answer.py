@@ -7531,9 +7531,13 @@ def _compose_consulting_answer(
     # --- 6. FITMENT (related product capabilities, engagement hook) ---
     fitment = _related_feature_fitment(entities, evidence)
 
-    # --- 7. CROSS-SELL (high confidence only: FOMO case study from a different product) ---
+    # --- 7. CROSS-SELL (any real answer: FOMO case study from a different product) ---
+    # Gate: confidence >= 0.7 (verbatim queries) OR answer is substantive (not IDK).
+    # The OR handles upstream query expansion which deflates confidence scores on
+    # otherwise well-answered queries.
     cross_sell = ""
-    if confidence >= 0.7:
+    _answer_is_real = bool(lines) and bool(body)
+    if confidence >= 0.7 or _answer_is_real:
         cross_sell = _cross_sell_block(explicit_module, case_chunks or [])
 
     # --- 8. FOLLOW-UP (low confidence: ask for clarification) ---
@@ -8787,6 +8791,7 @@ def _route_answer_composer(
     params: dict,
     all_chunks: Optional[List[Dict]] = None,
     case_chunks: Optional[List[Dict]] = None,
+    original_query: Optional[str] = None,
 ) -> Tuple[str, str]:
     """Route to consulting-tone or problem-solution composer.
 
@@ -8800,10 +8805,17 @@ def _route_answer_composer(
     purely additive engagement content, no effect on standard mode.
 
     case_chunks are passed through to consulting mode for cross-sell block.
+
+    original_query: user's pre-expansion query. When present, confidence is
+    scored against it instead of the (potentially expanded) query so that
+    upstream query expansion doesn't artificially deflate confidence.
     """
     mode = _resolve_answer_mode(params, query, explicit_module)
     if mode == "consulting":
-        conf = _reported_confidence(query, evidence)
+        # Score confidence against original (short) query if available —
+        # upstream expansion inflates token count and deflates overlap scores.
+        conf_query = original_query if original_query and original_query.strip() else query
+        conf = _reported_confidence(conf_query, evidence)
         best_practices = _find_best_practices_for_evidence(query, all_chunks or [], evidence, explicit_module, entities) if all_chunks else []
         answer = _compose_consulting_answer(
             query, intent, entities, evidence, explicit_module, conf,
@@ -9065,7 +9077,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
     scored = _filter_magnet_matches(query, scored)
 
     evidence = _select_evidence(query, scored, intent, explicit_module)
-    answer, answer_mode = _route_answer_composer(query, intent, entities, evidence, explicit_module, params, all_chunks=chunks, case_chunks=case_chunks)
+    answer, answer_mode = _route_answer_composer(query, intent, entities, evidence, explicit_module, params, all_chunks=chunks, case_chunks=case_chunks, original_query=original_query)
     answer, policy_meta = _apply_answer_policy(answer, query, params)
     policy_meta = dict(policy_meta or {})
     policy_meta["answer_mode"] = answer_mode
