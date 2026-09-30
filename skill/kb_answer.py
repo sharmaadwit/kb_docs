@@ -8557,7 +8557,7 @@ def _send_langfuse(
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "logic_version": "kb-answer-v4.12",
+        "logic_version": "kb-answer-v4.13",
         "prompt_version": None,
         "model": "rules-runtime",
         "temperature": 0,
