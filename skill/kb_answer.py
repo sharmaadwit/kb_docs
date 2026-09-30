@@ -7434,7 +7434,6 @@ def _cross_sell_block(explicit_module: str, case_chunks: List[Dict]) -> str:
     ind_lower = industry.lower()
     article = "an" if ind_lower[0] in "aeiou" else "a"
     return (
-        f"---\n"
         f"**Other Gupshup customers in {industry} also use {other_product}** — "
         f"{article} {ind_lower} company achieved *{metric}*. "
         f"Worth exploring if you're looking to expand beyond your current setup."
@@ -9081,7 +9080,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
     answer, policy_meta = _apply_answer_policy(answer, query, params)
     policy_meta = dict(policy_meta or {})
     policy_meta["answer_mode"] = answer_mode
-    policy_meta["cross_sell_attached"] = "---\n**Other Gupshup customers" in answer
+    policy_meta["cross_sell_attached"] = "**Other Gupshup customers" in answer
     if case_chunks and _should_include_case_studies(query, intent, answer, explicit_module):
         matched_cases = _select_case_studies(query, case_chunks, explicit_module)
         considered = sum(
@@ -9221,7 +9220,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
     video = videos[0] if videos else None
     # Extract cross-sell and move it to the TOP of the answer so SuperAgent's
     # LLM rewriter (which strips footers) is less likely to drop it.
-    _CROSS_SELL_SENTINEL = "---\n**Other Gupshup customers"
+    _CROSS_SELL_SENTINEL = "**Other Gupshup customers"
     _cross_sell_extracted = ""
     if _CROSS_SELL_SENTINEL in answer:
         _cs_idx = answer.index(_CROSS_SELL_SENTINEL)
