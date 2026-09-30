@@ -7536,7 +7536,7 @@ def _compose_consulting_answer(
     # otherwise well-answered queries.
     cross_sell = ""
     _answer_is_real = bool(lines) and bool(body)
-    if confidence >= 0.6 or _answer_is_real:
+    if confidence >= 0.7 or _answer_is_real:
         cross_sell = _cross_sell_block(explicit_module, case_chunks or [])
 
     # --- 8. FOLLOW-UP (low confidence: ask for clarification) ---
@@ -8557,7 +8557,7 @@ def _send_langfuse(
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "logic_version": "kb-answer-v4.15",
+        "logic_version": "kb-answer-v4.16",
         "prompt_version": None,
         "model": "rules-runtime",
         "temperature": 0,
