@@ -2163,11 +2163,16 @@ CONCEPT_REGISTRY: List[Dict] = [
             "kb/channels/rcs-quickstart.md": 4.5,
             "kb/channels/rcs-faq.md": 4.0,
             "kb/channels/rcs-agent-setup.md": 4.5,
+            "kb/channels/rcs-console-agent-setup.md": 4.5,
             "kb/channels/rcs-authentication.md": 4.0,
             "kb/channels/rcs-messaging-api.md": 3.5,
             "kb/channels/rcs-templates.md": 3.5,
+            "kb/channels/rcs-console-templates.md": 3.5,
             "kb/channels/rcs-webhooks-and-callbacks.md": 3.0,
             "kb/channels/rcs-api-reference.md": 2.5,
+            "kb/channels/rcs-console-faq.md": 4.0,
+            "kb/channels/rcs-google-search-p2a.md": 3.5,
+            "kb/campaign-manager/rcs-console-campaigns.md": 3.5,
         },
         "source_penalties": {
             "whatsapp-business-api": -2.0,
@@ -3778,6 +3783,7 @@ CONCEPT_REGISTRY: List[Dict] = [
         "keywords": ["rcs", "template", "variables", "parameters"],
         "source_boosts": {
             "channels/rcs-templates": 3.5,
+            "channels/rcs-console-templates": 3.5,
             "channels/rcs": 2.5
         },
         "display": "RCS Message Templates",
