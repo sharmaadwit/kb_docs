@@ -7434,8 +7434,8 @@ def _cross_sell_block(explicit_module: str, case_chunks: List[Dict]) -> str:
     ind_lower = industry.lower()
     article = "an" if ind_lower[0] in "aeiou" else "a"
     return (
-        f"Other Gupshup customers in {industry} also use {other_product} — "
-        f"{article} {ind_lower} company achieved {metric}. "
+        f"**Other Gupshup customers in {industry} also use {other_product}** — "
+        f"{article} {ind_lower} company achieved *{metric}*. "
         f"Worth exploring if you're looking to expand beyond your current setup."
     )
 
@@ -7536,7 +7536,7 @@ def _compose_consulting_answer(
     # otherwise well-answered queries.
     cross_sell = ""
     _answer_is_real = bool(lines) and bool(body)
-    if confidence >= 0.7 or _answer_is_real:
+    if confidence >= 0.6 or _answer_is_real:
         cross_sell = _cross_sell_block(explicit_module, case_chunks or [])
 
     # --- 8. FOLLOW-UP (low confidence: ask for clarification) ---
@@ -8557,7 +8557,7 @@ def _send_langfuse(
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "logic_version": "kb-answer-v4.14",
+        "logic_version": "kb-answer-v4.15",
         "prompt_version": None,
         "model": "rules-runtime",
         "temperature": 0,
@@ -9080,7 +9080,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
     answer, policy_meta = _apply_answer_policy(answer, query, params)
     policy_meta = dict(policy_meta or {})
     policy_meta["answer_mode"] = answer_mode
-    policy_meta["cross_sell_attached"] = "Other Gupshup customers" in answer
+    policy_meta["cross_sell_attached"] = "**Other Gupshup customers" in answer
     if case_chunks and _should_include_case_studies(query, intent, answer, explicit_module):
         matched_cases = _select_case_studies(query, case_chunks, explicit_module)
         considered = sum(
@@ -9218,24 +9218,24 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
         if v and (v.get("url") or (v.get("type") == "demoforge" and v.get("share_url")))
     ]
     video = videos[0] if videos else None
-    # Extract cross-sell and move it to the TOP of the answer so SuperAgent's
-    # LLM rewriter (which strips footers) is less likely to drop it.
-    _CROSS_SELL_SENTINEL = "Other Gupshup customers"
+    # Extract cross-sell so it can be re-appended after video (always last).
+    _CROSS_SELL_SENTINEL = "**Other Gupshup customers"
     _cross_sell_extracted = ""
     if _CROSS_SELL_SENTINEL in answer:
         _cs_idx = answer.index(_CROSS_SELL_SENTINEL)
         _cs_block = answer[_cs_idx:]
         _cs_next = _cs_block.find("\n---", len("---\n"))
         _cross_sell_extracted = _cs_block[:_cs_next].strip() if _cs_next != -1 else _cs_block.strip()
-        # Remove from current position
         answer = (answer[:_cs_idx] + ("\n\n" + _cs_block[_cs_next:].strip() if _cs_next != -1 else "")).strip()
-        # Prepend at the top
-        answer = _cross_sell_extracted + "\n\n" + answer
 
     video_appended = False
     if videos:
         answer = _append_videos_section(answer, videos)
         video_appended = True
+
+    # Re-append cross-sell after video so it's always the last visible block.
+    if _cross_sell_extracted:
+        answer = answer.rstrip() + "\n\n" + _cross_sell_extracted
     try:
         # video_telemetry_metadata() emits the full original shape plus
         # video_platform + demoforge_* fields for DemoForge videos (single source
