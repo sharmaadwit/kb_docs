@@ -6390,15 +6390,15 @@ def _detect_intents(query: str) -> List[str]:
 
 # CC EXPRESS PLAN ANSWER (directional teaser — surfaces plan names/ranges, routes to sales for full details)
 CC_EXPRESS_PLAN_ANSWER = (
-    "CC Express offers two self-serve plans:\n\n"
-    "**Starter** — low monthly access fee, 20 TPS, email support, includes WhatsApp, RCS, "
-    "Campaign Manager, Bot Studio, Live Chat, and Superagent tokens.\n\n"
-    "**Pro** — higher throughput (80 TPS), lower per-message rates, premium support, and "
-    "more Superagent tokens — suited for higher volumes.\n\n"
-    "Both plans include the full CC Express channel and automation stack. "
-    "Meta's WhatsApp charges are billed at actuals on top of the plan fee.\n\n"
-    "For exact pricing, per-message rates, and to find the right plan for your volume, "
-    "speak to the CC Express sales concierge on the Gupshup homepage or contact your account manager."
+    "CC Express is Gupshup's self-serve platform with two plans:\n\n"
+    "**Starter** — entry-level monthly platform fee, 20 TPS, email support, "
+    "includes WhatsApp, RCS, Campaign Manager, Bot Studio, Live Chat, and Superagent tokens.\n\n"
+    "**Pro** — higher monthly platform fee, 80 TPS, premium support, and more Superagent tokens "
+    "— suited for higher throughput and volume.\n\n"
+    "Both plans are self-serve with a fixed monthly access fee plus usage-based messaging charges. "
+    "If your volumes or requirements are larger, enterprise pricing is coordinated directly with the Gupshup sales team.\n\n"
+    "For the full plan comparison and exact rates, speak to the CC Express sales concierge "
+    "on the Gupshup homepage or contact your account manager."
 )
 
 def _is_cc_express_plan_query(query: str) -> bool:
