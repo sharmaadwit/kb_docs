@@ -6388,18 +6388,27 @@ def _detect_intents(query: str) -> List[str]:
     return intents
 
 
-# CC EXPRESS PLAN ANSWER (hardcoded for pricing question)
+# CC EXPRESS PLAN ANSWER (directional teaser — surfaces plan names/ranges, routes to sales for full details)
 CC_EXPRESS_PLAN_ANSWER = (
-    "CC Express is a silent alias for Gupshup Console / Conversation Cloud. "
-    "All features available in Console are also available to CC Express users. "
-    "Agent Assist is included as part of the Console platform for customer support and agent productivity. "
-    "For specific pricing tiers and plan details, please contact your Gupshup account manager."
+    "CC Express offers two self-serve plans:\n\n"
+    "**Starter** — low monthly access fee, 20 TPS, email support, includes WhatsApp, RCS, "
+    "Campaign Manager, Bot Studio, Live Chat, and Superagent tokens.\n\n"
+    "**Pro** — higher throughput (80 TPS), lower per-message rates, premium support, and "
+    "more Superagent tokens — suited for higher volumes.\n\n"
+    "Both plans include the full CC Express channel and automation stack. "
+    "Meta's WhatsApp charges are billed at actuals on top of the plan fee.\n\n"
+    "For exact pricing, per-message rates, and to find the right plan for your volume, "
+    "speak to the CC Express sales concierge on the Gupshup homepage or contact your account manager."
 )
 
 def _is_cc_express_plan_query(query: str) -> bool:
-    """Check if query is asking about CC Express plans or bundling."""
+    """Check if query is asking about CC Express plans, pricing, or what's included."""
     qn = _normalize_query_for_match(query)
-    return bool(re.search(r'cc express.*plan|cc express.*pricing|cc express.*agent assist|cc express.*includ', qn))
+    return bool(re.search(
+        r'cc express.*(plan|pric|cost|fee|includ|agent assist|starter|pro|superagent|tps|token|tier)|'
+        r'(includ|what.*in|what.*come).*(cc express)',
+        qn
+    ))
 
 
 # ---------------------------------------------------------------------------
@@ -8563,7 +8572,7 @@ def _send_langfuse(
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "logic_version": "kb-answer-v4.16",
+        "logic_version": "kb-answer-v4.17",
         "prompt_version": None,
         "model": "rules-runtime",
         "temperature": 0,
