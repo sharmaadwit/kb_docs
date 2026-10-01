@@ -41,6 +41,13 @@ _COVERAGE_STOPWORDS = frozenset({
     "how", "what", "where", "when", "why", "can", "do", "does", "did", "i",
     "my", "me", "we", "you", "it", "this", "that", "with", "from", "are",
     "get", "find", "use", "using", "gupshup", "via", "not", "its", "any",
+    # Platform-generic terms that appear in nearly every console/API doc and
+    # produce false overlap — a doc containing "api", "key", "console" does NOT
+    # mean it answers queries about a specific API key location or feature.
+    "console", "api", "key", "keys", "credentials", "account", "platform",
+    "token", "access", "settings", "configure", "configuration", "setup",
+    "create", "manage", "view", "click", "page", "menu", "option", "section",
+    "please", "need", "want", "like", "also", "more", "after", "before",
 })
 
 
@@ -105,10 +112,15 @@ def _doc_covers_queries(doc_path_str: str, queries: List[str]) -> bool:
         if not terms:
             continue
         hits = sum(1 for t in terms if t in doc_text)
-        if hits / len(terms) >= 0.25:
+        # Raised from 0.25 → 0.40: require a stronger specific-term match.
+        # After stripping generic platform words (console, api, key, etc.) the
+        # remaining terms are topic-specific — 40% of those must appear in the doc.
+        if hits / len(terms) >= 0.40:
             covered += 1
 
-    return covered / len(english_queries) >= 0.40
+    # Raised from 0.40 → 0.60: majority of English queries must be covered,
+    # not just a plurality.
+    return covered / len(english_queries) >= 0.60
 
 
 def _validate_verdict(verdict: Dict[str, Any], gap_key: str,
