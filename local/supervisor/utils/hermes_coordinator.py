@@ -479,7 +479,8 @@ _DEGRADED = {
     "concept_target": None,
     "current_boost": None,
     "recommended_boost": None,
-    "language_mappings": [],
+    "language_mappings": [],  # deprecated — kept for backward-compat with old reports
+    "alternatives_considered": [],
     "telemetry_gap": None,
     "stale_trace": False,
     "resolution_confidence": "low",
@@ -597,19 +598,18 @@ class GapWorker:
         structured_signal = self._build_structured_signal(pipeline_signal)
 
         json_schema = json.dumps({
-            "action_type": "MARK_RESOLVED|ADD_ALIAS|ADD_KEYWORD|RAISE_SOURCE_BOOST|NEW_CONCEPT|ADD_LANGUAGE_MAPPING|CREATE_DOC|EXPAND_DOC_SECTION|ADJUST_GUARDRAIL|IMPROVE_TELEMETRY|INSUFFICIENT_DATA",
-            "bucket": "HAS_DOCS_FAILS|NO_DOCS_IN_SCOPE|OUT_OF_SCOPE|NOISE|LANGUAGE_COVERAGE_GAP|NEEDS_BOOST|NEW_CONCEPT_NEEDED|GUARDRAIL_FALSE_POSITIVE|IMPROVE_TELEMETRY|MARK_RESOLVED|UNKNOWN — backward-compat label derived from action_type",
+            "action_type": "MARK_RESOLVED|ADD_ALIAS|ADD_KEYWORD|RAISE_SOURCE_BOOST|NEW_CONCEPT|CREATE_DOC|EXPAND_DOC_SECTION|ADJUST_GUARDRAIL|IMPROVE_TELEMETRY|INSUFFICIENT_DATA",
+            "bucket": "HAS_DOCS_FAILS|NO_DOCS_IN_SCOPE|OUT_OF_SCOPE|NOISE|NEEDS_BOOST|NEW_CONCEPT_NEEDED|GUARDRAIL_FALSE_POSITIVE|IMPROVE_TELEMETRY|MARK_RESOLVED|UNKNOWN — backward-compat label derived from action_type",
             "confidence": "high | medium | low",
             "resolution_confidence": "high|medium|low — how confident in the diagnosis",
             "reasoning": "paragraph referencing specific query results and doc evidence",
             "matching_doc": "kb/path/to/doc.md or null",
-            "root_cause": "keyword_gap | routing_miss | retrieval_rank | content_thin | answer_quality | language_gap | null",
+            "root_cause": "keyword_gap | routing_miss | retrieval_rank | content_thin | answer_quality | null",
             "doc_evidence": "REQUIRED for HAS_DOCS_FAILS/ADD_KEYWORD/ADD_ALIAS: direct quote from matching_doc proving it covers the query. null for other action types.",
-            "concept_target": "CONCEPT_REGISTRY concept id (e.g. whatsapp_templates) or NEW:<suggested_name> if missing. Required for ADD_ALIAS/ADD_KEYWORD/RAISE_SOURCE_BOOST/ADD_LANGUAGE_MAPPING.",
+            "concept_target": "CONCEPT_REGISTRY concept id (e.g. whatsapp_templates) or NEW:<suggested_name> if missing. Required for ADD_ALIAS/ADD_KEYWORD/RAISE_SOURCE_BOOST.",
             "current_boost": "current source_boosts value for target doc in the named concept, or null if not set",
             "recommended_boost": "suggested new numeric boost value, or null",
-            "keywords_to_add": ["specific missing term from IDK queries — English only"],
-            "language_mappings": [{"term": "non-English phrase from query", "english": "English equivalent", "language": "pt|es|hi|ar|tr"}],
+            "keywords_to_add": ["specific missing term from IDK queries — English only. Translate non-English query terms to English first; never add foreign-language strings here."],
             "doc_to_create": "kb/module/filename.md or null",
             "doc_outline": None,
             "doc_priority": "high | medium | low | null",
@@ -621,6 +621,9 @@ class GapWorker:
                 "suggested_fix": "how to add it in code"
             },
             "per_query_notes": {"query_prefix": "IDK|ANSWERED — one-line diagnosis"},
+            "alternatives_considered": [
+                {"action_type": "a candidate fix you rejected", "rejected_because": "specific technical reason — not just 'less likely'"}
+            ],
         }, indent=2)
 
         # ── Turn 1: Deep Analysis ────────────────────────────────────────────
@@ -658,14 +661,34 @@ If Tier 1+2 don't give enough signal to make a confident diagnosis:
 - What specific trace field would resolve the ambiguity?
 - Output IMPROVE_TELEMETRY with: missing_field, why_needed, suggested_fix_in_code
 
+## Architect Mode — compare candidates before committing to a fix
+You are acting as a senior/staff engineer doing a design review, not a keyword-matcher
+picking the first plausible-looking doc. Before you commit to an action_type:
+
+1. List at least TWO candidate fixes from the taxonomy below that could plausibly apply
+   to this gap (e.g. "ADD_ALIAS to concept X" vs "RAISE_SOURCE_BOOST on doc Y" vs
+   "CREATE_DOC because no existing doc covers the specific question asked").
+2. For each candidate, state the concrete evidence for and against it — not vibes.
+   A candidate is only valid if you can point to a specific doc passage, concept
+   definition, or trace field that supports it.
+3. Reject weaker candidates explicitly with a technical reason (e.g. "doc only covers
+   the topic area, not this specific question" / "concept already boosts this doc, so
+   the real issue is score floor not missing alias" / "this fix would need a new doc
+   per query — too narrow to justify ADD_ALIAS, the real gap is missing content").
+4. Pick the fix that addresses the ROOT CAUSE, not the one that's fastest to write.
+   Prefer a cheap/safe fix (ADD_ALIAS, RAISE_SOURCE_BOOST) over CREATE_DOC only when
+   the evidence genuinely supports it — don't under-recommend CREATE_DOC just because
+   it's more work, and don't over-recommend ADD_ALIAS to avoid writing new content.
+5. Record your rejected alternatives in `alternatives_considered` with a specific
+   `rejected_because` — "less likely" or "probably not" is not acceptable, cite evidence.
+
 ## Output action_type (one primary action per gap):
 MARK_RESOLVED | ADD_ALIAS | ADD_KEYWORD | RAISE_SOURCE_BOOST | NEW_CONCEPT |
-ADD_LANGUAGE_MAPPING | CREATE_DOC | EXPAND_DOC_SECTION | ADJUST_GUARDRAIL |
+CREATE_DOC | EXPAND_DOC_SECTION | ADJUST_GUARDRAIL |
 IMPROVE_TELEMETRY | INSUFFICIENT_DATA
 
 ## Backward-compat bucket mapping (also set "bucket" field):
 - ADD_ALIAS / ADD_KEYWORD / RAISE_SOURCE_BOOST / NEW_CONCEPT → HAS_DOCS_FAILS (RAISE_SOURCE_BOOST → also set bucket=NEEDS_BOOST, NEW_CONCEPT → NEW_CONCEPT_NEEDED)
-- ADD_LANGUAGE_MAPPING → LANGUAGE_COVERAGE_GAP
 - CREATE_DOC / EXPAND_DOC_SECTION → NO_DOCS_IN_SCOPE
 - ADJUST_GUARDRAIL → GUARDRAIL_FALSE_POSITIVE
 - IMPROVE_TELEMETRY → IMPROVE_TELEMETRY
@@ -738,19 +761,23 @@ Before adding a keyword, ask: would this term match unrelated queries?
 - Terms already present in another concept's aliases → REJECT — would create routing conflicts.
 - Valid keywords are: specific product terms, error message substrings, feature names the user typed.
 
-### Rule 6 — Non-English queries → use ADD_LANGUAGE_MAPPING / LANGUAGE_COVERAGE_GAP, never add foreign keywords to CONCEPT_REGISTRY
-SuperAgent normalises queries before kb_answer, but the skill also has a _MULTILINGUAL_TERMS phrase
-table that maps foreign phrases to English before retrieval. CONCEPT_REGISTRY keywords are English-only.
+### Rule 6 — Non-English queries: language normalization is SuperAgent's job, not ours
+SuperAgent translates/normalizes user queries to English BEFORE they reach kb_answer.
+Do NOT propose per-phrase _MULTILINGUAL_TERMS additions as a fix — that is an endless,
+unmaintainable list and is explicitly out of scope for this skill's code. There is no
+ADD_LANGUAGE_MAPPING action_type; never invent one.
 
-Decision tree for non-English IDK queries:
-1. Does a KB doc exist that covers the topic? NO → NO_DOCS_IN_SCOPE (content gap, language irrelevant).
-2. Doc exists. Is the foreign phrase already mapped in _MULTILINGUAL_TERMS? YES → HAS_DOCS_FAILS
-   (routing/keyword miss in CONCEPT_REGISTRY, not language).
-3. Doc exists. Foreign phrase NOT in _MULTILINGUAL_TERMS → action_type=ADD_LANGUAGE_MAPPING, bucket=LANGUAGE_COVERAGE_GAP.
-   - Populate `language_mappings`: [{{"term": "regra de janela de 24 horas", "english": "24-hour messaging window", "language": "pt"}}]
-   - Set `concept_target` to the concept that should route to the doc.
-   - Do NOT put any non-English strings in `keywords_to_add`.
-   - The fix is extending _MULTILINGUAL_TERMS in skill/kb_answer.py, not CONCEPT_REGISTRY.
+Decision tree for non-English IDK queries — mentally translate the query to English,
+then apply Rules 1-5 and Architect Mode exactly as you would for an English query:
+1. Translate the query's intent to English in your head.
+2. Does a real KB doc cover that English intent? NO → CREATE_DOC / NO_DOCS_IN_SCOPE
+   (content gap — language was never the real issue).
+3. Doc exists and covers the specific question → HAS_DOCS_FAILS with concept_target and
+   ENGLISH-only keywords_to_add (translate the missing term, do not transliterate it).
+4. If a query is IDK ONLY because of a language/translation failure (the English
+   equivalent would clearly be answered) and no code-level fix in this skill applies →
+   action_type=MARK_RESOLVED is wrong (it wasn't resolved) — use INSUFFICIENT_DATA with
+   reasoning noting this is a SuperAgent-side normalization issue, not a kb_answer gap.
 
 Think step by step. Analyze each IDK query individually. Name the specific docs and concept targets."""
 
@@ -789,12 +816,21 @@ you can prove NO existing doc covers the topic even with routing improvements.
 3. If OUT_OF_SCOPE: are any IDK queries genuinely about a Gupshup product?
 4. answered_now=true queries do not count as failures. If ALL queries show answered_now=true → action_type MUST be MARK_RESOLVED.
 5. PRICING queries → always OUT_OF_SCOPE (sales signal, never create pricing docs).
-5b. LANGUAGE_COVERAGE_GAP / ADD_LANGUAGE_MAPPING: re-check — did you populate language_mappings with the specific
-    non-English phrase → English mapping? If language_mappings is empty, this bucket is incomplete.
+5b. If your Turn 1 verdict was ADD_LANGUAGE_MAPPING or mentions adding _MULTILINGUAL_TERMS
+    entries — that is NOT a valid fix (language normalization is SuperAgent's job, not this
+    skill's). Discard it and re-classify using Rule 6: translate the query to English and
+    re-run the normal HAS_DOCS_FAILS / CREATE_DOC decision.
 6. Demo/video queries → check kb/video_manifest.json (18 topics) → HAS_DOCS_FAILS if match.
 7. General knowledge, infrastructure alerts, off-topic → OUT_OF_SCOPE.
 8. Bot Studio DB/variable queries: manage-variables.md + api-node.md may cover them.
    ⚠ FALSE-POSITIVE = wrong doc retrieved, not missing doc.
+
+## Re-run Architect Mode comparison
+Before finalizing: did you actually compare 2+ candidate fixes in Turn 1, or did you
+pattern-match the first doc that shared keywords with the query? If you skipped the
+comparison, do it now. If a cheaper fix (ADD_ALIAS/RAISE_SOURCE_BOOST) and CREATE_DOC
+both seemed plausible, state which evidence tipped the decision — not which one is
+less effort to write up.
 
 ## Additional adversarial checks for new action types:
 - Did you check answered_now for EVERY query? If any answered_now=true → that query is MARK_RESOLVED, not a fix target.
@@ -819,10 +855,12 @@ State final verdict with one action_type, one bucket, and your evidence."""
         t3_prompt = f"""Based on your analysis and challenge, produce the final verdict.
 
 Requirements:
-- action_type: one of MARK_RESOLVED|ADD_ALIAS|ADD_KEYWORD|RAISE_SOURCE_BOOST|NEW_CONCEPT|ADD_LANGUAGE_MAPPING|CREATE_DOC|EXPAND_DOC_SECTION|ADJUST_GUARDRAIL|IMPROVE_TELEMETRY|INSUFFICIENT_DATA
-- bucket: backward-compat label (ADD_ALIAS/ADD_KEYWORD → HAS_DOCS_FAILS, RAISE_SOURCE_BOOST → NEEDS_BOOST, NEW_CONCEPT → NEW_CONCEPT_NEEDED, ADD_LANGUAGE_MAPPING → LANGUAGE_COVERAGE_GAP, CREATE_DOC/EXPAND_DOC_SECTION → NO_DOCS_IN_SCOPE, ADJUST_GUARDRAIL → GUARDRAIL_FALSE_POSITIVE, IMPROVE_TELEMETRY → IMPROVE_TELEMETRY, MARK_RESOLVED → OUT_OF_SCOPE, INSUFFICIENT_DATA → UNKNOWN)
+- action_type: one of MARK_RESOLVED|ADD_ALIAS|ADD_KEYWORD|RAISE_SOURCE_BOOST|NEW_CONCEPT|CREATE_DOC|EXPAND_DOC_SECTION|ADJUST_GUARDRAIL|IMPROVE_TELEMETRY|INSUFFICIENT_DATA
+  There is no ADD_LANGUAGE_MAPPING action — language normalization is SuperAgent's job.
+  If a query is non-English, translate its intent to English first, then pick from this list.
+- bucket: backward-compat label (ADD_ALIAS/ADD_KEYWORD → HAS_DOCS_FAILS, RAISE_SOURCE_BOOST → NEEDS_BOOST, NEW_CONCEPT → NEW_CONCEPT_NEEDED, CREATE_DOC/EXPAND_DOC_SECTION → NO_DOCS_IN_SCOPE, ADJUST_GUARDRAIL → GUARDRAIL_FALSE_POSITIVE, IMPROVE_TELEMETRY → IMPROVE_TELEMETRY, MARK_RESOLVED → OUT_OF_SCOPE, INSUFFICIENT_DATA → UNKNOWN)
 - keywords_to_add (if ADD_KEYWORD): EXACT terms lifted from the IDK query text itself
-  (substring-matchable). Non-English queries: include same-language terms.
+  (substring-matchable), ENGLISH ONLY — if the query was non-English, use the translated term.
   REJECT: single generic words, full verbatim query sentences, terms already in another concept's aliases.
 - concept_target: name the CONCEPT_REGISTRY concept to add keywords/alias to (e.g., "whatsapp_templates").
   If no existing concept boosts the target doc → write "NEW: <suggested_concept_name>".
@@ -836,7 +874,8 @@ Requirements:
 - stale_trace: true if action_type=MARK_RESOLVED (answered_now was true for all/most queries).
 - resolution_confidence: high|medium|low — your overall confidence in this diagnosis.
 - telemetry_gap: object with missing_field/why_needed/suggested_fix if action_type=IMPROVE_TELEMETRY, else null.
-- language_mappings: array of {{term, english, language}} objects if action_type=ADD_LANGUAGE_MAPPING, else [].
+- alternatives_considered: REQUIRED, at least 1 entry — the candidate fix(es) from Architect Mode
+  that you rejected, each with a specific `rejected_because` (cite evidence, not "less likely").
 
 Write ONLY valid JSON to the file: {output_path}
 Schema:
@@ -941,6 +980,23 @@ No prose, no markdown fences. Only JSON."""
         if parsed.get("bucket") not in _VALID_BUCKETS:
             return {**_DEGRADED, "reasoning": f"invalid bucket: {parsed.get('bucket')}"}
 
+        # Safety net: ADD_LANGUAGE_MAPPING is deprecated (SuperAgent owns language
+        # normalization, not this skill) — if the model emits it anyway despite the
+        # prompt instructions, don't silently accept it as a code fix recommendation.
+        if parsed.get("action_type") == "ADD_LANGUAGE_MAPPING":
+            logger.warning(
+                "  worker[%s] emitted deprecated ADD_LANGUAGE_MAPPING for %s — "
+                "downgrading to INSUFFICIENT_DATA (language fixes are out of scope)",
+                task_id, gap_key,
+            )
+            parsed["action_type"] = "INSUFFICIENT_DATA"
+            parsed["bucket"] = "UNKNOWN"
+            parsed["reasoning"] = (
+                "[DEPRECATED ACTION BLOCKED] Judge recommended ADD_LANGUAGE_MAPPING, which is "
+                "out of scope — SuperAgent handles language normalization upstream, not kb_answer. "
+                f"Original reasoning: {parsed.get('reasoning', '')}"
+            )
+
         return {
             # Core fields (backward compat)
             "bucket": parsed.get("bucket"),
@@ -960,7 +1016,8 @@ No prose, no markdown fences. Only JSON."""
             "concept_target": parsed.get("concept_target"),
             "current_boost": parsed.get("current_boost"),
             "recommended_boost": parsed.get("recommended_boost"),
-            "language_mappings": parsed.get("language_mappings") or [],
+            "language_mappings": parsed.get("language_mappings") or [],  # deprecated — ignore if present
+            "alternatives_considered": parsed.get("alternatives_considered") or [],
             "telemetry_gap": parsed.get("telemetry_gap"),
             "stale_trace": bool(parsed.get("stale_trace", False)),
             "resolution_confidence": parsed.get("resolution_confidence", "low"),

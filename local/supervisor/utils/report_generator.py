@@ -397,6 +397,15 @@ class ReportGenerator:
                     # Fallback for any unhandled action_type
                     lines.append(f"**Root cause:** {verdict.get('reasoning') or verdict.get('reason') or '?'}")
 
+                alternatives = verdict.get("alternatives_considered") or []
+                if alternatives:
+                    lines.append("")
+                    lines.append("**Alternatives considered and rejected:**")
+                    for alt in alternatives:
+                        alt_action = alt.get("action_type", "?")
+                        alt_reason = alt.get("rejected_because", "?")
+                        lines.append(f"  - `{alt_action}` — rejected: {_cell(alt_reason, 150)}")
+
                 # Split failing queries into "addressed by this fix" vs stragglers.
                 # per_query_results from gap_classifier has per-query OUT_OF_SCOPE/NOISE
                 # verdicts for queries that slipped through the gap-level gate.
