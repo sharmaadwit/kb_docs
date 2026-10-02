@@ -25,6 +25,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
 
+from .superagent_probe import probe_superagent, BUDGET as SUPERAGENT_PROBE_BUDGET
+
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
@@ -263,6 +265,63 @@ def _find_cross_kb_coverage(queries: List[str], score_threshold: float = 0.35) -
 
     top_doc = max(doc_votes, key=doc_votes.get) if doc_votes else None
     return {"covered": covered, "uncovered": uncovered, "top_doc": top_doc, "doc_votes": doc_votes}
+
+
+def _maybe_probe_superagent(verdict: Dict[str, Any], gap: Any, gap_key: str) -> Dict[str, Any]:
+    """Empirically verify the judge's hypothesis against the live SuperAgent endpoint
+    for the highest-value cases only — budget is hard-capped at 5 calls per run
+    (see superagent_probe.py), shared across ALL gaps in this run, so only probe
+    when the verdict is uncertain or claims something checkable.
+
+    Priority (probe only if ANY of these hold — reasoning alone wasn't enough):
+    - grounding_override fired: the deterministic check already found the judge's
+      first answer wrong; worth confirming the corrected verdict against reality.
+    - action_type == MARK_RESOLVED: claims the gap is already fixed — if wrong,
+      a real gap silently disappears from the report, so always worth checking.
+    - resolution_confidence == "low": the judge itself wasn't sure.
+    """
+    should_probe = (
+        verdict.get("grounding_override")
+        or verdict.get("action_type") == "MARK_RESOLVED"
+        or verdict.get("resolution_confidence") == "low"
+    )
+    if not should_probe:
+        return verdict
+
+    if SUPERAGENT_PROBE_BUDGET.remaining() <= 0:
+        return verdict  # budget exhausted — don't even log an attempt per gap
+
+    query = (gap.failure_examples or [None])[0]
+    if not query:
+        return verdict
+
+    reason = (
+        f"{gap_key} — verify {verdict.get('action_type')}"
+        f"{' (grounding override)' if verdict.get('grounding_override') else ''}"
+        f"{' (low confidence)' if verdict.get('resolution_confidence') == 'low' else ''}"
+    )
+    result = probe_superagent(query, reason)
+    if result is None:
+        return verdict  # budget exhausted between check and call, or request failed
+
+    verdict = dict(verdict)
+    live_answer = (result.get("answer") or "").strip()
+    verdict["superagent_probe"] = {
+        "query": query,
+        "live_answer": live_answer[:500],
+        "reason": reason,
+    }
+
+    # MARK_RESOLVED claims the gap is fixed — a thin/empty live answer contradicts that.
+    if verdict.get("action_type") == "MARK_RESOLVED" and len(live_answer) < 20:
+        verdict["probe_contradicts_verdict"] = True
+        verdict["reasoning"] = (
+            f"[PROBE CONTRADICTION] Verdict claimed MARK_RESOLVED but the live SuperAgent probe "
+            f"returned a thin/empty answer ({len(live_answer)} chars) for the same query — "
+            f"this gap likely still needs a fix. Original reasoning: {verdict.get('reasoning', '')}"
+        )
+
+    return verdict
 
 
 _PROFILE = "kb-supervisor"
@@ -1172,10 +1231,12 @@ class HermesCoordinator:
                     verdict = future.result()
                     verdict = _validate_verdict(verdict, gap_key,
                                                 queries=gap.failure_examples)
+                    verdict = _maybe_probe_superagent(verdict, gap, gap_key)
                     four_bucket_verdicts[gap_key] = verdict
                     grounding_flag = " [GROUNDING OVERRIDE]" if verdict.get("grounding_override") else ""
-                    logger.info("  coordinator: %s → %s (%s)%s",
-                                gap_key, verdict.get("bucket"), verdict.get("confidence"), grounding_flag)
+                    probe_flag = " [PROBED]" if verdict.get("superagent_probe") else ""
+                    logger.info("  coordinator: %s → %s (%s)%s%s",
+                                gap_key, verdict.get("bucket"), verdict.get("confidence"), grounding_flag, probe_flag)
                 except Exception as exc:
                     logger.warning("  coordinator: worker error for %s: %s", gap_key, exc)
                     four_bucket_verdicts[gap_key] = {
@@ -1184,6 +1245,8 @@ class HermesCoordinator:
                     }
 
         logger.info("  coordinator: all %d workers complete", len(gaps))
+        for line in SUPERAGENT_PROBE_BUDGET.summary().splitlines():
+            logger.info("  %s", line)
         return four_bucket_verdicts
 
     def _post_gap_task(self, gap_idx: int, gap, classification: Dict[str, Any]) -> Optional[str]:

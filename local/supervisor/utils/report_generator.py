@@ -221,6 +221,9 @@ class ReportGenerator:
         from collections import Counter
         display_counts: Counter = Counter(r[3] for r in rows)
 
+        probed_count = sum(1 for _, _, v, _ in rows if v and v.get("superagent_probe"))
+        contradicted_count = sum(1 for _, _, v, _ in rows if v and v.get("probe_contradicts_verdict"))
+
         # Build summary rows — only show buckets with count > 0
         summary_rows = [
             ("Gaps analyzed", len(gaps)),
@@ -249,6 +252,11 @@ class ReportGenerator:
             # Always show "Gaps analyzed"; for others only show if count > 0
             if label == "Gaps analyzed" or count > 0:
                 lines.append(f"| {label} | {count} |")
+
+        if probed_count > 0:
+            lines.append(f"| SuperAgent probes used (max 5/run) | {probed_count} |")
+        if contradicted_count > 0:
+            lines.append(f"| ⚠ Probe contradicted verdict | {contradicted_count} |")
 
         lines += [
             "",
@@ -405,6 +413,15 @@ class ReportGenerator:
                         alt_action = alt.get("action_type", "?")
                         alt_reason = alt.get("rejected_because", "?")
                         lines.append(f"  - `{alt_action}` — rejected: {_cell(alt_reason, 150)}")
+
+                probe = verdict.get("superagent_probe")
+                if probe:
+                    lines.append("")
+                    contradiction = " ⚠ CONTRADICTS VERDICT" if verdict.get("probe_contradicts_verdict") else ""
+                    lines.append(f"**Live SuperAgent probe{contradiction}:**")
+                    lines.append(f"  - Query: \"{_cell(probe.get('query', ''), 100)}\"")
+                    live_answer = probe.get("live_answer") or "(empty response)"
+                    lines.append(f"  - Live answer: \"{_cell(live_answer, 200)}\"")
 
                 # Split failing queries into "addressed by this fix" vs stragglers.
                 # per_query_results from gap_classifier has per-query OUT_OF_SCOPE/NOISE
