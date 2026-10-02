@@ -267,25 +267,44 @@ def _find_cross_kb_coverage(queries: List[str], score_threshold: float = 0.35) -
     return {"covered": covered, "uncovered": uncovered, "top_doc": top_doc, "doc_votes": doc_votes}
 
 
-def _maybe_probe_superagent(verdict: Dict[str, Any], gap: Any, gap_key: str) -> Dict[str, Any]:
-    """Empirically verify the judge's hypothesis against the live SuperAgent endpoint
-    for the highest-value cases only — budget is hard-capped at 5 calls per run
-    (see superagent_probe.py), shared across ALL gaps in this run, so only probe
-    when the verdict is uncertain or claims something checkable.
+def _gate_live_verification(verdict: Dict[str, Any]) -> Optional[str]:
+    """Decide whether this verdict warrants spending one of the 5 live-probe calls.
 
-    Priority (probe only if ANY of these hold — reasoning alone wasn't enough):
-    - grounding_override fired: the deterministic check already found the judge's
-      first answer wrong; worth confirming the corrected verdict against reality.
-    - action_type == MARK_RESOLVED: claims the gap is already fixed — if wrong,
-      a real gap silently disappears from the report, so always worth checking.
-    - resolution_confidence == "low": the judge itself wasn't sure.
+    Returns the probe reason string if a probe is warranted, else None. Two kinds
+    of gate, deliberately kept separate:
+
+    1. Hard gates — cases the judge CANNOT self-report, because the condition is
+       only known after the judge's JSON output has already been parsed:
+       - grounding_override: our deterministic check already caught the judge
+         hallucinating a doc/concept once this run. Worth confirming the corrected
+         verdict against reality rather than trusting a second guess blind.
+       - action_type == MARK_RESOLVED: if this claim is wrong, a real gap silently
+         disappears from the report with no second check — always worth verifying.
+
+    2. Model-reported gate — needs_live_verification is a field the judge itself
+       must explicitly set (see the "When to request a live SuperAgent probe"
+       prompt section), with a specific verification_reason naming the exact
+       assumption being tested. This replaces a blanket "confidence is low"
+       heuristic — low confidence alone doesn't mean a live query would resolve
+       the ambiguity, and burning probes on every uncertain gap would exhaust the
+       5-call budget on the first few gaps in an 8-gap run.
     """
-    should_probe = (
-        verdict.get("grounding_override")
-        or verdict.get("action_type") == "MARK_RESOLVED"
-        or verdict.get("resolution_confidence") == "low"
-    )
-    if not should_probe:
+    if verdict.get("grounding_override"):
+        return "grounding override corrected the judge's original pick — verify the correction"
+    if verdict.get("action_type") == "MARK_RESOLVED":
+        return "MARK_RESOLVED claim — verify the gap is actually fixed in production"
+    if verdict.get("needs_live_verification") is True:
+        return verdict.get("verification_reason") or "judge requested verification (no reason given)"
+    return None
+
+
+def _maybe_probe_superagent(verdict: Dict[str, Any], gap: Any, gap_key: str) -> Dict[str, Any]:
+    """Empirically verify the judge's hypothesis against the live SuperAgent endpoint,
+    gated by _gate_live_verification() — budget is hard-capped at 5 calls per run
+    (see superagent_probe.py), shared across ALL gaps in this run.
+    """
+    gate_reason = _gate_live_verification(verdict)
+    if not gate_reason:
         return verdict
 
     if SUPERAGENT_PROBE_BUDGET.remaining() <= 0:
@@ -295,11 +314,7 @@ def _maybe_probe_superagent(verdict: Dict[str, Any], gap: Any, gap_key: str) -> 
     if not query:
         return verdict
 
-    reason = (
-        f"{gap_key} — verify {verdict.get('action_type')}"
-        f"{' (grounding override)' if verdict.get('grounding_override') else ''}"
-        f"{' (low confidence)' if verdict.get('resolution_confidence') == 'low' else ''}"
-    )
+    reason = f"{gap_key} — {gate_reason}"
     result = probe_superagent(query, reason)
     if result is None:
         return verdict  # budget exhausted between check and call, or request failed
@@ -540,6 +555,8 @@ _DEGRADED = {
     "recommended_boost": None,
     "language_mappings": [],  # deprecated — kept for backward-compat with old reports
     "alternatives_considered": [],
+    "needs_live_verification": False,
+    "verification_reason": None,
     "telemetry_gap": None,
     "stale_trace": False,
     "resolution_confidence": "low",
@@ -683,6 +700,8 @@ class GapWorker:
             "alternatives_considered": [
                 {"action_type": "a candidate fix you rejected", "rejected_because": "specific technical reason — not just 'less likely'"}
             ],
+            "needs_live_verification": "true only if your diagnosis rests on an assumption that a live SuperAgent query/answer would directly confirm or refute — false otherwise (this is a scarce resource, budget 5 per run)",
+            "verification_reason": "one sentence: the SPECIFIC assumption a live probe would check, e.g. 'confirm the doc fix actually surfaces now' — null if needs_live_verification=false",
         }, indent=2)
 
         # ── Turn 1: Deep Analysis ────────────────────────────────────────────
@@ -740,6 +759,29 @@ picking the first plausible-looking doc. Before you commit to an action_type:
    it's more work, and don't over-recommend ADD_ALIAS to avoid writing new content.
 5. Record your rejected alternatives in `alternatives_considered` with a specific
    `rejected_because` — "less likely" or "probably not" is not acceptable, cite evidence.
+
+## When to request a live SuperAgent probe (needs_live_verification)
+A live probe sends one of this gap's failing queries to the real production
+SuperAgent endpoint and returns what it actually answers right now. This is a
+SCARCE resource — 5 probes total per run, shared across every gap being judged.
+Do not request one by default or "just to be safe."
+
+Set needs_live_verification=true ONLY if ALL of these hold:
+- Your diagnosis depends on an assumption about CURRENT production behavior that
+  the static evidence here (KB file text, CONCEPT_REGISTRY, trace signal) cannot
+  settle — e.g. "I believe this was already fixed and deployed" or "I believe the
+  doc now ranks high enough to surface" or "the trace data is stale and this may
+  already be resolved."
+- A live answer would directly confirm or refute that specific assumption — not
+  just add general reassurance to a diagnosis you're already confident in.
+- You are NOT already highly confident from the static evidence alone. If you can
+  quote the doc and name the concept with certainty, you don't need a probe —
+  that's what doc_evidence is for.
+
+Do NOT request one for: routine HAS_DOCS_FAILS/CREATE_DOC calls backed by clear
+doc evidence, pricing/out-of-scope calls, or "it would be nice to confirm" curiosity.
+If you request one, `verification_reason` must name the EXACT assumption being
+tested, not a restatement of your overall reasoning.
 
 ## Output action_type (one primary action per gap):
 MARK_RESOLVED | ADD_ALIAS | ADD_KEYWORD | RAISE_SOURCE_BOOST | NEW_CONCEPT |
@@ -935,6 +977,10 @@ Requirements:
 - telemetry_gap: object with missing_field/why_needed/suggested_fix if action_type=IMPROVE_TELEMETRY, else null.
 - alternatives_considered: REQUIRED, at least 1 entry — the candidate fix(es) from Architect Mode
   that you rejected, each with a specific `rejected_because` (cite evidence, not "less likely").
+- needs_live_verification: true/false — see "When to request a live SuperAgent probe" above.
+  Default false. Only true if a live query/answer would directly test a specific assumption
+  about CURRENT production behavior that static evidence here cannot settle.
+- verification_reason: the exact assumption a probe would test, or null if needs_live_verification=false.
 
 Write ONLY valid JSON to the file: {output_path}
 Schema:
@@ -1077,6 +1123,8 @@ No prose, no markdown fences. Only JSON."""
             "recommended_boost": parsed.get("recommended_boost"),
             "language_mappings": parsed.get("language_mappings") or [],  # deprecated — ignore if present
             "alternatives_considered": parsed.get("alternatives_considered") or [],
+            "needs_live_verification": bool(parsed.get("needs_live_verification", False)),
+            "verification_reason": parsed.get("verification_reason"),
             "telemetry_gap": parsed.get("telemetry_gap"),
             "stale_trace": bool(parsed.get("stale_trace", False)),
             "resolution_confidence": parsed.get("resolution_confidence", "low"),

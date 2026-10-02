@@ -419,6 +419,7 @@ class ReportGenerator:
                     lines.append("")
                     contradiction = " ⚠ CONTRADICTS VERDICT" if verdict.get("probe_contradicts_verdict") else ""
                     lines.append(f"**Live SuperAgent probe{contradiction}:**")
+                    lines.append(f"  - Gate: {_cell(probe.get('reason', '?'), 150)}")
                     lines.append(f"  - Query: \"{_cell(probe.get('query', ''), 100)}\"")
                     live_answer = probe.get("live_answer") or "(empty response)"
                     lines.append(f"  - Live answer: \"{_cell(live_answer, 200)}\"")
