@@ -98,9 +98,9 @@ def _is_coexistence_query(query: str) -> bool:
 
 def _cluster_queries(
     queries: List[str],
-    min_gap_size: int = 8,
-    max_clusters: int = 3,
-    split_threshold: float = 0.15,
+    min_gap_size: int = 4,
+    max_clusters: int = 4,
+    split_threshold: float = 0.32,
 ) -> List[List[str]]:
     """Greedy Jaccard clustering of queries. Returns list of clusters.
 
@@ -342,7 +342,7 @@ class TraceAnalyzer:
             if gap.pre_classified_bucket:
                 split_gaps.append(gap)
                 continue
-            if len(examples) < 8:
+            if len(examples) < 4:
                 split_gaps.append(gap)
                 continue
             clusters = _cluster_queries(examples)

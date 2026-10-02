@@ -79,6 +79,12 @@ def _recommendation_for(bucket: str, verdict: Dict[str, Any], gap: "Gap",
     """Build recommendation text for the gap table."""
     action_type = verdict.get("action_type") if verdict else None
 
+    if action_type == "ADD_ALIAS" and verdict.get("grounding_override"):
+        # Judge's original pick was wrong; cross-KB search found a different real
+        # doc with coverage, but we don't trust the judge's keyword reasoning here.
+        doc = verdict.get("matching_doc") or "?"
+        return f"Needs manual alias review — existing doc `{doc}` likely covers this (grounding-corrected)"
+
     if action_type == "ADD_ALIAS":
         term = verdict.get("term") or verdict.get("alias") or "?"
         concept = verdict.get("concept_target") or "?"
@@ -375,6 +381,17 @@ class ReportGenerator:
                         section = verdict.get("section") or "?"
                         lines.append(f"**Section to expand:** `{section}`")
                     lines.append(f"**Why missing:** {verdict.get('reasoning') or '?'}")
+                    partial_coverage = verdict.get("partial_doc_coverage") or []
+                    if partial_coverage:
+                        lines.append("")
+                        lines.append(
+                            "**⚠ Partial coverage found elsewhere in KB — verify before creating "
+                            "this doc, these queries may already be answerable:**"
+                        )
+                        for pc in partial_coverage:
+                            lines.append(
+                                f"  - \"{_cell(pc['query'], 80)}\" → `{pc['doc']}` (score {pc['score']})"
+                            )
 
                 else:
                     # Fallback for any unhandled action_type

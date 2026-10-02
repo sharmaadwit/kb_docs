@@ -171,11 +171,56 @@ def _validate_verdict(verdict: Dict[str, Any], gap_key: str,
     if not overrides:
         return verdict  # grounded — accept as-is
 
-    # Override to CREATE_DOC — the judge hallucinated a fix that can't be applied
+    # Before giving up and declaring CREATE_DOC, the judge may have picked the
+    # WRONG doc (or a hallucinated concept) while a DIFFERENT real doc actually
+    # covers some/all of the failing queries. A single bad pick shouldn't blank
+    # out genuine existing coverage — search the whole KB per query instead of
+    # trusting only the judge's one cited doc.
     override_note = "; ".join(overrides)
+    coverage = _find_cross_kb_coverage(queries or [])
+
+    # Require not just "every query found some match" but a majority of those
+    # matches agreeing on the SAME doc. Token-overlap search is noisy — 4 queries
+    # each weakly matching 4 different docs is not real consensus, it's 4 separate
+    # coincidental overlaps. Only redirect when there's an actual shared doc.
+    top_doc_votes = max(coverage["doc_votes"].values()) if coverage["doc_votes"] else 0
+    has_consensus = coverage["covered"] and top_doc_votes >= max(2, len(coverage["covered"]) / 2)
+
+    if coverage["covered"] and not coverage["uncovered"] and has_consensus:
+        # Every query has strong coverage, and most of them agree on one doc —
+        # this is a routing/alias problem, not a missing-doc problem.
+        best_doc = coverage["top_doc"]
+        logger.warning(
+            "  grounding check FAILED for %s [%s → %s]: %s → cross-KB search found "
+            "real coverage in '%s' for all %d queries — redirecting to ADD_ALIAS instead of CREATE_DOC",
+            gap_key, action, bucket, override_note, best_doc, len(coverage["covered"]),
+        )
+        overridden = dict(verdict)
+        overridden["action_type"] = "ADD_ALIAS"
+        overridden["bucket"] = "HAS_DOCS_FAILS"
+        overridden["matching_doc"] = best_doc
+        overridden["concept_target"] = None
+        overridden["confidence"] = "low"
+        overridden["grounding_override"] = True
+        overridden["grounding_override_reason"] = (
+            f"{override_note}; cross-KB search found real coverage in '{best_doc}' instead"
+        )
+        overridden["reasoning"] = (
+            f"[GROUNDING CORRECTED] Judge's original pick was wrong ({override_note}), but a "
+            f"whole-KB search found '{best_doc}' covers all failing queries. Needs manual alias "
+            f"review — judge's reasoning was unreliable here so no specific keywords are proposed. "
+            f"Original reasoning: {verdict.get('reasoning', '')}"
+        )
+        return overridden
+
+    # Override to CREATE_DOC — the judge hallucinated a fix that can't be applied.
+    # Still surface any partial coverage found so a human doesn't duplicate a doc
+    # that already answers some of these queries.
     logger.warning(
-        "  grounding check FAILED for %s [%s → %s]: %s → overriding to CREATE_DOC",
+        "  grounding check FAILED for %s [%s → %s]: %s → overriding to CREATE_DOC%s",
         gap_key, action, bucket, override_note,
+        f" ({len(coverage['covered'])}/{len(coverage['covered']) + len(coverage['uncovered'])} "
+        f"queries have partial coverage elsewhere — see partial_doc_coverage)" if coverage["covered"] else "",
     )
     overridden = dict(verdict)
     overridden["action_type"] = "CREATE_DOC"
@@ -187,7 +232,37 @@ def _validate_verdict(verdict: Dict[str, Any], gap_key: str,
         f"[GROUNDING OVERRIDE] Judge recommended {action} but {override_note}. "
         f"Original reasoning: {verdict.get('reasoning', '')}"
     )
+    if coverage["covered"]:
+        overridden["partial_doc_coverage"] = coverage["covered"]
     return overridden
+
+
+def _find_cross_kb_coverage(queries: List[str], score_threshold: float = 0.35) -> Dict[str, Any]:
+    """Search the WHOLE kb_chunks index (not just the judge's cited doc) per
+    English query. Returns which queries have strong coverage elsewhere, and
+    which don't — used to catch "judge picked the wrong doc" vs "no doc exists".
+    """
+    covered: List[Dict[str, Any]] = []
+    uncovered: List[str] = []
+    doc_votes: Dict[str, int] = {}
+
+    for query in queries or []:
+        if not _query_is_english(query):
+            continue  # same exclusion as _doc_covers_queries — avoid false negatives
+        terms = {t.lower() for t in re.findall(r'\b[a-zA-Z]{3,}\b', query)
+                 if t.lower() not in _COVERAGE_STOPWORDS}
+        if not terms:
+            continue
+        hits = _search_kb_chunks(terms, top_k=1)
+        if hits and hits[0]["score"] >= score_threshold:
+            source = hits[0]["source"]
+            covered.append({"query": query, "doc": source, "score": round(hits[0]["score"], 2)})
+            doc_votes[source] = doc_votes.get(source, 0) + 1
+        else:
+            uncovered.append(query)
+
+    top_doc = max(doc_votes, key=doc_votes.get) if doc_votes else None
+    return {"covered": covered, "uncovered": uncovered, "top_doc": top_doc, "doc_votes": doc_votes}
 
 
 _PROFILE = "kb-supervisor"
