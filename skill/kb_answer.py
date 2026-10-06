@@ -3825,6 +3825,10 @@ CONCEPT_REGISTRY: List[Dict] = [
             "how does extension work",
             "gupshup extension setup",
             "add extension",
+            "unify",
+            "unify documentation",
+            "connect unify account",
+            "gsmedia",
         ],
         "keywords": ["extension", "sms extension", "enterprise extension", "rcs extension"],
         "source_boosts": {
@@ -3832,6 +3836,35 @@ CONCEPT_REGISTRY: List[Dict] = [
         },
         "display": "Extensions Overview",
         "module": "Extension",
+    },
+    {
+        "id": "console_sso",
+        "aliases": [
+            "console sso", "single sign-on", "single sign on",
+            "sso integration", "saml 2.0", "saml sso",
+            "sso for console", "console single sign-on",
+            "identity provider console", "sso identity provider",
+        ],
+        "keywords": ["sso", "saml"],
+        "source_boosts": {
+            "Gupshup_Console_SSO support": 5.0,
+        },
+        "display": "Console SSO",
+        "module": "Overview",
+    },
+    {
+        "id": "superagent_recipes",
+        "aliases": [
+            "console recipes", "what is a recipe", "superagent recipes",
+            "explain recipes", "recipe workflow template",
+            "pre-built workflow template", "recipe in gupshup console",
+        ],
+        "keywords": ["recipes", "recipe"],
+        "source_boosts": {
+            "superagent/concepts/recipes": 4.0,
+        },
+        "display": "SuperAgent Recipes",
+        "module": "SuperAgent",
     },
     {
         "id": "password_reset",
@@ -8574,7 +8607,7 @@ def _send_langfuse(
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "logic_version": "kb-answer-v4.18",
+        "logic_version": "kb-answer-v4.19",
         "prompt_version": None,
         "model": "rules-runtime",
         "temperature": 0,
