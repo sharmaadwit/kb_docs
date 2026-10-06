@@ -862,6 +862,21 @@ Before adding a keyword, ask: would this term match unrelated queries?
 - Terms already present in another concept's aliases → REJECT — would create routing conflicts.
 - Valid keywords are: specific product terms, error message substrings, feature names the user typed.
 
+### Rule 5b — keywords_to_add MUST be single tokens; multi-word phrases go in aliases, not keywords
+This is a mechanical fact about how the skill's matching code works, verified by direct testing:
+`keywords_to_add` entries are matched one word at a time against the query's tokenized word set
+(`keyword in query_tokens`, where `query_tokens` is a SET of single words). A multi-word phrase
+like `"external system"` will NEVER match — the code checks for that exact 2-word string as one
+token, which never exists. Keyword matching also requires 2+ keyword hits (or explicit module
+context) to fire at all — a single keyword alone is not enough.
+- If the term you want to add is 2+ words → it belongs in `aliases`, not `keywords_to_add`.
+  Aliases ARE substring-matched against the full normalized query, so multi-word phrases work there.
+- When proposing an alias, the alias text MUST appear as a literal substring of the ACTUAL failing
+  query after normalization (lowercased, punctuation stripped) — not a paraphrase. "send data to
+  external system" will NOT match a query containing "send data to AN external system" (the "an"
+  breaks exact substring matching). Copy the phrasing directly from the failing query text provided
+  to you, don't rephrase it to sound cleaner.
+
 ### Rule 6 — Non-English queries: language normalization is SuperAgent's job, not ours
 SuperAgent translates/normalizes user queries to English BEFORE they reach kb_answer.
 Do NOT propose per-phrase _MULTILINGUAL_TERMS additions as a fix — that is an endless,
@@ -879,6 +894,24 @@ then apply Rules 1-5 and Architect Mode exactly as you would for an English quer
    equivalent would clearly be answered) and no code-level fix in this skill applies →
    action_type=MARK_RESOLVED is wrong (it wasn't resolved) — use INSUFFICIENT_DATA with
    reasoning noting this is a SuperAgent-side normalization issue, not a kb_answer gap.
+
+### Rule 7 — NEW_CONCEPT must cover ONE coherent topic — never bundle unrelated docs
+If you recommend NEW_CONCEPT with source_boosts listing 2+ docs, every one of those docs
+gets boosted for ANY query that matches the new concept's aliases/keywords — not just
+queries specific to that one doc. This was verified to actively break retrieval: a concept
+bundling an SSO doc and an unrelated "Recipes" doc caused SSO-specific queries to retrieve
+the Recipes doc instead, because the Recipes doc's unboosted base score happened to be
+higher for some query phrasings, and the shared concept boosted both indiscriminately.
+- Before recommending NEW_CONCEPT with multiple source_boosts entries, ask: are these docs
+  about the SAME specific topic (e.g. two docs that are both steps in one workflow), or
+  merely in the same general subject AREA (e.g. both under "Console administration")?
+  Only the former justifies one concept.
+- If the docs cover genuinely different topics that just happened to fail in the same gap
+  bucket, recommend SEPARATE NEW_CONCEPT entries, one per topic, each with its own aliases
+  and its own single-doc (or tightly-related multi-doc) source_boosts.
+- This applies to ADD_ALIAS/RAISE_SOURCE_BOOST onto an EXISTING multi-doc concept too — if
+  the concept you're pointing at already boosts unrelated docs, flag that as a pre-existing
+  risk in your reasoning rather than adding more unrelated aliases to it.
 
 Think step by step. Analyze each IDK query individually. Name the specific docs and concept targets."""
 
@@ -925,6 +958,11 @@ you can prove NO existing doc covers the topic even with routing improvements.
 7. General knowledge, infrastructure alerts, off-topic → OUT_OF_SCOPE.
 8. Bot Studio DB/variable queries: manage-variables.md + api-node.md may cover them.
    ⚠ FALSE-POSITIVE = wrong doc retrieved, not missing doc.
+9. Any term in keywords_to_add that contains a space → INVALID, move it to aliases instead
+   (Rule 5b — multi-word keywords never match in this skill's code).
+10. Any NEW_CONCEPT with 2+ docs in source_boosts → re-check Rule 7: are those docs REALLY
+    the same specific topic, or did you bundle them because they failed in the same gap
+    bucket? If the latter, split into separate NEW_CONCEPT recommendations.
 
 ## Re-run Architect Mode comparison
 Before finalizing: did you actually compare 2+ candidate fixes in Turn 1, or did you
@@ -1100,6 +1138,26 @@ No prose, no markdown fences. Only JSON."""
                 "[DEPRECATED ACTION BLOCKED] Judge recommended ADD_LANGUAGE_MAPPING, which is "
                 "out of scope — SuperAgent handles language normalization upstream, not kb_answer. "
                 f"Original reasoning: {parsed.get('reasoning', '')}"
+            )
+
+        # Safety net: multi-word keywords_to_add never match in this skill's code
+        # (Rule 5b — the fallback matcher checks single tokenized words, never phrases).
+        # Strip any offending entries rather than silently shipping a recommendation
+        # that looks actionable but would do nothing when applied.
+        bad_keywords = [k for k in (parsed.get("keywords_to_add") or []) if " " in k.strip()]
+        if bad_keywords:
+            logger.warning(
+                "  worker[%s] proposed multi-word keywords_to_add for %s (never match in "
+                "this skill's single-token matcher): %s — dropped, flagging for manual alias review",
+                task_id, gap_key, bad_keywords,
+            )
+            parsed["keywords_to_add"] = [
+                k for k in (parsed.get("keywords_to_add") or []) if " " not in k.strip()
+            ]
+            parsed["reasoning"] = (
+                f"[MULTI-WORD KEYWORD STRIPPED] Judge proposed keywords_to_add containing spaces "
+                f"({bad_keywords}) — these never match (Rule 5b). Consider adding as aliases instead "
+                f"with exact query phrasing. Original reasoning: {parsed.get('reasoning', '')}"
             )
 
         return {
