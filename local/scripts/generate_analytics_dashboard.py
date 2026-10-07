@@ -500,7 +500,15 @@ def analyze_traces(traces: List[Dict]) -> Dict[str, Any]:
         module = meta.get("module_label", "Unknown")
         modules[module]["count"] += 1
         modules[module]["answered" if is_answered else "idk"] += 1
-        confidence = meta.get("top_score") or 0.0
+        # Was meta.get("top_score") — the unbounded ranking-boost sum, not the
+        # actual 0-1 capped confidence (_reported_confidence in skill/kb_answer.py).
+        # Despite the variable/field being named "confidence" everywhere in this
+        # function, it was really averaging top_score, which is why "Avg
+        # Confidence" cards showed values like 5.76 captioned "out of 20" — that
+        # was top_score's typical range, not confidence's. Fixed to read the
+        # real field so this matches every other confidence computation in this
+        # file (parity metrics, weekly charts) and the skill itself.
+        confidence = meta.get("confidence") or 0.0
         modules[module]["total_confidence"] += confidence
 
         # Video platform tracking
@@ -986,7 +994,7 @@ def generate_product_summary_cards(segment_key: str, analysis: Dict[str, Any], a
                     <div class="metric">
                         <div class="metric-label">Avg Confidence</div>
                         <div class="metric-value">{avg_conf}</div>
-                        <div class="metric-unit">out of 20</div>
+                        <div class="metric-unit">out of 1.0</div>
                     </div>
                 </div>
             </div>
@@ -1377,7 +1385,7 @@ def generate_query_analytics_html(analysis: Dict[str, Any], segment_key: str) ->
                 <div class="metric">
                     <div class="metric-label">Avg Confidence</div>
                     <div class="metric-value status-good">{analysis['avg_confidence']}</div>
-                    <div class="metric-unit">out of 20</div>
+                    <div class="metric-unit">out of 1.0</div>
                 </div>
             </div>
 
@@ -2764,6 +2772,29 @@ def main():
     if not traces:
         print("❌ No trace data available. Cannot generate dashboard.")
         return
+
+    # Clamp confidence to the current formula's real range [0, 1]. Older traces
+    # (pre-v4.x logic_version) were produced by an UNBOUNDED formula
+    # (raw top_score / 8.0 — see _reported_confidence's docstring in
+    # skill/kb_answer.py), so their stored confidence can be well above 1.0
+    # (observed up to ~8.6 for boost-heavy modules). Averaging those directly
+    # against current capped values produces a meaningless blended number with
+    # no real scale — this is done ONCE here, at the single point where every
+    # trace source (live API + NDJSON) has already been merged, so every
+    # downstream avg_confidence computation in this file gets clean data
+    # without needing per-call-site fixes.
+    _clamped = 0
+    for t in traces:
+        meta = t.get("metadata")
+        if not meta:
+            continue
+        conf = meta.get("confidence")
+        if isinstance(conf, (int, float)) and conf > 1.0:
+            meta["confidence"] = 1.0
+            _clamped += 1
+    if _clamped:
+        print(f"🧮 Clamped {_clamped} trace(s) with confidence > 1.0 "
+              f"(stale pre-cap formula values) down to 1.0")
 
     # CC EXPRESS FEATURE: partition traces by detected_product_original
     print(f"🗂️  Partitioning {len(traces)} traces by product...")
