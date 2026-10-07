@@ -5850,6 +5850,14 @@ _MODULE_CAPABILITY_SIGNALS = (
     "new to", "walk me through",
 )
 
+# Explicit "give me the video for this" asks — a media-format preference on
+# whatever topic was already established, not a signal that the underlying
+# request is broad/multi-module. See _is_module_capability_query.
+_VIDEO_FORMAT_REQUEST_SIGNALS = (
+    "show me a video", "show me video", "video walkthrough",
+    "walkthrough video", "video tutorial", "video for this",
+)
+
 
 def _is_module_capability_query(q: str) -> bool:
     """Broad capability/discovery ask that explicitly names a product module.
@@ -5870,6 +5878,16 @@ def _is_module_capability_query(q: str) -> bool:
     # stay troubleshooting even though it names a module and contains "what can".
     if any(x in q for x in _TROUBLESHOOT_SIGNALS):
         return False
+    # "show me a video walkthrough for <specific narrow task>" is a MEDIA FORMAT
+    # preference, not a capability/breadth signal — but it still contains "show
+    # me", which would otherwise classify it as "overview" intent here. Overview
+    # intent always serves the YouTube catalog and never even tries DemoForge
+    # (see video-selection branch in the main pipeline), so a bare "show me"
+    # match on a narrow how-to request permanently skips DemoForge for no good
+    # reason. Require a REAL capability signal (not just "show me") when the
+    # query is explicitly asking for a video/walkthrough/tutorial.
+    if any(v in q for v in _VIDEO_FORMAT_REQUEST_SIGNALS):
+        return any(p in q for p in _MODULE_CAPABILITY_SIGNALS if p != "show me")
     return any(p in q for p in _MODULE_CAPABILITY_SIGNALS)
 
 
@@ -8607,7 +8625,7 @@ def _send_langfuse(
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "logic_version": "kb-answer-v4.19",
+        "logic_version": "kb-answer-v4.20",
         "prompt_version": None,
         "model": "rules-runtime",
         "temperature": 0,
