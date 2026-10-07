@@ -8625,7 +8625,7 @@ def _send_langfuse(
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "logic_version": "kb-answer-v4.21",
+        "logic_version": "kb-answer-v4.22",
         "prompt_version": None,
         "model": "rules-runtime",
         "temperature": 0,
@@ -9193,22 +9193,45 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
             _video_rows = list(evidence or [])
             _video_rows.extend(scored or [])
 
-            def _youtube_single(reason=None):
-                nonlocal video_source, _df_fallback_reason
-                _single = select_video(
-                    query, intent, explicit_module, _video_rows,
-                    language=_lang, context=context,
-                )
-                _vids = [_single] if _single else []
-                video_source = "youtube" if _vids else "none"
-                if reason:
-                    _df_fallback_reason = reason
-                return _vids
+            # ================================================================
+            # YOUTUBE RETIRED (2026-10-07) — DemoForge has 100% module×intent
+            # manifest coverage (verified: 9 modules x 11 intents = 99/99 cells
+            # filled), so every YouTube fallback branch below is now dead
+            # weight for real traffic — it only ever fired on genuine coverage
+            # gaps or DemoForge API failures, and the coverage gaps no longer
+            # exist. DemoForge is also the intended lead-capture surface
+            # (personalized share links), so routing to YouTube instead is a
+            # lost lead-capture opportunity, not just a worse video.
+            #
+            # Every `select_video(...)` / `select_videos(...)` / `catalog_videos(...)`
+            # call in this block is commented out and replaced with "no video"
+            # (empty list) instead of a YouTube fallback. The function
+            # definitions themselves are untouched elsewhere in this file.
+            #
+            # TO ROLL BACK: uncomment the `_youtube_single`/`catalog_videos`/
+            # `select_videos` call sites below and restore the two `return
+            # _youtube_single(...)` lines in `_try_demoforge_then_youtube`,
+            # and the exception-handler YouTube fallback. Nothing else needs
+            # to change — the retired code is preserved verbatim in comments.
+            # ================================================================
+            # def _youtube_single(reason=None):
+            #     nonlocal video_source, _df_fallback_reason
+            #     _single = select_video(
+            #         query, intent, explicit_module, _video_rows,
+            #         language=_lang, context=context,
+            #     )
+            #     _vids = [_single] if _single else []
+            #     video_source = "youtube" if _vids else "none"
+            #     if reason:
+            #         _df_fallback_reason = reason
+            #     return _vids
 
             def _try_demoforge_then_youtube(demo_module):
-                """Try DemoForge for demo_module, fall back to a single YouTube
-                video on no-match or share-link API failure. Sets video_source/
-                _df_demo_id/_df_latency_ms/_df_fallback_reason as a side effect."""
+                """Try DemoForge for demo_module. YouTube fallback retired
+                2026-10-07 (see banner above) — no-match / API-failure cases
+                now return no video instead of falling back to YouTube.
+                Sets video_source/_df_demo_id/_df_latency_ms/_df_fallback_reason
+                as a side effect."""
                 nonlocal video_source, _df_demo_id, _df_latency_ms, _df_fallback_reason
                 demoforge_demo = select_demoforge_demo(
                     query=query, intent=intent, module=demo_module, context=context,
@@ -9230,49 +9253,52 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                         video_source = "demoforge"
                         return [demoforge_demo]
                     _df_fallback_reason = "api_failure"
-                    return _youtube_single(reason="api_failure")
+                    video_source = "none"
+                    return []  # was: return _youtube_single(reason="api_failure")
                 _df_fallback_reason = "no_demoforge_match"
-                return _youtube_single(reason="no_demoforge_match")
+                video_source = "none"
+                return []  # was: return _youtube_single(reason="no_demoforge_match")
 
             if intent == "overview":
                 # A platform-wide pitch ("what can Gupshup do", "show me demos")
-                # can't be assembled from one page's evidence, so the retriever
-                # only surfaces a single module. For these sales / new-user asks,
-                # return the curated catalog of module walkthroughs instead.
-                # Platform pitch, OR an explicit "show me all videos / all
-                # features" ask (which returns the full catalog even when a
-                # module like SuperAgent is also named).
+                # can't be assembled from one page's evidence — previously fell
+                # back to the curated YouTube module-tour catalog here. Retired
+                # 2026-10-07: no DemoForge equivalent exists for a multi-module
+                # breadth response yet, so this now returns no video rather
+                # than a YouTube catalog. Revisit if a DemoForge-based catalog
+                # (e.g. minting N module-overview share links) is built later.
                 _platform = _is_platform_pitch(query, explicit_module) or _wants_full_catalog(query, explicit_module)
                 if _platform:
-                    videos = catalog_videos(
-                        query, language=_lang, context=context,
-                    ) or []
-                    video_source = "youtube" if videos else "none"
-                    _df_fallback_reason = "overview_intent_platform_catalog"
+                    # videos = catalog_videos(
+                    #     query, language=_lang, context=context,
+                    # ) or []
+                    # video_source = "youtube" if videos else "none"
+                    videos = []
+                    video_source = "none"
+                    _df_fallback_reason = "overview_intent_platform_catalog_youtube_retired"
                 else:
                     # Module-scoped overview ("what can Bot Studio do?", "tell me
                     # about Agent Assist") names ONE specific module — exactly
                     # what DemoForge demos are indexed by. Every module in the
-                    # manifest has a dedicated overview demo, so there's no
-                    # reason to skip straight to YouTube here; try DemoForge
-                    # first, same as the non-overview path below.
+                    # manifest has a dedicated overview demo (100% coverage,
+                    # verified 2026-10-07), so this reliably resolves to
+                    # DemoForge now.
                     _video_top_source = str(evidence[0].get("source") or "") if evidence else ""
                     _video_module = (
                         explicit_module if explicit_module != "General"
                         else (_module_from_source(_video_top_source) if _video_top_source else "General")
                     )
                     videos = _try_demoforge_then_youtube(_video_module)
-                    if not videos:
-                        # No module-specific demo and no YouTube match either —
-                        # fall back to the retriever-ranked multi-video surface
-                        # so an overview ask still gets SOMETHING.
-                        videos = select_videos(
-                            query, intent, explicit_module, _video_rows,
-                            language=_lang, context=context, require_query_overlap=False,
-                        ) or []
-                        video_source = "youtube" if videos else "none"
+                    # Final retriever-ranked multi-video YouTube fallback retired
+                    # 2026-10-07 — if DemoForge has no match, show no video.
+                    # if not videos:
+                    #     videos = select_videos(
+                    #         query, intent, explicit_module, _video_rows,
+                    #         language=_lang, context=context, require_query_overlap=False,
+                    #     ) or []
+                    #     video_source = "youtube" if videos else "none"
             else:
-                # Non-overview: try DemoForge first, then YouTube fallback.
+                # Non-overview: DemoForge only (YouTube fallback retired 2026-10-07).
                 # When the query didn't route to a specific module ("General"),
                 # infer one from the actual top evidence doc instead of always
                 # falling through to the generic "General Demo" mapping — the
@@ -9286,18 +9312,23 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                 )
                 videos = _try_demoforge_then_youtube(_video_module)
         except Exception as e:
-            logger.warning(f"Video selection failed: {e}; falling back to YouTube")
-            try:
-                _single = select_video(
-                    query, intent, explicit_module, _video_rows,
-                    language=_lang, context=context,
-                )
-                videos = [_single] if _single else []
-                video_source = "youtube" if videos else "none"
-                _df_fallback_reason = "video_selection_exception"
-            except Exception:
-                videos = []
-                video_source = "none"
+            # YouTube exception-handler fallback retired 2026-10-07 — on any
+            # video-selection error, show no video instead of falling back to
+            # YouTube. See retirement banner above for rollback instructions.
+            logger.warning(f"Video selection failed: {e}; no video shown (YouTube fallback retired)")
+            videos = []
+            video_source = "none"
+            # try:
+            #     _single = select_video(
+            #         query, intent, explicit_module, _video_rows,
+            #         language=_lang, context=context,
+            #     )
+            #     videos = [_single] if _single else []
+            #     video_source = "youtube" if videos else "none"
+            #     _df_fallback_reason = "video_selection_exception"
+            # except Exception:
+            #     videos = []
+            #     video_source = "none"
 
     # Emit a dedicated video_selection telemetry event to Langfuse.
     videos = [
