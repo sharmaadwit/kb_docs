@@ -8625,7 +8625,7 @@ def _send_langfuse(
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "logic_version": "kb-answer-v4.20",
+        "logic_version": "kb-answer-v4.21",
         "prompt_version": None,
         "model": "rules-runtime",
         "temperature": 0,
@@ -9205,6 +9205,35 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                     _df_fallback_reason = reason
                 return _vids
 
+            def _try_demoforge_then_youtube(demo_module):
+                """Try DemoForge for demo_module, fall back to a single YouTube
+                video on no-match or share-link API failure. Sets video_source/
+                _df_demo_id/_df_latency_ms/_df_fallback_reason as a side effect."""
+                nonlocal video_source, _df_demo_id, _df_latency_ms, _df_fallback_reason
+                demoforge_demo = select_demoforge_demo(
+                    query=query, intent=intent, module=demo_module, context=context,
+                )
+                if demoforge_demo:
+                    _df_demo_id = demoforge_demo.get("demo_id")
+                    share_link = _mint_demoforge_share_link(
+                        demo_id=_df_demo_id,
+                        context=context,
+                        params=params,
+                        correlation_id=correlation_id,
+                        parent_trace_id=parent_trace_id,
+                    )
+                    if share_link:
+                        _df_latency_ms = share_link.get("api_latency_ms")
+                        if not demoforge_demo.get("url") and share_link.get("share_url"):
+                            demoforge_demo["url"] = share_link.get("share_url")
+                        demoforge_demo.update(share_link)
+                        video_source = "demoforge"
+                        return [demoforge_demo]
+                    _df_fallback_reason = "api_failure"
+                    return _youtube_single(reason="api_failure")
+                _df_fallback_reason = "no_demoforge_match"
+                return _youtube_single(reason="no_demoforge_match")
+
             if intent == "overview":
                 # A platform-wide pitch ("what can Gupshup do", "show me demos")
                 # can't be assembled from one page's evidence, so the retriever
@@ -9218,15 +9247,30 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                     videos = catalog_videos(
                         query, language=_lang, context=context,
                     ) or []
-                # Module-scoped overview (or empty catalog): let the retriever's
-                # ranking decide and surface every covered module's walkthrough.
-                if not videos:
-                    videos = select_videos(
-                        query, intent, explicit_module, _video_rows,
-                        language=_lang, context=context, require_query_overlap=False,
-                    ) or []
-                video_source = "youtube" if videos else "none"
-                _df_fallback_reason = "overview_intent"
+                    video_source = "youtube" if videos else "none"
+                    _df_fallback_reason = "overview_intent_platform_catalog"
+                else:
+                    # Module-scoped overview ("what can Bot Studio do?", "tell me
+                    # about Agent Assist") names ONE specific module — exactly
+                    # what DemoForge demos are indexed by. Every module in the
+                    # manifest has a dedicated overview demo, so there's no
+                    # reason to skip straight to YouTube here; try DemoForge
+                    # first, same as the non-overview path below.
+                    _video_top_source = str(evidence[0].get("source") or "") if evidence else ""
+                    _video_module = (
+                        explicit_module if explicit_module != "General"
+                        else (_module_from_source(_video_top_source) if _video_top_source else "General")
+                    )
+                    videos = _try_demoforge_then_youtube(_video_module)
+                    if not videos:
+                        # No module-specific demo and no YouTube match either —
+                        # fall back to the retriever-ranked multi-video surface
+                        # so an overview ask still gets SOMETHING.
+                        videos = select_videos(
+                            query, intent, explicit_module, _video_rows,
+                            language=_lang, context=context, require_query_overlap=False,
+                        ) or []
+                        video_source = "youtube" if videos else "none"
             else:
                 # Non-overview: try DemoForge first, then YouTube fallback.
                 # When the query didn't route to a specific module ("General"),
@@ -9240,32 +9284,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                     explicit_module if explicit_module != "General"
                     else (_module_from_source(_video_top_source) if _video_top_source else "General")
                 )
-                demoforge_demo = select_demoforge_demo(
-                    query=query, intent=intent, module=_video_module, context=context,
-                )
-                if demoforge_demo:
-                    _df_demo_id = demoforge_demo.get("demo_id")
-                    share_link = _mint_demoforge_share_link(
-                        demo_id=_df_demo_id,
-                        context=context,
-                        params=params,
-                        correlation_id=correlation_id,
-                        parent_trace_id=parent_trace_id,
-                    )
-                    if share_link:
-                        _df_latency_ms = share_link.get("api_latency_ms")
-                        # Ensure a rendering URL exists (share_url may serve as url).
-                        if not demoforge_demo.get("url") and share_link.get("share_url"):
-                            demoforge_demo["url"] = share_link.get("share_url")
-                        demoforge_demo.update(share_link)
-                        videos = [demoforge_demo]
-                        video_source = "demoforge"
-                    else:
-                        videos = _youtube_single(reason="api_failure")
-                        _df_fallback_reason = "api_failure"
-                else:
-                    videos = _youtube_single(reason="no_demoforge_match")
-                    _df_fallback_reason = "no_demoforge_match"
+                videos = _try_demoforge_then_youtube(_video_module)
         except Exception as e:
             logger.warning(f"Video selection failed: {e}; falling back to YouTube")
             try:
