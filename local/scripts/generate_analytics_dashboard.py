@@ -267,12 +267,29 @@ def load_ndjson_traces(days: int = 7) -> List[Dict]:
     cutoff = datetime.utcnow() - timedelta(days=days)
 
     traces = {}
-    ndjson_files = ["kb/analytics/kb_usage.ndjson", "kb/analytics/2026-07-02.ndjson"]
+    # Analytics NDJSON files are written one-per-day as kb/analytics/YYYY-MM-DD.ndjson
+    # (see _kb_append_analytics_event in skill/kb_answer.py). This used to be a
+    # hardcoded 2-file list (kb_usage.ndjson + one stale dated file), which meant
+    # this function silently stopped reflecting reality the day after that
+    # hardcoded date — real events kept landing in the correct daily files but
+    # this function never looked at them. Generate the actual date range instead,
+    # covering a small buffer past `days` so a UTC/local-clock day-boundary
+    # mismatch can't drop the oldest day in the window.
+    _today = datetime.utcnow().date()
+    ndjson_files = ["kb/analytics/kb_usage.ndjson"]
+    for _offset in range(days + 1):
+        _d = _today - timedelta(days=_offset)
+        ndjson_files.append(f"kb/analytics/{_d.isoformat()}.ndjson")
 
     for ndjson_path in ndjson_files:
         try:
-            # GitLab raw file API
-            url = f"{gitlab_host}/api/v4/projects/{project_id}/repository/files/{urllib.parse.quote(ndjson_path)}/raw?ref={branch}"
+            # GitLab raw file API — the file_path segment must be fully percent-encoded,
+            # including '/' (GitLab requires %2F; quote()'s default safe='/' leaves slashes
+            # unescaped, which 404s because GitLab reads them as extra path segments rather
+            # than part of the file_path parameter). This silently broke every NDJSON fetch
+            # in this module — masked by the broad 404-is-ignored handler below.
+            encoded_path = urllib.parse.quote(ndjson_path, safe="")
+            url = f"{gitlab_host}/api/v4/projects/{project_id}/repository/files/{encoded_path}/raw?ref={branch}"
             req = urllib.request.Request(url, headers=headers)
             with urllib.request.urlopen(req, timeout=30, context=ssl_ctx) as resp:
                 for line in resp:
@@ -349,12 +366,29 @@ def load_video_events(days: int = 7) -> Dict[str, Any]:
     by_module = defaultdict(int)
     latest_ts = ""
 
-    ndjson_files = ["kb/analytics/kb_usage.ndjson", "kb/analytics/2026-07-02.ndjson"]
+    # Analytics NDJSON files are written one-per-day as kb/analytics/YYYY-MM-DD.ndjson
+    # (see _kb_append_analytics_event in skill/kb_answer.py). This used to be a
+    # hardcoded 2-file list (kb_usage.ndjson + one stale dated file), which meant
+    # this function silently stopped reflecting reality the day after that
+    # hardcoded date — real events kept landing in the correct daily files but
+    # this function never looked at them. Generate the actual date range instead,
+    # covering a small buffer past `days` so a UTC/local-clock day-boundary
+    # mismatch can't drop the oldest day in the window.
+    _today = datetime.utcnow().date()
+    ndjson_files = ["kb/analytics/kb_usage.ndjson"]
+    for _offset in range(days + 1):
+        _d = _today - timedelta(days=_offset)
+        ndjson_files.append(f"kb/analytics/{_d.isoformat()}.ndjson")
 
     for ndjson_path in ndjson_files:
         try:
-            # GitLab raw file API
-            url = f"{gitlab_host}/api/v4/projects/{project_id}/repository/files/{urllib.parse.quote(ndjson_path)}/raw?ref={branch}"
+            # GitLab raw file API — the file_path segment must be fully percent-encoded,
+            # including '/' (GitLab requires %2F; quote()'s default safe='/' leaves slashes
+            # unescaped, which 404s because GitLab reads them as extra path segments rather
+            # than part of the file_path parameter). This silently broke every NDJSON fetch
+            # in this module — masked by the broad 404-is-ignored handler below.
+            encoded_path = urllib.parse.quote(ndjson_path, safe="")
+            url = f"{gitlab_host}/api/v4/projects/{project_id}/repository/files/{encoded_path}/raw?ref={branch}"
             req = urllib.request.Request(url, headers=headers)
             with urllib.request.urlopen(req, timeout=30, context=ssl_ctx) as resp:
                 for line in resp:
