@@ -125,30 +125,72 @@ def _doc_covers_queries(doc_path_str: str, queries: List[str]) -> bool:
     return covered / len(english_queries) >= 0.60
 
 
+_VALID_ACTION_TYPES = frozenset({
+    "MARK_RESOLVED", "ADD_ALIAS", "ADD_KEYWORD", "RAISE_SOURCE_BOOST",
+    "NEW_CONCEPT", "CREATE_DOC", "EXPAND_DOC_SECTION", "ADJUST_GUARDRAIL",
+    "IMPROVE_TELEMETRY", "INSUFFICIENT_DATA",
+})
+
+# Action types that legitimately don't require an EXISTING doc/concept:
+# CREATE_DOC/EXPAND_DOC_SECTION/NEW_CONCEPT explicitly propose something new
+# (often citing concept_target="NEW:some_name" or a related-but-insufficient
+# matching_doc for context — neither should be treated as hallucination), and
+# MARK_RESOLVED/IMPROVE_TELEMETRY/INSUFFICIENT_DATA/ADJUST_GUARDRAIL don't
+# make a routing claim at all. Confirmed via judge_outputs history: 18 of 41
+# real CREATE_DOC verdicts populate concept_target (mostly "NEW:xyz") — an
+# earlier version of this function gated on field-population alone and would
+# have falsely flagged all of those as grounding failures.
+_SKIP_GROUNDING_ACTION_TYPES = frozenset({
+    "CREATE_DOC", "EXPAND_DOC_SECTION", "NEW_CONCEPT", "MARK_RESOLVED",
+    "IMPROVE_TELEMETRY", "INSUFFICIENT_DATA", "ADJUST_GUARDRAIL",
+})
+
+
 def _validate_verdict(verdict: Dict[str, Any], gap_key: str,
                       queries: Optional[List[str]] = None) -> Dict[str, Any]:
     """Deterministic post-processing guard: override hallucinated verdicts.
 
     Rules (applied in order):
-    1. If action_type is ADD_KEYWORD/ADD_ALIAS/RAISE_SOURCE_BOOST AND the
-       matching_doc does not exist on disk → override to CREATE_DOC.
-    2. If action_type is ADD_KEYWORD/ADD_ALIAS AND the concept_target does not
-       exist in CONCEPT_REGISTRY → clear concept_target, override to CREATE_DOC
-       (adding keywords to a non-existent concept is meaningless).
+    1. If matching_doc is populated AND does not exist on disk → override to
+       CREATE_DOC.
+    2. If concept_target is populated AND does not exist in CONCEPT_REGISTRY →
+       override to CREATE_DOC (adding keywords/aliases to a non-existent
+       concept is meaningless).
     3. Log every override so there is a clear audit trail.
 
-    Never touches OUT_OF_SCOPE, NOISE, CREATE_DOC, IMPROVE_TELEMETRY, or
-    MARK_RESOLVED verdicts — those don't depend on a real doc/concept.
+    Gating on action_type membership in _SKIP_GROUNDING_ACTION_TYPES (not on
+    exact string match to ADD_KEYWORD/ADD_ALIAS/RAISE_SOURCE_BOOST) is
+    deliberate: a real run emitted action_type="HAS_DOCS_FAILS" — a legacy
+    BUCKET label, not a valid action_type (not in _VALID_ACTION_TYPES) — with
+    a concept_target that doesn't exist in CONCEPT_REGISTRY. The old gate only
+    validated the three known-good action strings, so this invalid-but-
+    plausible-looking value skipped validation entirely and shipped a
+    hallucinated concept as a "Fix Now" recommendation. Any action_type NOT in
+    the explicit skip-list now gets validated — including unrecognized/
+    mislabeled ones — while the legitimate "I'm proposing something new"
+    verdict types stay exempt.
+
+    Never touches OUT_OF_SCOPE, NOISE, or verdicts in _SKIP_GROUNDING_ACTION_TYPES.
     """
     action = verdict.get("action_type") or ""
     bucket = verdict.get("bucket") or ""
 
-    # Only validate verdicts that claim a doc/concept fix exists
-    if action not in ("ADD_KEYWORD", "ADD_ALIAS", "RAISE_SOURCE_BOOST"):
+    if action and action not in _VALID_ACTION_TYPES:
+        logger.warning(
+            "  worker for %s emitted invalid action_type=%r (not in taxonomy) — "
+            "validating concept_target/matching_doc anyway since it's not in "
+            "the known-exempt skip list",
+            gap_key, action,
+        )
+
+    if action in _SKIP_GROUNDING_ACTION_TYPES:
         return verdict
 
     doc = (verdict.get("matching_doc") or "").strip().lstrip("/")
     concept = (verdict.get("concept_target") or "").strip()
+
+    if not doc and not concept:
+        return verdict
 
     overrides: list = []
 
@@ -788,6 +830,15 @@ MARK_RESOLVED | ADD_ALIAS | ADD_KEYWORD | RAISE_SOURCE_BOOST | NEW_CONCEPT |
 CREATE_DOC | EXPAND_DOC_SECTION | ADJUST_GUARDRAIL |
 IMPROVE_TELEMETRY | INSUFFICIENT_DATA
 
+⚠️ action_type MUST be one of the 10 values above, exactly as spelled. Do NOT
+put a bucket name (HAS_DOCS_FAILS, NO_DOCS_IN_SCOPE, NEEDS_BOOST, etc.) in the
+action_type field — those are the OUTPUT of the mapping below, computed FROM
+your action_type, never written there directly. "HAS_DOCS_FAILS" in particular
+has been observed in action_type by mistake — if your diagnosis is "a doc
+covers this but isn't being retrieved," the action_type is ADD_ALIAS or
+ADD_KEYWORD (whichever applies), and bucket becomes HAS_DOCS_FAILS as a
+side effect of the mapping — never the other way around.
+
 ## Backward-compat bucket mapping (also set "bucket" field):
 - ADD_ALIAS / ADD_KEYWORD / RAISE_SOURCE_BOOST / NEW_CONCEPT → HAS_DOCS_FAILS (RAISE_SOURCE_BOOST → also set bucket=NEEDS_BOOST, NEW_CONCEPT → NEW_CONCEPT_NEEDED)
 - CREATE_DOC / EXPAND_DOC_SECTION → NO_DOCS_IN_SCOPE
@@ -997,6 +1048,8 @@ Requirements:
 - action_type: one of MARK_RESOLVED|ADD_ALIAS|ADD_KEYWORD|RAISE_SOURCE_BOOST|NEW_CONCEPT|CREATE_DOC|EXPAND_DOC_SECTION|ADJUST_GUARDRAIL|IMPROVE_TELEMETRY|INSUFFICIENT_DATA
   There is no ADD_LANGUAGE_MAPPING action — language normalization is SuperAgent's job.
   If a query is non-English, translate its intent to English first, then pick from this list.
+  Do NOT write a bucket name (e.g. HAS_DOCS_FAILS) into action_type — bucket is a
+  SEPARATE field computed FROM action_type via the mapping below, never set directly.
 - bucket: backward-compat label (ADD_ALIAS/ADD_KEYWORD → HAS_DOCS_FAILS, RAISE_SOURCE_BOOST → NEEDS_BOOST, NEW_CONCEPT → NEW_CONCEPT_NEEDED, CREATE_DOC/EXPAND_DOC_SECTION → NO_DOCS_IN_SCOPE, ADJUST_GUARDRAIL → GUARDRAIL_FALSE_POSITIVE, IMPROVE_TELEMETRY → IMPROVE_TELEMETRY, MARK_RESOLVED → OUT_OF_SCOPE, INSUFFICIENT_DATA → UNKNOWN)
 - keywords_to_add (if ADD_KEYWORD): EXACT terms lifted from the IDK query text itself
   (substring-matchable), ENGLISH ONLY — if the query was non-English, use the translated term.
