@@ -8570,6 +8570,9 @@ def _send_langfuse(
     correlation_id: Optional[str] = None,
     parent_trace_id: Optional[str] = None,
     policy_meta: Optional[Dict[str, Any]] = None,
+    entities: Optional[List[Dict]] = None,
+    near_miss: Optional[List[Dict]] = None,
+    guardrail_category: Optional[str] = None,
 ) -> Dict:
     trace_id = f"kb-{trace_name}-{uuid.uuid4().hex[:16]}"
     top_source = results[0].get("source") if results else None
@@ -8625,7 +8628,7 @@ def _send_langfuse(
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "logic_version": "kb-answer-v4.22",
+        "logic_version": "kb-answer-v4.23",
         "prompt_version": None,
         "model": "rules-runtime",
         "temperature": 0,
@@ -8655,6 +8658,30 @@ def _send_langfuse(
         "accuracy_label": None,
         "accuracy_score": None,
         "accuracy_source": None,
+        # Tier 1 telemetry additions (2026-10-07) — data already computed mid-
+        # pipeline for routing/answering, previously discarded instead of logged.
+        # entities_matched: which CONCEPT_REGISTRY concept(s) actually fired for
+        # this query. Ground truth for "no concept matched" (real content gap)
+        # vs "a concept matched but lost to a competing doc" (routing bug) —
+        # the supervisor judge previously had to infer this from static code
+        # reading and sometimes hallucinated concepts that don't exist.
+        "entities_matched": (
+            [e.get("id") for e in entities if isinstance(e, dict) and e.get("id")]
+            if entities else []
+        ),
+        # near_miss_candidates: top-ranked scored chunks beyond the winner, so
+        # "was the correct doc #2, narrowly losing?" is directly observable
+        # instead of requiring a live pipeline re-run to check.
+        "near_miss_candidates": (
+            [
+                {"source": c.get("source"), "score": round(c.get("score", 0.0), 2)}
+                for c in near_miss[:5] if isinstance(c, dict)
+            ] if near_miss else []
+        ),
+        # guardrail_category: WHICH guardrail fired (pricing/offtopic/etc.), not
+        # just that intent=="refusal". Previously computed (_guardrail_category)
+        # and used only to format the query echo text, never logged.
+        "guardrail_category": guardrail_category,
     }
     if was_translated:
         metadata["query_translated"] = q_prev
@@ -8952,6 +8979,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
             correlation_id=correlation_id,
             parent_trace_id=parent_trace_id,
             policy_meta={},
+            guardrail_category=gr_cat,
         )
         return {
             "ok": True,
@@ -9397,6 +9425,8 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
         correlation_id=correlation_id,
         parent_trace_id=parent_trace_id,
         policy_meta=policy_meta,
+        entities=entities,
+        near_miss=scored[:5] if scored else None,
     )
     # cross_sell field: already extracted above before video append
     cross_sell_text = _cross_sell_extracted
@@ -9446,6 +9476,7 @@ def kb_search(
     # Guardrail check — refuse sensitive / off-topic searches the same way
     # kb_answer does so that correlation-linked traces are consistent.
     guardrail = _guardrail_answer(query)
+    gr_cat = _guardrail_category(query)
     if guardrail:
         latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
         langfuse = _send_langfuse(
@@ -9457,6 +9488,7 @@ def kb_search(
             correlation_id=correlation_id,
             parent_trace_id=parent_trace_id,
             policy_meta={},
+            guardrail_category=gr_cat,
         )
         return {
             "ok": True,
@@ -9517,6 +9549,8 @@ def kb_search(
         correlation_id=correlation_id,
         parent_trace_id=parent_trace_id,
             policy_meta={},
+            entities=entities,
+            near_miss=scored[:5] if scored else None,
         )
 
     return {
