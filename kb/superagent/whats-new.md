@@ -10,6 +10,14 @@ slug: "whats-new"
 
 Recent updates, new features, and improvements to SuperAgent.
 
+## Superagent 2.0: It Works Like Chat — October 7, 2026
+
+Superagent now looks and works like the chat app you already use. Your chats are on the left, the conversation is in the middle, and everything about an agent is on the right. Your agents are contacts, and people and agents can work together in one chat.
+
+- **The new layout** (3) — three-pane layout (chat list, conversation, agent info panel); filter chips (All/Unread/Groups/Agents/Archived/Deleted); your own agent pinned at the top of the chat list; a short one-time guide video on first sign-in
+- **Agents** (4) — agents are contacts: create one with **+ → New agent**; the new Agent info panel (replacing the old settings page) shows where it can talk, its `soul.md` instructions, connected apps/skills/web search, and its notebook; each agent keeps a persistent notebook of what you've taught it; **Clear chat** starts a fresh conversation while the agent keeps its memory, docs, and `soul.md`
+- **Groups** (3) — people and agents share one chat; @mention an agent to assign it work, visible to everyone in the group; agents can hand off part of the work to another agent via @mention; agents can post to a group on a schedule
+
 ## Gupshup MCP: WhatsApp, SMS & RCS by Conversation — July 29, 2026
 
 Connect your Gupshup Enterprise account once and run your messaging by asking. Get templates approved, launch and monitor campaigns, and read your analytics across WhatsApp, SMS and RCS, with 40 ready-made commands you reach by typing `/` in chat.
