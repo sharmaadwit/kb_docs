@@ -20,6 +20,15 @@ import re
 # dropped.
 TEST_ACCOUNTS = {"adwit.sharma@gupshup.io"}
 
+# All times shown on the dashboard, and the day/week grouping, use IST (UTC+5:30).
+# Stored trace timestamps and internal cutoffs stay UTC.
+IST_OFFSET = timedelta(hours=5, minutes=30)
+
+
+def _to_ist(dt: datetime) -> datetime:
+    """Naive-UTC datetime -> naive IST datetime."""
+    return dt + IST_OFFSET
+
 
 def summarize_test_traffic(traces: List[Dict]) -> Dict[str, Any]:
     """Lightweight summary of excluded test/maintainer traffic for transparency."""
@@ -562,7 +571,10 @@ def analyze_traces(traces: List[Dict]) -> Dict[str, Any]:
 
         # Daily tracking
         timestamp = trace.get("timestamp", "")
-        date = timestamp.split("T")[0] if timestamp else "unknown"
+        try:
+            date = _to_ist(datetime.fromisoformat(timestamp.replace("Z", "+00:00")).replace(tzinfo=None)).strftime("%Y-%m-%d")
+        except Exception:
+            date = timestamp.split("T")[0] if timestamp else "unknown"
         daily_metrics[date]["total"] += 1
         if is_answered:
             daily_metrics[date]["answered"] += 1
@@ -2139,11 +2151,7 @@ def generate_consulting_effectiveness_html(ce: Dict[str, Any], mt: Dict[str, Any
             <h2>🎯 Consulting Mode Effectiveness</h2>
             <p style="color:#666; font-size:0.85em; margin-bottom:16px;">
                 Accuracy and engagement impact of consulting-tone answers vs. standard, plus per-module
-                adoption vs. configured traffic split. Scoped to traces since the turn-tracking fix
-                (excludes older traffic from before the current traffic_pct config, which would otherwise
-                blend multiple historical splits into a misleading number). Adoption is measured against
-                the true routing-time module (what the code actually gates on), not the display label
-                shown elsewhere in this dashboard — those can diverge for broadly-phrased queries.
+                adoption vs. configured traffic split.
             </p>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; margin-bottom: 20px;">
@@ -2181,9 +2189,7 @@ def generate_consulting_effectiveness_html(ce: Dict[str, Any], mt: Dict[str, Any
 
             <h3 style="margin-bottom: 12px;">📊 Per-Module Adoption vs. Configured Split</h3>
             <p style="color:#666; font-size:0.85em; margin-bottom:16px;">
-                Each module's own traffic since its own last traffic_pct change (see
-                CONSULTING_CONFIG_EPOCH) — not blended with traffic from before that module's
-                current split took effect.
+                Each module's traffic since its configured split last changed.
             </p>
             <table style="width:100%; border-collapse:collapse; margin-bottom:24px;">
                 <thead>
@@ -2203,8 +2209,7 @@ def generate_consulting_effectiveness_html(ce: Dict[str, Any], mt: Dict[str, Any
 
             <h3 style="margin-bottom: 12px;">🔗 Multi-Turn Session Tracking</h3>
             <p style="color:#666; font-size:0.85em; margin-bottom:16px;">
-                Real multi-turn conversations (real user identity, clustered by 10-minute proximity —
-                see memory: superagent-pii-scrubbing for why session_id alone can't be used for grouping).
+                Real multi-turn conversations, grouped by user and 10-minute proximity.
             </p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; margin-bottom: 20px;">
                 <div style="background: #eff6ff; padding: 16px; border-radius: 8px;">
@@ -2228,17 +2233,10 @@ def generate_consulting_effectiveness_html(ce: Dict[str, Any], mt: Dict[str, Any
                     <div style="font-size: 0.75em; color: #999;">n={mt['later_turn_n']}, conf={_fmt(mt['later_turn_avg_conf'])}</div>
                 </div>
             </div>
-            <p style="color:#999; font-size:0.75em; margin-bottom:20px; font-style:italic;">
-                Note: first-vs-later-turn accuracy has shown no consistent direction across repeated checks
-                (answer-rate and confidence deltas have pointed opposite ways in different samples) — reported
-                as observed data, not evidence that conversation depth causes better or worse accuracy.
-            </p>
 
             <h3 style="margin-bottom: 12px;">🌐 Session/Identity Capture by Environment</h3>
             <p style="color:#666; font-size:0.85em; margin-bottom:16px;">
-                Share of traces with a real client-provided session_id vs. a real (non-placeholder) user
-                email, by environment — see memory: superagent-pii-scrubbing for why these are often low
-                in PROD_EXT (VAPT PII stripping upstream, not a code bug here).
+                Share of traces with a real session ID and a real user email, by environment.
             </p>
             <table style="width:100%; border-collapse:collapse; margin-bottom:8px;">
                 <thead>
@@ -2343,7 +2341,7 @@ def compute_weekly_accuracy_increment(traces: List[Dict]) -> Dict[str, Any]:
         if not ts_str:
             continue
         try:
-            dt = datetime.fromisoformat(ts_str.replace("Z", "+00:00")).replace(tzinfo=None)
+            dt = _to_ist(datetime.fromisoformat(ts_str.replace("Z", "+00:00")).replace(tzinfo=None))
             week_iso = dt.strftime("%Y-W%V")  # ISO week format (2026-W32)
             by_week[week_iso].append(t)
         except Exception:
@@ -2457,8 +2455,285 @@ def generate_weekly_accuracy_report(weekly_data: Dict[str, Any]) -> str:
     return html
 
 
+# PER-AGENT ANALYTICS: source_agent is a caller-declared slug (see skill/kb_answer.py
+# _extract_source_agent). Traces from before agents were instructed to send it have no
+# tag, so unknown-user traffic up to the cutoff is attributed per environment. Real,
+# identified users and anything after the cutoff are never backfilled.
+SOURCE_AGENT_BACKFILL_CUTOFF = datetime(2026, 10, 8, 7, 52, 49)  # naive UTC, matches _parse_ts()
+SOURCE_AGENT_BACKFILL = {"PROD_EXT": "sa_embeded_ccx", "PROD": "concierge"}
+SOURCE_AGENT_TRACKED_ENVS = ("PROD", "PROD_EXT", "INT")
+
+
+def _is_unknown_user(meta: Dict[str, Any]) -> bool:
+    """True when the trace has no real caller identity (empty, synthetic sess:/exec:/acct:
+    ids, placeholder words, a bare handle with no '@', or the ccexpress.gupshup.io domain)."""
+    e = str(meta.get("user_email") or "").strip().lower()
+    if not e or e in ("unknown", "none", "anonymous"):
+        return True
+    if e.split("@")[0].split(":")[0] in ("sess", "exec", "acct", "anon", "unknown"):
+        return True
+    if "@" not in e:
+        return True
+    return e.endswith("@ccexpress.gupshup.io")
+
+
+def apply_source_agent_backfill(traces: List[Dict]) -> Dict[str, int]:
+    """Stamp metadata.source_agent_origin on every trace ('tagged' | 'backfill' | 'untagged')
+    and backfill source_agent for historical unknown-user traffic. Mutates in memory only."""
+    counts = {"tagged": 0, "backfill": 0, "untagged": 0}
+    for t in traces:
+        meta = t.get("metadata")
+        if not isinstance(meta, dict):
+            continue
+        sa = meta.get("source_agent")
+        if sa and sa != "unknown":
+            meta["source_agent_origin"] = "tagged"
+            counts["tagged"] += 1
+            continue
+        label = SOURCE_AGENT_BACKFILL.get(meta.get("trace_env"))
+        ts = _parse_ts(t)
+        if label and ts and ts <= SOURCE_AGENT_BACKFILL_CUTOFF and _is_unknown_user(meta):
+            meta["source_agent"] = label
+            meta["source_agent_origin"] = "backfill"
+            counts["backfill"] += 1
+        else:
+            meta["source_agent_origin"] = "untagged"
+            counts["untagged"] += 1
+    return counts
+
+
+def analyze_source_agents(traces: List[Dict]) -> List[Dict[str, Any]]:
+    """One row per (trace_env, source_agent) for PROD / PROD_EXT / INT, reusing analyze_traces()
+    so metrics match the segment tabs. Test accounts and test-agent-* probes are excluded."""
+    groups: Dict[Any, List[Dict]] = {}
+    for t in traces:
+        meta = t.get("metadata")
+        if not isinstance(meta, dict) or meta.get("trace_env") not in SOURCE_AGENT_TRACKED_ENVS:
+            continue
+        agent = meta.get("source_agent") or "unknown"
+        if str(agent).startswith("test-agent"):
+            continue
+        has_real_agent_tag = agent != "unknown"
+        if meta.get("user_email") in TEST_ACCOUNTS and not has_real_agent_tag:
+            continue
+        groups.setdefault((meta["trace_env"], agent), []).append(t)
+
+    rows = []
+    for (env, agent), ts in groups.items():
+        a = analyze_traces(ts)
+        stamps = sorted(d for d in (_parse_ts(t) for t in ts) if d)
+        origins = [(t.get("metadata") or {}).get("source_agent_origin") for t in ts]
+        rows.append({
+            "trace_env": env, "source_agent": agent, "traces": len(ts),
+            "answer_rate": a.get("answer_rate"), "idk_rate": a.get("idk_rate"),
+            "avg_confidence": a.get("avg_confidence"),
+            "unknown_user_pct": round(100 * sum(_is_unknown_user(t.get("metadata") or {}) for t in ts) / len(ts), 1),
+            "tagged": origins.count("tagged"), "backfilled": origins.count("backfill"),
+            "first_seen": _to_ist(stamps[0]).strftime("%Y-%m-%d") if stamps else "",
+            "last_seen": _to_ist(stamps[-1]).strftime("%Y-%m-%d") if stamps else "",
+        })
+    total = sum(r["traces"] for r in rows) or 1
+    for r in rows:
+        r["share_pct"] = round(100 * r["traces"] / total, 1)
+    rows.sort(key=lambda r: (r["trace_env"], -r["traces"]))
+    return rows
+
+
+def generate_source_agent_html(rows: Optional[List[Dict[str, Any]]]) -> str:
+    if not rows:
+        return ""
+    body = ""
+    for r in rows:
+        unattributed = r["source_agent"] == "unknown"
+        style = ' style="color:#999;"' if unattributed else ""
+        body += (
+            f'<tr{style}><td>{r["trace_env"]}</td><td><b>{r["source_agent"]}</b></td>'
+            f'<td>{r["traces"]}</td><td>{r["share_pct"]}%</td><td>{r["answer_rate"]}%</td><td>{r["idk_rate"]}%</td>'
+            f'<td>{r["avg_confidence"]}</td><td>{r["unknown_user_pct"]}%</td>'
+            f'<td>{r["first_seen"]} to {r["last_seen"]}</td></tr>\n'
+        )
+    return f"""
+        <div class="card" style="background:white;border-radius:12px;padding:20px;margin:16px 0;">
+            <h2>🤖 Per-Agent Breakdown (PROD / PROD_EXT / INT)</h2>
+            <table>
+                <thead><tr><th>Env</th><th>Agent</th><th>Traces</th><th>Share</th><th>Answer</th><th>IDK</th>
+                <th>Avg conf</th><th>Unknown users</th><th>Active</th></tr></thead>
+                <tbody>
+{body}                </tbody>
+            </table>
+        </div>
+"""
+
+
+
+def generate_freshness_badge(traces: List[Dict]) -> str:
+    """Fixed top-right badge: generation time + newest trace time. The relative age is computed
+    in the viewer's browser, so a stale copy shows its real age whenever it is opened."""
+    stamps = [d for d in (_parse_ts(t) for t in traces) if d]
+    gen = datetime.utcnow()
+    latest = max(stamps) if stamps else None
+    gen_iso = gen.strftime("%Y-%m-%dT%H:%M:%SZ")
+    latest_iso = latest.strftime("%Y-%m-%dT%H:%M:%SZ") if latest else ""
+    latest_txt = _to_ist(latest).strftime("%Y-%m-%d %H:%M IST") if latest else "n/a"
+    return f"""
+    <div id="freshness-badge" data-generated="{gen_iso}" data-latest="{latest_iso}"
+         style="position:fixed;top:10px;right:14px;z-index:9999;background:rgba(255,255,255,0.97);border-radius:10px;
+                padding:8px 12px;font-size:12px;line-height:1.5;color:#333;box-shadow:0 4px 14px rgba(0,0,0,0.25);
+                border-left:5px solid #10b981;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+        <div><b>Last updated:</b> {_to_ist(gen).strftime("%Y-%m-%d %H:%M")} IST <span id="fb-gen-age" style="color:#666;"></span></div>
+        <div><b>Newest trace:</b> {latest_txt} <span id="fb-latest-age" style="color:#666;"></span></div>
+    </div>
+    <script>
+    (function(){{
+      var b=document.getElementById("freshness-badge"); if(!b) return;
+      function age(iso){{ if(!iso) return null; var m=Math.round((Date.now()-new Date(iso).getTime())/60000);
+        if(m<1) return "just now"; if(m<60) return m+" min ago"; var h=Math.round(m/60);
+        if(h<48) return h+" h ago"; return Math.round(h/24)+" days ago"; }}
+      var gm=(Date.now()-new Date(b.dataset.generated).getTime())/3600000;
+      var g=age(b.dataset.generated), l=age(b.dataset.latest);
+      document.getElementById("fb-gen-age").textContent = g ? "("+g+")" : "";
+      document.getElementById("fb-latest-age").textContent = l ? "("+l+")" : "";
+      b.style.borderLeftColor = gm<6 ? "#10b981" : (gm<24 ? "#f59e0b" : "#e74c3c");
+      if(gm>=24) document.getElementById("fb-gen-age").textContent += " - may be outdated";
+    }})();
+    </script>
+"""
+
+
+# PER-AGENT PAGE: one tab per agent plus a consolidated view, same panels as the product tabs.
+AGENT_TABS = [
+    # (tab key, source_agent value or None for consolidated, label, icon, accent colour)
+    ("consolidated", None, "Consolidated", "📊", "#667eea"),
+    ("cc_embed", "sa_embeded_ccx", "CC Embed", "🚀", "#e74c3c"),
+    ("concierge", "concierge", "Concierge", "🛎️", "#10b981"),
+    ("video", "video_agent", "Video", "🎬", "#f59e0b"),
+]
+AGENT_PAGE_ENVS = ("PROD", "PROD_EXT", "INT")
+
+
+def _agent_page_traces(traces: List[Dict]) -> List[Dict]:
+    """Deployed-environment traces only. test-agent-* probes are always excluded. Maintainer
+    accounts are excluded UNLESS the trace carries a real agent tag (e.g. a maintainer firing a
+    one-off test through a real agent) — a genuine agent tag should never be discarded as noise."""
+    out = []
+    for t in traces:
+        meta = t.get("metadata")
+        if not isinstance(meta, dict) or meta.get("trace_env") not in AGENT_PAGE_ENVS:
+            continue
+        agent = str(meta.get("source_agent") or "")
+        if agent.startswith("test-agent"):
+            continue
+        has_real_agent_tag = agent not in ("", "unknown") and not agent.startswith("test-agent")
+        if meta.get("user_email") in TEST_ACCOUNTS and not has_real_agent_tag:
+            continue
+        out.append(t)
+    return out
+
+
+def _subtab_group(gid: str, items: List[Any]) -> str:
+    """CSS-only sub-tab group. items = [(key, label, body_html)]; the first item is shown."""
+    inputs = labels = contents = css = ""
+    for i, (key, label, body) in enumerate(items):
+        inp = f"{gid}-in-{key}"
+        inputs += f'            <input type="radio" class="tab-input" name="{gid}" id="{inp}"{" checked" if i == 0 else ""}>\n'
+        labels += f'                <label class="sub-tab" for="{inp}">{label}</label>\n'
+        contents += f'            <div class="sub-tab-content" id="{gid}-{key}">\n{body}\n            </div>\n'
+        css += (f'            #{inp}:checked ~ .sub-tabs label[for="{inp}"] {{ background: #10b981; color: white; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4); }}\n'
+                f'            #{inp}:checked ~ #{gid}-{key} {{ display: block; }}\n')
+    return f'{inputs}            <div class="sub-tabs">\n{labels}            </div>\n{contents}            <style>\n{css}            </style>\n'
+
+
+def _product_compare_html(all_analysis: Dict[str, Any]) -> str:
+    rows = ""
+    for seg, label in (("standalone", "🌐 Standalone"), ("cc_express", "🚀 CC Express")):
+        a = all_analysis.get(seg)
+        if not isinstance(a, dict):
+            continue
+        rows += (f'<tr><td><b>{label}</b></td><td class="numeric">{a.get("total_queries", 0)}</td>'
+                 f'<td class="numeric">{a.get("answer_rate", 0)}%</td><td class="numeric">{a.get("idk_rate", 0)}%</td>'
+                 f'<td class="numeric">{a.get("avg_confidence", 0)}</td></tr>\n')
+    return f"""
+            <div class="section"><h2>🧩 Product view</h2>
+            <table><thead><tr><th>Product</th><th class="numeric">Traces</th><th class="numeric">Answer</th><th class="numeric">IDK</th><th class="numeric">Avg conf</th></tr></thead>
+            <tbody>{rows}</tbody></table></div>"""
+
+
+def build_dashboard_tabs(traces: List[Dict], source_agent_rows: List[Dict[str, Any]], all_analysis: Dict[str, Any],
+                         weekly_by_segment: Dict[str, Any], parity: Optional[Dict], ref_label: str) -> Dict[str, str]:
+    """Top-level tabs: Consolidated | CC Embed | Concierge | Video.
+    Consolidated also hosts the page-wide sections (topics, consulting, multi-turn) and the product view."""
+    from collections import Counter
+    pool = _agent_page_traces(traces)
+    fast_mode = os.environ.get("DASHBOARD_FAST_MODE", "").lower() in ("1", "true", "yes")
+
+    panels, pills, pill_inputs, tab_css = "", "", "", ""
+    for idx, (key, agent, label, icon, accent) in enumerate(AGENT_TABS):
+        ns = f"agt_{key}"
+        seg = pool if agent is None else [t for t in pool if (t.get("metadata") or {}).get("source_agent") == agent]
+        tab_id = f"top-agt-{key}"
+        pill_inputs += f'        <input type="radio" class="tab-input" name="top-tab" id="{tab_id}"{" checked" if idx == 0 else ""}>\n'
+        pills += f'            <label class="product-pill" for="{tab_id}">{icon} {label} <span class="pill-count">{len(seg):,}</span></label>\n'
+        tab_css += (
+            f'        #{tab_id}:checked ~ .product-pills label[for="{tab_id}"] {{ background: white; color: {accent}; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }}\n'
+            f'        #{tab_id}:checked ~ #panel-agt-{key} {{ display: block; }}\n'
+        )
+
+        if not seg:
+            panels += f"""
+        <div class="product-panel" id="panel-agt-{key}">
+            <div class="section"><h2>{icon} {label}</h2>
+            <p class="muted">No traffic yet.</p></div>
+        </div>
+"""
+            continue
+
+        analysis = analyze_traces(seg)
+        analysis['conversations'] = None if fast_mode else analyze_conversations(seg)
+        analysis['_traces'] = seg
+        weekly = compute_weekly_accuracy_increment(seg)
+        cards = generate_product_summary_cards(ns, analysis, {ns: analysis}).replace(ns.title(), label)
+        conv_html = generate_conversation_reports(analysis.get('conversations') or _empty_conv_fallback(), segment_key=ns)
+        query_html = generate_query_analytics_html(analysis, segment_key=ns)
+        weekly_html = generate_weekly_accuracy_report(weekly)
+
+        if agent is None:
+            overview = (f"{cards}\n{generate_source_agent_html(source_agent_rows)}\n{weekly_html}\n"
+                        f"{generate_landing_snapshot({'consolidated': analysis})}")
+            consulting = generate_consulting_effectiveness_html(
+                analyze_consulting_effectiveness(pool), analyze_multiturn_tracking(pool))
+
+            product = _product_compare_html(all_analysis)
+            if parity:
+                product += "\n" + generate_parity_widget(parity, ref_label)
+            for pseg, plabel in (("standalone", "🌐 Standalone"), ("cc_express", "🚀 CC Express")):
+                pa = all_analysis.get(pseg)
+                if not isinstance(pa, dict):
+                    continue
+                product += f"""
+            <details class="fold"><summary>{plabel}: full analytics ({pa.get('total_queries', 0):,} traces, {pa.get('answer_rate', 0)}% answered)</summary>
+            <div class="fold-body">
+{generate_product_summary_cards(pseg, pa, all_analysis)}
+{generate_weekly_accuracy_report(weekly_by_segment.get(pseg, {}))}
+{generate_conversation_reports(pa.get('conversations') or _empty_conv_fallback(), segment_key=pseg)}
+{generate_query_analytics_html(pa, segment_key=pseg)}
+            </div></details>"""
+            items = [("overview", "📈 Overview", overview), ("consulting", "🎯 Consulting &amp; Multi-turn", consulting),
+                     ("conv", "💬 Conversations", conv_html), ("query", "📊 Queries", query_html),
+                     ("product", "🧩 By product", product)]
+        else:
+            items = [("overview", "📈 Overview", f"{cards}\n{weekly_html}"),
+                     ("conv", "💬 Conversations", conv_html), ("query", "📊 Queries", query_html)]
+
+        panels += f"""
+        <div class="product-panel" id="panel-agt-{key}">
+{_subtab_group(f"sub-{key}", items)}
+        </div>
+"""
+    return {"inputs": pill_inputs, "pills": pills, "css": tab_css, "panels": panels}
+
+
 # CC EXPRESS FEATURE: main generate_html() now accepts all_analysis + video_data + parity
-def generate_html(all_analysis: Dict[str, Any], video_data: Dict[str, Any], parity: Optional[Dict], weekly_by_segment: Dict[str, Any] = None) -> str:
+def generate_html(all_analysis: Dict[str, Any], video_data: Dict[str, Any], parity: Optional[Dict], weekly_by_segment: Dict[str, Any] = None, source_agent_rows: Optional[List[Dict[str, Any]]] = None) -> str:
     """Generate comprehensive HTML with product-segmented tabs.
 
     all_analysis: dict keyed by segment ('standalone', 'cc_express', 'console').
@@ -2471,70 +2746,13 @@ def generate_html(all_analysis: Dict[str, Any], video_data: Dict[str, Any], pari
     if weekly_by_segment is None:
         weekly_by_segment = {}
 
-    # CC EXPRESS FEATURE: display order + labels
-    # Always show Standalone and CC Express, optionally Console if present
-    segment_order = [k for k in ['standalone', 'cc_express'] if k in all_analysis] + \
-                    [k for k in ['console'] if k in all_analysis]
-    segment_labels = {'standalone': 'Standalone', 'cc_express': 'CC Express', 'console': 'Console'}
-    segment_icons  = {'standalone': '🌐', 'cc_express': '🚀', 'console': '🖥️'}
-
     # Reference segment label for the parity widget
-    ref_label = segment_labels.get('console' if 'console' in all_analysis else 'standalone', 'Reference')
+    ref_label = {'standalone': 'Standalone', 'console': 'Console'}.get('console' if 'console' in all_analysis else 'standalone', 'Reference')
 
-    # Build per-segment HTML blocks
-    segment_blocks = {}
-    for seg in segment_order:
-        analysis = all_analysis[seg]
-        ns = seg
-
-        # Conversation Insights sub-tab  # CC EXPRESS FEATURE: namespaced
-        conv_html = generate_conversation_reports(
-            analysis.get('conversations', _empty_conv_fallback()),
-            segment_key=ns,
-        )
-
-        # Query Analytics sub-tab  # CC EXPRESS FEATURE: namespaced
-        query_html = generate_query_analytics_html(analysis, segment_key=ns)
-
-        # CC Express parity widget only in the cc_express segment  # CC EXPRESS FEATURE
-        parity_html = ''
-        if seg == 'cc_express' and parity:
-            parity_html = generate_parity_widget(parity, ref_label)
-
-        # Product summary cards  # CC EXPRESS FEATURE
-        summary_cards = generate_product_summary_cards(seg, analysis, all_analysis)
-
-        segment_blocks[seg] = (summary_cards, conv_html, query_html, parity_html)
-
-    # --- Build the first tab ID (the active one) ---
-    first_seg = segment_order[0] if segment_order else 'standalone'
-
-    # Product pill radio inputs + labels  # CC EXPRESS FEATURE (CSS-only tabs)
-    product_pill_inputs = ''
-    product_pill_buttons = ''
-    top_tab_css = ''
-    for i, seg in enumerate(segment_order):
-        tab_id = f'top-{seg}'
-        checked = ' checked' if i == 0 else ''
-        label = segment_icons.get(seg, '') + ' ' + segment_labels.get(seg, seg.title())
-        product_pill_inputs += f'        <input type="radio" class="tab-input" name="top-tab" id="{tab_id}"{checked}>\n'
-        product_pill_buttons += f'            <label class="product-pill" for="{tab_id}">{label}</label>\n'
-        top_tab_css += (
-            f'        #{tab_id}:checked ~ .product-pills label[for="{tab_id}"] {{ background: white; color: #667eea; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }}\n'
-            f'        #{tab_id}:checked ~ #panel-{seg} {{ display: block; }}\n'
-        )
-
-    now_str = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
-
-    # SALES LANDING SNAPSHOT: leads + topics aggregated across all segments
-    landing_snapshot = generate_landing_snapshot(all_analysis)
-
-    # CONSULTING MODE EFFECTIVENESS + MULTI-TURN TRACKING: global, all raw traces across segments
+    now_str = _to_ist(datetime.utcnow()).strftime('%Y-%m-%d %H:%M:%S')
     all_raw_traces = [t for a in all_analysis.values() if isinstance(a, dict) for t in a.get('_traces', [])]
-    consulting_effectiveness_html = generate_consulting_effectiveness_html(
-        analyze_consulting_effectiveness(all_raw_traces),
-        analyze_multiturn_tracking(all_raw_traces),
-    )
+    tabs = build_dashboard_tabs(all_raw_traces, source_agent_rows or [], all_analysis, weekly_by_segment, parity, ref_label)
+    freshness_badge = generate_freshness_badge(all_raw_traces)
 
     html = f"""<!DOCTYPE html>
 <html>
@@ -2641,93 +2859,52 @@ def generate_html(all_analysis: Dict[str, Any], video_data: Dict[str, Any], pari
         .grouping-stats .stat-row {{ display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }}
         .grouping-stats .stat-label {{ color: #666; }}
         .grouping-stats .stat-value {{ font-weight: 700; color: #667eea; }}
+
+        /* REDESIGN: readability overrides */
+        .header h1 {{ font-size: 2em; margin-bottom: 4px; }}
+        .header p {{ font-size: 0.95em; }}
+        .header {{ margin-bottom: 18px; }}
+        .product-pills {{
+            position: sticky; top: 8px; z-index: 40; margin-bottom: 20px;
+            background: rgba(88, 70, 160, 0.92); backdrop-filter: blur(6px); box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }}
+        .product-pill {{ padding: 12px 28px; font-size: 1.05em; }}
+        .pill-count {{ opacity: 0.7; font-weight: 500; font-size: 0.82em; margin-left: 6px; }}
+        .sub-tabs {{ flex-wrap: wrap; gap: 6px; padding: 0; margin-bottom: 18px; }}
+        .sub-tab {{ flex: 0 1 auto; padding: 9px 18px; font-size: 0.9em; }}
+        .section h2 {{ font-size: 1.3em; margin-bottom: 14px; padding-bottom: 8px; }}
+        .section {{ padding: 20px; }}
+        .meta-note {{ color: rgba(255,255,255,0.92); font-size: 0.9em; line-height: 1.5; margin: 0 0 16px; }}
+        .muted {{ color: #777; font-size: 0.9em; margin-bottom: 12px; }}
+        details.fold {{ background: white; border-radius: 12px; margin-bottom: 14px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); }}
+        details.fold > summary {{ padding: 16px 20px; cursor: pointer; font-weight: 600; color: #333; list-style-position: inside; }}
+        details.fold > .fold-body {{ padding: 4px 20px 20px; background: #f4f5fb; border-radius: 0 0 12px 12px; }}
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
+{freshness_badge}
     <div class="container">
         <div class="header">
             <h1>📊 Comprehensive KB Analytics Dashboard</h1>
-            <p>Live Langfuse Telemetry • Last Updated: {now_str} UTC</p>
+            <p>Last Updated: {now_str} IST</p>
         </div>
 
-        <!-- SALES LANDING SNAPSHOT: leads + topics surfaced above product tabs -->
-{landing_snapshot}
-        <!-- CONSULTING MODE EFFECTIVENESS + MULTI-TURN TRACKING: global, above product tabs -->
-{consulting_effectiveness_html}
-        <!-- CC EXPRESS FEATURE: Product pill selector (CSS-only radio tabs, replaces onclick nav) -->
-{product_pill_inputs}        <div class="product-pills">
-{product_pill_buttons}        </div>
+        <!-- TOP-LEVEL TABS: Consolidated | CC Embed | Concierge | Video -->
+{tabs['inputs']}        <div class="product-pills">
+{tabs['pills']}        </div>
         <style>
-{top_tab_css}        </style>
+{tabs['css']}        </style>
 """
 
-    # CC EXPRESS FEATURE: Emit one panel per product
-    for i, seg in enumerate(segment_order):
-        summary_cards, conv_html, query_html, parity_html = segment_blocks[seg]
-        ns = seg
-        label = segment_labels.get(seg, seg.title())
-
-        sub_group = f"substab-{ns}"
-        conv_id = f"{sub_group}-conv"
-        query_id = f"{sub_group}-query"
-        sub_tab_css = (
-            f'            #{conv_id}:checked ~ .sub-tabs label[for="{conv_id}"] {{ background: #10b981; color: white; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4); }}\n'
-            f'            #{query_id}:checked ~ .sub-tabs label[for="{query_id}"] {{ background: #10b981; color: white; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4); }}\n'
-            f'            #{conv_id}:checked ~ #subtab-{ns}-conv {{ display: block; }}\n'
-            f'            #{query_id}:checked ~ #subtab-{ns}-query {{ display: block; }}\n'
-        )
-
-        html += f"""
-        <!-- CC EXPRESS FEATURE: product panel for {seg} -->
-        <div class="product-panel" id="panel-{seg}">
-
-            <!-- Product summary cards -->
-{summary_cards}
-
-            <!-- Weekly Accuracy Increment Report -->
-{generate_weekly_accuracy_report(weekly_by_segment.get(seg, {}))}
-
-            <!-- CC EXPRESS FEATURE: Sub-tab nav (Conversation Insights | Query Analytics), CSS-only -->
-            <input type="radio" class="tab-input" name="{sub_group}" id="{conv_id}" checked>
-            <input type="radio" class="tab-input" name="{sub_group}" id="{query_id}">
-            <div class="sub-tabs" id="sub-tabs-{ns}">
-                <label class="sub-tab" for="{conv_id}">💬 Conversation Insights</label>
-                <label class="sub-tab" for="{query_id}">📊 Query Analytics</label>
-            </div>
-
-            <!-- Sub-tab: Conversation Insights -->
-            <div class="sub-tab-content" id="subtab-{ns}-conv">
-{conv_html}
-            </div>
-
-            <!-- Sub-tab: Query Analytics -->
-            <div class="sub-tab-content" id="subtab-{ns}-query">
-{query_html}
-            </div>
-            <style>
-{sub_tab_css}            </style>
-"""
-        # CC EXPRESS FEATURE: parity widget only in cc_express panel
-        if parity_html:
-            html += f"""
-            <!-- CC EXPRESS FEATURE: Parity widget (cc_express only) -->
-{parity_html}
-"""
-
-        html += """        </div>
-"""
+    html += tabs['panels']
 
     html += f"""
         <!-- Global footer -->
 
         <div class="footer">
             <div class="data-source">
-                <strong>Data Source:</strong> Live Langfuse API (Real-time telemetry)
-                <br>
-                <strong>Dashboard Generated:</strong> {now_str} UTC
-                <br>
-                <strong>Coverage:</strong> Last 15 days of production queries
+                <strong>Dashboard Generated:</strong> {now_str} IST
             </div>
         </div>
     </div>
@@ -2795,6 +2972,11 @@ def main():
     if _clamped:
         print(f"🧮 Clamped {_clamped} trace(s) with confidence > 1.0 "
               f"(stale pre-cap formula values) down to 1.0")
+
+    # PER-AGENT ANALYTICS: attribute historical unknown-user traffic, then roll up per agent
+    bf = apply_source_agent_backfill(traces)
+    print(f"🤖 source_agent: {bf['tagged']} tagged | {bf['backfill']} backfilled | {bf['untagged']} untagged")
+    source_agent_rows = analyze_source_agents(traces)
 
     # CC EXPRESS FEATURE: partition traces by detected_product_original
     print(f"🗂️  Partitioning {len(traces)} traces by product...")
@@ -2902,7 +3084,7 @@ def main():
               f"{tg['total_hierarchical_chains']} hierarchical chains")
 
     print(f"\n🎨 Generating HTML dashboard with all reports...")
-    html = generate_html(all_analysis, video_data, parity, weekly_by_segment)
+    html = generate_html(all_analysis, video_data, parity, weekly_by_segment, source_agent_rows)
 
     output_path = Path("/Users/adwit.sharma/kb_docs/local/reports/comprehensive_dashboard.html")
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -2916,6 +3098,7 @@ def main():
     analysis_path = Path("/Users/adwit.sharma/kb_docs/local/reports/dashboard_analysis.json")
     serialisable = {seg: {k: v for k, v in a.items() if k != '_traces'} for seg, a in all_analysis.items()}
     serialisable['_parity'] = parity
+    serialisable['_source_agents'] = source_agent_rows
     with open(analysis_path, "w") as f:
         json.dump(serialisable, f, indent=2, default=str)
 
