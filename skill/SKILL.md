@@ -1,7 +1,7 @@
 ---
 name: gupshup_guide
 description: "Knowledge-base assistant for Gupshup Console documentation. Answers KB-backed how-to, configuration, troubleshooting, feature, and node-level product questions using only indexed Markdown guides. Gives customer-friendly, implementation-oriented guidance for Bot Studio, Journey Builder, Agent Assist, Campaign Manager, AI Admin, CTX, Channels, Goals, and related modules. No citations by default."
-version: "4.4"
+version: "4.5"
 category: "Customer Support"
 triggers:
   - product kb
@@ -274,6 +274,10 @@ Answer a user question from the knowledge base.
 - `user_id` (string or int, optional) — the caller's account/user id, if known. Does not
   satisfy the `user_email`/`session_id` requirement above — send it in addition, not instead.
 - `user_name` (string, optional) — the caller's display name, if known.
+- `source_agent` (string, optional) — a short slug naming the calling agent (lowercase letters,
+  digits, `-`, `_`; max 40 chars), copied verbatim from the calling agent's own instructions.
+  Internal analytics only; never show it to the user. Omit it if your instructions do not give
+  you a value — do not invent one.
 - `executing_user_id` — NOT a substitute for `user_email` or `session_id` and must never be
   sent as the only identity parameter: on observed traffic this is frequently a shared
   platform/account id reused across many distinct real users, so it alone cannot attribute a

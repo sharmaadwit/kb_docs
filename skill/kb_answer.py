@@ -8290,6 +8290,19 @@ def _langfuse_user_context(
     return (trace_user_id or None, meta_user)
 
 
+_SOURCE_AGENT_RE = re.compile(r"^[a-z0-9][a-z0-9_-]{0,39}$")
+
+def _extract_source_agent(params: Optional[Dict[str, Any]] = None) -> str:
+    """Caller-declared microagent identifier (LLM-filled from the agent's own
+    instructions, so untrusted/spoofable: analytics only). Normalized to a
+    lowercase slug; anything missing or malformed becomes "unknown"."""
+    raw = params.get("source_agent") if isinstance(params, dict) else None
+    if not isinstance(raw, str):
+        return "unknown"
+    slug = re.sub(r"[\s]+", "-", raw.strip().lower())
+    return slug if _SOURCE_AGENT_RE.match(slug) else "unknown"
+
+
 _DEBUG_RAW_CAPTURE_MAX_LEN = 4000
 
 def _debug_identity_param_keys(context, params: Optional[Dict[str, Any]] = None) -> Optional[str]:
@@ -8628,7 +8641,7 @@ def _send_langfuse(
         "environment": identifiers.get("environment"),
         "deployment_label": identifiers.get("deployment_label"),
         "telemetry_partition": identifiers.get("telemetry_partition"),
-        "logic_version": "kb-answer-v4.23",
+        "logic_version": "kb-answer-v4.24",
         "prompt_version": None,
         "model": "rules-runtime",
         "temperature": 0,
@@ -8637,6 +8650,7 @@ def _send_langfuse(
         "module_label": module_label,
         "module_source": module_source,
         "trace_env": identifiers.get("environment"),
+        "source_agent": _extract_source_agent(params),
         "selected_answer_mode": selected_answer_mode,
         "answered": answered,
         "clarification_asked": clarification_asked,
