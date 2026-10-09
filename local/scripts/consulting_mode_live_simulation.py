@@ -43,7 +43,7 @@ def load_env():
 def send_query(query: str, session_id: str, user_email: str) -> dict:
     """Send a single query to SuperAgent and capture full response."""
     api_url = os.environ.get("SUPERAGENT_API_URL", "")
-    api_key = os.environ.get("SUPERAGENT_API_KEY", "")
+    api_key = os.environ.get("SUPERAGENT_API_KEY_guide_test_smsgupshup", "")
 
     payload = {
         "message": query,

@@ -41,7 +41,7 @@ def _load_env():
 _load_env()
 
 SUPERAGENT_URL   = os.environ.get("SUPERAGENT_API_URL", "https://superagent.smsgupshup.com/api/agents/chat/stream")
-SUPERAGENT_KEY   = os.environ.get("SUPERAGENT_API_KEY", "")
+SUPERAGENT_KEY   = os.environ.get("SUPERAGENT_API_KEY_guide_test_smsgupshup", "")
 ORG_ID           = os.environ.get("SUPERAGENT_ORG_ID", "")
 PROJECT_ID       = os.environ.get("SUPERAGENT_PROJECT_ID", "")
 LANGFUSE_HOST    = os.environ.get("LANGFUSE_HOST", "https://cloud.langfuse.com")
@@ -215,7 +215,7 @@ def main():
     args = parser.parse_args()
 
     if not SUPERAGENT_KEY:
-        print("ERROR: SUPERAGENT_API_KEY not set in .env")
+        print("ERROR: SUPERAGENT_API_KEY_guide_test_smsgupshup not set in .env")
         sys.exit(1)
     if not LANGFUSE_PUBLIC or not LANGFUSE_SECRET:
         print("ERROR: LANGFUSE credentials not set in .env")

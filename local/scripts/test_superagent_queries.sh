@@ -3,15 +3,15 @@
 # Test script: Send 3 Phase 2 queries to SuperAgent
 # Queries covering: RCS/WhatsApp, Agent Assist guardrails, Campaign Manager A/B testing
 
-# Load env variables carefully (skip comments and empty lines)
-export SUPERAGENT_API_URL="https://superagent.smsgupshup.com/api/agents/chat/stream"
-export SUPERAGENT_API_KEY="sk_816_2UN4KL5RiDKnIEeOEniQEpqpRJI5eqL1rfjHbgqUywQ"
-export USER_EMAIL="adwit.sharma@gupshup.io"
+# Load env variables from .env (no secrets hardcoded here)
+set -a
+source "$(dirname "$0")/../../.env"
+set +a
 
 # Configuration
 SUPERAGENT_URL="$SUPERAGENT_API_URL"
-API_KEY="$SUPERAGENT_API_KEY"
-USER_EMAIL_ID="$USER_EMAIL"
+API_KEY="$SUPERAGENT_API_KEY_guide_test_smsgupshup"
+USER_EMAIL_ID="${USER_EMAIL:-adwit.sharma@gupshup.io}"
 
 # Default org/project
 ORG_ID="default-org"

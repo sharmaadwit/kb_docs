@@ -45,13 +45,13 @@ def test_query(query, expected_answer_keywords, expected_structure=None):
     load_env()
 
     api_url = os.environ.get('SUPERAGENT_API_URL', '')
-    api_key = os.environ.get('SUPERAGENT_API_KEY', '')
+    api_key = os.environ.get('SUPERAGENT_API_KEY_guide_test_smsgupshup', '')
     user_email = os.environ.get('USER_EMAIL', 'test@example.com')
 
     if not api_url or not api_key:
         return {
             'query': query,
-            'error': 'Missing SUPERAGENT_API_URL or SUPERAGENT_API_KEY',
+            'error': 'Missing SUPERAGENT_API_URL or SUPERAGENT_API_KEY_guide_test_smsgupshup',
         }
 
     session_id = f"test-{uuid.uuid4().hex[:12]}"

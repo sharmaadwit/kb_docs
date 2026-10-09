@@ -48,7 +48,7 @@ QUERIES = [
 
 def send_query(query: str, session_id: str) -> dict:
     api_url = os.environ.get("SUPERAGENT_API_URL", "")
-    api_key = os.environ.get("SUPERAGENT_API_KEY", "")
+    api_key = os.environ.get("SUPERAGENT_API_KEY_guide_test_smsgupshup", "")
     org_id  = os.environ.get("SUPERAGENT_ORG_ID", "")
     project_id = os.environ.get("SUPERAGENT_PROJECT_ID", "")
     user_email = os.environ.get("USER_EMAIL", "test@example.com")

@@ -40,13 +40,13 @@ def test_kb_retrieval(query, module="Bot Studio"):
     load_env()
 
     api_url = os.environ.get('SUPERAGENT_API_URL', '')
-    api_key = os.environ.get('SUPERAGENT_API_KEY', '')
+    api_key = os.environ.get('SUPERAGENT_API_KEY_guide_test_smsgupshup', '')
     org_id = os.environ.get('SUPERAGENT_ORG_ID', '')
     project_id = os.environ.get('SUPERAGENT_PROJECT_ID', '')
     user_email = os.environ.get('USER_EMAIL', 'test@example.com')
 
     if not api_url or not api_key:
-        return None, None, "Missing SUPERAGENT_API_URL or SUPERAGENT_API_KEY in .env"
+        return None, None, "Missing SUPERAGENT_API_URL or SUPERAGENT_API_KEY_guide_test_smsgupshup in .env"
 
     # Generate unique session/conversation ID for tracing
     session_id = f"kb-test-{uuid.uuid4().hex[:12]}"

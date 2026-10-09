@@ -44,14 +44,14 @@ def load_env():
 
 def send_turn(query: str, session_id: str, turn_num: int) -> dict:
     api_url = os.environ.get("SUPERAGENT_API_URL", "")
-    api_key = os.environ.get("SUPERAGENT_API_KEY", "")
+    api_key = os.environ.get("SUPERAGENT_API_KEY_guide_test_smsgupshup", "")
     org_id = os.environ.get("SUPERAGENT_ORG_ID", "")
     project_id = os.environ.get("SUPERAGENT_PROJECT_ID", "")
     user_email = os.environ.get("USER_EMAIL", "test@example.com")
 
     if not api_url or not api_key:
         return {"turn": turn_num, "query": query, "success": False,
-                "error": "Missing SUPERAGENT_API_URL or SUPERAGENT_API_KEY in .env"}
+                "error": "Missing SUPERAGENT_API_URL or SUPERAGENT_API_KEY_guide_test_smsgupshup in .env"}
 
     # NOTE: session_id is the ONLY continuity field a real client controls.
     # No parent_trace_id / thread_id is injected here.

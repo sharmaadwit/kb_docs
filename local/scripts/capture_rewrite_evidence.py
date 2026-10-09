@@ -43,7 +43,7 @@ def _load_env():
 _load_env()
 
 SA_URL       = os.environ.get("SUPERAGENT_API_URL", "https://superagent.smsgupshup.com/api/agents/chat/stream")
-SA_KEY       = os.environ.get("SUPERAGENT_API_KEY", "")
+SA_KEY       = os.environ.get("SUPERAGENT_API_KEY_guide_test_smsgupshup", "")
 LF_HOST      = os.environ.get("LANGFUSE_HOST", "https://cloud.langfuse.com")
 LF_PUB       = os.environ.get("LANGFUSE_PUBLIC_KEY", "")
 LF_SEC       = os.environ.get("LANGFUSE_SECRET_KEY", "")

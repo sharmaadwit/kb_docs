@@ -33,7 +33,7 @@ def load_env():
 
 def send_query(query: str) -> dict:
     api_url = os.environ.get("SUPERAGENT_API_URL", "")
-    api_key = os.environ.get("SUPERAGENT_API_KEY", "")
+    api_key = os.environ.get("SUPERAGENT_API_KEY_guide_test_smsgupshup", "")
     user_email = os.environ.get("USER_EMAIL", "adwit.sharma@gupshup.io")
 
     session_id = f"consulting-live-test-{uuid.uuid4().hex[:12]}"

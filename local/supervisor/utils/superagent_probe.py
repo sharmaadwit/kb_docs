@@ -44,7 +44,7 @@ def _load_env() -> None:
 _load_env()
 
 _SA_URL = os.environ.get("SUPERAGENT_API_URL", "https://superagent.smsgupshup.com/api/agents/chat/stream")
-_SA_KEY = os.environ.get("SUPERAGENT_API_KEY", "")
+_SA_KEY = os.environ.get("SUPERAGENT_API_KEY_guide_test_smsgupshup", "")
 _USER_EMAIL = os.environ.get("SUPERAGENT_PROBE_EMAIL", "kb-supervisor-probe@gupshup.io")
 
 
@@ -97,7 +97,7 @@ def probe_superagent(query: str, reason: str, timeout: int = 60) -> Optional[dic
     hypothesis it's testing) — recorded for the audit trail in BUDGET.summary().
     """
     if not _SA_KEY:
-        logger.warning("SuperAgent probe skipped: SUPERAGENT_API_KEY not set")
+        logger.warning("SuperAgent probe skipped: SUPERAGENT_API_KEY_guide_test_smsgupshup not set")
         return None
 
     if not BUDGET.try_consume(reason):
