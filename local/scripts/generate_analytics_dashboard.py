@@ -1364,6 +1364,50 @@ def generate_query_analytics_html(analysis: Dict[str, Any], segment_key: str) ->
         ),
         key=lambda x: -x[1]["count"],
     )[:10]
+
+    # Anonymous (PII-scrubbed) traffic: can't resolve a real email, but a real
+    # client-provided session_id still distinguishes separate visitors. Only
+    # session_id_source == "client" counts -- "correlation_fallback" is a
+    # per-request id that doesn't persist across messages, so using it would
+    # fabricate distinct visitors out of one person's multiple messages.
+    _anon_agg: Dict[Any, Dict[str, Any]] = defaultdict(lambda: {
+        "sessions": set(), "count": 0, "answered": 0, "video": 0, "total_confidence": 0, "env": "",
+    })
+    for _t in analysis.get("_traces", []):
+        _meta = _t.get("metadata") or {}
+        _email = _meta.get("user_email") or ""
+        if _is_real_email(_email) and "@gupshup.io" not in _email and "@knowlarity.com" not in _email:
+            continue  # already counted as a named external user above
+        if _meta.get("session_id_source") != "client" or not _meta.get("session_id"):
+            continue  # no distinguishable signal -- cannot honestly count this
+        agent = _meta.get("source_agent") or "unknown"  # reflects backfill attribution if applied
+        if agent.startswith("test-agent") or _email in TEST_ACCOUNTS:
+            continue  # probe/maintainer traffic, excluded everywhere else in this dashboard
+        env = _meta.get("trace_env") or "unknown"
+        key = (agent, env)
+        _d = _anon_agg[key]
+        _d["sessions"].add(_meta["session_id"])
+        _d["count"] += 1
+        _d["env"] = env
+        if _meta.get("answered"):
+            _d["answered"] += 1
+        _d["total_confidence"] += _meta.get("confidence") or 0
+        if _meta.get("video_attached"):
+            _d["video"] += 1
+    anon_sessions_sorted = sorted(
+        (
+            ((agent, d["env"]), {
+                "sessions": len(d["sessions"]),
+                "count": d["count"],
+                "answer_rate": round(100.0 * d["answered"] / d["count"], 1) if d["count"] else 0.0,
+                "avg_confidence": round(d["total_confidence"] / d["count"], 2) if d["count"] else 0.0,
+                "video_pct": round(100.0 * d["video"] / d["count"], 1) if d["count"] else 0.0,
+            })
+            for (agent, _env_unused), d in _anon_agg.items() if d["sessions"]
+        ),
+        key=lambda x: -x[1]["sessions"],
+    )
+
     intent_multi_sorted = sorted(analysis["intent_multi"].items(), key=lambda x: x[0])
     intent_video_sorted = sorted(analysis["intent_video"].items(), key=lambda x: x[1]["count"], reverse=True)
 
@@ -1543,12 +1587,13 @@ def generate_query_analytics_html(analysis: Dict[str, Any], segment_key: str) ->
     html += """
         <!-- External Domain Users: real emails only, last 15 days, top 10 -->
         <div class="section">
-            <h2>🌐 External Users <span style="font-size: 0.6em; color: #999; font-weight: 400;">(top 10, real emails only, last 15 days)</span></h2>
+            <h2>🌐 External Users <span style="font-size: 0.6em; color: #999; font-weight: 400;">(top 10 named + session-identified anonymous traffic, last 15 days for named users)</span></h2>
             <table>
                 <thead>
                     <tr>
                         <th>User Email</th>
                         <th>Domain</th>
+                        <th class="numeric">Sessions</th>
                         <th class="numeric">Queries</th>
                         <th class="numeric">Answer Rate</th>
                         <th class="numeric">Avg Confidence</th>
@@ -1566,6 +1611,24 @@ def generate_query_analytics_html(analysis: Dict[str, Any], segment_key: str) ->
         html += f"""                    <tr>
                         <td>{user}</td>
                         <td>{data['domain']}</td>
+                        <td class="numeric">1</td>
+                        <td class="numeric">{data['count']}</td>
+                        <td class="numeric" style="{ans_bar}"><span class="{answer_status}">{data['answer_rate']:.1f}%</span></td>
+                        <td class="numeric">{data['avg_confidence']}</td>
+                        <td class="numeric" style="{vid_bar}">{data['video_pct']:.1f}%</td>
+                    </tr>
+"""
+
+    for (agent, env), data in anon_sessions_sorted:
+        answer_status = "status-good" if data["answer_rate"] >= 80 else ("status-warning" if data["answer_rate"] >= 50 else "status-critical")
+        bar_rgba = "rgba(46,204,113,0.35)" if data["answer_rate"] >= 80 else ("rgba(243,156,18,0.35)" if data["answer_rate"] >= 50 else "rgba(231,76,60,0.35)")
+        ans_bar = f"background: linear-gradient(to right, {bar_rgba} {data['answer_rate']:.1f}%, transparent {data['answer_rate']:.1f}%)"
+        vid_bar = f"background: linear-gradient(to right, rgba(102,126,234,0.35) {data['video_pct']:.1f}%, transparent {data['video_pct']:.1f}%)"
+        agent_label = f"Anonymous — {agent}" if agent != "unknown" else "Anonymous (no agent attributed)"
+        html += f"""                    <tr style="font-style: italic; color: #666;">
+                        <td>{agent_label}</td>
+                        <td>{env}</td>
+                        <td class="numeric">{data['sessions']}</td>
                         <td class="numeric">{data['count']}</td>
                         <td class="numeric" style="{ans_bar}"><span class="{answer_status}">{data['answer_rate']:.1f}%</span></td>
                         <td class="numeric">{data['avg_confidence']}</td>
