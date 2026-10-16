@@ -1,7 +1,9 @@
 import json
 import math
 import re
+import time
 import unicodedata
+import uuid
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 from urllib.parse import urlencode, quote as _kb_quote
@@ -2519,6 +2521,120 @@ def _public_search_row(row: Dict[str, Any]) -> Dict[str, Any]:
     return {k: v for k, v in out.items() if v is not None}
 
 
+def _build_otlp_request_search(
+    trace_name: str, trace_id: str, query: str, output_summary: str, metadata: Dict,
+    trace_user_id: Optional[str] = None,
+) -> Dict:
+    """OTLP/JSON body for Langfuse v2 ingestion, mirroring kb_answer.py's
+    _build_otlp_request. Duplicated here (not imported) because skill files
+    cannot import sibling modules. kb_search has no prose "answer" the way
+    kb_answer does, so output_summary (e.g. "3 results, video=xyz") stands in
+    for langfuse.trace.output."""
+    now_ns = int(time.time() * 1e9)
+    latency_ns = int(metadata.get("latency_ms") or 0) * 1_000_000
+    otlp_trace_id = uuid.uuid4().hex
+    otlp_span_id = uuid.uuid4().hex[:16]
+
+    def _av(value):
+        if value is None:
+            return None
+        if isinstance(value, bool):
+            return {"boolValue": value}
+        if isinstance(value, int):
+            return {"intValue": str(value)}
+        if isinstance(value, float):
+            return {"doubleValue": value}
+        if isinstance(value, (dict, list)):
+            return {"stringValue": json.dumps(value)}
+        return {"stringValue": str(value)}
+
+    def _attr(key, value):
+        v = _av(value)
+        return {"key": key, "value": v} if v is not None else None
+
+    trace_env = metadata.get("trace_env") or metadata.get("environment")
+    attrs = [
+        _attr("langfuse.trace.id", otlp_trace_id),
+        _attr("langfuse.trace.name", trace_name),
+        _attr("langfuse.trace.input", json.dumps({"query": query, "_meta": metadata})),
+        _attr("langfuse.trace.output", json.dumps({"summary": output_summary})),
+    ]
+    if trace_user_id:
+        attrs.append(_attr("langfuse.trace.user_id", trace_user_id))
+    if trace_id:
+        attrs.append(_attr("langfuse.observation.metadata.kb_trace_id", trace_id))
+    for k, v in metadata.items():
+        if v is not None:
+            attrs.append(_attr(f"langfuse.observation.metadata.{k}", v))
+    attrs = [a for a in attrs if a is not None]
+
+    resource_attrs = [
+        {"key": "service.name", "value": {"stringValue": "superagent-product-kb-search"}},
+    ]
+    if trace_env:
+        resource_attrs.append({"key": "langfuse.environment", "value": {"stringValue": trace_env}})
+
+    return {
+        "resourceSpans": [{
+            "resource": {"attributes": resource_attrs},
+            "scopeSpans": [{
+                "scope": {"name": trace_name},
+                "spans": [{
+                    "traceId": otlp_trace_id,
+                    "spanId": otlp_span_id,
+                    "name": trace_name,
+                    "kind": 1,
+                    "startTimeUnixNano": str(now_ns - latency_ns),
+                    "endTimeUnixNano": str(now_ns),
+                    "attributes": attrs,
+                }],
+            }],
+        }],
+    }
+
+
+def _send_langfuse_search(compact: Dict[str, Any], context, query: str, output_summary: str) -> None:
+    """Actually POST the kb_search trace to Langfuse's OTLP ingestion endpoint.
+
+    TELEMETRY GAP FIXED (2026-10-16): _compact_langfuse only ever built this
+    metadata dict and returned it inside the tool's own response -- nothing was
+    ever sent to Langfuse, so every kb_search call was invisible to the dashboard
+    and any Langfuse-based monitoring. This mirrors kb_answer.py's _send_langfuse
+    POST logic (duplicated, not imported: skill files cannot import siblings).
+    Swallows all errors -- telemetry failure must never block the search response.
+    """
+    if context is None:
+        return
+    try:
+        metadata = compact.get("metadata") or {}
+        trace_id = compact.get("trace_id")
+        trace_user_id = compact.get("trace_userId")
+        body = _build_otlp_request_search(
+            "kb_search", trace_id, query, output_summary, metadata, trace_user_id=trace_user_id,
+        )
+        host = context.get_secret("LANGFUSE_HOST")
+        public_key = context.get_secret("LANGFUSE_PUBLIC_KEY")
+        secret_key = context.get_secret("LANGFUSE_SECRET_KEY")
+        if not (host and public_key and secret_key):
+            print("[LANGFUSE] kb_search cannot ingest: missing credentials", flush=True)
+            return
+        endpoint = host.rstrip("/") + "/api/public/otel/v1/traces"
+        auth_raw = f"{public_key}:{secret_key}"
+        auth_value = "Basic " + base64.b64encode(auth_raw.encode("utf-8")).decode("utf-8")
+        headers = {
+            "Authorization": auth_value,
+            "Content-Type": "application/json",
+            "User-Agent": "superagent-product-kb-search",
+            "x-langfuse-sdk-name": "python",
+            "x-langfuse-public-key": public_key,
+        }
+        resp = requests.post(endpoint, headers=headers, json=body, timeout=30)
+        if resp.status_code >= 400:
+            print(f"[LANGFUSE] kb_search ingestion failed: HTTP {resp.status_code} | {resp.text[:200]}", flush=True)
+    except Exception as e:
+        print(f"[LANGFUSE] kb_search ingestion exception: {type(e).__name__}: {str(e)[:100]}", flush=True)
+
+
 def _compact_langfuse(
     trace_name: str, query: str, results: List[Dict],
     explicit_module: str, intents: List[str], preferred_mode: str,
@@ -2652,6 +2768,7 @@ def kb_search(parameters: object = None, context=None, **kwargs) -> dict:
             "kb_search", meta_q, [], "General", [guardrail], "refusal", latency_ms, context, params,
             original_query=("" if omit_q else original_query),
         )
+        _send_langfuse_search(langfuse, context, meta_q, f"refused: {guardrail}")
         return {
             "ok": True,
             "query": _visible_query_echo(query, omit_q),
@@ -2669,6 +2786,7 @@ def kb_search(parameters: object = None, context=None, **kwargs) -> dict:
             "kb_search", query, [], "General", ["kb_error"], "refusal", latency_ms, context, params,
             original_query=original_query,
         )
+        _send_langfuse_search(langfuse, context, query, "error: kb_unavailable")
         return {
             "ok": False,
             "query": _visible_query_echo(query, False),
@@ -2700,24 +2818,32 @@ def kb_search(parameters: object = None, context=None, **kwargs) -> dict:
     results = scored[:top_k]
     public_results = [_public_search_row(r) for r in results]
 
+    # YOUTUBE RETIRED (2026-10-16) — kb_search.py had its own independent copy of
+    # the video-selection pipeline (select_video / build_video_url) that was never
+    # updated when kb_answer.py's YouTube fallback was retired on 2026-10-07. It
+    # was still returning real manifest-backed YouTube links. Matches kb_answer's
+    # retirement now: no video is ever selected from this action.
+    # TO ROLL BACK: restore the block below.
+    #     video = None
+    #     video_meta = {"video_attached": False, "video_channel": "kb_search"}
+    #     try:
+    #         _lang = None
+    #         if isinstance(params, dict):
+    #             _lang = params.get("language") or params.get("lang")
+    #         video = select_video(
+    #             query, preferred_mode, explicit_module, scored,
+    #             language=_lang, context=context,
+    #         )
+    #         video_meta = video_telemetry_metadata(video, "kb_search")
+    #         if video and video.get("video_id"):
+    #             record_video_delivery(
+    #                 video, "kb_search", query, context,
+    #                 extra={"intent": preferred_mode, "module": explicit_module},
+    #             )
+    #     except Exception:
+    #         video = None
     video = None
     video_meta = {"video_attached": False, "video_channel": "kb_search"}
-    try:
-        _lang = None
-        if isinstance(params, dict):
-            _lang = params.get("language") or params.get("lang")
-        video = select_video(
-            query, preferred_mode, explicit_module, scored,
-            language=_lang, context=context,
-        )
-        video_meta = video_telemetry_metadata(video, "kb_search")
-        if video and video.get("video_id"):
-            record_video_delivery(
-                video, "kb_search", query, context,
-                extra={"intent": preferred_mode, "module": explicit_module},
-            )
-    except Exception:
-        video = None
 
     latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
     langfuse = _compact_langfuse(
@@ -2725,6 +2851,7 @@ def kb_search(parameters: object = None, context=None, **kwargs) -> dict:
         video_meta=video_meta,
         original_query=original_query,
     )
+    _send_langfuse_search(langfuse, context, query, f"{len(results)} results")
     return {
         "ok": True,
         "query": _visible_query_echo(query, False),
