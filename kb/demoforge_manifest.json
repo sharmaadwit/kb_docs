@@ -66,17 +66,17 @@
       "chain": "6a43fbc7f14e94517beb844a"
     },
     "ctx": {
-      "overview": "6a43fbc7f14e94517beb844a",
-      "how_to": "6a43fbc7f14e94517beb844a",
-      "setup": "6a43fbc7f14e94517beb844a",
-      "task": "6a43fbc7f14e94517beb844a",
-      "definition": "6a43fbc7f14e94517beb844a",
-      "behavior": "6a43fbc7f14e94517beb844a",
-      "troubleshooting": "6a43fbc7f14e94517beb844a",
-      "schema": "6a43fbc7f14e94517beb844a",
-      "page_lookup": "6a43fbc7f14e94517beb844a",
-      "compare": "6a43fbc7f14e94517beb844a",
-      "chain": "6a43fbc7f14e94517beb844a"
+      "overview": "6a0de0b48ae7349cf7bc08f0",
+      "how_to": "6a0de0b48ae7349cf7bc08f0",
+      "setup": "6a0de0b48ae7349cf7bc08f0",
+      "task": "6a0de0b48ae7349cf7bc08f0",
+      "definition": "6a0de0b48ae7349cf7bc08f0",
+      "behavior": "6a0de0b48ae7349cf7bc08f0",
+      "troubleshooting": "6a0de0b48ae7349cf7bc08f0",
+      "schema": "6a0de0b48ae7349cf7bc08f0",
+      "page_lookup": "6a0de0b48ae7349cf7bc08f0",
+      "compare": "6a0de0b48ae7349cf7bc08f0",
+      "chain": "6a0de0b48ae7349cf7bc08f0"
     },
     "agent_assist": {
       "overview": "6a43f349f14e94517beb843f",
@@ -116,6 +116,71 @@
       "page_lookup": "6a38bd8d9096c01ba76af5f0",
       "compare": "6a38bd8d9096c01ba76af5f0",
       "chain": "6a38bd8d9096c01ba76af5f0"
+    },
+    "whatsapp": {
+      "overview": "6a0f0a368ae7349cf7bc0901",
+      "how_to": "6a0f0a368ae7349cf7bc0901",
+      "setup": "6a0f0a368ae7349cf7bc0901",
+      "task": "6a0f0a368ae7349cf7bc0901",
+      "definition": "6a0f0a368ae7349cf7bc0901",
+      "behavior": "6a0f0a368ae7349cf7bc0901",
+      "troubleshooting": "6a0f0a368ae7349cf7bc0901",
+      "schema": "6a0f0a368ae7349cf7bc0901",
+      "page_lookup": "6a0f0a368ae7349cf7bc0901",
+      "compare": "6a0f0a368ae7349cf7bc0901",
+      "chain": "6a0f0a368ae7349cf7bc0901"
+    },
+    "goals": {
+      "overview": "6a433c867d620401bb6774c1",
+      "how_to": "6a433c867d620401bb6774c1",
+      "setup": "6a433c867d620401bb6774c1",
+      "task": "6a433c867d620401bb6774c1",
+      "definition": "6a433c867d620401bb6774c1",
+      "behavior": "6a433c867d620401bb6774c1",
+      "troubleshooting": "6a433c867d620401bb6774c1",
+      "schema": "6a433c867d620401bb6774c1",
+      "page_lookup": "6a433c867d620401bb6774c1",
+      "compare": "6a433c867d620401bb6774c1",
+      "chain": "6a433c867d620401bb6774c1"
+    },
+    "bot_studio_analytics": {
+      "overview": "6a433c867d620401bb6774c1",
+      "how_to": "6a433c867d620401bb6774c1",
+      "setup": "6a433c867d620401bb6774c1",
+      "task": "6a433c867d620401bb6774c1",
+      "definition": "6a433c867d620401bb6774c1",
+      "behavior": "6a433c867d620401bb6774c1",
+      "troubleshooting": "6a433c867d620401bb6774c1",
+      "schema": "6a433c867d620401bb6774c1",
+      "page_lookup": "6a433c867d620401bb6774c1",
+      "compare": "6a433c867d620401bb6774c1",
+      "chain": "6a433c867d620401bb6774c1"
+    },
+    "analytics": {
+      "overview": "6a4402a6f14e94517beb8474",
+      "how_to": "6a4402a6f14e94517beb8474",
+      "setup": "6a4402a6f14e94517beb8474",
+      "task": "6a4402a6f14e94517beb8474",
+      "definition": "6a4402a6f14e94517beb8474",
+      "behavior": "6a4402a6f14e94517beb8474",
+      "troubleshooting": "6a4402a6f14e94517beb8474",
+      "schema": "6a4402a6f14e94517beb8474",
+      "page_lookup": "6a4402a6f14e94517beb8474",
+      "compare": "6a4402a6f14e94517beb8474",
+      "chain": "6a4402a6f14e94517beb8474"
+    },
+    "overview": {
+      "overview": "6a5679cf48b88f2f1b3e981a",
+      "how_to": "6a5679cf48b88f2f1b3e981a",
+      "setup": "6a5679cf48b88f2f1b3e981a",
+      "task": "6a5679cf48b88f2f1b3e981a",
+      "definition": "6a5679cf48b88f2f1b3e981a",
+      "behavior": "6a5679cf48b88f2f1b3e981a",
+      "troubleshooting": "6a5679cf48b88f2f1b3e981a",
+      "schema": "6a5679cf48b88f2f1b3e981a",
+      "page_lookup": "6a5679cf48b88f2f1b3e981a",
+      "compare": "6a5679cf48b88f2f1b3e981a",
+      "chain": "6a5679cf48b88f2f1b3e981a"
     }
   },
   "demos_by_id": {
@@ -162,7 +227,7 @@
     "6a43fca8f14e94517beb8455": {
       "id": "6a43fca8f14e94517beb8455",
       "name": "RCS Demo",
-      "use_case": "Send a rich RCS card to your contact base and watch the platform fall back to SMS or WhatsApp for handsets that don't support RCS — without you writing any routing logic.",
+      "use_case": "Send a rich RCS card to your contact base and watch the platform fall back to SMS or WhatsApp for handsets that don't support RCS \u2014 without you writing any routing logic.",
       "industry": "Banking",
       "persona": "Head of Marketing",
       "status": "complete"
@@ -178,7 +243,7 @@
     "6a43f349f14e94517beb843f": {
       "id": "6a43f349f14e94517beb843f",
       "name": "Agent Assist Demo",
-      "use_case": "Live agent sees AI-suggested replies, customer-history summaries, and intent tags in real time — without leaving the inbox.",
+      "use_case": "Live agent sees AI-suggested replies, customer-history summaries, and intent tags in real time \u2014 without leaving the inbox.",
       "industry": "Contact Center",
       "persona": "VP of Support Team",
       "status": "complete"
@@ -186,7 +251,7 @@
     "6a433c867d620401bb6774c1": {
       "id": "6a433c867d620401bb6774c1",
       "name": "Bot Studio",
-      "use_case": "Build a single conversation journey in Bot Studio and deploy it to WhatsApp, Instagram, and the web widget simultaneously — no per-channel rework.",
+      "use_case": "Build a single conversation journey in Bot Studio and deploy it to WhatsApp, Instagram, and the web widget simultaneously \u2014 no per-channel rework.",
       "industry": "General",
       "persona": "VP of Engineering",
       "status": "complete"
@@ -202,7 +267,7 @@
     "6a0f0a368ae7349cf7bc0901": {
       "id": "6a0f0a368ae7349cf7bc0901",
       "name": "commerce-root-demo",
-      "use_case": "Launch a fully-managed WhatsApp commerce storefront for a D2C brand — product discovery, AI-led shopping assistant, cart + checkout, abandoned-cart recovery and post-purchase engagement — provisioned end-to-end (WhatsApp templates, journeys, segments, AI agent) from a single Gupshup onboarding flow, with weekly revenue tracking for the pod.",
+      "use_case": "Launch a fully-managed WhatsApp commerce storefront for a D2C brand \u2014 product discovery, AI-led shopping assistant, cart + checkout, abandoned-cart recovery and post-purchase engagement \u2014 provisioned end-to-end (WhatsApp templates, journeys, segments, AI agent) from a single Gupshup onboarding flow, with weekly revenue tracking for the pod.",
       "industry": "Retail & D2C E-commerce (also applicable to Fashion, Beauty, Grocery, Consumer Electronics).",
       "persona": "Head of Digital / Growth at a D2C brand",
       "status": "complete"
@@ -213,6 +278,14 @@
       "use_case": "Re-engage prospects who started a loan application but didn't finish, using WhatsApp to answer questions, collect missing documents, and route to a human banker.",
       "industry": "Banking",
       "persona": "Head of Digital Banking / VP Retail Loans",
+      "status": "complete"
+    },
+    "6a5679cf48b88f2f1b3e981a": {
+      "id": "6a5679cf48b88f2f1b3e981a",
+      "name": "HR Template",
+      "use_case": "Quick training session of all modules in Console to the new joinees of Gupshup",
+      "industry": "General Context",
+      "persona": "New Employees of Gupshup",
       "status": "complete"
     }
   }

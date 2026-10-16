@@ -640,6 +640,150 @@ def select_demoforge_demo(query: str, intent: str, module: str, context) -> dict
         return None
 
 
+def _demoforge_module_hint(query: str, explicit_module: str) -> str:
+    """DemoForge-only module override. Duplicated from kb_answer.py (not
+    imported: skill files can't import siblings) -- see that copy's docstring
+    for why rcs/ctwa need a value distinct from explicit_module here."""
+    q = (query or "").lower()
+    if "ctwa" in q or "click to whatsapp" in q or "click-to-whatsapp" in q:
+        return "CTWA"
+    if "rcs" in q:
+        return "RCS"
+    return explicit_module
+
+
+def _demoforge_email(context, params: Optional[Dict[str, Any]] = None) -> Optional[str]:
+    """Resolve the requesting user's email for DemoForge share-link personalization.
+    Duplicated from kb_answer.py's version (not imported: skill files can't
+    import siblings), using kb_search's own _langfuse_user_context_search."""
+    user = _langfuse_user_context_search(context, params or {})
+    email = user.get("user_email")
+    return email if isinstance(email, str) and email.strip() else None
+
+
+def _mint_demoforge_share_link(
+    demo_id: str,
+    context,
+    params: Optional[Dict[str, Any]] = None,
+    max_retries: int = 2,
+) -> Optional[Dict[str, Any]]:
+    """Create a personalized DemoForge share link for ``demo_id``.
+
+    Duplicated from kb_answer.py's _mint_demoforge_share_link (not imported:
+    skill files can't import siblings), minus the correlation_id/parent_trace_id
+    params kb_search doesn't have an equivalent concept for. See that copy's
+    docstring for the full networking/retry contract. Never raises.
+    """
+    if not demo_id:
+        return None
+
+    pat = None
+    try:
+        if context is not None:
+            secrets = getattr(context, "secrets", None)
+            if isinstance(secrets, dict):
+                pat = secrets.get("demoforge_pat")
+            if not pat and hasattr(context, "get_secret"):
+                pat = context.get_secret("DEMOFORGE_PAT")
+        elif isinstance(context, dict):
+            pat = context.get("demoforge_pat") or context.get("secrets", {}).get("demoforge_pat")
+    except Exception:
+        pat = None
+    base_url = None
+    try:
+        if context is not None and hasattr(context, "get_secret"):
+            base_url = context.get_secret("DEMOFORGE_BASE_URL")
+    except Exception:
+        base_url = None
+    base_url = (base_url or "https://demoforge-api.gupshup.io").rstrip("/")
+    frontend_url = None
+    try:
+        if context is not None and hasattr(context, "get_secret"):
+            frontend_url = context.get_secret("DEMOFORGE_FRONTEND_URL")
+    except Exception:
+        frontend_url = None
+    frontend_url = (frontend_url or "https://demoforge-ui.gupshup.io").rstrip("/")
+
+    email = _demoforge_email(context, params)
+
+    if not pat:
+        logger.warning("DEMOFORGE_PAT not configured")
+        return None
+
+    request_body = {"superagentData": {"email": email}}
+    url = f"{base_url}/demos/{demo_id}/share"
+    headers = {
+        "Authorization": f"Bearer {pat}",
+        "Content-Type": "application/json",
+        "User-Agent": "superagent-product-kb-search",
+    }
+
+    def _do_post():
+        return requests.post(url, headers=headers, json=request_body, timeout=(3, 5))
+
+    backoff_s = 0.25
+    started = time.monotonic()
+    last_error = None
+    for attempt in range(max_retries + 1):
+        try:
+            resp = _do_post()
+        except Exception as e:
+            last_error = f"transport_{type(e).__name__}"
+            if attempt < max_retries:
+                time.sleep(min(backoff_s, 1.0))
+                backoff_s *= 2
+                continue
+            logger.error(f"DemoForge API error after retries: {last_error}")
+            return None
+
+        status = resp.status_code
+        api_latency_ms = int((time.monotonic() - started) * 1000)
+
+        if 200 <= status < 300:
+            try:
+                data = resp.json() or {}
+            except Exception:
+                data = {}
+            token = data.get("share_token") or data.get("shareToken")
+            if not token:
+                logger.error("DemoForge response missing share_token")
+                return None
+            share_url = (
+                data.get("share_url") or data.get("shareUrl")
+                or f"{frontend_url}/shared/{token}/autoplay"
+            )
+            share_status = data.get("share_status") or data.get("status") or "active"
+            logger.info(
+                f"DemoForge share link minted for demo {demo_id}: "
+                f"{str(token)[:8]}... (latency: {api_latency_ms}ms)"
+            )
+            return {
+                "share_token": token,
+                "share_status": share_status,
+                "share_url": share_url,
+                "type": "demoforge",
+                "api_latency_ms": api_latency_ms,
+            }
+
+        if status in (400, 401, 404):
+            logger.warning(f"DemoForge request failed ({status}) - non-retriable")
+            return None
+
+        if status == 429 or 500 <= status < 600:
+            last_error = f"http_{status}"
+            if attempt < max_retries:
+                time.sleep(min(backoff_s, 1.0))
+                backoff_s *= 2
+                continue
+            logger.error(f"DemoForge server error after retries: HTTP {status}")
+            return None
+
+        logger.warning(f"DemoForge unexpected status {status}")
+        return None
+
+    return None
+
+
 def catalog_videos(query: str, language=None, context=None, max_videos: int = 10):
     """Return the curated platform-tour videos (manifest entries flagged ``pitch``).
 
@@ -894,6 +1038,10 @@ EXPLICIT_MODULES = {
     "super-agent": "SuperAgent",
     "overview": "Overview",
     "extension": "Extension",
+    # Added 2026-10-16: missing entirely from this dict, which silently blocked
+    # the new DemoForge "whatsapp" manifest coverage from ever being reached
+    # via kb_search (kb_answer.py's EXPLICIT_MODULES already had this).
+    "whatsapp": "WhatsApp",
 }
 
 
@@ -2842,8 +2990,39 @@ def kb_search(parameters: object = None, context=None, **kwargs) -> dict:
     #             )
     #     except Exception:
     #         video = None
+    #
+    # DEMOFORGE WIRED IN (2026-10-16) — kb_search previously had zero way to
+    # attach any video at all: select_demoforge_demo was defined but never
+    # called from this function. Callers can't predict whether a given agent's
+    # instructions route it through kb_answer or kb_search, so both need the
+    # same DemoForge coverage. Mirrors kb_answer.py's DemoForge path (minus the
+    # retired YouTube fallback, which kb_search never had wired to YouTube
+    # catalog logic anyway).
     video = None
     video_meta = {"video_attached": False, "video_channel": "kb_search"}
+    try:
+        _demo_module = _demoforge_module_hint(query, explicit_module)
+        demo = select_demoforge_demo(
+            query=query, intent=preferred_mode, module=_demo_module, context=context,
+        )
+        if demo:
+            share_link = _mint_demoforge_share_link(
+                demo_id=demo.get("demo_id"), context=context, params=params,
+            )
+            if share_link:
+                if not demo.get("url") and share_link.get("share_url"):
+                    demo["url"] = share_link.get("share_url")
+                demo.update(share_link)
+                video = demo
+        video_meta = video_telemetry_metadata(video, "kb_search")
+        if video and video.get("demo_id"):
+            record_video_delivery(
+                video, "kb_search", query, context,
+                extra={"intent": preferred_mode, "module": _demo_module},
+            )
+    except Exception:
+        video = None
+        video_meta = {"video_attached": False, "video_channel": "kb_search"}
 
     latency_ms = int((datetime.now(timezone.utc) - started).total_seconds() * 1000)
     langfuse = _compact_langfuse(

@@ -672,6 +672,25 @@ def select_demoforge_demo(query: str, intent: str, module: str, context) -> dict
         return None
 
 
+def _demoforge_module_hint(query: str, explicit_module: str) -> str:
+    """DemoForge-only module override (2026-10-16).
+
+    The shared module classifier (_detect_module/EXPLICIT_MODULES) deliberately
+    collapses "rcs" -> "Channels" and "ctwa" -> "CTX" for KB search scoring and
+    answer routing, where that's the correct, coarser grouping. But DemoForge's
+    manifest has dedicated RCS and CTWA demos that a value of "Channels"/"CTX"
+    can never reach. Scoped to video selection only -- does not touch
+    explicit_module itself, so search/routing behavior for every other caller
+    is unaffected.
+    """
+    q = (query or "").lower()
+    if "ctwa" in q or "click to whatsapp" in q or "click-to-whatsapp" in q:
+        return "CTWA"
+    if "rcs" in q:
+        return "RCS"
+    return explicit_module
+
+
 def catalog_videos(query: str, language=None, context=None, max_videos: int = 10):
     """Return the curated platform-tour videos (manifest entries flagged ``pitch``).
 
@@ -9330,6 +9349,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                         explicit_module if explicit_module != "General"
                         else (_module_from_source(_video_top_source) if _video_top_source else "General")
                     )
+                    _video_module = _demoforge_module_hint(query, _video_module)
                     videos = _try_demoforge_then_youtube(_video_module)
                     # Final retriever-ranked multi-video YouTube fallback retired
                     # 2026-10-07 — if DemoForge has no match, show no video.
@@ -9352,6 +9372,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                     explicit_module if explicit_module != "General"
                     else (_module_from_source(_video_top_source) if _video_top_source else "General")
                 )
+                _video_module = _demoforge_module_hint(query, _video_module)
                 videos = _try_demoforge_then_youtube(_video_module)
         except Exception as e:
             # YouTube exception-handler fallback retired 2026-10-07 — on any
