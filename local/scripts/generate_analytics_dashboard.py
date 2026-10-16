@@ -2670,6 +2670,7 @@ AGENT_TABS = [
     ("cc_embed", "sa_embeded_ccx", "CC Embed", "🚀", "#e74c3c"),
     ("concierge", "concierge", "Concierge", "🛎️", "#10b981"),
     ("video", "video_agent", "Video", "🎬", "#f59e0b"),
+    ("presales", "presales-agent", "Presales", "💼", "#8b5cf6"),
 ]
 AGENT_PAGE_ENVS = ("PROD", "PROD_EXT", "INT")
 
