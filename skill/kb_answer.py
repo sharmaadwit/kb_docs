@@ -649,18 +649,24 @@ def select_demoforge_demo(query: str, intent: str, module: str, context) -> dict
         # Look up demo_id for this module + intent combination
         module_key = str(module or "").lower().replace("-", "_").replace(" ", "_")
         module_demos = module_to_demos.get(module_key, {})
-        demo_id = module_demos.get(intent_key)
+        raw_id = module_demos.get(intent_key)
 
-        if not demo_id:
+        if not raw_id:
             return None
 
-        # Retrieve the full demo metadata
-        demo = demos_by_id.get(demo_id)
+        # A manifest value of "remix:<id>" points at a DemoForge *remix* (an
+        # AI-cut, shorter, topic-focused derivative of a full demo recording)
+        # instead of the full demo itself -- a separate API resource with its
+        # own share-link endpoint. See _mint_demoforge_remix_share_link.
+        is_remix = isinstance(raw_id, str) and raw_id.startswith("remix:")
+        demo_id = raw_id[len("remix:"):] if is_remix else raw_id
+        source_dict = manifest.get("remixes_by_id") if is_remix else demos_by_id
+        demo = source_dict.get(demo_id) if source_dict else None
         if not demo or not isinstance(demo, dict):
             return None
 
         return {
-            "type": "demoforge",
+            "type": "demoforge_remix" if is_remix else "demoforge",
             "demo_id": demo_id,
             "name": demo.get("name", ""),
             "industry": demo.get("industry"),
@@ -688,6 +694,23 @@ def _demoforge_module_hint(query: str, explicit_module: str) -> str:
         return "CTWA"
     if "rcs" in q:
         return "RCS"
+    # Campaign Manager has two distinct remixes (confirmed via transcript, not
+    # just title): one on campaigns, one on the Template module. Split by
+    # keyword since "template" queries deserve the Templates cut, not the
+    # Campaigns one.
+    if explicit_module == "Campaign Manager" and "template" in q:
+        return "Campaign Manager Templates"
+    # _detect_module's early "campaign" in q -> "Campaign Manager" shortcut
+    # (checked before EXPLICIT_MODULES) swallows "campaign analytics"-style
+    # queries that should route to the dedicated Analytics remix instead.
+    if explicit_module == "Campaign Manager" and "analytics" in q:
+        return "Analytics"
+    # "goals"/"bot studio" aren't a substring pair (unlike bot-studio-analytics,
+    # which is a dict-ordering fix above) -- a query can genuinely mention
+    # both ("how do goals work in bot studio"). Prefer Goals when both are
+    # present, scoped to video selection only.
+    if explicit_module == "Bot Studio" and ("goal" in q):
+        return "Goals"
     return explicit_module
 
 
@@ -840,8 +863,11 @@ def video_telemetry_metadata(
         stays the KB source path; it is None for DemoForge, which has no KB chunk).
     """
     channel = str(channel or "").strip() or "unknown"
-    # A DemoForge demo has no YouTube video_id but is still an attached video.
-    is_demoforge = bool(video and video.get("type") == "demoforge" and video.get("demo_id"))
+    # A DemoForge demo (or remix -- a shorter, topic-focused AI cut of one)
+    # has no YouTube video_id but is still an attached video.
+    is_demoforge = bool(
+        video and video.get("type") in ("demoforge", "demoforge_remix") and video.get("demo_id")
+    )
     if not video or (not video.get("video_id") and not is_demoforge):
         return {"video_attached": False, "video_channel": channel}
     meta = {
@@ -861,7 +887,7 @@ def video_telemetry_metadata(
         meta["video_appended_to_answer"] = bool(appended_to_answer)
     # Source-type indicator + DemoForge-namespaced extras (original shape above intact).
     if is_demoforge:
-        meta["video_platform"] = "demoforge"
+        meta["video_platform"] = video.get("type")  # "demoforge" or "demoforge_remix"
         meta["demoforge_demo_id"] = video.get("demo_id")
         if video.get("share_token"):
             meta["demoforge_share_token"] = video.get("share_token")
@@ -925,6 +951,11 @@ EXPLICIT_MODULES = {
     "whatsapp agent": "WhatsApp",
     "whatsapp ai agent": "WhatsApp",
     "agent assist": "Agent Assist",
+    # "bot studio analytics" must be checked before the shorter "bot studio"
+    # prefix below -- EXPLICIT_MODULES is matched in dict order, first
+    # substring hit wins, so the generic key was masking the more specific
+    # one on any query containing both (2026-10-16).
+    "bot studio analytics": "Bot Studio Analytics",
     "bot studio": "Bot Studio",
     "goals": "Goals",
     "goal analytics": "Goals",
@@ -952,7 +983,6 @@ EXPLICIT_MODULES = {
     "webhook": "Integrations",
     "crm integration": "Integrations",
     "analytics": "Analytics",
-    "bot studio analytics": "Bot Studio Analytics",
     "workflows": "Workflows",
     "wallet": "Wallet",
     "personalize": "Personalize",
@@ -5620,6 +5650,123 @@ def _mint_demoforge_share_link(
     return None
 
 
+def _mint_demoforge_remix_share_link(
+    remix_id: str,
+    context,
+    max_retries: int = 2,
+) -> Optional[Dict[str, Any]]:
+    """Create/resume a DemoForge *remix*'s share link.
+
+    Remixes are a separate API resource from demos (POST /remixes/{id}/share-link,
+    not /demos/{id}/share) -- no personalization email in the body, and the
+    response has no share_url field (constructed the same way as demo links;
+    the endpoint's own docs confirm remixes share the same public URL space
+    as demos). "Create or resume" is idempotent: an existing active token is
+    just returned, not re-minted.
+
+    Same retry/timeout contract as _mint_demoforge_share_link. Never raises.
+    """
+    if not remix_id:
+        return None
+
+    pat = None
+    try:
+        if context is not None:
+            secrets = getattr(context, "secrets", None)
+            if isinstance(secrets, dict):
+                pat = secrets.get("demoforge_pat")
+            if not pat and hasattr(context, "get_secret"):
+                pat = context.get_secret("DEMOFORGE_PAT")
+        elif isinstance(context, dict):
+            pat = context.get("demoforge_pat") or context.get("secrets", {}).get("demoforge_pat")
+    except Exception:
+        pat = None
+    base_url = None
+    try:
+        if context is not None and hasattr(context, "get_secret"):
+            base_url = context.get_secret("DEMOFORGE_BASE_URL")
+    except Exception:
+        base_url = None
+    base_url = (base_url or "https://demoforge-api.gupshup.io").rstrip("/")
+    frontend_url = None
+    try:
+        if context is not None and hasattr(context, "get_secret"):
+            frontend_url = context.get_secret("DEMOFORGE_FRONTEND_URL")
+    except Exception:
+        frontend_url = None
+    frontend_url = (frontend_url or "https://demoforge-ui.gupshup.io").rstrip("/")
+
+    if not pat:
+        logger.warning("DEMOFORGE_PAT not configured")
+        return None
+
+    url = f"{base_url}/remixes/{remix_id}/share-link"
+    headers = {
+        "Authorization": f"Bearer {pat}",
+        "Content-Type": "application/json",
+        "User-Agent": "superagent-product-kb-answer",
+    }
+
+    def _do_post():
+        return requests.post(url, headers=headers, json={}, timeout=(3, 5))
+
+    backoff_s = 0.25
+    started = time.monotonic()
+    last_error = None
+    for attempt in range(max_retries + 1):
+        try:
+            resp = _do_post()
+        except Exception as e:
+            last_error = f"transport_{type(e).__name__}"
+            if attempt < max_retries:
+                time.sleep(min(backoff_s, 1.0))
+                backoff_s *= 2
+                continue
+            api_latency_ms = int((time.monotonic() - started) * 1000)
+            logger.error(f"DemoForge remix share-link error after retries: {last_error}")
+            return None
+
+        status = resp.status_code
+        api_latency_ms = int((time.monotonic() - started) * 1000)
+
+        if 200 <= status < 300:
+            try:
+                data = resp.json() or {}
+            except Exception:
+                data = {}
+            token = data.get("share_token") or data.get("shareToken")
+            if not token:
+                logger.error("DemoForge remix response missing share_token")
+                return None
+            share_status = data.get("share_status") or data.get("status") or "active"
+            share_url = f"{frontend_url}/shared/{token}/autoplay"
+            return {
+                "share_token": token,
+                "share_status": share_status,
+                "share_url": share_url,
+                "type": "demoforge_remix",
+                "api_latency_ms": api_latency_ms,
+            }
+
+        if status in (400, 401, 404):
+            logger.warning(f"DemoForge remix share-link request failed ({status}) - non-retriable")
+            return None
+
+        if status == 429 or 500 <= status < 600:
+            last_error = f"http_{status}"
+            if attempt < max_retries:
+                time.sleep(min(backoff_s, 1.0))
+                backoff_s *= 2
+                continue
+            logger.error(f"DemoForge remix share-link server error after retries: HTTP {status}")
+            return None
+
+        logger.warning(f"DemoForge remix share-link unexpected status {status}")
+        return None
+
+    return None
+
+
 def _demoforge_subtitle(v: Dict) -> str:
     """Build the ``(industry · persona)`` suffix for a DemoForge demo line."""
     industry = (str(v.get("industry") or "")).strip()
@@ -9299,13 +9446,18 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                 )
                 if demoforge_demo:
                     _df_demo_id = demoforge_demo.get("demo_id")
-                    share_link = _mint_demoforge_share_link(
-                        demo_id=_df_demo_id,
-                        context=context,
-                        params=params,
-                        correlation_id=correlation_id,
-                        parent_trace_id=parent_trace_id,
-                    )
+                    if demoforge_demo.get("type") == "demoforge_remix":
+                        share_link = _mint_demoforge_remix_share_link(
+                            remix_id=_df_demo_id, context=context,
+                        )
+                    else:
+                        share_link = _mint_demoforge_share_link(
+                            demo_id=_df_demo_id,
+                            context=context,
+                            params=params,
+                            correlation_id=correlation_id,
+                            parent_trace_id=parent_trace_id,
+                        )
                     if share_link:
                         _df_latency_ms = share_link.get("api_latency_ms")
                         if not demoforge_demo.get("url") and share_link.get("share_url"):
@@ -9441,7 +9593,7 @@ def kb_answer(parameters: object = None, context=None, correlation_id: Optional[
                     _v, "kb_answer", query, context,
                     extra={"intent": intent, "module": explicit_module},
                 )
-            elif _v and _v.get("type") == "demoforge":
+            elif _v and _v.get("type") in ("demoforge", "demoforge_remix"):
                 # Log DemoForge delivery
                 try:
                     logger.info(f"DemoForge video delivered: demo_id={_v.get('demo_id')}, share_token={_v.get('share_token')[:8]}... (intent={intent}, module={explicit_module})")

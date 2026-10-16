@@ -1,17 +1,17 @@
 {
   "module_to_demos": {
     "campaign_manager": {
-      "overview": "6a4402a6f14e94517beb8474",
-      "how_to": "6a4402a6f14e94517beb8474",
-      "setup": "6a4402a6f14e94517beb8474",
-      "task": "6a4402a6f14e94517beb8474",
-      "definition": "6a4402a6f14e94517beb8474",
-      "behavior": "6a4402a6f14e94517beb8474",
-      "troubleshooting": "6a4402a6f14e94517beb8474",
-      "schema": "6a4402a6f14e94517beb8474",
-      "page_lookup": "6a4402a6f14e94517beb8474",
-      "compare": "6a4402a6f14e94517beb8474",
-      "chain": "6a4402a6f14e94517beb8474"
+      "overview": "remix:6a57608a48b88f2f1b3e9841",
+      "how_to": "remix:6a57608a48b88f2f1b3e9841",
+      "setup": "remix:6a57608a48b88f2f1b3e9841",
+      "task": "remix:6a57608a48b88f2f1b3e9841",
+      "definition": "remix:6a57608a48b88f2f1b3e9841",
+      "behavior": "remix:6a57608a48b88f2f1b3e9841",
+      "troubleshooting": "remix:6a57608a48b88f2f1b3e9841",
+      "schema": "remix:6a57608a48b88f2f1b3e9841",
+      "page_lookup": "remix:6a57608a48b88f2f1b3e9841",
+      "compare": "remix:6a57608a48b88f2f1b3e9841",
+      "chain": "remix:6a57608a48b88f2f1b3e9841"
     },
     "personalize": {
       "overview": "6a44013ef14e94517beb846c",
@@ -66,17 +66,17 @@
       "chain": "6a43fbc7f14e94517beb844a"
     },
     "ctx": {
-      "overview": "6a0de0b48ae7349cf7bc08f0",
-      "how_to": "6a0de0b48ae7349cf7bc08f0",
-      "setup": "6a0de0b48ae7349cf7bc08f0",
-      "task": "6a0de0b48ae7349cf7bc08f0",
-      "definition": "6a0de0b48ae7349cf7bc08f0",
-      "behavior": "6a0de0b48ae7349cf7bc08f0",
-      "troubleshooting": "6a0de0b48ae7349cf7bc08f0",
-      "schema": "6a0de0b48ae7349cf7bc08f0",
-      "page_lookup": "6a0de0b48ae7349cf7bc08f0",
-      "compare": "6a0de0b48ae7349cf7bc08f0",
-      "chain": "6a0de0b48ae7349cf7bc08f0"
+      "overview": "remix:6a26aa949096c01ba76af587",
+      "how_to": "remix:6a26aa949096c01ba76af587",
+      "setup": "remix:6a26aa949096c01ba76af587",
+      "task": "remix:6a26aa949096c01ba76af587",
+      "definition": "remix:6a26aa949096c01ba76af587",
+      "behavior": "remix:6a26aa949096c01ba76af587",
+      "troubleshooting": "remix:6a26aa949096c01ba76af587",
+      "schema": "remix:6a26aa949096c01ba76af587",
+      "page_lookup": "remix:6a26aa949096c01ba76af587",
+      "compare": "remix:6a26aa949096c01ba76af587",
+      "chain": "remix:6a26aa949096c01ba76af587"
     },
     "agent_assist": {
       "overview": "6a43f349f14e94517beb843f",
@@ -131,43 +131,43 @@
       "chain": "6a0f0a368ae7349cf7bc0901"
     },
     "goals": {
-      "overview": "6a433c867d620401bb6774c1",
-      "how_to": "6a433c867d620401bb6774c1",
-      "setup": "6a433c867d620401bb6774c1",
-      "task": "6a433c867d620401bb6774c1",
-      "definition": "6a433c867d620401bb6774c1",
-      "behavior": "6a433c867d620401bb6774c1",
-      "troubleshooting": "6a433c867d620401bb6774c1",
-      "schema": "6a433c867d620401bb6774c1",
-      "page_lookup": "6a433c867d620401bb6774c1",
-      "compare": "6a433c867d620401bb6774c1",
-      "chain": "6a433c867d620401bb6774c1"
+      "overview": "remix:6a57981148b88f2f1b3e986e",
+      "how_to": "remix:6a57981148b88f2f1b3e986e",
+      "setup": "remix:6a57981148b88f2f1b3e986e",
+      "task": "remix:6a57981148b88f2f1b3e986e",
+      "definition": "remix:6a57981148b88f2f1b3e986e",
+      "behavior": "remix:6a57981148b88f2f1b3e986e",
+      "troubleshooting": "remix:6a57981148b88f2f1b3e986e",
+      "schema": "remix:6a57981148b88f2f1b3e986e",
+      "page_lookup": "remix:6a57981148b88f2f1b3e986e",
+      "compare": "remix:6a57981148b88f2f1b3e986e",
+      "chain": "remix:6a57981148b88f2f1b3e986e"
     },
     "bot_studio_analytics": {
-      "overview": "6a433c867d620401bb6774c1",
-      "how_to": "6a433c867d620401bb6774c1",
-      "setup": "6a433c867d620401bb6774c1",
-      "task": "6a433c867d620401bb6774c1",
-      "definition": "6a433c867d620401bb6774c1",
-      "behavior": "6a433c867d620401bb6774c1",
-      "troubleshooting": "6a433c867d620401bb6774c1",
-      "schema": "6a433c867d620401bb6774c1",
-      "page_lookup": "6a433c867d620401bb6774c1",
-      "compare": "6a433c867d620401bb6774c1",
-      "chain": "6a433c867d620401bb6774c1"
+      "overview": "remix:6a57986348b88f2f1b3e9872",
+      "how_to": "remix:6a57986348b88f2f1b3e9872",
+      "setup": "remix:6a57986348b88f2f1b3e9872",
+      "task": "remix:6a57986348b88f2f1b3e9872",
+      "definition": "remix:6a57986348b88f2f1b3e9872",
+      "behavior": "remix:6a57986348b88f2f1b3e9872",
+      "troubleshooting": "remix:6a57986348b88f2f1b3e9872",
+      "schema": "remix:6a57986348b88f2f1b3e9872",
+      "page_lookup": "remix:6a57986348b88f2f1b3e9872",
+      "compare": "remix:6a57986348b88f2f1b3e9872",
+      "chain": "remix:6a57986348b88f2f1b3e9872"
     },
     "analytics": {
-      "overview": "6a4402a6f14e94517beb8474",
-      "how_to": "6a4402a6f14e94517beb8474",
-      "setup": "6a4402a6f14e94517beb8474",
-      "task": "6a4402a6f14e94517beb8474",
-      "definition": "6a4402a6f14e94517beb8474",
-      "behavior": "6a4402a6f14e94517beb8474",
-      "troubleshooting": "6a4402a6f14e94517beb8474",
-      "schema": "6a4402a6f14e94517beb8474",
-      "page_lookup": "6a4402a6f14e94517beb8474",
-      "compare": "6a4402a6f14e94517beb8474",
-      "chain": "6a4402a6f14e94517beb8474"
+      "overview": "remix:6a6b302b8f66a016e03ed71a",
+      "how_to": "remix:6a6b302b8f66a016e03ed71a",
+      "setup": "remix:6a6b302b8f66a016e03ed71a",
+      "task": "remix:6a6b302b8f66a016e03ed71a",
+      "definition": "remix:6a6b302b8f66a016e03ed71a",
+      "behavior": "remix:6a6b302b8f66a016e03ed71a",
+      "troubleshooting": "remix:6a6b302b8f66a016e03ed71a",
+      "schema": "remix:6a6b302b8f66a016e03ed71a",
+      "page_lookup": "remix:6a6b302b8f66a016e03ed71a",
+      "compare": "remix:6a6b302b8f66a016e03ed71a",
+      "chain": "remix:6a6b302b8f66a016e03ed71a"
     },
     "overview": {
       "overview": "6a5679cf48b88f2f1b3e981a",
@@ -181,6 +181,19 @@
       "page_lookup": "6a5679cf48b88f2f1b3e981a",
       "compare": "6a5679cf48b88f2f1b3e981a",
       "chain": "6a5679cf48b88f2f1b3e981a"
+    },
+    "campaign_manager_templates": {
+      "overview": "remix:6a575e5648b88f2f1b3e9831",
+      "how_to": "remix:6a575e5648b88f2f1b3e9831",
+      "setup": "remix:6a575e5648b88f2f1b3e9831",
+      "task": "remix:6a575e5648b88f2f1b3e9831",
+      "definition": "remix:6a575e5648b88f2f1b3e9831",
+      "behavior": "remix:6a575e5648b88f2f1b3e9831",
+      "troubleshooting": "remix:6a575e5648b88f2f1b3e9831",
+      "schema": "remix:6a575e5648b88f2f1b3e9831",
+      "page_lookup": "remix:6a575e5648b88f2f1b3e9831",
+      "compare": "remix:6a575e5648b88f2f1b3e9831",
+      "chain": "remix:6a575e5648b88f2f1b3e9831"
     }
   },
   "demos_by_id": {
@@ -287,6 +300,38 @@
       "industry": "General Context",
       "persona": "New Employees of Gupshup",
       "status": "complete"
+    }
+  },
+  "remixes_by_id": {
+    "6a57986348b88f2f1b3e9872": {
+      "name": "Bot Studio Analytics (remix)",
+      "title": "Bot Studio Analytics \u2014 New Joiner Onboarding: Analytics Module Full Walkthrough",
+      "duration_seconds": 260.394
+    },
+    "6a57981148b88f2f1b3e986e": {
+      "name": "Journey Builder (remix)",
+      "title": "JB with Super Agent \u2014 New Joiner Training: Journey Builder End-to-End Walkthrough",
+      "duration_seconds": 208.057
+    },
+    "6a6b302b8f66a016e03ed71a": {
+      "name": "Analytics 5-chapter cut (remix)",
+      "title": "Analytics \u2014 5-chapter cut",
+      "duration_seconds": 304.952
+    },
+    "6a26aa949096c01ba76af587": {
+      "name": "CTX Ad Creation (remix)",
+      "title": "sales demo \u2014 Ad creation remix",
+      "duration_seconds": 93.5
+    },
+    "6a57608a48b88f2f1b3e9841": {
+      "name": "Campaign Manager Campaigns (remix)",
+      "title": "Campaign Manager \u2014 New Joiner Onboarding \u2013 Campaigns Module Walkthrough",
+      "duration_seconds": 137.603
+    },
+    "6a575e5648b88f2f1b3e9831": {
+      "name": "Campaign Manager Templates (remix)",
+      "title": "Template Design and Dashboard \u2014 Gupshup Template Module \u2013 New Joiner Training Cut",
+      "duration_seconds": 216.531
     }
   }
 }
