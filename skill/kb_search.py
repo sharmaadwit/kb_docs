@@ -1195,6 +1195,27 @@ SCORING_STOP_WORDS = {
 
 CONCEPT_REGISTRY: List[Dict] = [
     {
+        "id": "webshup_console",
+        "aliases": [
+            "webshup", "what is webshup", "webshup console",
+            "webshup widget", "webshup embed", "webshup voice",
+            "webshup avatar", "video avatar widget",
+            "website video avatar", "talking avatar widget",
+            "website video assistant", "website video ai agent",
+            "video chat widget for website", "website ai avatar",
+            "embeddable video agent", "embeddable video ai",
+        ],
+        "keywords": ["webshup"],
+        # Matches kb_answer.py's 10.0 for registry consistency -- kb_search.py
+        # has no STRICT_SCOPED_MODULES penalty mechanism, so 6.0 would have
+        # been fine here alone, but keeping both files' boost values equal.
+        "source_boosts": {"webshup-video-agent-console-guide": 10.0},
+        "source_penalties": {
+            "sync-browser-login-with-your-chat-widget": -3.0,
+            "whatsapp-voice-sip": -3.0,
+        },
+    },
+    {
         "id": "salesforce_webhook",
         "aliases": [
             "salesforce webhook", "crm webhook", "salesforce crm",

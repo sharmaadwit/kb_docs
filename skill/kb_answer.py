@@ -1181,6 +1181,31 @@ MIN_EVIDENCE_SCORE_UNBOOSTED_MULTI = 0.8  # Lowered from 2.5 to allow fallback a
 # ---------------------------------------------------------------------------
 
 CONCEPT_REGISTRY: List[Dict] = [
+    {
+        "id": "webshup_console",
+        "aliases": [
+            "webshup", "what is webshup", "webshup console",
+            "webshup widget", "webshup embed", "webshup voice",
+            "webshup avatar", "video avatar widget",
+            "website video avatar", "talking avatar widget",
+            "website video assistant", "website video ai agent",
+            "video chat widget for website", "website ai avatar",
+            "embeddable video agent", "embeddable video ai",
+        ],
+        "keywords": ["webshup"],
+        # 10.0, not 6.0: queries containing "agent" (e.g. "webshup video ai
+        # agent") get misrouted by _detect_module's low-confidence "agent"
+        # fallback to explicit_module="SuperAgent", which is in
+        # STRICT_SCOPED_MODULES and applies a flat -4.0 cross-module penalty
+        # to this doc (Webshup isn't in _module_from_source's module map).
+        # 6.0 nets only +2.0 after that -- not enough to beat a genuine
+        # SuperAgent doc's own +5.0 in-module bonus plus organic match.
+        "source_boosts": {"webshup-video-agent-console-guide": 10.0},
+        "source_penalties": {
+            "sync-browser-login-with-your-chat-widget": -3.0,
+            "whatsapp-voice-sip": -3.0,
+        },
+    },
     # ---- BizAI ----
     {
         "id": "bizai_meta_business_agent",
