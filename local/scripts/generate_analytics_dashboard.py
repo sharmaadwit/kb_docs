@@ -242,6 +242,194 @@ def fetch_langfuse_traces(days: Optional[int] = None) -> Optional[List[Dict]]:
     sys.exit(1)
     return None
 
+
+def fetch_proposal_traces() -> List[Dict]:
+    """Fetch GTM/proposal-agent traces from its own, separate Langfuse project
+    (LANGFUSE_*_PROPOSAL env vars -- a different project than the main
+    LANGFUSE_PUBLIC_KEY/SECRET_KEY used everywhere else in this file).
+
+    Low volume (tens of traces, not thousands) so no incremental cache like
+    fetch_langfuse_traces -- a full fetch every run is cheap. Unlike that
+    function, failures here degrade gracefully (empty list, tab just shows
+    "no data") rather than sys.exit -- this is a supplementary tab, not the
+    dashboard's core data source.
+    """
+    _load_env()
+    pub = os.environ.get("LANGFUSE_PUBLIC_KEY_PROPOSAL", "")
+    sec = os.environ.get("LANGFUSE_SECRET_KEY_PROPOSAL", "")
+    host = os.environ.get("LANGFUSE_HOST_PROPOSAL", "https://cloud.langfuse.com")
+    if not (pub and sec):
+        print("⚠️  Proposal-agent Langfuse credentials missing from env -- skipping that tab")
+        return []
+    try:
+        sys.path.insert(0, os.path.dirname(__file__))
+        from langfuse import Langfuse
+        from langfuse_client import list_traces as _sdk_list_traces
+
+        client = Langfuse(public_key=pub, secret_key=sec, host=host, timeout=60)
+        all_traces, page, page_limit = [], 1, 100
+        while True:
+            batch, _ = _sdk_list_traces(client, limit=page_limit, page=page)
+            all_traces.extend(batch)
+            if len(batch) < page_limit:
+                break
+            page += 1
+        print(f"✅ Fetched {len(all_traces)} proposal-agent traces (separate Langfuse project)")
+        return all_traces
+    except Exception as e:
+        print(f"⚠️  Proposal-agent trace fetch failed: {e} -- tab will show no data")
+        return []
+
+
+def analyze_proposal_traces(traces: List[Dict]) -> Dict[str, Any]:
+    """Aggregate GTM/proposal-agent traces (gtm-agent-turn schema -- intent/
+    connectors/capability_gaps/time_saved_minutes, NOT the answered/confidence/
+    module shape used by every other tab in this dashboard)."""
+    from collections import Counter
+
+    total = len(traces)
+    by_day = Counter()
+    intents = Counter()
+    connectors = Counter()
+    gaps = Counter()
+    risks = Counter()
+    response_types = Counter()
+    users = Counter()
+    automation_triggered = 0
+    time_saved_total = 0
+
+    for t in traces:
+        meta = t.get("metadata") or {}
+        ts = t.get("timestamp")
+        if ts:
+            try:
+                day = datetime.fromisoformat(str(ts).replace("Z", "+00:00")).date().isoformat()
+                by_day[day] += 1
+            except Exception:
+                pass
+        intents[meta.get("intent") or "unknown"] += 1
+        for c in (meta.get("connectors_attempted") or []):
+            connectors[c] += 1
+        for g in (meta.get("capability_gaps") or []):
+            gaps[g] += 1
+        for rf in (meta.get("risk_flags") or []):
+            risks[rf] += 1
+        response_types[meta.get("response_type") or "unknown"] += 1
+        users[t.get("userId") or "unknown"] += 1
+        if meta.get("automation_triggered"):
+            automation_triggered += 1
+        time_saved_total += (meta.get("time_saved_minutes") or 0)
+
+    return {
+        "total": total,
+        "unique_users": len([u for u in users if u != "unknown"]),
+        "by_day": dict(sorted(by_day.items())),
+        "intents": intents.most_common(),
+        "connectors": connectors.most_common(),
+        "capability_gaps": gaps.most_common(),
+        "risk_flags": risks.most_common(),
+        "response_types": response_types.most_common(),
+        "automation_triggered": automation_triggered,
+        "automation_rate": round(100 * automation_triggered / total, 1) if total else 0.0,
+        "time_saved_total": time_saved_total,
+        "time_saved_avg": round(time_saved_total / total, 1) if total else 0.0,
+    }
+
+
+def generate_proposal_tab_html(analysis: Dict[str, Any]) -> str:
+    """Render the Proposal/GTM agent tab. Standalone HTML -- this agent's
+    telemetry schema has no answer-rate/module concept, so it can't reuse
+    generate_product_summary_cards() or any of the kb_answer-shaped helpers
+    the rest of this dashboard is built around."""
+    total = analysis.get("total", 0)
+    if not total:
+        return """
+        <div class="section"><h2>💼 Proposal / GTM Agent</h2>
+        <p class="muted">No traffic yet, or Langfuse credentials for this project are not configured.</p></div>
+"""
+
+    cards = f"""
+        <div class="grid">
+            <div class="card" style="border-left: 5px solid #06b6d4;">
+                <div class="metric">
+                    <div class="metric-label">Volume (all-time)</div>
+                    <div class="metric-value">{total}</div>
+                    <div class="metric-unit">traces</div>
+                </div>
+            </div>
+            <div class="card" style="border-left: 5px solid #06b6d4;">
+                <div class="metric">
+                    <div class="metric-label">Unique Users</div>
+                    <div class="metric-value">{analysis.get('unique_users', 0)}</div>
+                    <div class="metric-unit">internal staff</div>
+                </div>
+            </div>
+            <div class="card" style="border-left: 5px solid #06b6d4;">
+                <div class="metric">
+                    <div class="metric-label">Automation Triggered</div>
+                    <div class="metric-value">{analysis.get('automation_rate', 0)}%</div>
+                    <div class="metric-unit">({analysis.get('automation_triggered', 0)} of {total})</div>
+                </div>
+            </div>
+            <div class="card" style="border-left: 5px solid #06b6d4;">
+                <div class="metric">
+                    <div class="metric-label">Time Saved (reported)</div>
+                    <div class="metric-value">{analysis.get('time_saved_total', 0)}</div>
+                    <div class="metric-unit">min total, {analysis.get('time_saved_avg', 0)} avg/trace</div>
+                </div>
+            </div>
+        </div>
+"""
+
+    by_day = analysis.get("by_day") or {}
+    volume_rows = "".join(
+        f"<tr><td>{day}</td><td>{count}</td></tr>" for day, count in sorted(by_day.items(), reverse=True)[:30]
+    )
+    volume_html = f"""
+        <div class="section"><h3>Volume by day (last 30 shown)</h3>
+        <table><thead><tr><th>Day</th><th>Traces</th></tr></thead>
+        <tbody>{volume_rows or '<tr><td colspan="2">No data</td></tr>'}</tbody></table>
+        </div>
+"""
+
+    def _count_table(title: str, rows: list, note: str = "") -> str:
+        body = "".join(f"<tr><td>{name}</td><td>{count}</td></tr>" for name, count in rows[:25])
+        extra = f'<p class="muted">{note}</p>' if note else ""
+        return f"""
+        <div class="section"><h3>{title}</h3>{extra}
+        <table><thead><tr><th>Name</th><th>Count</th></tr></thead>
+        <tbody>{body or '<tr><td colspan="2">None recorded</td></tr>'}</tbody></table>
+        </div>
+"""
+
+    intents_html = _count_table(
+        "Intent breakdown",
+        analysis.get("intents", []),
+        note=f"{len(analysis.get('intents', []))} distinct intents. Many are single-occurrence internal test runs, not production-scale traffic yet.",
+    )
+    connectors_html = _count_table("Connectors attempted", analysis.get("connectors", []))
+    gaps_html = _count_table(
+        "Capability gaps hit",
+        analysis.get("capability_gaps", []),
+        note="Where the agent hit a tool/API limitation it couldn't work around.",
+    )
+    risks_html = _count_table("Risk flags", analysis.get("risk_flags", []))
+    response_types_html = _count_table("Response types", analysis.get("response_types", []))
+
+    return f"""
+        <div class="section"><h2>💼 Proposal / GTM Agent</h2>
+        <p class="muted">Separate Langfuse project (SuperAgent GTM-enablement agent, trace name <code>gtm-agent-turn</code>) -- different telemetry schema than the KB-answer tabs above: no answer-rate/module concept, tracks intent, connector usage, capability gaps, and reported automation/time-saved instead.</p>
+        </div>
+{cards}
+{volume_html}
+{intents_html}
+{connectors_html}
+{gaps_html}
+{risks_html}
+{response_types_html}
+"""
+
+
 def load_ndjson_traces(days: int = 7) -> List[Dict]:
     """Load query traces from GitLab NDJSON logs (kb/analytics/*.ndjson).
 
@@ -2793,6 +2981,26 @@ def build_dashboard_tabs(traces: List[Dict], source_agent_rows: List[Dict[str, A
 {_subtab_group(f"sub-{key}", items)}
         </div>
 """
+
+    # Proposal/GTM agent: a separate Langfuse project with a different trace
+    # schema (no answered/confidence/module concept), so it can't go through
+    # the AGENT_TABS loop above -- added as one more pill/panel by hand,
+    # same radio-button CSS mechanism, outside the kb_answer-shaped pipeline.
+    proposal_traces = fetch_proposal_traces()
+    proposal_analysis = analyze_proposal_traces(proposal_traces)
+    prop_tab_id = "top-agt-proposal"
+    pill_inputs += f'        <input type="radio" class="tab-input" name="top-tab" id="{prop_tab_id}">\n'
+    pills += f'            <label class="product-pill" for="{prop_tab_id}">💼 Proposal/GTM <span class="pill-count">{proposal_analysis.get("total", 0):,}</span></label>\n'
+    tab_css += (
+        f'        #{prop_tab_id}:checked ~ .product-pills label[for="{prop_tab_id}"] {{ background: white; color: #06b6d4; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }}\n'
+        f'        #{prop_tab_id}:checked ~ #panel-agt-proposal {{ display: block; }}\n'
+    )
+    panels += f"""
+        <div class="product-panel" id="panel-agt-proposal">
+{generate_proposal_tab_html(proposal_analysis)}
+        </div>
+"""
+
     return {"inputs": pill_inputs, "pills": pills, "css": tab_css, "panels": panels}
 
 
