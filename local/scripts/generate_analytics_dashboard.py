@@ -281,6 +281,280 @@ def fetch_proposal_traces() -> List[Dict]:
         return []
 
 
+def fetch_cross_sell_observations(days: int = 60) -> List[Dict]:
+    """Fetch cross_sell_skill observations from its own, separate Langfuse org
+    (LANGFUSE_*_CROSS_SELL env vars). This org returns HTTP 410 on the legacy
+    GET /api/public/traces endpoint used everywhere else in this file --
+    confirmed by direct probe, matches a documented Langfuse platform change:
+    orgs created on/after 2026-09-16 only support the v2/observations read
+    path, not the legacy trace-list endpoint. So this function talks to
+    /api/public/v2/observations directly (cursor pagination, basic auth)
+    instead of going through langfuse_client.py's list_traces(), which only
+    knows the legacy path.
+
+    Root observations only (isRootObservation=True) -- one per skill call,
+    matching how fetch_proposal_traces()/fetch_langfuse_traces() both treat
+    one call as one row. Degrades gracefully on failure (empty list), same
+    policy as fetch_proposal_traces -- this is a supplementary tab.
+    """
+    _load_env()
+    pub = os.environ.get("LANGFUSE_PUBLIC_KEY_CROSS_SELL", "")
+    sec = os.environ.get("LANGFUSE_SECRET_KEY_CROSS_SELL", "")
+    host = os.environ.get("LANGFUSE_HOST_CROSS_SELL", "https://cloud.langfuse.com")
+    if not (pub and sec):
+        print("⚠️  Cross-sell-skill Langfuse credentials missing from env -- skipping that tab")
+        return []
+    try:
+        import requests
+        since = datetime.utcnow() - timedelta(days=days)
+        until = datetime.utcnow() + timedelta(minutes=5)
+        rows, seen, cursor = [], set(), None
+        flt = [{"type": "boolean", "column": "isRootObservation", "operator": "=", "value": True}]
+        while True:
+            params = {
+                "fromStartTime": since.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "toStartTime": until.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "limit": 100, "fields": "core,basic,trace_context,metadata",
+                "filter": json.dumps(flt),
+            }
+            if cursor:
+                params["cursor"] = cursor
+            r = requests.get(f"{host}/api/public/v2/observations", params=params, auth=(pub, sec), timeout=30)
+            r.raise_for_status()
+            page = r.json()
+            for o in page.get("data") or []:
+                oid = o.get("id")
+                if oid and oid not in seen:
+                    seen.add(oid)
+                    rows.append(o)
+            cursor = (page.get("meta") or {}).get("cursor")
+            if not cursor:
+                break
+        print(f"✅ Fetched {len(rows)} cross-sell-skill observations (separate Langfuse org, v2/observations)")
+        return rows
+    except Exception as e:
+        print(f"⚠️  Cross-sell-skill observation fetch failed: {e} -- tab will show no data")
+        return []
+
+
+def analyze_cross_sell_traces(observations: List[Dict]) -> Dict[str, Any]:
+    """Aggregate cross_sell_skill observations. This skill is a deterministic
+    groundedness-validation guardrail in front of the Cross Sell Agent's own
+    Genome MCP data (not a content generator like proposal_generator) -- the
+    useful signals are: how often grounding checks come back clean vs. flag a
+    problem, which grounding-failure types actually fire (cohort_not_ready,
+    cohort_approximation, missing_basis -- see groundedness_warnings() in
+    cross_sell_skill.py), forbidden/rejected action attempts (a genuine
+    agent-instruction-drift signal, since only check_groundedness is allowed
+    as of v0.5.0), and the sales-targeting context (industry/segment/region)
+    the agent is actually working with.
+    """
+    from collections import Counter
+
+    def _norm_list(v):
+        """Langfuse truncates metadata string values at ~200 characters. A
+        list-typed field that's long enough (e.g. many repeated warning
+        codes) gets JSON-serialized, truncated mid-array by Langfuse, and
+        comes back as a broken JSON string -- not valid JSON, and NOT safe to
+        iterate directly (that iterates its characters, not its elements).
+        Try a clean parse first; on failure, best-effort recover whatever
+        complete quoted tokens survived the truncation; never fall through to
+        the raw string itself."""
+        if isinstance(v, list):
+            return v
+        if not isinstance(v, str) or not v.strip():
+            return []
+        try:
+            parsed = json.loads(v)
+            return parsed if isinstance(parsed, list) else []
+        except (ValueError, TypeError):
+            return re.findall(r'"([^"]*)"', v)
+
+    n = len(observations)
+    by_day = Counter()
+    actions = Counter()
+    error_codes = Counter()
+    warning_codes = Counter()
+    cohort_status = Counter()
+    cohort_type = Counter()
+    source_action = Counter()
+    industry = Counter()
+    segment = Counter()
+    region = Counter()
+    list_shape = Counter()
+    ok_count = clean_count = 0
+    latency = []
+    row_counts = []
+
+    for o in observations:
+        m = o.get("metadata") or {}
+        action = m.get("action") or (o.get("name") or "").split(":", 1)[-1] or "unknown"
+        actions[action] += 1
+        if m.get("ok") is True:
+            ok_count += 1
+        if m.get("clean") is True:
+            clean_count += 1
+        for c in _norm_list(m.get("error_codes")):
+            error_codes[c] += 1
+        for c in _norm_list(m.get("warning_codes")):
+            warning_codes[c] += 1
+        if m.get("cohort_status") not in (None, "unspecified"):
+            cohort_status[m["cohort_status"]] += 1
+        if m.get("cohort_type") not in (None, "unspecified"):
+            cohort_type[m["cohort_type"]] += 1
+        if m.get("source_action") not in (None, "unspecified"):
+            source_action[m["source_action"]] += 1
+        if m.get("industry") not in (None, "unspecified"):
+            industry[m["industry"]] += 1
+        if m.get("segment") not in (None, "unspecified"):
+            segment[m["segment"]] += 1
+        if m.get("region") not in (None, "unspecified"):
+            region[m["region"]] += 1
+        if m.get("list_shape") not in (None, "unspecified"):
+            list_shape[m["list_shape"]] += 1
+        ts = o.get("startTime")
+        if ts:
+            try:
+                by_day[datetime.fromisoformat(str(ts).replace("Z", "+00:00")).date().isoformat()] += 1
+            except Exception:
+                pass
+        lat = m.get("latency_ms")
+        if isinstance(lat, (int, float)) and not isinstance(lat, bool):
+            latency.append(lat)
+        rc = m.get("row_count")
+        if isinstance(rc, (int, float)) and not isinstance(rc, bool):
+            row_counts.append(rc)
+
+    def _pct(a, b):
+        return round(100.0 * a / b, 1) if b else 0.0
+
+    def _stat(xs):
+        import statistics
+        return {"min": min(xs), "median": round(statistics.median(xs), 1), "mean": round(statistics.mean(xs), 1), "max": max(xs)} if xs else None
+
+    forbidden_attempts = sum(c for a, c in actions.items() if a != "check_groundedness")
+
+    return {
+        "total": n,
+        "by_day": sorted(by_day.items()),
+        "actions": actions.most_common(),
+        "forbidden_attempts": forbidden_attempts,
+        "ok_rate": _pct(ok_count, n),
+        "clean_rate": _pct(clean_count, n),
+        "error_codes": error_codes.most_common(),
+        "warning_codes": warning_codes.most_common(),
+        "cohort_status": cohort_status.most_common(),
+        "cohort_type": cohort_type.most_common(),
+        "source_action": source_action.most_common(),
+        "industry": industry.most_common(),
+        "segment": segment.most_common(),
+        "region": region.most_common(),
+        "list_shape": list_shape.most_common(),
+        "latency_ms": _stat(latency),
+        "row_count": _stat(row_counts),
+    }
+
+
+def generate_cross_sell_tab_html(analysis: Dict[str, Any]) -> str:
+    """Render the Cross Sell Agent / groundedness-skill tab."""
+    n = analysis.get("total", 0)
+    if not n:
+        return """
+        <div class="section"><h2>🧮 Cross Sell / Groundedness</h2>
+        <p class="muted">No calls yet, or Langfuse credentials for this project are not configured.</p></div>
+"""
+
+    def _count_table(title: str, rows, note: str = "") -> str:
+        body = "".join(f"<tr><td>{name}</td><td>{count}</td></tr>" for name, count in list(rows)[:25])
+        extra = f'<p class="muted">{note}</p>' if note else ""
+        return f"""
+        <div class="section"><h3>{title}</h3>{extra}
+        <table><thead><tr><th>Name</th><th>Count</th></tr></thead>
+        <tbody>{body or '<tr><td colspan="2">None recorded</td></tr>'}</tbody></table>
+        </div>
+"""
+
+    def _stat_block(title: str, stat) -> str:
+        if not stat:
+            return ""
+        return f"""
+        <div class="section"><h3>{title}</h3>
+        <p>min {stat['min']} &middot; median {stat['median']} &middot; mean {stat['mean']} &middot; max {stat['max']}</p>
+        </div>
+"""
+
+    forbidden = analysis.get("forbidden_attempts", 0)
+    forbidden_note = (
+        f"<p class=\"muted\" style=\"color:#dc2626;\"><b>{forbidden}</b> call(s) used an action other than check_groundedness "
+        f"-- only check_groundedness is allowed as of skill v0.5.0; this is a drift/misuse signal worth checking the agent's instructions for.</p>"
+        if forbidden else ""
+    )
+
+    cards = f"""
+        <div class="grid">
+            <div class="card" style="border-left: 5px solid #f59e0b;">
+                <div class="metric"><div class="metric-label">Calls</div><div class="metric-value">{n}</div>
+                <div class="metric-unit">groundedness checks</div></div>
+            </div>
+            <div class="card" style="border-left: 5px solid #f59e0b;">
+                <div class="metric"><div class="metric-label">Clean Rate</div><div class="metric-value">{analysis.get('clean_rate', 0)}%</div>
+                <div class="metric-unit">no grounding warnings</div></div>
+            </div>
+            <div class="card" style="border-left: 5px solid #f59e0b;">
+                <div class="metric"><div class="metric-label">Valid Call Rate</div><div class="metric-value">{analysis.get('ok_rate', 0)}%</div>
+                <div class="metric-unit">passed input validation</div></div>
+            </div>
+            <div class="card" style="border-left: 5px solid #f59e0b;">
+                <div class="metric"><div class="metric-label">Forbidden-action Attempts</div><div class="metric-value">{forbidden}</div>
+                <div class="metric-unit">e.g. list_cohorts -- should be 0</div></div>
+            </div>
+        </div>
+"""
+
+    by_day = analysis.get("by_day") or []
+    volume_rows = "".join(f"<tr><td>{day}</td><td>{count}</td></tr>" for day, count in reversed(by_day[-30:]))
+    volume_html = f"""
+        <div class="section"><h3>Volume by day (last 30 shown)</h3>
+        <table><thead><tr><th>Day</th><th>Calls</th></tr></thead>
+        <tbody>{volume_rows or '<tr><td colspan="2">No data</td></tr>'}</tbody></table>
+        </div>
+"""
+
+    grounding_html = "".join([
+        _count_table("Warning codes (grounding issues flagged)", analysis.get("warning_codes", []),
+                     note="cohort_not_ready / cohort_approximation / missing_basis -- the actual data-quality problems caught before the agent used them in an answer."),
+        _count_table("Error codes (rejected calls)", analysis.get("error_codes", [])),
+        _count_table("Actions called", analysis.get("actions", []), note=forbidden_note.replace('<p class="muted" style="color:#dc2626;">', '').replace('</p>', '') if forbidden else ""),
+    ])
+
+    context_html = "".join([
+        _count_table("Cohort status (Genome data freshness)", analysis.get("cohort_status", [])),
+        _count_table("Cohort type", analysis.get("cohort_type", [])),
+        _count_table("Source action (which Genome MCP tool fed this)", analysis.get("source_action", [])),
+        _count_table("Industry", analysis.get("industry", [])),
+        _count_table("Segment", analysis.get("segment", [])),
+        _count_table("Region", analysis.get("region", [])),
+        _count_table("Result shape", analysis.get("list_shape", [])),
+    ])
+
+    stats_html = "".join([
+        _stat_block("Latency (ms)", analysis.get("latency_ms")),
+        _stat_block("Row count per call", analysis.get("row_count")),
+    ])
+
+    return f"""
+        <div class="section"><h2>🧮 Cross Sell / Groundedness</h2>
+        <p class="muted">Separate Langfuse org (cross_sell_skill, a deterministic groundedness-validation guardrail in front of the Cross Sell Agent's Genome MCP data -- not a content generator). Uses the v2/observations read path, not the legacy traces API this dashboard uses elsewhere.</p>
+        {forbidden_note}
+        </div>
+{cards}
+{volume_html}
+{grounding_html}
+{context_html}
+{stats_html}
+"""
+
+
 def analyze_proposal_traces(traces: List[Dict]) -> Dict[str, Any]:
     """Aggregate GTM/proposal-agent traces (gtm-agent-turn schema -- intent/
     connectors/capability_gaps/time_saved_minutes, NOT the answered/confidence/
@@ -334,6 +608,294 @@ def analyze_proposal_traces(traces: List[Dict]) -> Dict[str, Any]:
         "time_saved_total": time_saved_total,
         "time_saved_avg": round(time_saved_total / total, 1) if total else 0.0,
     }
+
+
+def analyze_proposal_generator_traces(traces: List[Dict]) -> Dict[str, Any]:
+    """Aggregate proposal_generator traces (the WhatsApp-demo-proposal builder tool,
+    distinct from the gtm-agent-turn chat agent above -- same Langfuse project,
+    different trace name, much richer telemetry: industry/use-case/channel
+    classification, effort sizing, validation errors, component adoption, and
+    session-level iteration/friction).
+
+    Ported from the reference aggregate()/findings() in isildurs-bane's own
+    design/skills/proposal_generator/tools/proposal_usage_report.py -- that
+    script is the authoritative definition of what's useful here (written by
+    whoever built the telemetry), not something to reinvent independently.
+    Adapted from its v2/observations fetch to this file's existing legacy
+    /api/public/traces fetch (same trace data, different read path -- OTLP
+    ingestion makes both legacy-traces and v2-observations valid reads, same
+    as every other OTLP-ingested trace in this whole dashboard).
+    """
+    from collections import Counter
+    import statistics
+
+    def _pct(n, d):
+        return round(100.0 * n / d, 1) if d else 0.0
+
+    def _top(counter, n=10):
+        return counter.most_common(n)
+
+    n = len(traces)
+    dims = {k: Counter() for k in ("industry", "channel", "purpose", "region", "requester_role", "client_size",
+                                     "entry_point_kind", "language", "pattern_key", "effort_profile")}
+    use_cases, formats, comps, gaps, unsupported, other_labels = Counter(), Counter(), Counter(), Counter(), Counter(), Counter()
+    err_paths, err_codes, warn_codes, by_day = Counter(), Counter(), Counter(), Counter()
+    pairs = Counter()
+    ok = classified = priced = 0
+    hours, steps, latency, pdf_pages = [], [], [], []
+
+    for t in traces:
+        m = t.get("metadata") or {}
+        ok += 1 if m.get("artifact_created") is True else 0
+        classified += 1 if m.get("insights_classified") is True else 0
+        priced += 1 if m.get("price_computed") is True else 0
+        for k, c in dims.items():
+            if m.get(k) not in (None, ""):
+                c[str(m[k])] += 1
+        uc = m.get("use_cases") if isinstance(m.get("use_cases"), list) else []
+        use_cases.update(uc)
+        for u in uc:
+            pairs[f"{m.get('industry', 'unspecified')} x {u}"] += 1
+        formats.update(m.get("output_formats") if isinstance(m.get("output_formats"), list) else [])
+        comps.update(m.get("component_types") if isinstance(m.get("component_types"), list) else [])
+        gaps.update(m.get("capability_gaps") if isinstance(m.get("capability_gaps"), list) else [])
+        unsupported.update(m.get("unsupported_requests") if isinstance(m.get("unsupported_requests"), list) else [])
+        if m.get("other_label"):
+            other_labels[str(m["other_label"])] += 1
+        err_paths.update(m.get("error_paths") if isinstance(m.get("error_paths"), list) else [])
+        err_codes.update(m.get("error_codes") if isinstance(m.get("error_codes"), list) else [])
+        warn_codes.update(m.get("warning_codes") if isinstance(m.get("warning_codes"), list) else [])
+        ts = t.get("timestamp")
+        if ts:
+            try:
+                by_day[datetime.fromisoformat(str(ts).replace("Z", "+00:00")).date().isoformat()] += 1
+            except Exception:
+                pass
+        for key, bucket in (("effort_hours", hours), ("step_count", steps), ("latency_ms", latency), ("pdf_pages", pdf_pages)):
+            v = m.get(key)
+            if isinstance(v, (int, float)) and not isinstance(v, bool):
+                bucket.append(v)
+
+    # Session-level iteration/friction: runs per session, runs to first success,
+    # minutes to first success, sessions with a rejected run, abandoned sessions.
+    by_session = defaultdict(list)
+    for t in traces:
+        sid = t.get("sessionId")
+        if sid:
+            ts = t.get("timestamp")
+            try:
+                dt = datetime.fromisoformat(str(ts).replace("Z", "+00:00")) if ts else None
+            except Exception:
+                dt = None
+            by_session[sid].append((dt, t.get("metadata") or {}))
+
+    first_ok_runs, minutes, with_friction, abandoned = [], [], 0, 0
+    for runs in by_session.values():
+        runs.sort(key=lambda x: (x[0] is None, x[0]))
+        idx = next((i for i, (_, m) in enumerate(runs, 1) if m.get("artifact_created") is True), None)
+        if any(m.get("artifact_created") is False for _, m in runs):
+            with_friction += 1
+        if idx is None:
+            abandoned += 1
+            continue
+        first_ok_runs.append(idx)
+        a, b = runs[0][0], runs[idx - 1][0]
+        if a and b:
+            minutes.append((b - a).total_seconds() / 60.0)
+
+    def _stat(xs):
+        return {"min": min(xs), "median": round(statistics.median(xs), 1), "mean": round(statistics.mean(xs), 1), "max": max(xs)} if xs else None
+
+    sessions = len(by_session)
+    users = {t.get("userId") for t in traces if t.get("userId")}
+
+    rep = {
+        "runs": n, "ok": ok, "rejected": n - ok, "success_rate_pct": _pct(ok, n),
+        "unique_users": len(users), "sessions": sessions,
+        "classified_pct": _pct(classified, n), "unclassified_runs": n - classified,
+        "per_day": sorted(by_day.items()),
+        "industry": _top(dims["industry"]), "use_cases": _top(use_cases), "industry_x_use_case": _top(pairs, 12),
+        "channel": _top(dims["channel"]), "purpose": _top(dims["purpose"]), "region": _top(dims["region"]),
+        "requester_role": _top(dims["requester_role"]), "client_size": _top(dims["client_size"]),
+        "entry_point": _top(dims["entry_point_kind"]), "language": _top(dims["language"]),
+        "output_formats": _top(formats), "pdf_share_pct": _pct(formats.get("pdf", 0), n),
+        "component_adoption": [(k, v, _pct(v, n)) for k, v in comps.most_common()],
+        "patterns": _top(dims["pattern_key"]),
+        "unsupported_requests": _top(unsupported), "capability_gaps": _top(gaps),
+        "other_labels": _top(other_labels),
+        "top_error_paths": _top(err_paths), "error_codes": _top(err_codes), "warning_codes": _top(warn_codes),
+        "effort_hours": _stat(hours), "price_computed_pct": _pct(priced, n), "steps": _stat(steps),
+        "latency_ms": _stat(latency), "pdf_pages": _stat(pdf_pages),
+        "iteration": {
+            "runs_per_session": _stat([len(r) for r in by_session.values()]),
+            "runs_to_first_success": _stat(first_ok_runs),
+            "minutes_to_first_success": _stat([round(x, 1) for x in minutes]),
+            "sessions_with_a_rejected_run_pct": _pct(with_friction, sessions),
+            "sessions_without_success_pct": _pct(abandoned, sessions),
+        },
+    }
+    rep["findings"] = _proposal_generator_findings(rep)
+    return rep
+
+
+def _proposal_generator_findings(r: Dict[str, Any]) -> List[str]:
+    """Same heuristics as the reference script's findings() -- plain-English,
+    directly actionable observations, not just raw numbers."""
+    out, n = [], r["runs"]
+    if not n:
+        return ["No runs in this window."]
+    if r["classified_pct"] < 80:
+        out.append(f"Only {r['classified_pct']}% of runs carry industry, use case and channel. Check the agent instructions that tell it to classify, or tag-filter 'unclassified' to see which sessions skip it.")
+    if r["top_error_paths"] and r["rejected"]:
+        p, c = r["top_error_paths"][0]
+        out.append(f"Most common validation failure: {p} ({c} runs). Make the agent instruction or the error message for that field clearer.")
+    if r["unsupported_requests"]:
+        k, c = r["unsupported_requests"][0]
+        out.append(f"Most requested unsupported feature: {k} ({c} runs). Strongest roadmap signal.")
+    it = r["iteration"]
+    if it["runs_to_first_success"] and it["runs_to_first_success"]["mean"] > 1.5:
+        out.append(f"Users need {it['runs_to_first_success']['mean']} runs on average to a first success: collect requirements more completely before calling the skill.")
+    if it["sessions_without_success_pct"] >= 20:
+        out.append(f"{it['sessions_without_success_pct']}% of sessions never produced a file: look at their error paths.")
+    if r["other_labels"]:
+        out.append(f"'other' labels recorded ({', '.join(k for k, _ in r['other_labels'][:3])}): candidates for new taxonomy values.")
+    if r["pdf_share_pct"] >= 30:
+        out.append(f"PDF is requested in {r['pdf_share_pct']}% of runs: worth investing in PDF polish and non-Latin fonts if those markets matter.")
+    cats = {k: v for k, v, _ in r["component_adoption"]}
+    unused = [c for c in ("template", "list_menu", "audio", "pay", "carousel", "flow") if c not in cats]
+    if unused and n >= 20:
+        out.append(f"Never used in {n} runs: {', '.join(unused)}. Either unknown to the agent or not needed.")
+    return out or ["Nothing stands out yet; keep collecting."]
+
+
+def generate_proposal_generator_tab_html(analysis: Dict[str, Any]) -> str:
+    """Render the Proposal Generator (demo-builder tool) sub-tab."""
+    n = analysis.get("runs", 0)
+    if not n:
+        return """
+        <div class="section"><h2>📄 Proposal Generator</h2>
+        <p class="muted">No runs yet. This tool's telemetry was recently added -- once it's used in production, this sub-tab will populate.</p></div>
+"""
+
+    findings_html = "".join(f"<li>{f}</li>" for f in analysis.get("findings", []))
+    cards = f"""
+        <div class="grid">
+            <div class="card" style="border-left: 5px solid #06b6d4;">
+                <div class="metric"><div class="metric-label">Runs</div><div class="metric-value">{n}</div>
+                <div class="metric-unit">{analysis.get('unique_users', 0)} users, {analysis.get('sessions', 0)} sessions</div></div>
+            </div>
+            <div class="card" style="border-left: 5px solid #06b6d4;">
+                <div class="metric"><div class="metric-label">Success Rate</div><div class="metric-value">{analysis.get('success_rate_pct', 0)}%</div>
+                <div class="metric-unit">({analysis.get('ok', 0)} ok, {analysis.get('rejected', 0)} rejected)</div></div>
+            </div>
+            <div class="card" style="border-left: 5px solid #06b6d4;">
+                <div class="metric"><div class="metric-label">Classified</div><div class="metric-value">{analysis.get('classified_pct', 0)}%</div>
+                <div class="metric-unit">industry/use-case/channel captured</div></div>
+            </div>
+            <div class="card" style="border-left: 5px solid #06b6d4;">
+                <div class="metric"><div class="metric-label">PDF Requested</div><div class="metric-value">{analysis.get('pdf_share_pct', 0)}%</div>
+                <div class="metric-unit">of runs</div></div>
+            </div>
+        </div>
+"""
+
+    findings_block = f"""
+        <div class="section"><h3>Findings</h3>
+        <ul>{findings_html or '<li>Nothing stands out yet; keep collecting.</li>'}</ul>
+        </div>
+""" if findings_html else ""
+
+    def _count_table(title: str, rows, note: str = "") -> str:
+        body = "".join(f"<tr><td>{name}</td><td>{count}</td></tr>" for name, count in list(rows)[:25])
+        extra = f'<p class="muted">{note}</p>' if note else ""
+        return f"""
+        <div class="section"><h3>{title}</h3>{extra}
+        <table><thead><tr><th>Name</th><th>Count</th></tr></thead>
+        <tbody>{body or '<tr><td colspan="2">None recorded</td></tr>'}</tbody></table>
+        </div>
+"""
+
+    def _stat_block(title: str, stat) -> str:
+        if not stat:
+            return ""
+        return f"""
+        <div class="section"><h3>{title}</h3>
+        <p>min {stat['min']} &middot; median {stat['median']} &middot; mean {stat['mean']} &middot; max {stat['max']}</p>
+        </div>
+"""
+
+    classification_html = "".join([
+        _count_table("Industry", analysis.get("industry", [])),
+        _count_table("Use cases", analysis.get("use_cases", []), note="A run can have several."),
+        _count_table("Industry &times; use case", analysis.get("industry_x_use_case", [])),
+        _count_table("Channel", analysis.get("channel", [])),
+        _count_table("Purpose", analysis.get("purpose", [])),
+        _count_table("Region", analysis.get("region", [])),
+        _count_table("Requester role", analysis.get("requester_role", [])),
+        _count_table("Client size", analysis.get("client_size", [])),
+        _count_table("Entry point", analysis.get("entry_point", [])),
+        _count_table("Language", analysis.get("language", [])),
+    ])
+
+    roadmap_html = "".join([
+        _count_table("Unsupported requests", analysis.get("unsupported_requests", []), note="Direct roadmap signal -- what prospects asked for that the tool can't do yet."),
+        _count_table("Capability gaps", analysis.get("capability_gaps", [])),
+        _count_table("'Other' labels (taxonomy growth)", analysis.get("other_labels", []), note="Candidates for new classification values."),
+        _count_table("Top validation failures (field paths)", analysis.get("top_error_paths", [])),
+        _count_table("Error codes", analysis.get("error_codes", [])),
+        _count_table("Warning codes", analysis.get("warning_codes", [])),
+    ])
+
+    comp_rows = "".join(f"<tr><td>{k}</td><td>{v}</td><td>{p}%</td></tr>" for k, v, p in analysis.get("component_adoption", []))
+    comp_html = f"""
+        <div class="section"><h3>Component adoption</h3>
+        <table><thead><tr><th>Component</th><th>Count</th><th>% of runs</th></tr></thead>
+        <tbody>{comp_rows or '<tr><td colspan="3">None recorded</td></tr>'}</tbody></table>
+        </div>
+"""
+
+    stats_html = "".join([
+        _stat_block("Effort hours", analysis.get("effort_hours")),
+        _stat_block("Steps per proposal", analysis.get("steps")),
+        _stat_block("Latency (ms)", analysis.get("latency_ms")),
+        _stat_block("PDF pages", analysis.get("pdf_pages")),
+    ])
+
+    it = analysis.get("iteration") or {}
+    iteration_html = f"""
+        <div class="section"><h3>Iteration &amp; friction</h3>
+        <p>Sessions with a rejected run: <b>{it.get('sessions_with_a_rejected_run_pct', 0)}%</b> &middot;
+        Sessions that never produced a file: <b>{it.get('sessions_without_success_pct', 0)}%</b></p>
+"""
+    for label, key in (("Runs per session", "runs_per_session"), ("Runs to first success", "runs_to_first_success"),
+                        ("Minutes to first success", "minutes_to_first_success")):
+        s = it.get(key)
+        if s:
+            iteration_html += f"<p>{label}: min {s['min']} &middot; median {s['median']} &middot; mean {s['mean']} &middot; max {s['max']}</p>"
+    iteration_html += "        </div>\n"
+
+    by_day = analysis.get("per_day") or []
+    volume_rows = "".join(f"<tr><td>{day}</td><td>{count}</td></tr>" for day, count in reversed(by_day[-30:]))
+    volume_html = f"""
+        <div class="section"><h3>Volume by day (last 30 shown)</h3>
+        <table><thead><tr><th>Day</th><th>Runs</th></tr></thead>
+        <tbody>{volume_rows or '<tr><td colspan="2">No data</td></tr>'}</tbody></table>
+        </div>
+"""
+
+    return f"""
+        <div class="section"><h2>📄 Proposal Generator</h2>
+        <p class="muted">Separate trace name (<code>proposal_generator</code>) within the same Langfuse project as the GTM agent tab -- the WhatsApp-demo-proposal builder tool, with richer classification/sizing/validation telemetry. Aggregation ported from this tool's own reference report script (isildurs-bane/design/skills/proposal_generator/tools/proposal_usage_report.py).</p>
+        </div>
+{cards}
+{findings_block}
+{volume_html}
+{classification_html}
+{roadmap_html}
+{comp_html}
+{stats_html}
+{iteration_html}
+"""
 
 
 def generate_proposal_tab_html(analysis: Dict[str, Any]) -> str:
@@ -2982,22 +3544,53 @@ def build_dashboard_tabs(traces: List[Dict], source_agent_rows: List[Dict[str, A
         </div>
 """
 
-    # Proposal/GTM agent: a separate Langfuse project with a different trace
-    # schema (no answered/confidence/module concept), so it can't go through
+    # Proposal/GTM agent: a separate Langfuse project with different trace
+    # schemas (no answered/confidence/module concept), so it can't go through
     # the AGENT_TABS loop above -- added as one more pill/panel by hand,
     # same radio-button CSS mechanism, outside the kb_answer-shaped pipeline.
-    proposal_traces = fetch_proposal_traces()
-    proposal_analysis = analyze_proposal_traces(proposal_traces)
+    # Two distinct tools share this one project under different trace names:
+    # gtm-agent-turn (the chat agent) and proposal_generator (the WhatsApp-
+    # demo-proposal builder, richer telemetry) -- split and given their own
+    # sub-tab each, same _subtab_group mechanism used for AGENT_TABS items.
+    proposal_all_traces = fetch_proposal_traces()
+    gtm_traces = [t for t in proposal_all_traces if t.get("name") == "gtm-agent-turn"]
+    propgen_traces = [t for t in proposal_all_traces if t.get("name") == "proposal_generator"]
+    gtm_analysis = analyze_proposal_traces(gtm_traces)
+    propgen_analysis = analyze_proposal_generator_traces(propgen_traces)
     prop_tab_id = "top-agt-proposal"
     pill_inputs += f'        <input type="radio" class="tab-input" name="top-tab" id="{prop_tab_id}">\n'
-    pills += f'            <label class="product-pill" for="{prop_tab_id}">💼 Proposal/GTM <span class="pill-count">{proposal_analysis.get("total", 0):,}</span></label>\n'
+    pills += f'            <label class="product-pill" for="{prop_tab_id}">💼 Proposal/GTM <span class="pill-count">{len(proposal_all_traces):,}</span></label>\n'
     tab_css += (
         f'        #{prop_tab_id}:checked ~ .product-pills label[for="{prop_tab_id}"] {{ background: white; color: #06b6d4; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }}\n'
         f'        #{prop_tab_id}:checked ~ #panel-agt-proposal {{ display: block; }}\n'
     )
+    prop_items = [
+        ("gtm", f"💬 GTM Agent ({len(gtm_traces)})", generate_proposal_tab_html(gtm_analysis)),
+        ("propgen", f"📄 Proposal Generator ({len(propgen_traces)})", generate_proposal_generator_tab_html(propgen_analysis)),
+    ]
     panels += f"""
         <div class="product-panel" id="panel-agt-proposal">
-{generate_proposal_tab_html(proposal_analysis)}
+{_subtab_group("sub-proposal", prop_items)}
+        </div>
+"""
+
+    # Cross Sell Agent / groundedness skill: yet another separate Langfuse org
+    # (not even the same host/project as Proposal/GTM -- this one requires the
+    # v2/observations read path, confirmed by a 410 on the legacy endpoint used
+    # everywhere else). Own top-level pill, not nested under Proposal/GTM --
+    # it's a genuinely different agent, not a second tool of the same one.
+    cross_sell_obs = fetch_cross_sell_observations()
+    cross_sell_analysis = analyze_cross_sell_traces(cross_sell_obs)
+    cs_tab_id = "top-agt-crosssell"
+    pill_inputs += f'        <input type="radio" class="tab-input" name="top-tab" id="{cs_tab_id}">\n'
+    pills += f'            <label class="product-pill" for="{cs_tab_id}">🧮 Cross Sell <span class="pill-count">{len(cross_sell_obs):,}</span></label>\n'
+    tab_css += (
+        f'        #{cs_tab_id}:checked ~ .product-pills label[for="{cs_tab_id}"] {{ background: white; color: #f59e0b; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }}\n'
+        f'        #{cs_tab_id}:checked ~ #panel-agt-crosssell {{ display: block; }}\n'
+    )
+    panels += f"""
+        <div class="product-panel" id="panel-agt-crosssell">
+{generate_cross_sell_tab_html(cross_sell_analysis)}
         </div>
 """
 

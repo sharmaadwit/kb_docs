@@ -78,6 +78,7 @@ def _trace_to_shape(trace: dict) -> dict:
         "timestamp": trace.get("timestamp"),
         "name": trace.get("name"),
         "userId": trace.get("userId"),
+        "sessionId": trace.get("sessionId"),
         "metadata": meta,
         "input": inp,
         "output": trace.get("output"),
