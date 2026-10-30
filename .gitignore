@@ -51,3 +51,6 @@ CONSULTING_MODE_*.md
 # YouTube auth + transcript build intermediates (never commit; secrets/raw)
 cookies.txt
 **/cookies.txt
+
+# Personal/local tooling, not shared repo content
+local/scripts/check_demoforge_new.py
