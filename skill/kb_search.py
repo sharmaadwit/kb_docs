@@ -1216,6 +1216,60 @@ CONCEPT_REGISTRY: List[Dict] = [
         },
     },
     {
+        "id": "superagent_computer_use",
+        # "computer use" alone collided with Browser Control's "Enable
+        # extension mode" page via generic "use"/"browser" overlap (confirmed
+        # 2026-11-06 retrieval test); this registry entry + boost routes it
+        # to the whats-new entry instead.
+        "aliases": [
+            "computer use", "agent computer use", "superagent computer use",
+            "agent use a computer", "run code on a computer",
+            "agent execute code", "agent write files",
+        ],
+        "keywords": ["computer"],
+        "source_boosts": {"whats-new": 6.0},
+        "source_penalties": {"enable-browser-agent": -2.0},
+        "display": "Computer Use",
+        "page_display": "Computer Use",
+        "module": "SuperAgent",
+        "related": ["superagent_slack_channels"],
+    },
+    {
+        "id": "superagent_slack_channels",
+        # Plain "slack" queries were losing to "SLA" (Chat Management: SLA)
+        # via substring/stem overlap (confirmed 2026-11-06 retrieval test).
+        "aliases": [
+            "slack handle", "slack handles", "slack channel", "slack channels",
+            "slack dm", "slack direct message", "agent on slack",
+            "connect slack", "slack user group", "slack autocomplete",
+        ],
+        "keywords": ["slack"],
+        "source_boosts": {"whats-new": 6.0},
+        "source_penalties": {},
+        "display": "Slack Channels",
+        "page_display": "Slack Channels",
+        "module": "SuperAgent",
+        "related": ["superagent_computer_use"],
+    },
+    {
+        "id": "superagent_whats_new",
+        # Bare "what's new" queries lost to "+ New agent" (create-agent.md)
+        # on literal "new" term overlap (confirmed 2026-11-06 retrieval test).
+        "aliases": [
+            "what new", "whats new", "what is new in superagent",
+            "latest superagent features", "new features superagent",
+            "recent updates superagent", "superagent changelog",
+            "superagent release notes", "superagent updates",
+        ],
+        "keywords": [],
+        "source_boosts": {"whats-new": 6.0},
+        "source_penalties": {},
+        "display": "What's New",
+        "page_display": "What's New",
+        "module": "SuperAgent",
+        "related": ["superagent_computer_use", "superagent_slack_channels"],
+    },
+    {
         "id": "salesforce_webhook",
         "aliases": [
             "salesforce webhook", "crm webhook", "salesforce crm",
