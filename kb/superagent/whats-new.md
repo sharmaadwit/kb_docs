@@ -10,6 +10,23 @@ slug: "whats-new"
 
 Recent updates, new features, and improvements to SuperAgent.
 
+## Files, Computer Use & the Organization Panel — November 2–5, 2026
+
+Agents can now work with large, complex files directly, run tasks on a computer, and your organization gets a shared knowledge panel.
+
+- **Files** (2) — agents can save large tool results as files to later read, search, and query; full-document reading now covers Excel, PDF, PowerPoint, Word, ODT, RTF, and EML
+- **Organization panel** (1) — a new panel to manage company-wide knowledge, see an agent org chart, and hold shared context notes
+- **Computer use** (1) — agents can use a computer to execute tasks, write files, and read data
+- **Also improved** (2) — agents are smarter about handling a task themselves vs. asking another agent for help; chats with images or PDFs no longer fail outright if the selected model can't read that file type
+
+## Slack: Channel-Only Replies & Sharper Handles — October 30 – November 2, 2026
+
+Slack agents now reply only in channels, with per-channel handles and faster multi-channel setup.
+
+- **What works differently** (2) — direct messages are no longer supported; agents only respond when @mentioned in a channel; links that open Slack in the browser were removed
+- **Handles & channels** (3) — a customizable @handle per channel; agents only answer untagged thread replies when they're the intended recipient; add multiple channels at once using IDs, links, or names
+- **Also improved** (2) — Slack user groups now keep @handle autocomplete accurate; "Try now" prompts and briefs reliably reach the chat composer even if the chat is still loading
+
 ## Superagent 2.0: It Works Like Chat — October 7, 2026
 
 Superagent now looks and works like the chat app you already use. Your chats are on the left, the conversation is in the middle, and everything about an agent is on the right. Your agents are contacts, and people and agents can work together in one chat.
