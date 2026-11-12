@@ -6,20 +6,30 @@ raw OTLP/HTTP and is separate from this module.
 
 Ingestion path (skill):
   POST /api/public/otel/v1/traces (OTLP/JSON, non-deprecated)
-  Metadata is embedded in trace.input._meta because OTLP traces are NOT
-  surfaced by v2/observations — they only appear in the legacy /traces API.
+  Metadata is embedded in trace.input._meta.
 
-Fetch path (analytics):
-  list_traces() → GET /api/public/traces (legacy list, page-based)
-  OTLP-ingested traces only appear here, not in v2/observations.
-  Metadata extracted from trace.input._meta (OTLP) or trace.metadata (SDK).
-  get_trace()   → GET /api/public/traces/{id} (legacy single-fetch)
+Fetch path (analytics) — Langfuse v4 migration (2026-11-12):
+  list_observations() → GET /api/public/v2/observations (real-time read
+  path per Langfuse's own CLI docs; cursor-based pagination). This project's
+  Langfuse UI flagged "Migrate APIs" ahead of a Nov 16, 2026 deadline for the
+  legacy endpoint below. Previously believed OTLP-ingested traces were NOT
+  surfaced by v2/observations (hence the old list_traces()/get_trace() below)
+  -- disproven by direct live verification via the Langfuse CLI on this exact
+  project: OTLP traces from kb_answer/kb_search DO appear here. Preferred for
+  all new code.
+  list_traces() / get_trace() → GET /api/public/traces (legacy, page-based).
+  Kept only for scripts not yet migrated off it; do not use in new code --
+  this is the endpoint Langfuse is sunsetting.
 
 Reads credentials from env (LANGFUSE_HOST / LANGFUSE_PUBLIC_KEY /
 LANGFUSE_SECRET_KEY) or from ../../.env.
 """
+import json
 import os
+from datetime import datetime, timedelta
 from typing import List, Optional
+
+import requests
 
 try:
     from langfuse import Langfuse
@@ -85,25 +95,102 @@ def _trace_to_shape(trace: dict) -> dict:
     }
 
 
-def _obs_to_trace_shape(obs: dict) -> dict:
-    """Remap ObservationV2 model_dump() fields to the standard analytics shape.
+def _parse_json_field(value):
+    """v2/observations returns input/output as raw JSON *strings* (unlike
+    the legacy /traces endpoint, which auto-parses them into objects) --
+    confirmed via direct live comparison 2026-11-12. Parse defensively so
+    callers can treat both fetch paths the same way; leave non-JSON strings
+    (or already-parsed dicts) untouched."""
+    if isinstance(value, str):
+        try:
+            return json.loads(value)
+        except (ValueError, TypeError):
+            return value
+    return value
 
-    Only used for SDK-ingested observations fetched via v2/observations.
-    OTLP-ingested traces do NOT appear in v2/observations — use list_traces()
-    which goes through the legacy /traces endpoint instead.
+
+def _obs_to_trace_shape(obs: dict) -> dict:
+    """Remap a v2/observations row (raw REST JSON or ObservationV2
+    model_dump()) to the standard analytics shape. Works for both
+    SDK-ingested and OTLP-ingested observations -- see module docstring.
     """
-    inp = obs.get("input") or {}
+    inp = _parse_json_field(obs.get("input")) or {}
     meta = (inp.get("_meta") if isinstance(inp, dict) else None) or obs.get("metadata") or {}
     return {
         "id": obs.get("traceId") or obs.get("trace_id"),
         "timestamp": obs.get("startTime") or obs.get("start_time"),
         "name": obs.get("name"),
         "userId": obs.get("userId") or obs.get("user_id"),
+        "sessionId": obs.get("sessionId") or obs.get("session_id"),
         "metadata": meta,
         "input": inp,
-        "output": obs.get("output"),
+        "output": _parse_json_field(obs.get("output")),
         "_obs_id": obs.get("id"),
     }
+
+
+def list_observations(
+    name: Optional[str] = None,
+    from_timestamp=None,
+    to_timestamp=None,
+    root_only: bool = True,
+    host: Optional[str] = None,
+    public_key: Optional[str] = None,
+    secret_key: Optional[str] = None,
+    timeout: int = DEFAULT_TIMEOUT,
+):
+    """List observations via GET /api/public/v2/observations (cursor
+    pagination, the real-time v4 read path). Raw requests + basic auth --
+    same pattern already proven for the cross-sell-skill org in
+    generate_analytics_dashboard.py's fetch_cross_sell_observations().
+
+    Returns a list of trace-shaped dicts (via _obs_to_trace_shape), fetching
+    every page internally (no page/cursor param to manage at the call site,
+    unlike the legacy list_traces()).
+    """
+    _load_env_from_dotenv()
+    host = host or os.getenv("LANGFUSE_HOST", "https://cloud.langfuse.com")
+    public_key = public_key or os.getenv("LANGFUSE_PUBLIC_KEY")
+    secret_key = secret_key or os.getenv("LANGFUSE_SECRET_KEY")
+    if not (public_key and secret_key):
+        raise RuntimeError("LANGFUSE_PUBLIC_KEY / LANGFUSE_SECRET_KEY not set")
+
+    flt = []
+    if root_only:
+        flt.append({"type": "boolean", "column": "isRootObservation", "operator": "=", "value": True})
+
+    rows, seen, cursor = [], set(), None
+    while True:
+        params = {"limit": 100, "fields": "core,basic,trace_context,metadata,io"}
+        if name:
+            params["name"] = name
+        if from_timestamp is not None:
+            dt = from_timestamp if isinstance(from_timestamp, str) else from_timestamp.strftime("%Y-%m-%dT%H:%M:%SZ")
+            params["fromStartTime"] = dt
+        if to_timestamp is not None:
+            dt = to_timestamp if isinstance(to_timestamp, str) else to_timestamp.strftime("%Y-%m-%dT%H:%M:%SZ")
+            params["toStartTime"] = dt
+        if flt:
+            params["filter"] = json.dumps(flt)
+        if cursor:
+            params["cursor"] = cursor
+
+        r = requests.get(
+            f"{host.rstrip('/')}/api/public/v2/observations",
+            params=params, auth=(public_key, secret_key), timeout=timeout,
+        )
+        r.raise_for_status()
+        page = r.json()
+        for o in page.get("data") or []:
+            oid = o.get("id")
+            if oid and oid not in seen:
+                seen.add(oid)
+                rows.append(_obs_to_trace_shape(o))
+        cursor = (page.get("meta") or {}).get("cursor")
+        if not cursor:
+            break
+
+    return rows
 
 
 def list_traces(

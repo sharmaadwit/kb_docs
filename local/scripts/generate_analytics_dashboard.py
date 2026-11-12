@@ -152,34 +152,23 @@ def fetch_langfuse_traces(days: Optional[int] = None) -> Optional[List[Dict]]:
         from_dt = datetime.utcnow() - timedelta(days=backfill_days)
         print(f"🔄 No cache found — initial backfill for last {backfill_days} days...")
 
-    # Fetch via legacy GET /api/public/traces (page-based pagination).
-    # OTLP-ingested traces (all production traffic going forward) only appear
-    # here — they do NOT appear in v2/observations.
+    # Fetch via GET /api/public/v2/observations (real-time read path, cursor
+    # pagination). Migrated off the legacy GET /api/public/traces endpoint
+    # 2026-11-12 -- Langfuse flagged this project's "Migrate APIs" ahead of a
+    # Nov 16, 2026 deadline. Previously believed OTLP-ingested traces weren't
+    # surfaced by v2/observations; disproven by direct live verification via
+    # the Langfuse CLI on this exact project (see langfuse_client.py docstring).
     try:
         sys.path.insert(0, os.path.dirname(__file__))
-        from langfuse_client import get_client, list_traces as _sdk_list_traces, _trace_to_shape
+        from langfuse_client import list_observations
 
         pub = os.environ.get("LANGFUSE_PUBLIC_KEY", "")
         sec = os.environ.get("LANGFUSE_SECRET_KEY", "")
 
         if pub and sec:
-            client = get_client()
-            new_traces = []
-            page = 1
-            page_limit = 100
+            new_traces = list_observations(name="kb_answer", from_timestamp=from_dt)
 
-            while True:
-                batch, _ = _sdk_list_traces(
-                    client, name="kb_answer", limit=page_limit,
-                    from_timestamp=from_dt, page=page,
-                )
-                new_traces.extend(batch)
-
-                if len(batch) < page_limit:
-                    break
-                page += 1
-
-            print(f"✅ Fetched {len(new_traces)} new/updated traces via legacy /api/public/traces")
+            print(f"✅ Fetched {len(new_traces)} new/updated traces via /api/public/v2/observations")
 
             # Merge into cache by trace id (new data wins on conflict)
             for t in new_traces:
@@ -263,18 +252,10 @@ def fetch_proposal_traces() -> List[Dict]:
         return []
     try:
         sys.path.insert(0, os.path.dirname(__file__))
-        from langfuse import Langfuse
-        from langfuse_client import list_traces as _sdk_list_traces
+        from langfuse_client import list_observations
 
-        client = Langfuse(public_key=pub, secret_key=sec, host=host, timeout=60)
-        all_traces, page, page_limit = [], 1, 100
-        while True:
-            batch, _ = _sdk_list_traces(client, limit=page_limit, page=page)
-            all_traces.extend(batch)
-            if len(batch) < page_limit:
-                break
-            page += 1
-        print(f"✅ Fetched {len(all_traces)} proposal-agent traces (separate Langfuse project)")
+        all_traces = list_observations(host=host, public_key=pub, secret_key=sec)
+        print(f"✅ Fetched {len(all_traces)} proposal-agent traces (separate Langfuse project, v2/observations)")
         return all_traces
     except Exception as e:
         print(f"⚠️  Proposal-agent trace fetch failed: {e} -- tab will show no data")
