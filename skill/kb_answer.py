@@ -5572,6 +5572,11 @@ def _emit_langfuse_event(
             "User-Agent": "superagent-product-kb-answer",
             "x-langfuse-sdk-name": "python",
             "x-langfuse-public-key": public_key,
+            # Required on raw OTLP exporters per Langfuse's v4 ingestion
+            # migration guide -- without it, Langfuse's UI flags the SDK as
+            # "Python unknown / version not recognized" even though ingestion
+            # itself succeeds.
+            "x-langfuse-ingestion-version": "4",
         }
         result["ingestion_attempted"] = True
         result["trace_id"] = trace_id
@@ -9027,6 +9032,11 @@ def _send_langfuse(
             "User-Agent": "superagent-product-kb-answer",
             "x-langfuse-sdk-name": "python",
             "x-langfuse-public-key": public_key,
+            # Required on raw OTLP exporters per Langfuse's v4 ingestion
+            # migration guide -- without it, Langfuse's UI flags the SDK as
+            # "Python unknown / version not recognized" even though ingestion
+            # itself succeeds.
+            "x-langfuse-ingestion-version": "4",
         }
         try:
             resp = requests.post(endpoint, headers=headers, json=body, timeout=30)

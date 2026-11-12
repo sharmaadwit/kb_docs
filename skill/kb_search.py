@@ -2983,6 +2983,11 @@ def _send_langfuse_search(compact: Dict[str, Any], context, query: str, output_s
             "User-Agent": "superagent-product-kb-search",
             "x-langfuse-sdk-name": "python",
             "x-langfuse-public-key": public_key,
+            # Required on raw OTLP exporters per Langfuse's v4 ingestion
+            # migration guide -- without it, Langfuse's UI flags the SDK as
+            # "Python unknown / version not recognized" even though ingestion
+            # itself succeeds.
+            "x-langfuse-ingestion-version": "4",
         }
         resp = requests.post(endpoint, headers=headers, json=body, timeout=30)
         if resp.status_code >= 400:

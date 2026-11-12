@@ -243,9 +243,8 @@ def delete_traces(client: Langfuse, trace_ids: List[str],
 
 
 if __name__ == "__main__":
-    lf = get_client()
-    print("Recent kb_answer traces (via legacy /traces list):")
-    traces, _ = list_traces(lf, name="kb_answer", limit=5)
+    print("Recent kb_answer traces (via v2/observations):")
+    traces = list_observations(name="kb_answer")[:5]
     for t in traces:
         meta = t.get("metadata") or {}
         print(f"  {t['id']}  answered={meta.get('answered')}  module={meta.get('module_label')}")
