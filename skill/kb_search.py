@@ -2911,7 +2911,12 @@ def _build_otlp_request_search(
         _attr("langfuse.trace.output", json.dumps({"summary": output_summary})),
     ]
     if trace_user_id:
-        attrs.append(_attr("langfuse.trace.user_id", trace_user_id))
+        # Verified against langfuse-python's LangfuseOtelSpanAttributes
+        # constants (_client/attributes.py): the real key is the bare OTel
+        # convention "user.id", not "langfuse.user.id"/"langfuse.trace.user_id"
+        # (both tried and failed live-verification -- confirmed empty userId
+        # on ingested traces despite trace_user_id resolving correctly).
+        attrs.append(_attr("user.id", trace_user_id))
     if trace_id:
         attrs.append(_attr("langfuse.observation.metadata.kb_trace_id", trace_id))
     for k, v in metadata.items():

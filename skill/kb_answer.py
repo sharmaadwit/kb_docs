@@ -8730,13 +8730,19 @@ def _build_otlp_request(
         _attr("langfuse.trace.output", json.dumps({"answer": answer})),
     ]
     if trace_user_id:
-        attrs.append(_attr("langfuse.trace.user_id", trace_user_id))
+        # Verified against langfuse-python's LangfuseOtelSpanAttributes
+        # constants (_client/attributes.py): the real key is the bare OTel
+        # convention "user.id", not "langfuse.user.id"/"langfuse.trace.user_id"
+        # (both tried and failed live-verification -- confirmed empty userId
+        # on ingested traces despite trace_user_id resolving correctly).
+        attrs.append(_attr("user.id", trace_user_id))
     if session_id:
-        # Native Langfuse session attribute (populates trace.sessionId) --
-        # previously session_id only reached langfuse.observation.metadata.*,
-        # so the dedicated Sessions view / trace.sessionId field stayed empty
-        # even though the real id was present in metadata all along.
-        attrs.append(_attr("langfuse.trace.session_id", session_id))
+        # Same source: the real key is bare "session.id", not
+        # "langfuse.session.id"/"langfuse.trace.session_id". previously
+        # session_id only reached langfuse.observation.metadata.*, so the
+        # dedicated Sessions view / trace.sessionId field stayed empty even
+        # though the real id was present in metadata all along.
+        attrs.append(_attr("session.id", session_id))
     if parent_trace_id:
         attrs.append(_attr("langfuse.trace.parent_observation_id", parent_trace_id))
     if trace_id:
