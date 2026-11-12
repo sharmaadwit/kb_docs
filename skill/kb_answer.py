@@ -8693,6 +8693,7 @@ def _build_otlp_request(
     trace_name: str, trace_id: str, query: str, answer: str, metadata: Dict,
     trace_user_id: Optional[str] = None,
     parent_trace_id: Optional[str] = None,
+    session_id: Optional[str] = None,
 ) -> Dict:
     """Build OTLP/JSON body for Langfuse v2 ingestion (POST /api/public/otel/v1/traces).
 
@@ -8730,6 +8731,12 @@ def _build_otlp_request(
     ]
     if trace_user_id:
         attrs.append(_attr("langfuse.trace.user_id", trace_user_id))
+    if session_id:
+        # Native Langfuse session attribute (populates trace.sessionId) --
+        # previously session_id only reached langfuse.observation.metadata.*,
+        # so the dedicated Sessions view / trace.sessionId field stayed empty
+        # even though the real id was present in metadata all along.
+        attrs.append(_attr("langfuse.trace.session_id", session_id))
     if parent_trace_id:
         attrs.append(_attr("langfuse.trace.parent_observation_id", parent_trace_id))
     if trace_id:
@@ -8990,6 +8997,11 @@ def _send_langfuse(
     body = _build_otlp_request(
         trace_name, trace_id, orig, answer, metadata, trace_user_id=trace_user_id,
         parent_trace_id=parent_trace_id,
+        # Only the real caller-provided session_id, not the correlation_id
+        # fallback -- same real-vs-stand-in distinction already drawn above
+        # for metadata["session_id_source"]; a fresh per-turn id has no
+        # business populating the native cross-turn Sessions grouping field.
+        session_id=real_session_id,
     )
 
     host = context.get_secret("LANGFUSE_HOST") if context else None
